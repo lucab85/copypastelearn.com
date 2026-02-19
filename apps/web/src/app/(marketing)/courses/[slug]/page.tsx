@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { getCourse } from "@/server/queries/courses";
@@ -10,6 +11,25 @@ export const revalidate = 3600;
 
 interface CourseDetailPageProps {
   params: Promise<{ slug: string }>;
+}
+
+export async function generateMetadata({
+  params,
+}: CourseDetailPageProps): Promise<Metadata> {
+  const { slug } = await params;
+  const course = await getCourse(slug);
+  if (!course) return {};
+  return {
+    title: course.title,
+    description: course.description,
+    alternates: { canonical: `/courses/${slug}` },
+    openGraph: {
+      title: course.title,
+      description: course.description ?? undefined,
+      type: "article",
+      ...(course.thumbnailUrl && { images: [{ url: course.thumbnailUrl }] }),
+    },
+  };
 }
 
 export default async function CourseDetailPage({ params }: CourseDetailPageProps) {

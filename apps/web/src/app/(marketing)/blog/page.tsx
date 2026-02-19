@@ -1,7 +1,12 @@
 import type { Metadata } from "next";
 import { Rss } from "lucide-react";
 
-export const metadata: Metadata = { title: "Blog" };
+export const metadata: Metadata = {
+  title: "Blog",
+  description:
+    "Tips, tutorials, and updates from the CopyPasteLearn team on IT automation, Docker, Ansible, and more.",
+  alternates: { canonical: "/blog" },
+};
 
 export default function BlogPage() {
   return (

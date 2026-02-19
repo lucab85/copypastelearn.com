@@ -1,6 +1,11 @@
 import type { Metadata } from "next";
 
-export const metadata: Metadata = { title: "Terms of Service" };
+export const metadata: Metadata = {
+  title: "Terms of Service",
+  description: "CopyPasteLearn terms of service — rules and guidelines for using our platform.",
+  alternates: { canonical: "/terms" },
+  robots: { index: true, follow: true },
+};
 
 export default function TermsPage() {
   return (

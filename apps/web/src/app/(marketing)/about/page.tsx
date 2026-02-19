@@ -1,7 +1,12 @@
 import type { Metadata } from "next";
 import { Terminal, Users, Rocket } from "lucide-react";
 
-export const metadata: Metadata = { title: "About" };
+export const metadata: Metadata = {
+  title: "About",
+  description:
+    "Learn about CopyPasteLearn — our mission to make IT automation education hands-on and accessible.",
+  alternates: { canonical: "/about" },
+};
 
 export default function AboutPage() {
   return (

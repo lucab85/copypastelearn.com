@@ -1,4 +1,5 @@
 import Link from "next/link";
+import type { Metadata } from "next";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import {
@@ -10,9 +11,60 @@ import {
   CheckCircle2,
 } from "lucide-react";
 
+export const metadata: Metadata = {
+  alternates: { canonical: "/" },
+};
+
+function OrganizationJsonLd() {
+  const siteUrl =
+    process.env.NEXT_PUBLIC_APP_URL ?? "https://copypastelearn.com";
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: "CopyPasteLearn",
+    url: siteUrl,
+    logo: `${siteUrl}/logo.png`,
+    description:
+      "Master IT automation with video courses and hands-on interactive labs.",
+    sameAs: ["https://discord.gg/copypastelearn"],
+  };
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+    />
+  );
+}
+
+function WebSiteJsonLd() {
+  const siteUrl =
+    process.env.NEXT_PUBLIC_APP_URL ?? "https://copypastelearn.com";
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: "CopyPasteLearn",
+    url: siteUrl,
+    description:
+      "Master IT automation with video courses and hands-on interactive labs. Learn by doing in real environments.",
+    potentialAction: {
+      "@type": "SearchAction",
+      target: `${siteUrl}/courses?q={search_term_string}`,
+      "query-input": "required name=search_term_string",
+    },
+  };
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+    />
+  );
+}
+
 export default function HomePage() {
   return (
     <div className="flex flex-col">
+      <OrganizationJsonLd />
+      <WebSiteJsonLd />
       {/* Hero */}
       <section
         aria-label="Hero"

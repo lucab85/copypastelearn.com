@@ -1,6 +1,11 @@
 import type { Metadata } from "next";
 
-export const metadata: Metadata = { title: "Privacy Policy" };
+export const metadata: Metadata = {
+  title: "Privacy Policy",
+  description: "CopyPasteLearn privacy policy — how we collect, use, and protect your personal data.",
+  alternates: { canonical: "/privacy" },
+  robots: { index: true, follow: true },
+};
 
 export default function PrivacyPage() {
   return (

@@ -23,6 +23,7 @@ export interface CourseDetail {
   prerequisites: string[];
   difficulty: Difficulty;
   estimatedDuration: number | null;
+  thumbnailUrl: string | null;
   lessons: LessonSummary[];
   userProgress?: CourseProgressInfo | null;
 }

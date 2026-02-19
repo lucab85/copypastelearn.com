@@ -1,8 +1,21 @@
+import type { Metadata } from "next";
 import { getCourses } from "@/server/queries/courses";
 import { CourseCard } from "@/components/course/course-card";
 import { BookOpen } from "lucide-react";
 
 export const revalidate = 3600; // ISR: revalidate every hour
+
+export const metadata: Metadata = {
+  title: "Courses — IT Automation & DevOps Training",
+  description:
+    "Browse hands-on courses on Docker, Ansible, Node.js and more. Each course includes video lessons and interactive labs.",
+  alternates: { canonical: "/courses" },
+  openGraph: {
+    title: "Courses — IT Automation & DevOps Training",
+    description:
+      "Browse hands-on courses on Docker, Ansible, Node.js and more. Each course includes video lessons and interactive labs.",
+  },
+};
 
 export default async function CourseCatalogPage() {
   const courses = await getCourses();

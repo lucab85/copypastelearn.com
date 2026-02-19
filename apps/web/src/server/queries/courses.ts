@@ -106,6 +106,7 @@ export async function getCourse(slug: string): Promise<CourseDetail | null> {
     prerequisites: course.prerequisites,
     difficulty: course.difficulty,
     estimatedDuration: course.estimatedDuration,
+    thumbnailUrl: course.thumbnailUrl,
     lessons: course.lessons.map((lesson) => {
       const isFree = lesson.sortOrder === 0;
       return {

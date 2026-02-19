@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { auth } from "@clerk/nextjs/server";
 import { Button } from "@/components/ui/button";
@@ -13,9 +14,16 @@ import { Badge } from "@/components/ui/badge";
 import { CheckCircle2 } from "lucide-react";
 import { SUBSCRIPTION_PRICE_EUR } from "@copypastelearn/shared";
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "Pricing",
-  description: "Simple, transparent pricing for CopyPasteLearn",
+  description:
+    "Simple, transparent pricing for CopyPasteLearn. One plan, everything included — courses, labs, and certificates.",
+  alternates: { canonical: "/pricing" },
+  openGraph: {
+    title: "Pricing — CopyPasteLearn",
+    description:
+      "One plan. Everything included. No hidden fees. Start learning IT automation today.",
+  },
 };
 
 const benefits = [

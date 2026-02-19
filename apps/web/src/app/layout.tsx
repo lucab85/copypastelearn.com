@@ -3,16 +3,59 @@ import { SiteHeader } from "@/components/layout/site-header";
 import { SiteFooter } from "@/components/layout/site-footer";
 import "./globals.css";
 
+const siteUrl = process.env.NEXT_PUBLIC_APP_URL ?? "https://copypastelearn.com";
+
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: {
     default: "CopyPasteLearn — Learn IT Automation by Doing",
     template: "%s | CopyPasteLearn",
   },
   description:
     "Master IT automation with video courses and hands-on interactive labs. Learn by doing in real environments.",
-  metadataBase: new URL(
-    process.env.NEXT_PUBLIC_APP_URL ?? "http://localhost:3000"
-  ),
+  keywords: [
+    "IT automation",
+    "learn DevOps",
+    "Docker tutorial",
+    "Ansible course",
+    "Node.js API course",
+    "hands-on labs",
+    "interactive coding",
+    "infrastructure as code",
+    "copypastelearn",
+  ],
+  authors: [{ name: "CopyPasteLearn" }],
+  creator: "CopyPasteLearn",
+  publisher: "CopyPasteLearn",
+  alternates: {
+    canonical: "/",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "/",
+    siteName: "CopyPasteLearn",
+    title: "CopyPasteLearn — Learn IT Automation by Doing",
+    description:
+      "Master IT automation with video courses and hands-on interactive labs. Learn by doing in real environments.",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "CopyPasteLearn — Learn IT Automation by Doing",
+    description:
+      "Master IT automation with video courses and hands-on interactive labs. Learn by doing in real environments.",
+  },
 };
 
 /**

@@ -1,7 +1,11 @@
 import type { Metadata } from "next";
 import { Mail, MessageSquare, MapPin } from "lucide-react";
 
-export const metadata: Metadata = { title: "Contact" };
+export const metadata: Metadata = {
+  title: "Contact",
+  description: "Get in touch with the CopyPasteLearn team. Questions, partnerships, or feedback — we'd love to hear from you.",
+  alternates: { canonical: "/contact" },
+};
 
 export default function ContactPage() {
   return (
