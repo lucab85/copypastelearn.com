@@ -12,7 +12,7 @@ async function main() {
     create: {
       clerkUserId: "user_admin_seed",
       email: "admin@copypastelearn.com",
-      name: "Admin User",
+      displayName: "Admin User",
       role: "ADMIN",
     },
   });
@@ -25,7 +25,7 @@ async function main() {
     create: {
       clerkUserId: "user_learner_seed",
       email: "learner@copypastelearn.com",
-      name: "Sample Learner",
+      displayName: "Sample Learner",
       role: "LEARNER",
     },
   });
@@ -54,7 +54,7 @@ async function main() {
         "Basic command line familiarity",
         "Any programming language experience",
       ],
-      estimatedDuration: "4 hours",
+      estimatedDuration: 240,
     },
   });
 
@@ -200,45 +200,48 @@ async function main() {
     });
 
     if (hasLab) {
+      const labPlan = {
+        title: `${lesson.title} Lab`,
+        description: `Hands-on practice for: ${lesson.title}`,
+        dockerImage: "node:20-slim",
+        memoryLimit: "256m",
+        cpuLimit: "0.5",
+        steps: [
+          {
+            title: "Setup",
+            instructions: `<p>Follow the instructions from the <strong>${lesson.title}</strong> lesson.</p>`,
+            checks: [
+              {
+                name: "Verify setup",
+                command: "echo 'check passed'",
+                expected: "check passed",
+                hint: "Make sure you followed all the steps.",
+              },
+            ],
+          },
+          {
+            title: "Complete the task",
+            instructions:
+              "<p>Apply what you learned and verify the result.</p>",
+            checks: [
+              {
+                name: "Task completed",
+                command: "echo 'done'",
+                expected: "done",
+                hint: "Review the lesson code snippets for guidance.",
+              },
+            ],
+          },
+        ],
+      };
+
       await prisma.labDefinition.upsert({
         where: { lessonId: lesson.id },
         update: {},
         create: {
           lessonId: lesson.id,
-          title: `${lesson.title} Lab`,
-          description: `Hands-on practice for: ${lesson.title}`,
-          dockerImage: "node:20-slim",
-          memoryLimit: "256m",
-          cpuLimit: "0.5",
-          yamlConfig: JSON.stringify({
-            steps: [
-              {
-                title: "Setup",
-                instructions: `<p>Follow the instructions from the <strong>${lesson.title}</strong> lesson.</p>`,
-                checks: [
-                  {
-                    name: "Verify setup",
-                    command: "echo 'check passed'",
-                    expected: "check passed",
-                    hint: "Make sure you followed all the steps.",
-                  },
-                ],
-              },
-              {
-                title: "Complete the task",
-                instructions:
-                  "<p>Apply what you learned and verify the result.</p>",
-                checks: [
-                  {
-                    name: "Task completed",
-                    command: "echo 'done'",
-                    expected: "done",
-                    hint: "Review the lesson code snippets for guidance.",
-                  },
-                ],
-              },
-            ],
-          }),
+          yamlSource: JSON.stringify(labPlan),
+          compiledPlan: labPlan,
         },
       });
     }
@@ -271,7 +274,7 @@ async function main() {
         "Basic understanding of HTTP",
         "Node.js installed locally",
       ],
-      estimatedDuration: "6 hours",
+      estimatedDuration: 360,
     },
   });
 
@@ -392,46 +395,49 @@ async function main() {
     });
 
     if (hasLab) {
+      const labPlan = {
+        title: `${lesson.title} Lab`,
+        description: `Hands-on practice for: ${lesson.title}`,
+        dockerImage: "node:20-slim",
+        memoryLimit: "256m",
+        cpuLimit: "0.5",
+        steps: [
+          {
+            title: "Initialize the database",
+            instructions:
+              "<p>Run the Prisma migration to set up your database schema.</p>",
+            checks: [
+              {
+                name: "Migration applied",
+                command: "test -d node_modules/.prisma && echo 'ok'",
+                expected: "ok",
+                hint: "Run npx prisma migrate dev first.",
+              },
+            ],
+          },
+          {
+            title: "Create a user via the API",
+            instructions:
+              "<p>Use curl to create a user through your API endpoint.</p>",
+            checks: [
+              {
+                name: "User created",
+                command: "echo 'verified'",
+                expected: "verified",
+                hint: "POST to /api/users with email and name.",
+              },
+            ],
+          },
+        ],
+      };
+
       await prisma.labDefinition.upsert({
         where: { lessonId: lesson.id },
         update: {},
         create: {
           lessonId: lesson.id,
-          title: `${lesson.title} Lab`,
-          description: `Hands-on practice for: ${lesson.title}`,
-          dockerImage: "node:20-slim",
-          memoryLimit: "256m",
-          cpuLimit: "0.5",
-          yamlConfig: JSON.stringify({
-            steps: [
-              {
-                title: "Initialize the database",
-                instructions:
-                  "<p>Run the Prisma migration to set up your database schema.</p>",
-                checks: [
-                  {
-                    name: "Migration applied",
-                    command: "test -d node_modules/.prisma && echo 'ok'",
-                    expected: "ok",
-                    hint: "Run npx prisma migrate dev first.",
-                  },
-                ],
-              },
-              {
-                title: "Create a user via the API",
-                instructions:
-                  "<p>Use curl to create a user through your API endpoint.</p>",
-                checks: [
-                  {
-                    name: "User created",
-                    command: "echo 'verified'",
-                    expected: "verified",
-                    hint: "POST to /api/users with email and name.",
-                  },
-                ],
-              },
-            ],
-          }),
+          yamlSource: JSON.stringify(labPlan),
+          compiledPlan: labPlan,
         },
       });
     }

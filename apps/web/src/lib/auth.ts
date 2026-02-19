@@ -1,11 +1,24 @@
-import { auth, currentUser } from "@clerk/nextjs/server";
 import { db } from "./db";
+
+function isClerkConfigured(): boolean {
+  const pk = process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY;
+  if (!pk || pk === "pk_test_...") return false;
+  try {
+    atob(pk.replace(/^pk_(test|live)_/, ""));
+    return true;
+  } catch {
+    return false;
+  }
+}
 
 /**
  * Get the current user from the database, matched by Clerk user ID.
- * Returns null if unauthenticated or user not found in DB.
+ * Returns null if unauthenticated, Clerk not configured, or user not found in DB.
  */
 export async function getCurrentUser() {
+  if (!isClerkConfigured()) return null;
+
+  const { auth } = await import("@clerk/nextjs/server");
   const { userId } = await auth();
   if (!userId) return null;
 
@@ -21,6 +34,11 @@ export async function getCurrentUser() {
  * Returns the database user record.
  */
 export async function requireAuth() {
+  if (!isClerkConfigured()) {
+    throw new UnauthorizedError("Authentication not configured");
+  }
+
+  const { auth, currentUser } = await import("@clerk/nextjs/server");
   const { userId } = await auth();
   if (!userId) {
     throw new UnauthorizedError("Authentication required");
