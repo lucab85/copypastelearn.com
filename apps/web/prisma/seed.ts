@@ -654,7 +654,7 @@ async function main() {
       const labPlan = {
         title: `${lesson.title} Lab`,
         description: `Hands-on practice for: ${lesson.title}`,
-        dockerImage: "ubuntu:22.04",
+        dockerImage: "copypastelearn/ansible-lab:latest",
         memoryLimit: "256m",
         cpuLimit: "0.5",
         steps: [

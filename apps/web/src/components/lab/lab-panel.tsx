@@ -61,6 +61,7 @@ export function LabPanel({
   } | null>(null);
   const [isValidating, setIsValidating] = useState(false);
   const [terminalConnected, setTerminalConnected] = useState(false);
+  const [isDestroying, setIsDestroying] = useState(false);
   const [instructionsPanelOpen, setInstructionsPanelOpen] = useState(true);
 
   // SSE event stream
@@ -128,8 +129,13 @@ export function LabPanel({
   }, [sessionId, currentStep]);
 
   const handleDestroy = useCallback(async () => {
-    await destroyLabSession(sessionId);
+    setIsDestroying(true);
     setStatus("DESTROYED");
+    try {
+      await destroyLabSession(sessionId);
+    } catch {
+      // Best-effort — UI already shows destroyed
+    }
   }, [sessionId]);
 
   const step = steps[currentStep];
@@ -173,10 +179,11 @@ export function LabPanel({
               size="sm"
               aria-label="End lab session"
               onClick={handleDestroy}
+              disabled={isDestroying}
               className="text-destructive"
             >
               <XCircle className="mr-1 h-4 w-4" />
-              End Lab
+              {isDestroying ? "Ending..." : "End Lab"}
             </Button>
           )}
         </div>

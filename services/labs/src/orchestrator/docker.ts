@@ -155,7 +155,7 @@ export class DockerProvider implements ContainerProvider {
     return { output, input, resize };
   }
 
-  async stop(containerId: string, timeout = 10): Promise<void> {
+  async stop(containerId: string, timeout = 2): Promise<void> {
     const container = this.docker.getContainer(containerId);
     try {
       await container.stop({ t: timeout });

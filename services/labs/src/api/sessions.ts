@@ -163,10 +163,9 @@ export const sessionRoutes: FastifyPluginAsync = async (app) => {
         });
       }
 
-      // Destroy container if running
+      // Destroy container if running — force-remove skips the graceful stop timeout
       if (session.sandboxId) {
         try {
-          await getProvider().stop(session.sandboxId);
           await getProvider().remove(session.sandboxId, true);
         } catch {
           // Container might already be gone
