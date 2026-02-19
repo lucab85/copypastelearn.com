@@ -39,7 +39,7 @@ export class DockerProvider implements ContainerProvider {
       Tty: true,
       OpenStdin: true,
       WorkingDir: options.workingDir ?? "/workspace",
-      User: options.user ?? "1000:1000",
+      User: options.user ?? "root",
       Env: options.env
         ? Object.entries(options.env).map(([k, v]) => `${k}=${v}`)
         : undefined,
@@ -51,7 +51,7 @@ export class DockerProvider implements ContainerProvider {
         SecurityOpt: ["no-new-privileges"],
         ReadonlyRootfs: false,
         CapDrop: ["ALL"],
-        CapAdd: ["CHOWN", "SETUID", "SETGID", "DAC_OVERRIDE"],
+        CapAdd: ["CHOWN", "SETUID", "SETGID", "DAC_OVERRIDE", "FOWNER", "NET_RAW"],
       },
     });
 

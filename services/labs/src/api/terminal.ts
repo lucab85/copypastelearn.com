@@ -60,6 +60,9 @@ export const terminalRoutes: FastifyPluginAsync = async (app) => {
           session.sandboxId
         );
 
+        // Send a newline to trigger the shell prompt
+        input.write("\n");
+
         // Stream container output to WebSocket
         output.on("data", (chunk: Buffer) => {
           const sanitized = sanitizeOutput(chunk.toString("utf-8"));
