@@ -7,6 +7,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { BookOpen, Clock } from "lucide-react";
 import type { CourseListItem } from "@copypastelearn/shared";
 
 const difficultyColors: Record<string, "default" | "secondary" | "destructive"> = {
@@ -22,29 +23,36 @@ interface CourseCardProps {
 export function CourseCard({ course }: CourseCardProps) {
   return (
     <Link href={`/courses/${course.slug}`}>
-      <Card className="h-full transition-shadow hover:shadow-md">
-        {course.thumbnailUrl && (
+      <Card className="group h-full transition-all hover:border-primary/20 hover:shadow-lg hover:shadow-primary/5">
+        {course.thumbnailUrl ? (
           <div className="aspect-video w-full overflow-hidden rounded-t-lg">
             <img
               src={course.thumbnailUrl}
               alt={course.title}
-              className="h-full w-full object-cover"
+              className="h-full w-full object-cover transition-transform group-hover:scale-105"
             />
           </div>
+        ) : (
+          <div className="flex aspect-video w-full items-center justify-center rounded-t-lg bg-gradient-to-br from-primary/10 to-primary/5">
+            <BookOpen className="h-10 w-10 text-primary/40" />
+          </div>
         )}
-        <CardHeader>
+        <CardHeader className="pb-3">
           <div className="flex items-center gap-2">
-            <Badge variant={difficultyColors[course.difficulty] ?? "default"}>
+            <Badge variant={difficultyColors[course.difficulty] ?? "default"} className="text-xs">
               {course.difficulty.toLowerCase()}
             </Badge>
-            <span className="text-sm text-muted-foreground">
+            <span className="flex items-center gap-1 text-xs text-muted-foreground">
+              <Clock className="h-3 w-3" />
               {course.lessonCount} {course.lessonCount === 1 ? "lesson" : "lessons"}
             </span>
           </div>
-          <CardTitle className="text-lg">{course.title}</CardTitle>
+          <CardTitle className="text-lg leading-snug group-hover:text-primary transition-colors">
+            {course.title}
+          </CardTitle>
         </CardHeader>
-        <CardContent>
-          <p className="line-clamp-2 text-sm text-muted-foreground">
+        <CardContent className="pb-4">
+          <p className="line-clamp-2 text-sm leading-relaxed text-muted-foreground">
             {course.description}
           </p>
         </CardContent>

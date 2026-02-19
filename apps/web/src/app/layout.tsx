@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { SiteHeader } from "@/components/layout/site-header";
+import { SiteFooter } from "@/components/layout/site-footer";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -44,14 +46,16 @@ export default async function RootLayout({
 
   const body = (
     <html lang="en" suppressHydrationWarning>
-      <body className="min-h-screen bg-background font-sans antialiased">
+      <body className="flex min-h-screen flex-col bg-background font-sans antialiased">
         {!clerkEnabled && (
-          <div className="bg-yellow-100 px-4 py-2 text-center text-sm text-yellow-800">
-            Clerk is not configured — auth is disabled. Set valid keys in{" "}
-            <code>.env.local</code> to enable.
+          <div className="bg-yellow-100 px-4 py-1.5 text-center text-xs text-yellow-800">
+            Auth is disabled — set Clerk keys in <code>.env.local</code> to
+            enable.
           </div>
         )}
-        {children}
+        <SiteHeader />
+        <main className="flex-1">{children}</main>
+        <SiteFooter />
       </body>
     </html>
   );

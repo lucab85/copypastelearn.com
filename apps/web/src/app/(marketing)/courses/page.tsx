@@ -1,5 +1,6 @@
 import { getCourses } from "@/server/queries/courses";
 import { CourseCard } from "@/components/course/course-card";
+import { BookOpen } from "lucide-react";
 
 export const revalidate = 3600; // ISR: revalidate every hour
 
@@ -7,27 +8,40 @@ export default async function CourseCatalogPage() {
   const courses = await getCourses();
 
   return (
-    <main className="container mx-auto px-4 py-12">
-      <div className="mb-8">
-        <h1 className="text-3xl font-bold tracking-tight">Course Catalog</h1>
-        <p className="mt-2 text-muted-foreground">
-          Master IT automation with video courses and hands-on interactive labs.
-        </p>
-      </div>
-
-      {courses.length === 0 ? (
-        <div className="flex flex-col items-center justify-center py-16">
-          <p className="text-lg text-muted-foreground">
-            No courses available yet. Check back soon!
+    <div>
+      {/* Page header */}
+      <div className="border-b bg-muted/30">
+        <div className="container mx-auto px-4 py-12 lg:py-16">
+          <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">
+            Course Catalog
+          </h1>
+          <p className="mt-3 max-w-2xl text-lg text-muted-foreground">
+            Master IT automation with video courses and hands-on interactive
+            labs. Pick a course and start learning today.
           </p>
         </div>
-      ) : (
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {courses.map((course) => (
-            <CourseCard key={course.id} course={course} />
-          ))}
-        </div>
-      )}
-    </main>
+      </div>
+
+      {/* Course grid */}
+      <div className="container mx-auto px-4 py-12">
+        {courses.length === 0 ? (
+          <div className="flex flex-col items-center justify-center rounded-xl border border-dashed py-20">
+            <BookOpen className="mb-4 h-10 w-10 text-muted-foreground/50" />
+            <p className="text-lg font-medium text-muted-foreground">
+              No courses available yet.
+            </p>
+            <p className="mt-1 text-sm text-muted-foreground/70">
+              Check back soon — new courses are on the way!
+            </p>
+          </div>
+        ) : (
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {courses.map((course) => (
+              <CourseCard key={course.id} course={course} />
+            ))}
+          </div>
+        )}
+      </div>
+    </div>
   );
 }
