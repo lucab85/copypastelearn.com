@@ -18,10 +18,9 @@ export async function createLabSession(labDefinitionId: string) {
     where: { id: labDefinitionId },
     select: {
       id: true,
-      yamlConfig: true,
-      dockerImage: true,
-      memoryLimit: true,
-      cpuLimit: true,
+      compiledPlan: true,
+      envConfig: true,
+      ttlMinutes: true,
     },
   });
 
@@ -44,23 +43,19 @@ export async function createLabSession(labDefinitionId: string) {
   }
 
   try {
-    // Parse compiledPlan from YAML config
-    let compiledPlan = {};
-    try {
-      compiledPlan = JSON.parse(labDef.yamlConfig);
-    } catch {
-      // yamlConfig might be raw YAML — Lab Service will handle compilation
-      compiledPlan = { raw: labDef.yamlConfig };
-    }
+    const compiledPlan = (labDef.compiledPlan ?? {}) as Record<string, unknown>;
+    const envConfig = (labDef.envConfig ?? {}) as Record<string, unknown>;
 
     const result = await createSession({
       userId: user.id,
       labDefinitionId: labDef.id,
       compiledPlan,
       envConfig: {
-        image: labDef.dockerImage,
-        memoryLimit: labDef.memoryLimit ?? undefined,
-        cpuLimit: labDef.cpuLimit ?? undefined,
+        image: (envConfig.image as string) ?? "ubuntu:22.04",
+        memoryLimit: (envConfig.memoryLimit as string) ?? "256m",
+        cpuLimit: (envConfig.cpuLimit as string) ?? "0.5",
+        ttlMinutes: labDef.ttlMinutes ?? 60,
+        networkMode: (envConfig.networkMode as string) ?? "none",
       },
     });
 

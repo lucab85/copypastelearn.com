@@ -5,7 +5,7 @@ import { VideoPlayer } from "@/components/lesson/video-player";
 import { saveVideoPosition, markLessonComplete } from "@/server/actions/progress";
 
 interface MuxTokens {
-  video: string;
+  playback: string;
   thumbnail: string;
   storyboard: string;
 }

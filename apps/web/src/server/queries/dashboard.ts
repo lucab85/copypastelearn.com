@@ -34,7 +34,7 @@ export async function getDashboard(): Promise<DashboardData> {
         },
       },
     },
-    orderBy: { lastActivityAt: "desc" },
+    orderBy: { startedAt: "desc" },
   });
 
   const courses = courseProgress.map((cp) => {
@@ -87,9 +87,9 @@ export async function getDashboard(): Promise<DashboardData> {
     include: {
       labDefinition: {
         select: {
-          title: true,
           lesson: {
             select: {
+              title: true,
               slug: true,
               course: { select: { slug: true } },
             },
@@ -115,7 +115,7 @@ export async function getDashboard(): Promise<DashboardData> {
     activeLabSession: activeLabSession
       ? {
           sessionId: activeLabSession.id,
-          labTitle: activeLabSession.labDefinition.title,
+          labTitle: activeLabSession.labDefinition.lesson.title,
           status: activeLabSession.status,
           expiresAt: activeLabSession.expiresAt.toISOString(),
         }

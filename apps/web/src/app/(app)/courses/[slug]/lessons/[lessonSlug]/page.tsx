@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import { auth } from "@clerk/nextjs/server";
 import { getLesson } from "@/server/queries/lessons";
 import { generateMuxTokens } from "@/lib/mux";
 import { LessonPlayerClient } from "./lesson-player-client";
@@ -25,9 +26,13 @@ export default async function LessonPage({ params }: LessonPageProps) {
       const err = error as { statusCode: number; message?: string };
       if (err.statusCode === 404) notFound();
       if (err.statusCode === 403) {
+        const { userId } = await auth();
+        const isSignedIn = !!userId;
         return (
           <div className="container mx-auto flex min-h-[60vh] flex-col items-center justify-center px-4 py-16 text-center">
-            <h1 className="mb-4 text-2xl font-bold">Sign in to continue</h1>
+            <h1 className="mb-4 text-2xl font-bold">
+              {isSignedIn ? "Subscription required" : "Sign in to continue"}
+            </h1>
             <p className="mb-6 text-muted-foreground">
               {err.message ?? "This lesson requires authentication or an active subscription."}
             </p>
@@ -35,9 +40,15 @@ export default async function LessonPage({ params }: LessonPageProps) {
               <Link href={`/courses/${slug}`}>
                 <Button variant="outline">Back to course</Button>
               </Link>
-              <Link href="/sign-in">
-                <Button>Sign in</Button>
-              </Link>
+              {isSignedIn ? (
+                <Link href="/pricing">
+                  <Button>View pricing</Button>
+                </Link>
+              ) : (
+                <Link href="/sign-in">
+                  <Button>Sign in</Button>
+                </Link>
+              )}
             </div>
           </div>
         );

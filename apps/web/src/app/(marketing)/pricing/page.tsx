@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { auth } from "@clerk/nextjs/server";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -26,7 +27,8 @@ const benefits = [
   "New content added regularly",
 ];
 
-export default function PricingPage() {
+export default async function PricingPage() {
+  const { userId } = await auth();
   return (
     <div className="container mx-auto px-4 py-16">
       {/* Header */}
@@ -67,7 +69,11 @@ export default function PricingPage() {
           </CardContent>
           <CardFooter>
             <Button asChild size="lg" className="w-full">
-              <Link href="/sign-up">Get Started</Link>
+              {userId ? (
+                <Link href="/dashboard">Go to Dashboard</Link>
+              ) : (
+                <Link href="/sign-up">Get Started</Link>
+              )}
             </Button>
           </CardFooter>
         </Card>

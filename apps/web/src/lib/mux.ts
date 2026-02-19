@@ -28,7 +28,7 @@ function getPrivateKey(): string {
 }
 
 interface MuxTokens {
-  video: string;
+  playback: string;
   thumbnail: string;
   storyboard: string;
 }
@@ -91,5 +91,5 @@ export function generateMuxTokens(playbackId: string): MuxTokens | undefined {
     { algorithm: "RS256", keyid: MUX_TOKEN_ID }
   );
 
-  return { video: videoToken, thumbnail: thumbnailToken, storyboard: storyboardToken };
+  return { playback: videoToken, thumbnail: thumbnailToken, storyboard: storyboardToken };
 }

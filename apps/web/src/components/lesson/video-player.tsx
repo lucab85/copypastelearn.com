@@ -5,7 +5,7 @@ import { useCallback, useRef, useState } from "react";
 import { AlertTriangle } from "lucide-react";
 
 interface MuxTokens {
-  video: string;
+  playback: string;
   thumbnail: string;
   storyboard: string;
 }

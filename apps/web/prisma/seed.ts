@@ -191,7 +191,7 @@ async function main() {
       where: {
         courseId_slug: { courseId: course1.id, slug: lessonData.slug },
       },
-      update: {},
+      update: { ...lessonFields },
       create: {
         ...lessonFields,
         courseId: course1.id,
@@ -386,7 +386,7 @@ async function main() {
       where: {
         courseId_slug: { courseId: course2.id, slug: lessonData.slug },
       },
-      update: {},
+      update: { ...lessonFields },
       create: {
         ...lessonFields,
         courseId: course2.id,
@@ -480,7 +480,7 @@ async function main() {
         "Overview of Ansible, its benefits (agentless, YAML-based, idempotent), and real-world applications.",
       sortOrder: 0,
       durationSeconds: 158,
-      videoPlaybackId: "LSfDw0001oFCMmfJ01mabZ9h201V8os00PgumnGcBRE12XHA",
+      videoPlaybackId: "pSBrSxIymfVHuQTpy4sYNorkvIHISxVhj4mNjhlu4bI",
       transcript:
         "Welcome to this quickstart on Ansible! Ansible is a powerful automation tool used by IT professionals to manage infrastructure. What makes it unique is its simplicity—no agents are required, and configurations are written in YAML, making it human-readable. In this course, you'll learn to install Ansible, create your first playbook, and automate a simple web server deployment—all in just 30 minutes. Let's get started!",
       codeSnippets: [],
@@ -495,7 +495,7 @@ async function main() {
         "Install Ansible on your machine, set up an inventory file, and test connectivity with ad-hoc commands.",
       sortOrder: 1,
       durationSeconds: 324,
-      videoPlaybackId: "qmw5QJczu2WjWcSxhyxOb7idsdMdclw5sxO2s29nvmQ",
+      videoPlaybackId: "4Gj5SoXO02101M6k2vFztwApeaHi1iXlil01GtSWYM1802A",
       transcript:
         "First, we'll install Ansible. If you're using Linux or macOS, run this command. For macOS, install with brew. Windows users can use WSL or follow the installation guide on the Ansible website. Now, let's create an inventory file. Open a file called hosts and add your server details. Test the connection with ansible ping. Success? Great! You're ready for the next step.",
       codeSnippets: [
@@ -534,7 +534,7 @@ async function main() {
         "Step-by-step creation of a basic playbook to deploy and configure a web server (e.g., Nginx).",
       sortOrder: 2,
       durationSeconds: 410,
-      videoPlaybackId: "02ZcrKlQmJx013eEWDZck7TPznY9NUraUo005Zmao201GSA",
+      videoPlaybackId: "QqgLJxDO41fqlOqGNs6MDO67MFPgre2rX7PSSvcIya8",
       transcript:
         "Now, let's create a playbook to install and configure a web server. Open a file called webserver.yml. We'll define tasks to install Nginx, start the service, and deploy a custom HTML file. Run the playbook with ansible-playbook. Check your browser—your web server is live!",
       codeSnippets: [
@@ -564,7 +564,7 @@ async function main() {
         "Overview of essential modules (e.g., file, yum, service, copy) with quick demos.",
       sortOrder: 3,
       durationSeconds: 459,
-      videoPlaybackId: "TozvrFdDifmf1DLVZ9dF1PWn00bUgsKdGEZ02y01eve6AI",
+      videoPlaybackId: "BsVCQ4r6YS017o6ivwD9DSC3FM00Y9GhKvndq019d57WAQ",
       transcript:
         "Ansible's power lies in its modules. Let's look at the most common ones: apt or yum for installing software, service for managing services, and copy for copying files. Use these modules to automate infrastructure tasks efficiently!",
       codeSnippets: [
@@ -598,7 +598,7 @@ async function main() {
         "Automate the deployment of a web server, secure it with a firewall, and share results.",
       sortOrder: 4,
       durationSeconds: 658,
-      videoPlaybackId: "5xmz6u8C6I9LzUHM2KGtPHC9mj00YfIIq02atBDglhNRA",
+      videoPlaybackId: "01m3402uRFFktlDx00X3whDGZPLFEvotRDSyE6D1B7yI6w",
       transcript:
         "For the final project, automate a web server deployment. You'll write a playbook to install a web server, copy an HTML file to /var/www/html, and ensure the server starts and is enabled on boot. Upload your project to the Project Gallery. Share your playbook, a screenshot of the successful run, and your thoughts on the process.",
       codeSnippets: [
@@ -628,7 +628,7 @@ async function main() {
         "Live walkthrough of the course project: deploying and verifying an automated web server with Ansible.",
       sortOrder: 5,
       durationSeconds: 254,
-      videoPlaybackId: "fsCcqW28WIbzBlobrNCqSRJNfjSxv7GU02xrfQ1O00iC8",
+      videoPlaybackId: "nmu3Ufzo2lnsbUehGfnWTAidcIgLOJfmhvukXYEntMc",
       transcript:
         "In this final walkthrough, we'll run through the entire project end-to-end — from inventory setup to playbook execution. You'll see the automated deployment in action and verify the results in the browser. Congratulations—you've automated your first task with Ansible!",
       codeSnippets: [],
@@ -642,7 +642,7 @@ async function main() {
       where: {
         courseId_slug: { courseId: course3.id, slug: lessonData.slug },
       },
-      update: {},
+      update: { ...lessonFields },
       create: {
         ...lessonFields,
         courseId: course3.id,
