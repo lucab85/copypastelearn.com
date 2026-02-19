@@ -2,7 +2,7 @@ import { db } from "./db";
 
 function isClerkConfigured(): boolean {
   const pk = process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY;
-  if (!pk || pk === "pk_test_...") return false;
+  if (!pk || pk.length < 20 || pk.includes("...")) return false;
   try {
     atob(pk.replace(/^pk_(test|live)_/, ""));
     return true;
