@@ -17,10 +17,10 @@ export default async function LabSessionPage({ params }: LabSessionPageProps) {
       labDefinition: {
         select: {
           id: true,
-          title: true,
-          yamlConfig: true,
+          compiledPlan: true,
           lesson: {
             select: {
+              title: true,
               slug: true,
               course: {
                 select: { slug: true },
@@ -34,20 +34,22 @@ export default async function LabSessionPage({ params }: LabSessionPageProps) {
 
   if (!session) notFound();
 
-  // Parse steps from config
+  // Parse steps from compiled plan
   let steps: { title: string; instructions: string }[] = [];
   try {
-    const config = JSON.parse(session.labDefinition.yamlConfig);
-    steps = (config.steps ?? []).map(
-      (s: { title?: string; instructions?: string }, i: number) => ({
-        title: s.title ?? `Step ${i + 1}`,
-        instructions: s.instructions ?? "",
-      })
-    );
+    const config = session.labDefinition.compiledPlan as Record<string, unknown>;
+    const rawSteps = (config.steps ?? []) as { title?: string; instructions?: string }[];
+    steps = rawSteps.map((s, i) => ({
+      title: s.title ?? `Step ${i + 1}`,
+      instructions: s.instructions ?? "",
+    }));
   } catch {
     steps = [{ title: "Step 1", instructions: "Follow the instructions." }];
   }
 
+  const labTitle = session.labDefinition.lesson?.title
+    ? `${session.labDefinition.lesson.title} Lab`
+    : "Lab Session";
   const courseSlug = session.labDefinition.lesson?.course?.slug;
   const lessonSlug = session.labDefinition.lesson?.slug;
   const backUrl =
@@ -58,7 +60,7 @@ export default async function LabSessionPage({ params }: LabSessionPageProps) {
   return (
     <LabPageClient
       sessionId={session.id}
-      labTitle={session.labDefinition.title}
+      labTitle={labTitle}
       steps={steps}
       currentStepIndex={session.currentStepIndex}
       backUrl={backUrl}

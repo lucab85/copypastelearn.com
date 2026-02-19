@@ -147,10 +147,10 @@ export async function validateLabStep(
     // Record attempt
     await db.labAttempt.create({
       data: {
-        sessionId,
+        labSessionId: sessionId,
         stepIndex: stepIndex ?? session.currentStepIndex,
         passed: result.passed,
-        feedback: result.checks as object,
+        results: result.results as unknown as object,
       },
     });
 
