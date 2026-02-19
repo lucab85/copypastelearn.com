@@ -1,19 +1,19 @@
 "use server";
 
 import { db } from "@/lib/db";
-import { requireAuth, NotFoundError, ForbiddenError } from "@/lib/auth";
+import { getCurrentUser, NotFoundError, ForbiddenError } from "@/lib/auth";
 import type { LessonDetail } from "@copypastelearn/shared";
 
 /**
  * Get a single lesson with full content.
- * Enforces subscription gating: first lesson (sortOrder === 0) is free,
- * all others require an active subscription.
+ * Free lessons (sortOrder === 0) are accessible without authentication.
+ * All others require an active subscription.
  */
 export async function getLesson(
   courseSlug: string,
   lessonSlug: string
 ): Promise<LessonDetail> {
-  const user = await requireAuth();
+  const user = await getCurrentUser();
 
   const lesson = await db.lesson.findFirst({
     where: {
@@ -33,14 +33,16 @@ export async function getLesson(
         },
       },
       labDefinition: { select: { id: true } },
-      lessonProgress: {
-        where: { userId: user.id },
-        select: {
-          videoPositionSeconds: true,
-          completed: true,
-          lastAccessedAt: true,
-        },
-      },
+      lessonProgress: user
+        ? {
+            where: { userId: user.id },
+            select: {
+              videoPositionSeconds: true,
+              completed: true,
+              lastAccessedAt: true,
+            },
+          }
+        : false,
     },
   });
 
@@ -48,9 +50,15 @@ export async function getLesson(
     throw new NotFoundError("Lesson not found");
   }
 
-  // Subscription gating: first lesson is free, others require subscription
+  // Subscription gating: first lesson is free, others require auth + subscription
   const isFree = lesson.sortOrder === 0;
   if (!isFree) {
+    if (!user) {
+      throw new ForbiddenError(
+        "Sign in to access this lesson"
+      );
+    }
+
     const subscription = await db.subscription.findUnique({
       where: { userId: user.id },
       select: { status: true },
@@ -72,22 +80,27 @@ export async function getLesson(
       ? orderedLessons[currentIndex + 1]
       : null;
 
-  // Update lastAccessedAt
-  await db.lessonProgress.upsert({
-    where: {
-      userId_lessonId: { userId: user.id, lessonId: lesson.id },
-    },
-    create: {
-      userId: user.id,
-      lessonId: lesson.id,
-      lastAccessedAt: new Date(),
-    },
-    update: {
-      lastAccessedAt: new Date(),
-    },
-  });
+  // Track progress for authenticated users
+  if (user) {
+    await db.lessonProgress.upsert({
+      where: {
+        userId_lessonId: { userId: user.id, lessonId: lesson.id },
+      },
+      create: {
+        userId: user.id,
+        lessonId: lesson.id,
+        lastAccessedAt: new Date(),
+      },
+      update: {
+        lastAccessedAt: new Date(),
+      },
+    });
+  }
 
-  const progress = lesson.lessonProgress[0] ?? null;
+  const progressList = Array.isArray(lesson.lessonProgress)
+    ? lesson.lessonProgress
+    : [];
+  const progress = progressList[0] ?? null;
 
   return {
     id: lesson.id,

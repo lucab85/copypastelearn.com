@@ -21,9 +21,26 @@ export default async function LessonPage({ params }: LessonPageProps) {
     lesson = await getLesson(slug, lessonSlug);
   } catch (error: unknown) {
     if (error && typeof error === "object" && "statusCode" in error) {
-      const err = error as { statusCode: number };
+      const err = error as { statusCode: number; message?: string };
       if (err.statusCode === 404) notFound();
-      // 403 will be handled by error boundary
+      if (err.statusCode === 403) {
+        return (
+          <div className="container mx-auto flex min-h-[60vh] flex-col items-center justify-center px-4 py-16 text-center">
+            <h1 className="mb-4 text-2xl font-bold">Sign in to continue</h1>
+            <p className="mb-6 text-muted-foreground">
+              {err.message ?? "This lesson requires authentication or an active subscription."}
+            </p>
+            <div className="flex gap-3">
+              <Link href={`/courses/${slug}`}>
+                <Button variant="outline">Back to course</Button>
+              </Link>
+              <Link href="/sign-in">
+                <Button>Sign in</Button>
+              </Link>
+            </div>
+          </div>
+        );
+      }
       throw error;
     }
     throw error;
