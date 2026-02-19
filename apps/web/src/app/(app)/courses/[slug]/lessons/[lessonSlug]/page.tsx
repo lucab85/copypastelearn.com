@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { getLesson } from "@/server/queries/lessons";
+import { generateMuxTokens } from "@/lib/mux";
 import { LessonPlayerClient } from "./lesson-player-client";
 import { TranscriptPanel } from "@/components/lesson/transcript-panel";
 import { CodeSnippet } from "@/components/lesson/code-snippet";
@@ -87,6 +88,7 @@ export default async function LessonPage({ params }: LessonPageProps) {
         <LessonPlayerClient
           lessonId={lesson.id}
           playbackId={lesson.videoPlaybackId}
+          tokens={generateMuxTokens(lesson.videoPlaybackId)}
           title={lesson.title}
           startTime={lesson.userProgress?.videoPositionSeconds ?? 0}
           isCompleted={lesson.userProgress?.completed ?? false}

@@ -3,8 +3,15 @@
 import MuxPlayer from "@mux/mux-player-react";
 import { useCallback, useRef } from "react";
 
+interface MuxTokens {
+  video: string;
+  thumbnail: string;
+  storyboard: string;
+}
+
 interface VideoPlayerProps {
   playbackId: string;
+  tokens?: MuxTokens;
   title?: string;
   startTime?: number;
   onTimeUpdate?: (currentTime: number) => void;
@@ -13,6 +20,7 @@ interface VideoPlayerProps {
 
 export function VideoPlayer({
   playbackId,
+  tokens,
   title,
   startTime = 0,
   onTimeUpdate,
@@ -42,6 +50,7 @@ export function VideoPlayer({
     <div className="aspect-video w-full overflow-hidden rounded-lg bg-black">
       <MuxPlayer
         playbackId={playbackId}
+        tokens={tokens}
         metadata={{
           video_title: title ?? "Lesson Video",
         }}

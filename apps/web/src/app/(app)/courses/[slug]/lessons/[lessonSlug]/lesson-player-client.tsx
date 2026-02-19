@@ -4,9 +4,16 @@ import { useCallback } from "react";
 import { VideoPlayer } from "@/components/lesson/video-player";
 import { saveVideoPosition, markLessonComplete } from "@/server/actions/progress";
 
+interface MuxTokens {
+  video: string;
+  thumbnail: string;
+  storyboard: string;
+}
+
 interface LessonPlayerClientProps {
   lessonId: string;
   playbackId: string;
+  tokens?: MuxTokens;
   title: string;
   startTime: number;
   isCompleted: boolean;
@@ -15,6 +22,7 @@ interface LessonPlayerClientProps {
 export function LessonPlayerClient({
   lessonId,
   playbackId,
+  tokens,
   title,
   startTime,
   isCompleted,
@@ -43,6 +51,7 @@ export function LessonPlayerClient({
   return (
     <VideoPlayer
       playbackId={playbackId}
+      tokens={tokens}
       title={title}
       startTime={startTime}
       onTimeUpdate={handleTimeUpdate}
