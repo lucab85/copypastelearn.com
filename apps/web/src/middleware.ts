@@ -23,8 +23,13 @@ export default async function middleware(request: NextRequest) {
 
   const isPublicRoute = createRouteMatcher([
     "/",
+    "/about(.*)",
+    "/blog(.*)",
+    "/contact(.*)",
     "/courses(.*)",
     "/pricing(.*)",
+    "/privacy(.*)",
+    "/terms(.*)",
     "/sign-in(.*)",
     "/sign-up(.*)",
     "/api/webhooks(.*)",
@@ -32,7 +37,7 @@ export default async function middleware(request: NextRequest) {
 
   return clerkMiddleware(async (auth, req) => {
     if (!isPublicRoute(req)) {
-      await auth.protect();
+      await auth().protect();
     }
   })(request, {} as never);
 }
