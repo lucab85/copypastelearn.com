@@ -95,22 +95,36 @@ export interface SubscriptionInfo {
   isSubscribed: boolean;
   status: SubscriptionStatus | null;
   currentPeriodEnd: string | null;
+  cancelAtPeriodEnd: boolean;
 }
 
 // ─── Dashboard Types ────────────────────────────────────
 
+export interface DashboardCourse {
+  courseId: string;
+  title: string;
+  slug: string;
+  thumbnailUrl: string | null;
+  percentComplete: number;
+  completedAt: string | null;
+  nextLesson: { slug: string; title: string } | null;
+}
+
 export interface DashboardData {
-  inProgressCourses: (CourseListItem & { percentComplete: number })[];
+  inProgressCourses: DashboardCourse[];
+  completedCourses: DashboardCourse[];
   recentLessons: RecentLesson[];
   activeLabSession: ActiveLabSession | null;
 }
 
 export interface RecentLesson {
-  lessonTitle: string;
+  lessonId: string;
+  title: string;
+  slug: string;
   courseTitle: string;
   courseSlug: string;
-  lessonSlug: string;
   lastAccessedAt: string;
+  completed: boolean;
 }
 
 export interface ActiveLabSession {

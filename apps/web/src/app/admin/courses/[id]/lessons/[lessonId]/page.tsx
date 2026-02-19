@@ -27,7 +27,7 @@ export default async function LessonEditPage({ params }: LessonEditPageProps) {
         lesson={{
           id: lesson.id,
           title: lesson.title,
-          description: lesson.description,
+          description: lesson.description ?? "",
           videoPlaybackId: lesson.videoPlaybackId,
           transcript: lesson.transcript,
           codeSnippets: lesson.codeSnippets,
@@ -40,21 +40,27 @@ export default async function LessonEditPage({ params }: LessonEditPageProps) {
       <Separator />
 
       {/* Lab Definition Editor (T068) */}
-      <LabDefinitionEditor
-        lessonId={lessonId}
-        labDefinition={
-          lesson.labDefinition
-            ? {
-                title: lesson.labDefinition.title,
-                description: lesson.labDefinition.description,
-                yamlConfig: lesson.labDefinition.yamlConfig,
-                dockerImage: lesson.labDefinition.dockerImage,
-                memoryLimit: lesson.labDefinition.memoryLimit,
-                cpuLimit: lesson.labDefinition.cpuLimit,
-              }
-            : null
-        }
-      />
+      {(() => {
+        const plan = lesson.labDefinition?.compiledPlan as Record<string, unknown> | null;
+        const env = lesson.labDefinition?.envConfig as Record<string, unknown> | null;
+        return (
+          <LabDefinitionEditor
+            lessonId={lessonId}
+            labDefinition={
+              lesson.labDefinition
+                ? {
+                    title: (plan?.title as string) ?? "",
+                    description: (plan?.description as string) ?? null,
+                    yamlConfig: lesson.labDefinition.yamlSource,
+                    dockerImage: (env?.image as string) ?? (plan?.dockerImage as string) ?? "ubuntu:22.04",
+                    memoryLimit: (env?.memoryLimit as string) ?? (plan?.memoryLimit as string) ?? null,
+                    cpuLimit: (env?.cpuLimit as string) ?? (plan?.cpuLimit as string) ?? null,
+                  }
+                : null
+            }
+          />
+        );
+      })()}
     </div>
   );
 }

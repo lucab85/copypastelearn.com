@@ -76,7 +76,7 @@ export default async function CourseEditPage({ params }: CourseEditPageProps) {
           difficulty: course.difficulty,
           outcomes: course.outcomes,
           prerequisites: course.prerequisites,
-          estimatedDuration: course.estimatedDuration,
+          estimatedDuration: course.estimatedDuration?.toString() ?? null,
           sortOrder: course.sortOrder,
         }}
       />

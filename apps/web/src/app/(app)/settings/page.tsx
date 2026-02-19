@@ -47,7 +47,7 @@ export default async function SettingsPage() {
           </div>
           <div className="flex justify-between">
             <span className="text-sm text-muted-foreground">Name</span>
-            <span className="text-sm font-medium">{user.name ?? "—"}</span>
+            <span className="text-sm font-medium">{user.displayName ?? "—"}</span>
           </div>
           <div className="flex justify-between">
             <span className="text-sm text-muted-foreground">Role</span>
