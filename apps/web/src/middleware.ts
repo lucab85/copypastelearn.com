@@ -33,6 +33,9 @@ export default async function middleware(request: NextRequest) {
     "/sign-in(.*)",
     "/sign-up(.*)",
     "/api/webhooks(.*)",
+    "/robots.txt",
+    "/sitemap.xml",
+    "/opengraph-image(.*)",
   ]);
 
   return clerkMiddleware(async (auth, req) => {

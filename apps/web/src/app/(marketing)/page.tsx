@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 
 function OrganizationJsonLd() {
   const siteUrl =
-    process.env.NEXT_PUBLIC_APP_URL ?? "https://copypastelearn.com";
+    process.env.NEXT_PUBLIC_APP_URL ?? "https://www.copypastelearn.com";
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Organization",
@@ -38,7 +38,7 @@ function OrganizationJsonLd() {
 
 function WebSiteJsonLd() {
   const siteUrl =
-    process.env.NEXT_PUBLIC_APP_URL ?? "https://copypastelearn.com";
+    process.env.NEXT_PUBLIC_APP_URL ?? "https://www.copypastelearn.com";
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "WebSite",
