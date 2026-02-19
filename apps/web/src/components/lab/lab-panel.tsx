@@ -7,7 +7,6 @@ import { LabStatusIndicator } from "./lab-status";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { validateLabStep, destroyLabSession } from "@/server/actions/labs";
-import { sseUrl, terminalWsUrl } from "@/lib/lab-client";
 import {
   FlaskConical,
   XCircle,
@@ -41,6 +40,8 @@ interface LabPanelProps {
   sessionId: string;
   steps: LabStep[];
   initialStepIndex?: number;
+  sseUrl: string;
+  terminalWsUrl: string;
   className?: string;
 }
 
@@ -48,6 +49,8 @@ export function LabPanel({
   sessionId,
   steps,
   initialStepIndex = 0,
+  sseUrl,
+  terminalWsUrl,
   className,
 }: LabPanelProps) {
   const [status, setStatus] = useState<LabStatus>("PROVISIONING");
@@ -62,7 +65,7 @@ export function LabPanel({
 
   // SSE event stream
   useEffect(() => {
-    const eventSource = new EventSource(sseUrl(sessionId));
+    const eventSource = new EventSource(sseUrl);
 
     eventSource.addEventListener("status", (event) => {
       const data = JSON.parse(event.data);
@@ -234,7 +237,7 @@ export function LabPanel({
         <div className="flex-1">
           {["READY", "RUNNING", "VALIDATING"].includes(status) ? (
             <TerminalView
-              websocketUrl={terminalWsUrl(sessionId)}
+              websocketUrl={terminalWsUrl}
               onConnectionChange={setTerminalConnected}
               className="h-full rounded-none border-0"
             />

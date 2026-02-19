@@ -8,7 +8,7 @@ import type {
 } from "@copypastelearn/shared";
 
 const LAB_SERVICE_URL =
-  process.env.LAB_SERVICE_URL ?? "http://localhost:4100";
+  process.env.LAB_SERVICE_URL ?? "http://localhost:4000";
 const LAB_SERVICE_API_KEY = process.env.LAB_SERVICE_API_KEY ?? "";
 
 type FetchOptions = {
@@ -113,10 +113,12 @@ export async function getHealth(): Promise<LabServiceHealth> {
 // ─── URL Builders ─────────────────────────────────────
 
 export function sseUrl(sessionId: string): string {
-  return `${LAB_SERVICE_URL}/api/sessions/${sessionId}/events`;
+  const base = `${LAB_SERVICE_URL}/api/sessions/${sessionId}/events`;
+  return LAB_SERVICE_API_KEY ? `${base}?apiKey=${encodeURIComponent(LAB_SERVICE_API_KEY)}` : base;
 }
 
 export function terminalWsUrl(sessionId: string): string {
   const wsBase = LAB_SERVICE_URL.replace(/^http/, "ws");
-  return `${wsBase}/api/sessions/${sessionId}/terminal`;
+  const base = `${wsBase}/api/sessions/${sessionId}/terminal`;
+  return LAB_SERVICE_API_KEY ? `${base}?apiKey=${encodeURIComponent(LAB_SERVICE_API_KEY)}` : base;
 }

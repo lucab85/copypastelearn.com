@@ -59,7 +59,11 @@ export async function buildServer(): Promise<FastifyInstance> {
       return;
     }
 
-    const apiKey = request.headers["x-api-key"] as string;
+    // Accept API key from header or query param (EventSource/WebSocket can't set headers)
+    const headerKey = request.headers["x-api-key"] as string | undefined;
+    const queryKey = (request.query as Record<string, string>)?.apiKey;
+    const apiKey = headerKey || queryKey;
+
     if (!apiKey || apiKey !== config.LAB_SERVICE_API_KEY) {
       reply.code(401).send({
         error: {

@@ -13,6 +13,8 @@ interface LabPageClientProps {
   steps: { title: string; instructions: string }[];
   currentStepIndex: number;
   backUrl: string;
+  sseUrl: string;
+  terminalWsUrl: string;
 }
 
 export function LabPageClient({
@@ -21,6 +23,8 @@ export function LabPageClient({
   steps,
   currentStepIndex,
   backUrl,
+  sseUrl,
+  terminalWsUrl,
 }: LabPageClientProps) {
   const [isFullscreen, setIsFullscreen] = useState(false);
 
@@ -61,6 +65,8 @@ export function LabPageClient({
         sessionId={sessionId}
         steps={steps}
         initialStepIndex={currentStepIndex}
+        sseUrl={sseUrl}
+        terminalWsUrl={terminalWsUrl}
         className="flex-1 rounded-none border-0"
       />
     </div>
