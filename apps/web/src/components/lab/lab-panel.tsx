@@ -30,7 +30,7 @@ interface LabStep {
 }
 
 interface CheckResult {
-  name: string;
+  checkName: string;
   passed: boolean;
   message: string;
   hint?: string | null;
@@ -119,7 +119,7 @@ export function LabPanel({
         passed: false,
         checks: [
           {
-            name: "Error",
+            checkName: "Error",
             passed: false,
             message: result.error,
           },

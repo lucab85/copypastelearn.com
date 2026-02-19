@@ -188,6 +188,27 @@ export async function upsertLabDefinition(
 ) {
   await requireAdmin();
 
+  // Map form fields to Prisma schema fields
+  const compiledPlan = {
+    title: data.title,
+    description: data.description,
+    dockerImage: data.dockerImage,
+    memoryLimit: data.memoryLimit ?? "256m",
+    cpuLimit: data.cpuLimit ?? "0.5",
+  };
+
+  const envConfig = {
+    image: data.dockerImage,
+    memoryLimit: data.memoryLimit ?? "256m",
+    cpuLimit: data.cpuLimit ?? "0.5",
+  };
+
+  const prismaData = {
+    yamlSource: data.yamlConfig,
+    compiledPlan,
+    envConfig,
+  };
+
   const existing = await db.labDefinition.findUnique({
     where: { lessonId },
   });
@@ -195,13 +216,13 @@ export async function upsertLabDefinition(
   if (existing) {
     const labDef = await db.labDefinition.update({
       where: { lessonId },
-      data,
+      data: prismaData,
     });
     return { data: labDef };
   }
 
   const labDef = await db.labDefinition.create({
-    data: { ...data, lessonId },
+    data: { ...prismaData, lessonId },
   });
 
   return { data: labDef };
@@ -217,22 +238,25 @@ export async function getAdminLabSessions() {
       status: { in: ["PROVISIONING", "READY", "RUNNING", "VALIDATING"] },
     },
     include: {
-      user: { select: { email: true, name: true } },
-      labDefinition: { select: { title: true } },
+      user: { select: { email: true, displayName: true } },
+      labDefinition: { select: { compiledPlan: true } },
     },
     orderBy: { startedAt: "desc" },
   });
 
-  return sessions.map((s) => ({
-    id: s.id,
-    userId: s.userId,
-    userEmail: s.user.email,
-    userName: s.user.name,
-    labTitle: s.labDefinition.title,
-    status: s.status,
-    expiresAt: s.expiresAt.toISOString(),
-    startedAt: s.startedAt.toISOString(),
-  }));
+  return sessions.map((s) => {
+    const plan = s.labDefinition.compiledPlan as Record<string, unknown> | null;
+    return {
+      id: s.id,
+      userId: s.userId,
+      userEmail: s.user.email,
+      userName: s.user.displayName,
+      labTitle: (plan?.title as string) ?? "Lab",
+      status: s.status,
+      expiresAt: s.expiresAt.toISOString(),
+      startedAt: s.startedAt.toISOString(),
+    };
+  });
 }
 
 export async function adminDestroyLabSession(sessionId: string) {

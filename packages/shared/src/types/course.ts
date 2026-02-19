@@ -89,13 +89,14 @@ export interface LessonProgressInfo {
 
 // ─── Subscription Types ─────────────────────────────────
 
-export type SubscriptionStatus = "ACTIVE" | "CANCELED" | "EXPIRED" | "PAST_DUE";
+export type SubscriptionStatus = "ACTIVE" | "CANCELED" | "EXPIRED" | "PAST_DUE" | "NONE";
 
 export interface SubscriptionInfo {
   isSubscribed: boolean;
   status: SubscriptionStatus | null;
   currentPeriodEnd: string | null;
   cancelAtPeriodEnd: boolean;
+  planId: string | null;
 }
 
 // ─── Dashboard Types ────────────────────────────────────

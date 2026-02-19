@@ -17,7 +17,7 @@ export async function getSubscriptionStatus(): Promise<SubscriptionInfo | null> 
     select: {
       status: true,
       currentPeriodEnd: true,
-      cancelAtPeriodEnd: true,
+      canceledAt: true,
       planId: true,
     },
   });
@@ -32,11 +32,15 @@ export async function getSubscriptionStatus(): Promise<SubscriptionInfo | null> 
     };
   }
 
+  // If canceledAt is set but status is still ACTIVE, it means cancel-at-period-end
+  const cancelAtPeriodEnd =
+    !!subscription.canceledAt && subscription.status === "ACTIVE";
+
   return {
     status: subscription.status,
     isSubscribed: subscription.status === "ACTIVE",
     currentPeriodEnd: subscription.currentPeriodEnd?.toISOString() ?? null,
-    cancelAtPeriodEnd: subscription.cancelAtPeriodEnd ?? false,
+    cancelAtPeriodEnd,
     planId: subscription.planId ?? null,
   };
 }

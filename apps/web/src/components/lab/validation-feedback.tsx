@@ -5,7 +5,7 @@ import { CheckCircle2, XCircle, RotateCw } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 interface CheckResult {
-  name: string;
+  checkName: string;
   passed: boolean;
   message: string;
   hint?: string | null;
@@ -68,7 +68,7 @@ export function ValidationFeedback({
               <XCircle className="mt-0.5 h-4 w-4 shrink-0 text-red-500" />
             )}
             <div className="min-w-0">
-              <p className="font-medium">{check.name}</p>
+              <p className="font-medium">{check.checkName}</p>
               <p className="text-muted-foreground">{check.message}</p>
               {!check.passed && check.hint && (
                 <p className="mt-1 text-xs italic text-muted-foreground">
