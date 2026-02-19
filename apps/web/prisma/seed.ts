@@ -40,6 +40,7 @@ async function main() {
       slug: "docker-fundamentals",
       description:
         "Learn Docker from scratch. Build, ship, and run containers with confidence. This hands-on course covers everything from basic container concepts to multi-stage builds.",
+      thumbnailUrl: "/images/courses/docker-fundamentals.svg",
       difficulty: "BEGINNER",
       status: "PUBLISHED",
       sortOrder: 0,
@@ -259,6 +260,7 @@ async function main() {
       slug: "nodejs-rest-apis",
       description:
         "Build production-ready REST APIs with Node.js, Express, and TypeScript. From routing to authentication, this course covers the essentials of backend development.",
+      thumbnailUrl: "/images/courses/nodejs-rest-apis.svg",
       difficulty: "INTERMEDIATE",
       status: "PUBLISHED",
       sortOrder: 1,
@@ -455,6 +457,7 @@ async function main() {
       slug: "ansible-quickstart",
       description:
         "A crash course in IT automation with Ansible, designed to give you the essential skills to start automating tasks and managing infrastructure in just 30 minutes. Perfect for busy professionals, this course focuses on practical, high-value techniques to achieve immediate results.",
+      thumbnailUrl: "/images/courses/ansible-quickstart.svg",
       difficulty: "BEGINNER",
       status: "PUBLISHED",
       sortOrder: 2,
