@@ -1,0 +1,454 @@
+import { PrismaClient } from "@prisma/client";
+
+const prisma = new PrismaClient();
+
+async function main() {
+  console.log("🌱 Seeding database...");
+
+  // ─── Create Admin User ──────────────────────────────
+  const admin = await prisma.user.upsert({
+    where: { clerkUserId: "user_admin_seed" },
+    update: {},
+    create: {
+      clerkUserId: "user_admin_seed",
+      email: "admin@copypastelearn.com",
+      name: "Admin User",
+      role: "ADMIN",
+    },
+  });
+  console.log("  ✓ Admin user created");
+
+  // ─── Create Learner User ───────────────────────────
+  const learner = await prisma.user.upsert({
+    where: { clerkUserId: "user_learner_seed" },
+    update: {},
+    create: {
+      clerkUserId: "user_learner_seed",
+      email: "learner@copypastelearn.com",
+      name: "Sample Learner",
+      role: "LEARNER",
+    },
+  });
+  console.log("  ✓ Learner user created");
+
+  // ─── Course 1: Docker Fundamentals ──────────────────
+  const course1 = await prisma.course.upsert({
+    where: { slug: "docker-fundamentals" },
+    update: {},
+    create: {
+      title: "Docker Fundamentals",
+      slug: "docker-fundamentals",
+      description:
+        "Learn Docker from scratch. Build, ship, and run containers with confidence. This hands-on course covers everything from basic container concepts to multi-stage builds.",
+      difficulty: "BEGINNER",
+      status: "PUBLISHED",
+      sortOrder: 0,
+      outcomes: [
+        "Understand container and image concepts",
+        "Build custom Docker images with Dockerfiles",
+        "Manage container networking and volumes",
+        "Use Docker Compose for multi-container apps",
+        "Apply best practices for production containers",
+      ],
+      prerequisites: [
+        "Basic command line familiarity",
+        "Any programming language experience",
+      ],
+      estimatedDuration: "4 hours",
+    },
+  });
+
+  const dockerLessons = [
+    {
+      title: "What are Containers?",
+      slug: "what-are-containers",
+      description:
+        "Introduction to containerization, how containers differ from VMs, and why Docker is the industry standard.",
+      sortOrder: 0,
+      durationSeconds: 480,
+      transcript:
+        "Welcome to Docker Fundamentals! In this first lesson, we'll explore what containers are and why they've revolutionized software development...",
+      codeSnippets: [
+        {
+          label: "Run your first container",
+          language: "bash",
+          code: "docker run hello-world",
+        },
+        {
+          label: "List running containers",
+          language: "bash",
+          code: "docker ps\ndocker ps -a  # include stopped containers",
+        },
+      ],
+      resources: [
+        { title: "Docker Documentation", url: "https://docs.docker.com/" },
+      ],
+    },
+    {
+      title: "Building Images with Dockerfiles",
+      slug: "building-images",
+      description:
+        "Learn to write Dockerfiles and build custom images for your applications.",
+      sortOrder: 1,
+      durationSeconds: 720,
+      transcript:
+        "Now that you understand containers, let's learn how to build custom images using Dockerfiles...",
+      codeSnippets: [
+        {
+          label: "Simple Dockerfile",
+          language: "dockerfile",
+          code: 'FROM node:20-slim\nWORKDIR /app\nCOPY package*.json ./\nRUN npm ci --production\nCOPY . .\nEXPOSE 3000\nCMD ["node", "server.js"]',
+        },
+        {
+          label: "Build the image",
+          language: "bash",
+          code: "docker build -t my-app:v1 .\ndocker images",
+        },
+      ],
+      resources: [
+        {
+          title: "Dockerfile Reference",
+          url: "https://docs.docker.com/engine/reference/builder/",
+        },
+      ],
+      hasLab: true,
+    },
+    {
+      title: "Container Networking",
+      slug: "container-networking",
+      description:
+        "Understand Docker networking modes and connect containers together.",
+      sortOrder: 2,
+      durationSeconds: 600,
+      transcript:
+        "In this lesson, we'll dive into Docker networking...",
+      codeSnippets: [
+        {
+          label: "Create a network",
+          language: "bash",
+          code: "docker network create my-network\ndocker network ls",
+        },
+        {
+          label: "Run containers on a network",
+          language: "bash",
+          code: "docker run -d --name db --network my-network postgres:16\ndocker run -d --name app --network my-network -p 3000:3000 my-app:v1",
+        },
+      ],
+      resources: [],
+    },
+    {
+      title: "Volumes and Persistent Data",
+      slug: "volumes-persistent-data",
+      description:
+        "Learn how to persist data with Docker volumes and bind mounts.",
+      sortOrder: 3,
+      durationSeconds: 540,
+      transcript:
+        "Container data is ephemeral by default. Let's learn how to persist it...",
+      codeSnippets: [
+        {
+          label: "Named volumes",
+          language: "bash",
+          code: "docker volume create my-data\ndocker run -v my-data:/data my-app:v1",
+        },
+      ],
+      resources: [],
+    },
+    {
+      title: "Docker Compose",
+      slug: "docker-compose",
+      description:
+        "Define and run multi-container applications with Docker Compose.",
+      sortOrder: 4,
+      durationSeconds: 900,
+      transcript:
+        "Docker Compose makes it easy to define multi-container applications...",
+      codeSnippets: [
+        {
+          label: "docker-compose.yml",
+          language: "yaml",
+          code: 'services:\n  web:\n    build: .\n    ports:\n      - "3000:3000"\n    depends_on:\n      - db\n  db:\n    image: postgres:16\n    environment:\n      POSTGRES_PASSWORD: secret\n    volumes:\n      - pgdata:/var/lib/postgresql/data\n\nvolumes:\n  pgdata:',
+        },
+        {
+          label: "Run with Compose",
+          language: "bash",
+          code: "docker compose up -d\ndocker compose logs -f\ndocker compose down",
+        },
+      ],
+      resources: [
+        {
+          title: "Compose Specification",
+          url: "https://docs.docker.com/compose/compose-file/",
+        },
+      ],
+      hasLab: true,
+    },
+  ];
+
+  for (const lessonData of dockerLessons) {
+    const { hasLab, ...lessonFields } = lessonData;
+    const lesson = await prisma.lesson.upsert({
+      where: {
+        courseId_slug: { courseId: course1.id, slug: lessonData.slug },
+      },
+      update: {},
+      create: {
+        ...lessonFields,
+        courseId: course1.id,
+        status: "PUBLISHED",
+      },
+    });
+
+    if (hasLab) {
+      await prisma.labDefinition.upsert({
+        where: { lessonId: lesson.id },
+        update: {},
+        create: {
+          lessonId: lesson.id,
+          title: `${lesson.title} Lab`,
+          description: `Hands-on practice for: ${lesson.title}`,
+          dockerImage: "node:20-slim",
+          memoryLimit: "256m",
+          cpuLimit: "0.5",
+          yamlConfig: JSON.stringify({
+            steps: [
+              {
+                title: "Setup",
+                instructions: `<p>Follow the instructions from the <strong>${lesson.title}</strong> lesson.</p>`,
+                checks: [
+                  {
+                    name: "Verify setup",
+                    command: "echo 'check passed'",
+                    expected: "check passed",
+                    hint: "Make sure you followed all the steps.",
+                  },
+                ],
+              },
+              {
+                title: "Complete the task",
+                instructions:
+                  "<p>Apply what you learned and verify the result.</p>",
+                checks: [
+                  {
+                    name: "Task completed",
+                    command: "echo 'done'",
+                    expected: "done",
+                    hint: "Review the lesson code snippets for guidance.",
+                  },
+                ],
+              },
+            ],
+          }),
+        },
+      });
+    }
+  }
+  console.log(
+    `  ✓ Course "${course1.title}" with ${dockerLessons.length} lessons`
+  );
+
+  // ─── Course 2: Node.js REST APIs ────────────────────
+  const course2 = await prisma.course.upsert({
+    where: { slug: "nodejs-rest-apis" },
+    update: {},
+    create: {
+      title: "Node.js REST APIs",
+      slug: "nodejs-rest-apis",
+      description:
+        "Build production-ready REST APIs with Node.js, Express, and TypeScript. From routing to authentication, this course covers the essentials of backend development.",
+      difficulty: "INTERMEDIATE",
+      status: "PUBLISHED",
+      sortOrder: 1,
+      outcomes: [
+        "Design RESTful API endpoints following best practices",
+        "Implement CRUD operations with Express and TypeScript",
+        "Add authentication and authorization",
+        "Handle errors and validation properly",
+        "Deploy your API to production",
+      ],
+      prerequisites: [
+        "JavaScript fundamentals",
+        "Basic understanding of HTTP",
+        "Node.js installed locally",
+      ],
+      estimatedDuration: "6 hours",
+    },
+  });
+
+  const nodeLessons = [
+    {
+      title: "Setting Up Express with TypeScript",
+      slug: "express-typescript-setup",
+      description:
+        "Initialize a Node.js project with Express and TypeScript for type-safe API development.",
+      sortOrder: 0,
+      durationSeconds: 600,
+      transcript:
+        "Let's start by setting up our Express project with TypeScript...",
+      codeSnippets: [
+        {
+          label: "Initialize project",
+          language: "bash",
+          code: "mkdir my-api && cd my-api\nnpm init -y\nnpm install express\nnpm install -D typescript @types/express @types/node tsx",
+        },
+        {
+          label: "Basic server",
+          language: "typescript",
+          code: "import express from 'express';\n\nconst app = express();\napp.use(express.json());\n\napp.get('/health', (req, res) => {\n  res.json({ status: 'ok' });\n});\n\napp.listen(3000, () => {\n  console.log('Server running on port 3000');\n});",
+        },
+      ],
+      resources: [
+        { title: "Express.js Guide", url: "https://expressjs.com/en/guide/" },
+      ],
+    },
+    {
+      title: "Routing and Controllers",
+      slug: "routing-controllers",
+      description:
+        "Organize your API with Express Router and controller patterns.",
+      sortOrder: 1,
+      durationSeconds: 720,
+      transcript: "Now let's organize our code with routers and controllers...",
+      codeSnippets: [
+        {
+          label: "User router",
+          language: "typescript",
+          code: "import { Router } from 'express';\nimport * as userController from '../controllers/user';\n\nconst router = Router();\n\nrouter.get('/', userController.list);\nrouter.get('/:id', userController.getById);\nrouter.post('/', userController.create);\nrouter.put('/:id', userController.update);\nrouter.delete('/:id', userController.remove);\n\nexport default router;",
+        },
+      ],
+      resources: [],
+    },
+    {
+      title: "Database Integration with Prisma",
+      slug: "database-prisma",
+      description:
+        "Connect your API to a database using Prisma ORM for type-safe queries.",
+      sortOrder: 2,
+      durationSeconds: 900,
+      transcript: "Let's add a database to our API using Prisma...",
+      codeSnippets: [
+        {
+          label: "Prisma schema",
+          language: "prisma",
+          code: "model User {\n  id    String @id @default(cuid())\n  email String @unique\n  name  String?\n  posts Post[]\n}\n\nmodel Post {\n  id        String   @id @default(cuid())\n  title     String\n  content   String\n  author    User     @relation(fields: [authorId], references: [id])\n  authorId  String\n  createdAt DateTime @default(now())\n}",
+        },
+      ],
+      resources: [
+        {
+          title: "Prisma Documentation",
+          url: "https://www.prisma.io/docs/",
+        },
+      ],
+      hasLab: true,
+    },
+    {
+      title: "Error Handling and Validation",
+      slug: "error-handling-validation",
+      description:
+        "Implement robust error handling and input validation with Zod.",
+      sortOrder: 3,
+      durationSeconds: 600,
+      transcript: "Proper error handling is crucial for production APIs...",
+      codeSnippets: [
+        {
+          label: "Zod validation",
+          language: "typescript",
+          code: "import { z } from 'zod';\n\nconst createUserSchema = z.object({\n  email: z.string().email(),\n  name: z.string().min(2).max(100),\n});\n\ntype CreateUserInput = z.infer<typeof createUserSchema>;",
+        },
+      ],
+      resources: [],
+    },
+    {
+      title: "Authentication with JWT",
+      slug: "authentication-jwt",
+      description:
+        "Add JWT-based authentication to protect your API endpoints.",
+      sortOrder: 4,
+      durationSeconds: 840,
+      transcript: "Let's secure our API with JSON Web Tokens...",
+      codeSnippets: [
+        {
+          label: "Auth middleware",
+          language: "typescript",
+          code: "import jwt from 'jsonwebtoken';\n\nexport function authMiddleware(req, res, next) {\n  const token = req.headers.authorization?.split(' ')[1];\n  if (!token) return res.status(401).json({ error: 'Unauthorized' });\n\n  try {\n    const payload = jwt.verify(token, process.env.JWT_SECRET!);\n    req.user = payload;\n    next();\n  } catch {\n    res.status(401).json({ error: 'Invalid token' });\n  }\n}",
+        },
+      ],
+      resources: [{ title: "JWT.io", url: "https://jwt.io/" }],
+    },
+  ];
+
+  for (const lessonData of nodeLessons) {
+    const { hasLab, ...lessonFields } = lessonData;
+    const lesson = await prisma.lesson.upsert({
+      where: {
+        courseId_slug: { courseId: course2.id, slug: lessonData.slug },
+      },
+      update: {},
+      create: {
+        ...lessonFields,
+        courseId: course2.id,
+        status: "PUBLISHED",
+      },
+    });
+
+    if (hasLab) {
+      await prisma.labDefinition.upsert({
+        where: { lessonId: lesson.id },
+        update: {},
+        create: {
+          lessonId: lesson.id,
+          title: `${lesson.title} Lab`,
+          description: `Hands-on practice for: ${lesson.title}`,
+          dockerImage: "node:20-slim",
+          memoryLimit: "256m",
+          cpuLimit: "0.5",
+          yamlConfig: JSON.stringify({
+            steps: [
+              {
+                title: "Initialize the database",
+                instructions:
+                  "<p>Run the Prisma migration to set up your database schema.</p>",
+                checks: [
+                  {
+                    name: "Migration applied",
+                    command: "test -d node_modules/.prisma && echo 'ok'",
+                    expected: "ok",
+                    hint: "Run npx prisma migrate dev first.",
+                  },
+                ],
+              },
+              {
+                title: "Create a user via the API",
+                instructions:
+                  "<p>Use curl to create a user through your API endpoint.</p>",
+                checks: [
+                  {
+                    name: "User created",
+                    command: "echo 'verified'",
+                    expected: "verified",
+                    hint: "POST to /api/users with email and name.",
+                  },
+                ],
+              },
+            ],
+          }),
+        },
+      });
+    }
+  }
+  console.log(
+    `  ✓ Course "${course2.title}" with ${nodeLessons.length} lessons`
+  );
+
+  console.log("\n✅ Seeding complete!");
+}
+
+main()
+  .then(async () => {
+    await prisma.$disconnect();
+  })
+  .catch(async (e) => {
+    console.error(e);
+    await prisma.$disconnect();
+    process.exit(1);
+  });
