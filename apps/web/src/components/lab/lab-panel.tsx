@@ -96,7 +96,7 @@ export function LabPanel({
     return () => {
       eventSource.close();
     };
-  }, [sessionId]);
+  }, [sseUrl]);
 
   const handleValidate = useCallback(async () => {
     setIsValidating(true);
@@ -108,7 +108,7 @@ export function LabPanel({
     if (result.data) {
       setValidationResult({
         passed: result.data.passed,
-        checks: result.data.checks,
+        checks: result.data.results,
       });
       if (result.data.passed && result.data.advancedToStep !== null) {
         setCurrentStep(result.data.advancedToStep);

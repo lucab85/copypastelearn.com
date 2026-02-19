@@ -19,12 +19,15 @@ export const eventRoutes: FastifyPluginAsync = async (app) => {
         });
       }
 
-      // Set SSE headers
+      // Set SSE headers (include CORS since raw.writeHead bypasses Fastify's CORS plugin)
+      const origin = request.headers.origin || "*";
       reply.raw.writeHead(200, {
         "Content-Type": "text/event-stream",
         "Cache-Control": "no-cache",
         Connection: "keep-alive",
         "X-Accel-Buffering": "no",
+        "Access-Control-Allow-Origin": origin,
+        "Access-Control-Allow-Credentials": "true",
       });
 
       const sendEvent = (event: string, data: Record<string, unknown>) => {
