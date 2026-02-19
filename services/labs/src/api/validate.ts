@@ -6,7 +6,11 @@ import { runValidation } from "../validator/runner.js";
 import type { PlanStep } from "../compiler/types.js";
 import { logger } from "../logger.js";
 
-const provider = new DockerProvider();
+let _provider: DockerProvider | null = null;
+function getProvider(): DockerProvider {
+  if (!_provider) _provider = new DockerProvider();
+  return _provider;
+}
 
 export const validateRoutes: FastifyPluginAsync = async (app) => {
   // POST /sessions/:sessionId/validate — Validate current step
@@ -66,7 +70,7 @@ export const validateRoutes: FastifyPluginAsync = async (app) => {
       try {
         const step = steps[stepIndex];
         const result = await runValidation(
-          provider,
+          getProvider(),
           session.sandboxId,
           stepIndex,
           step.checks,

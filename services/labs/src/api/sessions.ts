@@ -21,7 +21,12 @@ export interface SessionRecord {
 }
 
 export const sessions = new Map<string, SessionRecord>();
-const provider = new DockerProvider();
+
+let _provider: DockerProvider | null = null;
+function getProvider(): DockerProvider {
+  if (!_provider) _provider = new DockerProvider();
+  return _provider;
+}
 
 export const sessionRoutes: FastifyPluginAsync = async (app) => {
   // POST /sessions — Create a new lab session
@@ -74,7 +79,7 @@ export const sessionRoutes: FastifyPluginAsync = async (app) => {
     // Provision container asynchronously
     (async () => {
       try {
-        const containerInfo = await provider.create({
+        const containerInfo = await getProvider().create({
           image: body.envConfig.image,
           name: `lab-${sessionId}`,
           memoryLimit: body.envConfig.memoryLimit,
@@ -161,8 +166,8 @@ export const sessionRoutes: FastifyPluginAsync = async (app) => {
       // Destroy container if running
       if (session.sandboxId) {
         try {
-          await provider.stop(session.sandboxId);
-          await provider.remove(session.sandboxId, true);
+          await getProvider().stop(session.sandboxId);
+          await getProvider().remove(session.sandboxId, true);
         } catch {
           // Container might already be gone
         }

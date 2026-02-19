@@ -4,7 +4,11 @@ import { DockerProvider } from "../orchestrator/docker.js";
 import { sanitizeOutput } from "../validator/sanitizer.js";
 import { logger } from "../logger.js";
 
-const provider = new DockerProvider();
+let _provider: DockerProvider | null = null;
+function getProvider(): DockerProvider {
+  if (!_provider) _provider = new DockerProvider();
+  return _provider;
+}
 
 export const terminalRoutes: FastifyPluginAsync = async (app) => {
   // WS /sessions/:sessionId/terminal — Interactive terminal
@@ -52,7 +56,7 @@ export const terminalRoutes: FastifyPluginAsync = async (app) => {
       log.info("Terminal WebSocket connected");
 
       try {
-        const { output, input, resize } = await provider.attach(
+        const { output, input, resize } = await getProvider().attach(
           session.sandboxId
         );
 

@@ -2,7 +2,11 @@ import { sessions } from "../api/sessions.js";
 import { DockerProvider } from "./docker.js";
 import { logger } from "../logger.js";
 
-const provider = new DockerProvider();
+let _provider: DockerProvider | null = null;
+function getProvider(): DockerProvider {
+  if (!_provider) _provider = new DockerProvider();
+  return _provider;
+}
 const CLEANUP_INTERVAL_MS = 30_000; // Check every 30 seconds
 
 /**
@@ -33,12 +37,12 @@ export function startCleanupProcess(): NodeJS.Timeout {
       try {
         if (session.sandboxId) {
           try {
-            await provider.stop(session.sandboxId, 5);
+            await getProvider().stop(session.sandboxId, 5);
           } catch {
             // Container may already be stopped
           }
           try {
-            await provider.remove(session.sandboxId, true);
+            await getProvider().remove(session.sandboxId, true);
           } catch {
             // Container may already be removed
           }
