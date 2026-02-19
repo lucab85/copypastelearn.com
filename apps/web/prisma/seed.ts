@@ -446,6 +446,275 @@ async function main() {
     `  ✓ Course "${course2.title}" with ${nodeLessons.length} lessons`
   );
 
+  // ─── Course 3: IT Automation with Ansible ───────────
+  const course3 = await prisma.course.upsert({
+    where: { slug: "ansible-quickstart" },
+    update: {},
+    create: {
+      title: "Master IT Automation with Ansible in 30 Minutes",
+      slug: "ansible-quickstart",
+      description:
+        "A crash course in IT automation with Ansible, designed to give you the essential skills to start automating tasks and managing infrastructure in just 30 minutes. Perfect for busy professionals, this course focuses on practical, high-value techniques to achieve immediate results.",
+      difficulty: "BEGINNER",
+      status: "PUBLISHED",
+      sortOrder: 2,
+      outcomes: [
+        "Install and set up Ansible in minutes",
+        "Write and execute your first playbook",
+        "Use core Ansible modules for automation",
+        "Create a basic automated workflow to manage infrastructure",
+      ],
+      prerequisites: [
+        "Beginners curious about IT automation",
+        "Basic command line familiarity",
+      ],
+      estimatedDuration: 30,
+    },
+  });
+
+  const ansibleLessons = [
+    {
+      title: "Introduction to Ansible",
+      slug: "introduction-to-ansible",
+      description:
+        "Overview of Ansible, its benefits (agentless, YAML-based, idempotent), and real-world applications.",
+      sortOrder: 0,
+      durationSeconds: 158,
+      videoPlaybackId: "LSfDw0001oFCMmfJ01mabZ9h201V8os00PgumnGcBRE12XHA",
+      transcript:
+        "Welcome to this quickstart on Ansible! Ansible is a powerful automation tool used by IT professionals to manage infrastructure. What makes it unique is its simplicity—no agents are required, and configurations are written in YAML, making it human-readable. In this course, you'll learn to install Ansible, create your first playbook, and automate a simple web server deployment—all in just 30 minutes. Let's get started!",
+      codeSnippets: [],
+      resources: [
+        { title: "Ansible Documentation", url: "https://docs.ansible.com/" },
+      ],
+    },
+    {
+      title: "Installing and Configuring Ansible",
+      slug: "installing-configuring-ansible",
+      description:
+        "Install Ansible on your machine, set up an inventory file, and test connectivity with ad-hoc commands.",
+      sortOrder: 1,
+      durationSeconds: 324,
+      videoPlaybackId: "qmw5QJczu2WjWcSxhyxOb7idsdMdclw5sxO2s29nvmQ",
+      transcript:
+        "First, we'll install Ansible. If you're using Linux or macOS, run this command. For macOS, install with brew. Windows users can use WSL or follow the installation guide on the Ansible website. Now, let's create an inventory file. Open a file called hosts and add your server details. Test the connection with ansible ping. Success? Great! You're ready for the next step.",
+      codeSnippets: [
+        {
+          label: "Install on Debian/Ubuntu",
+          language: "bash",
+          code: "sudo apt update && sudo apt install ansible -y",
+        },
+        {
+          label: "Install on macOS",
+          language: "bash",
+          code: "brew install ansible",
+        },
+        {
+          label: "Inventory file (hosts)",
+          language: "ini",
+          code: "[web]\nyour_server_ip ansible_user=your_user",
+        },
+        {
+          label: "Test connection",
+          language: "bash",
+          code: "ansible -i hosts all -m ping",
+        },
+      ],
+      resources: [
+        {
+          title: "Ansible Installation Guide",
+          url: "https://docs.ansible.com/ansible/latest/installation_guide/",
+        },
+      ],
+    },
+    {
+      title: "Building Your First Playbook",
+      slug: "building-first-playbook",
+      description:
+        "Step-by-step creation of a basic playbook to deploy and configure a web server (e.g., Nginx).",
+      sortOrder: 2,
+      durationSeconds: 410,
+      videoPlaybackId: "02ZcrKlQmJx013eEWDZck7TPznY9NUraUo005Zmao201GSA",
+      transcript:
+        "Now, let's create a playbook to install and configure a web server. Open a file called webserver.yml. We'll define tasks to install Nginx, start the service, and deploy a custom HTML file. Run the playbook with ansible-playbook. Check your browser—your web server is live!",
+      codeSnippets: [
+        {
+          label: "Playbook (webserver.yml)",
+          language: "yaml",
+          code: "- hosts: web\n  become: true\n  tasks:\n    - name: Install Nginx\n      apt:\n        name: nginx\n        state: present\n\n    - name: Start Nginx service\n      service:\n        name: nginx\n        state: started\n        enabled: true\n\n    - name: Deploy a custom HTML file\n      copy:\n        src: /path/to/index.html\n        dest: /var/www/html/index.html",
+        },
+        {
+          label: "Run the playbook",
+          language: "bash",
+          code: "ansible-playbook -i hosts webserver.yml",
+        },
+      ],
+      resources: [
+        {
+          title: "Ansible Playbook Guide",
+          url: "https://docs.ansible.com/ansible/latest/playbook_guide/",
+        },
+      ],
+      hasLab: true,
+    },
+    {
+      title: "Using Ansible Modules",
+      slug: "using-ansible-modules",
+      description:
+        "Overview of essential modules (e.g., file, yum, service, copy) with quick demos.",
+      sortOrder: 3,
+      durationSeconds: 459,
+      videoPlaybackId: "TozvrFdDifmf1DLVZ9dF1PWn00bUgsKdGEZ02y01eve6AI",
+      transcript:
+        "Ansible's power lies in its modules. Let's look at the most common ones: apt or yum for installing software, service for managing services, and copy for copying files. Use these modules to automate infrastructure tasks efficiently!",
+      codeSnippets: [
+        {
+          label: "apt module — Install software",
+          language: "yaml",
+          code: "- name: Install Nginx\n  apt:\n    name: nginx\n    state: present",
+        },
+        {
+          label: "service module — Manage services",
+          language: "yaml",
+          code: "- name: Start Nginx\n  service:\n    name: nginx\n    state: started",
+        },
+        {
+          label: "copy module — Copy files",
+          language: "yaml",
+          code: "- name: Copy a file\n  copy:\n    src: local_file\n    dest: remote_path",
+        },
+      ],
+      resources: [
+        {
+          title: "Ansible Module Index",
+          url: "https://docs.ansible.com/ansible/latest/collections/index_module.html",
+        },
+      ],
+    },
+    {
+      title: "Simple Automation Project",
+      slug: "simple-automation-project",
+      description:
+        "Automate the deployment of a web server, secure it with a firewall, and share results.",
+      sortOrder: 4,
+      durationSeconds: 658,
+      videoPlaybackId: "5xmz6u8C6I9LzUHM2KGtPHC9mj00YfIIq02atBDglhNRA",
+      transcript:
+        "For the final project, automate a web server deployment. You'll write a playbook to install a web server, copy an HTML file to /var/www/html, and ensure the server starts and is enabled on boot. Upload your project to the Project Gallery. Share your playbook, a screenshot of the successful run, and your thoughts on the process.",
+      codeSnippets: [
+        {
+          label: "Complete project playbook",
+          language: "yaml",
+          code: "- hosts: web\n  become: true\n  tasks:\n    - name: Install Nginx\n      apt:\n        name: nginx\n        state: present\n\n    - name: Start Nginx\n      service:\n        name: nginx\n        state: started\n        enabled: true\n\n    - name: Deploy a web page\n      copy:\n        src: index.html\n        dest: /var/www/html/index.html",
+        },
+        {
+          label: "Inventory file (hosts)",
+          language: "ini",
+          code: "[web]\n192.168.1.10 ansible_user=ubuntu",
+        },
+        {
+          label: "HTML page (index.html)",
+          language: "html",
+          code: '<!DOCTYPE html>\n<html>\n<head>\n    <title>Welcome to Ansible Automation!</title>\n</head>\n<body>\n    <h1>Your Web Server is Live!</h1>\n</body>\n</html>',
+        },
+      ],
+      resources: [],
+      hasLab: true,
+    },
+    {
+      title: "Course Project Walkthrough",
+      slug: "course-project-walkthrough",
+      description:
+        "Live walkthrough of the course project: deploying and verifying an automated web server with Ansible.",
+      sortOrder: 5,
+      durationSeconds: 254,
+      videoPlaybackId: "fsCcqW28WIbzBlobrNCqSRJNfjSxv7GU02xrfQ1O00iC8",
+      transcript:
+        "In this final walkthrough, we'll run through the entire project end-to-end — from inventory setup to playbook execution. You'll see the automated deployment in action and verify the results in the browser. Congratulations—you've automated your first task with Ansible!",
+      codeSnippets: [],
+      resources: [],
+    },
+  ];
+
+  for (const lessonData of ansibleLessons) {
+    const { hasLab, ...lessonFields } = lessonData;
+    const lesson = await prisma.lesson.upsert({
+      where: {
+        courseId_slug: { courseId: course3.id, slug: lessonData.slug },
+      },
+      update: {},
+      create: {
+        ...lessonFields,
+        courseId: course3.id,
+        status: "PUBLISHED",
+      },
+    });
+
+    if (hasLab) {
+      const labPlan = {
+        title: `${lesson.title} Lab`,
+        description: `Hands-on practice for: ${lesson.title}`,
+        dockerImage: "ubuntu:22.04",
+        memoryLimit: "256m",
+        cpuLimit: "0.5",
+        steps: [
+          {
+            title: "Create the inventory file",
+            instructions:
+              "<p>Create a file called <code>hosts</code> with your server details in INI format.</p>",
+            checks: [
+              {
+                name: "Inventory exists",
+                command: "test -f hosts && echo 'ok'",
+                expected: "ok",
+                hint: "Create a file called 'hosts' with [web] group.",
+              },
+            ],
+          },
+          {
+            title: "Write the playbook",
+            instructions:
+              "<p>Create <code>webserver.yml</code> with tasks to install Nginx, start the service, and deploy an HTML file.</p>",
+            checks: [
+              {
+                name: "Playbook exists",
+                command: "test -f webserver.yml && echo 'ok'",
+                expected: "ok",
+                hint: "Create webserver.yml with at least 3 tasks.",
+              },
+            ],
+          },
+          {
+            title: "Run the playbook",
+            instructions:
+              "<p>Execute your playbook with <code>ansible-playbook -i hosts webserver.yml</code> and verify the result.</p>",
+            checks: [
+              {
+                name: "Playbook executed",
+                command: "echo 'done'",
+                expected: "done",
+                hint: "Run ansible-playbook and check for errors.",
+              },
+            ],
+          },
+        ],
+      };
+
+      await prisma.labDefinition.upsert({
+        where: { lessonId: lesson.id },
+        update: {},
+        create: {
+          lessonId: lesson.id,
+          yamlSource: JSON.stringify(labPlan),
+          compiledPlan: labPlan,
+        },
+      });
+    }
+  }
+  console.log(
+    `  ✓ Course "${course3.title}" with ${ansibleLessons.length} lessons`
+  );
+
   console.log("\n✅ Seeding complete!");
 }
 
