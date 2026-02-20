@@ -74,7 +74,7 @@ export async function getLesson(
 
   // Find next/previous lessons in the course
   const orderedLessons = lesson.course.lessons;
-  const currentIndex = orderedLessons.findIndex((l) => l.id === lesson.id);
+  const currentIndex = orderedLessons.findIndex((l: any) => l.id === lesson.id);
   const prevLesson = currentIndex > 0 ? orderedLessons[currentIndex - 1] : null;
   const nextLesson =
     currentIndex < orderedLessons.length - 1
