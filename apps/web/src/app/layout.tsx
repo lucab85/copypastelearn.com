@@ -27,9 +27,6 @@ export const metadata: Metadata = {
   authors: [{ name: "CopyPasteLearn" }],
   creator: "CopyPasteLearn",
   publisher: "CopyPasteLearn",
-  alternates: {
-    canonical: "/",
-  },
   robots: {
     index: true,
     follow: true,

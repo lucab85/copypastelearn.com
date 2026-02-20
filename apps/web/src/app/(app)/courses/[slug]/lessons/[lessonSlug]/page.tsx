@@ -12,6 +12,10 @@ import { Button } from "@/components/ui/button";
 import { CheckoutButton } from "@/components/checkout-button";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
+export const metadata = {
+  robots: { index: false, follow: false },
+};
+
 interface LessonPageProps {
   params: Promise<{ slug: string; lessonSlug: string }>;
 }
