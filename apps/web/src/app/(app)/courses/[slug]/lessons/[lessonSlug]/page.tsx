@@ -9,6 +9,7 @@ import { CodeSnippet } from "@/components/lesson/code-snippet";
 import { ResourceList } from "@/components/lesson/resource-list";
 import { LabLauncher } from "./lab-launcher";
 import { Button } from "@/components/ui/button";
+import { CheckoutButton } from "@/components/checkout-button";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 interface LessonPageProps {
@@ -41,9 +42,7 @@ export default async function LessonPage({ params }: LessonPageProps) {
                 <Button variant="outline">Back to course</Button>
               </Link>
               {isSignedIn ? (
-                <Link href="/pricing">
-                  <Button>View pricing</Button>
-                </Link>
+                <CheckoutButton>Subscribe Now</CheckoutButton>
               ) : (
                 <Link href="/sign-in">
                   <Button>Sign in</Button>

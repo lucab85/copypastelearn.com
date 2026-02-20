@@ -1,6 +1,7 @@
 import { requireAuth } from "@/lib/auth";
 import { getSubscriptionStatus } from "@/lib/billing";
 import { Button } from "@/components/ui/button";
+import { CheckoutButton } from "@/components/checkout-button";
 import {
   Card,
   CardContent,
@@ -114,9 +115,9 @@ export default async function SettingsPage() {
               )}
             </div>
           ) : (
-            <Button asChild className="w-full">
-              <Link href="/pricing">Subscribe — €29/month</Link>
-            </Button>
+            <CheckoutButton className="w-full">
+              Subscribe — €29/month
+            </CheckoutButton>
           )}
         </CardContent>
       </Card>

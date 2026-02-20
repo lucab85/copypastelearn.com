@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { CheckoutButton } from "@/components/checkout-button";
 import {
   Card,
   CardContent,
@@ -15,12 +16,14 @@ import { cn } from "@/lib/utils";
 interface PaywallProps {
   title?: string;
   description?: string;
+  isSignedIn?: boolean;
   className?: string;
 }
 
 export function Paywall({
   title = "Subscribe to unlock",
   description = "Get unlimited access to all lessons, interactive labs, and exclusive content.",
+  isSignedIn = false,
   className,
 }: PaywallProps) {
   return (
@@ -47,11 +50,17 @@ export function Paywall({
             Code snippets & downloadable resources
           </li>
         </ul>
-        <Button asChild className="w-full">
-          <Link href="/pricing">
-            View Plans — €29/month
-          </Link>
-        </Button>
+        {isSignedIn ? (
+          <CheckoutButton className="w-full">
+            Subscribe Now — €29/month
+          </CheckoutButton>
+        ) : (
+          <Button asChild className="w-full">
+            <Link href="/pricing">
+              View Plans — €29/month
+            </Link>
+          </Button>
+        )}
       </CardContent>
     </Card>
   );

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { auth } from "@clerk/nextjs/server";
 import { Button } from "@/components/ui/button";
+import { CheckoutButton } from "@/components/checkout-button";
 import {
   Card,
   CardContent,
@@ -13,6 +14,7 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { CheckCircle2 } from "lucide-react";
 import { SUBSCRIPTION_PRICE_EUR } from "@copypastelearn/shared";
+import { getSubscriptionStatus } from "@/lib/billing";
 
 export const metadata: Metadata = {
   title: "Pricing",
@@ -37,6 +39,8 @@ const benefits = [
 
 export default async function PricingPage() {
   const { userId } = await auth();
+  const subscription = userId ? await getSubscriptionStatus() : null;
+  const isSubscribed = subscription?.isSubscribed ?? false;
 
   const siteUrl =
     process.env.NEXT_PUBLIC_APP_URL ?? "https://www.copypastelearn.com";
@@ -109,13 +113,19 @@ export default async function PricingPage() {
             </ul>
           </CardContent>
           <CardFooter>
-            <Button asChild size="lg" className="w-full">
-              {userId ? (
-                <Link href="/dashboard">Go to Dashboard</Link>
-              ) : (
+            {isSubscribed ? (
+              <Button asChild size="lg" className="w-full" variant="outline">
+                <Link href="/settings">You&apos;re subscribed — Manage</Link>
+              </Button>
+            ) : userId ? (
+              <CheckoutButton size="lg" className="w-full">
+                Subscribe Now — €{SUBSCRIPTION_PRICE_EUR}/mo
+              </CheckoutButton>
+            ) : (
+              <Button asChild size="lg" className="w-full">
                 <Link href="/sign-up">Get Started</Link>
-              )}
-            </Button>
+              </Button>
+            )}
           </CardFooter>
         </Card>
       </div>

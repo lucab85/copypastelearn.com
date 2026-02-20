@@ -4,7 +4,12 @@ import { db } from "@/lib/db";
 import { requireAuth } from "@/lib/auth";
 import type { DashboardData } from "@copypastelearn/shared";
 
-export async function getDashboard(): Promise<DashboardData> {
+export interface DashboardResult extends DashboardData {
+  userName: string | null;
+  totalLessonsCompleted: number;
+}
+
+export async function getDashboard(): Promise<DashboardResult> {
   const user = await requireAuth();
 
   // In-progress courses
@@ -78,6 +83,11 @@ export async function getDashboard(): Promise<DashboardData> {
     },
   });
 
+  // Total completed lessons
+  const totalLessonsCompleted = await db.lessonProgress.count({
+    where: { userId: user.id, completed: true },
+  });
+
   // Active lab session
   const activeLabSession = await db.labSession.findFirst({
     where: {
@@ -101,6 +111,8 @@ export async function getDashboard(): Promise<DashboardData> {
   });
 
   return {
+    userName: user.displayName,
+    totalLessonsCompleted,
     inProgressCourses: courses.filter((c) => !c.completedAt),
     completedCourses: courses.filter((c) => !!c.completedAt),
     recentLessons: recentLessons.map((lp) => ({

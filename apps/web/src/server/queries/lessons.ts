@@ -24,6 +24,7 @@ export async function getLesson(
     include: {
       course: {
         select: {
+          id: true,
           slug: true,
           lessons: {
             where: { status: "PUBLISHED" },
@@ -94,6 +95,20 @@ export async function getLesson(
       update: {
         lastAccessedAt: new Date(),
       },
+    });
+
+    // Ensure CourseProgress exists (creates on first lesson access)
+    await db.courseProgress.upsert({
+      where: {
+        userId_courseId: { userId: user.id, courseId: lesson.course.id },
+      },
+      create: {
+        userId: user.id,
+        courseId: lesson.course.id,
+        percentComplete: 0,
+        startedAt: new Date(),
+      },
+      update: {}, // no-op if already exists
     });
   }
 
