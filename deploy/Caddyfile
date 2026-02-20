@@ -1,0 +1,24 @@
+# Replace YOUR_DOMAIN with your actual domain (e.g. copypastelearn.com)
+# Caddy automatically provisions Let's Encrypt TLS certificates
+
+www.YOUR_DOMAIN {
+	# Web app
+	reverse_proxy /api/labs/* labs:4000
+	reverse_proxy web:3000
+
+	# Security headers
+	header {
+		X-Content-Type-Options "nosniff"
+		X-Frame-Options "DENY"
+		Referrer-Policy "strict-origin-when-cross-origin"
+		Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+	}
+
+	# Gzip compression
+	encode gzip zstd
+}
+
+# Redirect apex → www
+YOUR_DOMAIN {
+	redir https://www.YOUR_DOMAIN{uri} permanent
+}

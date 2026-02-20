@@ -1,0 +1,16 @@
+node_modules
+.next
+dist
+.git
+.gitignore
+*.md
+!README.md
+.env*
+!.env.production.example
+.turbo
+.vscode
+.DS_Store
+*.log
+coverage
+.playwright
+test-results

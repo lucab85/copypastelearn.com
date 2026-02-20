@@ -1,0 +1,223 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ─── User ───────────────────────────────────────────────
+// Synced from Clerk. clerkUserId is the unique identifier.
+// Clerk is the source of truth for identity; this table
+// stores platform-specific data only.
+
+model User {
+  id          String   @id @default(cuid())
+  clerkUserId String   @unique
+  email       String
+  displayName String?
+  role        Role     @default(LEARNER)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  courseProgress  CourseProgress[]
+  lessonProgress  LessonProgress[]
+  labSessions     LabSession[]
+  subscription    Subscription?
+
+  @@index([clerkUserId])
+}
+
+enum Role {
+  LEARNER
+  ADMIN
+}
+
+// ─── Course ─────────────────────────────────────────────
+
+model Course {
+  id                String        @id @default(cuid())
+  title             String
+  slug              String        @unique
+  description       String
+  outcomes          String[]
+  prerequisites     String[]
+  difficulty        Difficulty
+  estimatedDuration Int?
+  thumbnailUrl      String?
+  status            ContentStatus @default(DRAFT)
+  sortOrder         Int           @default(0)
+  createdAt         DateTime      @default(now())
+  updatedAt         DateTime      @updatedAt
+
+  lessons        Lesson[]
+  courseProgress  CourseProgress[]
+
+  @@index([status])
+  @@index([slug])
+}
+
+enum Difficulty {
+  BEGINNER
+  INTERMEDIATE
+  ADVANCED
+}
+
+enum ContentStatus {
+  DRAFT
+  PUBLISHED
+}
+
+// ─── Lesson ─────────────────────────────────────────────
+
+model Lesson {
+  id              String        @id @default(cuid())
+  courseId         String
+  title           String
+  slug            String
+  description     String?
+  videoPlaybackId String?
+  transcript      String?
+  codeSnippets    Json?
+  resources       Json?
+  sortOrder       Int           @default(0)
+  durationSeconds Int?
+  status          ContentStatus @default(DRAFT)
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+
+  course         Course          @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  labDefinition  LabDefinition?
+  lessonProgress LessonProgress[]
+
+  @@unique([courseId, slug])
+  @@index([courseId, sortOrder])
+}
+
+// ─── Lab Definition ─────────────────────────────────────
+
+model LabDefinition {
+  id           String   @id @default(cuid())
+  lessonId     String   @unique
+  version      Int      @default(1)
+  yamlSource   String
+  compiledPlan Json
+  envConfig    Json?
+  ttlMinutes   Int      @default(60)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  lesson      Lesson       @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+  labSessions LabSession[]
+
+  @@index([lessonId])
+}
+
+// ─── Lab Session ────────────────────────────────────────
+
+model LabSession {
+  id               String           @id @default(cuid())
+  userId           String
+  labDefinitionId  String
+  status           LabSessionStatus @default(PROVISIONING)
+  currentStepIndex Int              @default(0)
+  sandboxId        String?
+  expiresAt        DateTime
+  startedAt        DateTime         @default(now())
+  completedAt      DateTime?
+  destroyedAt      DateTime?
+
+  user          User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  labDefinition LabDefinition @relation(fields: [labDefinitionId], references: [id])
+  attempts      LabAttempt[]
+
+  @@index([userId, status])
+  @@index([status, expiresAt])
+  @@index([labDefinitionId])
+}
+
+enum LabSessionStatus {
+  PROVISIONING
+  READY
+  RUNNING
+  VALIDATING
+  COMPLETED
+  EXPIRED
+  FAILED
+  DESTROYED
+}
+
+// ─── Lab Attempt ────────────────────────────────────────
+
+model LabAttempt {
+  id           String   @id @default(cuid())
+  labSessionId String
+  stepIndex    Int
+  passed       Boolean
+  results      Json
+  createdAt    DateTime @default(now())
+
+  labSession LabSession @relation(fields: [labSessionId], references: [id], onDelete: Cascade)
+
+  @@index([labSessionId, stepIndex])
+}
+
+// ─── Course Progress ────────────────────────────────────
+
+model CourseProgress {
+  id              String    @id @default(cuid())
+  userId          String
+  courseId         String
+  percentComplete Float     @default(0)
+  startedAt       DateTime  @default(now())
+  completedAt     DateTime?
+
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  course Course @relation(fields: [courseId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, courseId])
+}
+
+// ─── Lesson Progress ────────────────────────────────────
+
+model LessonProgress {
+  id                   String   @id @default(cuid())
+  userId               String
+  lessonId             String
+  videoPositionSeconds Float    @default(0)
+  completed            Boolean  @default(false)
+  lastAccessedAt       DateTime @default(now())
+
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  lesson Lesson @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, lessonId])
+  @@index([userId, lastAccessedAt])
+}
+
+// ─── Subscription ───────────────────────────────────────
+
+model Subscription {
+  id                  String             @id @default(cuid())
+  userId              String             @unique
+  clerkSubscriptionId String?            @unique
+  planId              String
+  status              SubscriptionStatus
+  currentPeriodStart  DateTime?
+  currentPeriodEnd    DateTime?
+  canceledAt          DateTime?
+  createdAt           DateTime           @default(now())
+  updatedAt           DateTime           @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([status])
+}
+
+enum SubscriptionStatus {
+  ACTIVE
+  CANCELED
+  EXPIRED
+  PAST_DUE
+}

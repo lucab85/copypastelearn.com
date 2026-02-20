@@ -1,0 +1,70 @@
+# docker-compose.prod.yml
+# Production deployment for Oracle Cloud (ARM64 compatible)
+# Usage: docker compose -f docker-compose.prod.yml up -d
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: apps/web/Dockerfile
+    container_name: cpl-web
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    env_file:
+      - .env.production
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+      - HOSTNAME=0.0.0.0
+    depends_on:
+      labs:
+        condition: service_healthy
+    networks:
+      - cpl-network
+
+  labs:
+    build:
+      context: .
+      dockerfile: services/labs/Dockerfile
+    container_name: cpl-labs
+    restart: unless-stopped
+    ports:
+      - "4000:4000"
+    env_file:
+      - .env.production
+    environment:
+      - NODE_ENV=production
+      - PORT=4000
+      - HOST=0.0.0.0
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - cpl-network
+
+  # Reverse proxy with automatic HTTPS via Let's Encrypt
+  caddy:
+    image: caddy:2-alpine
+    container_name: cpl-caddy
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+      - "443:443/udp"  # HTTP/3
+    volumes:
+      - ./deploy/Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    depends_on:
+      - web
+      - labs
+    networks:
+      - cpl-network
+
+volumes:
+  caddy_data:
+  caddy_config:
+
+networks:
+  cpl-network:
+    driver: bridge
