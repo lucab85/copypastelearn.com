@@ -35,7 +35,7 @@ export default async function AdminCoursesPage() {
         </div>
       ) : (
         <div className="space-y-2">
-          {courses.map((course) => (
+          {courses.map((course: { id: string; title: string; status: string; difficulty: string; _count: { lessons: number } }) => (
             <Link
               key={course.id}
               href={`/admin/courses/${course.id}`}
