@@ -12,7 +12,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { CheckCircle2 } from "lucide-react";
+import { CheckCircle2, Building2 } from "lucide-react";
 import { SUBSCRIPTION_PRICE_EUR } from "@copypastelearn/shared";
 import { getSubscriptionStatus } from "@/lib/billing";
 
@@ -35,6 +35,16 @@ const benefits = [
   "Downloadable resources & cheat sheets",
   "Progress tracking & completion certificates",
   "New content added regularly",
+];
+
+const businessBenefits = [
+  "Everything in Pro, plus:",
+  "SSO / SAML integration",
+  "Centralized team management dashboard",
+  "Usage analytics & reporting per seat",
+  "Priority support with SLA",
+  "Custom invoicing & procurement-friendly billing",
+  "Volume discounts for 10+ seats",
 ];
 
 export default async function PricingPage() {
@@ -86,8 +96,9 @@ export default async function PricingPage() {
         </p>
       </div>
 
-      {/* Pricing Card */}
-      <div className="mx-auto mt-12 max-w-md">
+      {/* Pricing Cards */}
+      <div className="mx-auto mt-12 grid max-w-4xl gap-8 lg:grid-cols-2">
+        {/* Pro Plan */}
         <Card className="relative overflow-hidden border-primary/50">
           <div className="absolute right-4 top-4">
             <Badge>Most Popular</Badge>
@@ -126,6 +137,40 @@ export default async function PricingPage() {
                 <Link href="/sign-up">Get Started</Link>
               </Button>
             )}
+          </CardFooter>
+        </Card>
+
+        {/* Business Plan */}
+        <Card className="relative overflow-hidden">
+          <div className="absolute right-4 top-4">
+            <Badge variant="secondary">Enterprise</Badge>
+          </div>
+          <CardHeader>
+            <div className="mb-2 flex items-center gap-2">
+              <Building2 className="h-5 w-5 text-muted-foreground" />
+              <CardTitle className="text-2xl">Business</CardTitle>
+            </div>
+            <CardDescription>
+              SSO integration &amp; team management for your company
+            </CardDescription>
+            <div className="mt-4">
+              <span className="text-5xl font-bold">Custom</span>
+            </div>
+          </CardHeader>
+          <CardContent>
+            <ul className="space-y-3">
+              {businessBenefits.map((benefit, i) => (
+                <li key={i} className="flex items-start gap-3">
+                  <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-primary" />
+                  <span className="text-sm">{benefit}</span>
+                </li>
+              ))}
+            </ul>
+          </CardContent>
+          <CardFooter>
+            <Button asChild size="lg" className="w-full" variant="outline">
+              <Link href="/contact">Contact Sales</Link>
+            </Button>
           </CardFooter>
         </Card>
       </div>
