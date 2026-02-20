@@ -113,8 +113,8 @@ export async function getDashboard(): Promise<DashboardResult> {
   return {
     userName: user.displayName,
     totalLessonsCompleted,
-    inProgressCourses: courses.filter((c) => !c.completedAt),
-    completedCourses: courses.filter((c) => !!c.completedAt),
+    inProgressCourses: courses.filter((c: any) => !c.completedAt),
+    completedCourses: courses.filter((c: any) => !!c.completedAt),
     recentLessons: recentLessons.map((lp: any) => ({
       lessonId: lp.lesson.id,
       title: lp.lesson.title,
