@@ -47,8 +47,53 @@ export default async function CourseDetailPage({ params }: CourseDetailPageProps
   const hours = Math.floor(totalDuration / 3600);
   const minutes = Math.floor((totalDuration % 3600) / 60);
 
+  const siteUrl =
+    process.env.NEXT_PUBLIC_APP_URL ?? "https://www.copypastelearn.com";
+
+  const difficultyToLevel: Record<string, string> = {
+    BEGINNER: "Beginner",
+    INTERMEDIATE: "Intermediate",
+    ADVANCED: "Advanced",
+  };
+
+  const courseJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Course",
+    name: course.title,
+    description: course.description,
+    url: `${siteUrl}/courses/${slug}`,
+    provider: {
+      "@type": "Organization",
+      name: "CopyPasteLearn",
+      url: siteUrl,
+    },
+    ...(course.thumbnailUrl && { image: course.thumbnailUrl }),
+    educationalLevel: difficultyToLevel[course.difficulty] ?? course.difficulty,
+    numberOfLessons: course.lessons.length,
+    ...(totalDuration > 0 && {
+      timeRequired: `PT${hours > 0 ? `${hours}H` : ""}${minutes}M`,
+    }),
+    teaches: course.outcomes,
+    hasCourseInstance: {
+      "@type": "CourseInstance",
+      courseMode: "Online",
+      courseWorkload: totalDuration > 0
+        ? `PT${hours > 0 ? `${hours}H` : ""}${minutes}M`
+        : undefined,
+    },
+    syllabusSections: course.lessons.map((lesson, index) => ({
+      "@type": "Syllabus",
+      name: lesson.title,
+      position: index + 1,
+    })),
+  };
+
   return (
     <div className="container mx-auto px-4 py-12">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(courseJsonLd) }}
+      />
       {/* Hero */}
       <div className="mb-8">
         <Badge variant="secondary" className="mb-3">

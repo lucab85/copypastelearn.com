@@ -20,8 +20,33 @@ export const metadata: Metadata = {
 export default async function CourseCatalogPage() {
   const courses = await getCourses();
 
+  const siteUrl =
+    process.env.NEXT_PUBLIC_APP_URL ?? "https://www.copypastelearn.com";
+
+  const itemListJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: "IT Automation & DevOps Courses",
+    description:
+      "Browse hands-on courses on Docker, Ansible, Node.js and more.",
+    url: `${siteUrl}/courses`,
+    numberOfItems: courses.length,
+    itemListElement: courses.map((course, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      url: `${siteUrl}/courses/${course.slug}`,
+      name: course.title,
+      description: course.description,
+      ...(course.thumbnailUrl && { image: course.thumbnailUrl }),
+    })),
+  };
+
   return (
     <div>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListJsonLd) }}
+      />
       {/* Page header */}
       <div className="border-b bg-muted/30">
         <div className="container mx-auto px-4 py-12 lg:py-16">

@@ -37,8 +37,41 @@ const benefits = [
 
 export default async function PricingPage() {
   const { userId } = await auth();
+
+  const siteUrl =
+    process.env.NEXT_PUBLIC_APP_URL ?? "https://www.copypastelearn.com";
+
+  const pricingJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: "CopyPasteLearn Pro Monthly",
+    description:
+      "Unlimited access to all video lessons, interactive hands-on labs, code snippets, and progress tracking.",
+    url: `${siteUrl}/pricing`,
+    brand: {
+      "@type": "Organization",
+      name: "CopyPasteLearn",
+    },
+    offers: {
+      "@type": "Offer",
+      price: SUBSCRIPTION_PRICE_EUR,
+      priceCurrency: "EUR",
+      availability: "https://schema.org/InStock",
+      url: `${siteUrl}/pricing`,
+      priceValidUntil: "2026-12-31",
+      seller: {
+        "@type": "Organization",
+        name: "CopyPasteLearn",
+      },
+    },
+  };
+
   return (
     <div className="container mx-auto px-4 py-16">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(pricingJsonLd) }}
+      />
       {/* Header */}
       <div className="mx-auto max-w-2xl text-center">
         <h1 className="text-4xl font-bold tracking-tight">
