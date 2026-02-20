@@ -12,6 +12,14 @@ function isClerkConfigured(): boolean {
 }
 
 export default async function middleware(request: NextRequest) {
+  // apex → www redirect (301) for SEO consolidation
+  const host = request.headers.get("host") || "";
+  if (host && !host.startsWith("www.") && !host.startsWith("localhost")) {
+    const url = request.nextUrl.clone();
+    url.host = `www.${host}`;
+    return NextResponse.redirect(url, 301);
+  }
+
   if (!isClerkConfigured()) {
     return NextResponse.next();
   }
@@ -36,6 +44,12 @@ export default async function middleware(request: NextRequest) {
     "/robots.txt",
     "/sitemap.xml",
     "/opengraph-image(.*)",
+    // Old site routes (allow redirect to fire before auth check)
+    "/learning-paths(.*)",
+    "/career-assessment(.*)",
+    "/waitlist(.*)",
+    "/resources(.*)",
+    "/legal(.*)",
   ]);
 
   return clerkMiddleware(async (auth, req) => {
