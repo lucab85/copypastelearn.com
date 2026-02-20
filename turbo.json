@@ -3,6 +3,7 @@
   "globalDependencies": ["**/.env.*local"],
   "globalEnv": [
     "DATABASE_URL",
+    "DIRECT_URL",
     "CLERK_SECRET_KEY",
     "MUX_TOKEN_ID",
     "MUX_ACCESS_TOKEN_ID",
