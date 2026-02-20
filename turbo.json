@@ -1,6 +1,22 @@
 {
   "$schema": "https://turbo.build/schema.json",
   "globalDependencies": ["**/.env.*local"],
+  "globalEnv": [
+    "DATABASE_URL",
+    "CLERK_SECRET_KEY",
+    "MUX_TOKEN_ID",
+    "MUX_ACCESS_TOKEN_ID",
+    "MUX_SECRET_KEY",
+    "LAB_SERVICE_URL",
+    "LAB_SERVICE_API_KEY",
+    "STRIPE_WEBHOOK_SECRET",
+    "STRIPE_SECRET_KEY",
+    "STRIPE_PRICE_ID",
+    "NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY",
+    "NEXT_PUBLIC_CLERK_SIGN_IN_URL",
+    "NEXT_PUBLIC_CLERK_SIGN_UP_URL",
+    "NEXT_PUBLIC_SITE_URL"
+  ],
   "tasks": {
     "build": {
       "dependsOn": ["^build"],
