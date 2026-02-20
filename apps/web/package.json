@@ -36,7 +36,7 @@
     "pino": "^9.0.0",
     "react": "^18.3.0",
     "react-dom": "^18.3.0",
-    "stripe": "^16.0.0",
+    "stripe": "^20.3.1",
     "svix": "^1.30.0",
     "tailwind-merge": "^2.6.1",
     "tailwindcss-animate": "^1.0.7",

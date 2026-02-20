@@ -3,7 +3,7 @@ import Stripe from "stripe";
 import { db } from "@/lib/db";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY ?? "", {
-  apiVersion: "2024-06-20",
+  apiVersion: "2026-01-28.clover",
 });
 
 export async function POST(req: Request) {
@@ -58,10 +58,20 @@ export async function POST(req: Request) {
           break;
         }
 
-        // Retrieve the subscription to get period dates
+        // Retrieve the subscription (with items) to get period dates
         const subscription = await stripe.subscriptions.retrieve(
-          session.subscription as string
+          session.subscription as string,
+          { expand: ["items"] }
         );
+
+        // In Stripe SDK v20+, period dates live on SubscriptionItem
+        const item = subscription.items.data[0];
+        const periodStart = item?.current_period_start
+          ? new Date(item.current_period_start * 1000)
+          : new Date();
+        const periodEnd = item?.current_period_end
+          ? new Date(item.current_period_end * 1000)
+          : new Date();
 
         await db.subscription.upsert({
           where: { userId: user.id },
@@ -70,22 +80,14 @@ export async function POST(req: Request) {
             clerkSubscriptionId: subscription.id,
             planId: "pro-monthly",
             status: "ACTIVE",
-            currentPeriodStart: new Date(
-              subscription.current_period_start * 1000
-            ),
-            currentPeriodEnd: new Date(
-              subscription.current_period_end * 1000
-            ),
+            currentPeriodStart: periodStart,
+            currentPeriodEnd: periodEnd,
           },
           update: {
             clerkSubscriptionId: subscription.id,
             status: "ACTIVE",
-            currentPeriodStart: new Date(
-              subscription.current_period_start * 1000
-            ),
-            currentPeriodEnd: new Date(
-              subscription.current_period_end * 1000
-            ),
+            currentPeriodStart: periodStart,
+            currentPeriodEnd: periodEnd,
           },
         });
         break;
@@ -106,6 +108,15 @@ export async function POST(req: Request) {
           unpaid: "PAST_DUE",
         };
 
+        // In Stripe SDK v20+, period dates live on SubscriptionItem
+        const subItem = subscription.items.data[0];
+        const subPeriodStart = subItem?.current_period_start
+          ? new Date(subItem.current_period_start * 1000)
+          : existingSub.currentPeriodStart;
+        const subPeriodEnd = subItem?.current_period_end
+          ? new Date(subItem.current_period_end * 1000)
+          : existingSub.currentPeriodEnd;
+
         await db.subscription.update({
           where: { clerkSubscriptionId: subscription.id },
           data: {
@@ -114,12 +125,8 @@ export async function POST(req: Request) {
               | "CANCELED"
               | "EXPIRED"
               | "PAST_DUE",
-            currentPeriodStart: new Date(
-              subscription.current_period_start * 1000
-            ),
-            currentPeriodEnd: new Date(
-              subscription.current_period_end * 1000
-            ),
+            currentPeriodStart: subPeriodStart,
+            currentPeriodEnd: subPeriodEnd,
             canceledAt: subscription.canceled_at
               ? new Date(subscription.canceled_at * 1000)
               : null,
@@ -143,7 +150,12 @@ export async function POST(req: Request) {
 
       case "invoice.payment_failed": {
         const invoice = event.data.object as Stripe.Invoice;
-        const subscriptionId = invoice.subscription as string | null;
+        // In Stripe SDK v20+, subscription moved to invoice.parent.subscription_details
+        const parentSub = invoice.parent?.subscription_details?.subscription;
+        const subscriptionId =
+          typeof parentSub === "string"
+            ? parentSub
+            : parentSub?.id ?? null;
 
         if (!subscriptionId) break;
 
