@@ -67,7 +67,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     });
     await prisma.$disconnect();
 
-    coursePages = courses.map((course) => ({
+    coursePages = courses.map((course: { slug: string; updatedAt: Date }) => ({
       url: `${siteUrl}/courses/${course.slug}`,
       lastModified: course.updatedAt,
       changeFrequency: "weekly" as const,
