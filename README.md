@@ -143,6 +143,28 @@ Fastify service that manages Docker-based lab environments:
 
 Shared TypeScript types, Zod schemas, and constants used across web and lab services.
 
+## Production Deployment (Oracle Cloud)
+
+The app is containerized and ready to deploy on an Oracle Cloud **Always Free** ARM VM.
+
+```bash
+# On the VM:
+git clone <repo-url> && cd copypastelearn.com
+cp .env.production.example .env.production
+nano .env.production   # fill in real values
+./deploy/deploy.sh deploy
+```
+
+Full step-by-step guide: [`deploy/ORACLE_CLOUD.md`](deploy/ORACLE_CLOUD.md)
+
+| File | Purpose |
+|------|---------|
+| `apps/web/Dockerfile` | Next.js standalone container |
+| `services/labs/Dockerfile` | Lab service container (needs Docker socket) |
+| `docker-compose.prod.yml` | Orchestrates web + labs + Caddy (auto-HTTPS) |
+| `deploy/Caddyfile` | Reverse proxy with TLS |
+| `deploy/deploy.sh` | Deploy/stop/restart/logs helper script |
+
 ## License
 
 Private — All rights reserved.

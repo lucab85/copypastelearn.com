@@ -13,6 +13,19 @@ import { LAB_MAX_CONCURRENT_SESSIONS_PER_USER } from "@copypastelearn/shared";
 export async function createLabSession(labDefinitionId: string) {
   const user = await requireAuth();
 
+  // Subscription gating: labs require an active subscription
+  const subscription = await db.subscription.findUnique({
+    where: { userId: user.id },
+    select: { status: true },
+  });
+
+  if (subscription?.status !== "ACTIVE") {
+    return {
+      error:
+        "An active subscription is required to start labs. Subscribe to unlock all labs and lessons.",
+    };
+  }
+
   // Fetch lab definition from DB
   const labDef = await db.labDefinition.findUnique({
     where: { id: labDefinitionId },
