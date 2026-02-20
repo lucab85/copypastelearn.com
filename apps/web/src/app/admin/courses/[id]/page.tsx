@@ -96,7 +96,7 @@ export default async function CourseEditPage({ params }: CourseEditPageProps) {
         </div>
         <LessonList
           courseId={id}
-          lessons={course.lessons.map((l) => ({
+          lessons={course.lessons.map((l: { id: string; title: string; sortOrder: number; status: string; labDefinition: { id: string } | null }) => ({
             id: l.id,
             title: l.title,
             sortOrder: l.sortOrder,
