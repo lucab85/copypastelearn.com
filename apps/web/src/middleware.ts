@@ -12,11 +12,13 @@ function isClerkConfigured(): boolean {
 }
 
 export default async function middleware(request: NextRequest) {
-  // apex → www redirect (301) for SEO consolidation
+  // apex → www redirect (301) for SEO consolidation — production only
   const host = request.headers.get("host") || "";
-  if (host && !host.startsWith("www.") && !host.startsWith("localhost")) {
+  if (
+    host === "copypastelearn.com" // only redirect the bare production domain
+  ) {
     const url = request.nextUrl.clone();
-    url.host = `www.${host}`;
+    url.host = "www.copypastelearn.com";
     return NextResponse.redirect(url, 301);
   }
 
