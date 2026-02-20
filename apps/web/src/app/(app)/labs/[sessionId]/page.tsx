@@ -9,9 +9,3 @@ interface LabSessionPageProps {
 export default async function LabSessionPage({ params }: LabSessionPageProps) {
   redirect("/dashboard");
 }
-      backUrl={backUrl}
-      sseUrl={sseUrl(session.id)}
-      terminalWsUrl={terminalWsUrl(session.id)}
-    />
-  );
-}
