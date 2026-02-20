@@ -42,10 +42,10 @@ export async function getDashboard(): Promise<DashboardResult> {
     orderBy: { startedAt: "desc" },
   });
 
-  const courses = courseProgress.map((cp) => {
+  const courses = courseProgress.map((cp: any) => {
     // Find the next incomplete lesson
     const nextLesson = cp.course.lessons.find(
-      (l) => !l.lessonProgress[0]?.completed
+      (l: any) => !l.lessonProgress[0]?.completed
     );
 
     return {
@@ -115,7 +115,7 @@ export async function getDashboard(): Promise<DashboardResult> {
     totalLessonsCompleted,
     inProgressCourses: courses.filter((c) => !c.completedAt),
     completedCourses: courses.filter((c) => !!c.completedAt),
-    recentLessons: recentLessons.map((lp) => ({
+    recentLessons: recentLessons.map((lp: any) => ({
       lessonId: lp.lesson.id,
       title: lp.lesson.title,
       slug: lp.lesson.slug,

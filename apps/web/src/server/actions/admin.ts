@@ -244,7 +244,7 @@ export async function getAdminLabSessions() {
     orderBy: { startedAt: "desc" },
   });
 
-  return sessions.map((s) => {
+  return sessions.map((s: any) => {
     const plan = s.labDefinition.compiledPlan as Record<string, unknown> | null;
     return {
       id: s.id,

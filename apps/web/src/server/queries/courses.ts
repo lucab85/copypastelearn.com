@@ -26,7 +26,7 @@ export async function getCourses(): Promise<CourseListItem[]> {
     },
   });
 
-  return courses.map((course) => ({
+  return courses.map((course: any) => ({
     id: course.id,
     title: course.title,
     slug: course.slug,
@@ -107,7 +107,7 @@ export async function getCourse(slug: string): Promise<CourseDetail | null> {
     difficulty: course.difficulty,
     estimatedDuration: course.estimatedDuration,
     thumbnailUrl: course.thumbnailUrl,
-    lessons: course.lessons.map((lesson) => {
+    lessons: course.lessons.map((lesson: any) => {
       const isFree = lesson.sortOrder === 0;
       return {
         id: lesson.id,
