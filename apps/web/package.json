@@ -17,7 +17,7 @@
     "db:studio": "prisma studio"
   },
   "dependencies": {
-    "@clerk/nextjs": "^5.0.0",
+    "@clerk/nextjs": "^6.38.0",
     "@copypastelearn/shared": "workspace:*",
     "@mux/mux-player-react": "^3.0.0",
     "@prisma/client": "^5.0.0",

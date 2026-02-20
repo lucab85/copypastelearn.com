@@ -40,7 +40,7 @@ export default async function middleware(request: NextRequest) {
 
   return clerkMiddleware(async (auth, req) => {
     if (!isPublicRoute(req)) {
-      await auth().protect();
+      await auth.protect();
     }
   })(request, {} as never);
 }
