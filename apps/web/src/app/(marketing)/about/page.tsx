@@ -5,7 +5,7 @@ import { EmailLink } from "@/components/ui/email-link";
 export const metadata: Metadata = {
   title: "About",
   description:
-    "Learn about CopyPasteLearn — our mission to make IT automation education hands-on and accessible.",
+    "CopyPasteLearn makes IT automation hands-on and accessible. Watch expert video lessons, then practise in real sandbox environments — no setup required.",
   alternates: { canonical: "/about" },
 };
 

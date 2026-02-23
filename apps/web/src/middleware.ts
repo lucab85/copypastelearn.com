@@ -44,6 +44,7 @@ export default async function middleware(request: NextRequest) {
     "/sign-up(.*)",
     "/api/webhooks(.*)",
     "/api/health",
+    "/api/indexnow",
     "/robots.txt",
     "/sitemap.xml",
     "/opengraph-image(.*)",

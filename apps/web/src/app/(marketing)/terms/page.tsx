@@ -3,7 +3,7 @@ import { EmailLink } from "@/components/ui/email-link";
 
 export const metadata: Metadata = {
   title: "Terms of Service",
-  description: "CopyPasteLearn terms of service — rules and guidelines for using our platform.",
+  description: "CopyPasteLearn terms of service — rules and guidelines for using our platform, including subscriptions, content usage, and acceptable use policies.",
   alternates: { canonical: "/terms" },
   robots: { index: true, follow: true },
 };

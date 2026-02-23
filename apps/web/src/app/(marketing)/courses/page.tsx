@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { getCourses } from "@/server/queries/courses";
+import { getPublicCourses } from "@/server/queries/public-courses";
 import { CourseCard } from "@/components/course/course-card";
 import { BookOpen } from "lucide-react";
 
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
 };
 
 export default async function CourseCatalogPage() {
-  const courses = await getCourses();
+  const courses = await getPublicCourses();
 
   const siteUrl =
     process.env.NEXT_PUBLIC_APP_URL ?? "https://www.copypastelearn.com";

@@ -81,6 +81,16 @@ const nextConfig = {
       },
     ];
   },
+
+  // Rewrites for IndexNow key verification: /{key}.txt → /api/indexnow
+  async rewrites() {
+    return [
+      {
+        source: "/:key([a-f0-9]{32}).txt",
+        destination: "/api/indexnow",
+      },
+    ];
+  },
 };
 
 export default nextConfig;

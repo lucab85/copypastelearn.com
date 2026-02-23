@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { PrismaClient } from "@prisma/client";
+import { db } from "@/lib/db";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const siteUrl =
@@ -61,12 +61,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // Dynamic course pages
   let coursePages: MetadataRoute.Sitemap = [];
   try {
-    const prisma = new PrismaClient();
-    const courses = await prisma.course.findMany({
+    const courses = await db.course.findMany({
       where: { status: "PUBLISHED" },
       select: { slug: true, updatedAt: true },
     });
-    await prisma.$disconnect();
 
     coursePages = courses.map((course: { slug: string; updatedAt: Date }) => ({
       url: `${siteUrl}/courses/${course.slug}`,

@@ -4,6 +4,8 @@ import { SignUp } from "@clerk/nextjs";
 
 export const metadata = {
   title: "Sign Up",
+  description:
+    "Create a free CopyPasteLearn account and start learning IT automation with video courses and interactive hands-on labs.",
   robots: { index: false, follow: true },
 };
 
@@ -12,7 +14,12 @@ export default async function SignUpPage() {
   if (userId) redirect("/dashboard");
 
   return (
-    <div className="flex min-h-[calc(100vh-4rem)] items-center justify-center">
+    <div className="flex min-h-[calc(100vh-4rem)] flex-col items-center justify-center px-4">
+      <h1 className="sr-only">Create your CopyPasteLearn account</h1>
+      <p className="mb-6 max-w-md text-center text-sm text-muted-foreground">
+        Create your free account to access video courses, launch interactive
+        hands-on labs, and track your learning progress.
+      </p>
       <SignUp
         appearance={{
           elements: {
@@ -21,6 +28,13 @@ export default async function SignUpPage() {
           },
         }}
       />
+      <p className="mt-6 max-w-md text-center text-xs text-muted-foreground">
+        Already have an account?{" "}
+        <a href="/sign-in" className="underline underline-offset-4 hover:text-primary">
+          Sign in here
+        </a>{" "}
+        to continue your IT automation learning journey.
+      </p>
     </div>
   );
 }

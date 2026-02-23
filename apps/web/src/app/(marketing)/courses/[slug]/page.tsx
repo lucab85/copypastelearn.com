@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { getCourse } from "@/server/queries/courses";
+import { getPublicCourse } from "@/server/queries/public-courses";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
@@ -17,11 +17,18 @@ export async function generateMetadata({
   params,
 }: CourseDetailPageProps): Promise<Metadata> {
   const { slug } = await params;
-  const course = await getCourse(slug);
+  const course = await getPublicCourse(slug);
   if (!course) return {};
+
+  // Keep meta description within 120-155 chars for optimal SERP display
+  let description = course.description ?? "";
+  if (description.length > 155) {
+    description = description.slice(0, 152).replace(/\s+\S*$/, "") + "…";
+  }
+
   return {
     title: course.title,
-    description: course.description,
+    description,
     alternates: { canonical: `/courses/${slug}` },
     openGraph: {
       title: course.title,
@@ -34,7 +41,7 @@ export async function generateMetadata({
 
 export default async function CourseDetailPage({ params }: CourseDetailPageProps) {
   const { slug } = await params;
-  const course = await getCourse(slug);
+  const course = await getPublicCourse(slug);
 
   if (!course) {
     notFound();

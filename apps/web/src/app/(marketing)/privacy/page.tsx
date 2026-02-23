@@ -3,7 +3,7 @@ import { EmailLink } from "@/components/ui/email-link";
 
 export const metadata: Metadata = {
   title: "Privacy Policy",
-  description: "CopyPasteLearn privacy policy — how we collect, use, and protect your personal data.",
+  description: "CopyPasteLearn privacy policy — learn how we collect, use, and protect your personal data, including account info, usage analytics, and lab session data.",
   alternates: { canonical: "/privacy" },
   robots: { index: true, follow: true },
 };
