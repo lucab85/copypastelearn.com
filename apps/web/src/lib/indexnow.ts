@@ -1,4 +1,4 @@
-import { logger } from "./logger";
+import { serverLogger as logger } from "./logger";
 
 const INDEXNOW_ENDPOINT = "https://api.indexnow.org/indexnow";
 
