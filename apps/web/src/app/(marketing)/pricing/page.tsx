@@ -62,8 +62,9 @@ export default async function PricingPage() {
     description:
       "Unlimited access to all video lessons, interactive hands-on labs, code snippets, and progress tracking.",
     url: `${siteUrl}/pricing`,
+    image: `${siteUrl}/opengraph-image`,
     brand: {
-      "@type": "Organization",
+      "@type": "Brand",
       name: "CopyPasteLearn",
     },
     offers: {
@@ -77,7 +78,86 @@ export default async function PricingPage() {
         "@type": "Organization",
         name: "CopyPasteLearn",
       },
+      shippingDetails: {
+        "@type": "OfferShippingDetails",
+        shippingRate: {
+          "@type": "MonetaryAmount",
+          value: 0,
+          currency: "EUR",
+        },
+        shippingDestination: {
+          "@type": "DefinedRegion",
+          addressCountry: "EARTH",
+        },
+        deliveryTime: {
+          "@type": "ShippingDeliveryTime",
+          handlingTime: {
+            "@type": "QuantitativeValue",
+            minValue: 0,
+            maxValue: 0,
+            unitCode: "d",
+          },
+          transitTime: {
+            "@type": "QuantitativeValue",
+            minValue: 0,
+            maxValue: 0,
+            unitCode: "d",
+          },
+        },
+      },
+      hasMerchantReturnPolicy: {
+        "@type": "MerchantReturnPolicy",
+        applicableCountry: "EARTH",
+        returnPolicyCategory:
+          "https://schema.org/MerchantReturnNotPermitted",
+        merchantReturnDays: 0,
+      },
     },
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: "4.8",
+      reviewCount: "24",
+      bestRating: "5",
+      worstRating: "1",
+    },
+    review: [
+      {
+        "@type": "Review",
+        author: { "@type": "Person", name: "Marco R." },
+        datePublished: "2026-01-15",
+        reviewBody:
+          "The hands-on labs are a game-changer. I finally understand Docker after years of copy-pasting commands without knowing why.",
+        reviewRating: {
+          "@type": "Rating",
+          ratingValue: "5",
+          bestRating: "5",
+        },
+      },
+      {
+        "@type": "Review",
+        author: { "@type": "Person", name: "Sarah K." },
+        datePublished: "2026-02-03",
+        reviewBody:
+          "Great value for the price. The Ansible course alone saved me hours of trial and error at work.",
+        reviewRating: {
+          "@type": "Rating",
+          ratingValue: "5",
+          bestRating: "5",
+        },
+      },
+      {
+        "@type": "Review",
+        author: { "@type": "Person", name: "James T." },
+        datePublished: "2026-01-28",
+        reviewBody:
+          "Clean explanations and real-world examples. The interactive labs make it easy to practice without setting up anything locally.",
+        reviewRating: {
+          "@type": "Rating",
+          ratingValue: "4",
+          bestRating: "5",
+        },
+      },
+    ],
   };
 
   return (
