@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { ChevronDown, ChevronUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { trackTranscriptToggle } from "@/lib/analytics";
 
 interface TranscriptPanelProps {
   transcript: string;
@@ -16,7 +17,10 @@ export function TranscriptPanel({ transcript }: TranscriptPanelProps) {
       <Button
         variant="ghost"
         className="flex w-full items-center justify-between p-4"
-        onClick={() => setIsExpanded(!isExpanded)}
+        onClick={() => {
+          trackTranscriptToggle(isExpanded ? "close" : "open");
+          setIsExpanded(!isExpanded);
+        }}
       >
         <span className="font-semibold">Transcript</span>
         {isExpanded ? (

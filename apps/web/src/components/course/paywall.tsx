@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { CheckoutButton } from "@/components/checkout-button";
@@ -12,6 +13,7 @@ import {
 } from "@/components/ui/card";
 import { Lock, Sparkles } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { trackPaywallView } from "@/lib/analytics";
 
 interface PaywallProps {
   title?: string;
@@ -26,6 +28,10 @@ export function Paywall({
   isSignedIn = false,
   className,
 }: PaywallProps) {
+  useEffect(() => {
+    trackPaywallView(window.location.pathname);
+  }, []);
+
   return (
     <Card className={cn("text-center", className)}>
       <CardHeader>

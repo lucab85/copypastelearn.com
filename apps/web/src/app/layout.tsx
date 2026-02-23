@@ -1,6 +1,10 @@
 import type { Metadata } from "next";
+import Script from "next/script";
+import { Suspense } from "react";
 import { SiteHeader } from "@/components/layout/site-header";
 import { SiteFooter } from "@/components/layout/site-footer";
+import { RouteChangeTracker } from "@/components/analytics/route-change-tracker";
+import { GA_ID } from "@/lib/analytics";
 import "./globals.css";
 
 const siteUrl = process.env.NEXT_PUBLIC_APP_URL ?? "https://www.copypastelearn.com";
@@ -86,6 +90,20 @@ export default async function RootLayout({
 
   const body = (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${GA_ID}');
+          `}
+        </Script>
+      </head>
       <body className="flex min-h-screen flex-col bg-background font-sans antialiased">
         {!clerkEnabled && (
           <div className="bg-yellow-100 px-4 py-1.5 text-center text-xs text-yellow-800">
@@ -94,6 +112,9 @@ export default async function RootLayout({
           </div>
         )}
         <SiteHeader />
+        <Suspense fallback={null}>
+          <RouteChangeTracker />
+        </Suspense>
         <main className="flex-1">{children}</main>
         <SiteFooter />
       </body>

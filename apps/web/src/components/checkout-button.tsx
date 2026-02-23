@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Button, type ButtonProps } from "@/components/ui/button";
 import { Loader2 } from "lucide-react";
 import { createCheckoutSession } from "@/server/actions/billing";
+import { trackBeginCheckout } from "@/lib/analytics";
 
 interface CheckoutButtonProps extends Omit<ButtonProps, "onClick"> {
   children: React.ReactNode;
@@ -15,6 +16,7 @@ export function CheckoutButton({ children, ...props }: CheckoutButtonProps) {
   async function handleClick() {
     try {
       setLoading(true);
+      trackBeginCheckout();
       const { url } = await createCheckoutSession();
       window.location.href = url;
     } catch (error) {

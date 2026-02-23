@@ -3,6 +3,7 @@
 import { useCallback } from "react";
 import { VideoPlayer } from "@/components/lesson/video-player";
 import { saveVideoPosition, markLessonComplete } from "@/server/actions/progress";
+import { trackLessonComplete } from "@/lib/analytics";
 
 interface MuxTokens {
   playback: string;
@@ -17,6 +18,8 @@ interface LessonPlayerClientProps {
   title: string;
   startTime: number;
   isCompleted: boolean;
+  courseSlug?: string;
+  lessonSlug?: string;
 }
 
 export function LessonPlayerClient({
@@ -26,6 +29,8 @@ export function LessonPlayerClient({
   title,
   startTime,
   isCompleted,
+  courseSlug,
+  lessonSlug,
 }: LessonPlayerClientProps) {
   const handleTimeUpdate = useCallback(
     async (currentTime: number) => {
@@ -42,11 +47,14 @@ export function LessonPlayerClient({
     if (!isCompleted) {
       try {
         await markLessonComplete(lessonId);
+        if (courseSlug && lessonSlug) {
+          trackLessonComplete(courseSlug, lessonSlug);
+        }
       } catch {
         // Silently fail
       }
     }
-  }, [lessonId, isCompleted]);
+  }, [lessonId, isCompleted, courseSlug, lessonSlug]);
 
   return (
     <VideoPlayer
@@ -56,6 +64,8 @@ export function LessonPlayerClient({
       startTime={startTime}
       onTimeUpdate={handleTimeUpdate}
       onEnded={handleEnded}
+      courseSlug={courseSlug}
+      lessonSlug={lessonSlug}
     />
   );
 }

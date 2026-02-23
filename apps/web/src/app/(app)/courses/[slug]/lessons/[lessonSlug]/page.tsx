@@ -106,6 +106,8 @@ export default async function LessonPage({ params }: LessonPageProps) {
           title={lesson.title}
           startTime={lesson.userProgress?.videoPositionSeconds ?? 0}
           isCompleted={lesson.userProgress?.completed ?? false}
+          courseSlug={slug}
+          lessonSlug={lessonSlug}
         />
       )}
 

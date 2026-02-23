@@ -3,6 +3,7 @@
 import MuxPlayer from "@mux/mux-player-react";
 import { useCallback, useRef, useState } from "react";
 import { AlertTriangle } from "lucide-react";
+import { trackEvent } from "@/lib/analytics";
 
 interface MuxTokens {
   playback: string;
@@ -17,6 +18,9 @@ interface VideoPlayerProps {
   startTime?: number;
   onTimeUpdate?: (currentTime: number) => void;
   onEnded?: () => void;
+  /** Slugs for GA tracking */
+  courseSlug?: string;
+  lessonSlug?: string;
 }
 
 export function VideoPlayer({
@@ -26,16 +30,40 @@ export function VideoPlayer({
   startTime = 0,
   onTimeUpdate,
   onEnded,
+  courseSlug,
+  lessonSlug,
 }: VideoPlayerProps) {
   const lastReportedTime = useRef(0);
   const [hasError, setHasError] = useState(false);
   // If tokens fail (e.g. public playback ID), retry without them
   const [useTokens, setUseTokens] = useState(true);
+  // Track video milestones (25 / 50 / 75 %)
+  const firedMilestones = useRef<Set<number>>(new Set());
+  const hasStartedRef = useRef(false);
 
   const handleTimeUpdate = useCallback(
     (event: Event) => {
       const player = event.target as HTMLVideoElement;
       const currentTime = Math.floor(player.currentTime);
+
+      // Track first play
+      if (!hasStartedRef.current && currentTime > 0) {
+        hasStartedRef.current = true;
+        if (courseSlug && lessonSlug) {
+          trackEvent("video_start", { course_slug: courseSlug, lesson_slug: lessonSlug });
+        }
+      }
+
+      // Track 25 / 50 / 75 % milestones
+      if (player.duration && courseSlug && lessonSlug) {
+        const pct = (currentTime / player.duration) * 100;
+        for (const milestone of [25, 50, 75]) {
+          if (pct >= milestone && !firedMilestones.current.has(milestone)) {
+            firedMilestones.current.add(milestone);
+            trackEvent("video_progress", { course_slug: courseSlug, lesson_slug: lessonSlug, percent: milestone });
+          }
+        }
+      }
 
       // Debounce: only report every 5 seconds
       if (Math.abs(currentTime - lastReportedTime.current) >= 5) {
@@ -43,12 +71,15 @@ export function VideoPlayer({
         onTimeUpdate?.(currentTime);
       }
     },
-    [onTimeUpdate]
+    [onTimeUpdate, courseSlug, lessonSlug]
   );
 
   const handleEnded = useCallback(() => {
+    if (courseSlug && lessonSlug) {
+      trackEvent("video_complete", { course_slug: courseSlug, lesson_slug: lessonSlug });
+    }
     onEnded?.();
-  }, [onEnded]);
+  }, [onEnded, courseSlug, lessonSlug]);
 
   const handleError = useCallback(() => {
     if (tokens && useTokens) {

@@ -13,6 +13,14 @@ import {
   PanelLeftClose,
   PanelLeftOpen,
 } from "lucide-react";
+import {
+  trackLabReady,
+  trackLabValidateStep,
+  trackLabStepPass,
+  trackLabStepFail,
+  trackLabComplete,
+  trackLabDestroy,
+} from "@/lib/analytics";
 
 type LabStatus =
   | "PROVISIONING"
@@ -70,7 +78,11 @@ export function LabPanel({
 
     eventSource.addEventListener("status", (event) => {
       const data = JSON.parse(event.data);
-      setStatus(data.status as LabStatus);
+      const newStatus = data.status as LabStatus;
+      setStatus(newStatus);
+      if (newStatus === "READY" || newStatus === "RUNNING") {
+        trackLabReady(sessionId);
+      }
       if (data.currentStepIndex !== undefined) {
         setCurrentStep(data.currentStepIndex);
       }
@@ -84,6 +96,7 @@ export function LabPanel({
 
     eventSource.addEventListener("completed", () => {
       setStatus("COMPLETED");
+      trackLabComplete(sessionId);
     });
 
     eventSource.addEventListener("expired", () => {
@@ -102,6 +115,7 @@ export function LabPanel({
   const handleValidate = useCallback(async () => {
     setIsValidating(true);
     setValidationResult(null);
+    trackLabValidateStep(sessionId, currentStep);
 
     const result = await validateLabStep(sessionId, currentStep);
     setIsValidating(false);
@@ -111,8 +125,13 @@ export function LabPanel({
         passed: result.data.passed,
         checks: result.data.results,
       });
-      if (result.data.passed && result.data.advancedToStep !== null) {
-        setCurrentStep(result.data.advancedToStep);
+      if (result.data.passed) {
+        trackLabStepPass(sessionId, currentStep);
+        if (result.data.advancedToStep !== null) {
+          setCurrentStep(result.data.advancedToStep);
+        }
+      } else {
+        trackLabStepFail(sessionId, currentStep);
       }
     } else if (result.error) {
       setValidationResult({
@@ -131,6 +150,7 @@ export function LabPanel({
   const handleDestroy = useCallback(async () => {
     setIsDestroying(true);
     setStatus("DESTROYED");
+    trackLabDestroy(sessionId);
     try {
       await destroyLabSession(sessionId);
     } catch {

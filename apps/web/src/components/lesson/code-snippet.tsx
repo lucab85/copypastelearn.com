@@ -3,6 +3,7 @@
 import { useState, useCallback } from "react";
 import { Check, Copy } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { trackCodeCopy } from "@/lib/analytics";
 
 interface CodeSnippetProps {
   label: string;
@@ -14,6 +15,7 @@ export function CodeSnippet({ label, language, code }: CodeSnippetProps) {
   const [copied, setCopied] = useState(false);
 
   const handleCopy = useCallback(async () => {
+    trackCodeCopy(label, language);
     try {
       await navigator.clipboard.writeText(code);
       setCopied(true);
