@@ -4,7 +4,7 @@ import { SignIn } from "@clerk/nextjs";
 
 export const metadata = {
   title: "Sign In",
-  robots: { index: false, follow: false },
+  robots: { index: false, follow: true },
 };
 
 export default async function SignInPage() {

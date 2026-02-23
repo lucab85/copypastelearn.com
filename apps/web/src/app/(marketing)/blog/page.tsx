@@ -6,6 +6,8 @@ export const metadata: Metadata = {
   description:
     "Tips, tutorials, and updates from the CopyPasteLearn team on IT automation, Docker, Ansible, and more.",
   alternates: { canonical: "/blog" },
+  // TODO: Remove noindex once blog has published posts
+  robots: { index: false, follow: true },
 };
 
 export default function BlogPage() {

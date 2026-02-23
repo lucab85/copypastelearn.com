@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { EmailLink } from "@/components/ui/email-link";
 
 export const metadata: Metadata = {
   title: "Terms of Service",
@@ -101,9 +102,7 @@ export default function TermsPage() {
           <h2>10. Contact</h2>
           <p>
             Questions about these terms? Contact us at{" "}
-            <a href="mailto:legal@copypastelearn.com">
-              legal@copypastelearn.com
-            </a>
+            <EmailLink user="legal" domain="copypastelearn.com" />
             .
           </p>
         </article>

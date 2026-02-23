@@ -17,7 +17,7 @@ import {
 
 export const metadata = {
   title: "Dashboard",
-  robots: { index: false, follow: false },
+  robots: { index: false, follow: true },
 };
 
 function getGreeting(): string {

@@ -31,12 +31,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: "monthly",
       priority: 0.5,
     },
-    {
-      url: `${siteUrl}/blog`,
-      lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 0.6,
-    },
+    // TODO: Re-add /blog to sitemap once it has published posts
+    // {
+    //   url: `${siteUrl}/blog`,
+    //   lastModified: new Date(),
+    //   changeFrequency: "weekly",
+    //   priority: 0.6,
+    // },
     {
       url: `${siteUrl}/contact`,
       lastModified: new Date(),

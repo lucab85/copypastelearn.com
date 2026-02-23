@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Terminal, Users, Rocket } from "lucide-react";
+import { EmailLink } from "@/components/ui/email-link";
 
 export const metadata: Metadata = {
   title: "About",
@@ -76,12 +77,11 @@ export default function AboutPage() {
             <h2 className="text-2xl font-semibold">Get in Touch</h2>
             <p className="leading-relaxed text-muted-foreground">
               Have questions or want to collaborate? Reach out at{" "}
-              <a
-                href="mailto:hello@copypastelearn.com"
+              <EmailLink
+                user="hello"
+                domain="copypastelearn.com"
                 className="font-medium text-foreground underline underline-offset-4 hover:text-primary"
-              >
-                hello@copypastelearn.com
-              </a>
+              />
               .
             </p>
           </section>

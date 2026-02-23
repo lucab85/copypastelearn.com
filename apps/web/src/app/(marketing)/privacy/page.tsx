@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { EmailLink } from "@/components/ui/email-link";
 
 export const metadata: Metadata = {
   title: "Privacy Policy",
@@ -59,9 +60,7 @@ export default function PrivacyPage() {
           <p>
             You may request access to, correction of, or deletion of your
             personal data at any time by contacting us at{" "}
-            <a href="mailto:privacy@copypastelearn.com">
-              privacy@copypastelearn.com
-            </a>
+            <EmailLink user="privacy" domain="copypastelearn.com" />
             .
           </p>
 
@@ -80,9 +79,7 @@ export default function PrivacyPage() {
           <h2>8. Contact</h2>
           <p>
             If you have questions about this privacy policy, contact us at{" "}
-            <a href="mailto:privacy@copypastelearn.com">
-              privacy@copypastelearn.com
-            </a>
+            <EmailLink user="privacy" domain="copypastelearn.com" />
             .
           </p>
         </article>

@@ -13,7 +13,7 @@ import { CheckoutButton } from "@/components/checkout-button";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 export const metadata = {
-  robots: { index: false, follow: false },
+  robots: { index: false, follow: true },
 };
 
 interface LessonPageProps {

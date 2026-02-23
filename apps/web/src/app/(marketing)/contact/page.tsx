@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Mail, MessageSquare, MapPin } from "lucide-react";
+import { EmailLink } from "@/components/ui/email-link";
 
 export const metadata: Metadata = {
   title: "Contact",
@@ -29,7 +30,9 @@ export default function ContactPage() {
               icon: Mail,
               title: "Email",
               description: "hello@copypastelearn.com",
-              href: "mailto:hello@copypastelearn.com",
+              href: null,
+              emailUser: "hello",
+              emailDomain: "copypastelearn.com",
             },
             {
               icon: MessageSquare,
@@ -52,7 +55,13 @@ export default function ContactPage() {
                 <item.icon className="h-6 w-6 text-primary" />
               </div>
               <h3 className="mb-2 font-semibold">{item.title}</h3>
-              {item.href ? (
+              {"emailUser" in item && item.emailUser ? (
+                <EmailLink
+                  user={item.emailUser}
+                  domain={item.emailDomain!}
+                  className="text-sm text-muted-foreground underline underline-offset-4 hover:text-primary"
+                />
+              ) : item.href ? (
                 <a
                   href={item.href}
                   className="text-sm text-muted-foreground underline underline-offset-4 hover:text-primary"
