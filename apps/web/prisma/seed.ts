@@ -729,7 +729,7 @@ async function main() {
         "Deploy OpenClaw locally or on a small VPS, add real tools, create one reusable automation, and apply essential security guardrails. You'll leave with a working 'Ops Assistant' that generates a Daily Brief, creates an Action Queue, and does it all safely.",
       thumbnailUrl: "/images/courses/openclaw-agent.svg",
       difficulty: "BEGINNER",
-      status: "DRAFT",
+      status: "PUBLISHED",
       sortOrder: 3,
       outcomes: [
         "Install and run OpenClaw (local Docker or VPS)",
@@ -979,7 +979,7 @@ async function main() {
       create: {
         ...lessonData,
         courseId: course4.id,
-        status: "DRAFT",
+        status: "PUBLISHED",
       },
     });
   }
