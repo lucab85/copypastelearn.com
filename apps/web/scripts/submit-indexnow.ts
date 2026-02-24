@@ -21,6 +21,14 @@ const urlList = [
   `${siteUrl}/courses/ansible-for-beginners/lessons/lab-ansible-installation`,
   `${siteUrl}/courses/ansible-for-beginners/lessons/ansible-ad-hoc-commands`,
   `${siteUrl}/courses/ansible-for-beginners/lessons/lab-ansible-ad-hoc-commands`,
+  `${siteUrl}/courses/openclaw-agent`,
+  `${siteUrl}/courses/openclaw-agent/lessons/outcome-architecture`,
+  `${siteUrl}/courses/openclaw-agent/lessons/fast-deploy-docker-or-vm`,
+  `${siteUrl}/courses/openclaw-agent/lessons/ai-models-troubleshooting`,
+  `${siteUrl}/courses/openclaw-agent/lessons/identity-memory`,
+  `${siteUrl}/courses/openclaw-agent/lessons/connect-tools`,
+  `${siteUrl}/courses/openclaw-agent/lessons/daily-brief-action-queue`,
+  `${siteUrl}/courses/openclaw-agent/lessons/operate-logs-backups-updates`,
 ];
 
 async function main() {

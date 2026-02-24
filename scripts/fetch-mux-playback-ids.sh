@@ -15,21 +15,33 @@ if [[ -z "${MUX_ACCESS_TOKEN:-}" || -z "${MUX_SECRET_KEY:-}" ]]; then
 fi
 
 ASSET_IDS=(
+  # Ansible course
   "LSfDw0001oFCMmfJ01mabZ9h201V8os00PgumnGcBRE12XHA"
   "qmw5QJczu2WjWcSxhyxOb7idsdMdclw5sxO2s29nvmQ"
   "02ZcrKlQmJx013eEWDZck7TPznY9NUraUo005Zmao201GSA"
   "TozvrFdDifmf1DLVZ9dF1PWn00bUgsKdGEZ02y01eve6AI"
   "5xmz6u8C6I9LzUHM2KGtPHC9mj00YfIIq02atBDglhNRA"
   "fsCcqW28WIbzBlobrNCqSRJNfjSxv7GU02xrfQ1O00iC8"
+  # OpenClaw course
+  "3Mh4x3j8VxuXuTu0201tEOpfL01lLsoE4wDwjm76cn3gUU"
+  "jUqOEXLxFLosYGcLoW114LqrlEg33Glwn0002gwhh2kMI"
+  "Kc9yx24RV275VETLO3EgX5A02003vwHMm1007a9peb6xto"
+  "k5xyb3Z01J3dKQM01VN02AqKj7sGVr7xMItu01mrKzG2d2k"
 )
 
 LESSON_NAMES=(
+  # Ansible course
   "Introduction to Ansible"
   "Installing Ansible"
   "Inventory Files"
   "Ad-Hoc Commands"
   "Writing First Playbook"
   "Variables and Facts"
+  # OpenClaw course
+  "OpenClaw L1 - Outcome + Architecture"
+  "OpenClaw L2 - Fast Deploy Docker/Azure"
+  "OpenClaw L3 - AI Model Troubleshooting"
+  "OpenClaw L5 - Connect Tools"
 )
 
 echo "Fetching Playback IDs from Mux API..."

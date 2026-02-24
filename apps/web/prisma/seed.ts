@@ -718,6 +718,275 @@ async function main() {
     `  ✓ Course "${course3.title}" with ${ansibleLessons.length} lessons`
   );
 
+  // ─── Course 4: OpenClaw in 60 Minutes ───────────────
+  const course4 = await prisma.course.upsert({
+    where: { slug: "openclaw-agent" },
+    update: {},
+    create: {
+      title: "OpenClaw in 60 Minutes: Build & Secure Your First Autonomous Agent",
+      slug: "openclaw-agent",
+      description:
+        "Deploy OpenClaw locally or on a small VPS, add real tools, create one reusable automation, and apply essential security guardrails. You'll leave with a working 'Ops Assistant' that generates a Daily Brief, creates an Action Queue, and does it all safely.",
+      thumbnailUrl: "/images/courses/openclaw-agent.svg",
+      difficulty: "BEGINNER",
+      status: "DRAFT",
+      sortOrder: 3,
+      outcomes: [
+        "Install and run OpenClaw (local Docker or VPS)",
+        "Configure identity/memory and a sane default agent profile",
+        "Connect 2 real tools (web/search + one work integration like email/Slack)",
+        "Build one end-to-end automation (Daily Brief + Action Queue)",
+        "Apply essential security: secrets, allowlists, prompt-injection safety check",
+        "Create a simple ops routine: logs, updates, backup/restore",
+      ],
+      prerequisites: [
+        "Basic terminal comfort (copy/paste commands)",
+        "A machine with Docker or a small Linux VM",
+        "Optional: API keys for your chosen tools (we provide a no-keys fallback path)",
+      ],
+      estimatedDuration: 60,
+    },
+  });
+
+  const openclawLessons = [
+    {
+      title: "Outcome + Architecture",
+      slug: "outcome-architecture",
+      description:
+        "What we're building (Daily Brief + Action Queue). Mental model: agent loop, memory, tools, skills, guardrails. Minimum viable autonomy — safe-by-default.",
+      sortOrder: 0,
+      durationSeconds: 212,
+      videoPlaybackId: "GdjK5NvuBS01Oy619NAHUtQf2S2MKoSYPn1CgFuVs5YI",
+      transcript:
+        "Welcome to OpenClaw in 60 Minutes! In this course you'll deploy OpenClaw, harden it with practical guardrails, connect real tools, and ship a working Ops Assistant automation you can reuse at work. Let's start with the architecture. OpenClaw follows an agent loop pattern: the agent reads its memory, decides what to do, uses tools through a skills layer, and operates within guardrails you define. By the end of this course you'll have a working Daily Brief plus Action Queue pipeline. The key principle is minimum viable autonomy — safe by default.",
+      codeSnippets: [
+        {
+          label: "Agent architecture overview",
+          language: "text",
+          code: "Agent Loop:\n  1. Read memory (about_me.md + operating_rules.md)\n  2. Decide action (LLM reasoning)\n  3. Execute via tools (web/search, email/Slack)\n  4. Log results + update memory\n  5. Respect guardrails (allowlists, secrets hygiene)",
+        },
+      ],
+      resources: [
+        { title: "OpenClaw GitHub", url: "https://github.com/openclaw" },
+      ],
+    },
+    {
+      title: "Fast Deploy: Docker Local or Ubuntu VM on Azure",
+      slug: "fast-deploy-docker-or-vm",
+      description:
+        "Option A: Docker run (fastest). Option B: small Ubuntu VM (same config, different ports). Smoke test: agent replies + health check.",
+      sortOrder: 1,
+      durationSeconds: 600,
+      videoPlaybackId: "5VKTlA9MgyWHjc01cvy00WSxiIP1E3XmY6fG6ep4003o1g",
+      transcript:
+        "Let's get OpenClaw running. You have two options. Option A is Docker — pull the image and run it. This is the fastest path. Option B is a small Ubuntu VM, which is useful if you want a persistent deployment. Either way, the configuration is identical, just different ports. Once it's running, we'll do a smoke test: send a message to the agent and verify the health endpoint responds.",
+      codeSnippets: [
+        {
+          label: "Option A: Docker run (fastest)",
+          language: "bash",
+          code: "docker pull openclaw/openclaw:latest\ndocker run -d \\\n  --name openclaw \\\n  -p 8080:8080 \\\n  -v openclaw-data:/data \\\n  openclaw/openclaw:latest",
+        },
+        {
+          label: "Option B: Ubuntu VM setup",
+          language: "bash",
+          code: "# On a fresh Ubuntu 22.04 VM\nsudo apt update && sudo apt install -y docker.io\nsudo systemctl enable --now docker\nsudo docker pull openclaw/openclaw:latest\nsudo docker run -d \\\n  --name openclaw \\\n  --restart unless-stopped \\\n  -p 8080:8080 \\\n  -v openclaw-data:/data \\\n  openclaw/openclaw:latest",
+        },
+        {
+          label: "Smoke test",
+          language: "bash",
+          code: "# Health check\ncurl http://localhost:8080/health\n\n# Send a test message\ncurl -X POST http://localhost:8080/api/chat \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"message\": \"Hello, are you running?\"}'",
+        },
+      ],
+      resources: [
+        { title: "Docker Install Guide", url: "https://docs.docker.com/get-docker/" },
+      ],
+    },
+    {
+      title: "AI Models Troubleshooting",
+      slug: "ai-models-troubleshooting",
+      description:
+        "Configuring LLM providers, testing model connectivity, and common troubleshooting steps for API keys and rate limits.",
+      sortOrder: 2,
+      durationSeconds: 241,
+      videoPlaybackId: "V8lijLkbJ8qeiZd8VHHsSwiUYAQuRq59eXtdwEnd8gc",
+      transcript:
+        "Now that OpenClaw is running, let's configure the AI model backend. OpenClaw supports multiple LLM providers. You'll need an API key — we'll walk through where to get one, how to set it, and the most common issues: wrong key format, rate limits, and model availability. We also cover the no-keys fallback path using a local model.",
+      codeSnippets: [
+        {
+          label: "Configure LLM provider",
+          language: "bash",
+          code: "# Set environment variable for your provider\ndocker exec openclaw \\\n  openclaw config set llm.provider openai\n\ndocker exec openclaw \\\n  openclaw config set llm.api_key sk-YOUR_KEY_HERE\n\ndocker exec openclaw \\\n  openclaw config set llm.model gpt-4o-mini",
+        },
+        {
+          label: "Test model connectivity",
+          language: "bash",
+          code: "docker exec openclaw openclaw test-model\n# Expected: \"Model connected: gpt-4o-mini (latency: 230ms)\"",
+        },
+        {
+          label: "No-keys fallback (local model)",
+          language: "bash",
+          code: "# Use a local model via Ollama\ndocker exec openclaw \\\n  openclaw config set llm.provider ollama\ndocker exec openclaw \\\n  openclaw config set llm.endpoint http://host.docker.internal:11434",
+        },
+        {
+          label: "Common troubleshooting",
+          language: "bash",
+          code: "# Check logs for API errors\ndocker logs openclaw --tail 50 | grep -i error\n\n# Verify API key format\ndocker exec openclaw openclaw config get llm.api_key\n\n# Test with a simple prompt\ndocker exec openclaw openclaw ask \"What is 2+2?\"",
+        },
+      ],
+      resources: [],
+    },
+    {
+      title: "Identity + Memory That Doesn't Rot",
+      slug: "identity-memory",
+      description:
+        "Define role, tone, boundaries (what I can/can't do). Create 2 memory files: about_me.md (user/org context) and operating_rules.md (safety + permissions). Quick test prompt to validate memory usage.",
+      sortOrder: 3,
+      durationSeconds: 480,
+      transcript:
+        "Your agent needs an identity — who it is, what it can and can't do. We'll create two memory files. about_me.md holds context about you and your organization. operating_rules.md defines safety boundaries and permissions. Together, these prevent memory rot — the agent always knows its boundaries even after many conversations.",
+      codeSnippets: [
+        {
+          label: "about_me.md",
+          language: "markdown",
+          code: "# About Me\n\n## Owner\n- Name: Your Name\n- Role: DevOps Engineer at Acme Corp\n\n## Organization Context\n- We run a microservices stack on Kubernetes\n- Primary language: Python + TypeScript\n- Monitoring: Grafana + PagerDuty\n\n## Preferences\n- Prefer concise, actionable answers\n- Always include the \"why\" not just the \"how\"",
+        },
+        {
+          label: "operating_rules.md",
+          language: "markdown",
+          code: "# Operating Rules\n\n## I CAN\n- Search the web for technical information\n- Draft emails and messages (never send without approval)\n- Read and summarize documents\n- Create action items and task lists\n\n## I CANNOT\n- Execute destructive commands (rm -rf, DROP TABLE, etc.)\n- Access production databases directly\n- Send messages/emails without explicit approval\n- Share secrets, tokens, or credentials in any output\n\n## Safety\n- All tool calls are logged\n- Allowlist-only for external URLs\n- Prompt injection detection is enabled",
+        },
+        {
+          label: "Load memory files",
+          language: "bash",
+          code: "docker cp about_me.md openclaw:/data/memory/about_me.md\ndocker cp operating_rules.md openclaw:/data/memory/operating_rules.md\n\n# Test that memory is loaded\ndocker exec openclaw openclaw ask \"What are your operating rules?\"",
+        },
+      ],
+      resources: [],
+    },
+    {
+      title: "Connect Tools",
+      slug: "connect-tools",
+      description:
+        "Tool 1: Web/search (or a stubbed offline search fallback). Tool 2: One of email draft, Slack/Telegram post, or local command tool with strict allowlist. Principle: least privilege + separate credentials.",
+      sortOrder: 4,
+      durationSeconds: 600,
+      videoPlaybackId: "2EMm02SxsltoTW76cP7ajjEXu012zqa7Fu6AakVP00Xw5E",
+      transcript:
+        "Now let's give the agent real capabilities. We'll connect two tools. Tool one is web search — this lets the agent look things up. If you don't have an API key, we provide an offline fallback. Tool two is a work integration: pick email draft, Slack post, or a local command tool. The key principle is least privilege — each tool gets its own credentials and a strict allowlist.",
+      codeSnippets: [
+        {
+          label: "Tool 1: Web search",
+          language: "bash",
+          code: "# Configure web search tool\ndocker exec openclaw \\\n  openclaw tools enable web-search\n\n# Optional: set a search API key\ndocker exec openclaw \\\n  openclaw tools config web-search api_key YOUR_SEARCH_KEY\n\n# Fallback: offline/stubbed search\ndocker exec openclaw \\\n  openclaw tools config web-search mode offline",
+        },
+        {
+          label: "Tool 2a: Email draft",
+          language: "bash",
+          code: "docker exec openclaw \\\n  openclaw tools enable email-draft\n\ndocker exec openclaw \\\n  openclaw tools config email-draft \\\n    smtp_host smtp.gmail.com \\\n    smtp_port 587 \\\n    from_address your@email.com\n\n# IMPORTANT: drafts only, no auto-send\ndocker exec openclaw \\\n  openclaw tools config email-draft mode draft-only",
+        },
+        {
+          label: "Tool 2b: Slack post",
+          language: "bash",
+          code: "docker exec openclaw \\\n  openclaw tools enable slack-post\n\ndocker exec openclaw \\\n  openclaw tools config slack-post \\\n    webhook_url https://hooks.slack.com/services/YOUR/WEBHOOK/URL \\\n    channel \"#ops-updates\"\n\n# Restrict to specific channels\ndocker exec openclaw \\\n  openclaw tools config slack-post \\\n    allowed_channels \"#ops-updates,#daily-brief\"",
+        },
+        {
+          label: "Tool 2c: Local command (strict allowlist)",
+          language: "bash",
+          code: "docker exec openclaw \\\n  openclaw tools enable local-cmd\n\n# ONLY these commands are allowed\ndocker exec openclaw \\\n  openclaw tools config local-cmd \\\n    allowlist \"uptime,df -h,free -m,docker ps,systemctl status nginx\"",
+        },
+        {
+          label: "Verify tools",
+          language: "bash",
+          code: "docker exec openclaw openclaw tools list\n# Expected: web-search (enabled), email-draft (enabled), ...",
+        },
+      ],
+      resources: [],
+    },
+    {
+      title: "Build the Automation: Daily Brief + Action Queue",
+      slug: "daily-brief-action-queue",
+      description:
+        "Define the workflow contract. Build the Daily Brief (status + top priorities). Create the Action Queue (next steps). Optionally post to chat or draft an email. Run it safely with guardrails + minimal permissions.",
+      sortOrder: 5,
+      durationSeconds: 900,
+      transcript:
+        "This is the capstone — we'll build the Ops Assistant end-to-end. The workflow has four steps: gather status data, generate a Daily Brief with priorities, create an Action Queue of next steps, and optionally push the output to Slack or email. Everything runs within the guardrails we set up earlier. By the end of this lecture, you'll have a fully working automation you can schedule with cron.",
+      codeSnippets: [
+        {
+          label: "Workflow definition (daily-brief.yaml)",
+          language: "yaml",
+          code: "name: daily-brief\nschedule: \"0 8 * * *\"  # Every day at 8 AM\nsteps:\n  - name: gather-status\n    prompt: |\n      Check system status: run uptime, check disk space,\n      and list running Docker containers.\n      Summarize in 3 bullet points.\n\n  - name: generate-brief\n    prompt: |\n      Based on the system status, create a Daily Brief with:\n      1. Current status (green/yellow/red)\n      2. Top 3 priorities for today\n      3. Any alerts or warnings\n\n  - name: create-action-queue\n    prompt: |\n      From the Daily Brief, create an Action Queue:\n      - List concrete next steps (max 5)\n      - Assign priority (P0/P1/P2)\n      - Include estimated time for each\n\n  - name: deliver\n    action: slack-post  # or email-draft\n    channel: \"#daily-brief\"\n    format: markdown",
+        },
+        {
+          label: "Register and test the workflow",
+          language: "bash",
+          code: "# Copy workflow file\ndocker cp daily-brief.yaml openclaw:/data/workflows/daily-brief.yaml\n\n# Register it\ndocker exec openclaw openclaw workflow register daily-brief\n\n# Run once manually to test\ndocker exec openclaw openclaw workflow run daily-brief\n\n# Check output\ndocker exec openclaw openclaw workflow logs daily-brief --last",
+        },
+        {
+          label: "Schedule with cron (optional)",
+          language: "bash",
+          code: "# Enable built-in scheduler\ndocker exec openclaw openclaw workflow schedule daily-brief\n\n# Or use system cron\ncrontab -e\n# Add: 0 8 * * * docker exec openclaw openclaw workflow run daily-brief",
+        },
+        {
+          label: "Security checklist",
+          language: "text",
+          code: "✅ Secrets stored in /data/secrets (not in workflow YAML)\n✅ Tool allowlists configured\n✅ Prompt injection check enabled\n✅ Draft-only mode for email (no auto-send)\n✅ Logs written to /data/logs/\n✅ Memory files are read-only for workflows",
+        },
+      ],
+      resources: [],
+    },
+    {
+      title: "Operate It: Logs, Backups, Updates & Safe Iteration",
+      slug: "operate-logs-backups-updates",
+      description:
+        "Day-2 operations: viewing logs, backing up agent data, updating OpenClaw, and safely iterating on workflows and memory.",
+      sortOrder: 6,
+      durationSeconds: 480,
+      transcript:
+        "You've built a working Ops Assistant. Now let's make sure you can operate it. We'll cover four things: reading logs to debug issues, backing up your agent data, updating OpenClaw safely, and iterating on your workflows without breaking things. These are the basics that most short courses skip, but they're essential for running an agent in production.",
+      codeSnippets: [
+        {
+          label: "View and filter logs",
+          language: "bash",
+          code: "# Recent logs\ndocker logs openclaw --tail 100\n\n# Filter by level\ndocker logs openclaw 2>&1 | grep -E '(ERROR|WARN)'\n\n# Workflow-specific logs\ndocker exec openclaw \\\n  openclaw workflow logs daily-brief --last 5",
+        },
+        {
+          label: "Backup agent data",
+          language: "bash",
+          code: "# Backup entire data volume\ndocker run --rm \\\n  -v openclaw-data:/data \\\n  -v $(pwd)/backups:/backup \\\n  alpine tar czf /backup/openclaw-$(date +%F).tar.gz -C /data .\n\n# Verify backup\nls -lh backups/",
+        },
+        {
+          label: "Update OpenClaw",
+          language: "bash",
+          code: "# Pull latest image\ndocker pull openclaw/openclaw:latest\n\n# Stop, remove, re-run (data persists in volume)\ndocker stop openclaw && docker rm openclaw\ndocker run -d \\\n  --name openclaw \\\n  --restart unless-stopped \\\n  -p 8080:8080 \\\n  -v openclaw-data:/data \\\n  openclaw/openclaw:latest\n\n# Verify\ncurl http://localhost:8080/health",
+        },
+        {
+          label: "Safe iteration on workflows",
+          language: "bash",
+          code: "# Test a workflow change without affecting the live version\ndocker exec openclaw \\\n  openclaw workflow run daily-brief --dry-run\n\n# Review the output before committing\ndocker exec openclaw \\\n  openclaw workflow logs daily-brief --last\n\n# Promote the change\ndocker exec openclaw \\\n  openclaw workflow register daily-brief",
+        },
+      ],
+      resources: [],
+    },
+  ];
+
+  for (const lessonData of openclawLessons) {
+    const lesson = await prisma.lesson.upsert({
+      where: {
+        courseId_slug: { courseId: course4.id, slug: lessonData.slug },
+      },
+      update: { ...lessonData },
+      create: {
+        ...lessonData,
+        courseId: course4.id,
+        status: "DRAFT",
+      },
+    });
+  }
+  console.log(
+    `  ✓ Course "${course4.title}" with ${openclawLessons.length} lessons`
+  );
+
   console.log("\n✅ Seeding complete!");
 }
 
