@@ -2,9 +2,18 @@ import { NextResponse } from "next/server";
 import Stripe from "stripe";
 import { db } from "@/lib/db";
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY ?? "", {
-  apiVersion: "2026-01-28.clover",
-});
+// Lazy-init to avoid crashing at build time when env vars aren't set
+let _stripe: Stripe | null = null;
+function getStripe(): Stripe {
+  if (!_stripe) {
+    _stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
+      apiVersion: "2026-01-28.clover",
+    });
+  }
+  return _stripe;
+}
+
+export const dynamic = "force-dynamic";
 
 export async function POST(req: Request) {
   const WEBHOOK_SECRET = process.env.STRIPE_WEBHOOK_SECRET;
@@ -30,7 +39,7 @@ export async function POST(req: Request) {
   let event: Stripe.Event;
 
   try {
-    event = stripe.webhooks.constructEvent(body, signature, WEBHOOK_SECRET);
+    event = getStripe().webhooks.constructEvent(body, signature, WEBHOOK_SECRET);
   } catch (err) {
     console.error("Stripe webhook signature verification failed:", err);
     return NextResponse.json(
@@ -59,7 +68,7 @@ export async function POST(req: Request) {
         }
 
         // Retrieve the subscription (with items) to get period dates
-        const subscription = await stripe.subscriptions.retrieve(
+        const subscription = await getStripe().subscriptions.retrieve(
           session.subscription as string,
           { expand: ["items"] }
         );
