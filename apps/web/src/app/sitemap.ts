@@ -71,7 +71,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         lessons: {
           where: { status: "PUBLISHED" },
           select: { slug: true, updatedAt: true },
-          orderBy: { order: "asc" },
+          orderBy: { sortOrder: "asc" },
         },
       },
     });
