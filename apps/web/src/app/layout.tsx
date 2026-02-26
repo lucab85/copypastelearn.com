@@ -110,6 +110,13 @@ export default async function RootLayout({
         <link rel="dns-prefetch" href="https://www.clarity.ms" />
       </head>
       <body className="flex min-h-screen flex-col bg-background font-sans antialiased">
+        {/* Skip to content — accessibility */}
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-md focus:bg-primary focus:px-4 focus:py-2 focus:text-sm focus:font-medium focus:text-primary-foreground"
+        >
+          Skip to main content
+        </a>
         {!clerkEnabled && (
           <div className="bg-yellow-100 px-4 py-1.5 text-center text-xs text-yellow-800">
             Auth is disabled — set Clerk keys in <code>.env.local</code> to
@@ -117,7 +124,7 @@ export default async function RootLayout({
           </div>
         )}
         <SiteHeader />
-        <main className="flex-1">{children}</main>
+        <main id="main-content" className="flex-1">{children}</main>
         <SiteFooter />
       </body>
     </html>

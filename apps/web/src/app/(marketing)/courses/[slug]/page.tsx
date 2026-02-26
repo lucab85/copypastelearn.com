@@ -174,6 +174,28 @@ export default async function CourseDetailPage({ params }: CourseDetailPageProps
           "@type": "Answer",
           text: "Yes — courses include interactive labs where you practice in real environments directly in your browser.",
         },
+
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: siteUrl,
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Courses",
+        item: `${siteUrl}/courses`,
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: course.title,
+        item: `${siteUrl}/courses/${slug}`,
       },
     ],
   };
@@ -188,6 +210,32 @@ export default async function CourseDetailPage({ params }: CourseDetailPageProps
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
       />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
+
+      {/* Breadcrumb nav */}
+      <nav aria-label="Breadcrumb" className="mb-6 text-sm text-muted-foreground">
+        <ol className="flex items-center gap-1.5">
+          <li>
+            <Link href="/" className="transition-colors hover:text-foreground">
+              Home
+            </Link>
+          </li>
+          <li aria-hidden="true">/</li>
+          <li>
+            <Link href="/courses" className="transition-colors hover:text-foreground">
+              Courses
+            </Link>
+          </li>
+          <li aria-hidden="true">/</li>
+          <li aria-current="page" className="font-medium text-foreground truncate max-w-[200px]">
+            {course.title}
+          </li>
+        </ol>
+      </nav>
+
       {/* Hero */}
       <div className="mb-8">
         <Badge variant="secondary" className="mb-3">
