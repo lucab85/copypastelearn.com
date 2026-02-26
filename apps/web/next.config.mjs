@@ -131,6 +131,36 @@ const nextConfig = {
           },
         ],
       },
+      // Cache static marketing pages at edge (revalidate every 10 min)
+      {
+        source: "/(about|contact|privacy|terms|pricing)",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, s-maxage=600, stale-while-revalidate=86400",
+          },
+        ],
+      },
+      // Cache images aggressively
+      {
+        source: "/images/:path*",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=31536000, immutable",
+          },
+        ],
+      },
+      // Cache fonts aggressively
+      {
+        source: "/fonts/:path*",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=31536000, immutable",
+          },
+        ],
+      },
     ];
   },
 };
