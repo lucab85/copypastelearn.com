@@ -42,7 +42,11 @@ function OrganizationJsonLd() {
     logo: `${siteUrl}/logo.png`,
     description:
       "Master IT automation with video courses and hands-on interactive labs.",
-    sameAs: ["https://discord.gg/copypastelearn"],
+    sameAs: [
+      "https://github.com/copypastelearn",
+      "https://twitter.com/copypastelearn",
+      "https://discord.gg/copypastelearn",
+    ],
   };
   return (
     <script

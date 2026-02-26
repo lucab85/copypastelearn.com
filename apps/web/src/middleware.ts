@@ -12,13 +12,11 @@ function isClerkConfigured(): boolean {
 }
 
 export default async function middleware(request: NextRequest) {
-  // apex → www redirect (301) for SEO consolidation — production only
+  // apex → www redirect (301) for SEO consolidation
   const host = request.headers.get("host") || "";
-  if (
-    host === "copypastelearn.com" // only redirect the bare production domain
-  ) {
+  if (host && !host.startsWith("www.") && !host.startsWith("localhost")) {
     const url = request.nextUrl.clone();
-    url.host = "www.copypastelearn.com";
+    url.host = `www.${host}`;
     return NextResponse.redirect(url, 301);
   }
 
@@ -43,10 +41,10 @@ export default async function middleware(request: NextRequest) {
     "/sign-in(.*)",
     "/sign-up(.*)",
     "/api/webhooks(.*)",
-    "/api/health",
-    "/api/indexnow",
+    "/api/mobile(.*)",
     "/robots.txt",
     "/sitemap.xml",
+    "/feed.xml",
     "/opengraph-image(.*)",
     // Old site routes (allow redirect to fire before auth check)
     "/learning-paths(.*)",
@@ -54,6 +52,17 @@ export default async function middleware(request: NextRequest) {
     "/waitlist(.*)",
     "/resources(.*)",
     "/legal(.*)",
+    // Old Hugo routes (301 redirects in next.config.mjs)
+    "/blog(.*)",
+    "/tags(.*)",
+    "/categories(.*)",
+    "/scholarship(.*)",
+    "/course(.*)",
+    "/author(.*)",
+    "/teacher(.*)",
+    "/event(.*)",
+    "/notice(.*)",
+    "/research(.*)",
   ]);
 
   return clerkMiddleware(async (auth, req) => {

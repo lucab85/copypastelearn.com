@@ -1,7 +1,8 @@
+export const dynamic = "force-dynamic";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { getPublicCourse } from "@/server/queries/public-courses";
+import { getCourse } from "@/server/queries/courses";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
@@ -17,31 +18,51 @@ export async function generateMetadata({
   params,
 }: CourseDetailPageProps): Promise<Metadata> {
   const { slug } = await params;
-  const course = await getPublicCourse(slug);
+  const course = await getCourse(slug);
   if (!course) return {};
-
-  // Keep meta description within 120-155 chars for optimal SERP display
-  let description = course.description ?? "";
-  if (description.length > 155) {
-    description = description.slice(0, 152).replace(/\s+\S*$/, "") + "…";
-  }
-
+  const siteUrl =
+    process.env.NEXT_PUBLIC_APP_URL ?? "https://www.copypastelearn.com";
   return {
     title: course.title,
-    description,
+    description: course.description,
     alternates: { canonical: `/courses/${slug}` },
     openGraph: {
       title: course.title,
       description: course.description ?? undefined,
-      type: "article",
-      ...(course.thumbnailUrl && { images: [{ url: course.thumbnailUrl }] }),
+      type: "website",
+      ...(course.thumbnailUrl && {
+        images: [
+          {
+            url: course.thumbnailUrl.startsWith("http")
+              ? course.thumbnailUrl
+              : `${siteUrl}${course.thumbnailUrl}`,
+            width: 1200,
+            height: 630,
+            alt: course.title,
+          },
+        ],
+      }),
+    },
+    twitter: {
+      card: "summary_large_image" as const,
+      site: "@copypastelearn",
+      creator: "@yourlinuxsa",
+      title: course.title,
+      description: course.description ?? undefined,
+      ...(course.thumbnailUrl && {
+        images: [
+          course.thumbnailUrl.startsWith("http")
+            ? course.thumbnailUrl
+            : `${siteUrl}${course.thumbnailUrl}`,
+        ],
+      }),
     },
   };
 }
 
 export default async function CourseDetailPage({ params }: CourseDetailPageProps) {
   const { slug } = await params;
-  const course = await getPublicCourse(slug);
+  const course = await getCourse(slug);
 
   if (!course) {
     notFound();
@@ -73,8 +94,13 @@ export default async function CourseDetailPage({ params }: CourseDetailPageProps
       "@type": "Organization",
       name: "CopyPasteLearn",
       url: siteUrl,
+      logo: `${siteUrl}/images/logo.png`,
     },
-    ...(course.thumbnailUrl && { image: course.thumbnailUrl }),
+    ...(course.thumbnailUrl && {
+      image: course.thumbnailUrl.startsWith("http")
+        ? course.thumbnailUrl
+        : `${siteUrl}${course.thumbnailUrl}`,
+    }),
     educationalLevel: difficultyToLevel[course.difficulty] ?? course.difficulty,
     numberOfLessons: course.lessons.length,
     ...(totalDuration > 0 && {
@@ -87,12 +113,97 @@ export default async function CourseDetailPage({ params }: CourseDetailPageProps
       courseWorkload: totalDuration > 0
         ? `PT${hours > 0 ? `${hours}H` : ""}${minutes}M`
         : undefined,
+      instructor: {
+        "@type": "Person",
+        name: "Luca Berton",
+      },
     },
+    inLanguage: "en",
     syllabusSections: course.lessons.map((lesson, index) => ({
       "@type": "Syllabus",
       name: lesson.title,
       position: index + 1,
     })),
+  };
+
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: [
+      ...(course.outcomes.length > 0
+        ? [
+            {
+              "@type": "Question",
+              name: `What will I learn in ${course.title}?`,
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: course.outcomes.join(". ") + ".",
+              },
+            },
+          ]
+        : []),
+      {
+        "@type": "Question",
+        name: `How many lessons are in ${course.title}?`,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: `This course contains ${course.lessons.length} ${course.lessons.length === 1 ? "lesson" : "lessons"}${totalDuration > 0 ? ` with a total duration of ${hours > 0 ? `${hours} hours and ` : ""}${minutes} minutes` : ""}.`,
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Is there a free trial?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Yes! The first lesson of every course is free. You can start learning right away without signing up for a paid plan.",
+        },
+      },
+      ...(course.prerequisites.length > 0
+        ? [
+            {
+              "@type": "Question",
+              name: `What are the prerequisites for ${course.title}?`,
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: course.prerequisites.join(". ") + ".",
+              },
+            },
+          ]
+        : []),
+      {
+        "@type": "Question",
+        name: "Do I get hands-on practice?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Yes — courses include interactive labs where you practice in real environments directly in your browser.",
+        },
+      },
+    ],
+  };
+
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: siteUrl,
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Courses",
+        item: `${siteUrl}/courses`,
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: course.title,
+        item: `${siteUrl}/courses/${slug}`,
+      },
+    ],
   };
 
   return (
@@ -101,6 +212,36 @@ export default async function CourseDetailPage({ params }: CourseDetailPageProps
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(courseJsonLd) }}
       />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
+
+      {/* Breadcrumb nav */}
+      <nav aria-label="Breadcrumb" className="mb-6 text-sm text-muted-foreground">
+        <ol className="flex items-center gap-1.5">
+          <li>
+            <Link href="/" className="transition-colors hover:text-foreground">
+              Home
+            </Link>
+          </li>
+          <li aria-hidden="true">/</li>
+          <li>
+            <Link href="/courses" className="transition-colors hover:text-foreground">
+              Courses
+            </Link>
+          </li>
+          <li aria-hidden="true">/</li>
+          <li aria-current="page" className="font-medium text-foreground truncate max-w-[200px]">
+            {course.title}
+          </li>
+        </ol>
+      </nav>
+
       {/* Hero */}
       <div className="mb-8">
         <Badge variant="secondary" className="mb-3">

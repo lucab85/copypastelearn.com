@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic";
 import { LessonForm } from "@/components/admin/lesson-form";
 
 interface NewLessonPageProps {

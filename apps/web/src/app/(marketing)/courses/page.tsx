@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic";
 import type { Metadata } from "next";
 import { getPublicCourses } from "@/server/queries/public-courses";
 import { CourseCard } from "@/components/course/course-card";
@@ -11,6 +12,14 @@ export const metadata: Metadata = {
     "Browse hands-on courses on Docker, Ansible, Node.js and more. Each course includes video lessons and interactive labs.",
   alternates: { canonical: "/courses" },
   openGraph: {
+    title: "Courses — IT Automation & DevOps Training",
+    description:
+      "Browse hands-on courses on Docker, Ansible, Node.js and more. Each course includes video lessons and interactive labs.",
+  },
+  twitter: {
+    card: "summary_large_image",
+    site: "@copypastelearn",
+    creator: "@yourlinuxsa",
     title: "Courses — IT Automation & DevOps Training",
     description:
       "Browse hands-on courses on Docker, Ansible, Node.js and more. Each course includes video lessons and interactive labs.",
@@ -37,7 +46,11 @@ export default async function CourseCatalogPage() {
       url: `${siteUrl}/courses/${course.slug}`,
       name: course.title,
       description: course.description,
-      ...(course.thumbnailUrl && { image: course.thumbnailUrl }),
+      ...(course.thumbnailUrl && {
+        image: course.thumbnailUrl.startsWith("http")
+          ? course.thumbnailUrl
+          : `${siteUrl}${course.thumbnailUrl}`,
+      }),
     })),
   };
 

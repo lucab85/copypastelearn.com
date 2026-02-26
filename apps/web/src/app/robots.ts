@@ -19,6 +19,14 @@ export default function robots(): MetadataRoute.Robots {
           "/sign-up/",
         ],
       },
+      {
+        userAgent: "GPTBot",
+        disallow: ["/"],
+      },
+      {
+        userAgent: "CCBot",
+        disallow: ["/"],
+      },
     ],
     sitemap: `${siteUrl}/sitemap.xml`,
   };

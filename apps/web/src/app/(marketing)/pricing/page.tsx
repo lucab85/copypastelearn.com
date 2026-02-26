@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { auth } from "@clerk/nextjs/server";
@@ -160,11 +161,62 @@ export default async function PricingPage() {
     ],
   };
 
+  const pricingFaqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: [
+      {
+        "@type": "Question",
+        name: "How much does CopyPasteLearn cost?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: `CopyPasteLearn Pro costs €${SUBSCRIPTION_PRICE_EUR}/month. This includes unlimited access to all courses, interactive labs, code snippets, and progress tracking.`,
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Can I try CopyPasteLearn for free?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Yes! The first lesson of every course is completely free. No credit card required to get started.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Can I cancel my subscription anytime?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Absolutely. There are no long-term commitments. You can cancel your subscription at any time from your settings page.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "What's included in the Pro plan?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "The Pro plan includes unlimited access to all video lessons, interactive hands-on labs with real containers, copy-pasteable code snippets, downloadable resources, progress tracking, and completion certificates.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "What payment methods do you accept?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "We accept all major credit and debit cards (Visa, Mastercard, American Express) through our secure Stripe payment processor.",
+        },
+      },
+    ],
+  };
+
   return (
     <div className="container mx-auto px-4 py-16">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(pricingJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(pricingFaqJsonLd) }}
       />
       {/* Header */}
       <div className="mx-auto max-w-2xl text-center">
@@ -255,7 +307,39 @@ export default async function PricingPage() {
         </Card>
       </div>
 
-      {/* FAQ / Trust signals */}
+      {/* FAQ */}
+      <div className="mx-auto mt-20 max-w-2xl">
+        <h2 className="mb-8 text-center text-2xl font-bold tracking-tight">
+          Frequently Asked Questions
+        </h2>
+        <div className="space-y-6">
+          {[
+            {
+              q: "Can I try CopyPasteLearn for free?",
+              a: "Yes! The first lesson of every course is completely free. No credit card required.",
+            },
+            {
+              q: "Can I cancel anytime?",
+              a: "Absolutely. No long-term commitment — cancel from your settings page whenever you want.",
+            },
+            {
+              q: "What payment methods do you accept?",
+              a: "All major credit and debit cards (Visa, Mastercard, American Express) via Stripe.",
+            },
+            {
+              q: "Do I get access to new courses?",
+              a: "Yes. Your subscription includes all current and future courses and labs.",
+            },
+          ].map((faq) => (
+            <div key={faq.q} className="rounded-lg border p-5">
+              <h3 className="font-semibold">{faq.q}</h3>
+              <p className="mt-2 text-sm text-muted-foreground">{faq.a}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Trust signals */}
       <div className="mx-auto mt-16 max-w-2xl text-center">
         <p className="text-sm text-muted-foreground">
           Cancel anytime. No long-term commitment. First lesson of every course

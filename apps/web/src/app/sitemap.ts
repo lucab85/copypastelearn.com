@@ -1,5 +1,7 @@
+export const dynamic = "force-dynamic";
 import type { MetadataRoute } from "next";
-import { db } from "@/lib/db";
+import { PrismaClient } from "@prisma/client";
+import { getAllPosts } from "@/lib/blog";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const siteUrl =
@@ -31,13 +33,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: "monthly",
       priority: 0.5,
     },
-    // TODO: Re-add /blog to sitemap once it has published posts
-    // {
-    //   url: `${siteUrl}/blog`,
-    //   lastModified: new Date(),
-    //   changeFrequency: "weekly",
-    //   priority: 0.6,
-    // },
+    {
+      url: `${siteUrl}/blog`,
+      lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 0.6,
+    },
     {
       url: `${siteUrl}/contact`,
       lastModified: new Date(),
@@ -58,23 +59,51 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
   ];
 
-  // Dynamic course pages
+  // Dynamic course + lesson pages
   let coursePages: MetadataRoute.Sitemap = [];
+  let lessonPages: MetadataRoute.Sitemap = [];
   try {
-    const courses = await db.course.findMany({
+    const prisma = new PrismaClient();
+    const courses = await prisma.course.findMany({
       where: { status: "PUBLISHED" },
-      select: { slug: true, updatedAt: true },
+      select: {
+        slug: true,
+        updatedAt: true,
+        lessons: {
+          where: { status: "PUBLISHED" },
+          select: { slug: true, updatedAt: true },
+          orderBy: { sortOrder: "asc" },
+        },
+      },
     });
+    await prisma.$disconnect();
 
-    coursePages = courses.map((course: { slug: string; updatedAt: Date }) => ({
+    coursePages = courses.map((course) => ({
       url: `${siteUrl}/courses/${course.slug}`,
       lastModified: course.updatedAt,
       changeFrequency: "weekly" as const,
       priority: 0.8,
     }));
+
+    lessonPages = courses.flatMap((course) =>
+      course.lessons.map((lesson) => ({
+        url: `${siteUrl}/courses/${course.slug}/lessons/${lesson.slug}`,
+        lastModified: lesson.updatedAt,
+        changeFrequency: "monthly" as const,
+        priority: 0.6,
+      }))
+    );
   } catch {
     // If DB is unavailable, return static pages only
   }
 
-  return [...staticPages, ...coursePages];
+  // Blog posts
+  const blogPages: MetadataRoute.Sitemap = getAllPosts().map((post) => ({
+    url: `${siteUrl}/blog/${post.slug}`,
+    lastModified: new Date(post.date),
+    changeFrequency: "monthly" as const,
+    priority: 0.7,
+  }));
+
+  return [...staticPages, ...coursePages, ...lessonPages, ...blogPages];
 }

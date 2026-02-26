@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic";
 import { requireAuth } from "@/lib/auth";
 import { getSubscriptionStatus } from "@/lib/billing";
 import { Button } from "@/components/ui/button";
