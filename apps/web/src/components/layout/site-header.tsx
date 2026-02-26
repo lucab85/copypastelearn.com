@@ -3,10 +3,9 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
-import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
-import { Button } from "@/components/ui/button";
 import { Terminal, Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { AuthButtons } from "./auth-buttons";
 
 const navLinks = [
   { href: "/courses", label: "Courses" },
@@ -50,20 +49,7 @@ export function SiteHeader() {
 
         {/* Desktop actions */}
         <div className="hidden items-center gap-3 md:flex">
-          <SignedOut>
-            <Button variant="ghost" size="sm" asChild>
-              <Link href="/sign-in">Sign In</Link>
-            </Button>
-            <Button size="sm" asChild>
-              <Link href="/sign-up">Get Started</Link>
-            </Button>
-          </SignedOut>
-          <SignedIn>
-            <Button variant="ghost" size="sm" asChild>
-              <Link href="/dashboard">Dashboard</Link>
-            </Button>
-            <UserButton afterSignOutUrl="/" />
-          </SignedIn>
+          <AuthButtons />
         </div>
 
         {/* Mobile hamburger */}
@@ -97,29 +83,7 @@ export function SiteHeader() {
             ))}
           </nav>
           <div className="mt-3 flex flex-col gap-2">
-            <SignedOut>
-              <Button variant="outline" size="sm" asChild>
-                <Link href="/sign-in" onClick={() => setMobileOpen(false)}>
-                  Sign In
-                </Link>
-              </Button>
-              <Button size="sm" asChild>
-                <Link href="/sign-up" onClick={() => setMobileOpen(false)}>
-                  Get Started
-                </Link>
-              </Button>
-            </SignedOut>
-            <SignedIn>
-              <Button variant="outline" size="sm" asChild>
-                <Link href="/dashboard" onClick={() => setMobileOpen(false)}>
-                  Dashboard
-                </Link>
-              </Button>
-              <div className="flex items-center gap-2 px-3 py-2">
-                <UserButton afterSignOutUrl="/" />
-                <span className="text-sm text-muted-foreground">Account</span>
-              </div>
-            </SignedIn>
+            <AuthButtons mobile onNavigate={() => setMobileOpen(false)} />
           </div>
         </div>
       )}
