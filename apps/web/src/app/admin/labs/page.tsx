@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic";
 import { getAdminLabSessions } from "@/server/actions/admin";
 import { LabSessionsTable } from "@/components/admin/lab-sessions-table";
 
