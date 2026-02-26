@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { PrismaClient } from "@prisma/client";
+import { getAllPosts } from "@/lib/blog";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const siteUrl =
@@ -95,5 +96,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     // If DB is unavailable, return static pages only
   }
 
-  return [...staticPages, ...coursePages, ...lessonPages];
+  // Blog posts
+  const blogPages: MetadataRoute.Sitemap = getAllPosts().map((post) => ({
+    url: `${siteUrl}/blog/${post.slug}`,
+    lastModified: new Date(post.date),
+    changeFrequency: "monthly" as const,
+    priority: 0.7,
+  }));
+
+  return [...staticPages, ...coursePages, ...lessonPages, ...blogPages];
 }
