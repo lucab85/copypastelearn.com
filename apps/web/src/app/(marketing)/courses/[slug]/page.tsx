@@ -176,6 +176,9 @@ export default async function CourseDetailPage({ params }: CourseDetailPageProps
           "@type": "Answer",
           text: "Yes — courses include interactive labs where you practice in real environments directly in your browser.",
         },
+      },
+    ],
+  };
 
   const breadcrumbJsonLd = {
     "@context": "https://schema.org",
