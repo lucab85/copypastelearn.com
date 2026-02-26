@@ -29,6 +29,9 @@ export const metadata: Metadata = {
   publisher: "CopyPasteLearn",
   alternates: {
     canonical: "/",
+    types: {
+      "application/rss+xml": "/feed.xml",
+    },
   },
   robots: {
     index: true,
