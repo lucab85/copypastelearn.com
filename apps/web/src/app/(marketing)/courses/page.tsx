@@ -15,6 +15,12 @@ export const metadata: Metadata = {
     description:
       "Browse hands-on courses on Docker, Ansible, Node.js and more. Each course includes video lessons and interactive labs.",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "Courses — IT Automation & DevOps Training",
+    description:
+      "Browse hands-on courses on Docker, Ansible, Node.js and more. Each course includes video lessons and interactive labs.",
+  },
 };
 
 export default async function CourseCatalogPage() {
@@ -37,7 +43,11 @@ export default async function CourseCatalogPage() {
       url: `${siteUrl}/courses/${course.slug}`,
       name: course.title,
       description: course.description,
-      ...(course.thumbnailUrl && { image: course.thumbnailUrl }),
+      ...(course.thumbnailUrl && {
+        image: course.thumbnailUrl.startsWith("http")
+          ? course.thumbnailUrl
+          : `${siteUrl}${course.thumbnailUrl}`,
+      }),
     })),
   };
 
