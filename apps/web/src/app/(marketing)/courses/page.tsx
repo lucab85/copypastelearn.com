@@ -17,6 +17,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
+    site: "@copypastelearn",
+    creator: "@yourlinuxsa",
     title: "Courses — IT Automation & DevOps Training",
     description:
       "Browse hands-on courses on Docker, Ansible, Node.js and more. Each course includes video lessons and interactive labs.",
