@@ -49,12 +49,21 @@ export const metadata: Metadata = {
     title: "CopyPasteLearn — Learn IT Automation by Doing",
     description:
       "Master IT automation with video courses and hands-on interactive labs. Learn by doing in real environments.",
+    images: [
+      {
+        url: "/images/og-default.png",
+        width: 1200,
+        height: 630,
+        alt: "CopyPasteLearn — Learn IT Automation by Doing",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "CopyPasteLearn — Learn IT Automation by Doing",
     description:
       "Master IT automation with video courses and hands-on interactive labs. Learn by doing in real environments.",
+    images: ["/images/og-default.png"],
   },
 };
 

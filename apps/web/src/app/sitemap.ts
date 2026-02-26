@@ -57,25 +57,43 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
   ];
 
-  // Dynamic course pages
+  // Dynamic course + lesson pages
   let coursePages: MetadataRoute.Sitemap = [];
+  let lessonPages: MetadataRoute.Sitemap = [];
   try {
     const prisma = new PrismaClient();
     const courses = await prisma.course.findMany({
       where: { status: "PUBLISHED" },
-      select: { slug: true, updatedAt: true },
+      select: {
+        slug: true,
+        updatedAt: true,
+        lessons: {
+          where: { status: "PUBLISHED" },
+          select: { slug: true, updatedAt: true },
+          orderBy: { order: "asc" },
+        },
+      },
     });
     await prisma.$disconnect();
 
-    coursePages = courses.map((course: { slug: string; updatedAt: Date }) => ({
+    coursePages = courses.map((course) => ({
       url: `${siteUrl}/courses/${course.slug}`,
       lastModified: course.updatedAt,
       changeFrequency: "weekly" as const,
       priority: 0.8,
     }));
+
+    lessonPages = courses.flatMap((course) =>
+      course.lessons.map((lesson) => ({
+        url: `${siteUrl}/courses/${course.slug}/lessons/${lesson.slug}`,
+        lastModified: lesson.updatedAt,
+        changeFrequency: "monthly" as const,
+        priority: 0.6,
+      }))
+    );
   } catch {
     // If DB is unavailable, return static pages only
   }
 
-  return [...staticPages, ...coursePages];
+  return [...staticPages, ...coursePages, ...lessonPages];
 }

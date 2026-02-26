@@ -19,6 +19,8 @@ export async function generateMetadata({
   const { slug } = await params;
   const course = await getCourse(slug);
   if (!course) return {};
+  const siteUrl =
+    process.env.NEXT_PUBLIC_APP_URL ?? "https://www.copypastelearn.com";
   return {
     title: course.title,
     description: course.description,
@@ -26,8 +28,31 @@ export async function generateMetadata({
     openGraph: {
       title: course.title,
       description: course.description ?? undefined,
-      type: "article",
-      ...(course.thumbnailUrl && { images: [{ url: course.thumbnailUrl }] }),
+      type: "website",
+      ...(course.thumbnailUrl && {
+        images: [
+          {
+            url: course.thumbnailUrl.startsWith("http")
+              ? course.thumbnailUrl
+              : `${siteUrl}${course.thumbnailUrl}`,
+            width: 1200,
+            height: 630,
+            alt: course.title,
+          },
+        ],
+      }),
+    },
+    twitter: {
+      card: "summary_large_image" as const,
+      title: course.title,
+      description: course.description ?? undefined,
+      ...(course.thumbnailUrl && {
+        images: [
+          course.thumbnailUrl.startsWith("http")
+            ? course.thumbnailUrl
+            : `${siteUrl}${course.thumbnailUrl}`,
+        ],
+      }),
     },
   };
 }
@@ -66,8 +91,13 @@ export default async function CourseDetailPage({ params }: CourseDetailPageProps
       "@type": "Organization",
       name: "CopyPasteLearn",
       url: siteUrl,
+      logo: `${siteUrl}/images/logo.png`,
     },
-    ...(course.thumbnailUrl && { image: course.thumbnailUrl }),
+    ...(course.thumbnailUrl && {
+      image: course.thumbnailUrl.startsWith("http")
+        ? course.thumbnailUrl
+        : `${siteUrl}${course.thumbnailUrl}`,
+    }),
     educationalLevel: difficultyToLevel[course.difficulty] ?? course.difficulty,
     numberOfLessons: course.lessons.length,
     ...(totalDuration > 0 && {
@@ -80,7 +110,12 @@ export default async function CourseDetailPage({ params }: CourseDetailPageProps
       courseWorkload: totalDuration > 0
         ? `PT${hours > 0 ? `${hours}H` : ""}${minutes}M`
         : undefined,
+      instructor: {
+        "@type": "Person",
+        name: "Luca Berton",
+      },
     },
+    inLanguage: "en",
     syllabusSections: course.lessons.map((lesson, index) => ({
       "@type": "Syllabus",
       name: lesson.title,
