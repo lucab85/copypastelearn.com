@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic";
 import { CourseForm } from "@/components/admin/course-form";
 
 export const metadata = { title: "New Course" };
