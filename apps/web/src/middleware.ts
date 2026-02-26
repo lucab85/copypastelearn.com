@@ -44,6 +44,7 @@ export default async function middleware(request: NextRequest) {
     "/api/mobile(.*)",
     "/robots.txt",
     "/sitemap.xml",
+    "/feed.xml",
     "/opengraph-image(.*)",
     // Old site routes (allow redirect to fire before auth check)
     "/learning-paths(.*)",
@@ -51,6 +52,17 @@ export default async function middleware(request: NextRequest) {
     "/waitlist(.*)",
     "/resources(.*)",
     "/legal(.*)",
+    // Old Hugo routes (301 redirects in next.config.mjs)
+    "/blog(.*)",
+    "/tags(.*)",
+    "/categories(.*)",
+    "/scholarship(.*)",
+    "/course(.*)",
+    "/author(.*)",
+    "/teacher(.*)",
+    "/event(.*)",
+    "/notice(.*)",
+    "/research(.*)",
   ]);
 
   return clerkMiddleware(async (auth, req) => {

@@ -2,7 +2,19 @@ import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
 
-const POSTS_DIR = path.join(process.cwd(), "content/blog");
+// On Vercel serverless, process.cwd() may not include content/.
+// Use __dirname to resolve relative to the compiled output, or fall back to cwd.
+function getPostsDir(): string {
+  // Try cwd first (works in dev and during build)
+  const cwdPath = path.join(process.cwd(), "content/blog");
+  if (fs.existsSync(cwdPath)) return cwdPath;
+
+  // Fallback: resolve from this file's location (serverless bundles)
+  const dirPath = path.resolve(__dirname, "../../../../content/blog");
+  if (fs.existsSync(dirPath)) return dirPath;
+
+  return cwdPath; // Return default even if missing (will return [])
+}
 
 export interface BlogPost {
   slug: string;
@@ -16,16 +28,16 @@ export interface BlogPost {
 }
 
 export function getAllPosts(): BlogPost[] {
-  if (!fs.existsSync(POSTS_DIR)) return [];
+  if (!fs.existsSync(getPostsDir())) return [];
 
   const files = fs
-    .readdirSync(POSTS_DIR)
+    .readdirSync(getPostsDir())
     .filter((f) => f.endsWith(".md") || f.endsWith(".mdx"));
 
   const posts = files
     .map((filename) => {
       const slug = filename.replace(/\.mdx?$/, "");
-      const raw = fs.readFileSync(path.join(POSTS_DIR, filename), "utf-8");
+      const raw = fs.readFileSync(path.join(getPostsDir(), filename), "utf-8");
       const { data, content } = matter(raw);
 
       // Skip drafts
@@ -50,8 +62,8 @@ export function getAllPosts(): BlogPost[] {
 }
 
 export function getPost(slug: string): BlogPost | null {
-  const mdPath = path.join(POSTS_DIR, `${slug}.md`);
-  const mdxPath = path.join(POSTS_DIR, `${slug}.mdx`);
+  const mdPath = path.join(getPostsDir(), `${slug}.md`);
+  const mdxPath = path.join(getPostsDir(), `${slug}.mdx`);
   const filePath = fs.existsSync(mdPath)
     ? mdPath
     : fs.existsSync(mdxPath)

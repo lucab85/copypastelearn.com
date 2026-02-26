@@ -2,6 +2,11 @@
 const nextConfig = {
   output: "standalone",
   transpilePackages: ["@copypastelearn/shared"],
+  outputFileTracingIncludes: {
+    "/blog/*": ["./content/blog/**/*"],
+    "/feed.xml": ["./content/blog/**/*"],
+    "/sitemap.xml": ["./content/blog/**/*"],
+  },
   images: {
     remotePatterns: [
       {
