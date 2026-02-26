@@ -25,7 +25,7 @@ export async function generateMetadata({
     const lesson = await getLesson(slug, lessonSlug);
     return {
       title: `${lesson.title} — CopyPasteLearn`,
-      description: lesson.description ?? `Watch the ${lesson.title} lesson.`,
+      description: `Watch the ${lesson.title} lesson on CopyPasteLearn.`,
       alternates: { canonical: `/courses/${slug}/lessons/${lessonSlug}` },
       robots: { index: true, follow: true },
     };
