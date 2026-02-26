@@ -123,11 +123,70 @@ export default async function CourseDetailPage({ params }: CourseDetailPageProps
     })),
   };
 
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: [
+      ...(course.outcomes.length > 0
+        ? [
+            {
+              "@type": "Question",
+              name: `What will I learn in ${course.title}?`,
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: course.outcomes.join(". ") + ".",
+              },
+            },
+          ]
+        : []),
+      {
+        "@type": "Question",
+        name: `How many lessons are in ${course.title}?`,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: `This course contains ${course.lessons.length} ${course.lessons.length === 1 ? "lesson" : "lessons"}${totalDuration > 0 ? ` with a total duration of ${hours > 0 ? `${hours} hours and ` : ""}${minutes} minutes` : ""}.`,
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Is there a free trial?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Yes! The first lesson of every course is free. You can start learning right away without signing up for a paid plan.",
+        },
+      },
+      ...(course.prerequisites.length > 0
+        ? [
+            {
+              "@type": "Question",
+              name: `What are the prerequisites for ${course.title}?`,
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: course.prerequisites.join(". ") + ".",
+              },
+            },
+          ]
+        : []),
+      {
+        "@type": "Question",
+        name: "Do I get hands-on practice?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Yes — courses include interactive labs where you practice in real environments directly in your browser.",
+        },
+      },
+    ],
+  };
+
   return (
     <div className="container mx-auto px-4 py-12">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(courseJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
       />
       {/* Hero */}
       <div className="mb-8">
