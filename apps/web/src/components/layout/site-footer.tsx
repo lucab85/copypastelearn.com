@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Terminal } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
+import { NetworkFooter } from "@/components/layout/network-footer";
 
 const footerSections = [
   {
@@ -101,6 +102,7 @@ export function SiteFooter() {
           </div>
         </div>
       </div>
+      <NetworkFooter />
     </footer>
   );
 }
