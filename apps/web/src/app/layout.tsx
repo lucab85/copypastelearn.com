@@ -101,6 +101,14 @@ export default async function RootLayout({
 
   const body = (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        {/* Preconnect to third-party origins for faster resource loading */}
+        <link rel="preconnect" href="https://stream.mux.com" />
+        <link rel="preconnect" href="https://image.mux.com" />
+        <link rel="preconnect" href="https://clerk.copypastelearn.com" />
+        <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+        <link rel="dns-prefetch" href="https://www.clarity.ms" />
+      </head>
       <body className="flex min-h-screen flex-col bg-background font-sans antialiased">
         {!clerkEnabled && (
           <div className="bg-yellow-100 px-4 py-1.5 text-center text-xs text-yellow-800">
