@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic";
 import { notFound, redirect } from "next/navigation";
 import { requireAuth } from "@/lib/auth";
 import { db } from "@/lib/db";

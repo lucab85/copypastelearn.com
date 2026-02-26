@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic";
 import { getDashboard } from "@/server/queries/dashboard";
 import { ProgressCard } from "@/components/dashboard/progress-card";
 import { ContinuePrompt } from "@/components/dashboard/continue-prompt";
