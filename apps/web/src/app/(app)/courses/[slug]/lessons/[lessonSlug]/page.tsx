@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation";
+import type { Metadata } from "next";
 import Link from "next/link";
 import { auth } from "@clerk/nextjs/server";
 import { getLesson } from "@/server/queries/lessons";
@@ -14,6 +15,27 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 
 interface LessonPageProps {
   params: Promise<{ slug: string; lessonSlug: string }>;
+}
+
+export async function generateMetadata({
+  params,
+}: LessonPageProps): Promise<Metadata> {
+  const { slug, lessonSlug } = await params;
+  try {
+    const lesson = await getLesson(slug, lessonSlug);
+    return {
+      title: `${lesson.title} — CopyPasteLearn`,
+      description: lesson.description ?? `Watch the ${lesson.title} lesson.`,
+      alternates: { canonical: `/courses/${slug}/lessons/${lessonSlug}` },
+      robots: { index: true, follow: true },
+    };
+  } catch {
+    // Locked or missing — don't index paywall pages
+    return {
+      title: "Lesson — CopyPasteLearn",
+      robots: { index: false, follow: true },
+    };
+  }
 }
 
 export default async function LessonPage({ params }: LessonPageProps) {

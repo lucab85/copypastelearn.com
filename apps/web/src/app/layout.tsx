@@ -63,6 +63,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
+    site: "@copypastelearn",
+    creator: "@yourlinuxsa",
     title: "CopyPasteLearn — Learn IT Automation by Doing",
     description:
       "Master IT automation with video courses and hands-on interactive labs. Learn by doing in real environments.",

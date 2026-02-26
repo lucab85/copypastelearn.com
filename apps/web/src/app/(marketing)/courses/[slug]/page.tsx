@@ -44,6 +44,8 @@ export async function generateMetadata({
     },
     twitter: {
       card: "summary_large_image" as const,
+      site: "@copypastelearn",
+      creator: "@yourlinuxsa",
       title: course.title,
       description: course.description ?? undefined,
       ...(course.thumbnailUrl && {
