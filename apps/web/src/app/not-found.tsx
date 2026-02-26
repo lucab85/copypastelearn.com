@@ -2,8 +2,6 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Home, BookOpen, Search } from "lucide-react";
 
-export const dynamic = "force-dynamic";
-
 export default function NotFound() {
   return (
     <div className="flex min-h-[60vh] flex-col items-center justify-center px-4 text-center">
