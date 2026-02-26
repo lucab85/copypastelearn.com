@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Badge } from "@/components/ui/badge";
 import {
   Card,
@@ -25,11 +26,14 @@ export function CourseCard({ course }: CourseCardProps) {
     <Link href={`/courses/${course.slug}`}>
       <Card className="group h-full transition-all hover:border-primary/20 hover:shadow-lg hover:shadow-primary/5">
         {course.thumbnailUrl ? (
-          <div className="aspect-video w-full overflow-hidden rounded-t-lg">
-            <img
+          <div className="relative aspect-video w-full overflow-hidden rounded-t-lg">
+            <Image
               src={course.thumbnailUrl}
               alt={course.title}
-              className="h-full w-full object-cover transition-transform group-hover:scale-105"
+              fill
+              className="object-cover transition-transform group-hover:scale-105"
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+              priority={false}
             />
           </div>
         ) : (
