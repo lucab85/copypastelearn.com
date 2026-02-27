@@ -116,6 +116,24 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
       if (trimmed.startsWith("# "))
         return `<h1 class="mt-10 mb-4 text-2xl font-bold">${trimmed.slice(2)}</h1>`;
 
+      // Tables
+      if (trimmed.includes("|") && trimmed.split("\n").length >= 2) {
+        const rows = trimmed.split("\n").filter((r) => r.trim());
+        // Check if second row is separator (|---|---|)
+        if (rows.length >= 2 && /^\|?[\s-:|]+\|/.test(rows[1])) {
+          const parseRow = (row: string) =>
+            row.split("|").map((c) => c.trim()).filter((c) => c !== "");
+          const headers = parseRow(rows[0]);
+          const bodyRows = rows.slice(2).map(parseRow);
+          const ths = headers.map((h) => `<th class="border border-border px-4 py-2 text-left text-sm font-semibold">${inlineFormat(h)}</th>`).join("");
+          const trs = bodyRows.map((cols) => {
+            const tds = cols.map((c) => `<td class="border border-border px-4 py-2 text-sm text-muted-foreground">${inlineFormat(c)}</td>`).join("");
+            return `<tr class="even:bg-muted/50">${tds}</tr>`;
+          }).join("");
+          return `<div class="my-6 overflow-x-auto"><table class="w-full border-collapse border border-border rounded-lg"><thead><tr class="bg-muted">${ths}</tr></thead><tbody>${trs}</tbody></table></div>`;
+        }
+      }
+
       // Code blocks
       if (trimmed.startsWith("```")) {
         const lines = trimmed.split("\n");
