@@ -16,7 +16,9 @@ function getAppUrl() {
 
 // ─── Create Checkout Session ────────────────────────────
 
-export async function createCheckoutSession(): Promise<{ url: string }> {
+export async function createCheckoutSession(
+  promoCode?: string
+): Promise<{ url: string }> {
   const user = await requireAuth();
   const stripe = getStripe();
   const appUrl = getAppUrl();
@@ -72,6 +74,23 @@ export async function createCheckoutSession(): Promise<{ url: string }> {
     }
   }
 
+  // Look up Stripe promotion code if provided
+  const discounts: Stripe.Checkout.SessionCreateParams["discounts"] = [];
+  if (promoCode) {
+    try {
+      const promoCodes = await stripe.promotionCodes.list({
+        code: promoCode,
+        active: true,
+        limit: 1,
+      });
+      if (promoCodes.data.length > 0) {
+        discounts.push({ promotion_code: promoCodes.data[0].id });
+      }
+    } catch {
+      // Invalid promo code — continue without discount
+    }
+  }
+
   // Create checkout session
   const session = await stripe.checkout.sessions.create({
     customer: customerId,
@@ -89,7 +108,9 @@ export async function createCheckoutSession(): Promise<{ url: string }> {
         userId: user.id,
       },
     },
-    allow_promotion_codes: true,
+    ...(discounts.length > 0
+      ? { discounts }
+      : { allow_promotion_codes: true }),
   });
 
   if (!session.url) {

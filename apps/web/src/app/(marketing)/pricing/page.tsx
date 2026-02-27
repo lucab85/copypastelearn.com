@@ -3,7 +3,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { auth } from "@clerk/nextjs/server";
 import { Button } from "@/components/ui/button";
-import { CheckoutButton } from "@/components/checkout-button";
+import { PricingCheckoutButton } from "@/components/pricing-checkout-button";
+import { DiscountBanner } from "@/components/discount-banner";
 import {
   Card,
   CardContent,
@@ -218,6 +219,10 @@ export default async function PricingPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(pricingFaqJsonLd) }}
       />
+
+      {/* Discount Banner */}
+      <DiscountBanner />
+
       {/* Header */}
       <div className="mx-auto max-w-2xl text-center">
         <h1 className="text-4xl font-bold tracking-tight">
@@ -261,9 +266,9 @@ export default async function PricingPage() {
                 <Link href="/settings">You&apos;re subscribed — Manage</Link>
               </Button>
             ) : userId ? (
-              <CheckoutButton size="lg" className="w-full">
+              <PricingCheckoutButton size="lg" className="w-full">
                 Subscribe Now — €{SUBSCRIPTION_PRICE_EUR}/mo
-              </CheckoutButton>
+              </PricingCheckoutButton>
             ) : (
               <Button asChild size="lg" className="w-full">
                 <Link href="/sign-up">Get Started</Link>
