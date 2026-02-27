@@ -3,6 +3,7 @@ title: "What is OpenClaw? The Open-Source AI Agent Platform"
 description: "Discover OpenClaw — the open-source platform that lets you run AI agents on your own infrastructure. Learn what it does, how it works, and why it matters."
 date: "2026-02-26"
 author: "Luca Berton"
+category: "OpenClaw"
 tags: ["OpenClaw", "AI Agents", "Open Source"]
 ---
 

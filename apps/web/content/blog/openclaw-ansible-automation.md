@@ -3,6 +3,7 @@ title: "OpenClaw + Ansible: AI-Powered Infrastructure Automation"
 description: "Combine OpenClaw's AI agent with Ansible for intelligent infrastructure automation — writing playbooks, debugging tasks, and orchestrating deployments."
 date: "2026-02-07"
 author: "Luca Berton"
+category: "OpenClaw"
 tags: ["OpenClaw", "Ansible", "Automation"]
 ---
 

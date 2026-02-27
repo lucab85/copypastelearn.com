@@ -3,6 +3,7 @@ title: "OpenClaw Node Pairing: Control Phones and IoT Devices"
 description: "Pair your phone or IoT devices with OpenClaw for camera access, location tracking, screen recording, and remote commands."
 date: "2026-02-10"
 author: "Luca Berton"
+category: "OpenClaw"
 tags: ["OpenClaw", "IoT", "Mobile"]
 ---
 
