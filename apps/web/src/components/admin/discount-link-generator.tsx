@@ -118,7 +118,7 @@ export function DiscountLinkGenerator() {
                       <Copy className="h-4 w-4" />
                     )}
                   </Button>
-                  {typeof navigator !== "undefined" && navigator.share && (
+                  {typeof navigator !== "undefined" && typeof navigator.share === "function" && (
                     <Button
                       variant="ghost"
                       size="icon"
