@@ -6,6 +6,7 @@ import { auth } from "@clerk/nextjs/server";
 import { Button } from "@/components/ui/button";
 import { PricingCheckoutButton } from "@/components/pricing-checkout-button";
 import { DiscountBanner } from "@/components/discount-banner";
+import { CouponInput } from "@/components/coupon-input";
 import {
   Card,
   CardContent,
@@ -348,6 +349,11 @@ export default async function PricingPage() {
           ))}
         </div>
       </div>
+
+      {/* Coupon Code Input */}
+      <Suspense>
+        <CouponInput />
+      </Suspense>
 
       {/* Trust signals */}
       <div className="mx-auto mt-16 max-w-2xl text-center">
