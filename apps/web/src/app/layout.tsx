@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import { SiteHeader } from "@/components/layout/site-header";
 import { SiteFooter } from "@/components/layout/site-footer";
+import { RouteChangeTracker } from "@/components/analytics/route-change-tracker";
 import "./globals.css";
 
 const siteUrl = process.env.NEXT_PUBLIC_APP_URL ?? "https://www.copypastelearn.com";
@@ -110,8 +112,41 @@ export default async function RootLayout({
         <link rel="preconnect" href="https://clerk.copypastelearn.com" />
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
         <link rel="dns-prefetch" href="https://www.clarity.ms" />
+
+        {/* Google Analytics (GA4) */}
+        <script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=G-YN94VH0TPN"
+        />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-YN94VH0TPN');
+            `,
+          }}
+        />
+
+        {/* Microsoft Clarity */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function(c,l,a,r,i,t,y){
+                c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+                t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+                y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+              })(window,document,"clarity","script","vlu7pdkdd9");
+            `,
+          }}
+        />
       </head>
       <body className="flex min-h-screen flex-col bg-background font-sans antialiased">
+        {/* Analytics — SPA page view tracking */}
+        <Suspense>
+          <RouteChangeTracker />
+        </Suspense>
         {/* Skip to content — accessibility */}
         <a
           href="#main-content"
