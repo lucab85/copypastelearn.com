@@ -2,6 +2,7 @@ export const dynamic = "force-dynamic";
 import { auth } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 import { SignIn } from "@clerk/nextjs";
+import { PageEventTracker } from "@/components/analytics/page-event-tracker";
 
 export const metadata = {
   title: "Sign In",
@@ -16,6 +17,7 @@ export default async function SignInPage() {
 
   return (
     <div className="flex min-h-[calc(100vh-4rem)] flex-col items-center justify-center px-4">
+      <PageEventTracker event="sign_in_start" />
       <h1 className="sr-only">Sign in to CopyPasteLearn</h1>
       <p className="mb-6 max-w-md text-center text-sm text-muted-foreground">
         Welcome back! Sign in to continue your courses, launch interactive labs,

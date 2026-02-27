@@ -15,6 +15,7 @@ import {
   Terminal,
   Trophy,
 } from "lucide-react";
+import { PageEventTracker } from "@/components/analytics/page-event-tracker";
 
 export const metadata = {
   title: "Dashboard",
@@ -43,6 +44,7 @@ export default async function DashboardPage() {
 
   return (
     <div className="container mx-auto px-4 py-8 space-y-8">
+      <PageEventTracker event="view_dashboard" />
       {/* ── Greeting Banner ──────────────────────────────── */}
       <section className="animate-fade-up relative overflow-hidden rounded-2xl bg-gradient-to-br from-primary/10 via-primary/5 to-transparent border p-8">
         <div className="absolute right-0 top-0 -mr-8 -mt-8 h-48 w-48 rounded-full bg-primary/5 blur-3xl" />

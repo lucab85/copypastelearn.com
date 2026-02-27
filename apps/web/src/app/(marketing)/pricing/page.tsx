@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { PricingCheckoutButton } from "@/components/pricing-checkout-button";
 import { DiscountBanner } from "@/components/discount-banner";
 import { CouponInput } from "@/components/coupon-input";
+import { PageEventTracker } from "@/components/analytics/page-event-tracker";
 import {
   Card,
   CardContent,
@@ -228,6 +229,7 @@ export default async function PricingPage({
       />
 
       {/* Discount Banner */}
+      <PageEventTracker event="view_pricing" />
       <Suspense>
         <DiscountBanner />
       </Suspense>

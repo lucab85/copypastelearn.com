@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Tag, Check } from "lucide-react";
+import { trackEvent } from "@/lib/analytics";
 
 export function CouponInput() {
   const searchParams = useSearchParams();
@@ -16,6 +17,7 @@ export function CouponInput() {
     const trimmed = code.trim().toUpperCase();
     if (!trimmed) return;
     setApplied(true);
+    trackEvent("apply_coupon", { coupon_code: trimmed });
     // Update URL with code param so DiscountBanner + PricingCheckoutButton pick it up
     router.replace(`/pricing?code=${encodeURIComponent(trimmed)}`, {
       scroll: false,

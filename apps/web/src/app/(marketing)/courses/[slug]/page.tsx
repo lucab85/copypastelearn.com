@@ -7,6 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { Clock, BookOpen, Lock, CheckCircle2, Play } from "lucide-react";
+import { PageEventTracker } from "@/components/analytics/page-event-tracker";
 
 export const revalidate = 3600;
 
@@ -208,6 +209,10 @@ export default async function CourseDetailPage({ params }: CourseDetailPageProps
 
   return (
     <div className="container mx-auto px-4 py-12">
+      <PageEventTracker
+        event="view_course"
+        params={{ course_slug: course.slug, course_title: course.title }}
+      />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(courseJsonLd) }}
