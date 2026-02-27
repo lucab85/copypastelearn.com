@@ -51,7 +51,12 @@ const businessBenefits = [
   "Volume discounts for 10+ seats",
 ];
 
-export default async function PricingPage() {
+export default async function PricingPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ code?: string }>;
+}) {
+  const { code } = await searchParams;
   const { userId } = await auth();
   const subscription = userId ? await getSubscriptionStatus() : null;
   const isSubscribed = subscription?.isSubscribed ?? false;
@@ -277,7 +282,7 @@ export default async function PricingPage() {
               </Suspense>
             ) : (
               <Button asChild size="lg" className="w-full">
-                <Link href="/sign-up">Get Started</Link>
+                <Link href={code ? `/sign-up?redirect_url=/pricing?code=${encodeURIComponent(code)}` : "/sign-up"}>Get Started</Link>
               </Button>
             )}
           </CardFooter>
