@@ -196,6 +196,30 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           className="prose prose-neutral dark:prose-invert max-w-none"
           dangerouslySetInnerHTML={{ __html: contentHtml }}
         />
+
+        {/* CTA: Enroll in Courses */}
+        <div className="mt-12 rounded-xl border bg-gradient-to-br from-primary/5 to-primary/10 p-8 text-center">
+          <h2 className="text-2xl font-bold tracking-tight">
+            Ready to Learn by Doing?
+          </h2>
+          <p className="mx-auto mt-3 max-w-md text-muted-foreground">
+            Go beyond blog posts with hands-on video courses. Build real projects with Docker, Ansible, Node.js, and more.
+          </p>
+          <div className="mt-6 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
+            <Link
+              href="/courses"
+              className="inline-flex items-center rounded-lg bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground shadow transition-colors hover:bg-primary/90"
+            >
+              Browse Courses
+            </Link>
+            <Link
+              href="/pricing"
+              className="inline-flex items-center rounded-lg border px-6 py-3 text-sm font-semibold transition-colors hover:bg-muted"
+            >
+              View Pricing
+            </Link>
+          </div>
+        </div>
       </article>
     </div>
   );
