@@ -101,25 +101,41 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     },
   };
 
-  // Simple markdown to HTML (basic — handles headers, bold, italic, code, links, lists)
-  const contentHtml = post.content
+  // Simple markdown to HTML — extract code blocks first (they may contain blank lines)
+  const codeBlocks: string[] = [];
+  const contentWithPlaceholders = post.content.replace(
+    /```(\w*)\n([\s\S]*?)```/g,
+    (_match, lang, code) => {
+      const idx = codeBlocks.length;
+      const escaped = code.replace(/</g, "&lt;").replace(/>/g, "&gt;").trimEnd();
+      codeBlocks.push(
+        `<pre class="my-6 overflow-x-auto rounded-lg bg-muted p-4">${lang ? `<div class="mb-2 text-xs font-mono text-muted-foreground">${lang}</div>` : ""}<code class="text-sm">${escaped}</code></pre>`
+      );
+      return `\n\n__CODE_BLOCK_${idx}__\n\n`;
+    }
+  );
+
+  const contentHtml = contentWithPlaceholders
     .split("\n\n")
     .map((block) => {
       const trimmed = block.trim();
       if (!trimmed) return "";
 
+      // Code block placeholders
+      const codeMatch = trimmed.match(/^__CODE_BLOCK_(\d+)__$/);
+      if (codeMatch) return codeBlocks[parseInt(codeMatch[1])];
+
       // Headers
       if (trimmed.startsWith("### "))
-        return `<h3 class="mt-8 mb-3 text-lg font-semibold">${trimmed.slice(4)}</h3>`;
+        return `<h3 class="mt-8 mb-3 text-lg font-semibold">${inlineFormat(trimmed.slice(4))}</h3>`;
       if (trimmed.startsWith("## "))
-        return `<h2 class="mt-10 mb-4 text-xl font-bold">${trimmed.slice(3)}</h2>`;
+        return `<h2 class="mt-10 mb-4 text-xl font-bold">${inlineFormat(trimmed.slice(3))}</h2>`;
       if (trimmed.startsWith("# "))
-        return `<h1 class="mt-10 mb-4 text-2xl font-bold">${trimmed.slice(2)}</h1>`;
+        return `<h1 class="mt-10 mb-4 text-2xl font-bold">${inlineFormat(trimmed.slice(2))}</h1>`;
 
       // Tables
       if (trimmed.includes("|") && trimmed.split("\n").length >= 2) {
         const rows = trimmed.split("\n").filter((r) => r.trim());
-        // Check if second row is separator (|---|---|)
         if (rows.length >= 2 && /^\|?[\s-:|]+\|/.test(rows[1])) {
           const parseRow = (row: string) =>
             row.split("|").map((c) => c.trim()).filter((c) => c !== "");
@@ -132,13 +148,6 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           }).join("");
           return `<div class="my-6 overflow-x-auto"><table class="w-full border-collapse border border-border rounded-lg"><thead><tr class="bg-muted">${ths}</tr></thead><tbody>${trs}</tbody></table></div>`;
         }
-      }
-
-      // Code blocks
-      if (trimmed.startsWith("```")) {
-        const lines = trimmed.split("\n");
-        const code = lines.slice(1, -1).join("\n");
-        return `<pre class="my-6 overflow-x-auto rounded-lg bg-muted p-4"><code class="text-sm">${code.replace(/</g, "&lt;").replace(/>/g, "&gt;")}</code></pre>`;
       }
 
       // Unordered lists
