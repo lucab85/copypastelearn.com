@@ -1,76 +1,45 @@
-import { NextResponse, type NextRequest } from "next/server";
+import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
 
-function isClerkConfigured(): boolean {
-  const pk = process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY;
-  if (!pk || pk.length < 20 || pk.includes("...")) return false;
-  try {
-    atob(pk.replace(/^pk_(test|live)_/, ""));
-    return true;
-  } catch {
-    return false;
+const isPublicRoute = createRouteMatcher([
+  "/",
+  "/about(.*)",
+  "/blog(.*)",
+  "/contact(.*)",
+  "/courses(.*)",
+  "/pricing(.*)",
+  "/privacy(.*)",
+  "/terms(.*)",
+  "/sign-in(.*)",
+  "/sign-up(.*)",
+  "/api/webhooks(.*)",
+  "/api/mobile(.*)",
+  "/robots.txt",
+  "/sitemap.xml",
+  "/feed.xml",
+  "/opengraph-image(.*)",
+  // Old site routes (allow redirect to fire before auth check)
+  "/learning-paths(.*)",
+  "/career-assessment(.*)",
+  "/waitlist(.*)",
+  "/resources(.*)",
+  "/legal(.*)",
+  // Old Hugo routes (301 redirects in next.config.mjs)
+  "/tags(.*)",
+  "/categories(.*)",
+  "/scholarship(.*)",
+  "/course(.*)",
+  "/author(.*)",
+  "/teacher(.*)",
+  "/event(.*)",
+  "/notice(.*)",
+  "/research(.*)",
+]);
+
+export default clerkMiddleware(async (auth, req) => {
+  if (!isPublicRoute(req)) {
+    await auth.protect();
   }
-}
-
-export default async function middleware(request: NextRequest) {
-  // apex → www redirect (301) for SEO consolidation
-  const host = request.headers.get("host") || "";
-  if (host && !host.startsWith("www.") && !host.startsWith("localhost")) {
-    const url = request.nextUrl.clone();
-    url.host = `www.${host}`;
-    return NextResponse.redirect(url, 301);
-  }
-
-  if (!isClerkConfigured()) {
-    return NextResponse.next();
-  }
-
-  // Dynamically import Clerk only when configured
-  const { clerkMiddleware, createRouteMatcher } = await import(
-    "@clerk/nextjs/server"
-  );
-
-  const isPublicRoute = createRouteMatcher([
-    "/",
-    "/about(.*)",
-    "/blog(.*)",
-    "/contact(.*)",
-    "/courses(.*)",
-    "/pricing(.*)",
-    "/privacy(.*)",
-    "/terms(.*)",
-    "/sign-in(.*)",
-    "/sign-up(.*)",
-    "/api/webhooks(.*)",
-    "/api/mobile(.*)",
-    "/robots.txt",
-    "/sitemap.xml",
-    "/feed.xml",
-    "/opengraph-image(.*)",
-    // Old site routes (allow redirect to fire before auth check)
-    "/learning-paths(.*)",
-    "/career-assessment(.*)",
-    "/waitlist(.*)",
-    "/resources(.*)",
-    "/legal(.*)",
-    // Old Hugo routes (301 redirects in next.config.mjs)
-    "/blog(.*)",
-    "/tags(.*)",
-    "/categories(.*)",
-    "/scholarship(.*)",
-    "/course(.*)",
-    "/author(.*)",
-    "/teacher(.*)",
-    "/event(.*)",
-    "/notice(.*)",
-    "/research(.*)",
-  ]);
-
-  return clerkMiddleware(async (auth, req) => {
-    if (!isPublicRoute(req)) {
-      await auth.protect();
-    }
-  })(request, {} as never);
-}
+});
 
 export const config = {
   matcher: [
