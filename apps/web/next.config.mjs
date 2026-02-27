@@ -88,7 +88,8 @@ const nextConfig = {
       // ── Old Hugo site URLs (264 stale 404s in Search Console) ──
       // Blog posts
       { source: "/post/:path*", destination: "/courses", permanent: true },
-      { source: "/blog/:path*", destination: "/blog", permanent: true },
+      // Old Hugo blog posts redirect to blog index (but not /blog itself)
+      { source: "/blog/:slug+", destination: "/blog", permanent: true },
       // Taxonomy pages
       { source: "/tags/:path*", destination: "/courses", permanent: true },
       { source: "/categories/:path*", destination: "/courses", permanent: true },
