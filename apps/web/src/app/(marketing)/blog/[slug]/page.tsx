@@ -137,8 +137,13 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
       if (trimmed.includes("|") && trimmed.split("\n").length >= 2) {
         const rows = trimmed.split("\n").filter((r) => r.trim());
         if (rows.length >= 2 && /^\|?[\s-:|]+\|/.test(rows[1])) {
-          const parseRow = (row: string) =>
-            row.split("|").map((c) => c.trim()).filter((c) => c !== "");
+          const parseRow = (row: string) => {
+            const cells = row.split("|").map((c) => c.trim());
+            // Remove first/last empty strings from leading/trailing pipes
+            if (cells[0] === "") cells.shift();
+            if (cells[cells.length - 1] === "") cells.pop();
+            return cells;
+          };
           const headers = parseRow(rows[0]);
           const bodyRows = rows.slice(2).map(parseRow);
           const ths = headers.map((h) => `<th class="border border-border px-4 py-2 text-left text-sm font-semibold">${inlineFormat(h)}</th>`).join("");
