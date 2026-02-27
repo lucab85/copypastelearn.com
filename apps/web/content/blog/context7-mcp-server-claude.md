@@ -3,6 +3,7 @@ title: "Context7 MCP Server: Connect Live Docs to Claude and AI Agents"
 description: "Use Context7's MCP server to give Claude, Cursor, and other AI tools direct access to up-to-date library documentation via the Model Context Protocol."
 date: "2026-02-23"
 author: "Luca Berton"
+category: "AI Tools"
 tags: ["Context7", "MCP", "Claude"]
 ---
 

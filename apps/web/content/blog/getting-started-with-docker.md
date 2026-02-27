@@ -3,6 +3,7 @@ title: "Getting Started with Docker: A Practical Guide for Beginners"
 description: "Learn Docker fundamentals from scratch — containers, images, Dockerfiles, and real-world workflows. No prior experience needed."
 date: "2026-02-26"
 author: "Luca Berton"
+category: "DevOps"
 tags: ["Docker", "Containers", "DevOps"]
 ---
 

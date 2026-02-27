@@ -3,6 +3,7 @@ title: "OpenClaw Heartbeats: Making Your AI Agent Proactive"
 description: "Learn how to configure OpenClaw heartbeats for proactive monitoring — email checks, calendar alerts, weather updates, and more."
 date: "2026-02-18"
 author: "Luca Berton"
+category: "OpenClaw"
 tags: ["OpenClaw", "Automation", "Heartbeats"]
 ---
 

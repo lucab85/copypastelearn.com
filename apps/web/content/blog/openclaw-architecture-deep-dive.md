@@ -3,6 +3,7 @@ title: "OpenClaw Architecture: How It Works Under the Hood"
 description: "Deep dive into OpenClaw's architecture — the gateway, sessions, tool system, memory layer, and channel providers that make it tick."
 date: "2026-02-15"
 author: "Luca Berton"
+category: "OpenClaw"
 tags: ["OpenClaw", "Architecture", "Technical"]
 ---
 

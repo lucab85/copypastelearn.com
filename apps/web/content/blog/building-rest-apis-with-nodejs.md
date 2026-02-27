@@ -3,6 +3,7 @@ title: "Building REST APIs with Node.js: A Complete Beginner's Guide"
 description: "Learn how to build production-ready REST APIs with Node.js and Express — routing, middleware, error handling, and best practices."
 date: "2026-02-24"
 author: "Luca Berton"
+category: "Development"
 tags: ["Node.js", "REST API", "Backend Development"]
 ---
 

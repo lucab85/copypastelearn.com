@@ -3,6 +3,7 @@ title: "Ansible Automation: Automate Your Infrastructure in Minutes"
 description: "A beginner-friendly introduction to Ansible — what it is, how it works, and how to write your first playbook to automate server configuration."
 date: "2026-02-25"
 author: "Luca Berton"
+category: "DevOps"
 tags: ["Ansible", "Automation", "Infrastructure as Code"]
 ---
 

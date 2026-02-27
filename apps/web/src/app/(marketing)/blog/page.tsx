@@ -1,9 +1,7 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { getAllPosts } from "@/lib/blog";
-import { Badge } from "@/components/ui/badge";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Rss, Calendar, ArrowRight } from "lucide-react";
+import { Rss } from "lucide-react";
+import { BlogList } from "@/components/blog/blog-list";
 
 export const metadata: Metadata = {
   title: "Blog — IT Automation Insights",
@@ -26,16 +24,30 @@ export const metadata: Metadata = {
 export default function BlogPage() {
   const posts = getAllPosts();
 
+  // Extract unique categories and tags
+  const categories = [...new Set(posts.map((p) => p.category))].sort();
+  const tags = [...new Set(posts.flatMap((p) => p.tags))].sort();
+
+  // Strip content for client component (not needed for listing)
+  const postsWithoutContent = posts.map(({ content, image, ...rest }) => rest);
+
   return (
     <div>
       <div className="border-b bg-muted/30">
         <div className="container mx-auto px-4 py-12 lg:py-16">
-          <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">
-            Blog
-          </h1>
-          <p className="mt-3 max-w-2xl text-lg text-muted-foreground">
-            Tips, tutorials, and updates from the CopyPasteLearn team.
-          </p>
+          <div className="flex items-center justify-between">
+            <div>
+              <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">
+                Blog
+              </h1>
+              <p className="mt-3 max-w-2xl text-lg text-muted-foreground">
+                Tips, tutorials, and updates from the CopyPasteLearn team.
+              </p>
+            </div>
+            <span className="hidden text-sm text-muted-foreground sm:block">
+              {posts.length} articles
+            </span>
+          </div>
         </div>
       </div>
 
@@ -51,50 +63,12 @@ export default function BlogPage() {
             </p>
           </div>
         ) : (
-          <div className="mx-auto max-w-3xl space-y-6">
-            {posts.map((post) => (
-              <Link key={post.slug} href={`/blog/${post.slug}`}>
-                <Card className="group transition-all hover:border-primary/20 hover:shadow-lg hover:shadow-primary/5">
-                  <CardHeader className="pb-3">
-                    <div className="flex items-center gap-2 text-xs text-muted-foreground">
-                      <Calendar className="h-3 w-3" />
-                      {new Date(post.date).toLocaleDateString("en-US", {
-                        year: "numeric",
-                        month: "long",
-                        day: "numeric",
-                      })}
-                      <span className="text-muted-foreground/50">·</span>
-                      <span>{post.author}</span>
-                    </div>
-                    <CardTitle className="text-xl leading-snug transition-colors group-hover:text-primary">
-                      {post.title}
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="mb-4 text-sm leading-relaxed text-muted-foreground">
-                      {post.description}
-                    </p>
-                    <div className="flex items-center justify-between">
-                      <div className="flex flex-wrap gap-1.5">
-                        {post.tags.slice(0, 3).map((tag) => (
-                          <Badge
-                            key={tag}
-                            variant="secondary"
-                            className="text-xs"
-                          >
-                            {tag}
-                          </Badge>
-                        ))}
-                      </div>
-                      <span className="flex items-center gap-1 text-xs font-medium text-primary opacity-0 transition-opacity group-hover:opacity-100">
-                        Read more
-                        <ArrowRight className="h-3 w-3" />
-                      </span>
-                    </div>
-                  </CardContent>
-                </Card>
-              </Link>
-            ))}
+          <div className="mx-auto max-w-3xl">
+            <BlogList
+              posts={postsWithoutContent}
+              categories={categories}
+              tags={tags}
+            />
           </div>
         )}
       </div>

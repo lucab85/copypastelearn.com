@@ -3,6 +3,7 @@ title: "Understanding OpenClaw's Memory System"
 description: "Learn how OpenClaw agents maintain memory across sessions using file-based persistence — daily notes, MEMORY.md, and workspace context."
 date: "2026-02-23"
 author: "Luca Berton"
+category: "OpenClaw"
 tags: ["OpenClaw", "AI Memory", "Architecture"]
 ---
 

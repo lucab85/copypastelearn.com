@@ -3,6 +3,7 @@ title: "OpenClaw vs LangChain vs AutoGPT: AI Agent Frameworks Compared"
 description: "Compare OpenClaw with LangChain, AutoGPT, and other AI agent frameworks. Understand the differences in architecture, use cases, and philosophy."
 date: "2026-02-05"
 author: "Luca Berton"
+category: "OpenClaw"
 tags: ["OpenClaw", "LangChain", "AI Frameworks"]
 ---
 

@@ -3,6 +3,7 @@ title: "OpenClaw on Raspberry Pi: Your Always-On AI Agent"
 description: "Run an OpenClaw AI agent on a Raspberry Pi for a low-power, always-on personal assistant. Complete setup guide with performance tips."
 date: "2026-02-20"
 author: "Luca Berton"
+category: "OpenClaw"
 tags: ["OpenClaw", "Raspberry Pi", "Self-Hosted"]
 ---
 

@@ -23,6 +23,7 @@ export interface BlogPost {
   date: string;
   author: string;
   tags: string[];
+  category: string;
   image?: string;
   content: string;
 }
@@ -50,6 +51,7 @@ export function getAllPosts(): BlogPost[] {
         date: data.date ?? new Date().toISOString(),
         author: data.author ?? "Luca Berton",
         tags: data.tags ?? [],
+        category: data.category ?? "General",
         image: data.image,
         content,
       } satisfies BlogPost;
@@ -84,6 +86,7 @@ export function getPost(slug: string): BlogPost | null {
     date: data.date ?? new Date().toISOString(),
     author: data.author ?? "Luca Berton",
     tags: data.tags ?? [],
+    category: data.category ?? "General",
     image: data.image,
     content,
   };

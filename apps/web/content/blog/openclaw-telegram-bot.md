@@ -3,6 +3,7 @@ title: "OpenClaw + Telegram: Build Your Personal AI Bot"
 description: "Connect your OpenClaw agent to Telegram for a personal AI assistant accessible from your phone. Setup guide with BotFather and configuration."
 date: "2026-02-16"
 author: "Luca Berton"
+category: "OpenClaw"
 tags: ["OpenClaw", "Telegram", "Messaging"]
 ---
 

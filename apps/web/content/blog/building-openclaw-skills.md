@@ -3,6 +3,7 @@ title: "Building Custom OpenClaw Skills: A Complete Guide"
 description: "Learn how to create, package, and share custom skills for OpenClaw agents. From simple automations to complex integrations."
 date: "2026-02-22"
 author: "Luca Berton"
+category: "OpenClaw"
 tags: ["OpenClaw", "Skills", "Tutorial"]
 ---
 

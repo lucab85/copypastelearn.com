@@ -3,6 +3,7 @@ title: "How to Install OpenClaw on Ubuntu Server"
 description: "Step-by-step guide to installing and configuring OpenClaw on Ubuntu. Get your self-hosted AI agent running in under 10 minutes."
 date: "2026-02-24"
 author: "Luca Berton"
+category: "OpenClaw"
 tags: ["OpenClaw", "Ubuntu", "Installation"]
 ---
 

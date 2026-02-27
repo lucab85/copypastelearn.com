@@ -3,6 +3,7 @@ title: "10 Things to Do After Installing OpenClaw"
 description: "Just installed OpenClaw? Here are 10 essential setup steps to get the most out of your AI agent — from personality to automation."
 date: "2026-02-09"
 author: "Luca Berton"
+category: "OpenClaw"
 tags: ["OpenClaw", "Getting Started", "Tips"]
 ---
 

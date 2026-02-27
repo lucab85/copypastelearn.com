@@ -3,6 +3,7 @@ title: "Connect OpenClaw to Discord: Complete Bot Setup"
 description: "Set up an OpenClaw AI agent as a Discord bot. Learn how to create the bot, configure permissions, and get your agent responding in channels."
 date: "2026-02-21"
 author: "Luca Berton"
+category: "OpenClaw"
 tags: ["OpenClaw", "Discord", "Bots"]
 ---
 

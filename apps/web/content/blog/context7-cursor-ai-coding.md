@@ -3,6 +3,7 @@ title: "Context7 + Cursor: Stop AI Hallucinations in Your Code Editor"
 description: "Learn how to use Context7 with Cursor AI editor for accurate, version-specific code completions. Step-by-step setup and workflow guide."
 date: "2026-02-25"
 author: "Luca Berton"
+category: "AI Tools"
 tags: ["Context7", "Cursor", "AI Coding"]
 ---
 
