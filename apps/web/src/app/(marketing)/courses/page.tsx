@@ -1,11 +1,11 @@
 export const dynamic = "force-dynamic";
 import type { Metadata } from "next";
 import { getPublicCourses } from "@/server/queries/public-courses";
-import { CourseCard } from "@/components/course/course-card";
+import { CourseFilter } from "@/components/course/course-filter";
 import { BookOpen } from "lucide-react";
 import { PageEventTracker } from "@/components/analytics/page-event-tracker";
 
-export const revalidate = 3600; // ISR: revalidate every hour
+export const revalidate = 3600;
 
 export const metadata: Metadata = {
   title: "Courses — IT Automation & DevOps Training",
@@ -57,11 +57,15 @@ export default async function CourseCatalogPage() {
 
   return (
     <div>
-      <PageEventTracker event="view_courses_list" params={{ course_count: courses.length }} />
+      <PageEventTracker
+        event="view_courses_list"
+        params={{ course_count: courses.length }}
+      />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListJsonLd) }}
       />
+
       {/* Page header */}
       <div className="border-b bg-muted/30">
         <div className="container mx-auto px-4 py-12 lg:py-16">
@@ -75,7 +79,68 @@ export default async function CourseCatalogPage() {
         </div>
       </div>
 
-      {/* Course grid */}
+      {/* Learning Paths */}
+      <div className="border-b bg-muted/10">
+        <div className="container mx-auto px-4 py-10">
+          <h2 className="mb-6 text-xl font-semibold">Learning Paths</h2>
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {[
+              {
+                title: "DevOps Foundations",
+                description:
+                  "Docker → Ansible → CI/CD. Build a complete automation workflow from scratch.",
+                courses: ["Docker Fundamentals", "Ansible Quickstart"],
+                color: "from-blue-500/10 to-cyan-500/10",
+                border: "border-blue-500/20",
+              },
+              {
+                title: "Infrastructure as Code",
+                description:
+                  "Terraform + Ansible. Provision and configure cloud infrastructure programmatically.",
+                courses: [
+                  "Terraform for Beginners",
+                  "Ansible Quickstart",
+                ],
+                color: "from-purple-500/10 to-pink-500/10",
+                border: "border-purple-500/20",
+              },
+              {
+                title: "AI & MLOps",
+                description:
+                  "From AI agents to ML model lifecycle management on Kubernetes.",
+                courses: [
+                  "OpenClaw AI Agent",
+                  "MLflow for Kubernetes",
+                ],
+                color: "from-orange-500/10 to-yellow-500/10",
+                border: "border-orange-500/20",
+              },
+            ].map((path) => (
+              <div
+                key={path.title}
+                className={`rounded-xl border ${path.border} bg-gradient-to-br ${path.color} p-5`}
+              >
+                <h3 className="font-semibold">{path.title}</h3>
+                <p className="mt-1.5 text-sm text-muted-foreground">
+                  {path.description}
+                </p>
+                <div className="mt-3 flex flex-wrap gap-1.5">
+                  {path.courses.map((c) => (
+                    <span
+                      key={c}
+                      className="rounded-full bg-background/60 px-2.5 py-0.5 text-xs font-medium"
+                    >
+                      {c}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Course grid with filters */}
       <div className="container mx-auto px-4 py-12">
         {courses.length === 0 ? (
           <div className="flex flex-col items-center justify-center rounded-xl border border-dashed py-20">
@@ -88,11 +153,7 @@ export default async function CourseCatalogPage() {
             </p>
           </div>
         ) : (
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {courses.map((course) => (
-              <CourseCard key={course.id} course={course} />
-            ))}
-          </div>
+          <CourseFilter courses={courses} />
         )}
       </div>
     </div>

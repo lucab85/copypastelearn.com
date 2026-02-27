@@ -33,6 +33,9 @@ export const metadata: Metadata = {
   },
 };
 
+const ANNUAL_PRICE_EUR = 290; // Save €58/year (2 months free)
+const MONTHLY_EQUIVALENT = Math.round(ANNUAL_PRICE_EUR / 12);
+
 const benefits = [
   "Unlimited access to all video lessons",
   "Interactive hands-on labs with real containers",
@@ -245,16 +248,13 @@ export default async function PricingPage({
       </div>
 
       {/* Pricing Cards */}
-      <div className="mx-auto mt-12 grid max-w-4xl gap-8 lg:grid-cols-2">
-        {/* Pro Plan */}
-        <Card className="relative overflow-hidden border-primary/50">
-          <div className="absolute right-4 top-4">
-            <Badge>Most Popular</Badge>
-          </div>
+      <div className="mx-auto mt-12 grid max-w-5xl gap-6 lg:grid-cols-3">
+        {/* Pro Monthly */}
+        <Card className="relative overflow-hidden">
           <CardHeader>
             <CardTitle className="text-2xl">Pro Monthly</CardTitle>
             <CardDescription>
-              Everything you need to learn by doing
+              Flexible month-to-month access
             </CardDescription>
             <div className="mt-4">
               <span className="text-5xl font-bold">€{SUBSCRIPTION_PRICE_EUR}</span>
@@ -279,12 +279,59 @@ export default async function PricingPage({
             ) : userId ? (
               <Suspense>
                 <PricingCheckoutButton size="lg" className="w-full">
-                  Subscribe Now — €{SUBSCRIPTION_PRICE_EUR}/mo
+                  Subscribe — €{SUBSCRIPTION_PRICE_EUR}/mo
                 </PricingCheckoutButton>
               </Suspense>
             ) : (
               <Button asChild size="lg" className="w-full">
                 <Link href={code ? `/sign-up?redirect_url=/pricing?code=${encodeURIComponent(code)}` : "/sign-up"}>Get Started</Link>
+              </Button>
+            )}
+          </CardFooter>
+        </Card>
+
+        {/* Pro Annual — Best Value */}
+        <Card className="relative overflow-hidden border-primary/50">
+          <div className="absolute right-4 top-4">
+            <Badge>Best Value</Badge>
+          </div>
+          <CardHeader>
+            <CardTitle className="text-2xl">Pro Annual</CardTitle>
+            <CardDescription>
+              Save 2 months — pay once per year
+            </CardDescription>
+            <div className="mt-4">
+              <span className="text-5xl font-bold">€{ANNUAL_PRICE_EUR}</span>
+              <span className="text-muted-foreground">/year</span>
+            </div>
+            <p className="mt-1 text-sm text-green-600 dark:text-green-400">
+              €{MONTHLY_EQUIVALENT}/mo — Save €{SUBSCRIPTION_PRICE_EUR * 12 - ANNUAL_PRICE_EUR}/year
+            </p>
+          </CardHeader>
+          <CardContent>
+            <ul className="space-y-3">
+              {[...benefits, "2 months free vs monthly"].map((benefit, i) => (
+                <li key={i} className="flex items-start gap-3">
+                  <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-primary" />
+                  <span className={`text-sm ${i === benefits.length ? "font-semibold text-green-600 dark:text-green-400" : ""}`}>{benefit}</span>
+                </li>
+              ))}
+            </ul>
+            {/* Value framing */}
+            <div className="mt-6 rounded-lg bg-primary/5 p-4">
+              <p className="text-xs font-medium text-muted-foreground">
+                💡 Real sandboxes + video lessons + certificates + all future courses for less than the price of a coffee per day.
+              </p>
+            </div>
+          </CardContent>
+          <CardFooter>
+            {isSubscribed ? (
+              <Button asChild size="lg" className="w-full" variant="outline">
+                <Link href="/settings">You&apos;re subscribed — Manage</Link>
+              </Button>
+            ) : (
+              <Button asChild size="lg" className="w-full">
+                <Link href={code ? `/sign-up?redirect_url=/pricing?code=${encodeURIComponent(code)}` : "/sign-up"}>Get Started — Save €{SUBSCRIPTION_PRICE_EUR * 12 - ANNUAL_PRICE_EUR}</Link>
               </Button>
             )}
           </CardFooter>
