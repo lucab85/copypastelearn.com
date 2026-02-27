@@ -8,16 +8,21 @@ import { trackBeginCheckout } from "@/lib/analytics";
 
 interface CheckoutButtonProps extends Omit<ButtonProps, "onClick"> {
   children: React.ReactNode;
+  promoCode?: string;
 }
 
-export function CheckoutButton({ children, ...props }: CheckoutButtonProps) {
+export function CheckoutButton({
+  children,
+  promoCode,
+  ...props
+}: CheckoutButtonProps) {
   const [loading, setLoading] = useState(false);
 
   async function handleClick() {
     try {
       setLoading(true);
       trackBeginCheckout();
-      const { url } = await createCheckoutSession();
+      const { url } = await createCheckoutSession(promoCode);
       window.location.href = url;
     } catch (error) {
       console.error("Checkout failed:", error);
