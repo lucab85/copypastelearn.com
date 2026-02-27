@@ -1,6 +1,7 @@
 export const dynamic = "force-dynamic";
 import type { Metadata } from "next";
 import Link from "next/link";
+import { Suspense } from "react";
 import { auth } from "@clerk/nextjs/server";
 import { Button } from "@/components/ui/button";
 import { PricingCheckoutButton } from "@/components/pricing-checkout-button";
@@ -221,7 +222,9 @@ export default async function PricingPage() {
       />
 
       {/* Discount Banner */}
-      <DiscountBanner />
+      <Suspense>
+        <DiscountBanner />
+      </Suspense>
 
       {/* Header */}
       <div className="mx-auto max-w-2xl text-center">
@@ -266,9 +269,11 @@ export default async function PricingPage() {
                 <Link href="/settings">You&apos;re subscribed — Manage</Link>
               </Button>
             ) : userId ? (
-              <PricingCheckoutButton size="lg" className="w-full">
-                Subscribe Now — €{SUBSCRIPTION_PRICE_EUR}/mo
-              </PricingCheckoutButton>
+              <Suspense>
+                <PricingCheckoutButton size="lg" className="w-full">
+                  Subscribe Now — €{SUBSCRIPTION_PRICE_EUR}/mo
+                </PricingCheckoutButton>
+              </Suspense>
             ) : (
               <Button asChild size="lg" className="w-full">
                 <Link href="/sign-up">Get Started</Link>
