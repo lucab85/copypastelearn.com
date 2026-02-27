@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { getAllPosts } from "@/lib/blog";
 import { Rss } from "lucide-react";
 import { BlogList } from "@/components/blog/blog-list";
+import { PageEventTracker } from "@/components/analytics/page-event-tracker";
 
 export const metadata: Metadata = {
   title: "Blog — IT Automation Insights",
@@ -33,6 +34,7 @@ export default function BlogPage() {
 
   return (
     <div>
+      <PageEventTracker event="view_blog_list" params={{ post_count: posts.length }} />
       <div className="border-b bg-muted/30">
         <div className="container mx-auto px-4 py-12 lg:py-16">
           <div className="flex items-center justify-between">

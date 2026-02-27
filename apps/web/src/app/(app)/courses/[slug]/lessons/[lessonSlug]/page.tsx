@@ -13,6 +13,7 @@ import { LabLauncher } from "./lab-launcher";
 import { Button } from "@/components/ui/button";
 import { CheckoutButton } from "@/components/checkout-button";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { PageEventTracker } from "@/components/analytics/page-event-tracker";
 
 interface LessonPageProps {
   params: Promise<{ slug: string; lessonSlug: string }>;
@@ -82,6 +83,14 @@ export default async function LessonPage({ params }: LessonPageProps) {
 
   return (
     <div className="container mx-auto px-4 py-8">
+      <PageEventTracker
+        event="view_lesson"
+        params={{
+          course_slug: slug,
+          lesson_slug: lessonSlug,
+          lesson_title: lesson.title,
+        }}
+      />
       {/* Navigation */}
       <div className="mb-6 flex items-center justify-between">
         <Link

@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { getPublicCourses } from "@/server/queries/public-courses";
 import { CourseCard } from "@/components/course/course-card";
 import { BookOpen } from "lucide-react";
+import { PageEventTracker } from "@/components/analytics/page-event-tracker";
 
 export const revalidate = 3600; // ISR: revalidate every hour
 
@@ -56,6 +57,7 @@ export default async function CourseCatalogPage() {
 
   return (
     <div>
+      <PageEventTracker event="view_courses_list" params={{ course_count: courses.length }} />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListJsonLd) }}

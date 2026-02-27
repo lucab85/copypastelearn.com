@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import { TrackedLink } from "@/components/analytics/tracked-link";
+import { PageEventTracker } from "@/components/analytics/page-event-tracker";
 import { getPost, getAllPosts } from "@/lib/blog";
 import { Badge } from "@/components/ui/badge";
 import { ArrowLeft, Calendar, User } from "lucide-react";
@@ -180,6 +182,10 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
   return (
     <div className="container mx-auto px-4 py-12">
+      <PageEventTracker
+        event="view_blog_post"
+        params={{ blog_slug: slug, blog_title: post.title, blog_category: post.category }}
+      />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
@@ -238,18 +244,22 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             Go beyond blog posts with hands-on video courses. Build real projects with Docker, Ansible, Node.js, and more.
           </p>
           <div className="mt-6 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
-            <Link
+            <TrackedLink
               href="/courses"
+              ctaText="Browse Courses"
+              ctaLocation="blog_post"
               className="inline-flex items-center rounded-lg bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground shadow transition-colors hover:bg-primary/90"
             >
               Browse Courses
-            </Link>
-            <Link
+            </TrackedLink>
+            <TrackedLink
               href="/pricing"
+              ctaText="View Pricing"
+              ctaLocation="blog_post"
               className="inline-flex items-center rounded-lg border px-6 py-3 text-sm font-semibold transition-colors hover:bg-muted"
             >
               View Pricing
-            </Link>
+            </TrackedLink>
           </div>
         </div>
       </article>
