@@ -25,11 +25,11 @@ export const getPublicCourses = unstable_cache(
       description: course.description,
       difficulty: course.difficulty,
       lessonCount: course._count.lessons,
-      thumbnailUrl: course.thumbnailUrl?.trim() || null,
+      thumbnailUrl: course.thumbnailUrl?.trim()?.replace('.png', '.svg') || null,
       userProgress: null,
     }));
   },
-  ["public-courses-v2"],
+  ["public-courses-v3"],
   { revalidate: 3600, tags: ["courses"] }
 );
 
@@ -64,7 +64,7 @@ export const getPublicCourse = unstable_cache(
       prerequisites: course.prerequisites,
       difficulty: course.difficulty,
       estimatedDuration: course.estimatedDuration,
-      thumbnailUrl: course.thumbnailUrl?.trim() || null,
+      thumbnailUrl: course.thumbnailUrl?.trim()?.replace('.png', '.svg') || null,
       lessons: course.lessons.map((lesson) => {
         const isFree = lesson.sortOrder === 0;
         return {
@@ -82,6 +82,6 @@ export const getPublicCourse = unstable_cache(
       userProgress: null,
     };
   },
-  ["public-course-v2"],
+  ["public-course-v3"],
   { revalidate: 3600, tags: ["courses"] }
 );

@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0b1120"/>
+      <stop offset="100%" stop-color="#1e293b"/>
+    </linearGradient>
+    <linearGradient id="docker" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2496ed"/>
+      <stop offset="100%" stop-color="#1a7fd4"/>
+    </linearGradient>
+    <linearGradient id="glow" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#2496ed" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#2496ed" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="450" fill="url(#bg)"/>
+
+  <!-- Subtle grid -->
+  <g stroke="#334155" stroke-width="0.5" opacity="0.3">
+    <line x1="0" y1="75" x2="800" y2="75"/>
+    <line x1="0" y1="150" x2="800" y2="150"/>
+    <line x1="0" y1="225" x2="800" y2="225"/>
+    <line x1="0" y1="300" x2="800" y2="300"/>
+    <line x1="0" y1="375" x2="800" y2="375"/>
+    <line x1="200" y1="0" x2="200" y2="450"/>
+    <line x1="400" y1="0" x2="400" y2="450"/>
+    <line x1="600" y1="0" x2="600" y2="450"/>
+  </g>
+
+  <!-- Glow circle behind whale -->
+  <circle cx="400" cy="200" r="140" fill="url(#glow)"/>
+
+  <!-- Docker whale body -->
+  <g transform="translate(310, 120)">
+    <!-- Body -->
+    <path d="M40 95 C40 70, 55 55, 80 50 L160 50 C180 50, 185 60, 185 75 L185 110 C185 130, 170 140, 150 140 L60 140 C45 140, 40 130, 40 120Z" fill="url(#docker)"/>
+    <!-- Tail -->
+    <path d="M40 100 C20 85, 10 70, 25 55 C15 65, 25 80, 40 90Z" fill="#2496ed"/>
+    <!-- Eye -->
+    <circle cx="155" cy="72" r="5" fill="white"/>
+    <circle cx="157" cy="71" r="2.5" fill="#0b1120"/>
+    <!-- Spout -->
+    <path d="M120 50 C120 35, 125 25, 128 20" stroke="#60a5fa" stroke-width="3" fill="none" stroke-linecap="round"/>
+    <ellipse cx="128" cy="15" rx="8" ry="4" fill="#60a5fa" opacity="0.5"/>
+
+    <!-- Containers on whale -->
+    <rect x="55" y="75" width="22" height="18" rx="2" fill="#60a5fa" stroke="#93c5fd" stroke-width="0.5"/>
+    <rect x="82" y="75" width="22" height="18" rx="2" fill="#60a5fa" stroke="#93c5fd" stroke-width="0.5"/>
+    <rect x="109" y="75" width="22" height="18" rx="2" fill="#60a5fa" stroke="#93c5fd" stroke-width="0.5"/>
+    <rect x="136" y="75" width="22" height="18" rx="2" fill="#60a5fa" stroke="#93c5fd" stroke-width="0.5"/>
+    <rect x="69" y="54" width="22" height="18" rx="2" fill="#3b82f6" stroke="#93c5fd" stroke-width="0.5"/>
+    <rect x="96" y="54" width="22" height="18" rx="2" fill="#3b82f6" stroke="#93c5fd" stroke-width="0.5"/>
+    <rect x="123" y="54" width="22" height="18" rx="2" fill="#3b82f6" stroke="#93c5fd" stroke-width="0.5"/>
+  </g>
+
+  <!-- Water waves -->
+  <path d="M0 300 Q100 280 200 300 T400 300 T600 300 T800 300 L800 450 L0 450Z" fill="#2496ed" opacity="0.05"/>
+  <path d="M0 320 Q100 300 200 320 T400 320 T600 320 T800 320 L800 450 L0 450Z" fill="#2496ed" opacity="0.03"/>
+
+  <!-- Title -->
+  <text x="400" y="340" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="32" font-weight="700" fill="white" letter-spacing="-0.5">Docker Fundamentals</text>
+  <text x="400" y="375" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="16" fill="#94a3b8">Build, ship, and run containers</text>
+
+  <!-- Badge -->
+  <rect x="340" y="390" width="120" height="28" rx="14" fill="#2496ed" opacity="0.15"/>
+  <text x="400" y="409" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="600" fill="#60a5fa">BEGINNER</text>
+</svg>
