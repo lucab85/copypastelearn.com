@@ -329,6 +329,12 @@ export default async function PricingPage({
               <Button asChild size="lg" className="w-full" variant="outline">
                 <Link href="/settings">You&apos;re subscribed — Manage</Link>
               </Button>
+            ) : userId ? (
+              <Suspense>
+                <PricingCheckoutButton size="lg" className="w-full" plan="annual">
+                  Subscribe — €{ANNUAL_PRICE_EUR}/yr (Save €{SUBSCRIPTION_PRICE_EUR * 12 - ANNUAL_PRICE_EUR})
+                </PricingCheckoutButton>
+              </Suspense>
             ) : (
               <Button asChild size="lg" className="w-full">
                 <Link href={code ? `/sign-up?redirect_url=/pricing?code=${encodeURIComponent(code)}` : "/sign-up"}>Get Started — Save €{SUBSCRIPTION_PRICE_EUR * 12 - ANNUAL_PRICE_EUR}</Link>
