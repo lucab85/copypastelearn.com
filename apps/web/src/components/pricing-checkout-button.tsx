@@ -7,17 +7,19 @@ import type { ButtonProps } from "@/components/ui/button";
 
 interface PricingCheckoutButtonProps extends Omit<ButtonProps, "onClick"> {
   children?: React.ReactNode;
+  plan?: "monthly" | "annual";
 }
 
 export function PricingCheckoutButton({
   children,
+  plan = "monthly",
   ...props
 }: PricingCheckoutButtonProps) {
   const searchParams = useSearchParams();
   const code = searchParams.get("code") ?? undefined;
 
   return (
-    <CheckoutButton promoCode={code} {...props}>
+    <CheckoutButton promoCode={code} plan={plan} {...props}>
       {children ?? `Subscribe Now — €${SUBSCRIPTION_PRICE_EUR}/mo`}
     </CheckoutButton>
   );

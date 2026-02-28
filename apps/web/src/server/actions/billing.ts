@@ -17,14 +17,17 @@ function getAppUrl() {
 // ─── Create Checkout Session ────────────────────────────
 
 export async function createCheckoutSession(
-  promoCode?: string
+  promoCode?: string,
+  plan: "monthly" | "annual" = "monthly"
 ): Promise<{ url: string }> {
   const user = await requireAuth();
   const stripe = getStripe();
   const appUrl = getAppUrl();
 
-  const priceId = process.env.STRIPE_PRICE_ID;
-  if (!priceId) throw new Error("STRIPE_PRICE_ID is not set");
+  const priceId = plan === "annual"
+    ? process.env.STRIPE_ANNUAL_PRICE_ID
+    : process.env.STRIPE_PRICE_ID;
+  if (!priceId) throw new Error(`STRIPE_${plan === "annual" ? "ANNUAL_" : ""}PRICE_ID is not set`);
 
   // Check if the user already has an active subscription
   const existing = await db.subscription.findUnique({
