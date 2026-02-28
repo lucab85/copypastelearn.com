@@ -27,14 +27,23 @@ export function CourseCard({ course }: CourseCardProps) {
       <Card className="group h-full transition-all hover:border-primary/20 hover:shadow-lg hover:shadow-primary/5">
         {course.thumbnailUrl ? (
           <div className="relative aspect-video w-full overflow-hidden rounded-t-lg">
-            <Image
-              src={course.thumbnailUrl}
-              alt={course.title}
-              fill
-              className="object-cover transition-transform group-hover:scale-105"
-              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-              priority={false}
-            />
+            {course.thumbnailUrl.endsWith('.svg') ? (
+              /* eslint-disable-next-line @next/next/no-img-element */
+              <img
+                src={course.thumbnailUrl}
+                alt={course.title}
+                className="h-full w-full object-cover transition-transform group-hover:scale-105"
+              />
+            ) : (
+              <Image
+                src={course.thumbnailUrl}
+                alt={course.title}
+                fill
+                className="object-cover transition-transform group-hover:scale-105"
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                priority={false}
+              />
+            )}
           </div>
         ) : (
           <div className="flex aspect-video w-full items-center justify-center rounded-t-lg bg-gradient-to-br from-primary/10 to-primary/5">

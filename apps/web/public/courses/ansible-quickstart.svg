@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0b1120"/>
+      <stop offset="100%" stop-color="#1e293b"/>
+    </linearGradient>
+    <linearGradient id="ansible" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ee0000"/>
+      <stop offset="100%" stop-color="#cc0000"/>
+    </linearGradient>
+    <linearGradient id="glow" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ee0000" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="#ee0000" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="450" fill="url(#bg)"/>
+
+  <!-- Subtle grid -->
+  <g stroke="#334155" stroke-width="0.5" opacity="0.3">
+    <line x1="0" y1="75" x2="800" y2="75"/>
+    <line x1="0" y1="150" x2="800" y2="150"/>
+    <line x1="0" y1="225" x2="800" y2="225"/>
+    <line x1="0" y1="300" x2="800" y2="300"/>
+    <line x1="0" y1="375" x2="800" y2="375"/>
+    <line x1="200" y1="0" x2="200" y2="450"/>
+    <line x1="400" y1="0" x2="400" y2="450"/>
+    <line x1="600" y1="0" x2="600" y2="450"/>
+  </g>
+
+  <!-- Glow behind icon -->
+  <circle cx="400" cy="170" r="120" fill="url(#glow)"/>
+
+  <!-- Ansible "A" logo circle -->
+  <circle cx="400" cy="170" r="70" fill="url(#ansible)"/>
+  <!-- The "A" -->
+  <path d="M400 120 L425 210 L385 185Z" fill="white" opacity="0.95"/>
+  <line x1="390" y1="175" x2="418" y2="195" stroke="white" stroke-width="4" stroke-linecap="round" opacity="0.95"/>
+
+  <!-- Connection lines (automation flow) -->
+  <g opacity="0.5">
+    <!-- Server nodes -->
+    <rect x="150" y="110" width="50" height="35" rx="4" fill="#1e293b" stroke="#ef4444" stroke-width="1"/>
+    <rect x="155" y="118" width="12" height="3" rx="1" fill="#f87171" opacity="0.7"/>
+    <rect x="155" y="124" width="18" height="3" rx="1" fill="#f87171" opacity="0.5"/>
+    <rect x="155" y="130" width="10" height="3" rx="1" fill="#f87171" opacity="0.3"/>
+
+    <rect x="600" y="110" width="50" height="35" rx="4" fill="#1e293b" stroke="#ef4444" stroke-width="1"/>
+    <rect x="605" y="118" width="12" height="3" rx="1" fill="#f87171" opacity="0.7"/>
+    <rect x="605" y="124" width="18" height="3" rx="1" fill="#f87171" opacity="0.5"/>
+    <rect x="605" y="130" width="10" height="3" rx="1" fill="#f87171" opacity="0.3"/>
+
+    <rect x="150" y="205" width="50" height="35" rx="4" fill="#1e293b" stroke="#ef4444" stroke-width="1"/>
+    <rect x="155" y="213" width="12" height="3" rx="1" fill="#f87171" opacity="0.7"/>
+    <rect x="155" y="219" width="18" height="3" rx="1" fill="#f87171" opacity="0.5"/>
+    <rect x="155" y="225" width="10" height="3" rx="1" fill="#f87171" opacity="0.3"/>
+
+    <rect x="600" y="205" width="50" height="35" rx="4" fill="#1e293b" stroke="#ef4444" stroke-width="1"/>
+    <rect x="605" y="213" width="12" height="3" rx="1" fill="#f87171" opacity="0.7"/>
+    <rect x="605" y="219" width="18" height="3" rx="1" fill="#f87171" opacity="0.5"/>
+    <rect x="605" y="225" width="10" height="3" rx="1" fill="#f87171" opacity="0.3"/>
+
+    <!-- Connection lines -->
+    <line x1="200" y1="128" x2="330" y2="155" stroke="#f87171" stroke-width="1" stroke-dasharray="5 4"/>
+    <line x1="600" y1="128" x2="470" y2="155" stroke="#f87171" stroke-width="1" stroke-dasharray="5 4"/>
+    <line x1="200" y1="222" x2="330" y2="190" stroke="#f87171" stroke-width="1" stroke-dasharray="5 4"/>
+    <line x1="600" y1="222" x2="470" y2="190" stroke="#f87171" stroke-width="1" stroke-dasharray="5 4"/>
+  </g>
+
+  <!-- YAML snippet hint -->
+  <g transform="translate(280, 260)" opacity="0.3">
+    <text font-family="monospace" font-size="11" fill="#f87171">- hosts: all</text>
+    <text y="16" font-family="monospace" font-size="11" fill="#94a3b8">  tasks:</text>
+    <text y="32" font-family="monospace" font-size="11" fill="#94a3b8">    - name: deploy</text>
+  </g>
+
+  <!-- Title -->
+  <text x="400" y="345" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="32" font-weight="700" fill="white" letter-spacing="-0.5">Ansible Quickstart</text>
+  <text x="400" y="380" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="16" fill="#94a3b8">IT automation in 30 minutes</text>
+
+  <!-- Badge -->
+  <rect x="340" y="395" width="120" height="28" rx="14" fill="#ef4444" opacity="0.15"/>
+  <text x="400" y="414" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="600" fill="#f87171">BEGINNER</text>
+</svg>

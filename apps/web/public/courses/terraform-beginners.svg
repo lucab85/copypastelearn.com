@@ -1,0 +1,96 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0b1120"/>
+      <stop offset="100%" stop-color="#1e293b"/>
+    </linearGradient>
+    <linearGradient id="terraform" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#7b42bc"/>
+      <stop offset="100%" stop-color="#5c4ee5"/>
+    </linearGradient>
+    <linearGradient id="glow" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#7b42bc" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#7b42bc" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="450" fill="url(#bg)"/>
+
+  <!-- Subtle grid -->
+  <g stroke="#334155" stroke-width="0.5" opacity="0.3">
+    <line x1="0" y1="75" x2="800" y2="75"/>
+    <line x1="0" y1="150" x2="800" y2="150"/>
+    <line x1="0" y1="225" x2="800" y2="225"/>
+    <line x1="0" y1="300" x2="800" y2="300"/>
+    <line x1="0" y1="375" x2="800" y2="375"/>
+    <line x1="200" y1="0" x2="200" y2="450"/>
+    <line x1="400" y1="0" x2="400" y2="450"/>
+    <line x1="600" y1="0" x2="600" y2="450"/>
+  </g>
+
+  <!-- Glow behind icon -->
+  <circle cx="400" cy="160" r="130" fill="url(#glow)"/>
+
+  <!-- Terraform logo (stylized interlocking blocks) -->
+  <g transform="translate(355, 105)">
+    <!-- Top-left block -->
+    <polygon points="0,25 40,0 40,45 0,70" fill="#7b42bc" opacity="0.85"/>
+    <!-- Top-right block -->
+    <polygon points="48,25 88,0 88,45 48,70" fill="url(#terraform)" opacity="0.95"/>
+    <!-- Bottom-right block -->
+    <polygon points="48,78 88,53 88,98 48,123" fill="url(#terraform)" opacity="0.95"/>
+    <!-- Far-right block -->
+    <polygon points="96,0 136,-25 136,20 96,45" fill="#5c4ee5" opacity="0.7"/>
+  </g>
+
+  <!-- Infrastructure nodes (left side) -->
+  <g opacity="0.4">
+    <!-- Cloud box -->
+    <rect x="90" y="105" width="65" height="35" rx="4" fill="#1e293b" stroke="#7b42bc" stroke-width="1"/>
+    <text x="122" y="127" text-anchor="middle" font-family="monospace" font-size="10" fill="#a78bfa">VPC</text>
+    <!-- Compute box -->
+    <rect x="90" y="155" width="65" height="35" rx="4" fill="#1e293b" stroke="#7b42bc" stroke-width="1"/>
+    <text x="122" y="177" text-anchor="middle" font-family="monospace" font-size="10" fill="#a78bfa">EC2</text>
+    <!-- Database box -->
+    <rect x="90" y="205" width="65" height="35" rx="4" fill="#1e293b" stroke="#7b42bc" stroke-width="1"/>
+    <text x="122" y="227" text-anchor="middle" font-family="monospace" font-size="10" fill="#a78bfa">RDS</text>
+    <!-- Connection lines -->
+    <line x1="155" y1="122" x2="350" y2="145" stroke="#7b42bc" stroke-width="1" stroke-dasharray="5 4"/>
+    <line x1="155" y1="172" x2="350" y2="165" stroke="#7b42bc" stroke-width="1" stroke-dasharray="5 4"/>
+    <line x1="155" y1="222" x2="350" y2="185" stroke="#7b42bc" stroke-width="1" stroke-dasharray="5 4"/>
+  </g>
+
+  <!-- Infrastructure nodes (right side) -->
+  <g opacity="0.4">
+    <!-- DNS box -->
+    <rect x="645" y="105" width="65" height="35" rx="4" fill="#1e293b" stroke="#5c4ee5" stroke-width="1"/>
+    <text x="677" y="127" text-anchor="middle" font-family="monospace" font-size="10" fill="#818cf8">DNS</text>
+    <!-- LB box -->
+    <rect x="645" y="155" width="65" height="35" rx="4" fill="#1e293b" stroke="#5c4ee5" stroke-width="1"/>
+    <text x="677" y="177" text-anchor="middle" font-family="monospace" font-size="10" fill="#818cf8">ALB</text>
+    <!-- S3 box -->
+    <rect x="645" y="205" width="65" height="35" rx="4" fill="#1e293b" stroke="#5c4ee5" stroke-width="1"/>
+    <text x="677" y="227" text-anchor="middle" font-family="monospace" font-size="10" fill="#818cf8">S3</text>
+    <!-- Connection lines -->
+    <line x1="645" y1="122" x2="496" y2="145" stroke="#5c4ee5" stroke-width="1" stroke-dasharray="5 4"/>
+    <line x1="645" y1="172" x2="496" y2="165" stroke="#5c4ee5" stroke-width="1" stroke-dasharray="5 4"/>
+    <line x1="645" y1="222" x2="496" y2="185" stroke="#5c4ee5" stroke-width="1" stroke-dasharray="5 4"/>
+  </g>
+
+  <!-- HCL code hint -->
+  <g transform="translate(255, 255)" opacity="0.25">
+    <text font-family="monospace" font-size="11" fill="#a78bfa">resource "aws_instance" "web" {</text>
+    <text y="16" font-family="monospace" font-size="11" fill="#94a3b8">  ami = "ami-0c55b159"</text>
+    <text y="32" font-family="monospace" font-size="11" fill="#94a3b8">  instance_type = "t3.micro"</text>
+    <text y="48" font-family="monospace" font-size="11" fill="#a78bfa">}</text>
+  </g>
+
+  <!-- Title -->
+  <text x="400" y="348" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="30" font-weight="700" fill="white" letter-spacing="-0.5">Terraform for Beginners</text>
+  <text x="400" y="383" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="16" fill="#94a3b8">Code, deploy, and scale infrastructure</text>
+
+  <!-- Badge -->
+  <rect x="340" y="398" width="120" height="28" rx="14" fill="#7b42bc" opacity="0.15"/>
+  <text x="400" y="417" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="600" fill="#a78bfa">BEGINNER</text>
+</svg>
