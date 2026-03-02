@@ -119,7 +119,7 @@ export function NetworkFooter() {
             }`}
             {...(!site.active && {
               target: "_blank",
-              rel: "noopener noreferrer",
+              rel: "noopener",
             })}
           >
             {site.icon}

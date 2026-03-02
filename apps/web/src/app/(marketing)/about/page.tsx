@@ -141,28 +141,101 @@ export default function AboutPage() {
                 <a
                   href="https://www.ansiblepilot.com"
                   target="_blank"
-                  rel="noopener noreferrer"
+                  rel="noopener"
                   className="font-medium text-foreground underline underline-offset-4 hover:text-primary"
                 >
                   Ansible Pilot
-                </a>{" "}
-                and has helped thousands of professionals automate their
+                </a>
+                , creator of{" "}
+                <a
+                  href="https://kubernetes.recipes/"
+                  target="_blank"
+                  rel="noopener"
+                  className="font-medium text-foreground underline underline-offset-4 hover:text-primary"
+                >
+                  Kubernetes Recipes
+                </a>
+                {" "}and{" "}
+                <a
+                  href="https://www.terraformpilot.com/"
+                  target="_blank"
+                  rel="noopener"
+                  className="font-medium text-foreground underline underline-offset-4 hover:text-primary"
+                >
+                  Terraform Pilot
+                </a>
+                , and founder of{" "}
+                <a
+                  href="https://www.openempower.com/"
+                  target="_blank"
+                  rel="noopener"
+                  className="font-medium text-foreground underline underline-offset-4 hover:text-primary"
+                >
+                  Open Empower
+                </a>
+                {" "}— a consultancy focused on AI and platform engineering.
+                He&apos;s also published{" "}
+                <a
+                  href="https://www.ansiblebyexample.com/"
+                  target="_blank"
+                  rel="noopener"
+                  className="font-medium text-foreground underline underline-offset-4 hover:text-primary"
+                >
+                  Ansible By Example
+                </a>
+                {" "}and has helped thousands of professionals automate their
                 infrastructure through hands-on training.
               </p>
               <div className="mt-4 flex flex-wrap gap-3 text-sm">
                 <a
                   href="https://www.lucaberton.com"
                   target="_blank"
-                  rel="noopener noreferrer"
+                  rel="noopener"
                   className="text-muted-foreground transition-colors hover:text-primary"
                 >
                   lucaberton.com
                 </a>
                 <span className="text-muted-foreground/30">·</span>
                 <a
+                  href="https://www.ansiblepilot.com"
+                  target="_blank"
+                  rel="noopener"
+                  className="text-muted-foreground transition-colors hover:text-primary"
+                >
+                  ansiblepilot.com
+                </a>
+                <span className="text-muted-foreground/30">·</span>
+                <a
+                  href="https://www.terraformpilot.com"
+                  target="_blank"
+                  rel="noopener"
+                  className="text-muted-foreground transition-colors hover:text-primary"
+                >
+                  terraformpilot.com
+                </a>
+                <span className="text-muted-foreground/30">·</span>
+                <a
+                  href="https://kubernetes.recipes"
+                  target="_blank"
+                  rel="noopener"
+                  className="text-muted-foreground transition-colors hover:text-primary"
+                >
+                  kubernetes.recipes
+                </a>
+                <span className="text-muted-foreground/30">·</span>
+                <a
+                  href="https://www.openempower.com"
+                  target="_blank"
+                  rel="noopener"
+                  className="text-muted-foreground transition-colors hover:text-primary"
+                >
+                  openempower.com
+                </a>
+                <span className="text-muted-foreground/30">·</span>
+                <a
                   href="https://twitter.com/yourlinuxsa"
                   target="_blank"
-                  rel="noopener noreferrer"
+                  rel="noopener"
                   className="text-muted-foreground transition-colors hover:text-primary"
                 >
                   @yourlinuxsa
