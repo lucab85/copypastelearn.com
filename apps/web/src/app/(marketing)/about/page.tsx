@@ -199,7 +199,7 @@ export default function AboutPage() {
                 </a>
                 {" "}and{" "}
                 <a
-                  href="https://lucaberton.com/blog/kubecon-eu-2026/"
+                  href="https://lucaberton.com/blog/kubecon-europe-2026/"
                   target="_blank"
                   rel="noopener"
                   className="font-medium text-foreground underline underline-offset-4 hover:text-primary"
