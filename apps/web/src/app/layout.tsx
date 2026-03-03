@@ -3,6 +3,7 @@ import { Suspense } from "react";
 import Script from "next/script";
 import { SiteHeader } from "@/components/layout/site-header";
 import { SiteFooter } from "@/components/layout/site-footer";
+import { AnnouncementBanner } from "@/components/layout/announcement-banner";
 import { RouteChangeTracker } from "@/components/analytics/route-change-tracker";
 import "./globals.css";
 
@@ -157,6 +158,12 @@ export default async function RootLayout({
             enable.
           </div>
         )}
+        <AnnouncementBanner
+          message="🎤 Luca Berton is speaking at Red Hat Summit & KubeCon EU 2026!"
+          linkText="Learn more"
+          linkHref="https://lucaberton.com/blog/red-hat-summit-2026/"
+          externalLink
+        />
         <SiteHeader />
         <main id="main-content" className="flex-1">{children}</main>
         <SiteFooter />
