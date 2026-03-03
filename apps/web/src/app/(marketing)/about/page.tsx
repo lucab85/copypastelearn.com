@@ -46,6 +46,10 @@ function AboutPageJsonLd() {
           "https://www.lucaberton.com",
           "https://twitter.com/yourlinuxsa",
           "https://www.ansiblepilot.com",
+          "https://www.terraformpilot.com",
+          "https://kubernetes.recipes",
+          "https://www.openempower.com",
+          "https://www.ansiblebyexample.com",
         ],
       },
       sameAs: [
@@ -184,7 +188,25 @@ export default function AboutPage() {
                   Ansible By Example
                 </a>
                 {" "}and has helped thousands of professionals automate their
-                infrastructure through hands-on training.
+                infrastructure through hands-on training. Luca is a speaker at{" "}
+                <a
+                  href="https://lucaberton.com/blog/red-hat-summit-2026/"
+                  target="_blank"
+                  rel="noopener"
+                  className="font-medium text-foreground underline underline-offset-4 hover:text-primary"
+                >
+                  Red Hat Summit 2026
+                </a>
+                {" "}and{" "}
+                <a
+                  href="https://lucaberton.com/blog/kubecon-eu-2026/"
+                  target="_blank"
+                  rel="noopener"
+                  className="font-medium text-foreground underline underline-offset-4 hover:text-primary"
+                >
+                  KubeCon EU 2026
+                </a>
+                , presenting on multi-tenant GPU orchestration and platform engineering with OpenShift AI.
               </p>
               <div className="mt-4 flex flex-wrap gap-3 text-sm">
                 <a
