@@ -8,6 +8,7 @@ export const metadata = {
   title: "Sign In",
   description:
     "Sign in to CopyPasteLearn to access your courses, interactive labs, and track your learning progress.",
+  alternates: { canonical: "/sign-in" },
   robots: { index: false, follow: true },
 };
 
