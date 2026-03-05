@@ -5,7 +5,7 @@ export const metadata: Metadata = {
   title: "Terms of Service",
   description: "CopyPasteLearn terms of service — rules and guidelines for using our platform, including subscriptions, content usage, and acceptable use policies.",
   alternates: { canonical: "/terms" },
-  openGraph: { url: "/terms" },
+  openGraph: { url: "/terms", type: "website" },
   robots: { index: true, follow: true },
 };
 

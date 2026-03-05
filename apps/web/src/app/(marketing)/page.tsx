@@ -31,7 +31,7 @@ export const revalidate = 3600;
 
 export const metadata: Metadata = {
   alternates: { canonical: "/" },
-  openGraph: { url: "/" },
+  openGraph: { url: "https://www.copypastelearn.com/", type: "website" },
 };
 
 /* ─── Structured Data ──────────────────────────────── */
