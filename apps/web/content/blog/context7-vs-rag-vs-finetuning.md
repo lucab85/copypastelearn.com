@@ -1,5 +1,5 @@
 ---
-title: "Context7 vs RAG vs Fine-Tuning: Keeping AI Up-to-Date"
+title: "Context7 vs RAG vs Fine-Tuning"
 description: "Compare three approaches to giving LLMs current knowledge: Context7's real-time docs, RAG pipelines, and model fine-tuning. When to use each."
 date: "2026-02-22"
 author: "Luca Berton"

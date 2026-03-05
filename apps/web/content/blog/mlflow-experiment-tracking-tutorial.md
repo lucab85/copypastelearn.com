@@ -1,5 +1,5 @@
 ---
-title: "MLflow Experiment Tracking: A Practical Tutorial"
+title: "MLflow Experiment Tracking"
 description: "Learn how to track ML experiments with MLflow — log parameters, metrics, and artifacts. Compare model runs and find the best configuration."
 date: "2026-02-25"
 author: "Luca Berton"

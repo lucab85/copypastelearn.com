@@ -1,5 +1,5 @@
 ---
-title: "KServe on Kubernetes: Serving ML Models in Production"
+title: "KServe on Kubernetes"
 description: "Learn how to install and configure KServe on Kubernetes for production ML model serving — InferenceService, autoscaling, and canary deployments."
 date: "2026-02-23"
 author: "Luca Berton"

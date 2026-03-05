@@ -1,5 +1,5 @@
 ---
-title: "OpenClaw Sub-Agents: Parallel AI Task Execution"
+title: "OpenClaw Sub-Agents"
 description: "Learn how to use OpenClaw sub-agents for parallel task execution — spawning, managing, and orchestrating multiple AI workers."
 date: "2026-02-14"
 author: "Luca Berton"

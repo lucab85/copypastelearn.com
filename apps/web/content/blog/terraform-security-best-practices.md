@@ -1,5 +1,5 @@
 ---
-title: "Terraform Security Best Practices for Production"
+title: "Terraform Security Practices"
 description: "Secure your Terraform workflows — manage secrets, control access, encrypt state, and implement policy-as-code for safe infrastructure deployments."
 date: "2026-02-21"
 author: "Luca Berton"

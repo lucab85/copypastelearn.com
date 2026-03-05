@@ -1,5 +1,5 @@
 ---
-title: "Terraform State Management: What It Is and Why It Matters"
+title: "Terraform State Management"
 description: "Understand Terraform state — how it tracks resources, why it's critical, and best practices for remote state, locking, and team workflows."
 date: "2026-02-24"
 author: "Luca Berton"

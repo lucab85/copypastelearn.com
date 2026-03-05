@@ -1,5 +1,5 @@
 ---
-title: "OpenClaw SOUL.md: Crafting Your Agent's Personality"
+title: "OpenClaw SOUL.md Guide"
 description: "Master the art of defining AI agent personality through SOUL.md. Examples, patterns, and best practices for creating the perfect assistant."
 date: "2026-02-19"
 author: "Luca Berton"

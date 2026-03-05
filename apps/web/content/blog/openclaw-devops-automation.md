@@ -1,5 +1,5 @@
 ---
-title: "OpenClaw for DevOps: Automating Your Infrastructure"
+title: "OpenClaw for DevOps"
 description: "Use OpenClaw as your DevOps assistant — monitoring servers, managing deployments, checking logs, and automating infrastructure tasks."
 date: "2026-02-08"
 author: "Luca Berton"

@@ -1,5 +1,5 @@
 ---
-title: "Terraform for Beginners: Your Complete Getting Started Guide"
+title: "Terraform for Beginners Guide"
 description: "Everything you need to know to start using Terraform for Infrastructure as Code. From installation to your first deployment on AWS."
 date: "2026-02-27"
 author: "Luca Berton"

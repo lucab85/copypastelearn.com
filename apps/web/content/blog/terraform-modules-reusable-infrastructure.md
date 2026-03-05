@@ -1,5 +1,5 @@
 ---
-title: "Terraform Modules: Build Reusable Infrastructure"
+title: "Terraform Modules Guide"
 description: "Learn how to create and use Terraform modules to organize, share, and reuse infrastructure code across projects and teams."
 date: "2026-02-23"
 author: "Luca Berton"

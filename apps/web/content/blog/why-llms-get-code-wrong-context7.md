@@ -1,5 +1,5 @@
 ---
-title: "Why LLMs Get Your Code Wrong (And How Context7 Fixes It)"
+title: "Why LLMs Get Your Code Wrong"
 description: "Understand why AI assistants hallucinate outdated APIs and how Context7's real-time documentation solves the version mismatch problem."
 date: "2026-02-24"
 author: "Luca Berton"

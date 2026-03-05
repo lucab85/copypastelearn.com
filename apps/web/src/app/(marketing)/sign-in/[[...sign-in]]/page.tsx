@@ -9,6 +9,7 @@ export const metadata = {
   description:
     "Sign in to CopyPasteLearn to access your courses, interactive hands-on labs, and track your learning progress across all devices.",
   alternates: { canonical: "/sign-in" },
+  openGraph: { url: "/sign-in" },
   robots: { index: false, follow: true },
 };
 

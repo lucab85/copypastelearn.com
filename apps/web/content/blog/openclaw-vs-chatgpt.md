@@ -1,5 +1,5 @@
 ---
-title: "OpenClaw vs ChatGPT: Why Self-Hosted AI Agents Matter"
+title: "OpenClaw vs ChatGPT"
 description: "Compare OpenClaw's self-hosted approach with ChatGPT and other cloud AI services. Learn the trade-offs between control, privacy, and convenience."
 date: "2026-02-25"
 author: "Luca Berton"
