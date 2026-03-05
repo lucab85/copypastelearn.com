@@ -22,7 +22,7 @@ import { SUBSCRIPTION_PRICE_EUR } from "@copypastelearn/shared";
 import { getSubscriptionStatus } from "@/lib/billing";
 
 export const metadata: Metadata = {
-  title: "Pricing",
+  title: "Pricing Plans & Subscriptions — CopyPasteLearn",
   description:
     "Simple, transparent pricing for CopyPasteLearn. One plan, everything included — courses, labs, and certificates.",
   alternates: { canonical: "/pricing" },

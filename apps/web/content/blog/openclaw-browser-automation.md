@@ -45,7 +45,7 @@ browser(action: "act", request: {
 
 ```
 browser(action: "act", request: {
-  kind: "fill", ref: "e15", text: "hello@example.com"
+  kind: "fill", ref: "e15", text: "hello&#64;example.com"
 })
 ```
 
