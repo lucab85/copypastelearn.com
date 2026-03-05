@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { MailtoButton } from "@/components/ui/mailto-button";
+import { EmailLink } from "@/components/ui/email-link";
 import {
   Card,
   CardContent,
@@ -492,11 +494,9 @@ export default function AIPlatformEngineeringPage() {
                   <span>{f}</span>
                 </div>
               ))}
-              <Button className="mt-4 w-full" asChild>
-                <Link href="mailto:luca@lucaberton.it?subject=AI%20Platform%20Engineering%20-%20Individual">
+              <MailtoButton className="mt-4 w-full" user="luca" domain="lucaberton.it" subject="AI Platform Engineering - Individual">
                   Reserve Your Seat
-                </Link>
-              </Button>
+              </MailtoButton>
             </CardContent>
           </Card>
 
@@ -526,11 +526,9 @@ export default function AIPlatformEngineeringPage() {
                   <span>{f}</span>
                 </div>
               ))}
-              <Button className="mt-4 w-full" asChild>
-                <Link href="mailto:luca@lucaberton.it?subject=AI%20Platform%20Engineering%20-%20Team">
+              <MailtoButton className="mt-4 w-full" user="luca" domain="lucaberton.it" subject="AI Platform Engineering - Team">
                   Contact for Team Pricing
-                </Link>
-              </Button>
+              </MailtoButton>
             </CardContent>
           </Card>
 
@@ -554,11 +552,9 @@ export default function AIPlatformEngineeringPage() {
                   <span>{f}</span>
                 </div>
               ))}
-              <Button className="mt-4 w-full" variant="outline" asChild>
-                <Link href="mailto:luca@lucaberton.it?subject=AI%20Platform%20Engineering%20-%20Enterprise">
+              <MailtoButton className="mt-4 w-full" variant="outline" user="luca" domain="lucaberton.it" subject="AI Platform Engineering - Enterprise">
                   Contact Us
-                </Link>
-              </Button>
+              </MailtoButton>
             </CardContent>
           </Card>
         </div>
@@ -601,20 +597,17 @@ export default function AIPlatformEngineeringPage() {
             high-impact.
           </p>
           <div className="mt-8">
-            <Button size="lg" asChild>
-              <Link href="mailto:luca@lucaberton.it?subject=AI%20Platform%20Engineering%20-%20Reserve%20Seat">
+            <MailtoButton size="lg" user="luca" domain="lucaberton.it" subject="AI Platform Engineering - Reserve Seat">
                 Reserve Your Seat — €2,500 <ArrowRight className="ml-2 h-4 w-4" />
-              </Link>
-            </Button>
+            </MailtoButton>
           </div>
           <p className="mt-4 text-sm text-muted-foreground">
             Questions?{" "}
-            <Link
-              href="mailto:luca@lucaberton.it"
+            <EmailLink
+              user="luca"
+              domain="lucaberton.it"
               className="underline hover:text-foreground"
-            >
-              luca@lucaberton.it
-            </Link>
+            />
           </p>
         </div>
       </section>
