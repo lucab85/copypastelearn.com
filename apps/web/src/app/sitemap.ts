@@ -76,7 +76,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         slug: true,
         updatedAt: true,
         lessons: {
-          where: { status: "PUBLISHED" },
+          where: { status: "PUBLISHED", isFree: true },
           select: { slug: true, updatedAt: true },
           orderBy: { sortOrder: "asc" },
         },

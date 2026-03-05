@@ -29,7 +29,7 @@ export async function generateMetadata({
       title: lesson.title,
       description: `Watch the ${lesson.title} lesson on CopyPasteLearn. Master IT automation with expert-led video instruction and hands-on interactive labs.`,
       alternates: { canonical: `/courses/${slug}/lessons/${lessonSlug}` },
-      openGraph: { url: `/courses/${slug}/lessons/${lessonSlug}` },
+      openGraph: { url: `/courses/${slug}/lessons/${lessonSlug}`, type: "website" },
       robots: { index: true, follow: true },
     };
   } catch {
@@ -39,6 +39,7 @@ export async function generateMetadata({
       description:
         "This lesson is part of a CopyPasteLearn course. Subscribe to unlock expert video lessons and hands-on interactive labs in real environments.",
       alternates: { canonical: `/courses/${slug}/lessons/${lessonSlug}` },
+      openGraph: { url: `/courses/${slug}/lessons/${lessonSlug}` },
       robots: { index: false, follow: true },
     };
   }
