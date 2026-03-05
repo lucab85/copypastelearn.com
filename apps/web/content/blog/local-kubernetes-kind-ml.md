@@ -1,5 +1,5 @@
 ---
-title: "Setting Up a Local Kubernetes Cluster with Kind for ML"
+title: "Local Kubernetes with Kind"
 description: "Step-by-step guide to creating a local Kubernetes cluster using Kind for ML model development and testing before deploying to production."
 date: "2026-02-26"
 author: "Luca Berton"

@@ -1,5 +1,5 @@
 ---
-title: "Infrastructure as Code Explained: Why Every DevOps Engineer Needs It"
+title: "Infrastructure as Code Explained"
 description: "Understand Infrastructure as Code (IaC) — what it is, why it matters, and how tools like Terraform are transforming cloud infrastructure management."
 date: "2026-02-26"
 author: "Luca Berton"

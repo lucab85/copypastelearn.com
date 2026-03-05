@@ -1,5 +1,5 @@
 ---
-title: "Securing Your OpenClaw Agent: Best Practices"
+title: "Securing Your OpenClaw Agent"
 description: "Security guide for self-hosted OpenClaw agents — API key management, network hardening, permission boundaries, and data protection."
 date: "2026-02-17"
 author: "Luca Berton"

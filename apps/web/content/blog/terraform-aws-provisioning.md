@@ -1,5 +1,5 @@
 ---
-title: "Provisioning AWS Infrastructure with Terraform: A Hands-On Guide"
+title: "Terraform AWS Provisioning Guide"
 description: "Step-by-step guide to provisioning real AWS resources with Terraform — VPCs, EC2 instances, security groups, and S3 buckets."
 date: "2026-02-22"
 author: "Luca Berton"

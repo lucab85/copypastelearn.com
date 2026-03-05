@@ -1,5 +1,5 @@
 ---
-title: "Terraform Lifecycle Rules: Control How Resources Change"
+title: "Terraform Lifecycle Rules"
 description: "Master Terraform lifecycle rules — prevent_destroy, create_before_destroy, ignore_changes, and replace_triggered_by for safe infrastructure updates."
 date: "2026-02-18"
 author: "Luca Berton"

@@ -1,5 +1,5 @@
 ---
-title: "Context7 + Cursor: Stop AI Hallucinations in Your Code Editor"
+title: "Context7 + Cursor: Stop AI Errors"
 description: "Learn how to use Context7 with Cursor AI editor for accurate, version-specific code completions. Step-by-step setup and workflow guide."
 date: "2026-02-25"
 author: "Luca Berton"

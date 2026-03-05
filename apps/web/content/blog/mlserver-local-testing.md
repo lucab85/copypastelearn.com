@@ -1,5 +1,5 @@
 ---
-title: "MLServer: Test Your ML Models Locally Before Kubernetes"
+title: "MLServer: Test ML Models Locally"
 description: "Use MLServer to serve and test MLflow models locally before deploying to Kubernetes. Quick setup guide with inference examples."
 date: "2026-02-18"
 author: "Luca Berton"

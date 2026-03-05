@@ -1,5 +1,5 @@
 ---
-title: "Terraform vs CloudFormation vs Pulumi: Which IaC Tool to Choose?"
+title: "Terraform vs CloudFormation vs Pulumi"
 description: "Compare the top Infrastructure as Code tools — Terraform, AWS CloudFormation, and Pulumi. Understand their strengths, weaknesses, and ideal use cases."
 date: "2026-02-20"
 author: "Luca Berton"

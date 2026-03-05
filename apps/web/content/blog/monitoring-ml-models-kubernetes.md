@@ -1,5 +1,5 @@
 ---
-title: "Monitoring ML Models in Kubernetes: A Practical Guide"
+title: "Monitoring ML Models in K8s"
 description: "Monitor deployed ML models on Kubernetes — track prediction accuracy, latency, resource usage, and detect model drift in production."
 date: "2026-02-19"
 author: "Luca Berton"

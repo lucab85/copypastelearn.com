@@ -1,5 +1,5 @@
 ---
-title: "Hyperparameter Tuning with MLflow and RandomizedSearchCV"
+title: "Hyperparameter Tuning with MLflow"
 description: "Combine scikit-learn's RandomizedSearchCV with MLflow tracking to find optimal model parameters and compare results visually."
 date: "2026-02-24"
 author: "Luca Berton"

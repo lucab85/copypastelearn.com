@@ -1,5 +1,5 @@
 ---
-title: "OpenClaw Browser Automation: Web Scraping and Testing"
+title: "OpenClaw Browser Automation"
 description: "Use OpenClaw's browser tool for web automation — scraping, testing, form filling, and monitoring. No Selenium or Puppeteer setup needed."
 date: "2026-02-12"
 author: "Luca Berton"

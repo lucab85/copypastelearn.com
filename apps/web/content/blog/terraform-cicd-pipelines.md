@@ -1,5 +1,5 @@
 ---
-title: "Terraform CI/CD: Automating Infrastructure Deployments"
+title: "Terraform CI/CD Pipelines"
 description: "Build CI/CD pipelines for Terraform using GitHub Actions. Automate plan, apply, and destroy workflows with safety checks."
 date: "2026-02-19"
 author: "Luca Berton"

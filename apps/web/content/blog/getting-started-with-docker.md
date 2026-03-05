@@ -1,5 +1,5 @@
 ---
-title: "Getting Started with Docker: A Practical Guide for Beginners"
+title: "Getting Started with Docker"
 description: "Learn Docker fundamentals from scratch — containers, images, Dockerfiles, and real-world workflows. No prior experience needed."
 date: "2026-02-26"
 author: "Luca Berton"

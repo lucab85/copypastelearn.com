@@ -1,5 +1,5 @@
 ---
-title: "MLflow Model Registry: Version Control for ML Models"
+title: "MLflow Model Registry"
 description: "Use MLflow Model Registry to manage model versions, stage transitions, and governance. Essential for production MLOps workflows."
 date: "2026-02-21"
 author: "Luca Berton"

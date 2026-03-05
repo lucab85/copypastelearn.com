@@ -1,5 +1,5 @@
 ---
-title: "MLflow for Kubernetes: The Complete MLOps Guide"
+title: "MLflow for Kubernetes"
 description: "Learn how to deploy and manage ML models at scale using MLflow, Kubernetes, KServe, and Docker. A comprehensive guide to production MLOps."
 date: "2026-02-27"
 author: "Luca Berton"

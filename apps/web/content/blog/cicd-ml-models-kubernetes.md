@@ -1,5 +1,5 @@
 ---
-title: "CI/CD for ML Models: Automating Kubernetes Deployments"
+title: "CI/CD for ML on Kubernetes"
 description: "Build a CI/CD pipeline for ML models using GitHub Actions, MLflow, Docker, and Kubernetes. Automate the path from training to production."
 date: "2026-02-20"
 author: "Luca Berton"
