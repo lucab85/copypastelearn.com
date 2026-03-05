@@ -1,6 +1,6 @@
 ---
 title: "What is Context7? Up-to-Date Documentation for AI Code Editors"
-description: "Discover Context7, the tool that provides version-specific, accurate documentation to LLMs and AI code editors like Cursor and Claude. No more hallucinated APIs."
+description: "Discover Context7, the tool that gives version-specific, accurate documentation to LLMs and AI code editors like Cursor and Claude. No more hallucinated APIs."
 date: "2026-02-26"
 author: "Luca Berton"
 category: "AI Tools"

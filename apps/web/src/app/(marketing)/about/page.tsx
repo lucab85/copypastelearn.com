@@ -4,11 +4,13 @@ import { Terminal, Users, Rocket } from "lucide-react";
 import { EmailLink } from "@/components/ui/email-link";
 
 export const metadata: Metadata = {
-  title: "About",
+  title: "About Us — Meet the Instructor",
   description:
     "CopyPasteLearn makes IT automation hands-on and accessible. Watch expert video lessons, then practise in real sandbox environments — no setup required.",
   alternates: { canonical: "/about" },
   openGraph: {
+    url: "/about",
+    type: "website",
     title: "About CopyPasteLearn",
     description:
       "Our mission: make IT automation education hands-on and accessible to everyone.",

@@ -25,11 +25,20 @@ export async function generateMetadata({
     process.env.NEXT_PUBLIC_APP_URL ?? "https://www.copypastelearn.com";
   return {
     title: course.title,
-    description: course.description,
+    description: course.description
+      ? course.description.length > 160
+        ? course.description.slice(0, 157) + "..."
+        : course.description
+      : undefined,
     alternates: { canonical: `/courses/${slug}` },
     openGraph: {
+      url: `/courses/${slug}`,
       title: course.title,
-      description: course.description ?? undefined,
+      description: course.description
+        ? course.description.length > 160
+          ? course.description.slice(0, 157) + "..."
+          : course.description
+        : undefined,
       type: "website",
       ...(course.thumbnailUrl && {
         images: [
