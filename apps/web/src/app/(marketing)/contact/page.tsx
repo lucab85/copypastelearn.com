@@ -3,9 +3,10 @@ import { Mail, MessageSquare, MapPin } from "lucide-react";
 import { EmailLink } from "@/components/ui/email-link";
 
 export const metadata: Metadata = {
-  title: "Contact",
-  description: "Get in touch with the CopyPasteLearn team. Questions, partnerships, or feedback — we'd love to hear from you.",
+  title: "Contact Us — Get in Touch",
+  description: "Get in touch with the CopyPasteLearn team. Questions about courses, partnerships, enterprise training, or feedback — we'd love to hear from you.",
   alternates: { canonical: "/contact" },
+  openGraph: { url: "/contact", type: "website" },
 };
 
 export default function ContactPage() {

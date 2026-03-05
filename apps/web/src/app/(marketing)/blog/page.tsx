@@ -7,9 +7,11 @@ import { PageEventTracker } from "@/components/analytics/page-event-tracker";
 export const metadata: Metadata = {
   title: "Blog — IT Automation Insights",
   description:
-    "Tips, tutorials, and updates from the CopyPasteLearn team on IT automation, Docker, Ansible, and more.",
+    "Tips, tutorials, and updates from the CopyPasteLearn team on IT automation, Docker, Ansible, Terraform, Kubernetes, and more.",
   alternates: { canonical: "/blog" },
   openGraph: {
+    url: "/blog",
+    type: "website",
     title: "Blog — IT Automation Insights",
     description:
       "Tips, tutorials, and updates on IT automation, Docker, Ansible, and more.",

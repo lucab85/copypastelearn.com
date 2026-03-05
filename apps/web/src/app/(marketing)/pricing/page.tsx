@@ -22,11 +22,13 @@ import { SUBSCRIPTION_PRICE_EUR } from "@copypastelearn/shared";
 import { getSubscriptionStatus } from "@/lib/billing";
 
 export const metadata: Metadata = {
-  title: "Pricing Plans & Subscriptions — CopyPasteLearn",
+  title: "Pricing Plans & Subscriptions",
   description:
-    "Simple, transparent pricing for CopyPasteLearn. One plan, everything included — courses, labs, and certificates.",
+    "Simple, transparent pricing for CopyPasteLearn. One plan, everything included — all courses, hands-on labs, and certificates of completion.",
   alternates: { canonical: "/pricing" },
   openGraph: {
+    url: "/pricing",
+    type: "website",
     title: "Pricing — CopyPasteLearn",
     description:
       "One plan. Everything included. No hidden fees. Start learning IT automation today.",

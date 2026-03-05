@@ -26,9 +26,10 @@ export async function generateMetadata({
   try {
     const lesson = await getLesson(slug, lessonSlug);
     return {
-      title: `${lesson.title} — CopyPasteLearn`,
-      description: `Watch the ${lesson.title} lesson on CopyPasteLearn.`,
+      title: lesson.title,
+      description: `Watch the ${lesson.title} lesson on CopyPasteLearn. Master IT automation with expert-led video instruction and hands-on interactive labs.`,
       alternates: { canonical: `/courses/${slug}/lessons/${lessonSlug}` },
+      openGraph: { url: `/courses/${slug}/lessons/${lessonSlug}` },
       robots: { index: true, follow: true },
     };
   } catch {

@@ -28,11 +28,12 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "AI Platform Engineering for Enterprise Leaders — Live Cohort Program",
+  title: "AI Platform Engineering — Live Program",
   description:
-    "The 6-week live program that gives CTOs, CIOs, and engineering leaders a battle-tested blueprint for building AI platforms that actually work in regulated enterprises.",
+    "6-week live program giving CTOs, CIOs, and engineering leaders a battle-tested blueprint for AI platforms that work in regulated enterprises.",
   alternates: { canonical: "/ai-platform-engineering" },
   openGraph: {
+    url: "/ai-platform-engineering",
     title: "AI Platform Engineering for Enterprise Leaders",
     description:
       "Stop burning budget on AI projects that never reach production. 6-week live program for technical leaders.",

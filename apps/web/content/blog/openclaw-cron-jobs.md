@@ -1,6 +1,6 @@
 ---
 title: "OpenClaw Cron Jobs: Scheduled AI Tasks"
-description: "Schedule recurring tasks with OpenClaw cron — from daily summaries to weekly reports. Complete guide with examples."
+description: "Schedule recurring tasks with OpenClaw cron — from daily summaries to weekly reports. Complete setup guide with practical examples."
 date: "2026-02-11"
 author: "Luca Berton"
 category: "OpenClaw"

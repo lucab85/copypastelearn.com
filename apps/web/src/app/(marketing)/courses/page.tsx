@@ -10,9 +10,11 @@ export const revalidate = 3600;
 export const metadata: Metadata = {
   title: "Courses — IT Automation & DevOps Training",
   description:
-    "Browse hands-on courses on Docker, Ansible, Node.js and more. Each course includes video lessons and interactive labs.",
+    "Browse hands-on courses on Docker, Ansible, Node.js, Terraform, MLflow, and more. Each course includes expert video lessons and interactive labs.",
   alternates: { canonical: "/courses" },
   openGraph: {
+    url: "/courses",
+    type: "website",
     title: "Courses — IT Automation & DevOps Training",
     description:
       "Browse hands-on courses on Docker, Ansible, Node.js and more. Each course includes video lessons and interactive labs.",

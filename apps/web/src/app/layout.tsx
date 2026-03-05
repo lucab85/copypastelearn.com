@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     template: "%s | CopyPasteLearn",
   },
   description:
-    "Master IT automation with video courses and hands-on interactive labs. Learn by doing in real environments.",
+    "Master IT automation with expert-led video courses and hands-on interactive labs. Build real skills by doing in live environments.",
   keywords: [
     "IT automation",
     "learn DevOps",
@@ -55,7 +55,7 @@ export const metadata: Metadata = {
     siteName: "CopyPasteLearn",
     title: "CopyPasteLearn — Learn IT Automation by Doing",
     description:
-      "Master IT automation with video courses and hands-on interactive labs. Learn by doing in real environments.",
+      "Master IT automation with expert-led video courses and hands-on interactive labs. Build real skills by doing in live environments.",
     images: [
       {
         url: "/images/og-default.png",
@@ -71,7 +71,7 @@ export const metadata: Metadata = {
     creator: "@yourlinuxsa",
     title: "CopyPasteLearn — Learn IT Automation by Doing",
     description:
-      "Master IT automation with video courses and hands-on interactive labs. Learn by doing in real environments.",
+      "Master IT automation with expert-led video courses and hands-on interactive labs. Build real skills by doing in live environments.",
     images: ["/images/og-default.png"],
   },
 };
