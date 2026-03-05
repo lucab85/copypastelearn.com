@@ -5,9 +5,9 @@ import { SignIn } from "@clerk/nextjs";
 import { PageEventTracker } from "@/components/analytics/page-event-tracker";
 
 export const metadata = {
-  title: "Sign In",
+  title: "Sign In to Your Account — CopyPasteLearn",
   description:
-    "Sign in to CopyPasteLearn to access your courses, interactive labs, and track your learning progress.",
+    "Sign in to CopyPasteLearn to access your courses, interactive hands-on labs, and track your learning progress across all devices.",
   alternates: { canonical: "/sign-in" },
   robots: { index: false, follow: true },
 };
