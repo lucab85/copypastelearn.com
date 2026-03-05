@@ -22,13 +22,19 @@ export function EmailLink({
   const [mounted, setMounted] = useState(false);
   useEffect(() => setMounted(true), []);
 
-  const email = `${user}@${domain}`;
-
   if (!mounted) {
-    // SSR / initial HTML — no mailto, so Cloudflare can't rewrite it
-    return <span className={className}>{email}</span>;
+    // SSR — render parts separately so Cloudflare email obfuscation
+    // cannot detect a full email address to rewrite
+    return (
+      <span className={className}>
+        {user}
+        <span>{"@"}</span>
+        {domain}
+      </span>
+    );
   }
 
+  const email = `${user}@${domain}`;
   return (
     <a href={`mailto:${email}`} className={className}>
       {email}

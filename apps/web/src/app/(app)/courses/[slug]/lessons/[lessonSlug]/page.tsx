@@ -35,6 +35,8 @@ export async function generateMetadata({
     // Locked or missing — don't index paywall pages
     return {
       title: "Lesson — CopyPasteLearn",
+      description:
+        "This lesson is part of a CopyPasteLearn course. Subscribe to unlock expert video lessons and hands-on interactive labs in real environments.",
       alternates: { canonical: `/courses/${slug}/lessons/${lessonSlug}` },
       robots: { index: false, follow: true },
     };
