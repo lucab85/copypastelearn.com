@@ -5,9 +5,9 @@ import { SignUp } from "@clerk/nextjs";
 import { PageEventTracker } from "@/components/analytics/page-event-tracker";
 
 export const metadata = {
-  title: "Sign Up",
+  title: "Create Your Free Account — CopyPasteLearn",
   description:
-    "Create a free CopyPasteLearn account and start learning IT automation with video courses and interactive hands-on labs.",
+    "Create a free CopyPasteLearn account and start learning IT automation with expert video courses and interactive hands-on labs today.",
   alternates: { canonical: "/sign-up" },
   robots: { index: false, follow: true },
 };
