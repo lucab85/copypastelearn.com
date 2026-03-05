@@ -5,11 +5,11 @@ import { SignUp } from "@clerk/nextjs";
 import { PageEventTracker } from "@/components/analytics/page-event-tracker";
 
 export const metadata = {
-  title: "Create Your Free Account — CopyPasteLearn",
+  title: "Create Your Free Account",
   description:
     "Create a free CopyPasteLearn account and start learning IT automation with expert video courses and interactive hands-on labs today.",
   alternates: { canonical: "/sign-up" },
-  openGraph: { url: "/sign-up" },
+  openGraph: { url: "/sign-up", type: "website" },
   robots: { index: false, follow: true },
 };
 

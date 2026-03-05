@@ -35,11 +35,11 @@ export async function generateMetadata({
   } catch {
     // Locked or missing — don't index paywall pages
     return {
-      title: "Lesson — CopyPasteLearn",
+      title: "Lesson",
       description:
         "This lesson is part of a CopyPasteLearn course. Subscribe to unlock expert video lessons and hands-on interactive labs in real environments.",
       alternates: { canonical: `/courses/${slug}/lessons/${lessonSlug}` },
-      openGraph: { url: `/courses/${slug}/lessons/${lessonSlug}` },
+      openGraph: { url: `/courses/${slug}/lessons/${lessonSlug}`, type: "website" },
       robots: { index: false, follow: true },
     };
   }
