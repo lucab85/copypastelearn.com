@@ -3,6 +3,7 @@ import { Suspense } from "react";
 import Script from "next/script";
 import { SiteHeader } from "@/components/layout/site-header";
 import { SiteFooter } from "@/components/layout/site-footer";
+import { NewsletterPopup } from "@/components/newsletter-popup";
 import { AnnouncementBanner } from "@/components/layout/announcement-banner";
 import { RouteChangeTracker } from "@/components/analytics/route-change-tracker";
 import "./globals.css";
@@ -167,6 +168,7 @@ export default async function RootLayout({
         <SiteHeader />
         <main id="main-content" className="flex-1">{children}</main>
         <SiteFooter />
+            <NewsletterPopup />
       </body>
     </html>
   );
