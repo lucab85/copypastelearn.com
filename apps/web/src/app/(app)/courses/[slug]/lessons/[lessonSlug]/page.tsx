@@ -35,7 +35,7 @@ export async function generateMetadata({
   } catch {
     // Locked or missing — don't index paywall pages
     return {
-      title: "Lesson",
+      title: `${lessonSlug.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase())} — Pro Lesson`,
       description:
         "This lesson is part of a CopyPasteLearn course. Subscribe to unlock expert video lessons and hands-on interactive labs in real environments.",
       alternates: { canonical: `/courses/${slug}/lessons/${lessonSlug}` },
