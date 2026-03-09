@@ -5,7 +5,7 @@ export const metadata: Metadata = {
   title: "Privacy Policy",
   description: "CopyPasteLearn privacy policy — learn how we collect, use, and protect your personal data, including account info, usage analytics, and lab session data.",
   alternates: { canonical: "/privacy" },
-  openGraph: { url: "/privacy", type: "website" },
+  openGraph: { url: "/privacy", type: "website", images: [{ url: "/opengraph-image", width: 1200, height: 630 }] },
   robots: { index: true, follow: true },
 };
 

@@ -9,7 +9,7 @@ export const metadata = {
   description:
     "Create a free CopyPasteLearn account and start learning IT automation with expert video courses and interactive hands-on labs today.",
   alternates: { canonical: "/sign-up" },
-  openGraph: { url: "/sign-up", type: "website" },
+  openGraph: { url: "/sign-up", type: "website", images: [{ url: "/opengraph-image", width: 1200, height: 630 }] },
   robots: { index: false, follow: true },
 };
 
