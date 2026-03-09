@@ -58,7 +58,11 @@ export async function generateMetadata({
       site: "@copypastelearn",
       creator: "@yourlinuxsa",
       title: course.title,
-      description: course.description ?? undefined,
+      description: course.description
+        ? course.description.length > 160
+          ? course.description.slice(0, 157) + "..."
+          : course.description
+        : undefined,
       ...(course.thumbnailUrl && {
         images: [
           course.thumbnailUrl.startsWith("http")

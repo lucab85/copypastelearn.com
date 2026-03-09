@@ -26,7 +26,7 @@ export async function generateMetadata({
   try {
     const lesson = await getLesson(slug, lessonSlug);
     return {
-      title: lesson.title,
+      title: lesson.title.replace(/ — CopyPasteLearn$/i, "").replace(/ \| CopyPasteLearn$/i, ""),
       description: `Watch the ${lesson.title} lesson on CopyPasteLearn. Master IT automation with expert-led video instruction and hands-on interactive labs.`,
       alternates: { canonical: `/courses/${slug}/lessons/${lessonSlug}` },
       openGraph: { url: `/courses/${slug}/lessons/${lessonSlug}`, type: "website" },
