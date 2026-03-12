@@ -25,7 +25,7 @@ export const getPublicCourses = unstable_cache(
       description: course.description,
       difficulty: course.difficulty,
       lessonCount: course._count.lessons,
-      thumbnailUrl: course.thumbnailUrl?.trim()?.replace('.png', '.svg') || null,
+      thumbnailUrl: course.thumbnailUrl?.trim() || null,
       userProgress: null,
     }));
   },
@@ -64,7 +64,7 @@ export const getPublicCourse = unstable_cache(
       prerequisites: course.prerequisites,
       difficulty: course.difficulty,
       estimatedDuration: course.estimatedDuration,
-      thumbnailUrl: course.thumbnailUrl?.trim()?.replace('.png', '.svg') || null,
+      thumbnailUrl: course.thumbnailUrl?.trim() || null,
       lessons: course.lessons.map((lesson) => {
         const isFree = lesson.sortOrder === 0;
         return {
