@@ -1,0 +1,46 @@
+name: IndexNow Submit
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'apps/web/content/blog/**'
+      - 'apps/web/src/app/**/page.tsx'
+
+  workflow_dispatch:
+    inputs:
+      urls:
+        description: 'Space-separated URLs to submit (e.g. /blog/my-post /about). Leave empty to submit entire sitemap.'
+        required: false
+        type: string
+
+jobs:
+  submit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Wait for Vercel deploy
+        if: github.event_name == 'push'
+        run: sleep 120
+
+      - name: Submit to IndexNow
+        run: |
+          URLS='${{ inputs.urls }}'
+          if [ -z "$URLS" ]; then
+            echo "Fetching sitemap..."
+            SITEMAP=$(curl -s https://www.copypastelearn.com/sitemap.xml)
+            URLS=$(echo "$SITEMAP" | grep -oP '(?<=<loc>)[^<]+' | tr '\n' ' ')
+            COUNT=$(echo "$URLS" | wc -w)
+            echo "Found $COUNT URLs in sitemap"
+          fi
+
+          # Convert space-separated URLs to JSON array
+          JSON_URLS=$(echo "$URLS" | tr ' ' '\n' | grep -v '^$' | jq -R . | jq -s .)
+
+          echo "Submitting $(echo "$JSON_URLS" | jq length) URLs to IndexNow..."
+
+          RESPONSE=$(curl -s -X POST https://www.copypastelearn.com/api/indexnow \
+            -H "Authorization: Bearer ${{ secrets.INDEXNOW_SECRET }}" \
+            -H "Content-Type: application/json" \
+            -d "{\"urls\": $JSON_URLS}")
+
+          echo "$RESPONSE" | jq .
