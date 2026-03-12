@@ -242,19 +242,35 @@ function renderContent(content: string): { html: string; promoInsertions: number
     if (codeMatch) return codeBlocks[parseInt(codeMatch[1])];
 
     if (trimmed.startsWith("### ")) {
-      const text = trimmed.slice(4);
-      const id = slugify(text.replace(/\*\*(.+?)\*\*/g, "$1").replace(/\*(.+?)\*/g, "$1"));
-      return `<h3 id="${id}" class="mt-10 mb-4 text-xl font-bold text-white scroll-mt-24">${inlineFormat(text)}</h3>`;
+      const firstLine = trimmed.split("\n")[0].slice(4);
+      const rest = trimmed.split("\n").slice(1).join("\n").trim();
+      const id = slugify(firstLine.replace(/\*\*(.+?)\*\*/g, "$1").replace(/\*(.+?)\*/g, "$1"));
+      const headingHtml = `<h3 id="${id}" class="mt-10 mb-4 text-xl font-bold text-white scroll-mt-24">${inlineFormat(firstLine)}</h3>`;
+      if (rest) {
+        const restBlock = rest.split("\n").every((l) => l.startsWith("- "))
+          ? `<ul class="my-4 space-y-2 pl-6 text-muted-foreground">${rest.split("\n").map((l) => `<li class="list-disc">${inlineFormat(l.slice(2))}</li>`).join("")}</ul>`
+          : `<p class="my-4 leading-[1.8] text-muted-foreground">${inlineFormat(rest)}</p>`;
+        return headingHtml + restBlock;
+      }
+      return headingHtml;
     }
     if (trimmed.startsWith("## ")) {
-      const text = trimmed.slice(3);
-      const id = slugify(text.replace(/\*\*(.+?)\*\*/g, "$1").replace(/\*(.+?)\*/g, "$1"));
-      return `<h2 id="${id}" class="mt-14 mb-5 text-2xl font-bold text-white scroll-mt-24">${inlineFormat(text)}</h2>`;
+      const firstLine = trimmed.split("\n")[0].slice(3);
+      const rest = trimmed.split("\n").slice(1).join("\n").trim();
+      const id = slugify(firstLine.replace(/\*\*(.+?)\*\*/g, "$1").replace(/\*(.+?)\*/g, "$1"));
+      const headingHtml = `<h2 id="${id}" class="mt-14 mb-5 text-2xl font-bold text-white scroll-mt-24">${inlineFormat(firstLine)}</h2>`;
+      if (rest) {
+        const restBlock = rest.split("\n").every((l) => l.startsWith("- "))
+          ? `<ul class="my-4 space-y-2 pl-6 text-muted-foreground">${rest.split("\n").map((l) => `<li class="list-disc">${inlineFormat(l.slice(2))}</li>`).join("")}</ul>`
+          : `<p class="my-4 leading-[1.8] text-muted-foreground">${inlineFormat(rest)}</p>`;
+        return headingHtml + restBlock;
+      }
+      return headingHtml;
     }
     if (trimmed.startsWith("# ")) {
-      const text = trimmed.slice(2);
-      const id = slugify(text.replace(/\*\*(.+?)\*\*/g, "$1").replace(/\*(.+?)\*/g, "$1"));
-      return `<h1 id="${id}" class="mt-14 mb-5 text-3xl font-bold text-white scroll-mt-24">${inlineFormat(text)}</h1>`;
+      const firstLine = trimmed.split("\n")[0].slice(2);
+      const id = slugify(firstLine.replace(/\*\*(.+?)\*\*/g, "$1").replace(/\*(.+?)\*/g, "$1"));
+      return `<h1 id="${id}" class="mt-14 mb-5 text-3xl font-bold text-white scroll-mt-24">${inlineFormat(firstLine)}</h1>`;
     }
 
     // Tables
