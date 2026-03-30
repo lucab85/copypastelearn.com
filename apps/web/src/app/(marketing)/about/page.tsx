@@ -55,7 +55,7 @@ function AboutPageJsonLd() {
         ],
       },
       sameAs: [
-        "https://github.com/copypastelearn",
+        "https://github.com/lucab85",
         "https://twitter.com/copypastelearn",
       ],
     },

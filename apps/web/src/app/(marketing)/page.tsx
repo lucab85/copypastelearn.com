@@ -49,7 +49,7 @@ function OrganizationJsonLd() {
     description:
       "Master IT automation with video courses and hands-on interactive labs.",
     sameAs: [
-      "https://github.com/copypastelearn",
+      "https://github.com/lucab85",
       "https://twitter.com/copypastelearn",
       "https://discord.gg/copypastelearn",
     ],
