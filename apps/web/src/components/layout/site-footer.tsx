@@ -78,7 +78,7 @@ export function SiteFooter() {
           </p>
           <div className="flex items-center gap-4">
             <a
-              href="https://github.com/copypastelearn"
+              href="https://github.com/lucab85"
               target="_blank"
               rel="noopener noreferrer"
               className="text-muted-foreground transition-colors hover:text-foreground"
