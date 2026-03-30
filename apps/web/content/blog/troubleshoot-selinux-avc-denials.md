@@ -5,6 +5,7 @@ date: "2026-03-20"
 category: "DevOps"
 tags: ["SELinux", "AVC", "Troubleshooting", "audit", "RHEL"]
 excerpt: "Learn to read SELinux AVC denial logs, use ausearch and sealert, and follow a systematic troubleshooting workflow for RHEL systems."
+description: "Learn to read SELinux AVC denial logs, use ausearch and sealert, and follow a systematic troubleshooting workflow for RHEL systems."
 ---
 
 ## AVC Denials: Your Starting Point

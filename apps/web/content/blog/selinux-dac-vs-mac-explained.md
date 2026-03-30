@@ -5,6 +5,7 @@ date: "2026-03-18"
 category: "DevOps"
 tags: ["SELinux", "Linux Security", "DAC", "MAC", "RHEL"]
 excerpt: "Understand the difference between Discretionary and Mandatory Access Control. Learn why MAC stops attacks that DAC cannot prevent."
+description: "Understand the difference between Discretionary and Mandatory Access Control. Learn why MAC stops attacks that DAC cannot prevent."
 ---
 
 ## Two Layers of Access Control

@@ -36,7 +36,7 @@ import {
 export const metadata: Metadata = {
   title: "AI Platform Engineering — Live Program",
   description:
-    "6-week live program for CTOs and engineering leaders. Build production-grade GenAI platforms — RAG, LLM orchestration, AI agents, and governance for regulated enterprises.",
+    "6-week live program for CTOs and engineering leaders. Build production-grade GenAI platforms with RAG, LLM orchestration, and AI agents.",
   alternates: { canonical: "/ai-platform-engineering" },
   openGraph: {
     url: "/ai-platform-engineering",

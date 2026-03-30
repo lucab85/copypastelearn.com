@@ -5,6 +5,7 @@ date: "2026-03-21"
 category: "DevOps"
 tags: ["SELinux", "Booleans", "RHEL", "setsebool", "getsebool"]
 excerpt: "SELinux booleans let you toggle common service behaviors without writing custom policy. Learn getsebool, setsebool, and the most useful httpd booleans."
+description: "SELinux booleans let you toggle common service behaviors without writing custom policy. Learn getsebool, setsebool, and the most useful httpd booleans."
 ---
 
 ## What Are SELinux Booleans?

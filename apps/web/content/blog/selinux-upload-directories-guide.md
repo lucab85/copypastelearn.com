@@ -5,6 +5,7 @@ date: "2026-03-25"
 category: "DevOps"
 tags: ["SELinux", "File Upload", "httpd", "RHEL", "Web Security"]
 excerpt: "Properly label writable upload directories for Apache with SELinux. Use httpd_sys_rw_content_t to allow writes without disabling security."
+description: "Properly label writable upload directories for Apache with SELinux. Use httpd_sys_rw_content_t to allow writes without disabling security."
 ---
 
 ## The Problem

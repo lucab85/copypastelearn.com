@@ -1,6 +1,6 @@
 ---
 title: "Fedora 43: Modern Linux Desktop"
-description: "Fedora 43 delivers cutting-edge packages with GNOME 48, Wayland by default, and a polished developer experience. Here's why it's the best all-around desktop distro."
+description: "Fedora 43 delivers cutting-edge packages with GNOME 48, Wayland by default, and a polished developer experience for desktop Linux."
 date: "2026-03-10"
 author: "Luca Berton"
 category: "DevOps"

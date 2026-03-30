@@ -5,6 +5,7 @@ date: "2026-03-22"
 category: "DevOps"
 tags: ["SELinux", "Apache", "httpd", "RHEL", "Web Server"]
 excerpt: "Step-by-step guide to fix SELinux 403 Forbidden errors when using a custom Apache DocumentRoot like /srv/webroot on RHEL."
+description: "Step-by-step guide to fix SELinux 403 Forbidden errors when using a custom Apache DocumentRoot like /srv/webroot on RHEL."
 ---
 
 ## The Problem
