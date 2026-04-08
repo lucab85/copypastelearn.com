@@ -528,7 +528,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                   Building hands-on education for DevOps engineers at CopyPasteLearn.
                 </p>
                 <div className="mt-3 flex gap-3 text-xs">
-                  <a href="https://lucaberton.com" target="_blank" rel="noopener" className="text-blue-400 hover:text-blue-300">
+                  <a href="https://www.lucaberton.com" target="_blank" rel="noopener" className="text-blue-400 hover:text-blue-300">
                     Website
                   </a>
                   <a href="https://twitter.com/yourlinuxsa" target="_blank" rel="noopener" className="text-blue-400 hover:text-blue-300">

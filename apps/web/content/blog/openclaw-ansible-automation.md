@@ -101,7 +101,7 @@ Want to learn Ansible properly? Check out our [Ansible Quickstart course](/cours
 - Roles and collections
 - Real-world automation patterns
 
-Built by [Luca Berton](https://ansiblepilot.com), author of Ansible Pilot and the Ansible by Example series.
+Built by [Luca Berton](https://www.ansiblepilot.com), author of Ansible Pilot and the Ansible by Example series.
 
 ## Workflow Integration
 
