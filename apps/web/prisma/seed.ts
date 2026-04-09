@@ -303,7 +303,7 @@ async function main() {
         },
       ],
       resources: [
-        { title: "Express.js Guide", url: "https://expressjs.com/en/guide/" },
+        { title: "Installing Express", url: "https://expressjs.com/en/starter/installing.html" },
       ],
     },
     {
