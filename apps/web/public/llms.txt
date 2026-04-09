@@ -1,0 +1,144 @@
+# CopyPasteLearn
+
+> CopyPasteLearn is an online academy for IT automation, DevOps, and platform engineering. Hands-on courses with real labs covering Docker, Ansible, Terraform, Kubernetes, MLflow, SELinux, and OpenClaw. Founded by Luca Berton.
+
+## Courses
+
+- [Docker Fundamentals](https://www.copypastelearn.com/courses/docker-fundamentals): Learn containers, images, volumes, networking, and Docker Compose from scratch.
+- [Node.js REST APIs](https://www.copypastelearn.com/courses/nodejs-rest-apis): Build production REST APIs with Express, TypeScript, and PostgreSQL.
+- [Ansible Automation in 30 Minutes](https://www.copypastelearn.com/courses/ansible-quickstart): Quick-start Ansible for configuration management and automation.
+- [OpenClaw: Your First AI Agent](https://www.copypastelearn.com/courses/openclaw-agent): Deploy and customize an AI agent with OpenClaw — Docker, skills, memory, messaging.
+- [MLflow for Kubernetes MLOps](https://www.copypastelearn.com/courses/mlflow-kubernetes-mlops): End-to-end ML lifecycle on Kubernetes with MLflow, KServe, and monitoring.
+- [Terraform for Beginners](https://www.copypastelearn.com/courses/terraform-beginners): Infrastructure as Code with Terraform — providers, state, modules, CI/CD.
+- [SELinux for System Admins](https://www.copypastelearn.com/courses/selinux-system-admins): Mandatory access control on RHEL/Fedora — contexts, booleans, policies, troubleshooting.
+
+## Key Pages
+
+- [Homepage](https://www.copypastelearn.com/): Academy overview, course catalog, and enrollment.
+- [All Courses](https://www.copypastelearn.com/courses): Browse all available courses with filters and learning paths.
+- [Pricing](https://www.copypastelearn.com/pricing): Pro subscription plans — monthly (€29/mo) and annual (€290/yr).
+- [About](https://www.copypastelearn.com/about): About Luca Berton — Red Hat Summit and KubeCon EU 2026 speaker, Ansible Pilot author.
+- [AI Platform Engineering](https://www.copypastelearn.com/ai-platform-engineering): Live program for GenAI infrastructure, LLM gateways, and RAG pipelines.
+- [Blog](https://www.copypastelearn.com/blog): 100+ technical articles on DevOps, automation, Linux, and AI tools.
+- [Contact](https://www.copypastelearn.com/contact): Get in touch with the CopyPasteLearn team.
+
+## Blog — OpenClaw
+
+- [What is OpenClaw?](https://www.copypastelearn.com/blog/what-is-openclaw): Introduction to the open-source AI agent platform.
+- [Deploy OpenClaw with Docker Compose](https://www.copypastelearn.com/blog/openclaw-docker-deploy-guide): Complete Docker Compose setup guide.
+- [OpenClaw Gateway Bind Modes](https://www.copypastelearn.com/blog/openclaw-gateway-bind-modes): Loopback, LAN, Tailnet, auto, and custom bind modes.
+- [OpenClaw Reverse Proxy with Caddy](https://www.copypastelearn.com/blog/openclaw-caddy-reverse-proxy): HTTPS setup with Caddy and Docker.
+- [OpenClaw + Tailscale Remote Access](https://www.copypastelearn.com/blog/openclaw-tailscale-remote-access): Secure remote access via Tailscale.
+- [Troubleshoot OpenClaw Gateway Errors](https://www.copypastelearn.com/blog/troubleshoot-openclaw-gateway-errors): Fix 401, connection refused, and origin errors.
+- [OpenClaw Volume Permissions Fix](https://www.copypastelearn.com/blog/openclaw-volume-permissions-fix): Fix EACCES errors for Docker volumes and bind mounts.
+- [OpenClaw Architecture Deep Dive](https://www.copypastelearn.com/blog/openclaw-architecture-deep-dive): Gateway, sandbox, tools, and messaging internals.
+- [OpenClaw Memory System](https://www.copypastelearn.com/blog/openclaw-memory-system): How MEMORY.md, SOUL.md, and daily notes work.
+- [OpenClaw SOUL.md Guide](https://www.copypastelearn.com/blog/openclaw-soul-personality): Customize your agent's personality and behavior.
+- [Building Custom OpenClaw Skills](https://www.copypastelearn.com/blog/building-openclaw-skills): Create and package reusable agent skills.
+- [OpenClaw Sub-Agents](https://www.copypastelearn.com/blog/openclaw-sub-agents): Spawn isolated sub-agents for parallel tasks.
+- [OpenClaw Cron Jobs](https://www.copypastelearn.com/blog/openclaw-cron-jobs): Schedule recurring AI tasks.
+- [OpenClaw Heartbeats](https://www.copypastelearn.com/blog/openclaw-heartbeats-proactive): Proactive monitoring and periodic checks.
+- [OpenClaw Browser Automation](https://www.copypastelearn.com/blog/openclaw-browser-automation): Control browsers with snapshots and actions.
+- [OpenClaw Node Pairing](https://www.copypastelearn.com/blog/openclaw-node-pairing): Pair phones, desktops, and IoT devices.
+- [OpenClaw on Raspberry Pi](https://www.copypastelearn.com/blog/openclaw-raspberry-pi): Run OpenClaw on ARM hardware.
+- [Securing Your OpenClaw Agent](https://www.copypastelearn.com/blog/securing-openclaw-agent): Security best practices for production.
+- [OpenClaw + Ansible Automation](https://www.copypastelearn.com/blog/openclaw-ansible-automation): Combine AI agents with Ansible playbooks.
+- [OpenClaw for DevOps](https://www.copypastelearn.com/blog/openclaw-devops-automation): AI-powered DevOps workflows.
+- [OpenClaw + Telegram Bot](https://www.copypastelearn.com/blog/openclaw-telegram-bot): Connect OpenClaw to Telegram.
+- [OpenClaw Discord Bot Setup](https://www.copypastelearn.com/blog/openclaw-discord-bot): Connect OpenClaw to Discord.
+- [Install OpenClaw on Ubuntu](https://www.copypastelearn.com/blog/install-openclaw-ubuntu): Step-by-step Ubuntu server installation.
+- [10 Things After Installing OpenClaw](https://www.copypastelearn.com/blog/10-things-after-installing-openclaw): Post-install configuration checklist.
+- [OpenClaw vs ChatGPT](https://www.copypastelearn.com/blog/openclaw-vs-chatgpt): Key differences between OpenClaw and ChatGPT.
+- [OpenClaw vs LangChain vs AutoGPT](https://www.copypastelearn.com/blog/openclaw-vs-langchain-autogpt): Framework comparison.
+
+## Blog — Ansible & Automation
+
+- [Ansible Automation in Minutes](https://www.copypastelearn.com/blog/ansible-automation-beginners-guide): Getting started with Ansible playbooks.
+- [Ansible Vault: Encrypt Secrets](https://www.copypastelearn.com/blog/ansible-vault-encrypt-secrets): Encrypt passwords and API keys safely.
+- [Ansible Roles: Reusable Automation](https://www.copypastelearn.com/blog/ansible-roles-reusable-automation): Structure automation with roles and Galaxy.
+- [Ansible Inventory: Static and Dynamic](https://www.copypastelearn.com/blog/ansible-inventory-static-dynamic): INI, YAML, and cloud-based dynamic inventory.
+- [Ansible Playbook for Docker Install](https://www.copypastelearn.com/blog/ansible-playbook-docker-install): Automate Docker installation on Ubuntu and RHEL.
+
+## Blog — Terraform & IaC
+
+- [Terraform for Beginners Guide](https://www.copypastelearn.com/blog/terraform-beginners-complete-guide): Complete beginner's guide to Terraform.
+- [Infrastructure as Code Explained](https://www.copypastelearn.com/blog/infrastructure-as-code-explained): Why IaC matters for modern infrastructure.
+- [Terraform HCL Syntax Guide](https://www.copypastelearn.com/blog/terraform-hcl-syntax-guide): HCL language fundamentals.
+- [Terraform Variables and Outputs](https://www.copypastelearn.com/blog/terraform-variables-outputs-guide): Input variables, locals, and outputs.
+- [Terraform State Management](https://www.copypastelearn.com/blog/terraform-state-management): Remote state, locking, and backends.
+- [Terraform Modules Guide](https://www.copypastelearn.com/blog/terraform-modules-reusable-infrastructure): Reusable infrastructure modules.
+- [Terraform Workspaces for Environments](https://www.copypastelearn.com/blog/terraform-workspaces-environments): Manage dev/staging/prod from one codebase.
+- [Terraform CI/CD Pipelines](https://www.copypastelearn.com/blog/terraform-cicd-pipelines): Automate plan and apply in CI.
+- [Terraform Security Practices](https://www.copypastelearn.com/blog/terraform-security-best-practices): Secure your IaC workflows.
+- [Terraform Lifecycle Rules](https://www.copypastelearn.com/blog/terraform-lifecycle-rules): create_before_destroy, prevent_destroy, ignore_changes.
+- [Terraform AWS Provisioning](https://www.copypastelearn.com/blog/terraform-aws-provisioning): Provision AWS resources with Terraform.
+- [Terraform vs CloudFormation vs Pulumi](https://www.copypastelearn.com/blog/terraform-vs-cloudformation-vs-pulumi): IaC tool comparison.
+- [GitHub Actions CI/CD for Terraform](https://www.copypastelearn.com/blog/github-actions-terraform-cicd): Plan on PR, apply on merge.
+
+## Blog — Docker & Containers
+
+- [Getting Started with Docker](https://www.copypastelearn.com/blog/getting-started-with-docker): Docker fundamentals for beginners.
+- [Docker Multi-Stage Builds](https://www.copypastelearn.com/blog/docker-multi-stage-builds-guide): Smaller, faster production images.
+- [Docker Compose for Dev Environments](https://www.copypastelearn.com/blog/docker-compose-dev-environments): Local dev stacks with hot reload.
+- [Docker Networking Explained](https://www.copypastelearn.com/blog/docker-networking-explained): Bridge, host, overlay, and DNS.
+- [Docker Volumes and Persistent Data](https://www.copypastelearn.com/blog/docker-volumes-persistent-data): Named volumes, bind mounts, and backups.
+- [Building REST APIs with Node.js](https://www.copypastelearn.com/blog/building-rest-apis-with-nodejs): Express + TypeScript API development.
+
+## Blog — Kubernetes & MLOps
+
+- [MLflow for Kubernetes](https://www.copypastelearn.com/blog/mlflow-kubernetes-complete-guide): Complete MLOps on Kubernetes guide.
+- [MLflow Experiment Tracking](https://www.copypastelearn.com/blog/mlflow-experiment-tracking-tutorial): Track experiments, metrics, and artifacts.
+- [MLflow Model Registry](https://www.copypastelearn.com/blog/mlflow-model-registry): Version and stage ML models.
+- [Hyperparameter Tuning with MLflow](https://www.copypastelearn.com/blog/hyperparameter-tuning-mlflow): Optimize model parameters systematically.
+- [Docker Images from MLflow Models](https://www.copypastelearn.com/blog/docker-images-mlflow-models): Package ML models as containers.
+- [KServe on Kubernetes](https://www.copypastelearn.com/blog/kserve-kubernetes-ml-serving): Serve ML models with KServe.
+- [MLServer: Test ML Models Locally](https://www.copypastelearn.com/blog/mlserver-local-testing): Local model serving and testing.
+- [CI/CD for ML on Kubernetes](https://www.copypastelearn.com/blog/cicd-ml-models-kubernetes): ML deployment pipelines.
+- [Monitoring ML Models in K8s](https://www.copypastelearn.com/blog/monitoring-ml-models-kubernetes): Observability for ML workloads.
+- [Local Kubernetes with Kind](https://www.copypastelearn.com/blog/local-kubernetes-kind-ml): Local K8s clusters for development.
+- [Kubernetes Pod Troubleshooting](https://www.copypastelearn.com/blog/kubernetes-pod-troubleshooting): Fix CrashLoopBackOff, OOMKilled, and more.
+- [Kubernetes Services and Ingress](https://www.copypastelearn.com/blog/kubernetes-services-ingress-guide): Expose workloads with services and ingress.
+- [kubectl Cheat Sheet](https://www.copypastelearn.com/blog/kubectl-cheat-sheet-devops): Essential kubectl commands for daily use.
+
+## Blog — SELinux
+
+- [What Is SELinux and Why It Matters](https://www.copypastelearn.com/blog/what-is-selinux-why-it-matters): Introduction to mandatory access control.
+- [SELinux DAC vs MAC Explained](https://www.copypastelearn.com/blog/selinux-dac-vs-mac-explained): Discretionary vs mandatory access control.
+- [SELinux File Contexts and Labels](https://www.copypastelearn.com/blog/selinux-file-contexts-labels-guide): Manage file security labels.
+- [SELinux Booleans Explained](https://www.copypastelearn.com/blog/selinux-booleans-explained): Toggle SELinux policy features.
+- [Troubleshoot SELinux AVC Denials](https://www.copypastelearn.com/blog/troubleshoot-selinux-avc-denials): Debug and fix AVC denials.
+- [SELinux Cheat Sheet for RHEL](https://www.copypastelearn.com/blog/selinux-cheat-sheet-rhel): Quick reference for RHEL/Fedora.
+- [SELinux for Apache and PHP-FPM](https://www.copypastelearn.com/blog/selinux-apache-php-fpm-setup): Web server SELinux configuration.
+- [Fix SELinux Apache Custom Webroot](https://www.copypastelearn.com/blog/fix-selinux-apache-custom-webroot): Fix permission denied on custom paths.
+- [SELinux Upload Directories Guide](https://www.copypastelearn.com/blog/selinux-upload-directories-guide): Configure upload directory contexts.
+- [SELinux Policy with sesearch](https://www.copypastelearn.com/blog/selinux-policy-sesearch-guide): Query and analyze SELinux policies.
+
+## Blog — Linux
+
+- [Which Linux Distro in 2026?](https://www.copypastelearn.com/blog/which-linux-distro-2026): Comprehensive distro comparison guide.
+- [Best Linux Distro for Servers](https://www.copypastelearn.com/blog/best-linux-distro-for-servers): Server-focused Linux distributions.
+- [Ubuntu 24.04 LTS](https://www.copypastelearn.com/blog/ubuntu-2404-lts-safe-choice): Long-term support stable choice.
+- [Fedora 43](https://www.copypastelearn.com/blog/fedora-43-modern-linux-desktop): Cutting-edge desktop Linux.
+- [Debian 13 Trixie](https://www.copypastelearn.com/blog/debian-13-trixie-rock-solid): Rock-solid stability.
+- [Alpine Linux for Containers](https://www.copypastelearn.com/blog/alpine-linux-for-containers): Minimal container base images.
+- [Arch Linux](https://www.copypastelearn.com/blog/arch-linux-full-control-diy): Full control DIY Linux.
+- [Linux Mint 22](https://www.copypastelearn.com/blog/linux-mint-best-for-beginners): Best distro for beginners.
+- [Ubuntu vs Fedora](https://www.copypastelearn.com/blog/ubuntu-vs-fedora-which-to-pick): Head-to-head comparison.
+- [Rocky Linux vs AlmaLinux](https://www.copypastelearn.com/blog/rocky-linux-vs-almalinux-2026): RHEL-compatible alternatives.
+
+## Blog — AI Tools
+
+- [What is Context7?](https://www.copypastelearn.com/blog/what-is-context7): Up-to-date docs for AI coding assistants.
+- [Context7 + Cursor](https://www.copypastelearn.com/blog/context7-cursor-ai-coding): Stop AI coding errors with live docs.
+- [Context7 vs RAG vs Fine-Tuning](https://www.copypastelearn.com/blog/context7-vs-rag-vs-finetuning): Approaches to giving LLMs current knowledge.
+- [Context7 MCP Server for Claude](https://www.copypastelearn.com/blog/context7-mcp-server-claude): Connect Context7 to Claude Desktop.
+- [Why LLMs Get Your Code Wrong](https://www.copypastelearn.com/blog/why-llms-get-code-wrong-context7): Training data staleness problem.
+- [AI Platform Engineering Explained](https://www.copypastelearn.com/blog/ai-platform-engineering-guide): GenAI infrastructure and LLM gateways.
+- [Git for DevOps Engineers](https://www.copypastelearn.com/blog/git-for-devops-engineers): Git workflows, rebasing, and CI/CD integration.
+
+## Optional
+
+- [RSS Feed](https://www.copypastelearn.com/feed.xml): Blog RSS feed.
+- [Sitemap](https://www.copypastelearn.com/sitemap.xml): Full XML sitemap.
+- [Privacy Policy](https://www.copypastelearn.com/privacy): Privacy policy.
+- [Terms of Service](https://www.copypastelearn.com/terms): Terms of service.

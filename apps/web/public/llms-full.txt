@@ -1,0 +1,40 @@
+# CopyPasteLearn
+
+> CopyPasteLearn is an online academy teaching IT automation, DevOps, and platform engineering through hands-on courses with real labs. Topics include Docker, Ansible, Terraform, Kubernetes, MLflow, SELinux, OpenClaw, and Node.js. Founded by Luca Berton, an Ansible Pilot author and speaker at Red Hat Summit 2026 and KubeCon EU 2026. Pro subscription: €29/month or €290/year.
+
+## Platform
+
+CopyPasteLearn offers structured video courses with interactive labs. Each course includes lessons, resources, and practical exercises. Free preview lessons are available for every course. The platform is built with Next.js, uses Clerk for authentication, Mux for video delivery, and Stripe for payments.
+
+## Courses
+
+### Docker Fundamentals
+Beginner course covering containers, images, Dockerfiles, volumes, networking, and Docker Compose. 5 lessons. Learn to build, run, and manage containerized applications.
+
+### Node.js REST APIs
+Intermediate course on building production REST APIs with Express.js, TypeScript, and PostgreSQL. 5 lessons. Covers routing, middleware, database integration, and deployment.
+
+### Ansible Automation in 30 Minutes
+Beginner course for quick-start Ansible configuration management. 6 lessons. Covers inventory, playbooks, modules, roles, and automation patterns.
+
+### OpenClaw: Your First AI Agent
+Beginner course on deploying and customizing AI agents with OpenClaw. 7 lessons. Covers Docker deployment, skills, memory system, messaging channels, and node pairing.
+
+### MLflow for Kubernetes MLOps
+Intermediate course on the complete ML lifecycle on Kubernetes. 15 lessons. Covers experiment tracking, model registry, KServe serving, CI/CD pipelines, and monitoring.
+
+### Terraform for Beginners
+Beginner course on Infrastructure as Code with Terraform. 15 lessons. Covers HCL syntax, providers, state management, modules, workspaces, security, and CI/CD.
+
+### SELinux for System Admins
+Beginner course on mandatory access control for RHEL and Fedora. 12 lessons. Covers contexts, booleans, policies, troubleshooting AVC denials, and Apache/PHP-FPM configuration.
+
+## Instructor
+
+Luca Berton is the founder and instructor. He is the author of Ansible Pilot and the Ansible by Example book series. He speaks at Red Hat Summit 2026 and KubeCon EU 2026. His network includes lucaberton.com, ansiblepilot.com, ansiblebyexample.com, openempower.com, kubernetes.recipes, terraformpilot.com, proteinlens.com, and techmeout.it.
+
+## Contact
+
+Website: https://www.copypastelearn.com
+Blog: https://www.copypastelearn.com/blog
+RSS: https://www.copypastelearn.com/feed.xml
