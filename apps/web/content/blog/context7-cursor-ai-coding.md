@@ -68,6 +68,6 @@ You paste the current Next.js 15 server actions documentation from Context7, and
 
 ## Why This Matters for Learning
 
-At [CopyPasteLearn](https://copypastelearn.com), we teach practical development skills. Context7 embodies the same philosophy — give developers the **right information at the right time** so they can build with confidence.
+At [CopyPasteLearn](https://www.copypastelearn.com), we teach practical development skills. Context7 embodies the same philosophy — give developers the **right information at the right time** so they can build with confidence.
 
 Whether you're learning Docker, Ansible, or Node.js, having accurate, current documentation is the difference between struggling and succeeding.

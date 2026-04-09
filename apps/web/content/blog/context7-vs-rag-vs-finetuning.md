@@ -92,4 +92,4 @@ The best setups combine multiple approaches:
 
 If you're building applications with AI assistance, start with Context7 — it solves the most common problem (outdated library docs) with zero setup. Add RAG when you need internal documentation access. Consider fine-tuning only for specialized domains.
 
-At [CopyPasteLearn](https://copypastelearn.com), our courses use current library versions. Context7 ensures the AI tools you use alongside our courses generate code that matches what you're learning.
+At [CopyPasteLearn](https://www.copypastelearn.com), our courses use current library versions. Context7 ensures the AI tools you use alongside our courses generate code that matches what you're learning.
