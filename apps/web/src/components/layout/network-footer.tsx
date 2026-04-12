@@ -91,6 +91,19 @@ const networkSites = [
     ),
   },
   {
+    href: "https://www.heavenartshop.com/",
+    label: "Heaven Art Shop",
+    title: "Sacred Lithographs & African Oil Paintings",
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="h-3 w-3">
+        <path d="M12 2L2 7l10 5 10-5-10-5z" />
+        <path d="M2 12l10 5 10-5" />
+        <path d="M12 22l-10-5" />
+        <path d="M12 22l10-5" />
+      </svg>
+    ),
+  },
+  {
     href: "https://www.techmeout.it/",
     label: "TechMeOut",
     title: "Professional Web Development",

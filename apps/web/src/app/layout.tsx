@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
     default: "CopyPasteLearn — Learn IT Automation by Doing",
-    template: "%s | CopyPasteLearn",
+    template: "%s — CPL",
   },
   description:
     "Master IT automation with expert-led video courses and hands-on interactive labs. Build real skills by doing in live environments.",
