@@ -1,193 +1,318 @@
 ---
 title: "Terraform Variables and Outputs"
-description: "Master Terraform variables, locals, and outputs. Input validation, type constraints, and tfvars files explained."
-date: "2026-04-09"
-author: "Luca Berton"
+slug: "terraform-variables-outputs-guide"
+date: "2026-02-09"
 category: "DevOps"
-tags: ["Terraform", "IaC", "Variables", "DevOps", "Cloud"]
-excerpt: "Master Terraform variables, locals, and outputs. Input validation, type constraints, and tfvars files explained."
+tags: ["Terraform", "Variables", "IaC", "DevOps", "Configuration"]
+excerpt: "Master Terraform variables and outputs. Types, validation, locals, sensitive values, tfvars files, and output dependencies."
+description: "Master Terraform variables and outputs. Types, validation, locals, sensitive values, tfvars, and dependencies."
 ---
 
-## Variable Types
+Variables make Terraform code reusable. Outputs share data between modules and display results. Together they are how you parameterize infrastructure.
 
-Terraform supports strings, numbers, booleans, lists, maps, and objects:
+## Input Variables
+
+### Basic Types
 
 ```hcl
 variable "instance_type" {
-  type    = string
-  default = "t3.micro"
+  description = "EC2 instance type"
+  type        = string
+  default     = "t3.micro"
 }
 
 variable "instance_count" {
-  type    = number
-  default = 2
+  description = "Number of instances"
+  type        = number
+  default     = 2
 }
 
 variable "enable_monitoring" {
-  type    = bool
-  default = true
-}
-
-variable "allowed_cidrs" {
-  type    = list(string)
-  default = ["10.0.0.0/8"]
-}
-
-variable "tags" {
-  type = map(string)
-  default = {
-    Environment = "dev"
-    Team        = "platform"
-  }
+  description = "Enable detailed monitoring"
+  type        = bool
+  default     = false
 }
 ```
 
-## Complex Types
+### Complex Types
 
 ```hcl
-variable "servers" {
+# List
+variable "availability_zones" {
+  type    = list(string)
+  default = ["eu-west-1a", "eu-west-1b", "eu-west-1c"]
+}
+
+# Map
+variable "instance_types" {
+  type = map(string)
+  default = {
+    dev     = "t3.micro"
+    staging = "t3.small"
+    prod    = "t3.medium"
+  }
+}
+
+# Object
+variable "database" {
+  type = object({
+    engine         = string
+    version        = string
+    instance_class = string
+    storage_gb     = number
+    multi_az       = bool
+  })
+  default = {
+    engine         = "postgres"
+    version        = "16"
+    instance_class = "db.t3.micro"
+    storage_gb     = 20
+    multi_az       = false
+  }
+}
+
+# List of objects
+variable "ingress_rules" {
   type = list(object({
-    name          = string
-    instance_type = string
-    az            = string
+    port        = number
+    protocol    = string
+    cidr_blocks = list(string)
+    description = string
   }))
   default = [
     {
-      name          = "web-1"
-      instance_type = "t3.small"
-      az            = "eu-west-1a"
+      port        = 80
+      protocol    = "tcp"
+      cidr_blocks = ["0.0.0.0/0"]
+      description = "HTTP"
+    },
+    {
+      port        = 443
+      protocol    = "tcp"
+      cidr_blocks = ["0.0.0.0/0"]
+      description = "HTTPS"
     }
   ]
 }
 ```
 
-## Input Validation
-
-Catch bad values before `terraform apply`:
+### Validation
 
 ```hcl
 variable "environment" {
   type = string
   validation {
-    condition     = contains(["dev", "staging", "prod"], var.environment)
-    error_message = "Environment must be dev, staging, or prod."
+    condition     = contains(["dev", "staging", "production"], var.environment)
+    error_message = "Environment must be dev, staging, or production."
   }
 }
 
-variable "instance_type" {
+variable "cidr_block" {
   type = string
   validation {
-    condition     = can(regex("^t3\\.", var.instance_type))
-    error_message = "Only t3 instance types are allowed."
+    condition     = can(cidrhost(var.cidr_block, 0))
+    error_message = "Must be a valid CIDR block."
+  }
+}
+
+variable "name" {
+  type = string
+  validation {
+    condition     = length(var.name) >= 3 && length(var.name) <= 32
+    error_message = "Name must be 3-32 characters."
+  }
+  validation {
+    condition     = can(regex("^[a-z][a-z0-9-]*$", var.name))
+    error_message = "Name must start with a letter and contain only lowercase letters, numbers, and hyphens."
   }
 }
 ```
 
-## Setting Variables
-
-Four ways, in order of precedence (highest first):
-
-```bash
-# 1. Command line
-terraform apply -var="instance_type=t3.large"
-
-# 2. Environment variable
-export TF_VAR_instance_type="t3.large"
-
-# 3. terraform.tfvars (auto-loaded)
-echo 'instance_type = "t3.large"' > terraform.tfvars
-
-# 4. Default value in variable block
-```
-
-## Environment-Specific tfvars
-
-```bash
-# Create per-environment files
-cat > envs/prod.tfvars <<EOF
-instance_type    = "t3.large"
-instance_count   = 3
-enable_monitoring = true
-EOF
-
-cat > envs/dev.tfvars <<EOF
-instance_type    = "t3.micro"
-instance_count   = 1
-enable_monitoring = false
-EOF
-
-# Apply with specific env
-terraform apply -var-file="envs/prod.tfvars"
-```
-
-## Local Values
-
-Computed values that reduce repetition:
-
-```hcl
-locals {
-  name_prefix = "${var.project}-${var.environment}"
-  common_tags = merge(var.tags, {
-    ManagedBy = "terraform"
-    Project   = var.project
-  })
-}
-
-resource "aws_instance" "web" {
-  ami           = data.aws_ami.ubuntu.id
-  instance_type = var.instance_type
-  tags          = merge(local.common_tags, {
-    Name = "${local.name_prefix}-web"
-  })
-}
-```
-
-## Outputs
-
-Expose values for other modules or CLI display:
-
-```hcl
-output "instance_ip" {
-  description = "Public IP of the web server"
-  value       = aws_instance.web.public_ip
-}
-
-output "instance_id" {
-  description = "Instance ID"
-  value       = aws_instance.web.id
-  sensitive   = false
-}
-
-output "db_password" {
-  description = "Database password"
-  value       = random_password.db.result
-  sensitive   = true
-}
-```
-
-Access outputs:
-
-```bash
-terraform output instance_ip
-terraform output -json
-```
-
-## Sensitive Variables
-
-Mark variables as sensitive to suppress them from logs:
+### Sensitive Variables
 
 ```hcl
 variable "db_password" {
+  type      = string
+  sensitive = true  # Hidden in plan/apply output
+}
+
+variable "api_key" {
   type      = string
   sensitive = true
 }
 ```
 
-Terraform redacts the value in plan output and logs.
+## Setting Variable Values
 
-## Related Posts
+### Priority (lowest to highest)
 
-- [Terraform for Beginners Guide](/blog/terraform-beginners-complete-guide) for getting started
-- [Terraform HCL Syntax Guide](/blog/terraform-hcl-syntax-guide) for language basics
-- [Terraform Modules Guide](/blog/terraform-modules-reusable-infrastructure) for reusable code
-- [Terraform State Management](/blog/terraform-state-management) for remote state
+1. `default` in variable block
+2. Environment variables (`TF_VAR_name`)
+3. `terraform.tfvars` file
+4. `*.auto.tfvars` files
+5. `-var-file` flag
+6. `-var` flag (highest)
+
+### tfvars Files
+
+```hcl
+# terraform.tfvars (auto-loaded)
+environment    = "production"
+instance_type  = "t3.large"
+instance_count = 3
+
+# production.tfvars (loaded with -var-file)
+database = {
+  engine         = "postgres"
+  version        = "16"
+  instance_class = "db.r6g.large"
+  storage_gb     = 500
+  multi_az       = true
+}
+```
+
+```bash
+terraform apply -var-file=production.tfvars
+```
+
+### Environment Variables
+
+```bash
+export TF_VAR_db_password="S3cur3P@ss!"
+export TF_VAR_environment="production"
+terraform apply
+```
+
+## Locals
+
+Computed values that simplify expressions:
+
+```hcl
+locals {
+  name_prefix = "${var.project}-${var.environment}"
+  
+  common_tags = {
+    Project     = var.project
+    Environment = var.environment
+    ManagedBy   = "terraform"
+    Team        = var.team
+  }
+
+  is_production = var.environment == "production"
+  
+  instance_type = local.is_production ? "t3.large" : "t3.micro"
+  
+  subnet_cidrs = [for i in range(var.az_count) : cidrsubnet(var.vpc_cidr, 8, i)]
+}
+
+resource "aws_instance" "app" {
+  instance_type = local.instance_type
+  tags          = merge(local.common_tags, { Name = "${local.name_prefix}-app" })
+}
+```
+
+## Outputs
+
+```hcl
+output "vpc_id" {
+  description = "The VPC ID"
+  value       = aws_vpc.main.id
+}
+
+output "public_subnet_ids" {
+  description = "Public subnet IDs"
+  value       = aws_subnet.public[*].id
+}
+
+output "database_endpoint" {
+  description = "Database connection endpoint"
+  value       = aws_db_instance.main.endpoint
+  sensitive   = true  # Hidden in CLI output
+}
+
+output "load_balancer_dns" {
+  description = "ALB DNS name"
+  value       = aws_lb.main.dns_name
+  depends_on  = [aws_lb_listener.https]
+}
+```
+
+### Using Outputs
+
+```bash
+# View all outputs
+terraform output
+
+# Get specific output
+terraform output vpc_id
+
+# JSON format (for scripts)
+terraform output -json
+
+# Raw value (no quotes)
+terraform output -raw load_balancer_dns
+```
+
+### Cross-Module References
+
+```hcl
+# In root module
+module "vpc" {
+  source = "./modules/vpc"
+}
+
+module "database" {
+  source     = "./modules/rds"
+  vpc_id     = module.vpc.vpc_id          # Output from vpc module
+  subnet_ids = module.vpc.private_subnet_ids
+}
+```
+
+## Patterns
+
+### Feature Flags
+
+```hcl
+variable "features" {
+  type = object({
+    enable_cdn       = bool
+    enable_waf       = bool
+    enable_monitoring = bool
+  })
+  default = {
+    enable_cdn        = false
+    enable_waf        = false
+    enable_monitoring = true
+  }
+}
+
+resource "aws_cloudfront_distribution" "cdn" {
+  count = var.features.enable_cdn ? 1 : 0
+  # ...
+}
+```
+
+### Environment-Specific Defaults
+
+```hcl
+variable "env_config" {
+  type = map(object({
+    instance_type = string
+    min_size      = number
+    max_size      = number
+  }))
+  default = {
+    dev     = { instance_type = "t3.micro",  min_size = 1, max_size = 2 }
+    staging = { instance_type = "t3.small",  min_size = 2, max_size = 4 }
+    prod    = { instance_type = "t3.medium", min_size = 3, max_size = 10 }
+  }
+}
+
+locals {
+  config = var.env_config[var.environment]
+}
+```
+
+## What's Next?
+
+Our **Terraform for Beginners** course covers variables, outputs, and modules across 15 hands-on lessons. First lesson is free.
