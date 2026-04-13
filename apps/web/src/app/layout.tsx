@@ -1,12 +1,17 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
+import dynamic from "next/dynamic";
 import Script from "next/script";
 import { SiteHeader } from "@/components/layout/site-header";
 import { SiteFooter } from "@/components/layout/site-footer";
-import { NewsletterPopup } from "@/components/newsletter-popup";
 import { AnnouncementBanner } from "@/components/layout/announcement-banner";
 import { RouteChangeTracker } from "@/components/analytics/route-change-tracker";
 import "./globals.css";
+
+const NewsletterPopup = dynamic(
+  () => import("@/components/newsletter-popup").then((m) => m.NewsletterPopup),
+  { ssr: false }
+);
 
 const siteUrl = process.env.NEXT_PUBLIC_APP_URL ?? "https://www.copypastelearn.com";
 
@@ -120,9 +125,9 @@ export default async function RootLayout({
         {/* Google Analytics (GA4) */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-YN94VH0TPN"
-          strategy="afterInteractive"
+          strategy="lazyOnload"
         />
-        <Script id="ga4-init" strategy="afterInteractive">
+        <Script id="ga4-init" strategy="lazyOnload">
           {`
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
@@ -132,7 +137,7 @@ export default async function RootLayout({
         </Script>
 
         {/* Microsoft Clarity */}
-        <Script id="clarity-init" strategy="afterInteractive">
+        <Script id="clarity-init" strategy="lazyOnload">
           {`
             (function(c,l,a,r,i,t,y){
               c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
