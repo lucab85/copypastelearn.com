@@ -69,7 +69,7 @@ export function CourseCard({ course }: CourseCardProps) {
             {course.description}
           </p>
         </CardContent>
-        {course.userProgress && (
+        {course.userProgress ? (
           <CardFooter>
             <div className="w-full">
               <div className="mb-1 flex justify-between text-xs text-muted-foreground">
@@ -92,6 +92,12 @@ export function CourseCard({ course }: CourseCardProps) {
                 />
               </div>
             </div>
+          </CardFooter>
+        ) : (
+          <CardFooter>
+            <span className="text-xs font-medium text-primary group-hover:underline">
+              Preview free lesson →
+            </span>
           </CardFooter>
         )}
       </Card>

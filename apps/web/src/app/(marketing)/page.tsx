@@ -174,7 +174,7 @@ export default async function HomePage() {
             <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:gap-4">
               <Button size="lg" className="gap-2 px-8 text-base" asChild>
                 <Link href="/courses">
-                  Explore Courses
+                  Start a Free Lesson
                   <ArrowRight className="h-4 w-4" />
                 </Link>
               </Button>
@@ -703,7 +703,7 @@ export default async function HomePage() {
           <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
             <Button size="lg" className="gap-2 px-10 text-base" asChild>
               <Link href="/courses">
-                Browse Courses
+                Start a Free Lesson
                 <ArrowRight className="h-4 w-4" />
               </Link>
             </Button>
