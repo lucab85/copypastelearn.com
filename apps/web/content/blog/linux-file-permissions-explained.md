@@ -1,215 +1,227 @@
 ---
 title: "Linux File Permissions Explained"
 slug: "linux-file-permissions-explained"
-date: "2026-03-18"
+date: "2026-01-17"
 category: "DevOps"
-tags: ["Linux", "Permissions", "Security", "Sysadmin", "DevOps"]
-excerpt: "Master Linux file permissions. Understand rwx, chmod, chown, SUID, SGID, sticky bit, and ACLs with practical examples."
-description: "Master Linux file permissions. Understand rwx, chmod, chown, SUID, SGID, sticky bit, and ACLs with practical examples."
+tags: ["Linux", "Permissions", "Security", "System Administration", "DevOps"]
+excerpt: "Master Linux file permissions. chmod, chown, umask, SUID/SGID, sticky bit, and ACLs for secure system administration."
+description: "Master Linux file permissions. chmod, chown, umask, SUID, SGID, sticky bit, and ACLs for sysadmins."
 ---
 
-Linux file permissions control who can read, write, and execute files. Getting them wrong means either security holes or broken applications.
+File permissions control who can read, write, and execute files. Getting them right is the foundation of Linux security.
 
-## The Basics: rwx
-
-Every file has three permission sets:
+## Reading Permissions
 
 ```bash
-ls -l myfile.txt
-# -rw-r--r-- 1 alice developers 1024 Apr 10 12:00 myfile.txt
-#  │││ │││ │││
-#  │││ │││ └── Others: r-- (read only)
-#  │││ └────── Group: r-- (read only)
-#  └────────── Owner: rw- (read + write)
+ls -la
+# -rw-r--r-- 1 root root  1234 Jan 17 10:00 config.yml
+# drwxr-xr-x 2 app  app   4096 Jan 17 10:00 data/
 ```
 
-| Symbol | Permission | On Files | On Directories |
-|---|---|---|---|
-| `r` (4) | Read | View contents | List files |
-| `w` (2) | Write | Modify contents | Create/delete files |
-| `x` (1) | Execute | Run as program | Enter directory (cd) |
-
-## chmod: Change Permissions
-
-**Numeric (octal)**:
-
-```bash
-chmod 755 script.sh    # rwxr-xr-x (owner: all, group+others: read+execute)
-chmod 644 config.yml   # rw-r--r-- (owner: read+write, group+others: read)
-chmod 600 secrets.env  # rw------- (owner only)
-chmod 700 private/     # rwx------ (owner only, directory)
+```
+-  rw-  r--  r--
+│  │    │    │
+│  │    │    └── Others (everyone else)
+│  │    └─────── Group
+│  └──────────── Owner
+└─────────────── Type (- file, d directory, l symlink)
 ```
 
-**Symbolic**:
-
-```bash
-chmod u+x script.sh    # Add execute for owner
-chmod g+w shared.txt   # Add write for group
-chmod o-r secret.txt   # Remove read for others
-chmod a+r public.html  # Add read for all (a = all)
-chmod u=rwx,go=rx dir  # Set exact permissions
-```
-
-## chown: Change Ownership
-
-```bash
-chown alice file.txt           # Change owner
-chown alice:developers file.txt # Change owner and group
-chown -R alice:developers dir/  # Recursive
-```
-
-## Common Permission Patterns
-
-| Octal | Symbolic | Use Case |
+| Symbol | Permission | Numeric |
 |---|---|---|
-| `755` | rwxr-xr-x | Scripts, executables, public directories |
-| `644` | rw-r--r-- | Config files, HTML, regular files |
-| `600` | rw------- | SSH keys, secrets, credentials |
-| `700` | rwx------ | Private directories (~/.ssh) |
-| `775` | rwxrwxr-x | Shared group directories |
-| `664` | rw-rw-r-- | Shared group files |
-| `444` | r--r--r-- | Read-only for everyone |
+| `r` | Read | 4 |
+| `w` | Write | 2 |
+| `x` | Execute | 1 |
+| `-` | None | 0 |
+
+`rw-r--r--` = 644 = owner read+write, group read, others read.
+
+## chmod (Change Mode)
+
+### Numeric
+
+```bash
+chmod 755 script.sh    # rwxr-xr-x
+chmod 644 config.yml   # rw-r--r--
+chmod 600 secret.key   # rw-------
+chmod 700 .ssh/        # rwx------
+chmod 777 temp/        # rwxrwxrwx (avoid!)
+```
+
+Common permissions:
+
+| Numeric | Symbolic | Use Case |
+|---|---|---|
+| `644` | `rw-r--r--` | Regular files |
+| `755` | `rwxr-xr-x` | Scripts, directories |
+| `600` | `rw-------` | Private keys, secrets |
+| `700` | `rwx------` | `.ssh/` directory |
+| `400` | `r--------` | SSH keys |
+
+### Symbolic
+
+```bash
+chmod u+x script.sh      # Add execute for owner
+chmod g+w file.txt        # Add write for group
+chmod o-r secret.key      # Remove read for others
+chmod a+r public.html     # Add read for all
+chmod u=rwx,g=rx,o= dir  # Set exact permissions
+```
+
+### Recursive
+
+```bash
+chmod -R 755 /var/www/html/
+chmod -R u+rwX,g+rX,o+rX /var/www/  # X = execute only on directories
+```
+
+The capital `X` sets execute only on directories and files that already have execute — prevents making all files executable.
+
+## chown (Change Owner)
+
+```bash
+chown app:app file.txt           # Change owner and group
+chown app file.txt               # Change owner only
+chown :www-data file.txt         # Change group only
+chown -R app:app /opt/my-app/    # Recursive
+```
+
+## umask
+
+Default permissions for new files:
+
+```bash
+umask
+# 0022
+
+# New files: 666 - 022 = 644 (rw-r--r--)
+# New dirs:  777 - 022 = 755 (rwxr-xr-x)
+```
+
+```bash
+# Set restrictive umask
+umask 077
+# New files: 600 (rw-------)
+# New dirs:  700 (rwx------)
+
+# Permanent: add to ~/.bashrc or /etc/profile
+```
 
 ## Special Permissions
 
-### SUID (Set User ID) — 4xxx
+### SUID (Set User ID)
 
-When set on an executable, it runs as the file **owner** regardless of who executes it:
+File executes as the file owner, not the user running it:
 
 ```bash
-ls -l /usr/bin/passwd
-# -rwsr-xr-x 1 root root 68208 Apr 10 /usr/bin/passwd
-#    ^ SUID bit (s instead of x)
+# Set SUID
+chmod u+s /usr/bin/passwd
+chmod 4755 /usr/bin/passwd
 
-# passwd runs as root even when alice runs it
-# This is how non-root users can change their password
+ls -la /usr/bin/passwd
+# -rwsr-xr-x 1 root root 68208 Jan 17 10:00 /usr/bin/passwd
+#    ^
+#    s = SUID bit
 ```
 
-Set SUID:
+`passwd` runs as root even when called by a normal user — that is how it can modify `/etc/shadow`.
+
+### SGID (Set Group ID)
+
+Files created in directory inherit the directory's group:
 
 ```bash
-chmod 4755 myprogram   # or chmod u+s myprogram
+# Set SGID on directory
+chmod g+s /opt/shared/
+chmod 2775 /opt/shared/
+
+ls -la /opt/
+# drwxrwsr-x 2 root developers 4096 Jan 17 10:00 shared/
+#       ^
+#       s = SGID bit
 ```
 
-**Security warning**: SUID on scripts is dangerous. Only use on compiled binaries that are designed for it.
+Every file created in `/opt/shared/` belongs to group `developers`.
 
-### SGID (Set Group ID) — 2xxx
+### Sticky Bit
 
-On a **directory**, new files inherit the directory's group:
+Only the file owner can delete files in the directory:
 
 ```bash
-mkdir /shared/project
-chgrp developers /shared/project
-chmod 2775 /shared/project
-# New files created here will belong to "developers" group
+chmod +t /tmp/
+chmod 1777 /tmp/
+
+ls -la /
+# drwxrwxrwt 10 root root 4096 Jan 17 10:00 tmp/
+#          ^
+#          t = sticky bit
 ```
 
-### Sticky Bit — 1xxx
+This is why you cannot delete other users' files in `/tmp/`.
 
-On a directory, only the file owner can delete their files:
+## ACLs (Access Control Lists)
 
-```bash
-ls -ld /tmp
-# drwxrwxrwt 15 root root 4096 Apr 10 /tmp
-#          ^ Sticky bit (t)
-
-chmod 1777 /shared   # or chmod +t /shared
-```
-
-Everyone can create files, but only the file's owner can delete it. Used on `/tmp`.
-
-## ACLs: Fine-Grained Control
-
-When basic permissions are not enough:
+Fine-grained permissions beyond owner/group/other:
 
 ```bash
-# Give bob read access to alice's file
-setfacl -m u:bob:r-- alice-file.txt
+# Give specific user read access
+setfacl -m u:alice:r config.yml
 
-# Give developers group write access
-setfacl -m g:developers:rw- project-file.txt
+# Give specific group write access
+setfacl -m g:developers:rw config.yml
 
 # View ACLs
-getfacl file.txt
+getfacl config.yml
 
-# Default ACL on directory (inherited by new files)
-setfacl -d -m g:developers:rw- /shared/project/
+# Default ACL (for new files in directory)
+setfacl -d -m g:developers:rw /opt/shared/
 
 # Remove ACL
-setfacl -x u:bob file.txt
+setfacl -x u:alice config.yml
 
 # Remove all ACLs
-setfacl -b file.txt
+setfacl -b config.yml
 ```
 
-Files with ACLs show a `+` in `ls -l`:
-
 ```bash
--rw-rw-r--+ 1 alice alice 1024 Apr 10 file.txt
-#         ^ ACL present
+getfacl config.yml
+# file: config.yml
+# owner: root
+# group: root
+# user::rw-
+# user:alice:r--
+# group::r--
+# group:developers:rw-
+# mask::rw-
+# other::---
 ```
 
-## DevOps Permission Scenarios
-
-### Docker Volumes
+## Finding Permission Issues
 
 ```bash
-# Container runs as UID 1000, host files owned by root
-# Fix: match UIDs
-chown -R 1000:1000 /data/app
+# Find world-writable files
+find / -perm -002 -type f 2>/dev/null
 
-# Or use Docker user namespace mapping
-docker run -u 1000:1000 -v /data/app:/app myimage
-```
-
-### SSH Key Permissions
-
-```bash
-chmod 700 ~/.ssh
-chmod 600 ~/.ssh/id_rsa          # Private key
-chmod 644 ~/.ssh/id_rsa.pub      # Public key
-chmod 600 ~/.ssh/authorized_keys
-chmod 644 ~/.ssh/config
-```
-
-SSH refuses to work if key permissions are too open.
-
-### Web Server Files
-
-```bash
-# Nginx/Apache needs read access
-chown -R www-data:www-data /var/www/html
-chmod -R 755 /var/www/html       # Directories
-find /var/www/html -type f -exec chmod 644 {} \;  # Files
-```
-
-### Application Secrets
-
-```bash
-# .env files should never be world-readable
-chmod 600 .env
-chmod 600 docker-compose.yml  # If it contains secrets
-
-# Ansible vault files
-chmod 600 group_vars/*/vault.yml
-```
-
-## Debugging Permission Issues
-
-```bash
-# Check effective permissions
-namei -l /path/to/file
-
-# Find files with SUID
+# Find SUID files
 find / -perm -4000 -type f 2>/dev/null
 
-# Find world-writable files
-find / -perm -o+w -type f 2>/dev/null
-
 # Find files owned by nobody
-find / -nouser -o -nogroup 2>/dev/null
+find / -nouser -type f 2>/dev/null
+
+# Find files not owned by expected user
+find /opt/my-app -not -user app -type f
 ```
+
+## Common Mistakes
+
+| Mistake | Why It's Bad | Fix |
+|---|---|---|
+| `chmod 777` | Everyone can read/write/execute | Use 755 for dirs, 644 for files |
+| Root-owned app files | App can't write logs/data | `chown app:app` |
+| Secret keys with 644 | Others can read your keys | `chmod 600` or `400` |
+| Missing execute on dirs | Can't `cd` into directory | `chmod +x dir/` |
+| Recursive chmod on files | Makes all files executable | Use `X` instead of `x` |
 
 ## What's Next?
 
-Our **SELinux for System Admins** course goes beyond basic permissions into mandatory access control — the next level of Linux security. Our **Docker Fundamentals** course covers container permission patterns. First lessons are free.
+Our **SELinux for System Admins** course covers mandatory access controls beyond standard Linux permissions. **Ansible Automation in 30 Minutes** teaches automating permission management. First lessons are free.
