@@ -17,7 +17,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { CheckCircle2, Building2 } from "lucide-react";
+import { CheckCircle2, Building2, Star, Quote } from "lucide-react";
 import { SUBSCRIPTION_PRICE_EUR } from "@copypastelearn/shared";
 import { getSubscriptionStatus } from "@/lib/billing";
 
@@ -400,6 +400,50 @@ export default async function PricingPage({
             <li>• You need enterprise SSO or team management</li>
             <li>• You&apos;re looking for front-end/UI courses</li>
           </ul>
+        </div>
+      </div>
+
+      {/* Learner outcomes */}
+      <div className="mx-auto mt-16 max-w-3xl">
+        <h2 className="mb-8 text-center text-2xl font-bold tracking-tight">What learners achieve</h2>
+        <div className="grid gap-6 sm:grid-cols-3">
+          {[
+            {
+              name: "Marco R.",
+              role: "DevOps Engineer",
+              text: "The hands-on labs made Ansible click for me in a way video-only courses never could.",
+              outcome: "Automated server provisioning in 1 week",
+            },
+            {
+              name: "Sarah K.",
+              role: "Backend Developer",
+              text: "Finally a platform that lets me practice Docker commands in a real environment.",
+              outcome: "Containerized first app in 3 days",
+            },
+            {
+              name: "James L.",
+              role: "SRE",
+              text: "I went from zero to deploying containerized services in production.",
+              outcome: "Production deployment in 2 weeks",
+            },
+          ].map((t) => (
+            <div key={t.name} className="rounded-lg border p-5">
+              <div className="mb-2 flex gap-0.5">
+                {Array.from({ length: 5 }).map((_, i) => (
+                  <Star key={i} className="h-3.5 w-3.5 fill-yellow-400 text-yellow-400" />
+                ))}
+              </div>
+              <Quote className="mb-1 h-4 w-4 text-muted-foreground/40" />
+              <p className="text-sm text-muted-foreground">{t.text}</p>
+              <div className="mt-3 rounded-md bg-primary/5 px-3 py-1.5">
+                <p className="text-xs font-semibold text-primary">{t.outcome}</p>
+              </div>
+              <div className="mt-3 text-xs">
+                <span className="font-medium">{t.name}</span>
+                <span className="text-muted-foreground"> · {t.role}</span>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
 
