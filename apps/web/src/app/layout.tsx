@@ -1,17 +1,12 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
-import dynamic from "next/dynamic";
 import Script from "next/script";
 import { SiteHeader } from "@/components/layout/site-header";
 import { SiteFooter } from "@/components/layout/site-footer";
+import { NewsletterPopup } from "@/components/newsletter-popup";
 import { AnnouncementBanner } from "@/components/layout/announcement-banner";
 import { RouteChangeTracker } from "@/components/analytics/route-change-tracker";
 import "./globals.css";
-
-const NewsletterPopup = dynamic(
-  () => import("@/components/newsletter-popup").then((m) => m.NewsletterPopup),
-  { ssr: false }
-);
 
 const siteUrl = process.env.NEXT_PUBLIC_APP_URL ?? "https://www.copypastelearn.com";
 
