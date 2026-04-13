@@ -380,6 +380,29 @@ export default async function PricingPage({
         </Card>
       </div>
 
+      {/* Who this is for */}
+      <div className="mx-auto mt-16 grid max-w-3xl gap-8 sm:grid-cols-2">
+        <div className="rounded-lg border border-green-500/20 bg-green-500/5 p-6">
+          <h3 className="mb-4 font-semibold text-green-600 dark:text-green-400">✓ Great fit if you&hellip;</h3>
+          <ul className="space-y-2 text-sm text-muted-foreground">
+            <li>• Want hands-on practice, not just theory</li>
+            <li>• Are a developer moving into DevOps or SRE</li>
+            <li>• Need to automate infrastructure at work</li>
+            <li>• Learn best by doing in real environments</li>
+            <li>• Want one subscription for all topics</li>
+          </ul>
+        </div>
+        <div className="rounded-lg border border-muted p-6">
+          <h3 className="mb-4 font-semibold text-muted-foreground">✗ Probably not for you if&hellip;</h3>
+          <ul className="space-y-2 text-sm text-muted-foreground">
+            <li>• You only need certification exam prep</li>
+            <li>• You prefer instructor-led classroom training</li>
+            <li>• You need enterprise SSO or team management</li>
+            <li>• You&apos;re looking for front-end/UI courses</li>
+          </ul>
+        </div>
+      </div>
+
       {/* FAQ */}
       <div className="mx-auto mt-20 max-w-2xl">
         <h2 className="mb-8 text-center text-2xl font-bold tracking-tight">

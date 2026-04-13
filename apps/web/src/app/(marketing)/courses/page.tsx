@@ -2,7 +2,8 @@ export const dynamic = "force-dynamic";
 import type { Metadata } from "next";
 import { getPublicCourses } from "@/server/queries/public-courses";
 import { CourseFilter } from "@/components/course/course-filter";
-import { BookOpen } from "lucide-react";
+import { BookOpen, ArrowRight } from "lucide-react";
+import Link from "next/link";
 import { PageEventTracker } from "@/components/analytics/page-event-tracker";
 
 export const revalidate = 3600;
@@ -84,38 +85,55 @@ export default async function CourseCatalogPage() {
       {/* Learning Paths */}
       <div className="border-b bg-muted/10">
         <div className="container mx-auto px-4 py-10">
-          <h2 className="mb-6 text-xl font-semibold">Learning Paths</h2>
+          <h2 className="mb-2 text-xl font-semibold">Learning Paths</h2>
+          <p className="mb-6 text-sm text-muted-foreground">Follow a structured sequence to build real skills step by step.</p>
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {[
               {
-                title: "DevOps Foundations",
+                title: "DevOps Starter",
                 description:
-                  "Docker → Ansible → CI/CD. Build a complete automation workflow from scratch.",
-                courses: ["Docker Fundamentals", "Ansible Quickstart"],
+                  "Container basics → configuration management → infrastructure provisioning. The essential DevOps toolkit.",
+                courses: [
+                  { name: "Docker Fundamentals", slug: "docker-fundamentals" },
+                  { name: "Ansible Quickstart", slug: "ansible-quickstart" },
+                  { name: "Terraform for Beginners", slug: "terraform-beginners" },
+                ],
                 color: "from-blue-500/10 to-cyan-500/10",
                 border: "border-blue-500/20",
               },
               {
-                title: "Infrastructure as Code",
+                title: "Backend to Infrastructure",
                 description:
-                  "Terraform + Ansible. Provision and configure cloud infrastructure programmatically.",
+                  "Build APIs, containerize them, then deploy and manage at scale.",
                 courses: [
-                  "Terraform for Beginners",
-                  "Ansible Quickstart",
+                  { name: "Node.js REST APIs", slug: "nodejs-rest-apis" },
+                  { name: "Docker Fundamentals", slug: "docker-fundamentals" },
+                  { name: "Terraform for Beginners", slug: "terraform-beginners" },
                 ],
-                color: "from-purple-500/10 to-pink-500/10",
-                border: "border-purple-500/20",
+                color: "from-green-500/10 to-emerald-500/10",
+                border: "border-green-500/20",
               },
               {
                 title: "AI & MLOps",
                 description:
                   "From AI agents to ML model lifecycle management on Kubernetes.",
                 courses: [
-                  "OpenClaw AI Agent",
-                  "MLflow for Kubernetes",
+                  { name: "OpenClaw AI Agent", slug: "openclaw-agent" },
+                  { name: "MLflow for Kubernetes", slug: "mlflow-kubernetes-mlops" },
                 ],
                 color: "from-orange-500/10 to-yellow-500/10",
                 border: "border-orange-500/20",
+              },
+              {
+                title: "Linux Security",
+                description:
+                  "Harden Linux systems with SELinux policies, contexts, and troubleshooting.",
+                courses: [
+                  { name: "SELinux for Sysadmins", slug: "selinux-system-admins" },
+                  { name: "Ansible Quickstart", slug: "ansible-quickstart" },
+                ],
+                color: "from-red-500/10 to-pink-500/10",
+                border: "border-red-500/20",
               },
             ].map((path) => (
               <div
@@ -126,16 +144,22 @@ export default async function CourseCatalogPage() {
                 <p className="mt-1.5 text-sm text-muted-foreground">
                   {path.description}
                 </p>
-                <div className="mt-3 flex flex-wrap gap-1.5">
-                  {path.courses.map((c) => (
-                    <span
-                      key={c}
-                      className="rounded-full bg-background/60 px-2.5 py-0.5 text-xs font-medium"
-                    >
-                      {c}
-                    </span>
+                <ol className="mt-3 space-y-1.5">
+                  {path.courses.map((c, i) => (
+                    <li key={c.slug} className="flex items-center gap-2">
+                      <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-background/80 text-[10px] font-bold">{i + 1}</span>
+                      <Link href={`/courses/${c.slug}`} className="text-xs font-medium hover:underline">
+                        {c.name}
+                      </Link>
+                    </li>
                   ))}
-                </div>
+                </ol>
+                <Link
+                  href={`/courses/${path.courses[0].slug}`}
+                  className="mt-4 inline-flex items-center gap-1 text-xs font-medium text-primary hover:underline"
+                >
+                  Start path <ArrowRight className="h-3 w-3" />
+                </Link>
               </div>
             ))}
           </div>
