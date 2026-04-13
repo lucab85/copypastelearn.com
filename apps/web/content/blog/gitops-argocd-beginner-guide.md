@@ -1,43 +1,48 @@
 ---
 title: "GitOps with ArgoCD Beginner Guide"
 slug: "gitops-argocd-beginner-guide"
-date: "2026-03-21"
+date: "2026-01-07"
 category: "DevOps"
-tags: ["GitOps", "ArgoCD", "Kubernetes", "CI/CD", "DevOps"]
-excerpt: "Get started with GitOps using ArgoCD. Declarative deployments, automatic sync, and Git as the single source of truth for Kubernetes."
-description: "Get started with GitOps using ArgoCD. Declarative deployments, automatic sync, and Git as single source of truth for K8s."
+tags: ["ArgoCD", "GitOps", "Kubernetes", "CI/CD", "DevOps"]
+excerpt: "Get started with GitOps using ArgoCD. Install ArgoCD, create applications, sync strategies, app of apps pattern, and automated deployments."
+description: "Get started with GitOps using ArgoCD. Install, create apps, sync strategies, and automated deployments."
 ---
 
-GitOps uses Git as the single source of truth for your infrastructure and applications. ArgoCD watches your Git repo and automatically syncs your Kubernetes cluster to match what is defined there.
+GitOps uses Git as the single source of truth for infrastructure and applications. ArgoCD watches your Git repo and automatically syncs Kubernetes clusters to match.
 
-## GitOps Principles
+## Core Concepts
 
-1. **Declarative**: The entire system is described declaratively (YAML/Helm/Kustomize)
-2. **Versioned**: All changes go through Git (pull requests, reviews, history)
-3. **Automated**: Approved changes are automatically applied to the cluster
-4. **Self-healing**: The system corrects drift — if someone manually changes the cluster, ArgoCD reverts it
+```
+Git Repo (desired state) → ArgoCD → Kubernetes Cluster (actual state)
+                              ↓
+                    Detects drift, syncs automatically
+```
+
+| Concept | Meaning |
+|---|---|
+| **Application** | A set of K8s manifests tracked from a Git repo |
+| **Sync** | Apply desired state from Git to cluster |
+| **Drift** | Actual state differs from Git |
+| **Health** | Application resources are working correctly |
 
 ## Install ArgoCD
 
 ```bash
-# Create namespace
 kubectl create namespace argocd
-
-# Install ArgoCD
 kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
 
 # Wait for pods
-kubectl wait --for=condition=ready pod -l app.kubernetes.io/name=argocd-server -n argocd --timeout=120s
+kubectl -n argocd rollout status deployment argocd-server
 
 # Get initial admin password
 kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d
 
-# Port forward the UI
+# Access UI
 kubectl port-forward svc/argocd-server -n argocd 8080:443
-# Visit https://localhost:8080
+# Open https://localhost:8080
 ```
 
-Install the CLI:
+### Install CLI
 
 ```bash
 # macOS
@@ -45,185 +50,212 @@ brew install argocd
 
 # Linux
 curl -sSL -o argocd https://github.com/argoproj/argo-cd/releases/latest/download/argocd-linux-amd64
-chmod +x argocd && sudo mv argocd /usr/local/bin/
+chmod +x argocd
+sudo mv argocd /usr/local/bin/
 
 # Login
 argocd login localhost:8080
 ```
 
-## Your First Application
+## Create an Application
 
-### Git Repository Structure
+### Via CLI
 
-```
-k8s-manifests/
-  apps/
-    web-app/
-      deployment.yaml
-      service.yaml
-      ingress.yaml
-    api/
-      deployment.yaml
-      service.yaml
-  base/
-    namespace.yaml
+```bash
+argocd app create my-app \
+  --repo https://github.com/myorg/k8s-manifests.git \
+  --path apps/my-app \
+  --dest-server https://kubernetes.default.svc \
+  --dest-namespace production \
+  --sync-policy automated \
+  --auto-prune \
+  --self-heal
 ```
 
-### Create an ArgoCD Application
+### Via Manifest
 
 ```yaml
-# argocd-app.yaml
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: web-app
+  name: my-app
   namespace: argocd
 spec:
   project: default
   source:
-    repoURL: https://github.com/your-org/k8s-manifests.git
+    repoURL: https://github.com/myorg/k8s-manifests.git
     targetRevision: main
-    path: apps/web-app
+    path: apps/my-app
   destination:
     server: https://kubernetes.default.svc
     namespace: production
   syncPolicy:
     automated:
       prune: true       # Delete resources removed from Git
-      selfHeal: true    # Revert manual cluster changes
+      selfHeal: true    # Revert manual changes
     syncOptions:
       - CreateNamespace=true
+    retry:
+      limit: 3
+      backoff:
+        duration: 5s
+        maxDuration: 3m
+        factor: 2
 ```
 
-```bash
-kubectl apply -f argocd-app.yaml
-```
-
-ArgoCD now watches `apps/web-app/` in your repo. Any changes merged to `main` are automatically deployed.
-
-## The GitOps Workflow
+## Git Repository Structure
 
 ```
-Developer writes code
-  → PR to app repo (triggers CI: build, test, push image)
-    → CI updates image tag in k8s-manifests repo
-      → ArgoCD detects change
-        → ArgoCD syncs cluster to match Git
-          → Deployment rolls out new version
+k8s-manifests/
+  apps/
+    my-app/
+      deployment.yaml
+      service.yaml
+      ingress.yaml
+      configmap.yaml
+    api/
+      deployment.yaml
+      service.yaml
+    worker/
+      deployment.yaml
+  base/
+    namespace.yaml
+    network-policies.yaml
 ```
 
-### Updating a Deployment
-
-Instead of running `kubectl set image`, you update the Git repo:
-
-```yaml
-# Before
-containers:
-  - name: web
-    image: my-registry/web-app:v1.2.3
-
-# After (update in Git)
-containers:
-  - name: web
-    image: my-registry/web-app:v1.2.4
-```
-
-Push to main → ArgoCD deploys automatically.
-
-### Rollback
-
-Rolling back is a `git revert`:
-
-```bash
-git revert HEAD
-git push origin main
-# ArgoCD automatically rolls back the cluster
-```
-
-Full audit trail in Git history. No one needs cluster access to deploy or rollback.
-
-## Helm with ArgoCD
+## Helm Applications
 
 ```yaml
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: monitoring
+  name: prometheus
   namespace: argocd
 spec:
   source:
     repoURL: https://prometheus-community.github.io/helm-charts
     chart: kube-prometheus-stack
-    targetRevision: 56.0.0
+    targetRevision: 55.0.0
     helm:
       values: |
         grafana:
-          adminPassword: changeme
+          enabled: true
+          adminPassword: admin
         prometheus:
-          retention: 30d
+          prometheusSpec:
+            retention: 30d
+            storageSpec:
+              volumeClaimTemplate:
+                spec:
+                  resources:
+                    requests:
+                      storage: 50Gi
   destination:
     server: https://kubernetes.default.svc
     namespace: monitoring
-  syncPolicy:
-    automated:
-      prune: true
 ```
 
-## Kustomize with ArgoCD
-
-```
-k8s/
-  base/
-    deployment.yaml
-    service.yaml
-    kustomization.yaml
-  overlays/
-    dev/
-      kustomization.yaml
-    staging/
-      kustomization.yaml
-    production/
-      kustomization.yaml
-```
+## Kustomize Applications
 
 ```yaml
-# ArgoCD app pointing to overlay
-spec:
-  source:
-    repoURL: https://github.com/your-org/k8s-manifests.git
-    path: k8s/overlays/production
-```
-
-## Multi-Environment Setup
-
-```yaml
-# App of Apps pattern
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: apps
+  name: my-app-production
   namespace: argocd
 spec:
   source:
-    repoURL: https://github.com/your-org/argocd-apps.git
-    path: environments/production
+    repoURL: https://github.com/myorg/k8s-manifests.git
+    targetRevision: main
+    path: overlays/production
   destination:
     server: https://kubernetes.default.svc
+    namespace: production
 ```
 
-`environments/production/` contains Application manifests for every service. Add a new service by adding a YAML file and pushing.
+## App of Apps Pattern
 
-## GitOps vs Traditional CI/CD
+One parent Application manages child Applications:
 
-| Aspect | Traditional CI/CD | GitOps |
-|---|---|---|
-| Deployment trigger | CI pipeline pushes to cluster | ArgoCD pulls from Git |
-| Cluster access | CI needs kubectl/credentials | Only ArgoCD needs access |
-| Audit trail | CI logs | Git history |
-| Drift detection | None | Automatic self-healing |
-| Rollback | Re-run old pipeline | git revert |
-| Multi-cluster | Complex pipeline logic | ArgoCD ApplicationSets |
+```yaml
+# apps/root-app.yaml
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: root
+  namespace: argocd
+spec:
+  source:
+    repoURL: https://github.com/myorg/k8s-manifests.git
+    path: argocd-apps    # Directory containing Application manifests
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: argocd
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+```
+
+```
+argocd-apps/
+  my-app.yaml          # Application manifest
+  api.yaml             # Application manifest
+  prometheus.yaml      # Application manifest
+  cert-manager.yaml    # Application manifest
+```
+
+Add a new app to the cluster = commit a YAML file to Git.
+
+## Sync Strategies
+
+| Strategy | Behavior |
+|---|---|
+| Manual | Click sync in UI or run `argocd app sync` |
+| Automated | Auto-sync when Git changes detected |
+| Automated + Prune | Also delete resources removed from Git |
+| Automated + Self-Heal | Revert manual kubectl changes |
+
+## CLI Operations
+
+```bash
+# List apps
+argocd app list
+
+# Get app details
+argocd app get my-app
+
+# Sync
+argocd app sync my-app
+
+# Diff (what would change)
+argocd app diff my-app
+
+# History
+argocd app history my-app
+
+# Rollback
+argocd app rollback my-app REVISION_NUMBER
+
+# Delete app (and resources)
+argocd app delete my-app --cascade
+```
+
+## CI/CD Pipeline Integration
+
+```yaml
+# GitHub Actions — update image tag in Git
+- name: Update image tag
+  run: |
+    cd k8s-manifests
+    kustomize edit set image my-app=my-registry/my-app:${{ github.sha }}
+    git add .
+    git commit -m "deploy: my-app ${{ github.sha }}"
+    git push
+```
+
+ArgoCD detects the commit and syncs automatically. CI pushes images and updates Git. CD (ArgoCD) deploys from Git.
 
 ## What's Next?
 
-Our **MLflow for Kubernetes MLOps** course covers Kubernetes deployment strategies including GitOps patterns. **Terraform for Beginners** teaches the infrastructure provisioning that pairs with GitOps. First lessons are free.
+Our **MLflow for Kubernetes MLOps** course covers GitOps workflows for ML model deployment. **Docker Fundamentals** teaches the container basics. First lessons are free.
