@@ -47,7 +47,7 @@ export function AnnouncementBanner({
       </div>
       <button
         onClick={() => setDismissed(true)}
-        className="absolute right-3 top-1/2 -translate-y-1/2 rounded-full p-0.5 hover:bg-primary-foreground/20"
+        className="absolute right-3 top-1/2 -translate-y-1/2 rounded-full p-2 hover:bg-primary-foreground/20"
         aria-label="Dismiss announcement"
       >
         <X className="h-3.5 w-3.5" />

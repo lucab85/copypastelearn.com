@@ -260,6 +260,7 @@ export default async function HomePage() {
       {/* ═══════════════ WHO IT'S FOR ═════════════════════════ */}
       <section aria-label="Who it's for" className="border-b bg-muted/20 py-12">
         <div className="container mx-auto px-4">
+          <h2 className="mb-8 text-center text-3xl font-bold tracking-tight sm:text-4xl">Built for practitioners</h2>
           <div className="grid gap-6 sm:grid-cols-3">
             {[
               {
@@ -293,7 +294,7 @@ export default async function HomePage() {
                   <p className="mt-1 text-sm text-muted-foreground">
                     {item.goal}
                   </p>
-                  <p className="mt-2 flex items-center gap-1.5 text-xs font-medium text-green-600 dark:text-green-400">
+                  <p className="mt-2 flex items-center gap-1.5 text-xs font-medium text-green-700 dark:text-green-400">
                     <Target className="h-3 w-3" />
                     {item.outcome}
                   </p>
@@ -660,7 +661,7 @@ export default async function HomePage() {
                 </p>
                 {/* Concrete outcome badge */}
                 <div className="mt-4 rounded-lg bg-green-500/10 px-3 py-2">
-                  <p className="flex items-center gap-1.5 text-xs font-medium text-green-600 dark:text-green-400">
+                  <p className="flex items-center gap-1.5 text-xs font-medium text-green-700 dark:text-green-400">
                     <CheckCircle2 className="h-3 w-3" />
                     {t.outcome}
                   </p>

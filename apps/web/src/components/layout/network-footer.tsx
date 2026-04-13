@@ -119,13 +119,13 @@ const networkSites = [
 export function NetworkFooter() {
   return (
     <div className="border-t border-white/5 bg-[#0a0a0b] px-4 py-3">
-      <div className="mx-auto flex max-w-3xl flex-wrap items-center justify-center gap-x-3 gap-y-1">
+      <div className="mx-auto flex max-w-3xl flex-wrap items-center justify-center gap-x-3 gap-y-2">
         {networkSites.map((site) => (
           <a
             key={site.href}
             href={site.href}
             title={site.title}
-            className={`inline-flex items-center gap-1 whitespace-nowrap text-[11px] no-underline transition-colors duration-200 ${
+            className={`inline-flex items-center gap-1 whitespace-nowrap px-1 py-1.5 text-[11px] no-underline transition-colors duration-200 ${
               site.active
                 ? "pointer-events-none text-white/50"
                 : "text-white/35 hover:text-white/65"
