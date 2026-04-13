@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { Clock, BookOpen, Lock, CheckCircle2, Play, Target, Users } from "lucide-react";
 import { PageEventTracker } from "@/components/analytics/page-event-tracker";
+import { TerminalPreview } from "@/components/course/terminal-preview";
 
 export const revalidate = 3600;
 
@@ -318,6 +319,9 @@ export default async function CourseDetailPage({ params }: CourseDetailPageProps
               </ul>
             </section>
           )}
+
+          {/* Terminal preview */}
+          <TerminalPreview courseSlug={slug} />
 
           {/* Who this is for */}
           <section className="mb-8 rounded-lg border bg-muted/30 p-6">
