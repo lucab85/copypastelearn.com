@@ -306,7 +306,7 @@ export default async function PricingPage({
               <span className="text-5xl font-bold">€{ANNUAL_PRICE_EUR}</span>
               <span className="text-muted-foreground">/year</span>
             </div>
-            <p className="mt-1 text-sm text-green-600 dark:text-green-400">
+            <p className="mt-1 text-sm text-green-700 dark:text-green-400">
               €{MONTHLY_EQUIVALENT}/mo — Save €{SUBSCRIPTION_PRICE_EUR * 12 - ANNUAL_PRICE_EUR}/year
             </p>
           </CardHeader>
@@ -315,7 +315,7 @@ export default async function PricingPage({
               {[...benefits, "2 months free vs monthly"].map((benefit, i) => (
                 <li key={i} className="flex items-start gap-3">
                   <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-primary" />
-                  <span className={`text-sm ${i === benefits.length ? "font-semibold text-green-600 dark:text-green-400" : ""}`}>{benefit}</span>
+                  <span className={`text-sm ${i === benefits.length ? "font-semibold text-green-700 dark:text-green-400" : ""}`}>{benefit}</span>
                 </li>
               ))}
             </ul>
@@ -383,7 +383,7 @@ export default async function PricingPage({
       {/* Who this is for */}
       <div className="mx-auto mt-16 grid max-w-3xl gap-8 sm:grid-cols-2">
         <div className="rounded-lg border border-green-500/20 bg-green-500/5 p-6">
-          <h3 className="mb-4 font-semibold text-green-600 dark:text-green-400">✓ Great fit if you&hellip;</h3>
+          <h3 className="mb-4 font-semibold text-green-700 dark:text-green-400">✓ Great fit if you&hellip;</h3>
           <ul className="space-y-2 text-sm text-muted-foreground">
             <li>• Want hands-on practice, not just theory</li>
             <li>• Are a developer moving into DevOps or SRE</li>

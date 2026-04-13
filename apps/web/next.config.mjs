@@ -157,7 +157,7 @@ const nextConfig = {
           {
             key: "Content-Security-Policy",
             value:
-              "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://*.clerk.accounts.dev https://*.clerk.com https://www.googletagmanager.com https://www.clarity.ms https://js.stripe.com https://va.vercel-scripts.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https: blob:; font-src 'self' data: https:; connect-src 'self' https://*.clerk.accounts.dev https://*.clerk.com https://*.google-analytics.com https://*.clarity.ms https://api.stripe.com https://*.mux.com https://*.supabase.co https://app.kit.com; frame-src 'self' https://*.clerk.accounts.dev https://js.stripe.com https://*.mux.com; media-src 'self' https://*.mux.com https://stream.mux.com; worker-src 'self' blob:",
+              "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://*.clerk.accounts.dev https://*.clerk.com https://clerk.copypastelearn.com https://www.googletagmanager.com https://www.clarity.ms https://scripts.clarity.ms https://js.stripe.com https://va.vercel-scripts.com https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https: blob:; font-src 'self' data: https:; connect-src 'self' https://*.clerk.accounts.dev https://*.clerk.com https://clerk.copypastelearn.com https://*.google-analytics.com https://*.clarity.ms https://api.stripe.com https://*.mux.com https://*.supabase.co https://app.kit.com; frame-src 'self' https://*.clerk.accounts.dev https://js.stripe.com https://*.mux.com; media-src 'self' https://*.mux.com https://stream.mux.com; worker-src 'self' blob:",
           },
           { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
           {
