@@ -9,6 +9,7 @@ const footerSections = [
     links: [
       { href: "/courses", label: "Courses" },
       { href: "/pricing", label: "Pricing" },
+      { href: "/ai-platform-engineering", label: "AI for Leaders" },
     ],
   },
   {

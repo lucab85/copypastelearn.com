@@ -6,7 +6,7 @@ import { getCourse } from "@/server/queries/courses";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-import { Clock, BookOpen, Lock, CheckCircle2, Play } from "lucide-react";
+import { Clock, BookOpen, Lock, CheckCircle2, Play, Target, Users } from "lucide-react";
 import { PageEventTracker } from "@/components/analytics/page-event-tracker";
 
 export const revalidate = 3600;
@@ -319,6 +319,35 @@ export default async function CourseDetailPage({ params }: CourseDetailPageProps
             </section>
           )}
 
+          {/* Who this is for */}
+          <section className="mb-8 rounded-lg border bg-muted/30 p-6">
+            <h2 className="mb-3 flex items-center gap-2 text-xl font-semibold">
+              <Users className="h-5 w-5 text-primary" />
+              Who this is for
+            </h2>
+            <ul className="space-y-2 text-sm text-muted-foreground">
+              {course.difficulty === "BEGINNER" ? (
+                <>
+                  <li>• Developers moving into DevOps or infrastructure roles</li>
+                  <li>• System administrators learning modern tooling</li>
+                  <li>• CS students building practical skills</li>
+                </>
+              ) : course.difficulty === "INTERMEDIATE" ? (
+                <>
+                  <li>• DevOps engineers deepening their expertise</li>
+                  <li>• SREs building production-grade systems</li>
+                  <li>• Backend developers expanding into infrastructure</li>
+                </>
+              ) : (
+                <>
+                  <li>• Senior engineers architecting complex systems</li>
+                  <li>• Platform engineers building internal tooling</li>
+                  <li>• Tech leads driving infrastructure decisions</li>
+                </>
+              )}
+            </ul>
+          </section>
+
           {/* Prerequisites */}
           {course.prerequisites.length > 0 && (
             <section className="mb-8">
@@ -395,7 +424,7 @@ export default async function CourseDetailPage({ params }: CourseDetailPageProps
 
         {/* Sidebar */}
         <div className="lg:col-span-1">
-          <div className="sticky top-8 rounded-lg border p-6">
+          <div className="sticky top-8 space-y-6 rounded-lg border p-6">
             <h3 className="mb-4 text-lg font-semibold">Get started</h3>
             {course.lessons.length > 0 && (
               <Button asChild className="w-full">
@@ -404,13 +433,51 @@ export default async function CourseDetailPage({ params }: CourseDetailPageProps
                 >
                   {course.userProgress
                     ? "Continue Learning"
-                    : "Start First Lesson"}
+                    : "Start Free Lesson"}
                 </Link>
               </Button>
             )}
             <p className="mt-3 text-center text-xs text-muted-foreground">
-              First lesson is always free
+              First lesson is always free — no signup required
             </p>
+
+            <Separator />
+
+            {/* Course highlights */}
+            <div className="space-y-3 text-sm">
+              <div className="flex items-center gap-2">
+                <BookOpen className="h-4 w-4 text-muted-foreground" />
+                <span>{course.lessons.length} hands-on lessons</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Target className="h-4 w-4 text-muted-foreground" />
+                <span>{difficultyToLevel[course.difficulty] ?? course.difficulty} level</span>
+              </div>
+              {totalDuration > 0 && (
+                <div className="flex items-center gap-2">
+                  <Clock className="h-4 w-4 text-muted-foreground" />
+                  <span>{hours > 0 ? `${hours}h ` : ""}{minutes}m total</span>
+                </div>
+              )}
+              <div className="flex items-center gap-2">
+                <Play className="h-4 w-4 text-muted-foreground" />
+                <span>Real Linux sandbox labs</span>
+              </div>
+            </div>
+
+            <Separator />
+
+            <div className="text-center">
+              <p className="text-xs text-muted-foreground">
+                Want all courses?
+              </p>
+              <Link
+                href="/pricing"
+                className="text-sm font-medium text-primary hover:underline"
+              >
+                See Pro plan →
+              </Link>
+            </div>
           </div>
         </div>
       </div>
