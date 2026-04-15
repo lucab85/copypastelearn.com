@@ -382,15 +382,32 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     headline: post.title,
     description: post.description,
     datePublished: post.date,
-    author: { "@type": "Person", name: post.author },
-    publisher: { "@type": "Organization", name: "CopyPasteLearn", url: siteUrl },
+    dateModified: post.date,
+    author: {
+      "@type": "Person",
+      name: post.author,
+      url: "https://www.lucaberton.com/",
+      sameAs: [
+        "https://github.com/lucab85",
+        "https://www.linkedin.com/in/lucaberton/",
+        "https://x.com/yourlinuxsa",
+      ],
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "CopyPasteLearn",
+      url: siteUrl,
+      logo: { "@type": "ImageObject", url: `${siteUrl}/icon-512.png` },
+    },
     url: postUrl,
-    ...(post.image && {
-      image: post.image.startsWith("http") ? post.image : `${siteUrl}${post.image}`,
-    }),
+    image: post.image
+      ? (post.image.startsWith("http") ? post.image : `${siteUrl}${post.image}`)
+      : `${siteUrl}/opengraph-image`,
     keywords: post.tags,
     mainEntityOfPage: { "@type": "WebPage", "@id": postUrl },
     wordCount: post.content.split(/\s+/).length,
+    inLanguage: "en-US",
+    isAccessibleForFree: true,
   };
 
   return (
