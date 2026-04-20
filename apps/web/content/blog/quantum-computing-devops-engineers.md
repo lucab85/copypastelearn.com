@@ -109,3 +109,9 @@ For cryptography migration: now. For quantum computing adoption: when your speci
 
 **Do I need to learn quantum physics?**
 No. Cloud quantum SDKs abstract the physics. Understanding the computational model (qubits, gates, circuits) is sufficient.
+
+---
+
+## Ready to go deeper?
+
+This article is part of a hands-on learning path. Continue building your skills with [our course catalog](/courses) on CopyPasteLearn.

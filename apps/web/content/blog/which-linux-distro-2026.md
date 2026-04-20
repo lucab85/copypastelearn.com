@@ -105,3 +105,9 @@ Immutable desktops are where Linux is heading. Fedora Silverblue gives you an im
 The best Linux distro is the one you'll actually use. Install one, learn it, customize it. You can always switch later — and you'll carry the knowledge with you. Linux is Linux.
 
 Start building real skills on Linux with our [hands-on DevOps courses](/courses) — Docker, Ansible, Terraform, and more.
+
+---
+
+## Ready to go deeper?
+
+This article is part of a hands-on learning path. Continue building your skills with [our course catalog](/courses) on CopyPasteLearn.

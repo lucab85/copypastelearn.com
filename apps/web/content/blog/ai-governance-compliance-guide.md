@@ -165,3 +165,9 @@ If deployed in a high-risk application, yes. The deployer (not the model creator
 
 **How much does AI governance cost?**
 Typically 10-20% of AI project budget. Non-compliance penalties under the EU AI Act can reach €35M or 7% of global revenue.
+
+---
+
+## Ready to go deeper?
+
+This article is part of a hands-on learning path. Continue building your skills with [our course catalog](/courses) on CopyPasteLearn.

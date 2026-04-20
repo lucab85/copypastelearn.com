@@ -134,3 +134,9 @@ The tradeoff: you can't exec into the container for debugging.
 Alpine is the default choice for production containers when you want small, fast, secure images. Use Debian-slim when you hit musl compatibility issues or need a familiar debugging environment. Use distroless when you want the absolute minimum.
 
 Master container workflows in our [Docker Fundamentals course](/courses) — build and optimize images in real labs.
+
+---
+
+## Ready to go deeper?
+
+This article is part of a hands-on learning path. Continue building your skills with [Docker Fundamentals](/courses/docker-fundamentals) on CopyPasteLearn.

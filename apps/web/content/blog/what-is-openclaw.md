@@ -69,3 +69,9 @@ Visit the [OpenClaw docs](https://docs.openclaw.ai) for the full setup guide.
 - **Tinkerers** who love building and customizing
 
 OpenClaw is open source and available on [GitHub](https://github.com/openclaw/openclaw).
+
+---
+
+## Ready to go deeper?
+
+This article is part of a hands-on learning path. Continue building your skills with [OpenClaw Agent](/courses/openclaw-agent) on CopyPasteLearn.

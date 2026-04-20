@@ -104,3 +104,9 @@ The Open Build Service lets you build packages for any Linux distro from one pla
 openSUSE Tumbleweed is the rolling release for adults. It gives you the latest packages without the "hope this doesn't break" anxiety. If Arch feels too risky and Fedora feels too slow, Tumbleweed is your answer.
 
 Learn to manage Linux systems at scale with our [automation courses](/courses) — Ansible, Docker, and Terraform with hands-on labs.
+
+---
+
+## Ready to go deeper?
+
+This article is part of a hands-on learning path. Continue building your skills with [our course catalog](/courses) on CopyPasteLearn.

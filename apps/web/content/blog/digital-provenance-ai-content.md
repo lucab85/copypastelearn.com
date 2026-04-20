@@ -115,3 +115,9 @@ Growing. Adobe, Microsoft, Google, and major camera manufacturers support it. Ch
 
 **What about privacy?**
 C2PA supports redactable manifests — creators can share provenance without revealing all edit history or personal information.
+
+---
+
+## Ready to go deeper?
+
+This article is part of a hands-on learning path. Continue building your skills with [our course catalog](/courses) on CopyPasteLearn.

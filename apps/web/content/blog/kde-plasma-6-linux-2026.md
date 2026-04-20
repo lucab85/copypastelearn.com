@@ -103,3 +103,9 @@ free -h
 KDE Plasma 6 is the best version of Plasma ever released. It's fast, beautiful, and infinitely customizable. If you've tried GNOME and felt limited, Plasma is your answer.
 
 Start your Linux journey with our [hands-on DevOps courses](/courses) — learn by doing in real environments.
+
+---
+
+## Ready to go deeper?
+
+This article is part of a hands-on learning path. Continue building your skills with [our course catalog](/courses) on CopyPasteLearn.

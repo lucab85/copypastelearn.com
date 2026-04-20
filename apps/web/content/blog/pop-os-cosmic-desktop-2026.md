@@ -91,3 +91,9 @@ As of early 2026, COSMIC is usable for daily work but still has rough edges. Som
 COSMIC is the most ambitious Linux desktop project in years. It's not fully mature yet, but the trajectory is exciting. If you want to try the future of Linux desktops and can tolerate occasional rough edges, Pop!_OS with COSMIC is worth your time.
 
 Explore [CopyPasteLearn courses](/courses) to master the Linux command line and DevOps tools.
+
+---
+
+## Ready to go deeper?
+
+This article is part of a hands-on learning path. Continue building your skills with [our course catalog](/courses) on CopyPasteLearn.

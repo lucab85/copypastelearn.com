@@ -260,3 +260,9 @@ CMD ["node", "dist/index.js"]
 ## What's Next?
 
 Our **Node.js REST APIs** course goes deeper — database integration with Prisma, JWT authentication, testing, and production deployment patterns. The first lesson is free.
+
+---
+
+## Ready to go deeper?
+
+This article is part of a hands-on learning path. Continue building your skills with [Node.js REST APIs](/courses/nodejs-rest-apis) on CopyPasteLearn.

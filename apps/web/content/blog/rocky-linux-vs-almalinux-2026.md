@@ -93,3 +93,9 @@ Pick Rocky if you want the closest RHEL rebuild. Pick AlmaLinux if ABI compatibi
 The CentOS situation created two solid alternatives. Competition between Rocky and AlmaLinux has been good for the ecosystem — both are well-maintained, well-supported, and production-ready. You can't go wrong with either.
 
 Learn to automate RHEL-family servers with [our Ansible course](/courses) — hands-on labs included.
+
+---
+
+## Ready to go deeper?
+
+This article is part of a hands-on learning path. Continue building your skills with [our course catalog](/courses) on CopyPasteLearn.

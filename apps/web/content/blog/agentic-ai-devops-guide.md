@@ -91,3 +91,9 @@ Start with non-critical environments. Modern agents with proper guardrails achie
 
 **What's the difference between agentic AI and traditional automation?**
 Traditional automation follows predefined scripts. Agentic AI reasons about novel situations and adapts its approach.
+
+---
+
+## Ready to go deeper?
+
+This article is part of a hands-on learning path. Continue building your skills with [our course catalog](/courses) on CopyPasteLearn.

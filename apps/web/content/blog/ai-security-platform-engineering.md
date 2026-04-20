@@ -125,3 +125,9 @@ Start with vendors (AWS Bedrock Guardrails, Azure AI Content Safety) and customi
 
 **How do I test AI security?**
 Use red-teaming tools like Garak or PyRIT. Run adversarial prompt suites as part of CI/CD.
+
+---
+
+## Ready to go deeper?
+
+This article is part of a hands-on learning path. Continue building your skills with [our course catalog](/courses) on CopyPasteLearn.

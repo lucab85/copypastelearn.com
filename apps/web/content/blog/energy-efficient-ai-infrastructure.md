@@ -122,3 +122,9 @@ Use tools like ML CO2 Impact, CodeCarbon, or cloud provider sustainability dashb
 
 **What's the business case for sustainable AI?**
 Energy costs are 30-50% of AI infrastructure spend. Efficiency gains directly reduce costs while meeting ESG commitments.
+
+---
+
+## Ready to go deeper?
+
+This article is part of a hands-on learning path. Continue building your skills with [our course catalog](/courses) on CopyPasteLearn.

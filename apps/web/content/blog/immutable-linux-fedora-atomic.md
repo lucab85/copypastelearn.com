@@ -106,3 +106,9 @@ All share the same base technology, just different desktop environments.
 Immutable Linux is where the desktop is heading. Fedora Atomic is the most polished version of this future. It's not for everyone today, but if you work with containers regularly, the mental model already makes sense.
 
 Master containerized workflows with our [Docker and Kubernetes courses](/courses) — the perfect complement to immutable Linux.
+
+---
+
+## Ready to go deeper?
+
+This article is part of a hands-on learning path. Continue building your skills with [our course catalog](/courses) on CopyPasteLearn.

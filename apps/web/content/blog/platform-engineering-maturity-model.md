@@ -128,3 +128,9 @@ Start with 2-3 engineers. Scale to ~10% of your engineering org as the platform 
 
 **How do I get leadership buy-in?**
 Quantify developer wait times and ops overhead. A platform that saves 1 hour/week per developer across 100 engineers = $250K+/year in productivity.
+
+---
+
+## Ready to go deeper?
+
+This article is part of a hands-on learning path. Continue building your skills with [our course catalog](/courses) on CopyPasteLearn.

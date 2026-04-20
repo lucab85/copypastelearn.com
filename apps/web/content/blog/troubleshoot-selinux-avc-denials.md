@@ -88,3 +88,9 @@ allow httpd_t var_t:file getattr;
 | Write denied on upload dir | Label as `httpd_sys_rw_content_t` |
 
 Master this workflow in our [SELinux for System Admins course](/courses).
+
+---
+
+## Ready to go deeper?
+
+This article is part of a hands-on learning path. Continue building your skills with [SELinux for System Admins](/courses/selinux-system-admins) on CopyPasteLearn.

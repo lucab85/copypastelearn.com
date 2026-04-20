@@ -100,3 +100,9 @@ sudo dpkg-reconfigure unattended-upgrades
 Debian is the distro that other distros are built on. It's not flashy, it's not trendy, and it doesn't try to be. It just works — year after year, release after release. If you're running servers, Debian should be on your shortlist.
 
 Master server automation on Debian with our [Ansible and Docker courses](/courses) — complete with hands-on labs.
+
+---
+
+## Ready to go deeper?
+
+This article is part of a hands-on learning path. Continue building your skills with [our course catalog](/courses) on CopyPasteLearn.

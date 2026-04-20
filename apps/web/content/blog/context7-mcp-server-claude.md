@@ -78,3 +78,9 @@ Starting with a new library? The AI has access to the complete, current document
 If you're running an AI agent (like [OpenClaw](https://docs.openclaw.ai)), MCP integration means your agent can write code using current documentation automatically. No human in the loop to paste docs — the agent queries Context7 directly.
 
 This is the future of AI-assisted development: AI tools that **know** they need current docs and **fetch** them automatically.
+
+---
+
+## Ready to go deeper?
+
+This article is part of a hands-on learning path. Continue building your skills with [our course catalog](/courses) on CopyPasteLearn.

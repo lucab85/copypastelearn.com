@@ -102,3 +102,9 @@ Kubernetes for cloud-native teams; Slurm for HPC-focused organizations. Many run
 
 **How much does AI supercomputing cost?**
 Training a large model can cost $1M-$100M+. Inference at scale runs $10K-$1M/month depending on traffic.
+
+---
+
+## Ready to go deeper?
+
+This article is part of a hands-on learning path. Continue building your skills with [our course catalog](/courses) on CopyPasteLearn.
