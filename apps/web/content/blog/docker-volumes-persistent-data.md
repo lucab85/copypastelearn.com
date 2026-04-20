@@ -1,6 +1,6 @@
 ---
 title: "Docker Volumes and Persistent Data"
-description: "Manage persistent data in Docker with named volumes and bind mounts. Backup strategies, restore procedures, and best practices for sharing data between containers."
+description: "Manage persistent data in Docker with named volumes and bind mounts. Backup strategies, restore procedures, and container data sharing."
 date: "2026-04-14"
 author: "Luca Berton"
 category: "DevOps"

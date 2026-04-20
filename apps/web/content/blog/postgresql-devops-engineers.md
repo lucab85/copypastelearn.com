@@ -5,7 +5,7 @@ date: "2026-03-07"
 category: "DevOps"
 tags: ["PostgreSQL", "Database", "DevOps", "Backup", "Performance"]
 excerpt: "PostgreSQL essentials for DevOps. Backup strategies, replication, monitoring, connection pooling, and infrastructure automation."
-description: "PostgreSQL essentials for DevOps teams. Backup and restore, streaming replication, performance monitoring, connection pooling with PgBouncer, and Ansible automation recipes."
+description: "PostgreSQL for DevOps teams. Backup and restore, streaming replication, performance monitoring, PgBouncer, and Ansible automation."
 ---
 
 As a DevOps engineer, you don't write SQL all day — but you manage the infrastructure that keeps PostgreSQL running. This covers what you actually need to know.

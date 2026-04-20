@@ -1,6 +1,6 @@
 ---
 title: "OpenClaw Volume Permissions Fix"
-description: "Fix OpenClaw Docker volume permission errors quickly. Resolve EACCES permission denied issues for named volumes and bind mounts with step-by-step troubleshooting commands."
+description: "Fix OpenClaw Docker volume permission errors. Resolve EACCES issues for named volumes and bind mounts with troubleshooting steps."
 date: "2026-04-07"
 author: "Luca Berton"
 category: "OpenClaw"

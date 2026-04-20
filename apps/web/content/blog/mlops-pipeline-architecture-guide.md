@@ -5,7 +5,7 @@ date: "2026-03-13"
 category: "MLOps"
 tags: ["MLOps", "MLflow", "Pipeline", "Machine Learning", "Kubernetes"]
 excerpt: "Design an MLOps pipeline from data ingestion to model serving. MLflow tracking, model registry, CI/CD for ML, and Kubernetes deployment."
-description: "Design a production MLOps pipeline from data ingestion to model serving. MLflow tracking, model registry, CI/CD for ML, and Kubernetes deployment patterns for reliability."
+description: "Design a production MLOps pipeline. MLflow tracking, model registry, CI/CD for ML, and Kubernetes deployment patterns."
 ---
 
 MLOps applies DevOps principles to machine learning. A well-designed MLOps pipeline automates the journey from data to deployed model, with tracking, versioning, and monitoring at every step.

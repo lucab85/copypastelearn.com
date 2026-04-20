@@ -5,7 +5,7 @@ date: "2026-03-04"
 category: "DevOps"
 tags: ["Makefile", "Automation", "DevOps", "Developer Experience", "CLI"]
 excerpt: "Use Makefiles as your project's command runner. Common targets for Docker, Terraform, testing, deployment, and team onboarding."
-description: "Use Makefiles as your project command runner for DevOps automation. Targets for Docker builds, Terraform plans, test suites, deployments, and developer onboarding tasks."
+description: "Use Makefiles as your DevOps command runner. Targets for Docker builds, Terraform plans, test suites, and developer onboarding."
 ---
 
 Every project has commands nobody remembers. "How do I run tests?" "What's the deploy command?" A Makefile puts every project command in one place.
