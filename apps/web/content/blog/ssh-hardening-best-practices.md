@@ -264,3 +264,8 @@ ss -tlnp | grep sshd
 ## What's Next?
 
 Our **SELinux for System Admins** course covers mandatory access controls that protect SSH and system services. **Ansible Automation in 30 Minutes** teaches automating SSH hardening across fleets. First lessons are free.
+-e 
+---
+
+**Ready to go deeper?** Explore our [hands-on DevOps courses](/courses) — practical labs covering Docker, Ansible, Terraform, and more.
+

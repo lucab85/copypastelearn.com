@@ -256,3 +256,8 @@ tail -f /var/log/nginx/error.log
 ## What's Next?
 
 Our **Docker Fundamentals** course covers containerized Nginx deployment. **Node.js REST APIs** teaches building the backend services behind the proxy. First lessons are free.
+-e 
+---
+
+**Ready to go deeper?** Explore our [hands-on DevOps courses](/courses) — practical labs covering Docker, Ansible, Terraform, and more.
+

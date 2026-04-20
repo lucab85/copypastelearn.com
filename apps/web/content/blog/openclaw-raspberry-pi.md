@@ -114,3 +114,8 @@ htop
 - Heavy file operations may be slow on SD cards
 
 Despite these, a Pi makes an excellent always-on AI agent host for most personal use cases.
+
+---
+
+**Ready to go deeper?** Check out our hands-on course: [OpenClaw Agent](/courses/openclaw-agent) — practical exercises you can follow along on your own machine.
+

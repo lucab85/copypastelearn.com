@@ -164,3 +164,8 @@ echo 'alias docker=podman' >> ~/.bashrc
 ## What's Next?
 
 Our **Docker Fundamentals** course covers container concepts that apply to both Docker and Podman. Our **SELinux for System Admins** course covers container security on RHEL, including Podman with SELinux contexts. First lessons are free.
+
+---
+
+**Ready to go deeper?** Check out our hands-on course: [Docker Fundamentals](/courses/docker-fundamentals) — practical exercises you can follow along on your own machine.
+

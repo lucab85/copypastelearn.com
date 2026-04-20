@@ -115,3 +115,8 @@ jobs:
 ## Learn More
 
 Build production CI/CD workflows for Terraform in our [Terraform for Beginners course](/courses).
+
+---
+
+**Ready to go deeper?** Check out our hands-on course: [Terraform for Beginners](/courses/terraform-beginners) — practical exercises you can follow along on your own machine.
+

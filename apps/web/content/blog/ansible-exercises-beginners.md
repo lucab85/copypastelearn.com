@@ -339,3 +339,8 @@ Use the role:
 ## What's Next?
 
 Our **Ansible Automation in 30 Minutes** course provides guided exercises in real lab environments — no local VM setup needed. The first lesson is free.
+
+---
+
+**Ready to go deeper?** Check out our hands-on course: [Ansible Quickstart](/courses/ansible-quickstart) — practical exercises you can follow along on your own machine.
+

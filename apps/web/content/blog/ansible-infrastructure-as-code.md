@@ -263,3 +263,8 @@ jobs:
 ## What's Next?
 
 Our **Ansible Automation in 30 Minutes** course walks through real IaC scenarios with hands-on labs. The first lesson is free — no setup required.
+
+---
+
+**Ready to go deeper?** Check out our hands-on course: [Ansible Quickstart](/courses/ansible-quickstart) — practical exercises you can follow along on your own machine.
+

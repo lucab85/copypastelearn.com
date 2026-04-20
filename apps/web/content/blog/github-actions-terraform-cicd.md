@@ -160,3 +160,8 @@ Exit code 2 means changes detected — pipe this to Slack or email.
 - [Terraform CI/CD Pipelines](/blog/terraform-cicd-pipelines) for more CI patterns
 - [Terraform Variables and Outputs](/blog/terraform-variables-outputs-guide) for parameterization
 - [Terraform Security Practices](/blog/terraform-security-best-practices) for hardening
+
+---
+
+**Ready to go deeper?** Check out our hands-on course: [Terraform for Beginners](/courses/terraform-beginners) — practical exercises you can follow along on your own machine.
+

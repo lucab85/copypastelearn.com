@@ -82,3 +82,8 @@ One OpenClaw instance can serve multiple Discord servers. Each channel can have 
 ### Slow responses
 - Check your LLM API key and quota
 - Run `openclaw status` to verify the gateway is healthy
+
+---
+
+**Ready to go deeper?** Check out our hands-on course: [OpenClaw Agent](/courses/openclaw-agent) — practical exercises you can follow along on your own machine.
+

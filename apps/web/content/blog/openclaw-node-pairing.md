@@ -111,3 +111,8 @@ Store device details in `TOOLS.md`:
 - Camera/location access follows device OS privacy settings
 - All communication is encrypted
 - You can revoke pairing at any time
+
+---
+
+**Ready to go deeper?** Check out our hands-on course: [OpenClaw Agent](/courses/openclaw-agent) — practical exercises you can follow along on your own machine.
+

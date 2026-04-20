@@ -240,3 +240,8 @@ This reuses SSH connections across tasks — much faster for large playbooks.
 ## What's Next?
 
 Our **Ansible Automation in 30 Minutes** course uses SSH for all server communication. Our **SELinux for System Admins** course covers SSH security policies on RHEL. First lessons are free.
+-e 
+---
+
+**Ready to go deeper?** Explore our [hands-on DevOps courses](/courses) — practical labs covering Docker, Ansible, Terraform, and more.
+

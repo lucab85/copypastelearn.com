@@ -112,3 +112,8 @@ Built by [Luca Berton](https://www.ansiblepilot.com), author of Ansible Pilot an
 5. **Iterate** based on outcomes
 
 The combination of AI intelligence and Ansible's declarative automation makes infrastructure management faster and more reliable.
+
+---
+
+**Ready to go deeper?** Check out our hands-on course: [OpenClaw Agent](/courses/openclaw-agent) — practical exercises you can follow along on your own machine.
+

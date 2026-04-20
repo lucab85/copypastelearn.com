@@ -223,3 +223,8 @@ k8s-port-forward: ## Forward local port to pod
 ## What's Next?
 
 Our **Docker Fundamentals** course covers container build automation. **Terraform for Beginners** teaches infrastructure automation. First lessons are free.
+-e 
+---
+
+**Ready to go deeper?** Explore our [hands-on DevOps courses](/courses) — practical labs covering Docker, Ansible, Terraform, and more.
+

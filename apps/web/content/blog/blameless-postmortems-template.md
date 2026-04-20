@@ -149,3 +149,8 @@ The tool matters less than the discipline.
 ## What's Next?
 
 Preventing incidents requires solid infrastructure automation. Our **Docker Fundamentals** and **Ansible Automation in 30 Minutes** courses teach you to build reliable, repeatable systems that reduce human error. First lessons are free.
+-e 
+---
+
+**Ready to go deeper?** Explore our [hands-on DevOps courses](/courses) — practical labs covering Docker, Ansible, Terraform, and more.
+

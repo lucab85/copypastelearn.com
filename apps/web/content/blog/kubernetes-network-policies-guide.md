@@ -331,3 +331,8 @@ kubectl run test --rm -it --image=nicolaka/netshoot -n app -- /bin/bash
 ## What's Next?
 
 Our **SELinux for System Admins** course covers OS-level network security. **Docker Fundamentals** teaches container networking basics. First lessons are free.
+-e 
+---
+
+**Ready to go deeper?** Explore our [hands-on DevOps courses](/courses) — from Docker and Terraform to MLflow on Kubernetes.
+

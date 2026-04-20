@@ -308,3 +308,8 @@ curl -H "Host: app.example.com" http://INGRESS_IP/
 ## What's Next?
 
 Our **MLflow for Kubernetes MLOps** course covers Ingress configuration for ML model serving endpoints. **Docker Fundamentals** builds the container foundation. First lessons are free.
+-e 
+---
+
+**Ready to go deeper?** Explore our [hands-on DevOps courses](/courses) — from Docker and Terraform to MLflow on Kubernetes.
+

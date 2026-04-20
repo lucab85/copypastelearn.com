@@ -98,3 +98,8 @@ OpenClaw supports two browser profiles:
 3. **Wait for page load** — add small delays after navigation
 4. **Handle popups** — cookie banners and modals may block elements
 5. **Be respectful** — don't scrape sites that prohibit it
+
+---
+
+**Ready to go deeper?** Check out our hands-on course: [OpenClaw Agent](/courses/openclaw-agent) — practical exercises you can follow along on your own machine.
+

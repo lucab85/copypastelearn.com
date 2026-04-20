@@ -297,3 +297,8 @@ verifier:
 ## What's Next?
 
 Our **Ansible Automation in 30 Minutes** course covers roles, Galaxy, and testing in hands-on lessons. First lesson is free.
+
+---
+
+**Ready to go deeper?** Check out our hands-on course: [Ansible Quickstart](/courses/ansible-quickstart) — practical exercises you can follow along on your own machine.
+

@@ -117,3 +117,8 @@ client.set_model_version_tag(
 ## Integrating with Kubernetes
 
 The Model Registry becomes even more powerful when combined with Kubernetes deployments. Automate the pipeline: register → stage → test → promote → deploy. Learn how in our [MLflow for Kubernetes course](/courses).
+
+---
+
+**Ready to go deeper?** Check out our hands-on course: [MLflow for Kubernetes](/courses/mlflow-kubernetes-mlops) — practical exercises you can follow along on your own machine.
+

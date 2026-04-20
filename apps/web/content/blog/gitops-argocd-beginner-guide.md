@@ -259,3 +259,8 @@ ArgoCD detects the commit and syncs automatically. CI pushes images and updates 
 ## What's Next?
 
 Our **MLflow for Kubernetes MLOps** course covers GitOps workflows for ML model deployment. **Docker Fundamentals** teaches the container basics. First lessons are free.
+-e 
+---
+
+**Ready to go deeper?** Explore our [hands-on DevOps courses](/courses) — from Docker and Terraform to MLflow on Kubernetes.
+

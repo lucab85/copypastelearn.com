@@ -115,3 +115,8 @@ resource "aws_instance" "web" {
 ## Learn More
 
 Master lifecycle rules with hands-on exercises in our [Terraform for Beginners course](/courses).
+
+---
+
+**Ready to go deeper?** Check out our hands-on course: [Terraform for Beginners](/courses/terraform-beginners) — practical exercises you can follow along on your own machine.
+

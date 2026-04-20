@@ -206,3 +206,8 @@ Key metrics to track:
 ## What's Next?
 
 Our **MLflow for Kubernetes MLOps** course covers all 15 steps in depth with hands-on labs — from local development with Kind to production deployment with monitoring. The first lesson is free.
+
+---
+
+**Ready to go deeper?** Check out our hands-on course: [MLflow for Kubernetes](/courses/mlflow-kubernetes-mlops) — practical exercises you can follow along on your own machine.
+

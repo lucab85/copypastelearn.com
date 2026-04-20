@@ -251,3 +251,8 @@ When multiple sources exist, this is the standard precedence:
 ## What's Next?
 
 Our **Docker Fundamentals** course covers container configuration best practices. **Node.js REST APIs** teaches production-grade environment handling. First lessons are free.
+-e 
+---
+
+**Ready to go deeper?** Explore our [hands-on DevOps courses](/courses) — practical labs covering Docker, Ansible, Terraform, and more.
+

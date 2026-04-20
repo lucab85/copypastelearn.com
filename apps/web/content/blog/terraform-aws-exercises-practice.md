@@ -280,3 +280,8 @@ module "vpc_prod" {
 ## What's Next?
 
 Our **Terraform for Beginners** course provides 15 structured lessons with guided exercises, real AWS environments, and hands-on labs. The first lesson is free.
+
+---
+
+**Ready to go deeper?** Check out our hands-on course: [Terraform for Beginners](/courses/terraform-beginners) — practical exercises you can follow along on your own machine.
+

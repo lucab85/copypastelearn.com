@@ -254,3 +254,8 @@ vault audit enable file file_path=/var/log/vault-audit.log
 ## What's Next?
 
 Our **Terraform for Beginners** course covers Vault integration for infrastructure secrets. **SELinux for System Admins** teaches OS-level access controls. First lessons are free.
+-e 
+---
+
+**Ready to go deeper?** Explore our [hands-on DevOps courses](/courses) — practical labs covering Docker, Ansible, Terraform, and more.
+

@@ -220,3 +220,8 @@ Can't connect to service?
 ## What's Next?
 
 Our **Docker Fundamentals** course covers container networking. **SELinux for System Admins** teaches network access controls at the OS level. First lessons are free.
+-e 
+---
+
+**Ready to go deeper?** Explore our [hands-on DevOps courses](/courses) — practical labs covering Docker, Ansible, Terraform, and more.
+

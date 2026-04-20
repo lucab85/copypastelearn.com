@@ -235,3 +235,8 @@ app.listen(3000, '0.0.0.0')
 ## What's Next?
 
 Our **Docker Fundamentals** course covers networking, compose, and production deployment patterns. **Node.js REST APIs** teaches containerized API development. First lessons are free.
+
+---
+
+**Ready to go deeper?** Check out our hands-on course: [Docker Fundamentals](/courses/docker-fundamentals) — practical exercises you can follow along on your own machine.
+

@@ -254,3 +254,8 @@ Key metrics to track:
 ## What's Next?
 
 Our **Node.js REST APIs** course covers Redis caching, sessions, and rate limiting in production Node.js apps. **Docker Fundamentals** teaches containerized Redis deployment. First lessons are free.
+-e 
+---
+
+**Ready to go deeper?** Explore our [hands-on DevOps courses](/courses) — practical labs covering Docker, Ansible, Terraform, and more.
+

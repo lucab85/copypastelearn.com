@@ -252,3 +252,8 @@ ProtectControlGroups=true
 ## What's Next?
 
 Our **Ansible Automation in 30 Minutes** course automates service deployment and management across fleets of servers. Our **SELinux for System Admins** course covers service security policies. First lessons are free.
+-e 
+---
+
+**Ready to go deeper?** Explore our [hands-on DevOps courses](/courses) — practical labs covering Docker, Ansible, Terraform, and more.
+

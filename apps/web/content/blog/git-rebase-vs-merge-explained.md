@@ -239,3 +239,8 @@ git rebase -i --autosquash main
 ## What's Next?
 
 Our **Node.js REST APIs** course uses Git workflows throughout the project. **Docker Fundamentals** covers version control for containerized apps. First lessons are free.
+-e 
+---
+
+**Ready to go deeper?** Explore our [hands-on DevOps courses](/courses) — practical labs covering Docker, Ansible, Terraform, and more.
+

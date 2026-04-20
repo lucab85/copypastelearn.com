@@ -263,3 +263,8 @@ spec:
 ## What's Next?
 
 Our **Docker Fundamentals** course covers secret management in containerized applications. **SELinux for System Admins** teaches OS-level security. First lessons are free.
+
+---
+
+**Ready to go deeper?** Check out our hands-on course: [Docker Fundamentals](/courses/docker-fundamentals) — practical exercises you can follow along on your own machine.
+

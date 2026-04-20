@@ -201,3 +201,8 @@ CopyPasteLearn offers hands-on courses for both:
 - **Terraform for Beginners** — 15 lessons covering AWS provisioning
 
 Both include free preview lessons and lab environments.
+
+---
+
+**Ready to go deeper?** Check out our hands-on course: [Ansible Quickstart](/courses/ansible-quickstart) — practical exercises you can follow along on your own machine.
+

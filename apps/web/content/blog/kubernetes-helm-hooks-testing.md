@@ -308,3 +308,8 @@ helm rollback my-release 3
 ## What's Next?
 
 Our **MLflow for Kubernetes MLOps** course covers Helm-based ML platform deployment. **Terraform for Beginners** teaches infrastructure automation. First lessons are free.
+-e 
+---
+
+**Ready to go deeper?** Explore our [hands-on DevOps courses](/courses) — from Docker and Terraform to MLflow on Kubernetes.
+

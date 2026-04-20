@@ -236,3 +236,8 @@ deploy:
 ## What's Next?
 
 Our **Docker Fundamentals** and **Terraform for Beginners** courses use Makefiles for project automation throughout. First lessons are free.
+-e 
+---
+
+**Ready to go deeper?** Explore our [hands-on DevOps courses](/courses) — practical labs covering Docker, Ansible, Terraform, and more.
+

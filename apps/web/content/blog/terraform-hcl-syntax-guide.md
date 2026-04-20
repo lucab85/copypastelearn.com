@@ -110,3 +110,8 @@ resource "aws_instance" "web" {
 ## Learn More
 
 Master HCL from scratch in our [Terraform for Beginners course](/courses) — practical exercises with real AWS infrastructure.
+
+---
+
+**Ready to go deeper?** Check out our hands-on course: [Terraform for Beginners](/courses/terraform-beginners) — practical exercises you can follow along on your own machine.
+

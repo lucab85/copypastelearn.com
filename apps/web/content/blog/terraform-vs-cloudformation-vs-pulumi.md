@@ -80,3 +80,8 @@ Choosing an IaC tool is a critical decision. Here's how the top three compare:
 For most teams, **Terraform is the safest bet** — it's cloud-agnostic, has the largest community, and the most job demand.
 
 Learn Terraform from scratch in our [Terraform for Beginners course](/courses).
+
+---
+
+**Ready to go deeper?** Check out our hands-on course: [Terraform for Beginners](/courses/terraform-beginners) — practical exercises you can follow along on your own machine.
+

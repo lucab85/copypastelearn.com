@@ -246,3 +246,8 @@ helm upgrade --install my-app ./my-app -f values-production.yaml -n production
 ## What's Next?
 
 Our **MLflow for Kubernetes MLOps** course uses Helm for deploying ML infrastructure on Kubernetes. **Docker Fundamentals** covers the container basics you need before Helm. First lessons are free.
+-e 
+---
+
+**Ready to go deeper?** Explore our [hands-on DevOps courses](/courses) — from Docker and Terraform to MLflow on Kubernetes.
+

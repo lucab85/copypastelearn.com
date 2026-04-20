@@ -280,3 +280,8 @@ groups:
 ## What's Next?
 
 Our **MLflow for Kubernetes MLOps** course takes you from Level 0 to Level 2 across 15 hands-on lessons — experiment tracking, model registry, and Kubernetes deployment. First lesson is free.
+
+---
+
+**Ready to go deeper?** Check out our hands-on course: [MLflow for Kubernetes](/courses/mlflow-kubernetes-mlops) — practical exercises you can follow along on your own machine.
+

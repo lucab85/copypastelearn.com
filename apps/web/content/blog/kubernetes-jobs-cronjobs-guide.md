@@ -266,3 +266,8 @@ kubectl patch cronjob nightly-backup -p '{"spec":{"suspend":true}}'
 ## What's Next?
 
 Our **MLflow for Kubernetes MLOps** course covers ML training jobs and data pipeline orchestration on Kubernetes. **Docker Fundamentals** teaches container basics. First lessons are free.
+-e 
+---
+
+**Ready to go deeper?** Explore our [hands-on DevOps courses](/courses) — from Docker and Terraform to MLflow on Kubernetes.
+

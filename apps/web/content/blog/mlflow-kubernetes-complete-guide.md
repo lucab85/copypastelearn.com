@@ -62,3 +62,8 @@ In our [MLflow for Kubernetes course](/courses), you'll build this pipeline hand
 ## Get Started
 
 Ready to bridge the gap between experiments and production? Check out our [MLflow for Kubernetes course](/courses) for hands-on, step-by-step training.
+
+---
+
+**Ready to go deeper?** Check out our hands-on course: [MLflow for Kubernetes](/courses/mlflow-kubernetes-mlops) — practical exercises you can follow along on your own machine.
+

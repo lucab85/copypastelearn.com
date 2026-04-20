@@ -205,3 +205,8 @@ GHA cache can reduce build time from 5+ minutes to under 30 seconds for unchange
 ## What's Next?
 
 Our **Docker Fundamentals** course covers image optimization, multi-stage builds, and production deployment patterns across hands-on lessons. First lesson is free.
+
+---
+
+**Ready to go deeper?** Check out our hands-on course: [Docker Fundamentals](/courses/docker-fundamentals) — practical exercises you can follow along on your own machine.
+

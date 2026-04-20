@@ -212,3 +212,8 @@ kubectl get ingress
 - [Kubernetes Pod Troubleshooting](/blog/kubernetes-pod-troubleshooting) for pod issues
 - [kubectl Cheat Sheet for DevOps](/blog/kubectl-cheat-sheet-devops) for essential commands
 - [Local Kubernetes with Kind](/blog/local-kubernetes-kind-ml) for testing locally
+-e 
+---
+
+**Ready to go deeper?** Explore our [hands-on DevOps courses](/courses) — from Docker and Terraform to MLflow on Kubernetes.
+

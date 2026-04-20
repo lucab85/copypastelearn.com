@@ -238,3 +238,8 @@ aws iam generate-service-last-accessed-details \
 ## What's Next?
 
 Our **Terraform for Beginners** course covers AWS IAM automation with Terraform across 15 hands-on lessons. First lesson is free.
+-e 
+---
+
+**Ready to go deeper?** Explore our [hands-on DevOps courses](/courses) — practical labs covering Docker, Ansible, Terraform, and more.
+

@@ -130,3 +130,8 @@ Terraform skills are consistently among the highest-paid DevOps specializations:
 ## What's Next?
 
 Our **Terraform for Beginners** course covers all 15 topics above with hands-on labs on real AWS infrastructure. Each lesson builds on the previous one, from `terraform init` to production CI/CD pipelines. The first lesson is free.
+
+---
+
+**Ready to go deeper?** Check out our hands-on course: [Terraform for Beginners](/courses/terraform-beginners) — practical exercises you can follow along on your own machine.
+

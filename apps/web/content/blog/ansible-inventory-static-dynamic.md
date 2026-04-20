@@ -183,3 +183,8 @@ ansible all -i inventory/ -m ping
 - [Ansible Automation in Minutes](/blog/ansible-automation-beginners-guide) for getting started
 - [Ansible Roles: Reusable Automation](/blog/ansible-roles-reusable-automation) for structuring playbooks
 - [Ansible Vault: Encrypt Secrets](/blog/ansible-vault-encrypt-secrets) for securing variables
+
+---
+
+**Ready to go deeper?** Check out our hands-on course: [Ansible Quickstart](/courses/ansible-quickstart) — practical exercises you can follow along on your own machine.
+

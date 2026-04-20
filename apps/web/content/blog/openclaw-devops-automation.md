@@ -110,3 +110,8 @@ WHERE created_at > NOW() - INTERVAL '7 days';
 3. **Use cron for monitoring** — don't rely on manual checks
 4. **Log everything** — your agent's memory files become an ops log
 5. **Set up alerts** — proactive > reactive
+
+---
+
+**Ready to go deeper?** Check out our hands-on course: [OpenClaw Agent](/courses/openclaw-agent) — practical exercises you can follow along on your own machine.
+

@@ -241,3 +241,8 @@ echo "Uploaded $FILENAME.gz to S3"
 ## What's Next?
 
 Our **MLflow for Kubernetes MLOps** course covers Kubernetes cluster management and operations. **Docker Fundamentals** teaches container orchestration basics. First lessons are free.
+-e 
+---
+
+**Ready to go deeper?** Explore our [hands-on DevOps courses](/courses) — from Docker and Terraform to MLflow on Kubernetes.
+

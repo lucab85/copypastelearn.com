@@ -197,3 +197,8 @@ kubectl get pods -o custom-columns=NAME:.metadata.name,STATUS:.status.phase
 - [Kubernetes Pod Troubleshooting](/blog/kubernetes-pod-troubleshooting) for fixing broken pods
 - [Local Kubernetes with Kind](/blog/local-kubernetes-kind-ml) for local development
 - [MLflow on Kubernetes](/blog/mlflow-kubernetes-complete-guide) for ML workloads
+-e 
+---
+
+**Ready to go deeper?** Explore our [hands-on DevOps courses](/courses) — from Docker and Terraform to MLflow on Kubernetes.
+

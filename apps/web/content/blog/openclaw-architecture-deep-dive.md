@@ -124,3 +124,8 @@ The agent reads `SKILL.md` when a task matches the skill's description.
 6. Tools execute and return results
 7. LLM formulates final response
 8. Response sent back via Discord provider
+
+---
+
+**Ready to go deeper?** Check out our hands-on course: [OpenClaw Agent](/courses/openclaw-agent) — practical exercises you can follow along on your own machine.
+

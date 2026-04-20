@@ -250,3 +250,8 @@ kubectl get pods -n kube-system | grep csi
 ## What's Next?
 
 Our **MLflow for Kubernetes MLOps** course covers persistent storage for ML model artifacts and training data. **Docker Fundamentals** teaches volume management. First lessons are free.
+-e 
+---
+
+**Ready to go deeper?** Explore our [hands-on DevOps courses](/courses) — from Docker and Terraform to MLflow on Kubernetes.
+

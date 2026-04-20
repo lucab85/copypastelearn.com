@@ -165,3 +165,8 @@ kubectl run dns --image=busybox --rm -it -- nslookup <service-name>
 - [Local Kubernetes with Kind](/blog/local-kubernetes-kind-ml) for local testing
 - [Monitoring ML Models in K8s](/blog/monitoring-ml-models-kubernetes) for observability
 - [CI/CD for ML on Kubernetes](/blog/cicd-ml-models-kubernetes) for deployment pipelines
+-e 
+---
+
+**Ready to go deeper?** Explore our [hands-on DevOps courses](/courses) — from Docker and Terraform to MLflow on Kubernetes.
+

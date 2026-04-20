@@ -112,3 +112,8 @@ kubectl set image deployment/wine-quality \
 ## Learn the Complete Pipeline
 
 Build a production CI/CD pipeline for ML models in our [MLflow for Kubernetes course](/courses) — hands-on with real tools and workflows.
+
+---
+
+**Ready to go deeper?** Check out our hands-on course: [MLflow for Kubernetes](/courses/mlflow-kubernetes-mlops) — practical exercises you can follow along on your own machine.
+

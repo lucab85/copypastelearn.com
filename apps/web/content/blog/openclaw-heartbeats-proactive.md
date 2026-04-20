@@ -100,3 +100,8 @@ The agent checks timestamps and skips recently-completed tasks.
 3. **Respect quiet hours** — nobody wants 3 AM alerts
 4. **Track state** — avoid redundant API calls
 5. **Be selective** — only alert on genuinely important things
+
+---
+
+**Ready to go deeper?** Check out our hands-on course: [OpenClaw Agent](/courses/openclaw-agent) — practical exercises you can follow along on your own machine.
+

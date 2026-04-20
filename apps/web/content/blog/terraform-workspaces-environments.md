@@ -166,3 +166,8 @@ terraform workspace delete dev
 - [Terraform Variables and Outputs](/blog/terraform-variables-outputs-guide) for variable management
 - [Terraform State Management](/blog/terraform-state-management) for remote state
 - [Terraform CI/CD Pipelines](/blog/terraform-cicd-pipelines) for automation
+
+---
+
+**Ready to go deeper?** Check out our hands-on course: [Terraform for Beginners](/courses/terraform-beginners) — practical exercises you can follow along on your own machine.
+

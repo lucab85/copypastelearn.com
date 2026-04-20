@@ -262,3 +262,8 @@ Stop entire play if one host fails:
 ## What's Next?
 
 Our **Ansible Automation in 30 Minutes** course covers error handling, retries, and production playbook patterns. First lesson is free.
+
+---
+
+**Ready to go deeper?** Check out our hands-on course: [Ansible Quickstart](/courses/ansible-quickstart) — practical exercises you can follow along on your own machine.
+

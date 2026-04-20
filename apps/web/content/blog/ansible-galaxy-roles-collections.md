@@ -263,3 +263,8 @@ collections_path = ./collections
 ## What's Next?
 
 Our **Ansible Automation in 30 Minutes** course covers Galaxy roles, collections, and building reusable automation. First lesson is free.
+
+---
+
+**Ready to go deeper?** Check out our hands-on course: [Ansible Quickstart](/courses/ansible-quickstart) — practical exercises you can follow along on your own machine.
+

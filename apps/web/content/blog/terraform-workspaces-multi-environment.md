@@ -256,3 +256,8 @@ cd production && terragrunt run-all apply
 ## What's Next?
 
 Our **Terraform for Beginners** course covers multi-environment management patterns. First lesson is free.
+
+---
+
+**Ready to go deeper?** Check out our hands-on course: [Terraform for Beginners](/courses/terraform-beginners) — practical exercises you can follow along on your own machine.
+

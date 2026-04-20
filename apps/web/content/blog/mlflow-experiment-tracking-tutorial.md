@@ -96,3 +96,8 @@ The MLflow UI lets you:
 ## From Tracking to Deployment
 
 Once you've found your best model, the next step is deploying it. Learn the complete pipeline — from experiment tracking to Kubernetes deployment — in our [MLflow for Kubernetes course](/courses).
+
+---
+
+**Ready to go deeper?** Check out our hands-on course: [MLflow for Kubernetes](/courses/mlflow-kubernetes-mlops) — practical exercises you can follow along on your own machine.
+

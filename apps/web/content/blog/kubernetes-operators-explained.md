@@ -265,3 +265,8 @@ kubectl get catalogsources -n olm
 ## What's Next?
 
 Our **MLflow for Kubernetes MLOps** course covers deploying ML platforms with Kubernetes operators. **Docker Fundamentals** teaches the container basics underneath. First lessons are free.
+-e 
+---
+
+**Ready to go deeper?** Explore our [hands-on DevOps courses](/courses) — from Docker and Terraform to MLflow on Kubernetes.
+

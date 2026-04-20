@@ -100,3 +100,8 @@ ss -tlnp | grep 18789
 - [Deploy OpenClaw with Docker Compose](/blog/openclaw-docker-deploy-guide) for containerized setups
 - [Securing Your OpenClaw Agent](/blog/securing-openclaw-agent) for production hardening
 - [OpenClaw on Raspberry Pi](/blog/openclaw-raspberry-pi) for low-power deployments
+
+---
+
+**Ready to go deeper?** Check out our hands-on course: [OpenClaw Agent](/courses/openclaw-agent) — practical exercises you can follow along on your own machine.
+

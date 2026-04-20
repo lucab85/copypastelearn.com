@@ -88,3 +88,8 @@ Always use `semanage fcontext` + `restorecon` for persistent changes:
 4. Verify with `ls -Z`
 
 Practice this workflow in our [SELinux for System Admins course](/courses) with real RHEL 9/10 labs.
+
+---
+
+**Ready to go deeper?** Check out our hands-on course: [SELinux for System Admins](/courses/selinux-system-admins) — practical exercises you can follow along on your own machine.
+

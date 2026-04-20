@@ -275,3 +275,8 @@ count_over_time({job="app"} |= "error" [1m])
 ## What's Next?
 
 Our **MLflow for Kubernetes MLOps** course covers monitoring ML workloads with this exact stack. **Docker Fundamentals** teaches container observability. First lessons are free.
+-e 
+---
+
+**Ready to go deeper?** Explore our [hands-on DevOps courses](/courses) — practical labs covering Docker, Ansible, Terraform, and more.
+

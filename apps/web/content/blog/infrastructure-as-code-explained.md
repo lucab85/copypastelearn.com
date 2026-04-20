@@ -59,3 +59,8 @@ After IaC:
 ## Get Started
 
 Learn IaC hands-on with Terraform in our [Terraform for Beginners course](/courses) — from zero to deploying real AWS infrastructure.
+
+---
+
+**Ready to go deeper?** Check out our hands-on course: [Terraform for Beginners](/courses/terraform-beginners) — practical exercises you can follow along on your own machine.
+

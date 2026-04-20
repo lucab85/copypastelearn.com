@@ -236,3 +236,8 @@ services:
 ## What's Next?
 
 Our **Docker Fundamentals** course covers Compose along with images, networking, volumes, and production deployment patterns. Hands-on labs included — the first lesson is free.
+
+---
+
+**Ready to go deeper?** Check out our hands-on course: [Docker Fundamentals](/courses/docker-fundamentals) — practical exercises you can follow along on your own machine.
+

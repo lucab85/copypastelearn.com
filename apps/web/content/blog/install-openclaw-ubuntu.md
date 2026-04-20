@@ -118,3 +118,8 @@ You should see your agent running with connected channels listed.
 - Customize `SOUL.md` with your agent's personality
 - Install skills from [ClawhHub](https://clawhub.com)
 - Set up [memory and heartbeats](/blog/openclaw-memory-system)
+
+---
+
+**Ready to go deeper?** Check out our hands-on course: [OpenClaw Agent](/courses/openclaw-agent) — practical exercises you can follow along on your own machine.
+

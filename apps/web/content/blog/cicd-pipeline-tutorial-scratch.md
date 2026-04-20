@@ -241,3 +241,8 @@ Test across multiple versions:
 ## What's Next?
 
 Our **Docker Fundamentals** course includes a full CI/CD module covering container builds, registry management, and automated deployment pipelines. Our **Terraform for Beginners** course teaches infrastructure provisioning that integrates with CI/CD. First lessons are free.
+-e 
+---
+
+**Ready to go deeper?** Explore our [hands-on DevOps courses](/courses) — practical labs covering Docker, Ansible, Terraform, and more.
+
