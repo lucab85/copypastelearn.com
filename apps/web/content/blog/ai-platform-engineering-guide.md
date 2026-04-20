@@ -1,6 +1,6 @@
 ---
 title: "AI Platform Engineering Explained"
-description: "Learn what AI platform engineering is, why enterprises need it, and how to build production-grade GenAI infrastructure."
+description: "Learn what AI platform engineering is, why enterprises need it, and how to build production-grade GenAI infrastructure from scratch with proven DevOps practices."
 date: "2026-03-28"
 author: "Luca Berton"
 category: "AI Tools"

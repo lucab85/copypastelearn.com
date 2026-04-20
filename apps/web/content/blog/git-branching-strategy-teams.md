@@ -5,7 +5,7 @@ date: "2026-03-09"
 category: "Development"
 tags: ["Git", "Branching", "CI/CD", "DevOps", "Workflow"]
 excerpt: "Choose the right Git branching strategy for your team. Compare GitFlow, GitHub Flow, and trunk-based development with practical examples."
-description: "Choose the right Git branching strategy. Compare GitFlow, GitHub Flow, and trunk-based development for your team."
+description: "Choose the right Git branching strategy for your team. Compare GitFlow, GitHub Flow, and trunk-based development with practical guidance for different team sizes and needs."
 ---
 
 Your Git branching strategy determines how fast you ship and how often you break things. Pick the wrong one and your team drowns in merge conflicts.

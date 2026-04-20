@@ -5,7 +5,7 @@ date: "2026-03-11"
 category: "DevOps"
 tags: ["Helm", "Kubernetes", "Charts", "DevOps", "Deployment"]
 excerpt: "Get started with Helm charts for Kubernetes. Install apps, create custom charts, use values files, and manage releases like a pro."
-description: "Get started with Helm charts for Kubernetes. Install apps, create custom charts, use values files, and manage releases."
+description: "Get started with Helm charts for Kubernetes application deployment. Install community charts, create custom charts, manage values files, and handle release lifecycle."
 ---
 
 Helm is the package manager for Kubernetes. Instead of writing dozens of YAML files, you install a Helm chart and configure it with a values file.

@@ -5,7 +5,7 @@ date: "2026-01-20"
 category: "DevOps"
 tags: ["Ansible", "Galaxy", "Roles", "Collections", "Automation"]
 excerpt: "Use Ansible Galaxy for reusable automation. Install roles and collections, create requirements files, and publish your own content."
-description: "Use Ansible Galaxy for reusable roles and collections. Install, manage requirements, and publish content."
+description: "Use Ansible Galaxy to find, install, and manage reusable roles and collections. Learn requirements files, version pinning, and publishing your own content to Galaxy."
 ---
 
 Ansible Galaxy is the package manager for Ansible content. Instead of writing everything from scratch, install community roles and collections.

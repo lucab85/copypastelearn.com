@@ -5,7 +5,7 @@ date: "2026-02-05"
 category: "DevOps"
 tags: ["Terraform", "Providers", "AWS", "Multi-Cloud", "IaC"]
 excerpt: "Understand Terraform providers. Configuration, version pinning, aliases for multi-region, custom providers, and provider debugging."
-description: "Understand Terraform providers. Configuration, version pinning, aliases for multi-region, and debugging."
+description: "Understand Terraform providers for multi-cloud infrastructure. Provider configuration, version pinning, aliases for multi-region deployments, and debugging provider issues."
 ---
 
 Providers are plugins that let Terraform interact with APIs — AWS, Azure, GCP, Kubernetes, GitHub, Cloudflare, and hundreds more. Every resource in Terraform belongs to a provider.

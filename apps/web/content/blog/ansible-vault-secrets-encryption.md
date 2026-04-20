@@ -5,7 +5,7 @@ date: "2026-01-28"
 category: "DevOps"
 tags: ["Ansible", "Vault", "Encryption", "Secrets", "Security"]
 excerpt: "Encrypt secrets with Ansible Vault. Encrypt files, strings, multi-password setups, and CI/CD integration for secure automation."
-description: "Encrypt secrets with Ansible Vault. Files, strings, multi-password setups, and CI/CD integration."
+description: "Encrypt secrets with Ansible Vault for secure automation. Cover file encryption, string-level vaulting, multi-password setups, and CI/CD pipeline integration."
 ---
 
 Ansible Vault encrypts sensitive data so you can safely commit it to Git. Passwords, API keys, certificates — all encrypted at rest, decrypted at runtime.

@@ -1,6 +1,6 @@
 ---
 title: "OpenClaw + Tailscale Remote Access"
-description: "Access your OpenClaw agent securely from anywhere using Tailscale. Zero port forwarding, zero firewall rules."
+description: "Access your OpenClaw agent securely from anywhere using Tailscale mesh networking. Zero port forwarding, zero firewall rules, and encrypted point-to-point connections."
 date: "2026-04-06"
 author: "Luca Berton"
 category: "OpenClaw"

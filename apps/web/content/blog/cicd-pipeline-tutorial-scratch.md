@@ -5,7 +5,7 @@ date: "2026-03-20"
 category: "DevOps"
 tags: ["CI/CD", "GitHub Actions", "DevOps", "Automation", "Pipeline"]
 excerpt: "Build a complete CI/CD pipeline from scratch with GitHub Actions. Lint, test, build, deploy — automated on every push."
-description: "Build a complete CI/CD pipeline from scratch with GitHub Actions. Lint, test, build, deploy — automated on every push."
+description: "Build a complete CI/CD pipeline from scratch with GitHub Actions. Lint, test, build, and deploy your application — fully automated on every push to your repository."
 ---
 
 A CI/CD pipeline automates the journey from code commit to production deployment. This tutorial builds one step by step using GitHub Actions.

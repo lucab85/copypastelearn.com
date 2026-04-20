@@ -5,7 +5,7 @@ date: "2026-03-22"
 category: "DevOps"
 tags: ["Postmortem", "SRE", "Incident Management", "DevOps", "Reliability"]
 excerpt: "Run effective blameless postmortems. Copy our template, learn the process, and turn production incidents into system improvements."
-description: "Run effective blameless postmortems. Copy our template, learn the process, and turn incidents into system improvements."
+description: "Run effective blameless postmortems with our ready-to-use template. Learn the structured process and turn production incidents into lasting system improvements."
 ---
 
 A blameless postmortem turns every production incident into a learning opportunity. Instead of asking "who messed up?", you ask "what allowed this to happen, and how do we prevent it?"

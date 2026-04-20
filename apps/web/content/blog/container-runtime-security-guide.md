@@ -5,7 +5,7 @@ date: "2026-01-09"
 category: "DevOps"
 tags: ["Containers", "Security", "Docker", "Runtime", "DevOps"]
 excerpt: "Secure container runtimes. Non-root users, read-only filesystems, seccomp profiles, AppArmor, capabilities, and image scanning."
-description: "Secure container runtimes. Non-root, read-only fs, seccomp, AppArmor, capabilities, and image scanning."
+description: "Secure container runtimes in production. Non-root users, read-only filesystems, seccomp profiles, AppArmor, dropped capabilities, and automated image vulnerability scanning."
 ---
 
 Containers are not VMs. They share the host kernel, so a container escape means host compromise. Runtime security adds defense in depth.

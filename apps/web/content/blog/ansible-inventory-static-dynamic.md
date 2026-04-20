@@ -1,6 +1,6 @@
 ---
 title: "Ansible Inventory: Static and Dynamic"
-description: "Master Ansible inventory: INI and YAML formats, groups, variables, and dynamic inventory with AWS and Azure plugins."
+description: "Master Ansible inventory in INI and YAML formats. Learn host groups, variables, dynamic inventory plugins for AWS and Azure, and patterns for scaling automation."
 date: "2026-04-13"
 author: "Luca Berton"
 category: "DevOps"

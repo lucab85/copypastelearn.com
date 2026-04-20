@@ -5,7 +5,7 @@ date: "2026-01-07"
 category: "DevOps"
 tags: ["ArgoCD", "GitOps", "Kubernetes", "CI/CD", "DevOps"]
 excerpt: "Get started with GitOps using ArgoCD. Install ArgoCD, create applications, sync strategies, app of apps pattern, and automated deployments."
-description: "Get started with GitOps using ArgoCD. Install, create apps, sync strategies, and automated deployments."
+description: "Get started with GitOps using ArgoCD on Kubernetes. Install ArgoCD, create applications, configure sync strategies, and set up automated deployments from Git repositories."
 ---
 
 GitOps uses Git as the single source of truth for infrastructure and applications. ArgoCD watches your Git repo and automatically syncs Kubernetes clusters to match.

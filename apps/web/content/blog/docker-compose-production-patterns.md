@@ -5,7 +5,7 @@ date: "2026-02-10"
 category: "DevOps"
 tags: ["Docker", "Docker Compose", "Production", "DevOps", "Deployment"]
 excerpt: "Production-ready Docker Compose patterns. Health checks, resource limits, logging, secrets, networking, and multi-environment configs."
-description: "Production Docker Compose patterns. Health checks, resource limits, logging, secrets, and multi-environment."
+description: "Production-ready Docker Compose patterns for reliable deployments. Health checks, resource limits, structured logging, secrets management, and multi-environment configs."
 ---
 
 Docker Compose is not just for development. With the right patterns, it runs production workloads on single servers reliably.

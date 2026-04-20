@@ -1,6 +1,6 @@
 ---
 title: "Terraform Workspaces for Environments"
-description: "Use Terraform workspaces to manage dev, staging, and prod environments from a single codebase. Practical patterns."
+description: "Use Terraform workspaces to manage dev, staging, and production environments from a single codebase. Practical patterns, trade-offs, and best practices for multi-environment IaC."
 date: "2026-04-12"
 author: "Luca Berton"
 category: "DevOps"

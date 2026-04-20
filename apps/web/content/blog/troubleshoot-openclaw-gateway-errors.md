@@ -1,6 +1,6 @@
 ---
 title: "Troubleshoot OpenClaw Gateway Errors"
-description: "Fix common OpenClaw gateway errors: 401 unauthorized, connection refused, origin not allowed, and WebSocket failures."
+description: "Fix common OpenClaw gateway errors including 401 unauthorized, connection refused, origin not allowed, and WebSocket failures with step-by-step diagnostic and resolution guides."
 date: "2026-04-07"
 author: "Luca Berton"
 category: "OpenClaw"

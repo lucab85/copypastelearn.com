@@ -5,7 +5,7 @@ date: "2026-02-01"
 category: "DevOps"
 tags: ["Kubernetes", "Jobs", "CronJobs", "Batch", "DevOps"]
 excerpt: "Run batch workloads in Kubernetes. Jobs, CronJobs, parallelism, backoff limits, TTL cleanup, and real-world patterns for data pipelines."
-description: "Run batch workloads in Kubernetes. Jobs, CronJobs, parallelism, backoff, TTL cleanup, and data pipelines."
+description: "Run batch workloads reliably in Kubernetes with Jobs and CronJobs. Parallelism settings, backoff policies, TTL cleanup, and data pipeline scheduling best practices."
 ---
 
 Not everything in Kubernetes is a long-running service. Jobs handle one-off tasks (database migrations, backups, data processing) and CronJobs schedule them on a recurring basis.

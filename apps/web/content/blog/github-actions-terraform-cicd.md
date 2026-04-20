@@ -1,6 +1,6 @@
 ---
 title: "GitHub Actions CI/CD for Terraform"
-description: "Automate Terraform with GitHub Actions. Plan on PR, apply on merge, state locking, and secrets management."
+description: "Automate Terraform infrastructure with GitHub Actions. Plan on pull request, apply on merge, remote state locking, and secure secrets management for IaC pipelines."
 date: "2026-04-13"
 author: "Luca Berton"
 category: "DevOps"

@@ -5,7 +5,7 @@ date: "2026-01-10"
 category: "DevOps"
 tags: ["Ansible", "Handlers", "Notifications", "Automation", "DevOps"]
 excerpt: "Use Ansible handlers to trigger actions on change. Restart services, flush handlers, handler chains, and best practices for idempotent automation."
-description: "Ansible handlers for triggered actions. Restart services, flush handlers, chains, and idempotent patterns."
+description: "Master Ansible handlers for triggered actions. Learn to restart services, flush handlers, use handler chains, and implement idempotent notification patterns."
 ---
 
 Handlers run only when notified by a changed task. They prevent unnecessary service restarts and keep your automation idempotent.

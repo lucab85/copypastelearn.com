@@ -5,7 +5,7 @@ date: "2026-01-11"
 category: "DevOps"
 tags: ["Terraform", "Backend", "S3", "State", "IaC"]
 excerpt: "Configure Terraform remote backends. S3 with DynamoDB locking, Azure Blob, GCS, Terraform Cloud, and state migration strategies."
-description: "Configure Terraform remote backends. S3 with locking, Azure Blob, GCS, Terraform Cloud, and migration."
+description: "Configure Terraform remote backends for team collaboration. S3 with DynamoDB locking, Azure Blob Storage, Google Cloud Storage, Terraform Cloud, and state migration steps."
 ---
 
 The backend determines where Terraform stores state. Local files work for learning, but teams need remote backends for collaboration, locking, and disaster recovery.
