@@ -123,3 +123,9 @@ Regional data restrictions can increase latency for global users. Use CDN for st
 
 **What about backups and disaster recovery?**
 DR regions must also comply with data residency requirements. Multi-region within the same jurisdiction is typical (e.g., eu-west-1 + eu-central-1).
+
+---
+
+## Ready to go deeper?
+
+This article is part of a hands-on learning path. Continue building your skills with [our course catalog](/courses) on CopyPasteLearn.

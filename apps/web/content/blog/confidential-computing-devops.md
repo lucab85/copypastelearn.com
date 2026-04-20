@@ -109,3 +109,9 @@ Yes. Azure, GCP, and AWS all offer GA confidential VM options. Kubernetes suppor
 
 **When should I use confidential computing vs. standard encryption?**
 When you need to protect data during processing, not just at rest and in transit. Required for multi-party computation and strict compliance scenarios.
+
+---
+
+## Ready to go deeper?
+
+This article is part of a hands-on learning path. Continue building your skills with [our course catalog](/courses) on CopyPasteLearn.

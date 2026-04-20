@@ -137,3 +137,9 @@ Cloud for variable workloads and experimentation. Own hardware when sustained ut
 
 **How much can optimization actually save?**
 Typically 40-70% reduction through quantization, routing, caching, and spot instances combined.
+
+---
+
+## Ready to go deeper?
+
+This article is part of a hands-on learning path. Continue building your skills with [our course catalog](/courses) on CopyPasteLearn.

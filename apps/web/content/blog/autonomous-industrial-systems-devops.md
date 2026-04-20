@@ -134,3 +134,9 @@ Start with vibration monitoring on critical equipment. Collect 3-6 months of dat
 
 **What about legacy equipment?**
 Retrofit with IoT sensors and gateways. Many 20-year-old machines can be connected with vibration sensors, current transformers, and temperature probes.
+
+---
+
+## Ready to go deeper?
+
+This article is part of a hands-on learning path. Continue building your skills with [our course catalog](/courses) on CopyPasteLearn.

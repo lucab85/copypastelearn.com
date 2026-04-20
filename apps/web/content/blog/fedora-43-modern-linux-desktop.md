@@ -97,3 +97,9 @@ The upgrade process is smooth and well-tested. It's not like the old days of rei
 Fedora is the best all-around Linux desktop in 2026. It's modern, well-maintained, developer-friendly, and just works. The GNOME experience on Fedora is the gold standard for Linux desktop computing.
 
 Want to put your Linux skills to work? [Check out our hands-on DevOps courses](/courses) with real terminal environments.
+
+---
+
+## Ready to go deeper?
+
+This article is part of a hands-on learning path. Continue building your skills with [our course catalog](/courses) on CopyPasteLearn.

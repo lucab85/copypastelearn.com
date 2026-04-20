@@ -130,3 +130,9 @@ Let's be honest: NixOS has a steep learning curve. The Nix language is functiona
 NixOS is the most technically interesting Linux distro in 2026. The idea of a fully reproducible, declarative operating system is compelling. But it demands investment — in learning the language, the tooling, and the mindset. If you're a DevOps engineer or developer who values reproducibility, NixOS is worth that investment.
 
 Take your infrastructure-as-code skills to the next level with our [Terraform and Ansible courses](/courses).
+
+---
+
+## Ready to go deeper?
+
+This article is part of a hands-on learning path. Continue building your skills with [our course catalog](/courses) on CopyPasteLearn.

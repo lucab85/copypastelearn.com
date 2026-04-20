@@ -136,3 +136,9 @@ sudo dd if=/dev/sda of=/dev/sdb bs=64K conv=noerror,sync status=progress
 Old hardware doesn't need Windows XP or the recycling bin. A lightweight Linux distro can give it years more useful life. Start with Lubuntu or MX Linux for the easiest experience, or go with antiX for truly ancient machines.
 
 Learn to manage Linux systems at any scale with our [DevOps automation courses](/courses).
+
+---
+
+## Ready to go deeper?
+
+This article is part of a hands-on learning path. Continue building your skills with [our course catalog](/courses) on CopyPasteLearn.

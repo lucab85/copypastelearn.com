@@ -124,3 +124,9 @@ Varies widely. Simple CRUD operations: 90%+. Complex algorithms: 60-80%. Always 
 
 **Should junior developers use AI coding tools?**
 Yes, but with guardrails. Use AI to learn patterns, not to skip understanding. Code review is essential.
+
+---
+
+## Ready to go deeper?
+
+This article is part of a hands-on learning path. Continue building your skills with [our course catalog](/courses) on CopyPasteLearn.

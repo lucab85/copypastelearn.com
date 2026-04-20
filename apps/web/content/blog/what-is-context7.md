@@ -49,3 +49,9 @@ Context7 works with:
 Visit [context7.com](https://context7.com/), search for your library, and copy the documentation into your AI workflow. It's that simple.
 
 The days of AI-generated code that uses deprecated APIs are over.
+
+---
+
+## Ready to go deeper?
+
+This article is part of a hands-on learning path. Continue building your skills with [our course catalog](/courses) on CopyPasteLearn.

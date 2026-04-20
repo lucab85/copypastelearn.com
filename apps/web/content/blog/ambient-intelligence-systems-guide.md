@@ -132,3 +132,9 @@ Critical. Segment IoT networks, encrypt sensor data, patch firmware regularly, a
 
 **What's the ROI?**
 Energy savings of 20-40% plus productivity gains from optimized environments. Typical payback period: 2-4 years for commercial buildings.
+
+---
+
+## Ready to go deeper?
+
+This article is part of a hands-on learning path. Continue building your skills with [our course catalog](/courses) on CopyPasteLearn.

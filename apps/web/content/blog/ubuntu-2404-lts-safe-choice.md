@@ -97,3 +97,9 @@ All share the same base, repos, and support timeline.
 Ubuntu isn't the most exciting distro, but it's the safest bet. The ecosystem is unmatched — if you Google a Linux problem, the first answer is almost always for Ubuntu. For servers, it's the industry standard.
 
 Learn to automate Ubuntu servers with Ansible, Docker, and Terraform in our [hands-on DevOps courses](/courses).
+
+---
+
+## Ready to go deeper?
+
+This article is part of a hands-on learning path. Continue building your skills with [our course catalog](/courses) on CopyPasteLearn.

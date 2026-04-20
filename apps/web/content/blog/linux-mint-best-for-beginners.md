@@ -74,3 +74,9 @@ Then open **Update Manager → Edit → Software Sources** to enable the Flatpak
 Linux Mint is boring in the best possible way. It doesn't try to impress you with flashy features — it just gives you a solid, reliable desktop that stays out of your way. For most people trying Linux for the first time, that's exactly what you need.
 
 Ready to level up your Linux skills? [Explore our DevOps courses](/courses) to learn Docker, Ansible, and infrastructure automation on real Linux environments.
+
+---
+
+## Ready to go deeper?
+
+This article is part of a hands-on learning path. Continue building your skills with [our course catalog](/courses) on CopyPasteLearn.

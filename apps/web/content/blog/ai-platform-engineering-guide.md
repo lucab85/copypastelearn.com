@@ -108,3 +108,9 @@ AI platform engineering is essential for:
 CopyPasteLearn's [AI Platform Engineering program](/ai-platform-engineering) covers the full stack: from RAG architecture and LLM orchestration to EU AI Act compliance and cost optimization. It's a 6-week live program designed for engineering leaders who need to ship GenAI to production — not just prototype it.
 
 Ready to build production-grade AI infrastructure? [Explore the program →](/ai-platform-engineering)
+
+---
+
+## Ready to go deeper?
+
+This article is part of a hands-on learning path. Continue building your skills with [our course catalog](/courses) on CopyPasteLearn.

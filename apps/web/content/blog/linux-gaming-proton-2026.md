@@ -104,3 +104,9 @@ For NVIDIA, performance is typically within 5% of Windows with the proprietary d
 If you're a PC gamer considering Linux, 2026 is the year to try it. Install Steam, enable Proton, and most of your library just works. Check ProtonDB before buying new games to verify compatibility.
 
 Master the Linux command line with our [hands-on courses](/courses) — gaming is more fun when you understand your OS.
+
+---
+
+## Ready to go deeper?
+
+This article is part of a hands-on learning path. Continue building your skills with [our course catalog](/courses) on CopyPasteLearn.

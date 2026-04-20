@@ -89,3 +89,9 @@ Both ship GNOME by default, but the experience differs:
 **Neither is wrong.** I personally use Fedora on desktop and Ubuntu on servers. Best of both worlds.
 
 Put your Linux knowledge to work with our [DevOps courses](/courses) — hands-on labs on real Linux environments.
+
+---
+
+## Ready to go deeper?
+
+This article is part of a hands-on learning path. Continue building your skills with [our course catalog](/courses) on CopyPasteLearn.

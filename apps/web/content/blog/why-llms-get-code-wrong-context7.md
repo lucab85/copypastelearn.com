@@ -64,3 +64,9 @@ Libraries that update frequently benefit the most from Context7:
 ## The Bottom Line
 
 LLMs are powerful but time-frozen. Context7 thaws them by providing current documentation. It's not replacing the AI — it's giving the AI what it needs to do its job properly.
+
+---
+
+## Ready to go deeper?
+
+This article is part of a hands-on learning path. Continue building your skills with [our course catalog](/courses) on CopyPasteLearn.

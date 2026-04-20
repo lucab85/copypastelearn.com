@@ -98,3 +98,9 @@ CMD ["node", "/app/server.js"]
 There's no single "best" server distro. It depends on your team's skills, your compliance requirements, and how long you need to run the system. When in doubt, Ubuntu Server is the safest bet — not because it's the best technically, but because help is always one Google search away.
 
 Learn to automate server management with our [Ansible and Terraform courses](/courses) — practice on real Linux environments.
+
+---
+
+## Ready to go deeper?
+
+This article is part of a hands-on learning path. Continue building your skills with [our course catalog](/courses) on CopyPasteLearn.

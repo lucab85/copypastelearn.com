@@ -152,3 +152,9 @@ SBOM tools (Syft, cdxgen) automatically discover transitive dependencies. Vulner
 
 **What's the overhead of signing and attestation?**
 Minimal. Sigstore keyless signing adds < 10 seconds to CI/CD. The security benefit far outweighs the cost.
+
+---
+
+## Ready to go deeper?
+
+This article is part of a hands-on learning path. Continue building your skills with [our course catalog](/courses) on CopyPasteLearn.

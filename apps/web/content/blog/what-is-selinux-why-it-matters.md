@@ -63,3 +63,9 @@ getenforce
 SELinux is enabled by default on RHEL. The **targeted** policy confines selected services while leaving most user activity unconfined — a practical balance between security and usability.
 
 Want to master SELinux hands-on? Our [SELinux for System Admins course](/courses) walks you through real-world labs on RHEL 9/10 — from labels to booleans to troubleshooting production web servers.
+
+---
+
+## Ready to go deeper?
+
+This article is part of a hands-on learning path. Continue building your skills with [SELinux for System Admins](/courses/selinux-system-admins) on CopyPasteLearn.

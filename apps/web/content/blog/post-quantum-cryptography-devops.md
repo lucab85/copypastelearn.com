@@ -81,3 +81,9 @@ No. PQC migration is a multi-year process. Start with inventory and hybrid deplo
 
 **Does PQC affect application performance?**
 Slightly. Larger keys increase TLS handshake time by 10-30ms. For most applications, this is negligible.
+
+---
+
+## Ready to go deeper?
+
+This article is part of a hands-on learning path. Continue building your skills with [our course catalog](/courses) on CopyPasteLearn.

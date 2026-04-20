@@ -136,3 +136,9 @@ It's the most secure desktop OS available, endorsed by Snowden and many security
 These distros are tools, not toys. Kali doesn't make you a hacker — training does. Tails doesn't make you invisible — operational security does. Use the right tool for the job, and invest in understanding the underlying concepts.
 
 Build a security-first mindset with our [DevOps courses](/courses) — learn infrastructure security alongside automation.
+
+---
+
+## Ready to go deeper?
+
+This article is part of a hands-on learning path. Continue building your skills with [SELinux for System Admins](/courses/selinux-system-admins) on CopyPasteLearn.

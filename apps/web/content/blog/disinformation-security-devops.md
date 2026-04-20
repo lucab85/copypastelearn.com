@@ -142,3 +142,9 @@ No. Most AI-generated content is legitimate (art, writing assistance, translatio
 
 **What's the cost of content moderation at scale?**
 Automated: $0.001-0.01 per item. Human review: $0.05-0.50 per item. Blend automated and human review based on risk.
+
+---
+
+## Ready to go deeper?
+
+This article is part of a hands-on learning path. Continue building your skills with [our course catalog](/courses) on CopyPasteLearn.

@@ -87,3 +87,9 @@ EndeavourOS is the better option for most people. It gives you real Arch with tr
 Manjaro is fine if you just want a working desktop and don't care about Arch compatibility. But at that point, you might be better served by Fedora — which is more polished and has a larger community.
 
 Level up from desktop Linux to DevOps with our [hands-on courses](/courses) — automate everything.
+
+---
+
+## Ready to go deeper?
+
+This article is part of a hands-on learning path. Continue building your skills with [our course catalog](/courses) on CopyPasteLearn.

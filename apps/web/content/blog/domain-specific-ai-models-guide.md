@@ -121,3 +121,9 @@ Start with RAG — it's faster and doesn't require training. Fine-tune when RAG 
 
 **What about hallucinations in specialized domains?**
 RAG with citations reduces hallucinations. Fine-tuning on verified data improves factual accuracy. Neither eliminates hallucinations entirely — always validate critical outputs.
+
+---
+
+## Ready to go deeper?
+
+This article is part of a hands-on learning path. Continue building your skills with [our course catalog](/courses) on CopyPasteLearn.

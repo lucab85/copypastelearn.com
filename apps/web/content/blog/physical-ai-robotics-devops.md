@@ -119,3 +119,9 @@ Simulation platforms like NVIDIA Isaac Sim, Gazebo, and Unity provide physics-ac
 
 **What about safety certification?**
 Safety certification (ISO 26262, IEC 61508) requires traceable requirements, tested code, and documented verification. Start with a safety management plan early — retrofitting is expensive.
+
+---
+
+## Ready to go deeper?
+
+This article is part of a hands-on learning path. Continue building your skills with [our course catalog](/courses) on CopyPasteLearn.

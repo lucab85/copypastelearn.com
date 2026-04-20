@@ -110,3 +110,9 @@ The [Arch Wiki](https://wiki.archlinux.org/) is the single best documentation re
 Arch isn't for everyone, and that's the point. It's for people who see their operating system as a tool they build and maintain, not a product they consume. If that sounds exhausting, use Fedora. If it sounds exciting, welcome to Arch.
 
 Take your Linux skills further with [hands-on DevOps courses](/courses) featuring real terminal labs.
+
+---
+
+## Ready to go deeper?
+
+This article is part of a hands-on learning path. Continue building your skills with [our course catalog](/courses) on CopyPasteLearn.

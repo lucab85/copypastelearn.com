@@ -193,3 +193,9 @@ Both provide dependency isolation and auto-updates, but add overhead compared to
 Learn your distro's package manager well — it's the tool you'll use most. For servers, stick with native packages (`apt`, `dnf`, `apk`). For desktop apps, Flatpak adds convenience without risk to system stability.
 
 Practice Linux package management in our [hands-on DevOps courses](/courses) with real terminal environments.
+
+---
+
+## Ready to go deeper?
+
+This article is part of a hands-on learning path. Continue building your skills with [our course catalog](/courses) on CopyPasteLearn.

@@ -266,3 +266,9 @@ spec:
 ## What's Next?
 
 Our **SELinux for System Admins** course covers mandatory access controls that complement container security. **Docker Fundamentals** teaches secure container building. First lessons are free.
+
+---
+
+## Ready to go deeper?
+
+This article is part of a hands-on learning path. Continue building your skills with [Docker Fundamentals](/courses/docker-fundamentals) on CopyPasteLearn.
