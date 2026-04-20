@@ -5,7 +5,7 @@ date: "2026-02-11"
 category: "DevOps"
 tags: ["Kubernetes", "Troubleshooting", "Debugging", "DevOps", "SRE"]
 excerpt: "Systematic Kubernetes troubleshooting. Pod failures, CrashLoopBackOff, ImagePullBackOff, networking, DNS, and storage issues with fix commands."
-description: "Systematic Kubernetes troubleshooting. Pod failures, CrashLoopBackOff, networking, DNS, and storage fixes."
+description: "Systematic Kubernetes troubleshooting checklist for DevOps. Pod failures, CrashLoopBackOff debugging, networking issues, DNS resolution, and persistent storage fixes."
 ---
 
 When something breaks in Kubernetes, you need a systematic approach. This checklist covers the most common issues and how to fix them.

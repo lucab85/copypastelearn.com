@@ -5,7 +5,7 @@ date: "2026-01-08"
 category: "DevOps"
 tags: ["Prometheus", "Alerting", "Monitoring", "Alertmanager", "DevOps"]
 excerpt: "Write Prometheus alerting rules. PromQL alert expressions, severity levels, Alertmanager routing, PagerDuty and Slack integration."
-description: "Write Prometheus alerting rules. PromQL expressions, severity levels, Alertmanager routing, and integrations."
+description: "Write effective Prometheus alerting rules for production monitoring. PromQL expressions, severity levels, Alertmanager routing trees, and notification channel integrations."
 ---
 
 Metrics without alerts are just pretty graphs. Prometheus alerting rules evaluate PromQL expressions and fire alerts through Alertmanager to Slack, PagerDuty, email, or webhooks.

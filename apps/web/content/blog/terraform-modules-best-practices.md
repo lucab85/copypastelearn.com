@@ -5,7 +5,7 @@ date: "2026-02-24"
 category: "DevOps"
 tags: ["Terraform", "Modules", "IaC", "AWS", "Best Practices"]
 excerpt: "Write reusable Terraform modules. Structure, inputs, outputs, versioning, testing, and publishing your own modules."
-description: "Write reusable Terraform modules. Structure, inputs, outputs, versioning, testing, and publishing your own."
+description: "Write reusable Terraform modules following best practices. Module structure, input variables, outputs, semantic versioning, automated testing, and publishing to registries."
 ---
 
 Modules are how you write reusable, composable Terraform code. Without modules, you copy-paste infrastructure definitions across environments. With modules, you define once and configure per use.

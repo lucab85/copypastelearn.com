@@ -5,7 +5,7 @@ date: "2026-03-05"
 category: "DevOps"
 tags: ["Monitoring", "Observability", "Grafana", "Loki", "DevOps"]
 excerpt: "Build a complete monitoring stack with Prometheus, Grafana, Loki, and Alertmanager. Metrics, logs, and alerts in one platform."
-description: "Build a complete monitoring stack. Prometheus, Grafana, Loki, and Alertmanager for metrics, logs, and alerts."
+description: "Build a complete infrastructure monitoring stack from scratch. Prometheus for metrics, Grafana for dashboards, Loki for logs, and Alertmanager for intelligent alerting."
 ---
 
 A production monitoring stack needs three pillars: metrics, logs, and alerts. Here is how to build one with open-source tools.

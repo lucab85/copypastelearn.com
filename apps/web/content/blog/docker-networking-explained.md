@@ -5,7 +5,7 @@ date: "2026-02-02"
 category: "DevOps"
 tags: ["Docker", "Networking", "Containers", "DevOps", "Infrastructure"]
 excerpt: "Understand Docker networking. Bridge, host, overlay networks, DNS resolution, port mapping, and container-to-container communication."
-description: "Docker networking explained. Bridge, host, overlay networks, DNS, port mapping, and container communication."
+description: "Docker networking explained for DevOps engineers. Bridge, host, and overlay networks, DNS service discovery, port mapping, and secure container-to-container communication."
 ---
 
 Docker containers need networking to communicate with each other and the outside world. Understanding Docker's network model saves hours of debugging connectivity issues.

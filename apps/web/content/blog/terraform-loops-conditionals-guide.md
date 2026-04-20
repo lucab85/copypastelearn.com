@@ -5,7 +5,7 @@ date: "2026-01-30"
 category: "DevOps"
 tags: ["Terraform", "Loops", "for_each", "count", "IaC"]
 excerpt: "Master Terraform loops and conditionals. count, for_each, for expressions, dynamic blocks, and conditional resource creation patterns."
-description: "Master Terraform loops and conditionals. count, for_each, for expressions, dynamic blocks, and patterns."
+description: "Master Terraform loops and conditionals for dynamic infrastructure. count, for_each, for expressions, dynamic blocks, and advanced patterns for DRY configuration code."
 ---
 
 Terraform is declarative, but you still need loops and conditionals. Here is how to create multiple resources, toggle features, and transform data.

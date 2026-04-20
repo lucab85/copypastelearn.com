@@ -5,7 +5,7 @@ date: "2026-02-07"
 category: "DevOps"
 tags: ["Ansible", "Error Handling", "Automation", "DevOps", "Reliability"]
 excerpt: "Handle errors gracefully in Ansible playbooks. Ignore errors, rescue blocks, retries, assertions, and idempotent error recovery patterns."
-description: "Handle errors in Ansible playbooks. Ignore errors, rescue blocks, retries, assertions, and recovery patterns."
+description: "Handle errors gracefully in Ansible playbooks. Learn ignore_errors, rescue blocks, retries, assertions, and proven recovery patterns for reliable automation."
 ---
 
 Ansible stops on the first error by default. Production playbooks need graceful error handling — retries for flaky operations, rescue blocks for cleanup, and assertions for validation.

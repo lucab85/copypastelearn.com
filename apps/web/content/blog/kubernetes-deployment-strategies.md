@@ -5,7 +5,7 @@ date: "2026-01-18"
 category: "DevOps"
 tags: ["Kubernetes", "Deployments", "Rolling Update", "Canary", "Blue-Green"]
 excerpt: "Deploy safely with Kubernetes. Rolling updates, blue-green, canary, and recreate strategies with rollback procedures."
-description: "Deploy safely with Kubernetes. Rolling updates, blue-green, canary, recreate, and rollback procedures."
+description: "Deploy applications safely with Kubernetes deployment strategies. Rolling updates, blue-green deployments, canary releases, recreate mode, and automated rollback procedures."
 ---
 
 How you deploy matters as much as what you deploy. The right strategy depends on your tolerance for downtime, risk appetite, and infrastructure budget.
