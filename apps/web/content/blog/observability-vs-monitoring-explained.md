@@ -5,7 +5,7 @@ date: "2026-01-29"
 category: "DevOps"
 tags: ["Observability", "Monitoring", "Logging", "Tracing", "DevOps"]
 excerpt: "Understand the three pillars of observability. Metrics, logs, and traces with OpenTelemetry, Prometheus, Grafana, Loki, and Jaeger."
-description: "Understand the three pillars of observability for modern systems. Metrics, logs, and distributed traces with OpenTelemetry, Prometheus, Grafana, and Jaeger implementation."
+description: "The three pillars of observability. Metrics, logs, and distributed traces with OpenTelemetry, Prometheus, Grafana, and Jaeger."
 ---
 
 Monitoring tells you when something is broken. Observability tells you why. In distributed systems, you need both.

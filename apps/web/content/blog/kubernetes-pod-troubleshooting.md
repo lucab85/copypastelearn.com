@@ -1,6 +1,6 @@
 ---
 title: "Kubernetes Pod Troubleshooting"
-description: "Debug Kubernetes pods systematically. Fix CrashLoopBackOff, ImagePullBackOff, pending pods, and OOMKilled errors with step-by-step diagnostic commands and solutions."
+description: "Debug Kubernetes pods systematically. Fix CrashLoopBackOff, ImagePullBackOff, pending pods, and OOMKilled with diagnostic commands."
 date: "2026-04-10"
 author: "Luca Berton"
 category: "DevOps"

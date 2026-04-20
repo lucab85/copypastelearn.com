@@ -5,7 +5,7 @@ date: "2026-01-25"
 category: "DevOps"
 tags: ["Terraform", "Workspaces", "Multi-Environment", "IaC", "DevOps"]
 excerpt: "Manage multiple environments with Terraform workspaces. CLI workspaces, Terraform Cloud, directory-based isolation, and when to use each."
-description: "Manage multiple infrastructure environments with Terraform workspaces. CLI workspaces, Terraform Cloud workspaces, directory isolation patterns, and practical trade-off analysis."
+description: "Manage environments with Terraform workspaces. CLI workspaces, Terraform Cloud workspaces, directory isolation, and trade-offs."
 ---
 
 You need the same infrastructure in dev, staging, and production — but with different sizes, settings, and credentials. Terraform offers several approaches to multi-environment management.

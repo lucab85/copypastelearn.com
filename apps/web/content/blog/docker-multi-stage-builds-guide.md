@@ -5,7 +5,7 @@ date: "2026-01-16"
 category: "DevOps"
 tags: ["Docker", "Multi-Stage", "Build", "Optimization", "DevOps"]
 excerpt: "Shrink Docker images with multi-stage builds. Separate build and runtime stages, distroless images, and patterns for Go, Node, Python, and Java."
-description: "Shrink Docker images dramatically with multi-stage builds. Separate build and runtime stages using distroless bases for Go, Node.js, Python, and Java applications."
+description: "Shrink Docker images with multi-stage builds. Separate build and runtime stages using distroless bases for Go, Node.js, Python, and Java."
 ---
 
 Multi-stage builds produce small, secure production images by separating build tools from runtime. Your final image contains only what is needed to run the app.

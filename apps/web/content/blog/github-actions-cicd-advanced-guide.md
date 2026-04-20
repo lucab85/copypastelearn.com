@@ -5,7 +5,7 @@ date: "2026-02-15"
 category: "DevOps"
 tags: ["GitHub Actions", "CI/CD", "Automation", "DevOps", "Testing"]
 excerpt: "Advanced GitHub Actions patterns. Matrix builds, reusable workflows, caching, artifacts, environment protection, and self-hosted runners."
-description: "Advanced GitHub Actions for CI/CD automation. Matrix builds, reusable workflows, dependency caching, build artifacts, deployment environments, and self-hosted runners."
+description: "Advanced GitHub Actions for CI/CD. Matrix builds, reusable workflows, dependency caching, artifacts, environments, and self-hosted runners."
 ---
 
 GitHub Actions handles everything from running tests to deploying to production. Once you move beyond basic workflows, these patterns keep your CI/CD fast and maintainable.

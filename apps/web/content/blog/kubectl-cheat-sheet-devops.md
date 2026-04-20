@@ -1,6 +1,6 @@
 ---
 title: "kubectl Cheat Sheet for DevOps"
-description: "Essential kubectl commands for managing pods, deployments, services, logs, and debugging Kubernetes clusters. Copy-paste ready reference for daily DevOps operations."
+description: "Essential kubectl commands for pods, deployments, services, logs, and debugging Kubernetes clusters. Copy-paste ready DevOps reference."
 date: "2026-04-12"
 author: "Luca Berton"
 category: "DevOps"

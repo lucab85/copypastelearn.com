@@ -5,7 +5,7 @@ date: "2026-01-15"
 category: "DevOps"
 tags: ["SSH", "Security", "Hardening", "Linux", "DevOps"]
 excerpt: "Harden SSH servers for production. Key-based auth, disable root login, port changes, fail2ban, jump hosts, and certificate-based auth."
-description: "Harden SSH servers for production security. Key-based authentication, disable root login, fail2ban intrusion prevention, jump host architecture, and certificate-based auth."
+description: "Harden SSH servers for production. Key-based auth, disable root login, fail2ban, jump host architecture, and certificate-based auth."
 ---
 
 Default SSH configuration is not secure enough for production. A freshly installed server gets brute-force attempts within minutes.

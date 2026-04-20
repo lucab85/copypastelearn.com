@@ -5,7 +5,7 @@ date: "2026-01-17"
 category: "DevOps"
 tags: ["Linux", "Permissions", "Security", "System Administration", "DevOps"]
 excerpt: "Master Linux file permissions. chmod, chown, umask, SUID/SGID, sticky bit, and ACLs for secure system administration."
-description: "Master Linux file permissions for system administration. chmod, chown, umask, SUID, SGID, sticky bit, and ACLs explained with practical examples for securing your systems."
+description: "Master Linux file permissions. chmod, chown, umask, SUID, SGID, sticky bit, and ACLs with practical examples for system security."
 ---
 
 File permissions control who can read, write, and execute files. Getting them right is the foundation of Linux security.

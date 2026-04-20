@@ -1,6 +1,6 @@
 ---
 title: "Git for DevOps Engineers"
-description: "Essential Git workflows for DevOps engineers: branching strategies, interactive rebasing, cherry-picking, bisect debugging, and CI/CD integration for automated deployments."
+description: "Essential Git workflows for DevOps: branching strategies, interactive rebasing, cherry-picking, bisect debugging, and CI/CD integration."
 date: "2026-04-15"
 author: "Luca Berton"
 category: "Development"

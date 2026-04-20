@@ -5,7 +5,7 @@ date: "2026-03-01"
 category: "DevOps"
 tags: ["Kubernetes", "HPA", "Autoscaling", "DevOps", "Performance"]
 excerpt: "Configure Kubernetes Horizontal Pod Autoscaler. CPU, memory, and custom metric scaling with practical YAML examples."
-description: "Configure Kubernetes HPA autoscaling for production workloads. CPU and memory scaling, custom metric-based policies, and practical YAML examples for real-world deployments."
+description: "Configure Kubernetes HPA autoscaling. CPU and memory scaling, custom metrics, and practical YAML examples for production workloads."
 ---
 
 The Horizontal Pod Autoscaler (HPA) automatically adjusts the number of pod replicas based on observed metrics. Your application scales up during traffic spikes and scales down when demand drops.

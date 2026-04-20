@@ -5,7 +5,7 @@ date: "2026-02-04"
 category: "DevOps"
 tags: ["Kubernetes", "Storage", "PersistentVolume", "DevOps", "Stateful"]
 excerpt: "Kubernetes persistent storage explained. PV, PVC, StorageClasses, dynamic provisioning, StatefulSets, and backup strategies."
-description: "Kubernetes persistent storage deep dive. PersistentVolumes, PersistentVolumeClaims, StorageClasses, dynamic provisioning, StatefulSets, and backup strategies for data."
+description: "Kubernetes persistent storage. PVs, PVCs, StorageClasses, dynamic provisioning, StatefulSets, and backup strategies."
 ---
 
 Containers are ephemeral. When a pod restarts, its filesystem resets. Persistent storage lets data survive pod restarts, rescheduling, and even node failures.

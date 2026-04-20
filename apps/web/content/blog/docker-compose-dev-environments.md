@@ -1,6 +1,6 @@
 ---
 title: "Docker Compose for Dev Environments"
-description: "Set up reproducible local development environments with Docker Compose. Multi-service stacks, hot reload configuration, database seeding, and team-friendly workflows."
+description: "Set up reproducible local development environments with Docker Compose. Multi-service stacks, hot reload, database seeding, and team workflows."
 date: "2026-04-09"
 author: "Luca Berton"
 category: "Development"

@@ -5,7 +5,7 @@ date: "2026-01-03"
 category: "DevOps"
 tags: ["Makefile", "Docker", "Containers", "Automation", "DevOps"]
 excerpt: "Use Makefiles to simplify container workflows. Build, test, push, deploy targets with variables, conditionals, and multi-stage pipelines."
-description: "Use Makefiles to streamline container workflows. Build, test, push, and deploy targets with environment variables, dependency chains, and CI pipeline integration patterns."
+description: "Use Makefiles to streamline container workflows. Build, test, push, deploy targets with environment variables and CI integration."
 ---
 
 Makefiles wrap complex Docker and Kubernetes commands into simple targets. Instead of remembering `docker build --platform linux/amd64 -t registry.example.com/my-app:v2.1.0 .`, just run `make build`.

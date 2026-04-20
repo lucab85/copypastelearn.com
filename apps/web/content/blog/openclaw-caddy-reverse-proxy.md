@@ -1,6 +1,6 @@
 ---
 title: "OpenClaw Reverse Proxy with Caddy"
-description: "Set up HTTPS for OpenClaw using Caddy as a reverse proxy. Automatic TLS certificate management, WebSocket support, and production-ready configuration in under 10 minutes."
+description: "Set up HTTPS for OpenClaw using Caddy reverse proxy. Automatic TLS certificates, WebSocket support, and production config."
 date: "2026-04-06"
 author: "Luca Berton"
 category: "OpenClaw"

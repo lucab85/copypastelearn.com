@@ -5,7 +5,7 @@ date: "2026-02-19"
 category: "DevOps"
 tags: ["Grafana", "Monitoring", "Dashboards", "Prometheus", "Observability"]
 excerpt: "Build effective Grafana dashboards. Layout patterns, variable templates, alert integration, and dashboard-as-code with JSON provisioning."
-description: "Build effective Grafana dashboards for infrastructure monitoring. Layout patterns, template variables, alert integration, and dashboard-as-code with Terraform or Jsonnet."
+description: "Build effective Grafana dashboards for monitoring. Layout patterns, template variables, alert integration, and dashboard-as-code."
 ---
 
 A good Grafana dashboard answers questions at a glance. A bad one is a wall of graphs nobody looks at. Here is how to build dashboards people actually use.

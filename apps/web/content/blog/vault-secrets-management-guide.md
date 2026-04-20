@@ -5,7 +5,7 @@ date: "2026-02-16"
 category: "DevOps"
 tags: ["Vault", "Secrets", "Security", "HashiCorp", "DevOps"]
 excerpt: "Manage secrets with HashiCorp Vault. KV engine, dynamic secrets, authentication methods, policies, and Kubernetes integration."
-description: "Manage secrets securely with HashiCorp Vault. KV secrets engine, dynamic database credentials, authentication methods, policies, and native Kubernetes integration patterns."
+description: "Manage secrets with HashiCorp Vault. KV engine, dynamic credentials, auth methods, policies, and Kubernetes integration patterns."
 ---
 
 Hardcoded secrets in code, environment variables on sticky notes, shared passwords in Slack. Vault solves all of this with centralized, audited secrets management.

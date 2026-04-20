@@ -5,7 +5,7 @@ date: "2026-02-21"
 category: "DevOps"
 tags: ["SRE", "Monitoring", "Golden Signals", "Observability", "DevOps"]
 excerpt: "Implement the four golden signals of SRE monitoring. Latency, traffic, errors, and saturation with Prometheus queries and Grafana dashboards."
-description: "Implement SRE golden signals monitoring for production reliability. Latency, traffic, errors, and saturation dashboards with Prometheus queries and Grafana visualizations."
+description: "Implement SRE golden signals. Latency, traffic, errors, and saturation dashboards with Prometheus queries and Grafana visualizations."
 ---
 
 Google's SRE book defines four golden signals that every service should monitor. If you only have four dashboards, make them these.

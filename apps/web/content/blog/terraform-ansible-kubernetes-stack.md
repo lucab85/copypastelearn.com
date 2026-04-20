@@ -5,7 +5,7 @@ date: "2026-04-04"
 category: "DevOps"
 tags: ["Terraform", "Ansible", "Kubernetes", "DevOps", "IaC"]
 excerpt: "Combine Terraform, Ansible, and Kubernetes for a complete DevOps stack. Provision with Terraform, configure with Ansible, deploy with K8s."
-description: "Combine Terraform, Ansible, and Kubernetes for a complete DevOps infrastructure stack. Provision, configure, and deploy applications end to end with practical examples."
+description: "Combine Terraform, Ansible, and Kubernetes for complete DevOps infrastructure. Provision, configure, and deploy end to end."
 ---
 
 Terraform, Ansible, and Kubernetes are the three pillars of modern infrastructure automation. Each handles a different layer — together they cover the full stack.
