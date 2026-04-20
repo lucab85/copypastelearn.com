@@ -102,3 +102,8 @@ dnf install policycoreutils policycoreutils-python-utils setools-console setroub
 - Labeling entire webroots as `rw`
 
 Bookmark this and practice in our [SELinux for System Admins course](/courses).
+
+---
+
+**Ready to go deeper?** Check out our hands-on course: [SELinux for System Admins](/courses/selinux-system-admins) — practical exercises you can follow along on your own machine.
+

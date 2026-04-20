@@ -125,3 +125,8 @@ kubectl logs -l serving.kserve.io/inferenceservice=wine-quality-model
 ## Learn More
 
 Get hands-on experience deploying models with KServe in our [MLflow for Kubernetes course](/courses) — from training to production inference.
+
+---
+
+**Ready to go deeper?** Check out our hands-on course: [MLflow for Kubernetes](/courses/mlflow-kubernetes-mlops) — practical exercises you can follow along on your own machine.
+

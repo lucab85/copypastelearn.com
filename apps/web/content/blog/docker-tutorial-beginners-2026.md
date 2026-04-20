@@ -222,3 +222,8 @@ docker compose down      # Stop and clean up
 ## What's Next?
 
 Our **Docker Fundamentals** course goes hands-on with real lab environments — build, debug, and deploy containers without any local setup. The first lesson is free.
+
+---
+
+**Ready to go deeper?** Check out our hands-on course: [Docker Fundamentals](/courses/docker-fundamentals) — practical exercises you can follow along on your own machine.
+

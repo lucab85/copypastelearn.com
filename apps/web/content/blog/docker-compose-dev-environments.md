@@ -184,3 +184,8 @@ docker compose --profile email --profile debug up -d
 - [Getting Started with Docker](/blog/getting-started-with-docker) for Docker basics
 - [Docker Multi-Stage Builds](/blog/docker-multi-stage-builds-guide) for production images
 - [Building REST APIs with Node.js](/blog/building-rest-apis-with-nodejs) for the API side
+
+---
+
+**Ready to go deeper?** Check out our hands-on course: [Docker Fundamentals](/courses/docker-fundamentals) — practical exercises you can follow along on your own machine.
+

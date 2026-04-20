@@ -232,3 +232,8 @@ max_parallel_workers = 8
 ## What's Next?
 
 Our **Node.js REST APIs** course builds a production API backed by PostgreSQL. Our **Docker Fundamentals** course covers running PostgreSQL in containers. First lessons are free.
+-e 
+---
+
+**Ready to go deeper?** Explore our [hands-on DevOps courses](/courses) — practical labs covering Docker, Ansible, Terraform, and more.
+

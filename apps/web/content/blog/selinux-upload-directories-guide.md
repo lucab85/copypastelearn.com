@@ -72,3 +72,8 @@ chcon -t httpd_sys_rw_content_t -R /srv/webroot
 Only label directories that need writes.
 
 Practice this in our [SELinux for System Admins course](/courses).
+
+---
+
+**Ready to go deeper?** Check out our hands-on course: [SELinux for System Admins](/courses/selinux-system-admins) — practical exercises you can follow along on your own machine.
+

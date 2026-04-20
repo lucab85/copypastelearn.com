@@ -58,3 +58,8 @@ Define your agent's personality in `SOUL.md`. Want a snarky assistant? A formal 
 OpenClaw uses cloud LLMs (OpenAI, Anthropic, etc.) for intelligence but keeps **everything else** local. Your agent's brain is in the cloud; its body is on your machine.
 
 This means you get state-of-the-art AI capabilities with full control over context, memory, and actions.
+
+---
+
+**Ready to go deeper?** Check out our hands-on course: [OpenClaw Agent](/courses/openclaw-agent) — practical exercises you can follow along on your own machine.
+

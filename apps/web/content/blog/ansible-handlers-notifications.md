@@ -286,3 +286,8 @@ If validation fails, the reload handler will not run.
 ## What's Next?
 
 Our **Ansible Automation in 30 Minutes** course covers handlers, roles, and production automation patterns. First lesson is free.
+
+---
+
+**Ready to go deeper?** Check out our hands-on course: [Ansible Quickstart](/courses/ansible-quickstart) — practical exercises you can follow along on your own machine.
+

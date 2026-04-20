@@ -96,3 +96,13 @@ CMD ["mlflow", "models", "serve", "-m", "./model", "--port", "8080", "--host", "
 ## From Docker to Kubernetes
 
 Once your model is containerized, deploying to Kubernetes with KServe is straightforward. Learn the complete workflow in our [MLflow for Kubernetes course](/courses).
+
+---
+
+**Ready to go deeper?** Check out our hands-on course: [Docker Fundamentals](/courses/docker-fundamentals) — practical exercises you can follow along on your own machine.
+
+
+---
+
+**Ready to go deeper?** Check out our hands-on course: [MLflow for Kubernetes](/courses/mlflow-kubernetes-mlops) — practical exercises you can follow along on your own machine.
+

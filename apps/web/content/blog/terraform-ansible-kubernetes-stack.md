@@ -282,3 +282,8 @@ CopyPasteLearn offers courses on all three tools:
 - **MLflow for Kubernetes MLOps** — ML workloads on K8s
 
 Each course includes free preview lessons and hands-on labs.
+
+---
+
+**Ready to go deeper?** Check out our hands-on course: [Terraform for Beginners](/courses/terraform-beginners) — practical exercises you can follow along on your own machine.
+

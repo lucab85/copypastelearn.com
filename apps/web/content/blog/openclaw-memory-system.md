@@ -81,3 +81,8 @@ Since memory is file-based:
 2. **Review MEMORY.md occasionally** — ensure accuracy
 3. **Use daily notes for raw context** — keep MEMORY.md curated
 4. **Don't store secrets** — use environment variables instead
+
+---
+
+**Ready to go deeper?** Check out our hands-on course: [OpenClaw Agent](/courses/openclaw-agent) — practical exercises you can follow along on your own machine.
+

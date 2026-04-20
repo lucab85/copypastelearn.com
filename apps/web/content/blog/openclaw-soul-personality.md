@@ -106,3 +106,8 @@ These files ARE your memory. Read them. Update them.
 The beauty of SOUL.md: your agent's personality develops over time. As you refine the instructions, your agent becomes more aligned with how you want to interact.
 
 It's not programming — it's parenting.
+
+---
+
+**Ready to go deeper?** Check out our hands-on course: [OpenClaw Agent](/courses/openclaw-agent) — practical exercises you can follow along on your own machine.
+

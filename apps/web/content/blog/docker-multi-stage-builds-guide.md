@@ -220,3 +220,8 @@ tests/
 ## What's Next?
 
 Our **Docker Fundamentals** course covers multi-stage builds, optimization, and production deployment patterns. First lesson is free.
+
+---
+
+**Ready to go deeper?** Check out our hands-on course: [Docker Fundamentals](/courses/docker-fundamentals) — practical exercises you can follow along on your own machine.
+

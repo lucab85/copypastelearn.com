@@ -176,3 +176,8 @@ Start with GitHub Flow. Move to trunk-based when your CI is solid and your team 
 ## What's Next?
 
 Our **Docker Fundamentals** and **Node.js REST APIs** courses use Git workflows throughout — you will practice branching, PRs, and CI/CD as part of building real projects. First lessons are free.
+-e 
+---
+
+**Ready to go deeper?** Explore our [hands-on DevOps courses](/courses) — practical labs covering Docker, Ansible, Terraform, and more.
+

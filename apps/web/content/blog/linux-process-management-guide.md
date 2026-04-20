@@ -273,3 +273,8 @@ ss -tnp
 ## What's Next?
 
 Our **SELinux for System Admins** course covers Linux process security and access controls. **Ansible Automation in 30 Minutes** teaches automating process management. First lessons are free.
+-e 
+---
+
+**Ready to go deeper?** Explore our [hands-on DevOps courses](/courses) — practical labs covering Docker, Ansible, Terraform, and more.
+

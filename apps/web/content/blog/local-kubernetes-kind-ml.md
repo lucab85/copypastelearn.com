@@ -85,3 +85,8 @@ With your local cluster running, you're ready to:
 - Test inference locally before going to production
 
 Learn the complete workflow in our [MLflow for Kubernetes course](/courses).
+
+---
+
+**Ready to go deeper?** Check out our hands-on course: [MLflow for Kubernetes](/courses/mlflow-kubernetes-mlops) — practical exercises you can follow along on your own machine.
+

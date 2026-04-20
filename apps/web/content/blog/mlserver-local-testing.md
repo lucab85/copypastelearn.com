@@ -105,3 +105,8 @@ Train model → Log to MLflow → Serve with MLServer (local)
 ```
 
 Learn this complete workflow hands-on in our [MLflow for Kubernetes course](/courses).
+
+---
+
+**Ready to go deeper?** Check out our hands-on course: [MLflow for Kubernetes](/courses/mlflow-kubernetes-mlops) — practical exercises you can follow along on your own machine.
+

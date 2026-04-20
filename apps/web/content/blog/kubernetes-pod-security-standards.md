@@ -245,3 +245,8 @@ containerSecurityContext:
 ## What's Next?
 
 Our **SELinux for System Admins** course covers OS-level security that complements Kubernetes Pod Security. **Docker Fundamentals** teaches container security basics. First lessons are free.
+-e 
+---
+
+**Ready to go deeper?** Explore our [hands-on DevOps courses](/courses) — from Docker and Terraform to MLflow on Kubernetes.
+

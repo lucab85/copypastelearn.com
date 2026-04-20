@@ -96,3 +96,8 @@ OpenClaw comes with several skills out of the box:
 - **Discord** — channel management and messaging
 - **Health Check** — system security auditing
 - **Skill Creator** — meta-skill for building new skills
+
+---
+
+**Ready to go deeper?** Check out our hands-on course: [OpenClaw Agent](/courses/openclaw-agent) — practical exercises you can follow along on your own machine.
+

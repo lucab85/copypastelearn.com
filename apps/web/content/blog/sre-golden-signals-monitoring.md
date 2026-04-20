@@ -224,3 +224,8 @@ sum(rate(container_cpu_usage_seconds_total[5m])) by (pod)
 ## What's Next?
 
 Our **MLflow for Kubernetes MLOps** course covers monitoring ML services with golden signals. **Docker Fundamentals** teaches container observability. First lessons are free.
+-e 
+---
+
+**Ready to go deeper?** Explore our [hands-on DevOps courses](/courses) — practical labs covering Docker, Ansible, Terraform, and more.
+

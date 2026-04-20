@@ -151,3 +151,8 @@ React to events in real time:
 ## What's Next?
 
 Start with our free **Ansible Automation in 30 Minutes** course to build a solid Ansible foundation, then explore AAP concepts with confidence.
+
+---
+
+**Ready to go deeper?** Check out our hands-on course: [Ansible Quickstart](/courses/ansible-quickstart) — practical exercises you can follow along on your own machine.
+

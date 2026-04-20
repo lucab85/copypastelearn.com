@@ -250,3 +250,8 @@ kube_horizontalpodautoscaler_status_condition{condition="ScalingActive"}
 ## What's Next?
 
 Our **MLflow for Kubernetes MLOps** course covers autoscaling ML inference workloads on Kubernetes. **Docker Fundamentals** builds the container foundation. First lessons are free.
+-e 
+---
+
+**Ready to go deeper?** Explore our [hands-on DevOps courses](/courses) — from Docker and Terraform to MLflow on Kubernetes.
+

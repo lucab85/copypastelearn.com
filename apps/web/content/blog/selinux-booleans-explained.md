@@ -77,3 +77,8 @@ setsebool -P httpd_can_network_connect on
 5. Verify the service works
 
 Learn to use booleans in our [SELinux for System Admins course](/courses).
+
+---
+
+**Ready to go deeper?** Check out our hands-on course: [SELinux for System Admins](/courses/selinux-system-admins) — practical exercises you can follow along on your own machine.
+

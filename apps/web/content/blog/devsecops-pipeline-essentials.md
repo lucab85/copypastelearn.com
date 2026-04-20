@@ -258,3 +258,8 @@ Track security posture over time:
 ## What's Next?
 
 Our **Docker Fundamentals** course covers container security. **SELinux for System Admins** teaches OS-level security hardening. **Terraform for Beginners** covers IaC security practices. First lessons are free.
+-e 
+---
+
+**Ready to go deeper?** Explore our [hands-on DevOps courses](/courses) — practical labs covering Docker, Ansible, Terraform, and more.
+

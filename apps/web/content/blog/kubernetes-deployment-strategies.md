@@ -295,3 +295,8 @@ kubectl rollout resume deployment/api
 ## What's Next?
 
 Our **Docker Fundamentals** course covers container deployment patterns. **MLflow for Kubernetes MLOps** teaches ML model deployment strategies. First lessons are free.
+-e 
+---
+
+**Ready to go deeper?** Explore our [hands-on DevOps courses](/courses) — from Docker and Terraform to MLflow on Kubernetes.
+

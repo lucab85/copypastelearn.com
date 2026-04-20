@@ -257,3 +257,8 @@ terraform state push backup-20260301.tfstate
 ## What's Next?
 
 Our **Terraform for Beginners** course covers state management in depth across 15 hands-on lessons — remote backends, locking, imports, and multi-environment patterns. First lesson is free.
+
+---
+
+**Ready to go deeper?** Check out our hands-on course: [Terraform for Beginners](/courses/terraform-beginners) — practical exercises you can follow along on your own machine.
+

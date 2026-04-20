@@ -176,3 +176,8 @@ steps:
 ## What's Next?
 
 Effective RCA requires solid infrastructure observability. Our **Docker Fundamentals** and **MLflow for Kubernetes MLOps** courses teach you to build observable, well-monitored systems from the start. The first lesson of each course is free.
+-e 
+---
+
+**Ready to go deeper?** Explore our [hands-on DevOps courses](/courses) — practical labs covering Docker, Ansible, Terraform, and more.
+

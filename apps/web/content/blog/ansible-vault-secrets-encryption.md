@@ -236,3 +236,8 @@ deploy:
 ## What's Next?
 
 Our **Ansible Automation in 30 Minutes** course covers Vault encryption for production automation. **SELinux for System Admins** teaches OS-level security. First lessons are free.
+
+---
+
+**Ready to go deeper?** Check out our hands-on course: [Ansible Quickstart](/courses/ansible-quickstart) — practical exercises you can follow along on your own machine.
+

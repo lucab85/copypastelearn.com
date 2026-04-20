@@ -247,3 +247,8 @@ kubectl exec my-pod -- curl -sf http://localhost:3000/ready
 ## What's Next?
 
 Our **Docker Fundamentals** course covers health checks in Docker and Kubernetes. **Node.js REST APIs** teaches building production health endpoints. First lessons are free.
+-e 
+---
+
+**Ready to go deeper?** Explore our [hands-on DevOps courses](/courses) — from Docker and Terraform to MLflow on Kubernetes.
+

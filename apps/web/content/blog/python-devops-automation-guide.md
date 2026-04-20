@@ -268,3 +268,8 @@ devops = "devops.cli:cli"
 ## What's Next?
 
 Our **Node.js REST APIs** course covers building production APIs. **Ansible Automation in 30 Minutes** teaches infrastructure automation with Python-based Ansible. First lessons are free.
+-e 
+---
+
+**Ready to go deeper?** Explore our [hands-on DevOps courses](/courses) — practical labs covering Docker, Ansible, Terraform, and more.
+

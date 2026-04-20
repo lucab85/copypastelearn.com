@@ -243,3 +243,8 @@ terraform state pull > state.json
 ## What's Next?
 
 Our **Terraform for Beginners** course covers infrastructure import and state management across 15 hands-on lessons. First lesson is free.
+
+---
+
+**Ready to go deeper?** Check out our hands-on course: [Terraform for Beginners](/courses/terraform-beginners) — practical exercises you can follow along on your own machine.
+

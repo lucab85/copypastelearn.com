@@ -118,3 +118,8 @@ Review your agent's daily memory files periodically. They serve as an activity l
 3. **Open ports** — keep your agent behind a firewall
 4. **No backups** — disk failures happen
 5. **Ignoring updates** — keep OpenClaw and Node.js updated
+
+---
+
+**Ready to go deeper?** Check out our hands-on course: [OpenClaw Agent](/courses/openclaw-agent) — practical exercises you can follow along on your own machine.
+

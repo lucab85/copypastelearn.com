@@ -71,3 +71,8 @@ On RHEL, the active policy is compiled. You don't edit `.te` files directly. Use
 4. Fix the label or enable the boolean
 
 Learn to investigate policy in our [SELinux for System Admins course](/courses).
+
+---
+
+**Ready to go deeper?** Check out our hands-on course: [SELinux for System Admins](/courses/selinux-system-admins) — practical exercises you can follow along on your own machine.
+

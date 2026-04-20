@@ -195,3 +195,8 @@ services:
 ## What's Next?
 
 Our **Docker Fundamentals** course covers reverse proxy patterns with containerized applications. Our **Terraform for Beginners** course teaches infrastructure provisioning including load balancer setup. First lessons are free.
+-e 
+---
+
+**Ready to go deeper?** Explore our [hands-on DevOps courses](/courses) — practical labs covering Docker, Ansible, Terraform, and more.
+

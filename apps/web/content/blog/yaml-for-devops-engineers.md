@@ -253,3 +253,8 @@ yq '.services.web.image' docker-compose.yml
 ## What's Next?
 
 Our **Ansible Automation in 30 Minutes** course uses YAML throughout for playbooks and configuration. **Terraform for Beginners** covers HCL (similar concepts, different syntax). First lessons are free.
+-e 
+---
+
+**Ready to go deeper?** Explore our [hands-on DevOps courses](/courses) — practical labs covering Docker, Ansible, Terraform, and more.
+

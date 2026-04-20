@@ -111,3 +111,8 @@ Only use bind mounts when you need direct host access to the files (debugging, b
 - [Deploy OpenClaw with Docker Compose](/blog/openclaw-docker-deploy-guide) for the full Docker setup
 - [Troubleshoot OpenClaw Gateway Errors](/blog/troubleshoot-openclaw-gateway-errors) for other common issues
 - [SELinux File Contexts and Labels](/blog/selinux-file-contexts-labels-guide) for SELinux deep dive
+
+---
+
+**Ready to go deeper?** Check out our hands-on course: [OpenClaw Agent](/courses/openclaw-agent) — practical exercises you can follow along on your own machine.
+

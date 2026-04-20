@@ -119,3 +119,8 @@ Traditional VPNs route all traffic through a single gateway. Tailscale creates d
 - [Deploy OpenClaw with Docker Compose](/blog/openclaw-docker-deploy-guide) for the base setup
 - [OpenClaw Reverse Proxy with Caddy](/blog/openclaw-caddy-reverse-proxy) for domain-based HTTPS
 - [OpenClaw Gateway Bind Modes](/blog/openclaw-gateway-bind-modes) for all binding options
+
+---
+
+**Ready to go deeper?** Check out our hands-on course: [OpenClaw Agent](/courses/openclaw-agent) — practical exercises you can follow along on your own machine.
+

@@ -173,3 +173,8 @@ Run this playbook multiple times — Ansible only changes what is needed. If Doc
 - [Ansible Automation in Minutes](/blog/ansible-automation-beginners-guide) for Ansible basics
 - [Getting Started with Docker](/blog/getting-started-with-docker) for Docker fundamentals
 - [Deploy OpenClaw with Docker Compose](/blog/openclaw-docker-deploy-guide) to deploy OpenClaw after installing Docker
+
+---
+
+**Ready to go deeper?** Check out our hands-on course: [Ansible Quickstart](/courses/ansible-quickstart) — practical exercises you can follow along on your own machine.
+

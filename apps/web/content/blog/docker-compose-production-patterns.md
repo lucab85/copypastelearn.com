@@ -331,3 +331,8 @@ volumes:
 ## What's Next?
 
 Our **Docker Fundamentals** course covers Docker Compose for development and production environments. **Node.js REST APIs** teaches containerized API development. First lessons are free.
+
+---
+
+**Ready to go deeper?** Check out our hands-on course: [Docker Fundamentals](/courses/docker-fundamentals) — practical exercises you can follow along on your own machine.
+

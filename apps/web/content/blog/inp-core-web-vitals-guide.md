@@ -223,3 +223,8 @@ A good INP score helps both SEO and user retention.
 ## What's Next?
 
 Building fast, responsive web applications requires solid fundamentals. Our **Node.js REST APIs** course teaches you to build performant backends, and our **Docker Fundamentals** course covers optimized deployment. First lessons are free.
+-e 
+---
+
+**Ready to go deeper?** Explore our [hands-on DevOps courses](/courses) — practical labs covering Docker, Ansible, Terraform, and more.
+

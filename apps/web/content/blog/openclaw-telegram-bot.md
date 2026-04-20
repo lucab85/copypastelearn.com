@@ -92,3 +92,8 @@ telegram:
 2. **Add a description** (`/setdescription`) so others know what it does
 3. **Pin important messages** from your agent for quick reference
 4. **Use /commands** in BotFather to register bot commands
+
+---
+
+**Ready to go deeper?** Check out our hands-on course: [OpenClaw Agent](/courses/openclaw-agent) — practical exercises you can follow along on your own machine.
+

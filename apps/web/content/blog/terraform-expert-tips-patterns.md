@@ -242,3 +242,8 @@ repos:
 ## What's Next?
 
 Our **Terraform for Beginners** course builds from fundamentals to these advanced patterns across 15 hands-on lessons. The first lesson is free.
+
+---
+
+**Ready to go deeper?** Check out our hands-on course: [Terraform for Beginners](/courses/terraform-beginners) — practical exercises you can follow along on your own machine.
+

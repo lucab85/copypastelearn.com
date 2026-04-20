@@ -91,3 +91,8 @@ After running the search, open the MLflow UI to:
 ## Next Steps
 
 Once you've found optimal parameters, package the model and deploy it. Our [MLflow for Kubernetes course](/courses) covers the complete pipeline.
+
+---
+
+**Ready to go deeper?** Check out our hands-on course: [MLflow for Kubernetes](/courses/mlflow-kubernetes-mlops) — practical exercises you can follow along on your own machine.
+

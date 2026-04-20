@@ -231,3 +231,8 @@ echo $API_SERVICE_PORT    # 80
 ## What's Next?
 
 Our **Docker Fundamentals** course covers container networking and Kubernetes services. **MLflow for Kubernetes MLOps** teaches service architecture for ML platforms. First lessons are free.
+-e 
+---
+
+**Ready to go deeper?** Explore our [hands-on DevOps courses](/courses) — from Docker and Terraform to MLflow on Kubernetes.
+

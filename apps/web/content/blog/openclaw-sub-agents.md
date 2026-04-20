@@ -97,3 +97,8 @@ Each sub-agent session uses LLM tokens. For cost efficiency:
 - Use cheaper models for simple tasks (`model: "gpt-4o-mini"`)
 - Keep task descriptions concise
 - Set `cleanup: "delete"` to clean up after completion
+
+---
+
+**Ready to go deeper?** Check out our hands-on course: [OpenClaw Agent](/courses/openclaw-agent) — practical exercises you can follow along on your own machine.
+

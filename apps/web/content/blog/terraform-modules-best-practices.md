@@ -271,3 +271,8 @@ terraform test
 ## What's Next?
 
 Our **Terraform for Beginners** course covers module development from scratch across 15 hands-on lessons. First lesson is free.
+
+---
+
+**Ready to go deeper?** Check out our hands-on course: [Terraform for Beginners](/courses/terraform-beginners) — practical exercises you can follow along on your own machine.
+

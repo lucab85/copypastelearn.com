@@ -225,3 +225,8 @@ find /opt/my-app -not -user app -type f
 ## What's Next?
 
 Our **SELinux for System Admins** course covers mandatory access controls beyond standard Linux permissions. **Ansible Automation in 30 Minutes** teaches automating permission management. First lessons are free.
+-e 
+---
+
+**Ready to go deeper?** Explore our [hands-on DevOps courses](/courses) — practical labs covering Docker, Ansible, Terraform, and more.
+

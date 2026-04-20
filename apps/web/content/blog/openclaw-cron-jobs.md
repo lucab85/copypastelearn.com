@@ -108,3 +108,8 @@ Each cron job spawns a session and uses LLM tokens. To minimize costs:
 - Start with longer intervals and tighten as needed
 - Include the delivery channel in the job configuration
 - Log cron results to daily memory files for audit trails
+
+---
+
+**Ready to go deeper?** Check out our hands-on course: [OpenClaw Agent](/courses/openclaw-agent) — practical exercises you can follow along on your own machine.
+

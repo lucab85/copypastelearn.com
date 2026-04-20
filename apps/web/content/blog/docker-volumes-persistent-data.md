@@ -149,3 +149,8 @@ docker system prune --volumes
 - [Getting Started with Docker](/blog/getting-started-with-docker) for Docker basics
 - [Docker Compose for Dev Environments](/blog/docker-compose-dev-environments) for multi-service stacks
 - [OpenClaw Volume Permissions Fix](/blog/openclaw-volume-permissions-fix) for permission issues
+
+---
+
+**Ready to go deeper?** Check out our hands-on course: [Docker Fundamentals](/courses/docker-fundamentals) — practical exercises you can follow along on your own machine.
+

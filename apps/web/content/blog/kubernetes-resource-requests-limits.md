@@ -260,3 +260,8 @@ Many teams set CPU requests but not CPU limits — pods get guaranteed minimum C
 ## What's Next?
 
 Our **MLflow for Kubernetes MLOps** course covers resource management for ML training workloads. **Docker Fundamentals** teaches container resource controls. First lessons are free.
+-e 
+---
+
+**Ready to go deeper?** Explore our [hands-on DevOps courses](/courses) — from Docker and Terraform to MLflow on Kubernetes.
+

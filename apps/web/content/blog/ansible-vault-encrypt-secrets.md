@@ -136,3 +136,8 @@ Store the vault password as a CI secret and write it to a temp file:
 - [Ansible Automation in Minutes](/blog/ansible-automation-beginners-guide) for getting started
 - [Terraform Security Practices](/blog/terraform-security-best-practices) for IaC secrets management
 - [Securing Your OpenClaw Agent](/blog/securing-openclaw-agent) for agent security
+
+---
+
+**Ready to go deeper?** Check out our hands-on course: [Ansible Quickstart](/courses/ansible-quickstart) — practical exercises you can follow along on your own machine.
+

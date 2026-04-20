@@ -278,3 +278,8 @@ WantedBy=multi-user.target
 ## What's Next?
 
 Our **Ansible Automation in 30 Minutes** course covers Jinja2 templates with hands-on labs. First lesson is free.
+
+---
+
+**Ready to go deeper?** Check out our hands-on course: [Ansible Quickstart](/courses/ansible-quickstart) — practical exercises you can follow along on your own machine.
+

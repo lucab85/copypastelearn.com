@@ -131,3 +131,8 @@ Use Jinja2 templates for dynamic configuration:
 ## What's Next?
 
 The free preview lessons in our **Ansible Automation in 30 Minutes** course walk you through all of this hands-on with real lab environments. No local setup required.
+
+---
+
+**Ready to go deeper?** Check out our hands-on course: [Ansible Quickstart](/courses/ansible-quickstart) — practical exercises you can follow along on your own machine.
+

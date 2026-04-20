@@ -161,3 +161,8 @@ With OpenClaw running in Docker, explore these next:
 - [Connect Discord](/blog/openclaw-discord-bot) for team automation
 - [Set up heartbeats](/blog/openclaw-heartbeats-proactive) for proactive monitoring
 - [Secure your agent](/blog/securing-openclaw-agent) for production use
+
+---
+
+**Ready to go deeper?** Check out our hands-on course: [OpenClaw Agent](/courses/openclaw-agent) — practical exercises you can follow along on your own machine.
+

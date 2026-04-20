@@ -92,3 +92,8 @@ OpenClaw runs on your machine. There's no cloud service, no SaaS, no vendor lock
 ## They're Not Mutually Exclusive
 
 You can use LangChain inside an OpenClaw skill. Or use OpenClaw as the communication layer for a CrewAI workflow. The tools complement each other.
+
+---
+
+**Ready to go deeper?** Check out our hands-on course: [OpenClaw Agent](/courses/openclaw-agent) — practical exercises you can follow along on your own machine.
+

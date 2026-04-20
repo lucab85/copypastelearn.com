@@ -114,3 +114,8 @@ The best OpenClaw agents are personalized. Over the next few weeks:
 - Add project-specific context
 
 Your agent gets better the more you use it.
+
+---
+
+**Ready to go deeper?** Check out our hands-on course: [OpenClaw Agent](/courses/openclaw-agent) — practical exercises you can follow along on your own machine.
+

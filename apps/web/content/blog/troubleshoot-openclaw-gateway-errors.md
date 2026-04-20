@@ -168,3 +168,8 @@ openclaw config get gateway.controlui.allowedOrigins
 - [OpenClaw Gateway Bind Modes](/blog/openclaw-gateway-bind-modes) to understand networking
 - [OpenClaw + Tailscale Remote Access](/blog/openclaw-tailscale-remote-access) for secure remote access
 - [Securing Your OpenClaw Agent](/blog/securing-openclaw-agent) for production hardening
+
+---
+
+**Ready to go deeper?** Check out our hands-on course: [OpenClaw Agent](/courses/openclaw-agent) — practical exercises you can follow along on your own machine.
+

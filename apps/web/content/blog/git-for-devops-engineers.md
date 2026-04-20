@@ -191,3 +191,8 @@ vault_pass.txt
 - [Terraform CI/CD Pipelines](/blog/terraform-cicd-pipelines) for IaC automation
 - [GitHub Actions CI/CD for Terraform](/blog/github-actions-terraform-cicd) for GitHub-specific workflows
 - [Infrastructure as Code Explained](/blog/infrastructure-as-code-explained) for IaC fundamentals
+-e 
+---
+
+**Ready to go deeper?** Explore our [hands-on DevOps courses](/courses) — practical labs covering Docker, Ansible, Terraform, and more.
+

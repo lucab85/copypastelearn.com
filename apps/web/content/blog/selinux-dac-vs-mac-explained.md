@@ -89,3 +89,8 @@ id -Z
 ```
 
 Ready to practice DAC vs MAC hands-on? Our [SELinux for System Admins course](/courses) includes real RHEL labs where you'll see both access control layers in action.
+
+---
+
+**Ready to go deeper?** Check out our hands-on course: [SELinux for System Admins](/courses/selinux-system-admins) — practical exercises you can follow along on your own machine.
+

@@ -318,3 +318,8 @@ jobs:
 ## What's Next?
 
 Our **Docker Fundamentals** course covers CI/CD with containers. **Terraform for Beginners** teaches infrastructure automation with GitHub Actions. First lessons are free.
+-e 
+---
+
+**Ready to go deeper?** Explore our [hands-on DevOps courses](/courses) — practical labs covering Docker, Ansible, Terraform, and more.
+

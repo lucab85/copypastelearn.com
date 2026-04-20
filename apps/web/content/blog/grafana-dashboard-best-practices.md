@@ -225,3 +225,8 @@ changes(kube_deployment_status_observed_generation{deployment="my-app"}[5m]) > 0
 ## What's Next?
 
 Our **MLflow for Kubernetes MLOps** course covers monitoring ML pipelines with Grafana dashboards. First lesson is free.
+-e 
+---
+
+**Ready to go deeper?** Explore our [hands-on DevOps courses](/courses) — practical labs covering Docker, Ansible, Terraform, and more.
+
