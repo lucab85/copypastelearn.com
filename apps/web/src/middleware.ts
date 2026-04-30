@@ -19,6 +19,8 @@ const isPublicRoute = createRouteMatcher([
   "/sitemap.xml",
   "/feed.xml",
   "/opengraph-image(.*)",
+  "/icon(.*)",
+  "/apple-icon(.*)",
   // Old site routes (allow redirect to fire before auth check)
   "/learning-paths(.*)",
   "/career-assessment(.*)",
