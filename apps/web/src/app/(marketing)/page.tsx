@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { CourseCard } from "@/components/course/course-card";
 import { getPublicCourses } from "@/server/queries/public-courses";
+import { getAllPosts } from "@/lib/blog";
 import {
   BookOpen,
   Terminal,
@@ -129,6 +130,7 @@ const testimonials = [
 
 export default async function HomePage() {
   const courses = await getPublicCourses();
+  const recentPosts = getAllPosts().slice(0, 6);
 
   return (
     <div className="flex flex-col">
@@ -681,6 +683,70 @@ export default async function HomePage() {
                 </div>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ═══════════════ LATEST FROM THE BLOG ════════════════ */}
+      <section aria-label="Latest articles" className="border-t py-20 lg:py-24">
+        <div className="container mx-auto px-4">
+          <div className="mb-12 flex items-end justify-between">
+            <div>
+              <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
+                Latest from the Blog
+              </h2>
+              <p className="mt-3 max-w-xl text-lg text-muted-foreground">
+                Tutorials, guides, and insights on DevOps, automation, and cloud infrastructure.
+              </p>
+            </div>
+            <Button variant="outline" className="hidden gap-2 sm:flex" asChild>
+              <Link href="/blog">
+                View all articles
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+            </Button>
+          </div>
+
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {recentPosts.map((post) => (
+              <Link
+                key={post.slug}
+                href={`/blog/${post.slug}`}
+                className="group flex flex-col rounded-xl border bg-card p-6 transition-all hover:border-primary/20 hover:shadow-lg hover:shadow-primary/5"
+              >
+                <div className="mb-3 flex items-center gap-2 text-xs text-muted-foreground">
+                  <Badge variant="secondary" className="text-xs">
+                    {post.category}
+                  </Badge>
+                  <span>
+                    {new Date(post.date).toLocaleDateString("en-US", {
+                      month: "short",
+                      day: "numeric",
+                      year: "numeric",
+                    })}
+                  </span>
+                </div>
+                <h3 className="mb-2 text-lg font-semibold leading-snug transition-colors group-hover:text-primary">
+                  {post.title}
+                </h3>
+                <p className="mb-4 line-clamp-2 flex-1 text-sm text-muted-foreground">
+                  {post.description}
+                </p>
+                <span className="flex items-center gap-1 text-sm font-medium text-primary">
+                  Read more
+                  <ArrowRight className="h-3 w-3 transition-transform group-hover:translate-x-0.5" />
+                </span>
+              </Link>
+            ))}
+          </div>
+
+          <div className="mt-8 text-center sm:hidden">
+            <Button variant="outline" className="gap-2" asChild>
+              <Link href="/blog">
+                View all articles
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+            </Button>
           </div>
         </div>
       </section>
