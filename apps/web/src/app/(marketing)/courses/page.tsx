@@ -1,12 +1,10 @@
-export const dynamic = "force-dynamic";
+export const revalidate = 3600;
 import type { Metadata } from "next";
 import { getPublicCourses } from "@/server/queries/public-courses";
 import { CourseFilter } from "@/components/course/course-filter";
 import { BookOpen, ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { PageEventTracker } from "@/components/analytics/page-event-tracker";
-
-export const revalidate = 3600;
 
 export const metadata: Metadata = {
   title: "Courses — IT Automation & DevOps Training",
