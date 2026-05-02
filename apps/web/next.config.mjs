@@ -181,6 +181,36 @@ const nextConfig = {
           },
         ],
       },
+      // Cache blog listing at edge (1 hour, stale-while-revalidate 1 day)
+      {
+        source: "/blog",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, s-maxage=3600, stale-while-revalidate=86400",
+          },
+        ],
+      },
+      // Cache blog posts at edge (1 day, stale-while-revalidate 7 days)
+      {
+        source: "/blog/:slug*",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, s-maxage=86400, stale-while-revalidate=604800",
+          },
+        ],
+      },
+      // Cache course pages at edge (1 hour, stale-while-revalidate 1 day)
+      {
+        source: "/courses/:path*",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, s-maxage=3600, stale-while-revalidate=86400",
+          },
+        ],
+      },
       // Cache images aggressively
       {
         source: "/images/:path*",
