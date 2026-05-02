@@ -1,4 +1,5 @@
 export const dynamic = "force-dynamic";
+export const revalidate = 3600;
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
@@ -9,8 +10,6 @@ import { Separator } from "@/components/ui/separator";
 import { Clock, BookOpen, Lock, CheckCircle2, Play, Target, Users } from "lucide-react";
 import { PageEventTracker } from "@/components/analytics/page-event-tracker";
 import { TerminalPreview } from "@/components/course/terminal-preview";
-
-export const revalidate = 3600;
 
 interface CourseDetailPageProps {
   params: Promise<{ slug: string }>;
