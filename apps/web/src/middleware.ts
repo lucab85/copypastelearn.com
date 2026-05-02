@@ -1,42 +1,16 @@
 import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
 
 const isPublicRoute = createRouteMatcher([
-  "/",
-  "/about(.*)",
-  "/blog(.*)",
-  "/contact(.*)",
   "/courses(.*)",
-  "/pricing(.*)",
-  "/ai-platform-engineering(.*)",
-  "/privacy(.*)",
-  "/terms(.*)",
   "/sign-in(.*)",
   "/sign-up(.*)",
+  "/pricing(.*)",
   "/api/webhooks(.*)",
   "/api/mobile(.*)",
   "/api/indexnow(.*)",
-  "/robots.txt",
-  "/sitemap.xml",
-  "/feed.xml",
   "/opengraph-image(.*)",
   "/icon(.*)",
   "/apple-icon(.*)",
-  // Old site routes (allow redirect to fire before auth check)
-  "/learning-paths(.*)",
-  "/career-assessment(.*)",
-  "/waitlist(.*)",
-  "/resources(.*)",
-  "/legal(.*)",
-  // Old Hugo routes (301 redirects in next.config.mjs)
-  "/tags(.*)",
-  "/categories(.*)",
-  "/scholarship(.*)",
-  "/course(.*)",
-  "/author(.*)",
-  "/teacher(.*)",
-  "/event(.*)",
-  "/notice(.*)",
-  "/research(.*)",
 ]);
 
 export default clerkMiddleware(async (auth, req) => {
@@ -46,10 +20,31 @@ export default clerkMiddleware(async (auth, req) => {
 });
 
 export const config = {
+  /*
+   * Only run Clerk middleware on routes that call auth() server-side.
+   * Marketing/ISR pages (/, /about, /blog, /contact, /privacy, /terms,
+   * /ai-platform-engineering) are EXCLUDED to enable Vercel edge caching.
+   *
+   * This fixes the LCP regression — Clerk was injecting private,no-cache
+   * headers on every marketing page request.
+   */
   matcher: [
-    // Skip Next.js internals and static files unless found in search params
-    "/((?!_next|[^?]*\\.(?:html?|css|js(?!on)|jpe?g|webp|png|gif|svg|ttf|woff2?|ico|csv|docx?|xlsx?|zip|webmanifest|txt|xml)).*)",
-    // Always run for API routes
-    "/(api|trpc)(.*)",
+    // Auth pages
+    "/sign-in/:path*",
+    "/sign-up/:path*",
+    // Pricing (calls auth() to check userId)
+    "/pricing/:path*",
+    // Course detail & lessons (calls getCurrentUser → auth())
+    // Note: /courses listing is excluded (ISR cached, no auth needed)
+    "/courses/:slug/:path*",
+    // App routes (dashboard, admin — always need auth)
+    "/dashboard/:path*",
+    "/admin/:path*",
+    // API routes
+    "/api/:path*",
+    // Metadata routes (icons, OG images)
+    "/opengraph-image/:path*",
+    "/icon/:path*",
+    "/apple-icon/:path*",
   ],
 };
