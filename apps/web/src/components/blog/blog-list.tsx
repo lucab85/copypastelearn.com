@@ -4,7 +4,9 @@ import { useState, useMemo } from "react";
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Calendar, ArrowRight, Search, X } from "lucide-react";
+import { Calendar, ArrowRight, Search, X, ChevronDown } from "lucide-react";
+
+const POSTS_PER_PAGE = 24;
 
 interface BlogPost {
   slug: string;
@@ -26,6 +28,7 @@ export function BlogList({ posts, categories, tags }: BlogListProps) {
   const [search, setSearch] = useState("");
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
   const [activeTag, setActiveTag] = useState<string | null>(null);
+  const [visibleCount, setVisibleCount] = useState(POSTS_PER_PAGE);
 
   const filtered = useMemo(() => {
     return posts.filter((post) => {
@@ -43,7 +46,14 @@ export function BlogList({ posts, categories, tags }: BlogListProps) {
     });
   }, [posts, search, activeCategory, activeTag]);
 
+  // Reset visible count when filters change
+  const visible = filtered.slice(0, visibleCount);
+  const hasMore = visibleCount < filtered.length;
   const hasFilters = search || activeCategory || activeTag;
+
+  function handleFilterChange() {
+    setVisibleCount(POSTS_PER_PAGE);
+  }
 
   return (
     <div>
@@ -54,12 +64,18 @@ export function BlogList({ posts, categories, tags }: BlogListProps) {
           type="text"
           placeholder="Search articles..."
           value={search}
-          onChange={(e) => setSearch(e.target.value)}
+          onChange={(e) => {
+            setSearch(e.target.value);
+            handleFilterChange();
+          }}
           className="w-full rounded-lg border bg-background py-2.5 pl-10 pr-10 text-sm outline-none transition-colors focus:border-primary"
         />
         {search && (
           <button
-            onClick={() => setSearch("")}
+            onClick={() => {
+              setSearch("");
+              handleFilterChange();
+            }}
             className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
           >
             <X className="h-4 w-4" />
@@ -71,7 +87,10 @@ export function BlogList({ posts, categories, tags }: BlogListProps) {
       <div className="mb-4">
         <div className="flex flex-wrap gap-2">
           <button
-            onClick={() => setActiveCategory(null)}
+            onClick={() => {
+              setActiveCategory(null);
+              handleFilterChange();
+            }}
             className={`rounded-full px-3 py-1 text-sm font-medium transition-colors ${
               !activeCategory
                 ? "bg-primary text-primary-foreground"
@@ -83,9 +102,10 @@ export function BlogList({ posts, categories, tags }: BlogListProps) {
           {categories.map((cat) => (
             <button
               key={cat}
-              onClick={() =>
-                setActiveCategory(activeCategory === cat ? null : cat)
-              }
+              onClick={() => {
+                setActiveCategory(activeCategory === cat ? null : cat);
+                handleFilterChange();
+              }}
               className={`rounded-full px-3 py-1 text-sm font-medium transition-colors ${
                 activeCategory === cat
                   ? "bg-primary text-primary-foreground"
@@ -104,7 +124,10 @@ export function BlogList({ posts, categories, tags }: BlogListProps) {
           {tags.map((tag) => (
             <button
               key={tag}
-              onClick={() => setActiveTag(activeTag === tag ? null : tag)}
+              onClick={() => {
+                setActiveTag(activeTag === tag ? null : tag);
+                handleFilterChange();
+              }}
               className={`rounded-md px-2 py-0.5 text-xs transition-colors ${
                 activeTag === tag
                   ? "bg-primary/20 text-primary font-semibold"
@@ -128,6 +151,7 @@ export function BlogList({ posts, categories, tags }: BlogListProps) {
               setSearch("");
               setActiveCategory(null);
               setActiveTag(null);
+              handleFilterChange();
             }}
             className="ml-auto text-xs text-primary hover:underline"
           >
@@ -146,6 +170,7 @@ export function BlogList({ posts, categories, tags }: BlogListProps) {
               setSearch("");
               setActiveCategory(null);
               setActiveTag(null);
+              handleFilterChange();
             }}
             className="mt-2 text-sm text-primary hover:underline"
           >
@@ -154,7 +179,7 @@ export function BlogList({ posts, categories, tags }: BlogListProps) {
         </div>
       ) : (
         <div className="space-y-6">
-          {filtered.map((post) => (
+          {visible.map((post) => (
             <Link key={post.slug} href={`/blog/${post.slug}`}>
               <Card className="group transition-all hover:border-primary/20 hover:shadow-lg hover:shadow-primary/5">
                 <CardHeader className="pb-3">
@@ -199,6 +224,26 @@ export function BlogList({ posts, categories, tags }: BlogListProps) {
               </Card>
             </Link>
           ))}
+
+          {/* Load More */}
+          {hasMore && (
+            <div className="flex justify-center pt-4">
+              <button
+                onClick={() => setVisibleCount((prev) => prev + POSTS_PER_PAGE)}
+                className="flex items-center gap-2 rounded-lg border bg-background px-6 py-3 text-sm font-medium text-foreground shadow-sm transition-all hover:border-primary/30 hover:shadow-md"
+              >
+                <ChevronDown className="h-4 w-4" />
+                Load more ({filtered.length - visibleCount} remaining)
+              </button>
+            </div>
+          )}
+
+          {/* Post count */}
+          {!hasMore && filtered.length > POSTS_PER_PAGE && (
+            <p className="pt-2 text-center text-xs text-muted-foreground">
+              Showing all {filtered.length} articles
+            </p>
+          )}
         </div>
       )}
     </div>
