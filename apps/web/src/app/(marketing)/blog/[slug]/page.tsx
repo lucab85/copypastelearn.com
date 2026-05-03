@@ -541,7 +541,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
               <div>
                 <div className="font-semibold text-white">{post.author}</div>
                 <p className="mt-1 text-sm text-zinc-400">
-                  IT automation expert, Red Hat Summit &amp; KubeCon speaker.
+                  Docker Captain, IT automation expert, Red Hat Summit &amp; KubeCon speaker.
                   Building hands-on education for DevOps engineers at CopyPasteLearn.
                 </p>
                 <div className="mt-3 flex gap-3 text-xs">

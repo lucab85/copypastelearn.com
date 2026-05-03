@@ -43,7 +43,7 @@ function AboutPageJsonLd() {
         "@type": "Person",
         name: "Luca Berton",
         url: "https://www.lucaberton.com",
-        jobTitle: "IT Automation Expert & Instructor",
+        jobTitle: "IT Automation Expert, Docker Captain & Instructor",
         sameAs: [
           "https://www.lucaberton.com",
           "https://twitter.com/yourlinuxsa",
@@ -52,6 +52,19 @@ function AboutPageJsonLd() {
           "https://kubernetes.recipes",
           "https://www.openempower.com",
           "https://www.ansiblebyexample.com",
+          "https://www.docker.com/captains/",
+        ],
+        hasCredential: [
+          {
+            "@type": "EducationalOccupationalCredential",
+            name: "Docker Captain",
+            credentialCategory: "Community Recognition",
+            recognizedBy: {
+              "@type": "Organization",
+              name: "Docker",
+              url: "https://www.docker.com",
+            },
+          },
         ],
       },
       sameAs: [
@@ -208,7 +221,16 @@ export default function AboutPage() {
                 >
                   KubeCon EU 2026
                 </a>
-                , presenting on multi-tenant GPU orchestration and platform engineering with OpenShift AI.
+                , presenting on multi-tenant GPU orchestration and platform engineering with OpenShift AI. Luca is also a{" "}
+                <a
+                  href="https://www.docker.com/captains/"
+                  target="_blank"
+                  rel="noopener"
+                  className="font-medium text-foreground underline underline-offset-4 hover:text-primary"
+                >
+                  Docker Captain
+                </a>
+                , recognized by Docker for his contributions to the container community.
               </p>
               <div className="mt-4 flex flex-wrap gap-3 text-sm">
                 <a
