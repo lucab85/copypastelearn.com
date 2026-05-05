@@ -34,6 +34,7 @@
     "seo:broken-links": "node scripts/check-broken-links.cjs",
     "seo:redirected-links": "node scripts/scan-redirected-links.cjs",
     "seo:sitemap": "node scripts/audit-sitemap.cjs",
+    "seo:trailing-slash": "node scripts/audit-trailing-slash.cjs",
     "seo:validate-jsonld": "node scripts/validate-jsonld.cjs",
     "seo:rss": "node scripts/generate-rss.cjs",
     "seo:llms": "node scripts/generate-llms.cjs",

@@ -24,6 +24,7 @@ const AUDITS = [
   { name: 'howto', script: 'audit-howto.cjs' },
   { name: 'anchor-diversity', script: 'audit-anchor-diversity.cjs' },
   { name: 'orphan-links', script: 'audit-orphan-links.cjs' },
+  { name: 'trailing-slash', script: 'audit-trailing-slash.cjs' },
   { name: 'broken-links', script: 'check-broken-links.cjs' },
   { name: 'redirected-links', script: 'scan-redirected-links.cjs' },
 ];

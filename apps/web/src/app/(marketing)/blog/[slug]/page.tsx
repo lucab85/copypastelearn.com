@@ -4,7 +4,7 @@ import Link from "next/link";
 import { TrackedLink } from "@/components/analytics/tracked-link";
 import { PageEventTracker } from "@/components/analytics/page-event-tracker";
 import { getPost, getAllPosts, type BlogPost } from "@/lib/blog";
-import { taxonomySlug } from "@/lib/blog-taxonomy";
+import { taxonomySlug, getNeighborTags } from "@/lib/blog-taxonomy";
 import { Badge } from "@/components/ui/badge";
 import { ArrowLeft, Calendar, Clock, User, BookOpen } from "lucide-react";
 import { ReadingProgressBar } from "@/components/blog/reading-progress-bar";
@@ -413,6 +413,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   const minutes = readingTime(post.content);
   const tocItems = extractTOC(post.content);
   const relatedPosts = getRelatedPosts(slug, post.category, post.tags);
+  const neighborTags = getNeighborTags(post.tags, 8);
   const { html: contentHtml } = renderContent(post.content);
 
   // Split content at promo placeholders to insert React components
@@ -627,6 +628,41 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                       <p className="mt-2 text-sm text-zinc-500 line-clamp-2">
                         {p.description}
                       </p>
+                    </Link>
+                  ))}
+                </div>
+              </section>
+            )}
+
+            {/* Explore topics — own tags + co-occurring tags. Each chip
+                links to a dedicated /blog/tag/<slug> page, deepening the
+                site's topical link graph. */}
+            {(post.tags.length > 0 || neighborTags.length > 0) && (
+              <section className="mt-16">
+                <h2 className="mb-2 text-xl font-bold text-white">
+                  Explore topics
+                </h2>
+                <p className="mb-5 text-sm text-zinc-500">
+                  Browse more articles on the topics covered here.
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  {post.tags.map((tag) => (
+                    <Link
+                      key={`own-${tag}`}
+                      href={`/blog/tag/${taxonomySlug(tag)}`}
+                      className="rounded-md border border-blue-500/30 bg-blue-600/10 px-2.5 py-1 text-xs font-medium text-blue-300 transition-colors hover:bg-blue-600/20 hover:text-blue-200"
+                    >
+                      #{tag}
+                    </Link>
+                  ))}
+                  {neighborTags.map((t) => (
+                    <Link
+                      key={`nb-${t.slug}`}
+                      href={`/blog/tag/${t.slug}`}
+                      className="rounded-md border border-zinc-700 bg-zinc-800/60 px-2.5 py-1 text-xs text-zinc-400 transition-colors hover:bg-zinc-700 hover:text-zinc-200"
+                    >
+                      {t.name}{" "}
+                      <span className="text-zinc-600">{t.count}</span>
                     </Link>
                   ))}
                 </div>

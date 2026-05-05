@@ -78,3 +78,31 @@ export function getPostsByCategory(
   );
   return { entry, posts };
 }
+
+/**
+ * Pick N "neighbor" tags for a given post: tags that frequently co-occur with
+ * the post's own tags but aren't already in its tag list. Used to build the
+ * "Explore related topics" widget on /blog/[slug].
+ */
+export function getNeighborTags(
+  ownTags: string[],
+  limit = 6
+): TaxonomyEntry[] {
+  const ownSlugs = new Set(ownTags.map((t) => taxonomySlug(String(t))));
+  const score = new Map<string, number>(); // slug -> co-occurrence count
+  const display = new Map<string, string>();
+  for (const p of getAllPosts()) {
+    const postSlugs = (p.tags || []).map((t) => taxonomySlug(String(t)));
+    if (!postSlugs.some((s) => ownSlugs.has(s))) continue;
+    for (let i = 0; i < postSlugs.length; i++) {
+      const s = postSlugs[i];
+      if (!s || ownSlugs.has(s)) continue;
+      score.set(s, (score.get(s) ?? 0) + 1);
+      if (!display.has(s)) display.set(s, String(p.tags[i]));
+    }
+  }
+  return [...score.entries()]
+    .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
+    .slice(0, limit)
+    .map(([slug, count]) => ({ slug, count, name: display.get(slug) || slug }));
+}
