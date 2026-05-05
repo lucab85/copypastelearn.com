@@ -16,6 +16,20 @@ import {
 const POSTS_PER_PAGE = 24;
 const TOP_TAGS = 12; // most-popular tags shown inline by default
 
+/**
+ * URL-safe slug for tag/category names. Mirrors `taxonomySlug` in
+ * `lib/blog-taxonomy.ts` so the in-page filter can deep-link to the
+ * dedicated `/blog/tag/...` and `/blog/category/...` SEO pages.
+ */
+function taxonomySlug(name: string): string {
+  return name
+    .toLowerCase()
+    .normalize("NFKD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
+
 interface BlogPost {
   slug: string;
   title: string;
@@ -277,10 +291,30 @@ export function BlogList({ posts, categories, tags }: BlogListProps) {
 
       {/* Active filters */}
       {hasFilters && (
-        <div className="mb-6 flex items-center gap-2 text-sm text-muted-foreground">
+        <div className="mb-6 flex flex-wrap items-center gap-2 text-sm text-muted-foreground">
           <span>
             {filtered.length} {filtered.length === 1 ? "result" : "results"}
           </span>
+          {activeTag && (
+            <Link
+              href={`/blog/tag/${taxonomySlug(activeTag)}`}
+              className="inline-flex items-center gap-1 rounded-md border px-2 py-0.5 text-xs text-primary hover:bg-primary/5"
+              title="Open dedicated tag page"
+            >
+              View tag page
+              <ArrowRight className="h-3 w-3" />
+            </Link>
+          )}
+          {activeCategory && (
+            <Link
+              href={`/blog/category/${taxonomySlug(activeCategory)}`}
+              className="inline-flex items-center gap-1 rounded-md border px-2 py-0.5 text-xs text-primary hover:bg-primary/5"
+              title="Open dedicated category page"
+            >
+              View {activeCategory} page
+              <ArrowRight className="h-3 w-3" />
+            </Link>
+          )}
           <button
             onClick={() => {
               setSearch("");
