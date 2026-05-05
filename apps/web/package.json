@@ -26,6 +26,7 @@
     "seo:tags": "node scripts/audit-tags.cjs",
     "seo:image-alt": "node scripts/audit-image-alt.cjs",
     "seo:thin-content": "node scripts/audit-thin-content.cjs",
+    "seo:thin-content:plan": "node scripts/report-thin-content.cjs",
     "seo:faq": "node scripts/audit-faq.cjs",
     "seo:howto": "node scripts/audit-howto.cjs",
     "seo:anchors": "node scripts/audit-anchor-diversity.cjs",
