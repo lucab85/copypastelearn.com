@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
-import { Terminal, Menu, X } from "lucide-react";
+import { Terminal, Menu, X, Search } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { AuthButtons } from "./auth-buttons";
 
@@ -50,8 +50,33 @@ export function SiteHeader() {
 
         {/* Desktop actions */}
         <div className="hidden items-center gap-3 md:flex">
+          <button
+            type="button"
+            onClick={() =>
+              window.dispatchEvent(new CustomEvent("cmdk:open"))
+            }
+            aria-label="Search (Cmd+K)"
+            title="Search (⌘K)"
+            className="inline-flex items-center gap-2 rounded-md border bg-background/60 px-3 py-1.5 text-xs text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground"
+          >
+            <Search className="h-3.5 w-3.5" />
+            <span>Search</span>
+            <kbd className="ml-1 hidden rounded border bg-muted px-1.5 py-0.5 font-mono text-[10px] text-muted-foreground lg:inline">
+              ⌘K
+            </kbd>
+          </button>
           <AuthButtons />
         </div>
+
+        {/* Mobile search trigger */}
+        <button
+          type="button"
+          onClick={() => window.dispatchEvent(new CustomEvent("cmdk:open"))}
+          aria-label="Search"
+          className="ml-auto mr-2 inline-flex h-9 w-9 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground md:hidden"
+        >
+          <Search className="h-5 w-5" />
+        </button>
 
         {/* Mobile hamburger */}
         <button

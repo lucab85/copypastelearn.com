@@ -4,6 +4,7 @@ import Link from "next/link";
 import { TrackedLink } from "@/components/analytics/tracked-link";
 import { PageEventTracker } from "@/components/analytics/page-event-tracker";
 import { getPost, getAllPosts, type BlogPost } from "@/lib/blog";
+import { taxonomySlug } from "@/lib/blog-taxonomy";
 import { Badge } from "@/components/ui/badge";
 import { ArrowLeft, Calendar, Clock, User, BookOpen } from "lucide-react";
 import { ReadingProgressBar } from "@/components/blog/reading-progress-bar";
@@ -476,15 +477,20 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             </Link>
 
             <div className="mb-4 flex flex-wrap items-center gap-2">
-              <Link href={`/blog?category=${encodeURIComponent(post.category)}`}>
+              <Link href={`/blog/category/${taxonomySlug(post.category)}`}>
                 <Badge className="bg-blue-600/20 text-blue-400 border-blue-500/30 hover:bg-blue-600/30">
                   {post.category}
                 </Badge>
               </Link>
               {post.tags.slice(0, 3).map((tag) => (
-                <Badge key={tag} variant="secondary" className="bg-zinc-800 text-zinc-400 border-zinc-700">
-                  {tag}
-                </Badge>
+                <Link key={tag} href={`/blog/tag/${taxonomySlug(tag)}`}>
+                  <Badge
+                    variant="secondary"
+                    className="bg-zinc-800 text-zinc-400 border-zinc-700 hover:bg-zinc-700 hover:text-zinc-200"
+                  >
+                    {tag}
+                  </Badge>
+                </Link>
               ))}
             </div>
 

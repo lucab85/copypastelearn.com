@@ -2,6 +2,7 @@ export const dynamic = "force-dynamic";
 import type { MetadataRoute } from "next";
 import { PrismaClient } from "@prisma/client";
 import { getAllPosts } from "@/lib/blog";
+import { getAllTags, getAllCategories } from "@/lib/blog-taxonomy";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const siteUrl =
@@ -111,5 +112,27 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.7,
   }));
 
-  return [...staticPages, ...coursePages, ...lessonPages, ...blogPages];
+  // Blog tag + category index pages.
+  // Lower priority than posts; refreshed weekly because new posts shift them.
+  const tagPages: MetadataRoute.Sitemap = getAllTags().map((t) => ({
+    url: `${siteUrl}/blog/tag/${t.slug}`,
+    lastModified: new Date(),
+    changeFrequency: "weekly" as const,
+    priority: 0.5,
+  }));
+  const categoryPages: MetadataRoute.Sitemap = getAllCategories().map((c) => ({
+    url: `${siteUrl}/blog/category/${c.slug}`,
+    lastModified: new Date(),
+    changeFrequency: "weekly" as const,
+    priority: 0.5,
+  }));
+
+  return [
+    ...staticPages,
+    ...coursePages,
+    ...lessonPages,
+    ...blogPages,
+    ...tagPages,
+    ...categoryPages,
+  ];
 }

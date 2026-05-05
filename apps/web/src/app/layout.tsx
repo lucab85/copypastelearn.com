@@ -6,6 +6,7 @@ import { SiteFooter } from "@/components/layout/site-footer";
 import { NewsletterPopup } from "@/components/newsletter-popup";
 import { AnnouncementBanner } from "@/components/layout/announcement-banner";
 import { RouteChangeTracker } from "@/components/analytics/route-change-tracker";
+import { CmdKPalette } from "@/components/cmdk-palette";
 import "./globals.css";
 
 const siteUrl = process.env.NEXT_PUBLIC_APP_URL ?? "https://www.copypastelearn.com";
@@ -169,6 +170,7 @@ export default async function RootLayout({
         <main id="main-content" className="flex-1">{children}</main>
         <SiteFooter />
             <NewsletterPopup />
+            <CmdKPalette />
       </body>
     </html>
   );
