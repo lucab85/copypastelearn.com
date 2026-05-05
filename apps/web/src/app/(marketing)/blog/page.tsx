@@ -81,9 +81,15 @@ function BlogItemListJsonLd(posts: { slug: string; title: string }[]) {
 export default function BlogPage() {
   const posts = getAllPosts();
 
-  // Extract unique categories and tags
+  // Extract unique categories and tag stats (with counts, sorted by frequency).
   const categories = [...new Set(posts.map((p) => p.category))].sort();
-  const tags = [...new Set(posts.flatMap((p) => p.tags))].sort();
+  const tagCounts = new Map<string, number>();
+  for (const p of posts) {
+    for (const t of p.tags) tagCounts.set(t, (tagCounts.get(t) ?? 0) + 1);
+  }
+  const tags = [...tagCounts.entries()]
+    .map(([name, count]) => ({ name, count }))
+    .sort((a, b) => b.count - a.count || a.name.localeCompare(b.name));
 
   // Strip content for client component (not needed for listing)
   const postsWithoutContent = posts.map(({ content, image, ...rest }) => rest);

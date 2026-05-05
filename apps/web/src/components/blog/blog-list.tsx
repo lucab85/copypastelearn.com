@@ -1,12 +1,20 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect, useRef } from "react";
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Calendar, ArrowRight, Search, X, ChevronDown } from "lucide-react";
+import {
+  Calendar,
+  ArrowRight,
+  Search,
+  X,
+  ChevronDown,
+  Tag as TagIcon,
+} from "lucide-react";
 
 const POSTS_PER_PAGE = 24;
+const TOP_TAGS = 12; // most-popular tags shown inline by default
 
 interface BlogPost {
   slug: string;
@@ -18,10 +26,19 @@ interface BlogPost {
   category: string;
 }
 
+interface TagStat {
+  name: string;
+  count: number;
+}
+
 interface BlogListProps {
   posts: BlogPost[];
   categories: string[];
-  tags: string[];
+  /**
+   * Tags pre-sorted by frequency (most-used first). Each entry includes the
+   * usage count so we can show a "(n)" badge.
+   */
+  tags: TagStat[];
 }
 
 export function BlogList({ posts, categories, tags }: BlogListProps) {
@@ -29,6 +46,34 @@ export function BlogList({ posts, categories, tags }: BlogListProps) {
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
   const [activeTag, setActiveTag] = useState<string | null>(null);
   const [visibleCount, setVisibleCount] = useState(POSTS_PER_PAGE);
+  const [tagsOpen, setTagsOpen] = useState(false);
+  const [tagFilter, setTagFilter] = useState("");
+  const searchRef = useRef<HTMLInputElement | null>(null);
+  const tagFilterRef = useRef<HTMLInputElement | null>(null);
+
+  // Keyboard: focus search on "/" (skip when user is already typing).
+  useEffect(() => {
+    function onKey(e: KeyboardEvent) {
+      if (e.key !== "/") return;
+      const t = e.target as HTMLElement | null;
+      if (
+        t &&
+        (t.tagName === "INPUT" ||
+          t.tagName === "TEXTAREA" ||
+          t.isContentEditable)
+      )
+        return;
+      e.preventDefault();
+      searchRef.current?.focus();
+    }
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, []);
+
+  // Auto-focus tag-filter input when the panel opens.
+  useEffect(() => {
+    if (tagsOpen) tagFilterRef.current?.focus();
+  }, [tagsOpen]);
 
   const filtered = useMemo(() => {
     return posts.filter((post) => {
@@ -46,13 +91,25 @@ export function BlogList({ posts, categories, tags }: BlogListProps) {
     });
   }, [posts, search, activeCategory, activeTag]);
 
-  // Reset visible count when filters change
   const visible = filtered.slice(0, visibleCount);
   const hasMore = visibleCount < filtered.length;
   const hasFilters = search || activeCategory || activeTag;
 
+  // Top-N tags shown inline; everything else lives in the expandable panel.
+  const topTags = useMemo(() => tags.slice(0, TOP_TAGS), [tags]);
+  const filteredAllTags = useMemo(() => {
+    const q = tagFilter.trim().toLowerCase();
+    if (!q) return tags;
+    return tags.filter((t) => t.name.toLowerCase().includes(q));
+  }, [tags, tagFilter]);
+
   function handleFilterChange() {
     setVisibleCount(POSTS_PER_PAGE);
+  }
+
+  function selectTag(name: string) {
+    setActiveTag((prev) => (prev === name ? null : name));
+    handleFilterChange();
   }
 
   return (
@@ -61,25 +118,32 @@ export function BlogList({ posts, categories, tags }: BlogListProps) {
       <div className="relative mb-6">
         <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
         <input
+          ref={searchRef}
           type="text"
-          placeholder="Search articles..."
+          placeholder="Search articles by title, description, or tag…"
+          aria-label="Search articles"
           value={search}
           onChange={(e) => {
             setSearch(e.target.value);
             handleFilterChange();
           }}
-          className="w-full rounded-lg border bg-background py-2.5 pl-10 pr-10 text-sm outline-none transition-colors focus:border-primary"
+          className="w-full rounded-lg border bg-background py-2.5 pl-10 pr-20 text-sm outline-none transition-colors focus:border-primary"
         />
-        {search && (
+        {search ? (
           <button
             onClick={() => {
               setSearch("");
               handleFilterChange();
             }}
+            aria-label="Clear search"
             className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
           >
             <X className="h-4 w-4" />
           </button>
+        ) : (
+          <kbd className="pointer-events-none absolute right-3 top-1/2 hidden -translate-y-1/2 rounded border bg-muted px-1.5 py-0.5 font-mono text-[10px] text-muted-foreground sm:inline-block">
+            /
+          </kbd>
         )}
       </div>
 
@@ -118,26 +182,97 @@ export function BlogList({ posts, categories, tags }: BlogListProps) {
         </div>
       </div>
 
-      {/* Tags */}
+      {/* Tags — show top-N inline, the rest behind a searchable panel */}
       <div className="mb-8">
-        <div className="flex flex-wrap gap-1.5">
-          {tags.map((tag) => (
+        <div className="flex flex-wrap items-center gap-1.5">
+          {topTags.map(({ name, count }) => (
             <button
-              key={tag}
-              onClick={() => {
-                setActiveTag(activeTag === tag ? null : tag);
-                handleFilterChange();
-              }}
+              key={name}
+              onClick={() => selectTag(name)}
               className={`rounded-md px-2 py-0.5 text-xs transition-colors ${
-                activeTag === tag
+                activeTag === name
                   ? "bg-primary/20 text-primary font-semibold"
                   : "bg-muted/60 text-muted-foreground hover:text-foreground hover:bg-muted"
               }`}
             >
-              {tag}
+              {name} <span className="text-muted-foreground/60">{count}</span>
             </button>
           ))}
+          {/* Active tag, if it's not already in the top-N */}
+          {activeTag && !topTags.some((t) => t.name === activeTag) && (
+            <button
+              onClick={() => selectTag(activeTag)}
+              className="rounded-md bg-primary/20 px-2 py-0.5 text-xs font-semibold text-primary"
+            >
+              {activeTag}
+            </button>
+          )}
+          {tags.length > TOP_TAGS && (
+            <button
+              onClick={() => setTagsOpen((v) => !v)}
+              aria-expanded={tagsOpen}
+              className="ml-1 inline-flex items-center gap-1 rounded-md border px-2 py-0.5 text-xs text-muted-foreground hover:bg-muted hover:text-foreground"
+            >
+              <TagIcon className="h-3 w-3" />
+              {tagsOpen ? "Hide tags" : `All tags (${tags.length})`}
+              <ChevronDown
+                className={`h-3 w-3 transition-transform ${
+                  tagsOpen ? "rotate-180" : ""
+                }`}
+              />
+            </button>
+          )}
         </div>
+
+        {tagsOpen && (
+          <div className="mt-3 rounded-lg border bg-muted/20 p-3">
+            <div className="relative mb-3">
+              <Search className="absolute left-2.5 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-muted-foreground" />
+              <input
+                ref={tagFilterRef}
+                type="text"
+                placeholder="Filter tags…"
+                aria-label="Filter tags"
+                value={tagFilter}
+                onChange={(e) => setTagFilter(e.target.value)}
+                className="w-full rounded-md border bg-background py-1.5 pl-8 pr-8 text-xs outline-none focus:border-primary"
+              />
+              {tagFilter && (
+                <button
+                  onClick={() => setTagFilter("")}
+                  aria-label="Clear tag filter"
+                  className="absolute right-2 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
+                >
+                  <X className="h-3 w-3" />
+                </button>
+              )}
+            </div>
+            {filteredAllTags.length === 0 ? (
+              <p className="py-4 text-center text-xs text-muted-foreground">
+                No tags match &quot;{tagFilter}&quot;.
+              </p>
+            ) : (
+              <div className="max-h-72 overflow-y-auto pr-1">
+                <div className="flex flex-wrap gap-1.5">
+                  {filteredAllTags.map(({ name, count }) => (
+                    <button
+                      key={name}
+                      onClick={() => selectTag(name)}
+                      className={`rounded-md px-2 py-0.5 text-xs transition-colors ${
+                        activeTag === name
+                          ? "bg-primary/20 text-primary font-semibold"
+                          : "bg-muted/60 text-muted-foreground hover:text-foreground hover:bg-muted"
+                      }`}
+                    >
+                      {name}{" "}
+                      <span className="text-muted-foreground/60">{count}</span>
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+        )}
       </div>
 
       {/* Active filters */}
