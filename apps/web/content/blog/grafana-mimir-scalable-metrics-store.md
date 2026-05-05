@@ -3,7 +3,8 @@ title: "Grafana Mimir Scalable Metrics Store"
 date: "2026-01-26"
 description: "Grafana Mimir stores Prometheus metrics at massive scale using object storage. Learn how Mimir compares to Thanos and Cortex, and how to deploy it for multi-tenant long-term metrics."
 category: "DevOps"
-tags: ["grafana-mimir", "prometheus", "metrics", "observability", "long-term-storage", "monitoring"]
+tags: ["grafana-mimir", "Prometheus", "metrics", "observability", "long-term-storage", "Monitoring"]
+author: "Luca Berton"
 ---
 
 Prometheus was not built for long-term storage or multi-tenancy. Mimir was. It ingests Prometheus metrics via remote write, stores them in S3, and serves queries across years of data from multiple tenants.

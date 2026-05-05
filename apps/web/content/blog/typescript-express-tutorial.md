@@ -3,9 +3,10 @@ title: "TypeScript Express Tutorial 2026"
 slug: "typescript-express-tutorial"
 date: "2026-04-11"
 category: "Development"
-tags: ["TypeScript", "Express", "Node.js", "REST API", "Backend"]
+tags: ["typescript", "Express", "Node.js", "REST API", "Backend"]
 excerpt: "Build a production REST API with TypeScript and Express from scratch. Complete tutorial covering setup, routing, middleware, and deployment."
 description: "Build a production REST API with TypeScript and Express. Complete tutorial covering project setup, routing, middleware, and deployment."
+author: "Luca Berton"
 ---
 
 TypeScript and Express is the most popular combination for building Node.js backend APIs. This tutorial takes you from zero to a production-ready REST API.

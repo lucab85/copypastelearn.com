@@ -4,7 +4,7 @@ description: "Revive old laptops and desktops with lightweight Linux distributio
 date: "2026-03-16"
 author: "Luca Berton"
 category: "DevOps"
-tags: ["Linux", "Lightweight", "Old Hardware", "Lubuntu"]
+tags: ["Linux", "lightweight", "Old Hardware", "Lubuntu"]
 ---
 
 ## Don't Throw That Laptop Away

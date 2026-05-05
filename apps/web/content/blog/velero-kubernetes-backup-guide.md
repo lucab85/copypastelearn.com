@@ -3,7 +3,8 @@ title: "Velero Kubernetes Backup Guide"
 date: "2026-03-27"
 description: "Velero backs up and restores Kubernetes resources and persistent volumes. Learn how to set up Velero, schedule backups, and recover from cluster disasters."
 category: "DevOps"
-tags: ["velero", "kubernetes", "backup", "disaster-recovery", "persistent-volumes", "storage"]
+tags: ["velero", "kubernetes", "Backup", "disaster-recovery", "persistent-volumes", "storage"]
+author: "Luca Berton"
 ---
 
 Kubernetes is declarative until your etcd fails and you realize your manifests were not all in Git. Velero backs up cluster state and persistent volume data so you can recover from disasters.

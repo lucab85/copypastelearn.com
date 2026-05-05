@@ -3,9 +3,10 @@ title: "Kubernetes Service Types Explained"
 slug: "kubernetes-service-types-explained"
 date: "2026-01-14"
 category: "DevOps"
-tags: ["Kubernetes", "Services", "Networking", "ClusterIP", "LoadBalancer"]
+tags: ["kubernetes", "Services", "Networking", "ClusterIP", "LoadBalancer"]
 excerpt: "Understand Kubernetes service types. ClusterIP, NodePort, LoadBalancer, ExternalName, and headless services with real-world use cases."
 description: "Kubernetes service types explained. ClusterIP, NodePort, LoadBalancer, ExternalName, and headless services with YAML examples."
+author: "Luca Berton"
 ---
 
 Services give pods stable network identities. Pods come and go, but the service DNS name stays constant. Choosing the right service type determines how your application is exposed.

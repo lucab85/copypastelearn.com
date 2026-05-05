@@ -6,6 +6,7 @@ category: "DevOps"
 tags: ["Ansible", "IaC", "Infrastructure as Code", "Automation", "DevOps"]
 excerpt: "Use Ansible as your Infrastructure as Code tool. Learn how Ansible playbooks define, version, and automate your entire infrastructure."
 description: "Use Ansible as your Infrastructure as Code tool. Learn how playbooks define, version, and automate your entire infrastructure."
+author: "Luca Berton"
 ---
 
 Infrastructure as Code (IaC) means managing servers, networks, and services through code instead of manual configuration. Ansible is one of the most accessible ways to start with IaC.

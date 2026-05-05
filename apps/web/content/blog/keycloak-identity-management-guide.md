@@ -4,6 +4,7 @@ date: "2026-02-16"
 description: "Keycloak provides SSO, OIDC, and SAML authentication for applications and APIs. Learn how to deploy Keycloak on Kubernetes, configure realms, and integrate with web apps and microservices."
 category: "DevOps"
 tags: ["keycloak", "authentication", "sso", "oidc", "identity", "kubernetes"]
+author: "Luca Berton"
 ---
 
 Every application needs authentication. Building it yourself means password hashing, session management, MFA, social login, and SAML — each one a security risk. Keycloak handles all of it.

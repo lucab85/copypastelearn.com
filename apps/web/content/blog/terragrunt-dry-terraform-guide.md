@@ -3,7 +3,8 @@ title: "Terragrunt DRY Terraform Guide"
 date: "2026-03-24"
 description: "Terragrunt eliminates copy-paste in multi-environment Terraform setups. Learn how to use Terragrunt for DRY configuration, remote state management, and dependency orchestration."
 category: "DevOps"
-tags: ["terragrunt", "terraform", "infrastructure-as-code", "dry", "multi-environment", "devops"]
+tags: ["terragrunt", "Terraform", "infrastructure-as-code", "dry", "Multi-Environment", "DevOps"]
+author: "Luca Berton"
 ---
 
 Every Terraform project eventually hits the same problem: three environments with nearly identical configuration, copy-pasted across directories with slight differences. Terragrunt is a thin wrapper around Terraform that eliminates this duplication.

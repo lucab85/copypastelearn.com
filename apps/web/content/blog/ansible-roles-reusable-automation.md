@@ -6,6 +6,7 @@ category: "DevOps"
 tags: ["Ansible", "Roles", "Automation", "DevOps", "Configuration Management"]
 excerpt: "Structure Ansible automation with roles. Directory layout, defaults, handlers, Ansible Galaxy, and role testing with Molecule."
 description: "Structure Ansible automation with roles for reusability. Directory layout, defaults, handlers, Galaxy integration, and testing with Molecule for production-ready code."
+author: "Luca Berton"
 ---
 
 Roles are how you organize Ansible code for reuse. Instead of one massive playbook, you build modular, testable units that compose into complete system configurations.

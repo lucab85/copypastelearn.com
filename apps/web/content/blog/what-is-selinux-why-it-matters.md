@@ -6,6 +6,7 @@ category: "DevOps"
 tags: ["SELinux", "Linux Security", "RHEL", "MAC"]
 excerpt: "SELinux enforces mandatory access control on Linux. Learn what it is, why 87% of enterprises need it, and how it stops real attacks like Log4Shell."
 description: "SELinux enforces mandatory access control on Linux. Learn what it is, why 87% of enterprises need it, and how it stops real attacks like Log4Shell."
+author: "Luca Berton"
 ---
 
 ## What Is SELinux?

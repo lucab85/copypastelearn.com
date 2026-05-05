@@ -4,6 +4,7 @@ date: "2026-04-22"
 description: "Golden paths give developers a paved road through infrastructure complexity. Learn how to design golden paths for your internal developer platform without creating golden cages."
 category: "DevOps"
 tags: ["platform-engineering", "golden-path", "developer-experience", "internal-developer-platform", "backstage"]
+author: "Luca Berton"
 ---
 
 A golden path is the supported, recommended way to accomplish a task in your organization. It is not the only way — it is the easy way. The distinction matters.

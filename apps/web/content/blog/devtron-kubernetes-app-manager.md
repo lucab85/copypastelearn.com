@@ -4,6 +4,7 @@ date: "2026-02-11"
 description: "Devtron provides a complete CI/CD platform for Kubernetes with a web UI, Helm chart management, and GitOps. Learn how Devtron simplifies application deployment for teams new to Kubernetes."
 category: "DevOps"
 tags: ["devtron", "kubernetes", "cicd", "deployment", "helm", "platform"]
+author: "Luca Berton"
 ---
 
 Kubernetes has a steep learning curve. Writing Helm charts, configuring CI pipelines, managing secrets, and debugging deployments each require deep expertise. Devtron wraps all of this in a web UI that teams can use from day one.

@@ -4,6 +4,7 @@ date: "2026-01-29"
 description: "Dex is a federated OpenID Connect provider that integrates with LDAP, SAML, GitHub, and Google. Learn how to deploy Dex for Kubernetes authentication and single sign-on across DevOps tools."
 category: "DevOps"
 tags: ["dex", "oidc", "authentication", "kubernetes", "sso", "identity"]
+author: "Luca Berton"
 ---
 
 Kubernetes API server supports OIDC. Your team uses GitHub for identity. Dex bridges the gap — it speaks OIDC to Kubernetes and authenticates users against GitHub, LDAP, Google, or any identity provider.

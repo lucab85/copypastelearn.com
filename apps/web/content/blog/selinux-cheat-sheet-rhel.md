@@ -6,6 +6,7 @@ category: "DevOps"
 tags: ["SELinux", "RHEL", "Cheat Sheet", "Linux Security", "Sysadmin"]
 excerpt: "Quick reference for essential SELinux commands on RHEL 9/10. Modes, contexts, labels, booleans, logs, and troubleshooting in one page."
 description: "Quick reference for essential SELinux commands on RHEL 9/10. Modes, contexts, labels, booleans, logs, and troubleshooting in one page."
+author: "Luca Berton"
 ---
 
 ## Mode Management

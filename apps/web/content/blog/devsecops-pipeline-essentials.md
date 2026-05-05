@@ -3,9 +3,10 @@ title: "DevSecOps Pipeline Essentials"
 slug: "devsecops-pipeline-essentials"
 date: "2026-02-25"
 category: "DevOps"
-tags: ["DevSecOps", "Security", "CI/CD", "SAST", "DevOps"]
+tags: ["devsecops", "Security", "CI/CD", "SAST", "DevOps"]
 excerpt: "Integrate security into your CI/CD pipeline. SAST, dependency scanning, container scanning, secrets detection, and compliance as code."
 description: "Integrate security into CI/CD. SAST, dependency scanning, container scanning, secrets detection, and compliance as code."
+author: "Luca Berton"
 ---
 
 DevSecOps shifts security left — catching vulnerabilities during development instead of after deployment. Here is how to build security into every stage of your pipeline.

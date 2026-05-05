@@ -4,7 +4,7 @@ description: "Debug Kubernetes pods systematically. Fix CrashLoopBackOff, ImageP
 date: "2026-04-10"
 author: "Luca Berton"
 category: "DevOps"
-tags: ["Kubernetes", "Troubleshooting", "DevOps", "Containers", "kubectl"]
+tags: ["kubernetes", "Troubleshooting", "DevOps", "Containers", "kubectl"]
 excerpt: "Debug Kubernetes pods: CrashLoopBackOff, ImagePullBackOff, pending pods, and OOMKilled. Step-by-step fixes."
 ---
 

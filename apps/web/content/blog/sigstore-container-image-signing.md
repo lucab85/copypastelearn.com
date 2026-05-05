@@ -4,6 +4,7 @@ date: "2026-03-30"
 description: "Sigstore provides keyless signing for container images and software artifacts. Learn how to sign images with Cosign, verify signatures in Kubernetes, and build a software supply chain you can trust."
 category: "DevOps"
 tags: ["sigstore", "cosign", "container-security", "supply-chain", "kubernetes", "signing"]
+author: "Luca Berton"
 ---
 
 Software supply chain attacks target the gap between "code was reviewed" and "this binary is what was reviewed." Sigstore closes that gap by making it easy to sign and verify container images.

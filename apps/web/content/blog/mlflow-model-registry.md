@@ -4,7 +4,7 @@ description: "Use MLflow Model Registry to manage model versions, stage transiti
 date: "2026-02-21"
 author: "Luca Berton"
 category: "MLOps"
-tags: ["MLflow", "Model Registry", "ML Governance"]
+tags: ["MLflow", "model registry", "ML Governance"]
 ---
 
 ## Why Model Registry?

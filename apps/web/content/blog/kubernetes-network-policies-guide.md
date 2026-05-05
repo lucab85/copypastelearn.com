@@ -3,9 +3,10 @@ title: "Kubernetes Network Policies Guide"
 slug: "kubernetes-network-policies-guide"
 date: "2026-01-21"
 category: "DevOps"
-tags: ["Kubernetes", "Network Policies", "Security", "Calico", "DevOps"]
+tags: ["kubernetes", "Network Policies", "Security", "Calico", "DevOps"]
 excerpt: "Secure Kubernetes with network policies. Default deny, namespace isolation, pod-to-pod rules, and egress controls with examples."
 description: "Secure Kubernetes clusters with network policies. Default deny rules, namespace isolation, pod-level controls, and CNI compatibility."
+author: "Luca Berton"
 ---
 
 By default, all pods in a Kubernetes cluster can talk to every other pod. Network policies restrict that — think of them as firewall rules for pods.

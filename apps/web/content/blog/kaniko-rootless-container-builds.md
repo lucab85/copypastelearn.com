@@ -3,7 +3,8 @@ title: "Kaniko Rootless Container Builds"
 date: "2026-03-19"
 description: "Kaniko builds container images inside Kubernetes without Docker daemon or root access. Learn how to use Kaniko in CI/CD pipelines, Tekton, and GitHub Actions for secure image builds."
 category: "DevOps"
-tags: ["kaniko", "docker", "container-builds", "cicd", "kubernetes", "security"]
+tags: ["kaniko", "Docker", "container-builds", "cicd", "kubernetes", "Security"]
+author: "Luca Berton"
 ---
 
 Building container images inside containers is a chicken-and-egg problem. Docker-in-Docker needs privileged access. Kaniko builds images from a Dockerfile without a Docker daemon and without root privileges.

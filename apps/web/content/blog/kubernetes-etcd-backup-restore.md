@@ -3,9 +3,10 @@ title: "Kubernetes ETCD Backup and Restore"
 slug: "kubernetes-etcd-backup-restore"
 date: "2026-01-04"
 category: "DevOps"
-tags: ["Kubernetes", "ETCD", "Backup", "Disaster Recovery", "DevOps"]
+tags: ["kubernetes", "ETCD", "Backup", "Disaster Recovery", "DevOps"]
 excerpt: "Back up and restore Kubernetes etcd. Snapshot creation, automated backups, disaster recovery procedures, and etcd cluster health checks."
 description: "Back up and restore Kubernetes etcd. Snapshot procedures, automated schedules, restore workflows, and cluster health verification."
+author: "Luca Berton"
 ---
 
 etcd stores all Kubernetes cluster state — deployments, services, secrets, configmaps, everything. Losing etcd without a backup means rebuilding from scratch.

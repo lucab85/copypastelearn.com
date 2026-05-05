@@ -5,7 +5,7 @@ date: "2025-12-30"
 author: "Luca Berton"
 description: "Prepare your infrastructure for quantum computing threats with post-quantum cryptography migration strategies and practical implementation steps."
 category: "DevOps"
-tags: ["post-quantum", "cryptography", "security", "pqc", "tls"]
+tags: ["post-quantum", "cryptography", "Security", "pqc", "tls"]
 ---
 
 Quantum computers will eventually break RSA and ECC encryption. Post-quantum cryptography (PQC) provides quantum-resistant alternatives. The migration has already begun.

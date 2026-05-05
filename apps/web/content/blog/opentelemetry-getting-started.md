@@ -3,7 +3,8 @@ title: "OpenTelemetry Getting Started Guide"
 date: "2026-04-06"
 description: "OpenTelemetry is the standard for observability instrumentation. Learn how to add traces, metrics, and logs to your applications with OTel SDKs and the OpenTelemetry Collector."
 category: "DevOps"
-tags: ["opentelemetry", "observability", "tracing", "metrics", "logging", "monitoring"]
+tags: ["opentelemetry", "observability", "Tracing", "metrics", "logging", "Monitoring"]
+author: "Luca Berton"
 ---
 
 OpenTelemetry (OTel) is the CNCF project that standardizes how applications emit telemetry data: traces, metrics, and logs. Instead of vendor-specific SDKs, you instrument once and send data to any backend.

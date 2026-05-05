@@ -4,7 +4,7 @@ description: "Use Terraform workspaces for dev, staging, and production. Practic
 date: "2026-04-12"
 author: "Luca Berton"
 category: "DevOps"
-tags: ["Terraform", "IaC", "Workspaces", "DevOps", "Cloud"]
+tags: ["Terraform", "IaC", "Workspaces", "DevOps", "cloud"]
 excerpt: "Use Terraform workspaces to manage dev, staging, and prod environments from a single codebase. Practical patterns."
 ---
 

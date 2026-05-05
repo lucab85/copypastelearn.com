@@ -3,9 +3,10 @@ title: "Kubernetes RBAC for Beginners"
 slug: "kubernetes-rbac-beginners"
 date: "2026-03-02"
 category: "DevOps"
-tags: ["Kubernetes", "RBAC", "Security", "DevOps", "Access Control"]
+tags: ["kubernetes", "RBAC", "Security", "DevOps", "Access Control"]
 excerpt: "Understand Kubernetes RBAC. Roles, ClusterRoles, RoleBindings, service accounts, and practical examples for securing your cluster."
 description: "Kubernetes RBAC from scratch. Roles, ClusterRoles, RoleBindings, ServiceAccounts, and practical examples for access control."
+author: "Luca Berton"
 ---
 
 RBAC (Role-Based Access Control) controls who can do what in your Kubernetes cluster. Without it, anyone with cluster access can delete production workloads.

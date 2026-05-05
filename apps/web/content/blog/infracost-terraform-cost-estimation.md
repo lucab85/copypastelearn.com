@@ -3,7 +3,8 @@ title: "Infracost Terraform Cost Estimation"
 date: "2026-02-05"
 description: "Infracost shows cloud cost estimates for Terraform changes before you apply. Learn how to add cost visibility to pull requests and catch expensive infrastructure changes early."
 category: "DevOps"
-tags: ["infracost", "terraform", "cost-estimation", "finops", "cloud-costs", "cicd"]
+tags: ["infracost", "Terraform", "cost-estimation", "finops", "cloud-costs", "cicd"]
+author: "Luca Berton"
 ---
 
 `terraform plan` shows what changes. It does not show what those changes cost. Infracost fills that gap by estimating monthly costs from your Terraform code before you apply.

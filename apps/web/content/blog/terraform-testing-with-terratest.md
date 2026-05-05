@@ -3,7 +3,8 @@ title: "Terraform Testing with Terratest"
 date: "2026-01-27"
 description: "Terratest lets you write automated tests for Terraform infrastructure using Go. Learn how to test Terraform modules, validate cloud resources, and integrate infrastructure tests into CI/CD."
 category: "DevOps"
-tags: ["terratest", "terraform", "testing", "infrastructure-testing", "go", "cicd"]
+tags: ["terratest", "Terraform", "testing", "infrastructure-testing", "go", "cicd"]
+author: "Luca Berton"
 ---
 
 You write a Terraform module. You run `terraform plan`. It looks right. But does it actually create working infrastructure? Terratest deploys your Terraform, validates the result, and tears it down — automated infrastructure integration tests.

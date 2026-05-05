@@ -3,7 +3,8 @@ title: "Kyverno Kubernetes Policy Engine"
 date: "2026-02-27"
 description: "Kyverno validates, mutates, and generates Kubernetes resources using YAML policies instead of Rego. Learn how to enforce security standards, set defaults, and automate resource creation."
 category: "DevOps"
-tags: ["kyverno", "kubernetes", "policy", "security", "admission-control", "automation"]
+tags: ["kyverno", "kubernetes", "policy", "Security", "admission-control", "Automation"]
+author: "Luca Berton"
 ---
 
 OPA Gatekeeper requires learning Rego. Kyverno writes policies in YAML — the same language you already use for Kubernetes resources. Lower barrier, same enforcement power.

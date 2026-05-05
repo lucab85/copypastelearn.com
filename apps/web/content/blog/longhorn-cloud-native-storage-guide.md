@@ -3,7 +3,8 @@ title: "Longhorn Cloud Native Storage Guide"
 date: "2026-01-30"
 description: "Longhorn is a lightweight distributed storage system for Kubernetes. Learn how Longhorn provides replicated block storage, snapshots, and backups without the complexity of Ceph."
 category: "DevOps"
-tags: ["longhorn", "kubernetes", "storage", "persistent-volumes", "backup", "cncf"]
+tags: ["longhorn", "kubernetes", "storage", "persistent-volumes", "Backup", "cncf"]
+author: "Luca Berton"
 ---
 
 Rook-Ceph is powerful but complex. Longhorn provides distributed block storage for Kubernetes with a simple install, a built-in UI, and backup to S3 — enough for most clusters.

@@ -3,7 +3,8 @@ title: "Platform Engineering vs DevOps"
 date: "2026-04-23"
 description: "Platform engineering and DevOps solve different problems. Learn how platform teams build internal developer platforms, where DevOps still applies, and when you need both."
 category: "DevOps"
-tags: ["platform-engineering", "devops", "internal-developer-platform", "developer-experience", "infrastructure"]
+tags: ["platform-engineering", "DevOps", "internal-developer-platform", "developer-experience", "infrastructure"]
+author: "Luca Berton"
 ---
 
 DevOps says developers and operations should collaborate. Platform engineering says developers should not need to think about operations at all. These are different philosophies with different implementations.

@@ -6,6 +6,7 @@ category: "DevOps"
 tags: ["SELinux", "Apache", "PHP-FPM", "RHEL", "Web Server"]
 excerpt: "Configure Apache with PHP-FPM over TCP on RHEL with SELinux enforcing. Fix name_connect denials with the right boolean."
 description: "Configure Apache with PHP-FPM over TCP on RHEL with SELinux enforcing. Diagnose and fix name_connect denials using the correct SELinux boolean and audit tools."
+author: "Luca Berton"
 ---
 
 ## The Setup

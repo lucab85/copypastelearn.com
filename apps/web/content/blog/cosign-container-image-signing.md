@@ -4,6 +4,7 @@ date: "2026-02-20"
 description: "Cosign signs and verifies container images using keyless signing with Sigstore. Learn how to sign images in CI/CD, verify signatures before deployment, and enforce signed images in Kubernetes."
 category: "DevOps"
 tags: ["cosign", "sigstore", "container-security", "supply-chain", "image-signing", "kubernetes"]
+author: "Luca Berton"
 ---
 
 Someone pushes a malicious image to your registry. Without image signing, Kubernetes pulls and runs it. Cosign adds cryptographic signatures to container images so you can verify who built them and that they have not been tampered with.

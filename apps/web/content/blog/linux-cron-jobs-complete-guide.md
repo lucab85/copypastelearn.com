@@ -6,6 +6,7 @@ category: "DevOps"
 tags: ["Linux", "Cron", "Automation", "System Administration", "DevOps"]
 excerpt: "Master Linux cron jobs. Crontab syntax, common schedules, error handling, logging, systemd timers, and production best practices."
 description: "Master Linux cron jobs for scheduling. Crontab syntax, common patterns, error handling, output logging, and systemd timer alternatives."
+author: "Luca Berton"
 ---
 
 Cron is the standard Linux scheduler. It runs commands at specified times — backups at midnight, log rotation weekly, health checks every minute.

@@ -6,6 +6,7 @@ category: "Development"
 tags: ["Redis", "Caching", "Database", "Development", "Performance"]
 excerpt: "Get started with Redis. Data types, caching patterns, pub/sub, sessions, rate limiting, and production deployment with persistence."
 description: "Get started with Redis. Data types, caching patterns, pub/sub messaging, session management, rate limiting, and deployment practices."
+author: "Luca Berton"
 ---
 
 Redis is an in-memory data store used for caching, sessions, rate limiting, queues, and real-time features. It handles millions of operations per second with sub-millisecond latency.

@@ -3,7 +3,8 @@ title: "Flux GitOps Toolkit Deep Dive"
 date: "2026-02-02"
 description: "Flux v2 uses GitOps Toolkit controllers for source management, Kustomize, Helm, and notifications. Learn how to structure a Flux GitOps repository and automate Kubernetes deployments."
 category: "DevOps"
-tags: ["flux", "gitops", "kubernetes", "helm", "kustomize", "automation"]
+tags: ["flux", "gitops", "kubernetes", "helm", "kustomize", "Automation"]
+author: "Luca Berton"
 ---
 
 Argo CD has a UI. Flux is headless — it runs as controllers and reconciles state from Git without a dashboard. This makes Flux lighter, more composable, and better suited for teams that live in the terminal.

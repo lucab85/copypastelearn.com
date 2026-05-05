@@ -4,7 +4,7 @@ description: "Understand why AI assistants hallucinate outdated APIs and how Con
 date: "2026-02-24"
 author: "Luca Berton"
 category: "AI Tools"
-tags: ["Context7", "LLM", "AI Development"]
+tags: ["Context7", "LLM", "ai development"]
 ---
 
 ## The Training Data Problem

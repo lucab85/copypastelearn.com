@@ -6,6 +6,7 @@ category: "DevOps"
 tags: ["Terraform", "Course", "AWS", "IaC", "Training"]
 excerpt: "What to expect from a Terraform course. Skills covered, hands-on exercises, AWS provisioning, and career benefits of Terraform certification."
 description: "What a Terraform course teaches you. Skills, exercises, AWS provisioning, and career benefits of learning Terraform for IaC."
+author: "Luca Berton"
 ---
 
 Terraform is the most in-demand Infrastructure as Code skill in DevOps. Here is what a comprehensive Terraform course should teach you and why it matters for your career.

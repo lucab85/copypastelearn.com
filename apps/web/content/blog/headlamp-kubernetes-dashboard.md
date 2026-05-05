@@ -4,6 +4,7 @@ date: "2026-02-28"
 description: "Headlamp is a modern Kubernetes dashboard that replaces the official Kubernetes Dashboard. Learn how to install Headlamp, manage clusters, and extend it with plugins for team workflows."
 category: "DevOps"
 tags: ["headlamp", "kubernetes", "dashboard", "ui", "developer-experience", "cluster-management"]
+author: "Luca Berton"
 ---
 
 The official Kubernetes Dashboard has not kept up with modern Kubernetes. Headlamp is a CNCF Sandbox project that provides a fast, extensible web UI for managing Kubernetes clusters.

@@ -4,7 +4,7 @@ description: "Essential kubectl commands for pods, deployments, services, logs, 
 date: "2026-04-12"
 author: "Luca Berton"
 category: "DevOps"
-tags: ["Kubernetes", "kubectl", "Cheat Sheet", "DevOps", "Containers"]
+tags: ["kubernetes", "kubectl", "Cheat Sheet", "DevOps", "Containers"]
 excerpt: "Essential kubectl commands for pods, deployments, services, logs, and debugging. Copy-paste ready for daily use."
 ---
 

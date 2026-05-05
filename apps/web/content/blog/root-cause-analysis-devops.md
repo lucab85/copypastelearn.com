@@ -6,6 +6,7 @@ category: "DevOps"
 tags: ["RCA", "Root Cause Analysis", "SRE", "Incident Management", "DevOps"]
 excerpt: "Apply Root Cause Analysis to DevOps incidents. Learn the 5 Whys, fishbone diagrams, blameless postmortems, and automated RCA tooling."
 description: "Apply Root Cause Analysis to DevOps incidents. The 5 Whys, fishbone diagrams, blameless postmortems, and automated RCA tooling."
+author: "Luca Berton"
 ---
 
 Root Cause Analysis (RCA) is a structured method for finding the true cause of a problem — not just the symptoms. In DevOps, RCA is the difference between fixing an outage once and firefighting the same issue every month.

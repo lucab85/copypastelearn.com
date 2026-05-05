@@ -6,6 +6,7 @@ category: "Development"
 tags: ["Environment Variables", "Security", "Docker", "DevOps", "Configuration"]
 excerpt: "Handle environment variables properly in development and production. Dotenv, Docker secrets, Kubernetes ConfigMaps, and common mistakes."
 description: "Handle environment variables correctly. Dotenv files, Docker secrets, Kubernetes ConfigMaps, twelve-factor methodology, and security pitfalls."
+author: "Luca Berton"
 ---
 
 Environment variables configure your application without changing code. Get them wrong and you leak secrets or break deployments.

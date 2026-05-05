@@ -3,7 +3,8 @@ title: "Ubuntu 26.04 Makes sudo-rs Default"
 date: "2026-04-27"
 description: "Ubuntu 26.04 LTS replaces the 44-year-old C sudo with sudo-rs, a Rust rewrite. Learn what changes, why it matters for security, and what else ships in Resolute Raccoon."
 category: "DevOps"
-tags: ["ubuntu", "linux", "security", "rust", "sudo", "lts"]
+tags: ["Ubuntu", "Linux", "Security", "rust", "sudo", "LTS"]
+author: "Luca Berton"
 ---
 
 Most Ubuntu 26.04 coverage focuses on Wayland-only or kernel 7.0. The biggest security change is quieter: **sudo-rs is now the default sudo provider**.

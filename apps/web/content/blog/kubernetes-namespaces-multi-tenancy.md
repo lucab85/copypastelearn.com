@@ -3,9 +3,10 @@ title: "Kubernetes Namespaces Multi-Tenancy"
 slug: "kubernetes-namespaces-multi-tenancy"
 date: "2026-02-20"
 category: "DevOps"
-tags: ["Kubernetes", "Namespaces", "Multi-Tenancy", "DevOps", "Security"]
+tags: ["kubernetes", "Namespaces", "Multi-Tenancy", "DevOps", "Security"]
 excerpt: "Use Kubernetes namespaces for multi-tenancy. Resource quotas, limit ranges, network policies, and RBAC per team or environment."
 description: "Kubernetes multi-tenancy with namespaces. Resource quotas, limit ranges, network policies, and RBAC for isolating teams."
+author: "Luca Berton"
 ---
 
 Namespaces partition a Kubernetes cluster into virtual clusters. Each team, environment, or application gets its own namespace with isolated resources, network policies, and access controls.

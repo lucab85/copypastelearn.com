@@ -6,6 +6,7 @@ category: "DevOps"
 tags: ["Bash", "Scripting", "Linux", "Automation", "DevOps"]
 excerpt: "Essential Bash scripting for DevOps. Variables, conditionals, loops, functions, error handling, and real-world automation scripts."
 description: "Essential Bash scripting skills for DevOps engineers. Variables, conditionals, loops, functions, error handling, and practical automation scripts for daily operations."
+author: "Luca Berton"
 ---
 
 Every DevOps engineer writes Bash scripts. They glue together tools, automate deployments, and handle the tasks that do not justify a full program.

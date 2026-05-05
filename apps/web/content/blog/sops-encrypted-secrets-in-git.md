@@ -3,7 +3,8 @@ title: "Sops Encrypted Secrets in Git"
 date: "2026-02-12"
 description: "SOPS encrypts secret values in YAML, JSON, and dotenv files while keeping keys readable. Learn how to use SOPS with age, AWS KMS, or GCP KMS for GitOps-friendly secret management."
 category: "DevOps"
-tags: ["sops", "secrets", "encryption", "gitops", "security", "devops"]
+tags: ["sops", "Secrets", "Encryption", "gitops", "Security", "DevOps"]
+author: "Luca Berton"
 ---
 
 You need secrets in Git for GitOps. But plaintext secrets in Git are a breach waiting to happen. SOPS encrypts only the values, leaving the keys readable — so you can review diffs, grep for key names, and still keep values secret.

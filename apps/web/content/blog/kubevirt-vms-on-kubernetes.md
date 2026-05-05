@@ -3,7 +3,8 @@ title: "Kubevirt VMs on Kubernetes Guide"
 date: "2026-03-12"
 description: "KubeVirt runs virtual machines alongside containers on Kubernetes. Learn how to deploy VMs as pods, migrate legacy workloads, and manage hybrid container-VM environments."
 category: "DevOps"
-tags: ["kubevirt", "kubernetes", "virtual-machines", "containers", "migration", "infrastructure"]
+tags: ["kubevirt", "kubernetes", "virtual-machines", "Containers", "migration", "infrastructure"]
+author: "Luca Berton"
 ---
 
 Not everything runs in containers. Legacy applications, Windows workloads, kernel-dependent software, and compliance-mandated VMs still need virtual machines. KubeVirt lets you manage both VMs and containers with the same Kubernetes tools.

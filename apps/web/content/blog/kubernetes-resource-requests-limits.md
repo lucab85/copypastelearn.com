@@ -3,9 +3,10 @@ title: "Kubernetes Resource Requests Limits"
 slug: "kubernetes-resource-requests-limits"
 date: "2026-01-24"
 category: "DevOps"
-tags: ["Kubernetes", "Resources", "CPU", "Memory", "DevOps"]
+tags: ["kubernetes", "Resources", "CPU", "Memory", "DevOps"]
 excerpt: "Set Kubernetes CPU and memory requests and limits correctly. QoS classes, OOMKilled troubleshooting, and right-sizing with VPA."
 description: "Set Kubernetes CPU and memory requests and limits correctly. QoS classes, OOMKilled troubleshooting, and VPA right-sizing."
+author: "Luca Berton"
 ---
 
 Resource requests and limits control how Kubernetes schedules pods and handles resource contention. Set them wrong and you get OOMKilled pods, throttled CPU, or wasted cluster capacity.

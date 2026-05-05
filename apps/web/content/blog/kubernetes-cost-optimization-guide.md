@@ -4,6 +4,7 @@ date: "2026-04-17"
 description: "Kubernetes clusters are often 60-70% over-provisioned. Learn practical cost optimization strategies: right-sizing, spot instances, autoscaling, namespace quotas, and FinOps practices."
 category: "DevOps"
 tags: ["kubernetes", "cost-optimization", "finops", "autoscaling", "resource-management", "cloud"]
+author: "Luca Berton"
 ---
 
 The average Kubernetes cluster runs at 30-40% utilization. That means 60-70% of your compute spend is wasted. Here is how to fix it without sacrificing reliability.

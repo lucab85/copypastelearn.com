@@ -4,7 +4,7 @@ description: "Manage persistent data in Docker with named volumes and bind mount
 date: "2026-04-14"
 author: "Luca Berton"
 category: "DevOps"
-tags: ["Docker", "Volumes", "Storage", "DevOps", "Containers"]
+tags: ["Docker", "Volumes", "storage", "DevOps", "Containers"]
 excerpt: "Manage persistent data in Docker with volumes and bind mounts. Backup, restore, and share data between containers."
 ---
 

@@ -4,7 +4,7 @@ description: "Use OpenClaw as your DevOps assistant — monitoring servers, mana
 date: "2026-02-08"
 author: "Luca Berton"
 category: "OpenClaw"
-tags: ["OpenClaw", "DevOps", "Infrastructure"]
+tags: ["OpenClaw", "DevOps", "infrastructure"]
 ---
 
 ## The DevOps Use Case

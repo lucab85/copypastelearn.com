@@ -3,9 +3,10 @@ title: "Observability vs Monitoring Explained"
 slug: "observability-vs-monitoring-explained"
 date: "2026-01-29"
 category: "DevOps"
-tags: ["Observability", "Monitoring", "Logging", "Tracing", "DevOps"]
+tags: ["observability", "Monitoring", "logging", "Tracing", "DevOps"]
 excerpt: "Understand the three pillars of observability. Metrics, logs, and traces with OpenTelemetry, Prometheus, Grafana, Loki, and Jaeger."
 description: "The three pillars of observability. Metrics, logs, and distributed traces with OpenTelemetry, Prometheus, Grafana, and Jaeger."
+author: "Luca Berton"
 ---
 
 Monitoring tells you when something is broken. Observability tells you why. In distributed systems, you need both.

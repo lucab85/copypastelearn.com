@@ -4,6 +4,7 @@ date: "2026-03-22"
 description: "Mise (formerly rtx) manages tool versions per project. Replace nvm, pyenv, rbenv, and tfenv with one tool. Learn how to set up mise for polyglot development environments."
 category: "Development"
 tags: ["mise", "version-manager", "developer-tools", "nvm", "pyenv", "development-environment"]
+author: "Luca Berton"
 ---
 
 Every language has its own version manager: nvm for Node.js, pyenv for Python, rbenv for Ruby, tfenv for Terraform. Mise replaces all of them with a single tool.

@@ -3,9 +3,10 @@ title: "Linux Disk Management LVM Guide"
 slug: "linux-disk-management-lvm-guide"
 date: "2026-01-06"
 category: "DevOps"
-tags: ["Linux", "LVM", "Disk", "Storage", "System Administration"]
+tags: ["Linux", "LVM", "Disk", "storage", "System Administration"]
 excerpt: "Manage Linux disks with LVM. Physical volumes, volume groups, logical volumes, resizing, snapshots, and storage troubleshooting."
 description: "Manage Linux disks with LVM. Physical volumes, volume groups, logical volumes, online resizing, snapshots, and migration strategies."
+author: "Luca Berton"
 ---
 
 LVM (Logical Volume Manager) adds flexibility between physical disks and filesystems. Resize volumes, add disks, and take snapshots without downtime.

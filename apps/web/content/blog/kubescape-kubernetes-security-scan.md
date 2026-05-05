@@ -3,7 +3,8 @@ title: "Kubescape Kubernetes Security Scan"
 date: "2026-02-24"
 description: "Kubescape scans Kubernetes clusters against NSA, MITRE, and CIS benchmarks. Learn how to audit cluster security, fix misconfigurations, and integrate Kubescape into your CI/CD pipeline."
 category: "DevOps"
-tags: ["kubescape", "kubernetes", "security", "compliance", "nsa", "cis-benchmark"]
+tags: ["kubescape", "kubernetes", "Security", "compliance", "nsa", "cis-benchmark"]
+author: "Luca Berton"
 ---
 
 Your Kubernetes cluster is running. Is it secure? Kubescape answers that question by scanning against established security frameworks: NSA hardening guide, MITRE ATT&CK, CIS Benchmarks, and more.

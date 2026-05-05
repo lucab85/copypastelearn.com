@@ -4,7 +4,7 @@ description: "Monitor deployed ML models on Kubernetes — track prediction accu
 date: "2026-02-19"
 author: "Luca Berton"
 category: "MLOps"
-tags: ["Monitoring", "Kubernetes", "Model Drift"]
+tags: ["Monitoring", "kubernetes", "Model Drift"]
 ---
 
 ## Why Monitor ML Models?

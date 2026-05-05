@@ -3,9 +3,10 @@ title: "Kubernetes Ingress Controllers Guide"
 slug: "kubernetes-ingress-controllers-guide"
 date: "2026-02-13"
 category: "DevOps"
-tags: ["Kubernetes", "Ingress", "Nginx", "Networking", "DevOps"]
+tags: ["kubernetes", "Ingress", "Nginx", "Networking", "DevOps"]
 excerpt: "Configure Kubernetes Ingress for HTTP routing. Nginx Ingress Controller, TLS termination, path-based routing, and rate limiting."
 description: "Configure Kubernetes Ingress for HTTP routing. Nginx controller setup, TLS termination, path-based routing, and rate limiting."
+author: "Luca Berton"
 ---
 
 Ingress exposes HTTP and HTTPS routes from outside the cluster to services within. Instead of a LoadBalancer per service, one Ingress Controller handles all routing.

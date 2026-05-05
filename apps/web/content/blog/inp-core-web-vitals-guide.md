@@ -6,6 +6,7 @@ category: "Development"
 tags: ["INP", "Core Web Vitals", "Performance", "Web Development", "SEO"]
 excerpt: "Master Interaction to Next Paint (INP). Understand the Core Web Vital metric that replaced FID, how to measure it, and how to fix poor scores."
 description: "Master Interaction to Next Paint (INP), the Core Web Vital that replaced FID. How to measure, diagnose, and fix poor INP scores."
+author: "Luca Berton"
 ---
 
 Interaction to Next Paint (INP) is the Core Web Vital that measures how fast your website responds to user interactions. It replaced First Input Delay (FID) in March 2024 as Google's responsiveness metric.

@@ -4,6 +4,7 @@ date: "2026-03-28"
 description: "Istio adds mTLS, traffic management, and observability to your Kubernetes services without code changes. Learn the core concepts, installation, and practical use cases for Istio service mesh."
 category: "DevOps"
 tags: ["istio", "service-mesh", "kubernetes", "mtls", "traffic-management", "observability"]
+author: "Luca Berton"
 ---
 
 Istio intercepts all network traffic between your Kubernetes services and adds security, observability, and traffic control — without changing application code.

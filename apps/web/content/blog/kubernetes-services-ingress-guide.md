@@ -4,7 +4,7 @@ description: "Expose Kubernetes workloads with ClusterIP, NodePort, LoadBalancer
 date: "2026-04-14"
 author: "Luca Berton"
 category: "DevOps"
-tags: ["Kubernetes", "Services", "Ingress", "Networking", "DevOps"]
+tags: ["kubernetes", "Services", "Ingress", "Networking", "DevOps"]
 excerpt: "Expose Kubernetes workloads with ClusterIP, NodePort, LoadBalancer services and Ingress controllers. Practical examples."
 ---
 

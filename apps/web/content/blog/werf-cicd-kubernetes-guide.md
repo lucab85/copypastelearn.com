@@ -4,6 +4,7 @@ date: "2026-01-25"
 description: "Werf is a CNCF tool that combines building, publishing, and deploying to Kubernetes into a single workflow. Learn how werf handles Dockerfiles, Helm charts, and cleanup in one declarative config."
 category: "DevOps"
 tags: ["werf", "kubernetes", "cicd", "helm", "deployment", "cncf"]
+author: "Luca Berton"
 ---
 
 Most CI/CD pipelines chain together separate tools: Docker build, registry push, Helm install, image cleanup. Werf integrates all of these into one tool that understands the full lifecycle from code to running deployment.

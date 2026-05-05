@@ -3,7 +3,8 @@ title: "Dagger CI/CD Pipelines as Code"
 date: "2026-04-08"
 description: "Dagger lets you write CI/CD pipelines in real programming languages instead of YAML. Learn how Dagger works, how it compares to GitHub Actions, and when to adopt it."
 category: "DevOps"
-tags: ["dagger", "cicd", "pipelines", "devops", "containers", "automation"]
+tags: ["dagger", "cicd", "pipelines", "DevOps", "Containers", "Automation"]
+author: "Luca Berton"
 ---
 
 YAML pipelines are configuration pretending to be code. Dagger lets you write CI/CD pipelines in actual programming languages — Go, Python, TypeScript — with type checking, IDE support, and local execution.

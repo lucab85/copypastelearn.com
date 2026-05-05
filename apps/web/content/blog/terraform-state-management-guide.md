@@ -6,6 +6,7 @@ category: "DevOps"
 tags: ["Terraform", "State", "IaC", "AWS", "DevOps"]
 excerpt: "Master Terraform state management. Remote backends, state locking, import, move, and disaster recovery for your infrastructure."
 description: "Master Terraform state management. Remote backends, state locking, import commands, state moves, and disaster recovery procedures."
+author: "Luca Berton"
 ---
 
 Terraform state is the single most important file in your infrastructure codebase. It maps your HCL configuration to real-world resources. Lose it, and Terraform doesn't know what exists.

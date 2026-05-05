@@ -4,7 +4,7 @@ description: "Discover OpenClaw — the open-source platform that lets you run A
 date: "2026-02-26"
 author: "Luca Berton"
 category: "OpenClaw"
-tags: ["OpenClaw", "AI Agents", "Open Source"]
+tags: ["OpenClaw", "ai agents", "Open Source"]
 ---
 
 ## What is OpenClaw?

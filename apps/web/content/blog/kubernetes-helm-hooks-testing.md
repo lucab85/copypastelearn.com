@@ -3,9 +3,10 @@ title: "Kubernetes Helm Hooks and Testing"
 slug: "kubernetes-helm-hooks-testing"
 date: "2026-01-31"
 category: "DevOps"
-tags: ["Helm", "Kubernetes", "Testing", "Hooks", "DevOps"]
+tags: ["helm", "kubernetes", "testing", "Hooks", "DevOps"]
 excerpt: "Use Helm hooks for pre-install migrations, post-deploy tests, and rollback safety. Plus helm test, helm lint, and chart testing in CI."
 description: "Use Helm hooks for database migrations, post-deploy verification, and rollback safety. Plus helm test and CI pipeline strategies."
+author: "Luca Berton"
 ---
 
 Helm hooks run jobs at specific points in a release lifecycle — database migrations before upgrades, smoke tests after deploys, cleanup on deletion. Combined with built-in testing, they make Helm releases reliable.

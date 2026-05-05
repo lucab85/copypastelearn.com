@@ -3,9 +3,10 @@ title: "YAML for DevOps Engineers"
 slug: "yaml-for-devops-engineers"
 date: "2026-01-13"
 category: "DevOps"
-tags: ["YAML", "Configuration", "Kubernetes", "Ansible", "DevOps"]
+tags: ["yaml", "Configuration", "kubernetes", "Ansible", "DevOps"]
 excerpt: "Master YAML syntax for DevOps. Scalars, lists, maps, anchors, multi-line strings, and common mistakes in Kubernetes and Ansible configs."
 description: "Master YAML for DevOps configuration. Scalars, lists, maps, anchors, multi-line strings, and common pitfalls to avoid in pipelines."
+author: "Luca Berton"
 ---
 
 YAML is everywhere in DevOps — Kubernetes manifests, Ansible playbooks, Docker Compose, GitHub Actions, Terraform configs. Learning its quirks saves hours of debugging.

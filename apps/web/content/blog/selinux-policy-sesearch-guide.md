@@ -3,9 +3,10 @@ title: "SELinux Policy with sesearch"
 slug: "selinux-policy-sesearch-guide"
 date: "2026-03-23"
 category: "DevOps"
-tags: ["SELinux", "sesearch", "Policy", "RHEL", "setools"]
+tags: ["SELinux", "sesearch", "policy", "RHEL", "setools"]
 excerpt: "Use sesearch to query SELinux policy rules. Learn to inspect what httpd_t is allowed to do and verify policy before making changes."
 description: "Use sesearch to query SELinux policy rules. Learn to inspect what httpd_t is allowed to do and verify policy before making changes."
+author: "Luca Berton"
 ---
 
 ## Why Query the Policy?

@@ -3,7 +3,8 @@ title: "Kubecost Kubernetes Cost Monitoring"
 date: "2026-02-23"
 description: "Kubecost shows real-time cost allocation per namespace, deployment, and label in Kubernetes. Learn how to install Kubecost, identify waste, and set budgets for teams and projects."
 category: "DevOps"
-tags: ["kubecost", "kubernetes", "cost-optimization", "finops", "monitoring", "cloud-costs"]
+tags: ["kubecost", "kubernetes", "cost-optimization", "finops", "Monitoring", "cloud-costs"]
+author: "Luca Berton"
 ---
 
 Your Kubernetes cluster costs $15,000/month. How much goes to each team? Which deployments are overprovisioned? Kubecost answers these questions by combining Kubernetes resource data with cloud billing.

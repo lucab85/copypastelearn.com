@@ -3,7 +3,8 @@ title: "Telepresence Local Kubernetes Dev"
 date: "2026-02-19"
 description: "Telepresence connects your local machine to a remote Kubernetes cluster for fast development. Learn how to intercept traffic, debug services locally, and skip the build-push-deploy cycle."
 category: "DevOps"
-tags: ["telepresence", "kubernetes", "development", "debugging", "developer-experience", "microservices"]
+tags: ["telepresence", "kubernetes", "Development", "Debugging", "developer-experience", "microservices"]
+author: "Luca Berton"
 ---
 
 Change code. Build image. Push to registry. Wait for deployment. Check logs. Repeat. This cycle takes 5-15 minutes per iteration. Telepresence cuts it to seconds by routing cluster traffic to your local machine.

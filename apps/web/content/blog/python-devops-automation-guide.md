@@ -6,6 +6,7 @@ category: "Development"
 tags: ["Python", "DevOps", "Automation", "Scripting", "Development"]
 excerpt: "Use Python for DevOps automation. HTTP APIs, file processing, AWS boto3, subprocess management, and CLI tool development."
 description: "Python for DevOps automation. HTTP API clients, file processing, AWS boto3, subprocess management, and CLI tools for infrastructure."
+author: "Luca Berton"
 ---
 
 Python is the second language of DevOps after Bash. When a shell script gets too complex — JSON parsing, API calls, error handling — switch to Python.

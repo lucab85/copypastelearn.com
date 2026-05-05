@@ -3,7 +3,8 @@ title: "Minio S3 Compatible Object Storage"
 date: "2026-02-21"
 description: "MinIO provides S3-compatible object storage you can self-host anywhere. Learn how to deploy MinIO on Kubernetes for backups, artifacts, ML datasets, and replacing cloud storage dependencies."
 category: "DevOps"
-tags: ["minio", "object-storage", "s3", "kubernetes", "self-hosted", "storage"]
+tags: ["minio", "object-storage", "s3", "kubernetes", "Self-Hosted", "storage"]
+author: "Luca Berton"
 ---
 
 Every DevOps tool needs object storage. Terraform state, container images, backups, ML datasets, log archives — they all want an S3-compatible API. MinIO gives you that API anywhere: on Kubernetes, on bare metal, or on your laptop.

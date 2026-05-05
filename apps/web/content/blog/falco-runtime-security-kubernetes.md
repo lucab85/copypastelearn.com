@@ -3,7 +3,8 @@ title: "Falco Runtime Security Kubernetes"
 date: "2026-04-03"
 description: "Falco detects runtime threats in Kubernetes using eBPF. Learn how to set up Falco for container security monitoring, write custom rules, and integrate with your alerting pipeline."
 category: "DevOps"
-tags: ["falco", "kubernetes", "security", "runtime-security", "ebpf", "container-security"]
+tags: ["falco", "kubernetes", "Security", "runtime-security", "ebpf", "container-security"]
+author: "Luca Berton"
 ---
 
 Static scanning catches known vulnerabilities before deployment. Falco catches unexpected behavior at runtime — a shell spawned inside a container, a binary downloaded from the internet, a sensitive file read that should not happen.

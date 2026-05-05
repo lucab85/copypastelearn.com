@@ -6,6 +6,7 @@ category: "DevOps"
 tags: ["Linux", "Networking", "DevOps", "System Administration", "Troubleshooting"]
 excerpt: "Essential Linux networking commands for DevOps. IP addressing, DNS, firewall, routing, packet capture, and troubleshooting connectivity."
 description: "Linux networking for DevOps. IP configuration, DNS, firewall rules, routing tables, packet capture with tcpdump, and troubleshooting."
+author: "Luca Berton"
 ---
 
 Every DevOps engineer debugs network issues. These are the commands and concepts you need when something cannot connect.

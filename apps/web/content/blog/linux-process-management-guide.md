@@ -6,6 +6,7 @@ category: "DevOps"
 tags: ["Linux", "Process Management", "System Administration", "DevOps", "Signals"]
 excerpt: "Manage Linux processes effectively. ps, top, htop, kill signals, background jobs, nice, systemd services, and zombie process cleanup."
 description: "Manage Linux processes. ps, top, kill signals, background jobs, nice priorities, systemd services, and zombie process cleanup."
+author: "Luca Berton"
 ---
 
 Everything running on Linux is a process. Knowing how to find, monitor, and manage them is fundamental DevOps knowledge.

@@ -4,6 +4,7 @@ date: "2026-02-09"
 description: "Coder provisions cloud development environments on Kubernetes, AWS, or any infrastructure. Learn how Coder replaces local dev setups with consistent, powerful remote workspaces."
 category: "DevOps"
 tags: ["coder", "remote-development", "developer-experience", "kubernetes", "ide", "platform-engineering"]
+author: "Luca Berton"
 ---
 
 New developer joins. Three days setting up the local environment. Docker, language runtimes, database, env vars, VPN. Coder provisions a ready-to-code workspace in minutes with everything pre-configured.

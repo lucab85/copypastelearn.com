@@ -4,7 +4,7 @@ description: "Learn how to install and configure KServe on Kubernetes for produc
 date: "2026-02-23"
 author: "Luca Berton"
 category: "MLOps"
-tags: ["KServe", "Kubernetes", "Model Serving"]
+tags: ["KServe", "kubernetes", "model serving"]
 ---
 
 ## What Is KServe?

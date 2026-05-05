@@ -3,9 +3,10 @@ title: "MLflow on Kubernetes: Full Guide"
 slug: "mlflow-kubernetes-production-guide"
 date: "2026-04-08"
 category: "MLOps"
-tags: ["MLflow", "Kubernetes", "MLOps", "Machine Learning", "Production"]
+tags: ["MLflow", "kubernetes", "MLOps", "Machine Learning", "Production"]
 excerpt: "Deploy MLflow on Kubernetes for production MLOps. Complete guide covering Helm charts, experiment tracking, model registry, and serving."
 description: "Deploy MLflow on Kubernetes for production MLOps. Helm charts, experiment tracking, model registry, and model serving guide."
+author: "Luca Berton"
 ---
 
 Running MLflow on Kubernetes gives you scalable, production-grade MLOps. This guide covers everything from deployment to model serving.

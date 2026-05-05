@@ -3,7 +3,8 @@ title: "Kubebuilder Custom Operators Guide"
 date: "2026-03-16"
 description: "Kubebuilder scaffolds Kubernetes operators in Go. Learn how to create custom controllers, define CRDs, and build operators that automate complex application lifecycle management."
 category: "DevOps"
-tags: ["kubebuilder", "kubernetes", "operators", "crd", "go", "automation"]
+tags: ["kubebuilder", "kubernetes", "operators", "crd", "go", "Automation"]
+author: "Luca Berton"
 ---
 
 Kubernetes operators extend the platform with custom automation. Instead of writing scripts that run `kubectl` commands, you teach Kubernetes how to manage your application by writing a controller that watches custom resources and reconciles desired state.

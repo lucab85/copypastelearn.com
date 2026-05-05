@@ -3,7 +3,8 @@ title: "Thanos Long-Term Prometheus Storage"
 date: "2026-03-02"
 description: "Thanos extends Prometheus with unlimited retention, global querying across clusters, and downsampling. Learn how to deploy Thanos Sidecar and Store Gateway for multi-cluster observability."
 category: "DevOps"
-tags: ["thanos", "prometheus", "monitoring", "observability", "kubernetes", "long-term-storage"]
+tags: ["thanos", "Prometheus", "Monitoring", "observability", "kubernetes", "long-term-storage"]
+author: "Luca Berton"
 ---
 
 Prometheus stores 15 days of metrics by default. After that, data is gone. Thanos uploads Prometheus blocks to object storage and lets you query years of metrics across multiple clusters from a single endpoint.

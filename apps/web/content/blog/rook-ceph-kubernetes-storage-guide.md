@@ -4,6 +4,7 @@ date: "2026-02-04"
 description: "Rook deploys Ceph distributed storage on Kubernetes for block, file, and object storage. Learn how to set up Rook-Ceph for persistent volumes, shared filesystems, and S3-compatible storage."
 category: "DevOps"
 tags: ["rook", "ceph", "kubernetes", "storage", "persistent-volumes", "distributed-storage"]
+author: "Luca Berton"
 ---
 
 Kubernetes needs persistent storage. Cloud providers offer EBS and PersistentDisks. On-premises and bare metal clusters need something else. Rook deploys Ceph — a production-grade distributed storage system — as a Kubernetes operator.

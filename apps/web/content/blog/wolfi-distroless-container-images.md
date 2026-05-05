@@ -3,7 +3,8 @@ title: "Wolfi Distroless Container Images"
 date: "2026-03-03"
 description: "Wolfi is a Linux undistro designed for containers with zero CVEs. Learn how Wolfi and Chainguard Images reduce your container attack surface compared to Alpine, Debian, and Ubuntu base images."
 category: "DevOps"
-tags: ["wolfi", "chainguard", "distroless", "container-security", "docker", "supply-chain"]
+tags: ["wolfi", "chainguard", "distroless", "container-security", "Docker", "supply-chain"]
+author: "Luca Berton"
 ---
 
 Your application has zero vulnerabilities. Your base image has 142. Most container CVEs come from OS packages in the base image that your application never uses. Wolfi eliminates them.

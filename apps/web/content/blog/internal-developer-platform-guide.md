@@ -4,6 +4,7 @@ date: "2026-04-18"
 description: "Build an internal developer platform that developers actually use. Learn the five layers of an IDP, common mistakes, build vs buy decisions, and how to measure platform success."
 category: "DevOps"
 tags: ["internal-developer-platform", "platform-engineering", "idp", "developer-experience", "backstage", "infrastructure"]
+author: "Luca Berton"
 ---
 
 An internal developer platform (IDP) is a self-service layer between developers and infrastructure. Done well, it reduces cognitive load and accelerates delivery. Done poorly, it becomes another tool nobody uses.

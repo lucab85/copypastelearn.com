@@ -6,6 +6,7 @@ category: "DevOps"
 tags: ["Ansible", "AAP", "Red Hat", "Automation Platform", "Enterprise"]
 excerpt: "Understand Red Hat Ansible Automation Platform. Compare AAP vs open-source Ansible, learn about Controller, Hub, and EE architecture."
 description: "Red Hat Ansible Automation Platform explained. Compare AAP vs open-source Ansible, learn Controller, Hub, and EE architecture."
+author: "Luca Berton"
 ---
 
 Red Hat Ansible Automation Platform (AAP) is the enterprise version of Ansible. If you are evaluating AAP for your organization or preparing for the Red Hat Certified Specialist exam, this guide covers what you need to know.

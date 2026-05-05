@@ -3,9 +3,10 @@ title: "Terraform Import Existing Resources"
 slug: "terraform-import-existing-resources"
 date: "2026-01-19"
 category: "DevOps"
-tags: ["Terraform", "Import", "IaC", "Migration", "DevOps"]
+tags: ["Terraform", "Import", "IaC", "migration", "DevOps"]
 excerpt: "Import existing infrastructure into Terraform. terraform import, import blocks, generated config, and migration strategies for brownfield environments."
 description: "Import existing infrastructure into Terraform. Import blocks, auto-generated config, state manipulation, and migration strategies."
+author: "Luca Berton"
 ---
 
 You have infrastructure created manually or with CloudFormation. Terraform import brings it under IaC management without recreating anything.

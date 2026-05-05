@@ -3,7 +3,8 @@ title: "Quality vs Safety in Engineering"
 date: "2026-04-25"
 description: "Quality and safety are not the same thing in software engineering. Learn when to prioritize safety over quality, how to build guardrails without slowing delivery, and where the two align."
 category: "DevOps"
-tags: ["devops", "safety", "quality", "security", "reliability", "engineering-culture"]
+tags: ["DevOps", "safety", "quality", "Security", "Reliability", "engineering-culture"]
+author: "Luca Berton"
 ---
 
 Quality means the software works well. Safety means it fails well. They overlap but they are not the same thing, and confusing them leads to bad engineering decisions.

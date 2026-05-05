@@ -5,7 +5,7 @@ date: "2025-12-18"
 author: "Luca Berton"
 description: "Assess and evolve your platform engineering practice with a maturity model covering self-service, golden paths, developer experience, and governance."
 category: "DevOps"
-tags: ["platform engineering", "developer experience", "internal developer platform", "golden paths", "self-service"]
+tags: ["platform engineering", "Developer Experience", "internal developer platform", "golden paths", "self-service"]
 ---
 
 Platform engineering has become the top strategic technology trend according to Gartner. But most organizations are still in the early stages. This maturity model helps you assess where you are and where to go.

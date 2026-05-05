@@ -3,7 +3,8 @@ title: "Grafana Loki Log Aggregation Guide"
 date: "2026-03-18"
 description: "Grafana Loki indexes log metadata instead of full text, making it cost-effective for Kubernetes log aggregation. Learn how to deploy Loki, query with LogQL, and replace ELK for most use cases."
 category: "DevOps"
-tags: ["loki", "grafana", "logging", "kubernetes", "observability", "logql"]
+tags: ["loki", "Grafana", "logging", "kubernetes", "observability", "logql"]
+author: "Luca Berton"
 ---
 
 Elasticsearch indexes every word in every log line. Loki indexes only the labels (metadata) and stores log lines as compressed chunks. This makes Loki 10-100x cheaper to operate for the same volume of logs.

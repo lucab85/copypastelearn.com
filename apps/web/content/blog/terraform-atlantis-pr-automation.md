@@ -3,7 +3,8 @@ title: "Terraform Atlantis Pull Request Automation"
 date: "2026-03-15"
 description: "Atlantis automates Terraform plan and apply through pull request comments. Learn how to set up Atlantis for team-based infrastructure changes with automated plans, locking, and audit trails."
 category: "DevOps"
-tags: ["atlantis", "terraform", "pull-requests", "automation", "gitops", "infrastructure-as-code"]
+tags: ["atlantis", "Terraform", "pull-requests", "Automation", "gitops", "infrastructure-as-code"]
+author: "Luca Berton"
 ---
 
 Running `terraform apply` from a laptop is fine for side projects. For teams, it creates problems: no audit trail, no review process, and "who ran apply last?" becomes a daily question. Atlantis moves Terraform into pull requests.

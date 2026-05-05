@@ -3,9 +3,10 @@ title: "YAML Syntax Guide for DevOps"
 slug: "yaml-syntax-guide-devops"
 date: "2026-03-15"
 category: "DevOps"
-tags: ["YAML", "DevOps", "Ansible", "Kubernetes", "Configuration"]
+tags: ["yaml", "DevOps", "Ansible", "kubernetes", "Configuration"]
 excerpt: "Master YAML syntax for DevOps. Scalars, lists, maps, anchors, multi-line strings, and common pitfalls in Ansible, Kubernetes, and CI/CD."
 description: "Master YAML syntax for DevOps tools. Scalars, lists, maps, anchors, multi-line strings, and common gotchas with pipeline examples."
+author: "Luca Berton"
 ---
 
 YAML is everywhere in DevOps: Ansible playbooks, Kubernetes manifests, Docker Compose files, GitHub Actions, Helm charts. Getting YAML syntax wrong is one of the most common sources of debugging pain.

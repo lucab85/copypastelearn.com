@@ -6,6 +6,7 @@ category: "DevOps"
 tags: ["Terraform", "IaC", "Advanced", "Best Practices", "Patterns"]
 excerpt: "Level up your Terraform skills with expert patterns. Dynamic blocks, for_each, moved blocks, custom validation, and production workflows."
 description: "Level up Terraform skills with expert patterns. Dynamic blocks, for_each, moved blocks, validation, and production workflows."
+author: "Luca Berton"
 ---
 
 Once you know the basics of Terraform, these expert patterns will make your infrastructure code cleaner, safer, and more maintainable.

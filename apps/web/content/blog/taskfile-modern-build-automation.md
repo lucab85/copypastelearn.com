@@ -3,7 +3,8 @@ title: "Taskfile Modern Build Automation"
 date: "2026-02-01"
 description: "Taskfile is a modern alternative to Makefiles for task automation. Learn how to use Task for build scripts, development workflows, and CI/CD tasks with YAML syntax and cross-platform support."
 category: "DevOps"
-tags: ["taskfile", "automation", "build-tools", "developer-experience", "yaml", "devops"]
+tags: ["taskfile", "Automation", "build-tools", "developer-experience", "yaml", "DevOps"]
+author: "Luca Berton"
 ---
 
 Makefiles work but the syntax is painful: tabs vs spaces, shell escaping, `.PHONY` everywhere, platform-specific commands. Task uses YAML, runs cross-platform, and handles dependencies cleanly.

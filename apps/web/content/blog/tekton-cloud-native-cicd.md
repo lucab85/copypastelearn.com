@@ -3,7 +3,8 @@ title: "Tekton Cloud Native CI/CD"
 date: "2026-03-31"
 description: "Tekton runs CI/CD pipelines as Kubernetes custom resources. Learn how Tekton works, how to build pipelines with Tasks and Pipelines, and when to choose it over Jenkins or GitHub Actions."
 category: "DevOps"
-tags: ["tekton", "cicd", "kubernetes", "pipelines", "cloud-native", "automation"]
+tags: ["tekton", "cicd", "kubernetes", "pipelines", "cloud-native", "Automation"]
+author: "Luca Berton"
 ---
 
 Tekton runs CI/CD pipelines natively on Kubernetes. Each step runs in a container. Each pipeline is a Kubernetes custom resource. If your infrastructure is Kubernetes, your CI/CD can be too.

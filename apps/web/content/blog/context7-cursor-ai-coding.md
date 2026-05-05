@@ -4,7 +4,7 @@ description: "Learn how to use Context7 with Cursor AI editor for accurate, vers
 date: "2026-02-25"
 author: "Luca Berton"
 category: "AI Tools"
-tags: ["Context7", "Cursor", "AI Coding"]
+tags: ["Context7", "Cursor", "ai coding"]
 ---
 
 ## The Problem with AI Code Editors

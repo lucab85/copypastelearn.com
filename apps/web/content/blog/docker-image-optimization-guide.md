@@ -6,6 +6,7 @@ category: "DevOps"
 tags: ["Docker", "Optimization", "Containers", "CI/CD", "DevOps"]
 excerpt: "Reduce Docker image size by 90%. Multi-stage builds, layer caching, distroless bases, .dockerignore, and build cache optimization."
 description: "Reduce Docker image size by up to 90%. Multi-stage builds, layer caching, distroless base images, and build-time best practices."
+author: "Luca Berton"
 ---
 
 A 2GB Docker image takes minutes to pull, wastes storage, and increases attack surface. Most images can be reduced to under 100MB with the right techniques.

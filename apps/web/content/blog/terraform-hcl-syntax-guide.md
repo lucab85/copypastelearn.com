@@ -4,7 +4,7 @@ description: "Master HashiCorp Configuration Language (HCL) — the syntax behin
 date: "2026-02-25"
 author: "Luca Berton"
 category: "DevOps"
-tags: ["Terraform", "HCL", "Configuration"]
+tags: ["Terraform", "hcl", "Configuration"]
 ---
 
 ## What Is HCL?

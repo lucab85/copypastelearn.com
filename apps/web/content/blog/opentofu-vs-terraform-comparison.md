@@ -3,7 +3,8 @@ title: "Tofu vs Terraform Comparison"
 date: "2026-04-20"
 description: "OpenTofu forked Terraform after the BSL license change. Compare features, compatibility, licensing, and ecosystem to decide which IaC tool fits your team in 2026."
 category: "DevOps"
-tags: ["opentofu", "terraform", "infrastructure-as-code", "iac", "hashicorp", "open-source"]
+tags: ["opentofu", "Terraform", "infrastructure-as-code", "IaC", "hashicorp", "open-source"]
+author: "Luca Berton"
 ---
 
 In August 2023, HashiCorp changed Terraform's license from MPL 2.0 to the Business Source License (BSL). OpenTofu forked Terraform in response, maintaining an open-source alternative under the Linux Foundation. Two years later, both tools are actively developed with diverging feature sets.

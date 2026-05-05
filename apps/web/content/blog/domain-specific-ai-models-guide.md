@@ -5,7 +5,7 @@ date: "2025-12-24"
 author: "Luca Berton"
 description: "Build and deploy domain-specific AI models with fine-tuning, RAG, and specialized training data for healthcare, finance, and DevOps applications."
 category: "AI Tools"
-tags: ["domain-specific ai", "fine-tuning", "rag", "specialized models", "mlops"]
+tags: ["domain-specific ai", "fine-tuning", "RAG", "specialized models", "MLOps"]
 ---
 
 General-purpose LLMs are impressive but often lack the precision needed for specialized domains. Domain-specific models — fine-tuned or augmented with domain knowledge — deliver dramatically better results.

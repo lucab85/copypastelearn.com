@@ -4,6 +4,7 @@ date: "2026-03-09"
 description: "Testkube runs tests natively on Kubernetes using any testing framework. Learn how to run integration tests, load tests, and API tests inside your cluster for accurate production-like results."
 category: "DevOps"
 tags: ["testkube", "kubernetes", "testing", "integration-testing", "load-testing", "cicd"]
+author: "Luca Berton"
 ---
 
 Running integration tests against localhost does not catch the problems that matter. Network policies, DNS resolution, service mesh behavior, and resource constraints only surface in the real cluster. Testkube runs your tests inside Kubernetes.

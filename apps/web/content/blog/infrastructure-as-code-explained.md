@@ -4,7 +4,7 @@ description: "Understand Infrastructure as Code (IaC) — what it is, why it mat
 date: "2026-02-26"
 author: "Luca Berton"
 category: "DevOps"
-tags: ["IaC", "DevOps", "Cloud Infrastructure"]
+tags: ["IaC", "DevOps", "cloud infrastructure"]
 ---
 
 ## The Problem with Manual Infrastructure

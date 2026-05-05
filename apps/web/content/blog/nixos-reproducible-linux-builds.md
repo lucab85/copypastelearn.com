@@ -4,7 +4,7 @@ description: "NixOS uses declarative configuration and the Nix package manager t
 date: "2026-03-14"
 author: "Luca Berton"
 category: "DevOps"
-tags: ["Linux", "NixOS", "Nix", "Reproducibility"]
+tags: ["Linux", "nixos", "nix", "Reproducibility"]
 ---
 
 ## Why NixOS?

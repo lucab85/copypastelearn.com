@@ -4,6 +4,7 @@ date: "2026-03-29"
 description: "KEDA scales Kubernetes workloads based on external events like queue depth, HTTP requests, or cron schedules. Learn how to set up KEDA scalers and scale to zero."
 category: "DevOps"
 tags: ["keda", "kubernetes", "autoscaling", "event-driven", "serverless", "scaling"]
+author: "Luca Berton"
 ---
 
 Horizontal Pod Autoscaler (HPA) scales based on CPU and memory. KEDA scales based on anything: message queue depth, database query count, HTTP request rate, cron schedules, or custom metrics from any source.

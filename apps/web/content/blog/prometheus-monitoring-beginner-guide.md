@@ -3,9 +3,10 @@ title: "Prometheus Monitoring Beginner Guide"
 slug: "prometheus-monitoring-beginner-guide"
 date: "2026-03-19"
 category: "DevOps"
-tags: ["Prometheus", "Monitoring", "Grafana", "Observability", "DevOps"]
+tags: ["Prometheus", "Monitoring", "Grafana", "observability", "DevOps"]
 excerpt: "Get started with Prometheus monitoring. Set up metrics collection, write PromQL queries, build Grafana dashboards, and configure alerts."
 description: "Get started with Prometheus monitoring. Metrics collection, PromQL queries, Grafana dashboards, and alert configuration step by step."
+author: "Luca Berton"
 ---
 
 Prometheus is the standard for monitoring Kubernetes and cloud-native applications. This guide gets you from zero to dashboards and alerts.

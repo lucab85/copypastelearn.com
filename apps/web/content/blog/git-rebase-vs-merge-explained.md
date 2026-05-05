@@ -6,6 +6,7 @@ category: "Development"
 tags: ["Git", "Rebase", "Merge", "Version Control", "Development"]
 excerpt: "Understand Git rebase vs merge. When to use each, interactive rebase, squash workflows, and team conventions for clean history."
 description: "Git rebase vs merge with practical examples. When to use each, interactive rebase workflows, squash commits, and team conventions."
+author: "Luca Berton"
 ---
 
 Merge preserves history as it happened. Rebase rewrites history to be linear. Both combine branches — the choice affects how your Git log reads.

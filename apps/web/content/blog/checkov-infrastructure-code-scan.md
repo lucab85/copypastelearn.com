@@ -3,7 +3,8 @@ title: "Checkov Infrastructure as Code Scan"
 date: "2026-02-17"
 description: "Checkov scans Terraform, CloudFormation, Kubernetes, and Dockerfile for security misconfigurations with 1000+ built-in policies. Learn how to integrate Checkov into CI/CD and write custom checks."
 category: "DevOps"
-tags: ["checkov", "iac-security", "terraform", "devsecops", "compliance", "scanning"]
+tags: ["checkov", "iac-security", "Terraform", "devsecops", "compliance", "scanning"]
+author: "Luca Berton"
 ---
 
 You wrote Terraform that works. Does it follow security best practices? Checkov has over 1000 built-in policies that check your infrastructure code before you apply it.

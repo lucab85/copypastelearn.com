@@ -3,7 +3,8 @@ title: "Boundary Zero Trust Access Manager"
 date: "2026-01-31"
 description: "HashiCorp Boundary provides identity-based access to infrastructure without VPNs or SSH keys. Learn how Boundary replaces bastion hosts and VPNs with just-in-time, audited access to databases and servers."
 category: "DevOps"
-tags: ["boundary", "zero-trust", "hashicorp", "access-management", "security", "ssh"]
+tags: ["boundary", "zero-trust", "hashicorp", "access-management", "Security", "SSH"]
+author: "Luca Berton"
 ---
 
 Bastion hosts are shared. VPN access is all-or-nothing. SSH keys are hard to rotate. Boundary gives each user identity-based, just-in-time access to specific targets — with full session recording.

@@ -6,6 +6,7 @@ category: "DevOps"
 tags: ["SELinux", "File Contexts", "Labels", "restorecon", "RHEL"]
 excerpt: "Master SELinux file labeling with semanage fcontext and restorecon. The persistent labeling workflow every sysadmin needs to know."
 description: "Master SELinux file labeling with semanage fcontext and restorecon. The persistent labeling workflow every sysadmin needs to know."
+author: "Luca Berton"
 ---
 
 ## Labels Drive Everything

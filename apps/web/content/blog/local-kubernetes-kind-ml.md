@@ -4,7 +4,7 @@ description: "Step-by-step guide to creating a local Kubernetes cluster using Ki
 date: "2026-02-26"
 author: "Luca Berton"
 category: "MLOps"
-tags: ["Kubernetes", "Kind", "ML Infrastructure"]
+tags: ["kubernetes", "Kind", "ml infrastructure"]
 ---
 
 ## Why Kind for ML Development?

@@ -3,7 +3,8 @@ title: "Kustomize Kubernetes Configuration"
 date: "2026-01-24"
 description: "Kustomize customizes Kubernetes manifests without templates using overlays and patches. Learn how to manage multiple environments, merge configurations, and reduce YAML duplication."
 category: "DevOps"
-tags: ["kustomize", "kubernetes", "configuration", "yaml", "gitops", "deployment"]
+tags: ["kustomize", "kubernetes", "Configuration", "yaml", "gitops", "deployment"]
+author: "Luca Berton"
 ---
 
 Helm uses templates with Go syntax. Kustomize uses overlays — start with base manifests and patch them per environment. No template language. No curly braces. Just YAML.

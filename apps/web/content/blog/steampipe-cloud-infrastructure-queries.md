@@ -3,7 +3,8 @@ title: "Steampipe Cloud Infrastructure Queries"
 date: "2026-02-08"
 description: "Steampipe lets you query AWS, Azure, GCP, Kubernetes, and GitHub using SQL. Learn how to audit cloud resources, check compliance, and build dashboards with familiar SQL syntax."
 category: "DevOps"
-tags: ["steampipe", "cloud-security", "sql", "compliance", "aws", "audit"]
+tags: ["steampipe", "cloud-security", "sql", "compliance", "AWS", "audit"]
+author: "Luca Berton"
 ---
 
 How many S3 buckets are publicly accessible? Which EC2 instances are running without tags? What IAM users have not rotated their keys in 90 days? Steampipe answers these questions with SQL.

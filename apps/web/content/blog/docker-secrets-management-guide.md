@@ -6,6 +6,7 @@ category: "DevOps"
 tags: ["Docker", "Secrets", "Security", "Compose", "DevOps"]
 excerpt: "Handle secrets in Docker safely. Environment variables, Docker secrets, mounted files, build secrets, and integration with external vaults."
 description: "Handle Docker secrets safely. Environment variables, Swarm secrets, mounted config files, build secrets, and Vault integration patterns."
+author: "Luca Berton"
 ---
 
 Secrets in containers need special handling. Baking them into images or passing them as plain environment variables creates security risks. Here are the approaches from basic to production-grade.

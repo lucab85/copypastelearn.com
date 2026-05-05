@@ -3,7 +3,8 @@ title: "Snyk Developer Security Platform"
 date: "2026-03-08"
 description: "Snyk finds and fixes vulnerabilities in code, dependencies, containers, and infrastructure as code. Learn how to integrate Snyk into your development workflow and CI/CD pipeline."
 category: "DevOps"
-tags: ["snyk", "security", "devsecops", "vulnerability-scanning", "dependencies", "cicd"]
+tags: ["snyk", "Security", "devsecops", "vulnerability-scanning", "dependencies", "cicd"]
+author: "Luca Berton"
 ---
 
 Security scanning that only runs in CI is too late. Developers have already committed the code, opened the PR, and context-switched to another task. Snyk shifts security left by scanning in the IDE, in the CLI, and in CI — catching vulnerabilities where they are cheapest to fix.

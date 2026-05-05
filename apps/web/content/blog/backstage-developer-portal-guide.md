@@ -4,6 +4,7 @@ date: "2026-04-21"
 description: "Spotify Backstage is the most popular open-source developer portal. Learn how to set it up, create software templates, build a service catalog, and integrate with your existing tools."
 category: "DevOps"
 tags: ["backstage", "developer-portal", "platform-engineering", "spotify", "service-catalog", "internal-developer-platform"]
+author: "Luca Berton"
 ---
 
 Backstage is Spotify's open-source developer portal. It provides a single interface for your service catalog, documentation, and infrastructure tooling. It is the most common starting point for teams building an internal developer platform.

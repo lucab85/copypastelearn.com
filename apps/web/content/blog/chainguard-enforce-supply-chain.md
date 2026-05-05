@@ -4,6 +4,7 @@ date: "2026-02-07"
 description: "Chainguard Enforce validates container supply chain integrity in Kubernetes using SLSA provenance, SBOMs, and image signatures. Learn how to enforce supply chain policies across your clusters."
 category: "DevOps"
 tags: ["chainguard", "supply-chain-security", "slsa", "sbom", "container-security", "kubernetes"]
+author: "Luca Berton"
 ---
 
 Your CI pipeline builds an image. Someone modifies it after build. Or injects a different image entirely. Supply chain security ensures the image running in production is exactly what your pipeline built — nothing added, nothing changed.

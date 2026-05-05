@@ -6,6 +6,7 @@ category: "DevOps"
 tags: ["Ansible", "Jinja2", "Templates", "Automation", "DevOps"]
 excerpt: "Master Jinja2 templates in Ansible. Variables, filters, loops, conditionals, and real-world config file generation examples."
 description: "Master Jinja2 templates in Ansible for dynamic configuration. Variables, filters, loops, conditionals, and real-world config file generation examples for DevOps."
+author: "Luca Berton"
 ---
 
 Jinja2 templates generate dynamic configuration files from variables and logic. In Ansible, they turn a single template into environment-specific configs across your fleet.

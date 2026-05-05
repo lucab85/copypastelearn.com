@@ -3,9 +3,10 @@ title: "Nginx Reverse Proxy Configuration"
 slug: "nginx-reverse-proxy-configuration"
 date: "2026-01-22"
 category: "DevOps"
-tags: ["Nginx", "Reverse Proxy", "Load Balancing", "DevOps", "Infrastructure"]
+tags: ["Nginx", "Reverse Proxy", "Load Balancing", "DevOps", "infrastructure"]
 excerpt: "Configure Nginx as a reverse proxy. Upstream pools, load balancing, SSL termination, caching, rate limiting, and WebSocket proxying."
 description: "Configure Nginx as a production reverse proxy. Upstream pools, load balancing, SSL termination, caching, and rate limiting."
+author: "Luca Berton"
 ---
 
 Nginx sits in front of your application servers handling SSL, load balancing, caching, and rate limiting. One of the most common DevOps setups.

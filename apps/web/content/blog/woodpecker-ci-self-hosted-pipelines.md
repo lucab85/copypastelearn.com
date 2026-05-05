@@ -3,7 +3,8 @@ title: "Woodpecker CI Self-Hosted Pipelines"
 date: "2026-02-06"
 description: "Woodpecker CI is a lightweight, container-native CI/CD system you can self-host. Learn how Woodpecker compares to Drone, GitHub Actions, and GitLab CI for teams wanting full control over their pipelines."
 category: "DevOps"
-tags: ["woodpecker-ci", "cicd", "self-hosted", "containers", "automation", "devops"]
+tags: ["woodpecker-ci", "cicd", "Self-Hosted", "Containers", "Automation", "DevOps"]
+author: "Luca Berton"
 ---
 
 GitHub Actions is convenient until you need custom runners, air-gapped builds, or control over your CI infrastructure. Woodpecker CI gives you a self-hosted, container-native pipeline system in minutes.

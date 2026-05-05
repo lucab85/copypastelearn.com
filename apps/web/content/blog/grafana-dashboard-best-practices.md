@@ -3,9 +3,10 @@ title: "Grafana Dashboard Best Practices"
 slug: "grafana-dashboard-best-practices"
 date: "2026-02-19"
 category: "DevOps"
-tags: ["Grafana", "Monitoring", "Dashboards", "Prometheus", "Observability"]
+tags: ["Grafana", "Monitoring", "Dashboards", "Prometheus", "observability"]
 excerpt: "Build effective Grafana dashboards. Layout patterns, variable templates, alert integration, and dashboard-as-code with JSON provisioning."
 description: "Build effective Grafana dashboards for monitoring. Layout patterns, template variables, alert integration, and dashboard-as-code."
+author: "Luca Berton"
 ---
 
 A good Grafana dashboard answers questions at a glance. A bad one is a wall of graphs nobody looks at. Here is how to build dashboards people actually use.

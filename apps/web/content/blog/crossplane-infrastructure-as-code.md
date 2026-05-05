@@ -4,6 +4,7 @@ date: "2026-04-14"
 description: "Crossplane lets you manage cloud infrastructure using Kubernetes custom resources. Learn how it works, how it compares to Terraform, and when to choose Crossplane for your platform."
 category: "DevOps"
 tags: ["crossplane", "kubernetes", "infrastructure-as-code", "platform-engineering", "cloud", "gitops"]
+author: "Luca Berton"
 ---
 
 Crossplane extends Kubernetes so you can manage cloud infrastructure using the same tools you use for workloads. Instead of writing Terraform, you write Kubernetes manifests. Instead of running `terraform apply`, you `kubectl apply`.

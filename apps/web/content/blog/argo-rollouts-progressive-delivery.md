@@ -4,6 +4,7 @@ date: "2026-03-07"
 description: "Argo Rollouts adds canary releases and blue-green deployments to Kubernetes with automated analysis and rollback. Learn how to set up progressive delivery with traffic shifting and metrics-based promotion."
 category: "DevOps"
 tags: ["argo-rollouts", "kubernetes", "canary", "blue-green", "progressive-delivery", "deployment"]
+author: "Luca Berton"
 ---
 
 Kubernetes Deployments do rolling updates: replace pods one by one. If the new version is broken, you find out after all pods are updated. Argo Rollouts adds canary and blue-green strategies with automated analysis — bad versions are rolled back before they affect all users.

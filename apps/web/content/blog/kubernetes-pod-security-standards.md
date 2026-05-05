@@ -3,9 +3,10 @@ title: "Kubernetes Pod Security Standards"
 slug: "kubernetes-pod-security-standards"
 date: "2026-02-08"
 category: "DevOps"
-tags: ["Kubernetes", "Security", "Pod Security", "DevOps", "Hardening"]
+tags: ["kubernetes", "Security", "Pod Security", "DevOps", "Hardening"]
 excerpt: "Implement Kubernetes Pod Security Standards. Privileged, Baseline, and Restricted profiles with Pod Security Admission examples."
 description: "Kubernetes Pod Security Standards for workload hardening. Privileged, Baseline, and Restricted profiles with YAML and migration tips."
+author: "Luca Berton"
 ---
 
 Pod Security Standards define three security profiles that restrict what pods can do. They replaced PodSecurityPolicy (removed in K8s 1.25) with a simpler, built-in admission controller.

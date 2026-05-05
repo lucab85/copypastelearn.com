@@ -3,7 +3,8 @@ title: "Renovate Automated Dependency Updates"
 date: "2026-03-17"
 description: "Renovate automatically creates pull requests for dependency updates across npm, pip, Docker, Terraform, and Helm. Learn how to configure Renovate for safe, automated dependency management."
 category: "Development"
-tags: ["renovate", "dependencies", "automation", "cicd", "security", "developer-tools"]
+tags: ["renovate", "dependencies", "Automation", "cicd", "Security", "developer-tools"]
+author: "Luca Berton"
 ---
 
 Outdated dependencies are security vulnerabilities waiting to happen. Renovate watches your repos and creates pull requests for every update — automatically, on schedule, with changelogs and compatibility scores.

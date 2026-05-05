@@ -3,7 +3,8 @@ title: "Sealed Secrets Kubernetes Guide"
 date: "2026-03-20"
 description: "Sealed Secrets encrypts Kubernetes secrets so you can store them safely in Git. Learn how to install Sealed Secrets, encrypt secrets, and manage key rotation for GitOps workflows."
 category: "DevOps"
-tags: ["sealed-secrets", "kubernetes", "secrets", "gitops", "security", "encryption"]
+tags: ["sealed-secrets", "kubernetes", "Secrets", "gitops", "Security", "Encryption"]
+author: "Luca Berton"
 ---
 
 Kubernetes Secrets are base64-encoded, not encrypted. Committing them to Git is a security incident waiting to happen. Sealed Secrets solves this: encrypt secrets client-side, store the encrypted version in Git, and only the cluster can decrypt them.

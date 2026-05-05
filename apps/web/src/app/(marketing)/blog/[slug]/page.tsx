@@ -109,19 +109,60 @@ function extractTOC(content: string): TOCItem[] {
   return items;
 }
 
+// Top-N related posts. To guarantee link flow reaches every post in the
+// corpus (no orphans), we always combine two strategies:
+//   - relevance picks via tag/category score
+//   - discovery picks via cyclic rotation over slug-sorted corpus
+// The cyclic rotation guarantees every post receives at least
+// RELATED_DISCOVER incoming discovery links (perfectly uniform distribution).
+const RELATED_LIMIT = 6;
+const RELATED_DISCOVER = 3; // reserved slots filled via cyclic rotation
 function getRelatedPosts(currentSlug: string, category: string, tags: string[]): BlogPost[] {
-  const all = getAllPosts();
+  const allPosts = getAllPosts();
+  const all = allPosts.filter((p) => p.slug !== currentSlug);
+  const tagSet = new Set(tags);
   const scored = all
-    .filter((p) => p.slug !== currentSlug)
     .map((p) => {
       let score = 0;
       if (p.category === category) score += 3;
-      score += p.tags.filter((t) => tags.includes(t)).length;
+      for (const t of p.tags) if (tagSet.has(t)) score += 1;
       return { post: p, score };
     })
     .filter((s) => s.score > 0)
     .sort((a, b) => b.score - a.score);
-  return scored.slice(0, 3).map((s) => s.post);
+
+  const relevanceCap = RELATED_LIMIT - RELATED_DISCOVER;
+  const picks: BlogPost[] = [];
+  const seen = new Set<string>();
+  for (const s of scored) {
+    if (picks.length >= relevanceCap) break;
+    picks.push(s.post);
+    seen.add(s.post.slug);
+  }
+
+  // Discovery slots: cyclic rotation over the slug-sorted corpus.
+  // Each anchor links to the next K posts in stable global order. This
+  // guarantees every post receives at least K incoming discovery links.
+  const sorted = [...allPosts].sort((a, b) => a.slug.localeCompare(b.slug));
+  const idx = sorted.findIndex((p) => p.slug === currentSlug);
+  if (idx >= 0) {
+    for (let step = 1; step <= sorted.length && picks.length < RELATED_LIMIT; step++) {
+      const cand = sorted[(idx + step) % sorted.length];
+      if (cand.slug === currentSlug || seen.has(cand.slug)) continue;
+      picks.push(cand);
+      seen.add(cand.slug);
+    }
+  }
+
+  // Top up remaining slots from leftover scored picks (rare).
+  for (const s of scored) {
+    if (picks.length >= RELATED_LIMIT) break;
+    if (!seen.has(s.post.slug)) {
+      picks.push(s.post);
+      seen.add(s.post.slug);
+    }
+  }
+  return picks;
 }
 
 /** Inline markdown formatting: bold, italic, code, links */

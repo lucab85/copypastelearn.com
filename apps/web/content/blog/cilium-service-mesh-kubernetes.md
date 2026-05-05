@@ -3,7 +3,8 @@ title: "Cilium Service Mesh Kubernetes"
 date: "2026-04-13"
 description: "Cilium replaces kube-proxy and sidecar service meshes with eBPF. Learn how Cilium handles networking, observability, and security in Kubernetes without sidecar containers."
 category: "DevOps"
-tags: ["cilium", "ebpf", "kubernetes", "service-mesh", "networking", "observability"]
+tags: ["cilium", "ebpf", "kubernetes", "service-mesh", "Networking", "observability"]
+author: "Luca Berton"
 ---
 
 Traditional service meshes inject a sidecar proxy into every pod. Cilium does the same job at the kernel level using eBPF — no sidecars, less overhead, fewer moving parts.

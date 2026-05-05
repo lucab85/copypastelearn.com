@@ -6,6 +6,7 @@ category: "DevOps"
 tags: ["SSH", "Security", "Linux", "DevOps", "Sysadmin"]
 excerpt: "Set up SSH keys properly and harden your SSH server. Key generation, agent forwarding, config file, and security best practices."
 description: "Set up SSH keys and harden your server. Key generation, agent forwarding, config file management, and security tips for remote access."
+author: "Luca Berton"
 ---
 
 SSH is how you access remote servers. Password authentication is convenient but insecure. SSH keys are both more secure and more convenient.

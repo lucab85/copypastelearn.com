@@ -3,7 +3,8 @@ title: "Talos Linux for Kubernetes"
 date: "2026-04-11"
 description: "Talos Linux is a minimal, immutable OS designed exclusively for running Kubernetes. Learn why it exists, how it works, and when to use it instead of Ubuntu or RHEL for your clusters."
 category: "DevOps"
-tags: ["talos", "kubernetes", "immutable-os", "linux", "security", "infrastructure"]
+tags: ["talos", "kubernetes", "immutable-os", "Linux", "Security", "infrastructure"]
+author: "Luca Berton"
 ---
 
 Talos Linux has no SSH, no shell, no package manager. It runs Kubernetes and nothing else. That constraint is the point.

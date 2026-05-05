@@ -4,6 +4,7 @@ date: "2026-02-10"
 description: "Benthos (now Redpanda Connect) is a declarative stream processor for ETL, data transformation, and message routing. Learn how to build data pipelines connecting Kafka, S3, databases, and APIs."
 category: "DevOps"
 tags: ["benthos", "stream-processing", "etl", "data-pipeline", "kafka", "redpanda"]
+author: "Luca Berton"
 ---
 
 You need to move data from Kafka to S3, transform JSON fields, filter events, and fan out to multiple destinations. Writing this in code means error handling, retries, backpressure, and observability. Benthos does it in YAML.

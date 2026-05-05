@@ -6,6 +6,7 @@ category: "DevOps"
 tags: ["Docker", "Docker Compose", "Development", "Tutorial", "Containers"]
 excerpt: "Master Docker Compose for local development. Build multi-service stacks with databases, caching, and hot reload in one command."
 description: "Master Docker Compose for local development. Multi-service stacks with databases, caching, and hot reload in one command."
+author: "Luca Berton"
 ---
 
 Docker Compose lets you define and run multi-container applications with a single YAML file. Instead of remembering 10 `docker run` commands, you run `docker compose up`.

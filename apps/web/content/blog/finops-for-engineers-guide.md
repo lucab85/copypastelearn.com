@@ -3,7 +3,8 @@ title: "FinOps for Engineers Practical Guide"
 date: "2026-04-09"
 description: "FinOps is not just for finance teams. Learn how engineers can reduce cloud costs with resource tagging, right-sizing, committed use discounts, and automated cost governance."
 category: "DevOps"
-tags: ["finops", "cloud-costs", "aws", "cost-optimization", "devops", "engineering"]
+tags: ["finops", "cloud-costs", "AWS", "cost-optimization", "DevOps", "engineering"]
+author: "Luca Berton"
 ---
 
 Your cloud bill is an engineering problem. Finance can negotiate contracts, but only engineers can fix the over-provisioned RDS instance that costs $400/month and uses 3% CPU.

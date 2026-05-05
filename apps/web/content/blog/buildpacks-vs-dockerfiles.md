@@ -3,7 +3,8 @@ title: "Buildpacks vs Dockerfiles Comparison"
 date: "2026-03-23"
 description: "Cloud Native Buildpacks automatically detect and build your app without a Dockerfile. Compare Buildpacks and Dockerfiles for build speed, security, and developer experience."
 category: "DevOps"
-tags: ["buildpacks", "docker", "containers", "cicd", "cloud-native", "developer-experience"]
+tags: ["buildpacks", "Docker", "Containers", "cicd", "cloud-native", "developer-experience"]
+author: "Luca Berton"
 ---
 
 Dockerfiles give you full control over image builds. Buildpacks detect your app type and build the image for you. The tradeoff is control versus convenience.

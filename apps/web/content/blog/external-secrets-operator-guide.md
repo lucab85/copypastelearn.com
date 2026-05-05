@@ -3,7 +3,8 @@ title: "External Secrets Operator Guide"
 date: "2026-02-22"
 description: "External Secrets Operator syncs secrets from AWS Secrets Manager, HashiCorp Vault, and Azure Key Vault into Kubernetes Secrets. Learn how to stop committing secrets to Git."
 category: "DevOps"
-tags: ["external-secrets", "kubernetes", "secrets-management", "vault", "aws", "gitops"]
+tags: ["external-secrets", "kubernetes", "secrets-management", "Vault", "AWS", "gitops"]
+author: "Luca Berton"
 ---
 
 GitOps says everything in Git. Secrets say otherwise. External Secrets Operator bridges the gap: secret definitions live in Git, actual values live in your secrets manager.

@@ -5,7 +5,7 @@ date: "2025-12-21"
 author: "Luca Berton"
 description: "Deploy and manage autonomous industrial systems with IIoT platforms, digital twins, predictive maintenance, and industrial DevOps practices."
 category: "DevOps"
-tags: ["industrial iot", "digital twins", "predictive maintenance", "industry 4.0", "automation"]
+tags: ["industrial iot", "digital twins", "predictive maintenance", "industry 4.0", "Automation"]
 ---
 
 Autonomous industrial systems — smart factories, automated warehouses, and self-optimizing production lines — are transforming manufacturing and logistics with AI-driven decision-making.

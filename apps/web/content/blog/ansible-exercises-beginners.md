@@ -6,6 +6,7 @@ category: "DevOps"
 tags: ["Ansible", "Exercises", "Practice", "Beginner", "Automation"]
 excerpt: "Practice Ansible with hands-on exercises. From basic playbooks to roles and Vault, each exercise builds real automation skills."
 description: "Practice Ansible with hands-on exercises. From basic playbooks to roles and Vault, build real automation skills step by step."
+author: "Luca Berton"
 ---
 
 Reading about Ansible is not enough — you need to practice. These exercises progress from basic to intermediate, each building on the last.

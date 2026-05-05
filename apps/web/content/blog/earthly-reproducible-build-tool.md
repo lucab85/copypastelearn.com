@@ -3,7 +3,8 @@ title: "Earthly Reproducible Build Tool"
 date: "2026-03-13"
 description: "Earthly combines Dockerfiles and Makefiles into reproducible, containerized builds. Learn how Earthly works, how to write Earthfiles, and when it replaces complex CI/CD configurations."
 category: "DevOps"
-tags: ["earthly", "builds", "cicd", "containers", "reproducible-builds", "automation"]
+tags: ["earthly", "builds", "cicd", "Containers", "reproducible-builds", "Automation"]
+author: "Luca Berton"
 ---
 
 Makefiles are not reproducible. Dockerfiles are not composable. Earthly combines both: Dockerfile-like syntax for containerized build steps, Makefile-like targets for composition. Every build runs the same everywhere.

@@ -3,7 +3,8 @@ title: "Pulumi Infrastructure as Code Guide"
 date: "2026-04-02"
 description: "Pulumi lets you write infrastructure in TypeScript, Python, Go, or C# with full programming language features. Learn how Pulumi works, how it compares to Terraform, and when to use it."
 category: "DevOps"
-tags: ["pulumi", "infrastructure-as-code", "typescript", "devops", "cloud", "automation"]
+tags: ["pulumi", "infrastructure-as-code", "typescript", "DevOps", "cloud", "Automation"]
+author: "Luca Berton"
 ---
 
 Pulumi uses real programming languages for infrastructure instead of domain-specific languages like HCL. If you already write TypeScript or Python, you can write infrastructure without learning a new syntax.

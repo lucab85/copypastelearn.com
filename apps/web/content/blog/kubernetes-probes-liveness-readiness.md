@@ -3,9 +3,10 @@ title: "Kubernetes Probes Liveness Readiness"
 slug: "kubernetes-probes-liveness-readiness"
 date: "2026-01-27"
 category: "DevOps"
-tags: ["Kubernetes", "Probes", "Health Checks", "DevOps", "Reliability"]
+tags: ["kubernetes", "Probes", "Health Checks", "DevOps", "Reliability"]
 excerpt: "Configure Kubernetes liveness, readiness, and startup probes. HTTP, TCP, exec checks with proper timing to avoid cascading failures."
 description: "Configure Kubernetes liveness, readiness, and startup probes. HTTP, TCP, exec checks with proper timing and misconfiguration fixes."
+author: "Luca Berton"
 ---
 
 Probes tell Kubernetes whether your application is alive, ready for traffic, and done starting up. Bad probe configuration causes either cascading restarts or traffic to broken pods.

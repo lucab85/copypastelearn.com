@@ -6,6 +6,7 @@ category: "DevOps"
 tags: ["Docker", "Containers", "Beginner", "Tutorial", "DevOps"]
 excerpt: "Complete Docker tutorial for beginners. Learn containers, images, Dockerfiles, volumes, networking, and Docker Compose step by step."
 description: "Complete Docker tutorial for beginners. Learn containers, images, Dockerfiles, volumes, networking, and Docker Compose step by step."
+author: "Luca Berton"
 ---
 
 Docker changed how we build, ship, and run software. This tutorial covers everything a beginner needs to go from zero to running containerized applications.

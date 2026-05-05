@@ -3,7 +3,8 @@ title: "Grafana Tempo Distributed Tracing"
 date: "2026-03-04"
 description: "Grafana Tempo stores distributed traces at scale with object storage. Learn how Tempo compares to Jaeger, how to deploy it on Kubernetes, and how to correlate traces with logs and metrics."
 category: "DevOps"
-tags: ["grafana-tempo", "distributed-tracing", "observability", "opentelemetry", "kubernetes", "grafana"]
+tags: ["grafana-tempo", "distributed-tracing", "observability", "opentelemetry", "kubernetes", "Grafana"]
+author: "Luca Berton"
 ---
 
 Jaeger stores traces in Elasticsearch or Cassandra — expensive to operate. Tempo stores traces in object storage (S3, GCS) with no indexing, making it 10-100x cheaper for the same trace volume.

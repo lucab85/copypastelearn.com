@@ -5,7 +5,7 @@ date: "2025-12-20"
 author: "Luca Berton"
 description: "Understand quantum computing fundamentals and their practical implications for DevOps engineers including cryptography, optimization, and infrastructure."
 category: "DevOps"
-tags: ["quantum computing", "qubits", "quantum algorithms", "cryptography", "optimization"]
+tags: ["quantum computing", "qubits", "quantum algorithms", "cryptography", "Optimization"]
 ---
 
 Quantum computing is transitioning from research labs to cloud services. DevOps engineers don't need to become physicists, but understanding the practical implications is essential.

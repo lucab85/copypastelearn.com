@@ -3,9 +3,10 @@ title: "Kubernetes Operators Explained"
 slug: "kubernetes-operators-explained"
 date: "2026-01-12"
 category: "DevOps"
-tags: ["Kubernetes", "Operators", "CRD", "Automation", "DevOps"]
+tags: ["kubernetes", "operators", "crd", "Automation", "DevOps"]
 excerpt: "Understand Kubernetes Operators. Custom Resource Definitions, controller pattern, popular operators, and when to build your own."
 description: "Kubernetes Operators for DevOps teams. CRDs, the controller pattern, popular community operators, and when to build your own."
+author: "Luca Berton"
 ---
 
 Operators extend Kubernetes to manage complex applications. Instead of writing runbooks, encode operational knowledge into software that watches and acts automatically.

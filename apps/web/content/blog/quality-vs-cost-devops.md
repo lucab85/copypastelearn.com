@@ -3,7 +3,8 @@ title: "Quality vs Cost in DevOps"
 date: "2026-04-26"
 description: "The quality-cost tradeoff in DevOps is real but misunderstood. Learn why cutting quality to reduce cost usually increases total cost, and how to find the right balance."
 category: "DevOps"
-tags: ["devops", "quality", "cost", "testing", "automation", "engineering-culture"]
+tags: ["DevOps", "quality", "cost", "testing", "Automation", "engineering-culture"]
+author: "Luca Berton"
 ---
 
 Every engineering team faces the same pressure: ship faster, spend less. Quality feels like the obvious thing to sacrifice. It rarely is.

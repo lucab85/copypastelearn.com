@@ -6,6 +6,7 @@ category: "DevOps"
 tags: ["Systemd", "Linux", "Services", "Sysadmin", "DevOps"]
 excerpt: "Write systemd service files for your applications. Unit configuration, restart policies, dependencies, timers, and debugging services."
 description: "Write systemd service files. Unit configuration, restart policies, dependency ordering, timer units, and debugging Linux services."
+author: "Luca Berton"
 ---
 
 systemd manages every service on modern Linux. If you deploy applications on Linux servers, you need to write service files.

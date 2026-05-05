@@ -3,7 +3,8 @@ title: "Karpenter Kubernetes Autoscaler"
 date: "2026-04-04"
 description: "Karpenter provisions the right Kubernetes nodes in seconds, not minutes. Learn how it replaces Cluster Autoscaler with faster, smarter node provisioning on AWS, Azure, and GCP."
 category: "DevOps"
-tags: ["karpenter", "kubernetes", "autoscaling", "aws", "node-provisioning", "cost-optimization"]
+tags: ["karpenter", "kubernetes", "autoscaling", "AWS", "node-provisioning", "cost-optimization"]
+author: "Luca Berton"
 ---
 
 Cluster Autoscaler scales node groups. Karpenter provisions individual nodes based on pod requirements. The difference sounds subtle but changes how fast your cluster responds to demand.

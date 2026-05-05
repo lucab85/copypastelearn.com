@@ -3,7 +3,8 @@ title: "Spacelift Terraform Orchestration"
 date: "2026-02-18"
 description: "Spacelift orchestrates Terraform, OpenTofu, and Pulumi with policies, drift detection, and approval workflows. Learn how Spacelift compares to Terraform Cloud and Atlantis for IaC management."
 category: "DevOps"
-tags: ["spacelift", "terraform", "iac", "orchestration", "gitops", "infrastructure"]
+tags: ["spacelift", "Terraform", "IaC", "Orchestration", "gitops", "infrastructure"]
+author: "Luca Berton"
 ---
 
 Terraform Cloud manages state and runs plans. Atlantis comments on PRs. Spacelift does both and adds policies, drift detection, dependencies between stacks, and fine-grained access control.

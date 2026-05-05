@@ -4,6 +4,7 @@ date: "2026-03-05"
 description: "Backstage's software catalog gives you a single inventory of all services, APIs, and infrastructure. Learn how to register components, define system models, and build a searchable developer portal."
 category: "DevOps"
 tags: ["backstage", "software-catalog", "developer-portal", "platform-engineering", "microservices", "documentation"]
+author: "Luca Berton"
 ---
 
 When your organization hits 50+ microservices, nobody knows what exists. "Who owns the payment service?" becomes a Slack thread. "What API does the inventory service expose?" requires reading source code. Backstage's software catalog solves this.

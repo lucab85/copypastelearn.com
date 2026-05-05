@@ -3,9 +3,10 @@ title: "AWS IAM Roles and Policies Guide"
 slug: "aws-iam-roles-policies-guide"
 date: "2026-03-06"
 category: "DevOps"
-tags: ["AWS", "IAM", "Security", "Cloud", "DevOps"]
+tags: ["AWS", "IAM", "Security", "cloud", "DevOps"]
 excerpt: "Understand AWS IAM roles, policies, and best practices. Least privilege, role assumption, service roles, and Terraform IAM automation."
 description: "Understand AWS IAM roles, policies, and best practices for secure cloud access. Least privilege principles, role assumption, and Terraform IAM automation patterns."
+author: "Luca Berton"
 ---
 
 IAM (Identity and Access Management) controls who can do what in AWS. Getting it wrong means either security breaches or blocked deployments. This guide covers what DevOps engineers need.

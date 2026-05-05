@@ -4,7 +4,7 @@ description: "Learn how to deploy and manage ML models at scale using MLflow, Ku
 date: "2026-02-27"
 author: "Luca Berton"
 category: "MLOps"
-tags: ["MLflow", "Kubernetes", "MLOps"]
+tags: ["MLflow", "kubernetes", "MLOps"]
 ---
 
 ## Why MLflow + Kubernetes?

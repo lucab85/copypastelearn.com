@@ -5,7 +5,7 @@ date: "2025-12-13"
 author: "Luca Berton"
 description: "Manage polyfunctional robot fleets with DevOps practices including software deployment, fleet orchestration, simulation testing, and edge computing."
 category: "AI Tools"
-tags: ["robots", "fleet management", "edge computing", "ros", "automation"]
+tags: ["robots", "fleet management", "edge computing", "ros", "Automation"]
 ---
 
 Polyfunctional robots — machines that perform multiple tasks in changing environments — are entering warehouses, hospitals, and data centers. Managing their software lifecycle requires DevOps practices adapted for physical systems.

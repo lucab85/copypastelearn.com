@@ -3,9 +3,10 @@ title: "Docker Compose Production Patterns"
 slug: "docker-compose-production-patterns"
 date: "2026-02-10"
 category: "DevOps"
-tags: ["Docker", "Docker Compose", "Production", "DevOps", "Deployment"]
+tags: ["Docker", "Docker Compose", "Production", "DevOps", "deployment"]
 excerpt: "Production-ready Docker Compose patterns. Health checks, resource limits, logging, secrets, networking, and multi-environment configs."
 description: "Production-ready Docker Compose patterns. Health checks, resource limits, structured logging, secrets management, and multi-environment configs."
+author: "Luca Berton"
 ---
 
 Docker Compose is not just for development. With the right patterns, it runs production workloads on single servers reliably.

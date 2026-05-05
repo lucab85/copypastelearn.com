@@ -3,9 +3,10 @@ title: "Container Security Best Practices"
 slug: "container-security-best-practices"
 date: "2026-03-10"
 category: "DevOps"
-tags: ["Container", "Security", "Docker", "Kubernetes", "DevSecOps"]
+tags: ["Container", "Security", "Docker", "kubernetes", "devsecops"]
 excerpt: "Secure your containers in production. Image scanning, rootless containers, read-only filesystems, secrets management, and runtime security."
 description: "Secure containers in production. Image scanning, rootless, read-only filesystems, secrets management, and runtime security."
+author: "Luca Berton"
 ---
 
 Running containers in production without security hardening is like leaving your front door open. These are the practices that prevent container breaches.

@@ -3,7 +3,8 @@ title: "Argo Events Kubernetes Automation"
 date: "2026-02-15"
 description: "Argo Events triggers Kubernetes workflows from webhooks, message queues, S3 uploads, and cron schedules. Learn how to build event-driven automation pipelines with sensors and triggers."
 category: "DevOps"
-tags: ["argo-events", "kubernetes", "event-driven", "automation", "webhooks", "workflows"]
+tags: ["argo-events", "kubernetes", "event-driven", "Automation", "webhooks", "workflows"]
+author: "Luca Berton"
 ---
 
 A file lands in S3. A webhook fires from GitHub. A message appears in Kafka. Something needs to happen. Argo Events listens for these events and triggers Kubernetes workflows, jobs, or any API call in response.

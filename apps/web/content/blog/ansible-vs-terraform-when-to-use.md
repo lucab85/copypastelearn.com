@@ -3,7 +3,8 @@ title: "Ansible vs Terraform When to Use"
 date: "2026-04-16"
 description: "Ansible and Terraform solve different infrastructure problems. Learn when to use each, when to use both together, and how they complement each other in real-world DevOps workflows."
 category: "DevOps"
-tags: ["ansible", "terraform", "infrastructure-as-code", "configuration-management", "devops", "automation"]
+tags: ["Ansible", "Terraform", "infrastructure-as-code", "configuration-management", "DevOps", "Automation"]
+author: "Luca Berton"
 ---
 
 Ansible and Terraform are not competitors. They solve different problems at different layers. Using the wrong tool for the job creates unnecessary complexity.

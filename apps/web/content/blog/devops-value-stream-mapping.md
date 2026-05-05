@@ -6,6 +6,7 @@ category: "DevOps"
 tags: ["Value Stream", "DevOps", "Lean", "CI/CD", "Process"]
 excerpt: "Apply value stream mapping to your DevOps pipeline. Identify bottlenecks, reduce lead time, and optimize your delivery process end to end."
 description: "Apply value stream mapping to DevOps pipelines. Identify bottlenecks, reduce lead time, and optimize delivery end to end."
+author: "Luca Berton"
 ---
 
 Value stream mapping (VSM) visualizes every step from code commit to production deployment. In DevOps, it reveals where time is wasted and where automation can accelerate delivery.

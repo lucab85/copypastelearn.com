@@ -5,7 +5,7 @@ date: "2026-01-02"
 author: "Luca Berton"
 description: "Learn how agentic AI transforms DevOps workflows with autonomous agents that handle deployments, incident response, and infrastructure management."
 category: "AI Tools"
-tags: ["agentic ai", "devops", "automation", "ai agents", "llm"]
+tags: ["agentic ai", "DevOps", "Automation", "ai agents", "LLM"]
 ---
 
 Agentic AI represents a paradigm shift from traditional automation. Instead of scripted pipelines that follow rigid rules, AI agents can reason, plan, and execute multi-step workflows autonomously.

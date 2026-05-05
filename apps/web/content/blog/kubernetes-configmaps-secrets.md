@@ -3,9 +3,10 @@ title: "Kubernetes ConfigMaps and Secrets"
 slug: "kubernetes-configmaps-secrets"
 date: "2026-02-22"
 category: "DevOps"
-tags: ["Kubernetes", "ConfigMap", "Secrets", "DevOps", "Configuration"]
+tags: ["kubernetes", "ConfigMap", "Secrets", "DevOps", "Configuration"]
 excerpt: "Manage configuration in Kubernetes with ConfigMaps and Secrets. Environment variables, volume mounts, and external secrets operators."
 description: "Manage Kubernetes configuration with ConfigMaps and Secrets. Environment variables, volume mounts, external operators, and rotation."
+author: "Luca Berton"
 ---
 
 Kubernetes separates configuration from container images using ConfigMaps (non-sensitive) and Secrets (sensitive). Change config without rebuilding images.

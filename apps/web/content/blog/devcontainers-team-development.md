@@ -3,7 +3,8 @@ title: "DevContainers for Team Development"
 date: "2026-04-07"
 description: "Dev Containers standardize development environments using Docker. Learn how to set up devcontainers for your team with VS Code, GitHub Codespaces, and custom features."
 category: "Development"
-tags: ["devcontainers", "docker", "vscode", "developer-experience", "codespaces", "development-environment"]
+tags: ["devcontainers", "Docker", "vscode", "developer-experience", "codespaces", "development-environment"]
+author: "Luca Berton"
 ---
 
 New developer onboarding should not take a week. With Dev Containers, it takes one click: open the repo, the environment builds itself, and every tool is pre-installed at the right version.

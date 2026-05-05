@@ -6,6 +6,7 @@ category: "DevOps"
 tags: ["Ansible", "Automation", "Free Course", "Beginner"]
 excerpt: "Start learning Ansible for free with hands-on examples. Master playbooks, inventory, modules, and roles to automate your infrastructure."
 description: "Start learning Ansible for free with hands-on examples. Master playbooks, inventory, modules, and roles to automate infrastructure."
+author: "Luca Berton"
 ---
 
 Ansible is the most popular agentless automation tool for IT infrastructure. You can **learn Ansible free** right now — no credit card, no paywall for the first lessons.

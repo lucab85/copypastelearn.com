@@ -3,7 +3,8 @@ title: "OPA Gatekeeper Kubernetes Policies"
 date: "2026-03-21"
 description: "OPA Gatekeeper enforces custom policies in Kubernetes at admission time. Learn how to write ConstraintTemplates, enforce security standards, and prevent misconfigurations before deployment."
 category: "DevOps"
-tags: ["opa", "gatekeeper", "kubernetes", "policy", "security", "admission-control"]
+tags: ["opa", "gatekeeper", "kubernetes", "policy", "Security", "admission-control"]
+author: "Luca Berton"
 ---
 
 Kubernetes lets you deploy anything. OPA Gatekeeper lets you define what "anything" should not include — no privileged containers, no `latest` tags, no missing resource limits, no public load balancers in production.

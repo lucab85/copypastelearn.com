@@ -3,7 +3,8 @@ title: "Quality vs Throughput in DevOps"
 date: "2026-04-24"
 description: "High throughput and high quality are not mutually exclusive in DevOps. Learn how to increase deployment frequency without sacrificing reliability using automation, testing, and progressive delivery."
 category: "DevOps"
-tags: ["devops", "throughput", "quality", "cicd", "deployment", "dora-metrics"]
+tags: ["DevOps", "throughput", "quality", "cicd", "deployment", "dora-metrics"]
+author: "Luca Berton"
 ---
 
 The DORA metrics say elite teams deploy multiple times per day with a change failure rate under 5%. That sounds impossible if you think quality and throughput are opposites. They are not — but only if you invest in the right infrastructure.

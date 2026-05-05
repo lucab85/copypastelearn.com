@@ -6,6 +6,7 @@ category: "DevOps"
 tags: ["Nginx", "Caddy", "Traefik", "Reverse Proxy", "Web Server"]
 excerpt: "Compare Nginx, Caddy, and Traefik for reverse proxy and web serving. Auto-HTTPS, config complexity, performance, and Docker integration."
 description: "Compare Nginx, Caddy, and Traefik as reverse proxies. Auto-HTTPS, config complexity, performance, and container integration."
+author: "Luca Berton"
 ---
 
 Choosing a reverse proxy is one of the first infrastructure decisions for any web application. Nginx, Caddy, and Traefik each take a different approach.

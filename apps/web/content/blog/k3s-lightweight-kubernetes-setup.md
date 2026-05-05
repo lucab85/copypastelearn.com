@@ -4,6 +4,7 @@ date: "2026-02-03"
 description: "K3s is a lightweight Kubernetes distribution that runs on edge devices, Raspberry Pis, and VMs with a single binary. Learn how to install K3s, add agents, and deploy workloads in minutes."
 category: "DevOps"
 tags: ["k3s", "kubernetes", "lightweight", "edge-computing", "raspberry-pi", "homelab"]
+author: "Luca Berton"
 ---
 
 Full Kubernetes needs etcd, a control plane with multiple components, and significant resources. K3s packages everything into a single 70MB binary that runs on a Raspberry Pi.

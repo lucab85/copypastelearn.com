@@ -1,0 +1,665 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+<channel>
+  <title>CopyPasteLearn — Hands-on Tech Courses</title>
+  <link>https://www.copypastelearn.com/</link>
+  <atom:link href="https://www.copypastelearn.com/feed.xml" rel="self" type="application/rss+xml" />
+  <description>Hands-on courses and tutorials for DevOps, automation, AI, and platform engineering.</description>
+  <language>en-US</language>
+  <lastBuildDate>Mon, 09 Feb 2026 12:00:00 GMT</lastBuildDate>
+  <generator>CopyPasteLearn generate-rss.cjs</generator>
+  <item>
+    <title>10 Things to Do After Installing OpenClaw</title>
+    <link>https://www.copypastelearn.com/blog/10-things-after-installing-openclaw</link>
+    <guid isPermaLink="true">https://www.copypastelearn.com/blog/10-things-after-installing-openclaw</guid>
+    <pubDate>Mon, 09 Feb 2026 12:00:00 GMT</pubDate>
+    <dc:creator>Luca Berton</dc:creator>
+      <category>OpenClaw</category>
+      <category>Getting Started</category>
+      <category>Tips</category>
+    <description>Just installed OpenClaw? Here are 10 essential setup steps to get the most out of your AI agent — from personality to automation.</description>
+  </item>
+  <item>
+    <title>Agentic AI for DevOps Teams</title>
+    <link>https://www.copypastelearn.com/blog/agentic-ai-devops-guide</link>
+    <guid isPermaLink="true">https://www.copypastelearn.com/blog/agentic-ai-devops-guide</guid>
+    <pubDate>Fri, 02 Jan 2026 12:00:00 GMT</pubDate>
+    <dc:creator>Luca Berton</dc:creator>
+      <category>agentic ai</category>
+      <category>devops</category>
+      <category>automation</category>
+      <category>ai agents</category>
+      <category>llm</category>
+    <description>Learn how agentic AI transforms DevOps workflows with autonomous agents that handle deployments, incident response, and infrastructure management.</description>
+  </item>
+  <item>
+    <title>AI Governance and Compliance</title>
+    <link>https://www.copypastelearn.com/blog/ai-governance-compliance-guide</link>
+    <guid isPermaLink="true">https://www.copypastelearn.com/blog/ai-governance-compliance-guide</guid>
+    <pubDate>Wed, 10 Dec 2025 12:00:00 GMT</pubDate>
+    <dc:creator>Luca Berton</dc:creator>
+      <category>ai governance</category>
+      <category>eu ai act</category>
+      <category>model registry</category>
+      <category>bias monitoring</category>
+      <category>explainability</category>
+    <description>Implement AI governance frameworks with model registries, bias monitoring, explainability tools, and regulatory compliance for the EU AI Act and beyond.</description>
+  </item>
+  <item>
+    <title>AI Infrastructure Cost Optimization</title>
+    <link>https://www.copypastelearn.com/blog/ai-infrastructure-cost-optimization</link>
+    <guid isPermaLink="true">https://www.copypastelearn.com/blog/ai-infrastructure-cost-optimization</guid>
+    <pubDate>Tue, 23 Dec 2025 12:00:00 GMT</pubDate>
+    <dc:creator>Luca Berton</dc:creator>
+      <category>ai costs</category>
+      <category>gpu optimization</category>
+      <category>ml infrastructure</category>
+      <category>cost management</category>
+      <category>model serving</category>
+    <description>Reduce AI infrastructure costs with GPU scheduling, model optimization, spot instances, and intelligent routing strategies for ML workloads.</description>
+  </item>
+  <item>
+    <title>AI-Native Software Development</title>
+    <link>https://www.copypastelearn.com/blog/ai-native-software-development</link>
+    <guid isPermaLink="true">https://www.copypastelearn.com/blog/ai-native-software-development</guid>
+    <pubDate>Fri, 19 Dec 2025 12:00:00 GMT</pubDate>
+    <dc:creator>Luca Berton</dc:creator>
+      <category>ai coding</category>
+      <category>ai development</category>
+      <category>copilot</category>
+      <category>automated testing</category>
+      <category>code review</category>
+    <description>Explore AI-native software development practices including AI-assisted coding, automated testing, intelligent code review, and AI-driven architecture.</description>
+  </item>
+  <item>
+    <title>AI Platform Engineering Explained</title>
+    <link>https://www.copypastelearn.com/blog/ai-platform-engineering-guide</link>
+    <guid isPermaLink="true">https://www.copypastelearn.com/blog/ai-platform-engineering-guide</guid>
+    <pubDate>Sat, 28 Mar 2026 12:00:00 GMT</pubDate>
+    <dc:creator>Luca Berton</dc:creator>
+      <category>AI</category>
+      <category>platform engineering</category>
+      <category>GenAI</category>
+      <category>LLM</category>
+      <category>RAG</category>
+      <category>MLOps</category>
+    <description>Learn what AI platform engineering is, why enterprises need it, and how to build production-grade GenAI infrastructure from scratch with proven DevOps practices.</description>
+  </item>
+  <item>
+    <title>AI Security Platform Engineering</title>
+    <link>https://www.copypastelearn.com/blog/ai-security-platform-engineering</link>
+    <guid isPermaLink="true">https://www.copypastelearn.com/blog/ai-security-platform-engineering</guid>
+    <pubDate>Mon, 29 Dec 2025 12:00:00 GMT</pubDate>
+    <dc:creator>Luca Berton</dc:creator>
+      <category>ai security</category>
+      <category>llm security</category>
+      <category>platform engineering</category>
+      <category>guardrails</category>
+      <category>prompt injection</category>
+    <description>Build secure AI platforms with guardrails, prompt injection defense, model access controls, and observability for production LLM deployments.</description>
+  </item>
+  <item>
+    <title>AI Supercomputing Infrastructure</title>
+    <link>https://www.copypastelearn.com/blog/ai-supercomputing-gpu-clusters</link>
+    <guid isPermaLink="true">https://www.copypastelearn.com/blog/ai-supercomputing-gpu-clusters</guid>
+    <pubDate>Wed, 31 Dec 2025 12:00:00 GMT</pubDate>
+    <dc:creator>Luca Berton</dc:creator>
+      <category>gpu clusters</category>
+      <category>ai infrastructure</category>
+      <category>kubernetes</category>
+      <category>ml training</category>
+      <category>supercomputing</category>
+    <description>Explore how GPU clusters and AI supercomputing infrastructure power modern ML training with Kubernetes orchestration and cost optimization.</description>
+  </item>
+  <item>
+    <title>Alpine Linux for Containers</title>
+    <link>https://www.copypastelearn.com/blog/alpine-linux-for-containers</link>
+    <guid isPermaLink="true">https://www.copypastelearn.com/blog/alpine-linux-for-containers</guid>
+    <pubDate>Wed, 18 Mar 2026 12:00:00 GMT</pubDate>
+    <dc:creator>Luca Berton</dc:creator>
+      <category>Linux</category>
+      <category>Alpine</category>
+      <category>Docker</category>
+      <category>Containers</category>
+    <description>Alpine Linux produces the smallest Docker images. Learn why it's the go-to base for containers and when to use it vs Debian-slim.</description>
+  </item>
+  <item>
+    <title>Ambient Intelligence Systems</title>
+    <link>https://www.copypastelearn.com/blog/ambient-intelligence-systems-guide</link>
+    <guid isPermaLink="true">https://www.copypastelearn.com/blog/ambient-intelligence-systems-guide</guid>
+    <pubDate>Mon, 15 Dec 2025 12:00:00 GMT</pubDate>
+    <dc:creator>Luca Berton</dc:creator>
+      <category>ambient intelligence</category>
+      <category>smart environments</category>
+      <category>sensor fusion</category>
+      <category>context-aware</category>
+      <category>edge computing</category>
+    <description>Build ambient intelligence systems with sensor fusion, edge AI, context-aware computing, and smart environment infrastructure for workplaces.</description>
+  </item>
+  <item>
+    <title>Ansible Automation in Minutes</title>
+    <link>https://www.copypastelearn.com/blog/ansible-automation-beginners-guide</link>
+    <guid isPermaLink="true">https://www.copypastelearn.com/blog/ansible-automation-beginners-guide</guid>
+    <pubDate>Wed, 25 Feb 2026 12:00:00 GMT</pubDate>
+    <dc:creator>Luca Berton</dc:creator>
+      <category>Ansible</category>
+      <category>Automation</category>
+      <category>Infrastructure as Code</category>
+    <description>A beginner-friendly introduction to Ansible — what it is, how it works, and how to write your first playbook to automate server configuration.</description>
+  </item>
+  <item>
+    <title>Ansible Automation Platform Guide</title>
+    <link>https://www.copypastelearn.com/blog/ansible-automation-platform-guide</link>
+    <guid isPermaLink="true">https://www.copypastelearn.com/blog/ansible-automation-platform-guide</guid>
+    <pubDate>Thu, 02 Apr 2026 12:00:00 GMT</pubDate>
+    <dc:creator>Luca Berton</dc:creator>
+      <category>Ansible</category>
+      <category>AAP</category>
+      <category>Red Hat</category>
+      <category>Automation Platform</category>
+      <category>Enterprise</category>
+    <description>Red Hat Ansible Automation Platform explained. Compare AAP vs open-source Ansible, learn Controller, Hub, and EE architecture.</description>
+  </item>
+  <item>
+    <title>Ansible Exercises for Beginners</title>
+    <link>https://www.copypastelearn.com/blog/ansible-exercises-beginners</link>
+    <guid isPermaLink="true">https://www.copypastelearn.com/blog/ansible-exercises-beginners</guid>
+    <pubDate>Sun, 05 Apr 2026 12:00:00 GMT</pubDate>
+    <dc:creator>Luca Berton</dc:creator>
+      <category>Ansible</category>
+      <category>Exercises</category>
+      <category>Practice</category>
+      <category>Beginner</category>
+      <category>Automation</category>
+    <description>Practice Ansible with hands-on exercises. From basic playbooks to roles and Vault, build real automation skills step by step.</description>
+  </item>
+  <item>
+    <title>Ansible Galaxy Roles Collections</title>
+    <link>https://www.copypastelearn.com/blog/ansible-galaxy-roles-collections</link>
+    <guid isPermaLink="true">https://www.copypastelearn.com/blog/ansible-galaxy-roles-collections</guid>
+    <pubDate>Tue, 20 Jan 2026 12:00:00 GMT</pubDate>
+    <dc:creator>Luca Berton</dc:creator>
+      <category>Ansible</category>
+      <category>Galaxy</category>
+      <category>Roles</category>
+      <category>Collections</category>
+      <category>Automation</category>
+    <description>Use Ansible Galaxy to find, install, and manage reusable roles and collections. Learn requirements files, version pinning, and publishing your own content to Galaxy.</description>
+  </item>
+  <item>
+    <title>Ansible Handlers and Notifications</title>
+    <link>https://www.copypastelearn.com/blog/ansible-handlers-notifications</link>
+    <guid isPermaLink="true">https://www.copypastelearn.com/blog/ansible-handlers-notifications</guid>
+    <pubDate>Sat, 10 Jan 2026 12:00:00 GMT</pubDate>
+    <dc:creator>Luca Berton</dc:creator>
+      <category>Ansible</category>
+      <category>Handlers</category>
+      <category>Notifications</category>
+      <category>Automation</category>
+      <category>DevOps</category>
+    <description>Master Ansible handlers for triggered actions. Learn to restart services, flush handlers, use handler chains, and implement idempotent notification patterns.</description>
+  </item>
+  <item>
+    <title>Ansible Infrastructure as Code Guide</title>
+    <link>https://www.copypastelearn.com/blog/ansible-infrastructure-as-code</link>
+    <guid isPermaLink="true">https://www.copypastelearn.com/blog/ansible-infrastructure-as-code</guid>
+    <pubDate>Mon, 06 Apr 2026 12:00:00 GMT</pubDate>
+    <dc:creator>Luca Berton</dc:creator>
+      <category>Ansible</category>
+      <category>IaC</category>
+      <category>Infrastructure as Code</category>
+      <category>Automation</category>
+      <category>DevOps</category>
+    <description>Use Ansible as your Infrastructure as Code tool. Learn how playbooks define, version, and automate your entire infrastructure.</description>
+  </item>
+  <item>
+    <title>Ansible Inventory Management Guide</title>
+    <link>https://www.copypastelearn.com/blog/ansible-inventory-management-guide</link>
+    <guid isPermaLink="true">https://www.copypastelearn.com/blog/ansible-inventory-management-guide</guid>
+    <pubDate>Mon, 23 Feb 2026 12:00:00 GMT</pubDate>
+    <dc:creator>Luca Berton</dc:creator>
+      <category>Ansible</category>
+      <category>Inventory</category>
+      <category>Automation</category>
+      <category>DevOps</category>
+      <category>Configuration</category>
+    <description>Master Ansible inventory management with static and dynamic inventories, host groups, variables, patterns, and seamless cloud provider integration for automation.</description>
+  </item>
+  <item>
+    <title>Ansible Inventory: Static and Dynamic</title>
+    <link>https://www.copypastelearn.com/blog/ansible-inventory-static-dynamic</link>
+    <guid isPermaLink="true">https://www.copypastelearn.com/blog/ansible-inventory-static-dynamic</guid>
+    <pubDate>Mon, 13 Apr 2026 12:00:00 GMT</pubDate>
+    <dc:creator>Luca Berton</dc:creator>
+      <category>Ansible</category>
+      <category>Inventory</category>
+      <category>Automation</category>
+      <category>AWS</category>
+      <category>DevOps</category>
+    <description>Master Ansible inventory in INI and YAML formats. Learn host groups, variables, dynamic inventory plugins for AWS and Azure, and patterns for scaling automation.</description>
+  </item>
+  <item>
+    <title>Ansible Jinja2 Templates Guide</title>
+    <link>https://www.copypastelearn.com/blog/ansible-jinja2-templates-guide</link>
+    <guid isPermaLink="true">https://www.copypastelearn.com/blog/ansible-jinja2-templates-guide</guid>
+    <pubDate>Thu, 26 Feb 2026 12:00:00 GMT</pubDate>
+    <dc:creator>Luca Berton</dc:creator>
+      <category>Ansible</category>
+      <category>Jinja2</category>
+      <category>Templates</category>
+      <category>Automation</category>
+      <category>DevOps</category>
+    <description>Master Jinja2 templates in Ansible for dynamic configuration. Variables, filters, loops, conditionals, and real-world config file generation examples for DevOps.</description>
+  </item>
+  <item>
+    <title>Ansible Playbook for Docker Install</title>
+    <link>https://www.copypastelearn.com/blog/ansible-playbook-docker-install</link>
+    <guid isPermaLink="true">https://www.copypastelearn.com/blog/ansible-playbook-docker-install</guid>
+    <pubDate>Fri, 10 Apr 2026 12:00:00 GMT</pubDate>
+    <dc:creator>Luca Berton</dc:creator>
+      <category>Ansible</category>
+      <category>Docker</category>
+      <category>Automation</category>
+      <category>Ubuntu</category>
+      <category>RHEL</category>
+    <description>Automate Docker installation on Ubuntu and RHEL with an Ansible playbook. Includes Compose plugin and post-install steps.</description>
+  </item>
+  <item>
+    <title>Ansible Playbook Error Handling</title>
+    <link>https://www.copypastelearn.com/blog/ansible-playbook-error-handling</link>
+    <guid isPermaLink="true">https://www.copypastelearn.com/blog/ansible-playbook-error-handling</guid>
+    <pubDate>Sat, 07 Feb 2026 12:00:00 GMT</pubDate>
+    <dc:creator>Luca Berton</dc:creator>
+      <category>Ansible</category>
+      <category>Error Handling</category>
+      <category>Automation</category>
+      <category>DevOps</category>
+      <category>Reliability</category>
+    <description>Handle errors gracefully in Ansible playbooks. Learn ignore_errors, rescue blocks, retries, assertions, and proven recovery patterns for reliable automation.</description>
+  </item>
+  <item>
+    <title>Ansible Roles Reusable Automation</title>
+    <link>https://www.copypastelearn.com/blog/ansible-roles-reusable-automation</link>
+    <guid isPermaLink="true">https://www.copypastelearn.com/blog/ansible-roles-reusable-automation</guid>
+    <pubDate>Sat, 14 Feb 2026 12:00:00 GMT</pubDate>
+    <dc:creator>Luca Berton</dc:creator>
+      <category>Ansible</category>
+      <category>Roles</category>
+      <category>Automation</category>
+      <category>DevOps</category>
+      <category>Configuration Management</category>
+    <description>Structure Ansible automation with roles for reusability. Directory layout, defaults, handlers, Galaxy integration, and testing with Molecule for production-ready code.</description>
+  </item>
+  <item>
+    <title>Ansible Vault: Encrypt Secrets Safely</title>
+    <link>https://www.copypastelearn.com/blog/ansible-vault-encrypt-secrets</link>
+    <guid isPermaLink="true">https://www.copypastelearn.com/blog/ansible-vault-encrypt-secrets</guid>
+    <pubDate>Wed, 08 Apr 2026 12:00:00 GMT</pubDate>
+    <dc:creator>Luca Berton</dc:creator>
+      <category>Ansible</category>
+      <category>Vault</category>
+      <category>Secrets</category>
+      <category>Encryption</category>
+      <category>DevOps</category>
+    <description>Learn Ansible Vault to encrypt passwords, API keys, and variables. Covers vault create, edit, encrypt_string, and CI/CD usage.</description>
+  </item>
+  <item>
+    <title>Ansible Vault Secrets Encryption</title>
+    <link>https://www.copypastelearn.com/blog/ansible-vault-secrets-encryption</link>
+    <guid isPermaLink="true">https://www.copypastelearn.com/blog/ansible-vault-secrets-encryption</guid>
+    <pubDate>Wed, 28 Jan 2026 12:00:00 GMT</pubDate>
+    <dc:creator>Luca Berton</dc:creator>
+      <category>Ansible</category>
+      <category>Vault</category>
+      <category>Encryption</category>
+      <category>Secrets</category>
+      <category>Security</category>
+    <description>Encrypt secrets with Ansible Vault for secure automation. Cover file encryption, string-level vaulting, multi-password setups, and CI/CD pipeline integration.</description>
+  </item>
+  <item>
+    <title>Ansible vs Terraform vs Puppet Guide</title>
+    <link>https://www.copypastelearn.com/blog/ansible-vs-terraform-vs-puppet</link>
+    <guid isPermaLink="true">https://www.copypastelearn.com/blog/ansible-vs-terraform-vs-puppet</guid>
+    <pubDate>Tue, 17 Mar 2026 12:00:00 GMT</pubDate>
+    <dc:creator>Luca Berton</dc:creator>
+      <category>Ansible</category>
+      <category>Terraform</category>
+      <category>Puppet</category>
+      <category>IaC</category>
+      <category>Comparison</category>
+    <description>Compare Ansible, Terraform, and Puppet for infrastructure automation. Understand when to use each tool and how they complement each other in modern DevOps workflows.</description>
+  </item>
+  <item>
+    <title>Ansible vs Terraform When to Use</title>
+    <link>https://www.copypastelearn.com/blog/ansible-vs-terraform-when-to-use</link>
+    <guid isPermaLink="true">https://www.copypastelearn.com/blog/ansible-vs-terraform-when-to-use</guid>
+    <pubDate>Thu, 16 Apr 2026 12:00:00 GMT</pubDate>
+    <dc:creator>Luca Berton</dc:creator>
+      <category>ansible</category>
+      <category>terraform</category>
+      <category>infrastructure-as-code</category>
+      <category>configuration-management</category>
+      <category>devops</category>
+      <category>automation</category>
+    <description>Ansible and Terraform solve different infrastructure problems. Learn when to use each, when to use both together, and how they complement each other in real-world DevOps workflows.</description>
+  </item>
+  <item>
+    <title>Arch Linux: Full Control DIY</title>
+    <link>https://www.copypastelearn.com/blog/arch-linux-full-control-diy</link>
+    <guid isPermaLink="true">https://www.copypastelearn.com/blog/arch-linux-full-control-diy</guid>
+    <pubDate>Thu, 12 Mar 2026 12:00:00 GMT</pubDate>
+    <dc:creator>Luca Berton</dc:creator>
+      <category>Linux</category>
+      <category>Arch Linux</category>
+      <category>Rolling Release</category>
+      <category>Advanced</category>
+    <description>Arch Linux gives you complete control over every package and configuration. Learn what makes Arch unique and whether it's right for you in 2026.</description>
+  </item>
+  <item>
+    <title>Argo Events Kubernetes Automation</title>
+    <link>https://www.copypastelearn.com/blog/argo-events-kubernetes-automation</link>
+    <guid isPermaLink="true">https://www.copypastelearn.com/blog/argo-events-kubernetes-automation</guid>
+    <pubDate>Sun, 15 Feb 2026 12:00:00 GMT</pubDate>
+    <dc:creator>Luca Berton</dc:creator>
+      <category>argo-events</category>
+      <category>kubernetes</category>
+      <category>event-driven</category>
+      <category>automation</category>
+      <category>webhooks</category>
+      <category>workflows</category>
+    <description>Argo Events triggers Kubernetes workflows from webhooks, message queues, S3 uploads, and cron schedules. Learn how to build event-driven automation pipelines with sensors and triggers.</description>
+  </item>
+  <item>
+    <title>Argo Rollouts Progressive Delivery</title>
+    <link>https://www.copypastelearn.com/blog/argo-rollouts-progressive-delivery</link>
+    <guid isPermaLink="true">https://www.copypastelearn.com/blog/argo-rollouts-progressive-delivery</guid>
+    <pubDate>Sat, 07 Mar 2026 12:00:00 GMT</pubDate>
+    <dc:creator>Luca Berton</dc:creator>
+      <category>argo-rollouts</category>
+      <category>kubernetes</category>
+      <category>canary</category>
+      <category>blue-green</category>
+      <category>progressive-delivery</category>
+      <category>deployment</category>
+    <description>Argo Rollouts adds canary releases and blue-green deployments to Kubernetes with automated analysis and rollback. Learn how to set up progressive delivery with traffic shifting and metrics-based promotion.</description>
+  </item>
+  <item>
+    <title>Argo Workflows Kubernetes Guide</title>
+    <link>https://www.copypastelearn.com/blog/argo-workflows-kubernetes-guide</link>
+    <guid isPermaLink="true">https://www.copypastelearn.com/blog/argo-workflows-kubernetes-guide</guid>
+    <pubDate>Thu, 26 Mar 2026 12:00:00 GMT</pubDate>
+    <dc:creator>Luca Berton</dc:creator>
+      <category>argo-workflows</category>
+      <category>kubernetes</category>
+      <category>workflows</category>
+      <category>dag</category>
+      <category>automation</category>
+      <category>data-pipelines</category>
+    <description>Argo Workflows runs complex DAG-based workflows on Kubernetes. Learn how to build multi-step pipelines for data processing, ML training, CI/CD, and infrastructure automation.</description>
+  </item>
+  <item>
+    <title>Autonomous Industrial Systems</title>
+    <link>https://www.copypastelearn.com/blog/autonomous-industrial-systems-devops</link>
+    <guid isPermaLink="true">https://www.copypastelearn.com/blog/autonomous-industrial-systems-devops</guid>
+    <pubDate>Sun, 21 Dec 2025 12:00:00 GMT</pubDate>
+    <dc:creator>Luca Berton</dc:creator>
+      <category>industrial iot</category>
+      <category>digital twins</category>
+      <category>predictive maintenance</category>
+      <category>industry 4.0</category>
+      <category>automation</category>
+    <description>Deploy and manage autonomous industrial systems with IIoT platforms, digital twins, predictive maintenance, and industrial DevOps practices.</description>
+  </item>
+  <item>
+    <title>AWS IAM Roles and Policies Guide</title>
+    <link>https://www.copypastelearn.com/blog/aws-iam-roles-policies-guide</link>
+    <guid isPermaLink="true">https://www.copypastelearn.com/blog/aws-iam-roles-policies-guide</guid>
+    <pubDate>Fri, 06 Mar 2026 12:00:00 GMT</pubDate>
+    <dc:creator>Luca Berton</dc:creator>
+      <category>AWS</category>
+      <category>IAM</category>
+      <category>Security</category>
+      <category>Cloud</category>
+      <category>DevOps</category>
+    <description>Understand AWS IAM roles, policies, and best practices for secure cloud access. Least privilege principles, role assumption, and Terraform IAM automation patterns.</description>
+  </item>
+  <item>
+    <title>Backstage Developer Portal Guide</title>
+    <link>https://www.copypastelearn.com/blog/backstage-developer-portal-guide</link>
+    <guid isPermaLink="true">https://www.copypastelearn.com/blog/backstage-developer-portal-guide</guid>
+    <pubDate>Tue, 21 Apr 2026 12:00:00 GMT</pubDate>
+    <dc:creator>Luca Berton</dc:creator>
+      <category>backstage</category>
+      <category>developer-portal</category>
+      <category>platform-engineering</category>
+      <category>spotify</category>
+      <category>service-catalog</category>
+      <category>internal-developer-platform</category>
+    <description>Spotify Backstage is the most popular open-source developer portal. Learn how to set it up, create software templates, build a service catalog, and integrate with your existing tools.</description>
+  </item>
+  <item>
+    <title>Backstage Software Catalog Setup</title>
+    <link>https://www.copypastelearn.com/blog/backstage-software-catalog-setup</link>
+    <guid isPermaLink="true">https://www.copypastelearn.com/blog/backstage-software-catalog-setup</guid>
+    <pubDate>Thu, 05 Mar 2026 12:00:00 GMT</pubDate>
+    <dc:creator>Luca Berton</dc:creator>
+      <category>backstage</category>
+      <category>software-catalog</category>
+      <category>developer-portal</category>
+      <category>platform-engineering</category>
+      <category>microservices</category>
+      <category>documentation</category>
+    <description>Backstage's software catalog gives you a single inventory of all services, APIs, and infrastructure. Learn how to register components, define system models, and build a searchable developer portal.</description>
+  </item>
+  <item>
+    <title>Bash Scripting for DevOps</title>
+    <link>https://www.copypastelearn.com/blog/bash-scripting-devops-engineers</link>
+    <guid isPermaLink="true">https://www.copypastelearn.com/blog/bash-scripting-devops-engineers</guid>
+    <pubDate>Thu, 12 Feb 2026 12:00:00 GMT</pubDate>
+    <dc:creator>Luca Berton</dc:creator>
+      <category>Bash</category>
+      <category>Scripting</category>
+      <category>Linux</category>
+      <category>Automation</category>
+      <category>DevOps</category>
+    <description>Essential Bash scripting skills for DevOps engineers. Variables, conditionals, loops, functions, error handling, and practical automation scripts for daily operations.</description>
+  </item>
+  <item>
+    <title>Benthos Stream Processing Pipeline</title>
+    <link>https://www.copypastelearn.com/blog/benthos-stream-processing-pipeline</link>
+    <guid isPermaLink="true">https://www.copypastelearn.com/blog/benthos-stream-processing-pipeline</guid>
+    <pubDate>Tue, 10 Feb 2026 12:00:00 GMT</pubDate>
+    <dc:creator>Luca Berton</dc:creator>
+      <category>benthos</category>
+      <category>stream-processing</category>
+      <category>etl</category>
+      <category>data-pipeline</category>
+      <category>kafka</category>
+      <category>redpanda</category>
+    <description>Benthos (now Redpanda Connect) is a declarative stream processor for ETL, data transformation, and message routing. Learn how to build data pipelines connecting Kafka, S3, databases, and APIs.</description>
+  </item>
+  <item>
+    <title>Best Linux Distro for Servers</title>
+    <link>https://www.copypastelearn.com/blog/best-linux-distro-for-servers</link>
+    <guid isPermaLink="true">https://www.copypastelearn.com/blog/best-linux-distro-for-servers</guid>
+    <pubDate>Fri, 13 Mar 2026 12:00:00 GMT</pubDate>
+    <dc:creator>Luca Berton</dc:creator>
+      <category>Linux</category>
+      <category>Server</category>
+      <category>Debian</category>
+      <category>Ubuntu</category>
+      <category>RHEL</category>
+    <description>Comparing the top Linux distributions for server deployments in 2026: Debian, Ubuntu Server, RHEL, Rocky Linux, and Alpine. Which one fits your needs?</description>
+  </item>
+  <item>
+    <title>Blameless Postmortems Template</title>
+    <link>https://www.copypastelearn.com/blog/blameless-postmortems-template</link>
+    <guid isPermaLink="true">https://www.copypastelearn.com/blog/blameless-postmortems-template</guid>
+    <pubDate>Sun, 22 Mar 2026 12:00:00 GMT</pubDate>
+    <dc:creator>Luca Berton</dc:creator>
+      <category>Postmortem</category>
+      <category>SRE</category>
+      <category>Incident Management</category>
+      <category>DevOps</category>
+      <category>Reliability</category>
+    <description>Run effective blameless postmortems with our ready-to-use template. Learn the structured process and turn production incidents into lasting system improvements.</description>
+  </item>
+  <item>
+    <title>Boundary Zero Trust Access Manager</title>
+    <link>https://www.copypastelearn.com/blog/boundary-zero-trust-access-manager</link>
+    <guid isPermaLink="true">https://www.copypastelearn.com/blog/boundary-zero-trust-access-manager</guid>
+    <pubDate>Sat, 31 Jan 2026 12:00:00 GMT</pubDate>
+    <dc:creator>Luca Berton</dc:creator>
+      <category>boundary</category>
+      <category>zero-trust</category>
+      <category>hashicorp</category>
+      <category>access-management</category>
+      <category>security</category>
+      <category>ssh</category>
+    <description>HashiCorp Boundary provides identity-based access to infrastructure without VPNs or SSH keys. Learn how Boundary replaces bastion hosts and VPNs with just-in-time, audited access to databases and servers.</description>
+  </item>
+  <item>
+    <title>Building Custom OpenClaw Skills</title>
+    <link>https://www.copypastelearn.com/blog/building-openclaw-skills</link>
+    <guid isPermaLink="true">https://www.copypastelearn.com/blog/building-openclaw-skills</guid>
+    <pubDate>Sun, 22 Feb 2026 12:00:00 GMT</pubDate>
+    <dc:creator>Luca Berton</dc:creator>
+      <category>OpenClaw</category>
+      <category>Skills</category>
+      <category>Tutorial</category>
+    <description>Learn how to create, package, and share custom skills for OpenClaw agents. From simple automations to complex integrations.</description>
+  </item>
+  <item>
+    <title>Building REST APIs with Node.js</title>
+    <link>https://www.copypastelearn.com/blog/building-rest-apis-with-nodejs</link>
+    <guid isPermaLink="true">https://www.copypastelearn.com/blog/building-rest-apis-with-nodejs</guid>
+    <pubDate>Tue, 24 Feb 2026 12:00:00 GMT</pubDate>
+    <dc:creator>Luca Berton</dc:creator>
+      <category>Node.js</category>
+      <category>REST API</category>
+      <category>Backend Development</category>
+    <description>Learn how to build production-ready REST APIs with Node.js and Express — routing, middleware, error handling, and best practices.</description>
+  </item>
+  <item>
+    <title>Buildpacks vs Dockerfiles Comparison</title>
+    <link>https://www.copypastelearn.com/blog/buildpacks-vs-dockerfiles</link>
+    <guid isPermaLink="true">https://www.copypastelearn.com/blog/buildpacks-vs-dockerfiles</guid>
+    <pubDate>Mon, 23 Mar 2026 12:00:00 GMT</pubDate>
+    <dc:creator>Luca Berton</dc:creator>
+      <category>buildpacks</category>
+      <category>docker</category>
+      <category>containers</category>
+      <category>cicd</category>
+      <category>cloud-native</category>
+      <category>developer-experience</category>
+    <description>Cloud Native Buildpacks automatically detect and build your app without a Dockerfile. Compare Buildpacks and Dockerfiles for build speed, security, and developer experience.</description>
+  </item>
+  <item>
+    <title>Cert Manager Kubernetes TLS Guide</title>
+    <link>https://www.copypastelearn.com/blog/cert-manager-kubernetes-tls</link>
+    <guid isPermaLink="true">https://www.copypastelearn.com/blog/cert-manager-kubernetes-tls</guid>
+    <pubDate>Wed, 11 Mar 2026 12:00:00 GMT</pubDate>
+    <dc:creator>Luca Berton</dc:creator>
+      <category>cert-manager</category>
+      <category>kubernetes</category>
+      <category>tls</category>
+      <category>lets-encrypt</category>
+      <category>certificates</category>
+      <category>security</category>
+    <description>Cert-manager automates TLS certificate management in Kubernetes with Let's Encrypt. Learn how to install cert-manager, configure issuers, and secure your ingress with automatic certificate renewal.</description>
+  </item>
+  <item>
+    <title>Chainguard Enforce Supply Chain</title>
+    <link>https://www.copypastelearn.com/blog/chainguard-enforce-supply-chain</link>
+    <guid isPermaLink="true">https://www.copypastelearn.com/blog/chainguard-enforce-supply-chain</guid>
+    <pubDate>Sat, 07 Feb 2026 12:00:00 GMT</pubDate>
+    <dc:creator>Luca Berton</dc:creator>
+      <category>chainguard</category>
+      <category>supply-chain-security</category>
+      <category>slsa</category>
+      <category>sbom</category>
+      <category>container-security</category>
+      <category>kubernetes</category>
+    <description>Chainguard Enforce validates container supply chain integrity in Kubernetes using SLSA provenance, SBOMs, and image signatures. Learn how to enforce supply chain policies across your clusters.</description>
+  </item>
+  <item>
+    <title>Checkov Infrastructure as Code Scan</title>
+    <link>https://www.copypastelearn.com/blog/checkov-infrastructure-code-scan</link>
+    <guid isPermaLink="true">https://www.copypastelearn.com/blog/checkov-infrastructure-code-scan</guid>
+    <pubDate>Tue, 17 Feb 2026 12:00:00 GMT</pubDate>
+    <dc:creator>Luca Berton</dc:creator>
+      <category>checkov</category>
+      <category>iac-security</category>
+      <category>terraform</category>
+      <category>devsecops</category>
+      <category>compliance</category>
+      <category>scanning</category>
+    <description>Checkov scans Terraform, CloudFormation, Kubernetes, and Dockerfile for security misconfigurations with 1000+ built-in policies. Learn how to integrate Checkov into CI/CD and write custom checks.</description>
+  </item>
+  <item>
+    <title>CI/CD for ML on Kubernetes</title>
+    <link>https://www.copypastelearn.com/blog/cicd-ml-models-kubernetes</link>
+    <guid isPermaLink="true">https://www.copypastelearn.com/blog/cicd-ml-models-kubernetes</guid>
+    <pubDate>Fri, 20 Feb 2026 12:00:00 GMT</pubDate>
+    <dc:creator>Luca Berton</dc:creator>
+      <category>CI/CD</category>
+      <category>MLOps</category>
+      <category>GitHub Actions</category>
+    <description>Build a CI/CD pipeline for ML models using GitHub Actions, MLflow, Docker, and Kubernetes. Automate the path from training to production.</description>
+  </item>
+  <item>
+    <title>CI/CD Pipeline Tutorial from Scratch</title>
+    <link>https://www.copypastelearn.com/blog/cicd-pipeline-tutorial-scratch</link>
+    <guid isPermaLink="true">https://www.copypastelearn.com/blog/cicd-pipeline-tutorial-scratch</guid>
+    <pubDate>Fri, 20 Mar 2026 12:00:00 GMT</pubDate>
+    <dc:creator>Luca Berton</dc:creator>
+      <category>CI/CD</category>
+      <category>GitHub Actions</category>
+      <category>DevOps</category>
+      <category>Automation</category>
+      <category>Pipeline</category>
+    <description>Build a complete CI/CD pipeline from scratch with GitHub Actions. Lint, test, build, and deploy your application — fully automated on every push to your repository.</description>
+  </item>
+  <item>
+    <title>Cilium Service Mesh Kubernetes</title>
+    <link>https://www.copypastelearn.com/blog/cilium-service-mesh-kubernetes</link>
+    <guid isPermaLink="true">https://www.copypastelearn.com/blog/cilium-service-mesh-kubernetes</guid>
+    <pubDate>Mon, 13 Apr 2026 12:00:00 GMT</pubDate>
+    <dc:creator>Luca Berton</dc:creator>
+      <category>cilium</category>
+      <category>ebpf</category>
+      <category>kubernetes</category>
+      <category>service-mesh</category>
+      <category>networking</category>
+      <category>observability</category>
+    <description>Cilium replaces kube-proxy and sidecar service meshes with eBPF. Learn how Cilium handles networking, observability, and security in Kubernetes without sidecar containers.</description>
+  </item>
+  <item>
+    <title>Coder Remote Development Platform</title>
+    <link>https://www.copypastelearn.com/blog/coder-remote-development-platform</link>
+    <guid isPermaLink="true">https://www.copypastelearn.com/blog/coder-remote-development-platform</guid>
+    <pubDate>Mon, 09 Feb 2026 12:00:00 GMT</pubDate>
+    <dc:creator>Luca Berton</dc:creator>
+      <category>coder</category>
+      <category>remote-development</category>
+      <category>developer-experience</category>
+      <category>kubernetes</category>
+      <category>ide</category>
+      <category>platform-engineering</category>
+    <description>Coder provisions cloud development environments on Kubernetes, AWS, or any infrastructure. Learn how Coder replaces local dev setups with consistent, powerful remote workspaces.</description>
+  </item>
+  <item>
+    <title>Confidential Computing Explained</title>
+    <link>https://www.copypastelearn.com/blog/confidential-computing-devops</link>
+    <guid isPermaLink="true">https://www.copypastelearn.com/blog/confidential-computing-devops</guid>
+    <pubDate>Sun, 28 Dec 2025 12:00:00 GMT</pubDate>
+    <dc:creator>Luca Berton</dc:creator>
+      <category>confidential computing</category>
+      <category>tee</category>
+      <category>secure enclaves</category>
+      <category>cloud security</category>
+      <category>data protection</category>
+    <description>Understand confidential computing with TEEs, secure enclaves, and practical deployment patterns for protecting sensitive workloads in cloud environments.</description>
+  </item>
+</channel>
+</rss>

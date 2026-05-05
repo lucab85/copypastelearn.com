@@ -6,6 +6,7 @@ category: "DevOps"
 tags: ["Terraform", "AWS", "IaC", "Practice", "Exercises"]
 excerpt: "Hands-on Terraform AWS exercises from beginner to advanced. Practice provisioning EC2, S3, VPC, RDS, and more with real infrastructure."
 description: "Hands-on Terraform AWS exercises from beginner to advanced. Practice EC2, S3, VPC, RDS provisioning with real infrastructure."
+author: "Luca Berton"
 ---
 
 The best way to learn Terraform is by building real AWS infrastructure. These exercises progress from basic to advanced, each teaching a core Terraform concept.

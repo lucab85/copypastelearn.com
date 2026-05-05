@@ -3,7 +3,8 @@ title: "DevOps Metrics That Matter"
 date: "2026-04-15"
 description: "Most DevOps dashboards track the wrong things. Learn which metrics actually predict engineering performance: DORA metrics, SLOs, and the metrics that drive behavior change."
 category: "DevOps"
-tags: ["devops", "metrics", "dora", "slo", "engineering-performance", "observability"]
+tags: ["DevOps", "metrics", "dora", "slo", "engineering-performance", "observability"]
+author: "Luca Berton"
 ---
 
 If your DevOps dashboard shows CPU utilization and deployment count but not change failure rate or lead time, you are measuring activity instead of outcomes.

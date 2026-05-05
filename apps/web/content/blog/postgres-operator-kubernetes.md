@@ -3,7 +3,8 @@ title: "Postgres Operator for Kubernetes"
 date: "2026-03-10"
 description: "Run production PostgreSQL on Kubernetes with CloudNativePG or Zalando Postgres Operator. Learn automated failover, backup, and high availability for stateful databases on Kubernetes."
 category: "DevOps"
-tags: ["postgresql", "kubernetes", "operator", "database", "cloudnativepg", "high-availability"]
+tags: ["PostgreSQL", "kubernetes", "operator", "Database", "cloudnativepg", "high-availability"]
+author: "Luca Berton"
 ---
 
 Running databases on Kubernetes was once considered reckless. With mature operators like CloudNativePG, it is now a production-ready approach used by companies processing millions of transactions daily.

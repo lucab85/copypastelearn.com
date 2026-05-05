@@ -6,6 +6,7 @@ category: "DevOps"
 tags: ["Terraform", "Variables", "IaC", "DevOps", "Configuration"]
 excerpt: "Master Terraform variables and outputs. Types, validation, locals, sensitive values, tfvars files, and output dependencies."
 description: "Terraform variables and outputs. Types, validation rules, locals, sensitive values, tfvars files, and cross-module dependencies."
+author: "Luca Berton"
 ---
 
 Variables make Terraform code reusable. Outputs share data between modules and display results. Together they are how you parameterize infrastructure.

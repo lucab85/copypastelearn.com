@@ -3,7 +3,8 @@ title: "Linkerd Lightweight Service Mesh"
 date: "2026-03-14"
 description: "Linkerd is the lightest Kubernetes service mesh with automatic mTLS, golden metrics, and zero-config retries. Learn how Linkerd compares to Istio and when its simplicity is the right choice."
 category: "DevOps"
-tags: ["linkerd", "service-mesh", "kubernetes", "mtls", "observability", "networking"]
+tags: ["linkerd", "service-mesh", "kubernetes", "mtls", "observability", "Networking"]
+author: "Luca Berton"
 ---
 
 Istio is powerful but complex. Linkerd does 80% of what Istio does with 20% of the operational burden. If you need mTLS, golden metrics, and traffic reliability without a week of configuration, Linkerd is the answer.

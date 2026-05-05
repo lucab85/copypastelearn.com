@@ -4,6 +4,7 @@ date: "2026-04-10"
 description: "WebAssembly (Wasm) runs serverless functions on Kubernetes with sub-millisecond cold starts. Learn how Fermyon Spin and SpinKube bring Wasm workloads to your existing clusters."
 category: "DevOps"
 tags: ["webassembly", "wasm", "kubernetes", "spin", "serverless", "fermyon"]
+author: "Luca Berton"
 ---
 
 Containers solved "works on my machine." WebAssembly solves "this container takes 5 seconds to cold start." Wasm binaries start in under a millisecond, use a fraction of the memory, and run in a sandbox stricter than containers.
