@@ -59,10 +59,10 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
     await db.refund.create({
       data: {
         orderId: order.id,
-        provider: "stripe",
         amount: 0, // 0 = full refund requested; admin determines actual amount
         currency: order.currency,
         status: "requested",
+        initiatedBy: "agent",
         reason: body.reason,
       },
     });

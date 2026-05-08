@@ -41,12 +41,12 @@ export async function GET(req: NextRequest): Promise<NextResponse> {
       { status: 500 },
     );
   }
-  const stripe = new Stripe(stripeKey, { apiVersion: "2024-06-20" });
+  const stripe = new Stripe(stripeKey, { apiVersion: "2026-01-28.clover" });
 
   const cutoff = new Date(Date.now() - 10 * 60 * 1000);
   const stuck = await db.order.findMany({
     where: {
-      status: { in: ["PENDING", "PROCESSING"] },
+      status: { in: ["PENDING"] },
       updatedAt: { lt: cutoff },
       stripeCheckoutSessionId: { not: null },
     },

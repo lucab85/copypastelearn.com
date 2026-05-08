@@ -18,7 +18,7 @@ export function getStripe(): Stripe {
   }
   cached = new Stripe(key, {
     // Pin the API version to keep webhook event shapes stable.
-    apiVersion: "2024-06-20",
+    apiVersion: "2026-01-28.clover",
     typescript: true,
   });
   return cached;

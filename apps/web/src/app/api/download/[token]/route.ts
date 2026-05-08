@@ -71,9 +71,6 @@ export async function GET(
     }
     const map: Record<typeof verify.reason, [number, string, string]> = {
       not_found: [404, "token_invalid", "Invalid download token"],
-      expired: [410, "token_expired", "Download token has expired"],
-      revoked: [410, "token_revoked", "Download token has been revoked"],
-      consumed: [410, "token_exhausted", "Download token has reached its limit"],
       entitlement_inactive: [
         403,
         "entitlement_revoked",

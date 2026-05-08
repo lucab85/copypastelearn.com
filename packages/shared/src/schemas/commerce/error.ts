@@ -9,7 +9,7 @@ export const ApiErrorSchema = z.object({
   }),
 });
 
-export type ApiError = z.infer<typeof ApiErrorSchema>;
+export type CommerceApiError = z.infer<typeof ApiErrorSchema>;
 
 export type ApiErrorCode =
   | "validation_failed"
@@ -28,6 +28,6 @@ export function apiError(
   code: ApiErrorCode | string,
   message: string,
   details?: unknown[],
-): ApiError {
+): CommerceApiError {
   return { error: { code, message, ...(details ? { details } : {}) } };
 }

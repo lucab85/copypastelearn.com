@@ -26,7 +26,7 @@ function need(name: string): string {
 
 function getStripe(): Stripe {
   return new Stripe(need("STRIPE_SECRET_KEY"), {
-    apiVersion: "2024-06-20",
+    apiVersion: "2026-01-28.clover",
     typescript: true,
   });
 }
@@ -172,6 +172,8 @@ async function seedProduct(input: {
       status: "PUBLISHED",
       stripeProductId,
       stripePriceId,
+      taxCode: process.env.STRIPE_TAX_CODE_DIGITAL ?? "txcd_10000000",
+      canonicalUrl: `${process.env.NEXT_PUBLIC_APP_URL ?? "https://www.copypastelearn.com"}/shop/${input.slug}`,
     },
   });
 
@@ -240,6 +242,8 @@ async function seedBundle(input: {
       status: "PUBLISHED",
       stripeProductId,
       stripePriceId,
+      taxCode: process.env.STRIPE_TAX_CODE_DIGITAL ?? "txcd_10000000",
+      canonicalUrl: `${process.env.NEXT_PUBLIC_APP_URL ?? "https://www.copypastelearn.com"}/shop/bundles/${input.slug}`,
     },
   });
 

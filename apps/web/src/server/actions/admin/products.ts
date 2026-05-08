@@ -5,6 +5,7 @@ import { z } from "zod";
 import { requireAdmin } from "@/lib/auth";
 import { db } from "@/lib/db";
 import { logAdminAction } from "@/lib/commerce/audit";
+import { productCanonicalUrl } from "@/lib/commerce/catalog";
 import { getStripe } from "@/lib/payments/stripe-checkout";
 import type { Brand, ProductType } from "@prisma/client";
 
@@ -76,6 +77,8 @@ export async function createProduct(input: unknown) {
       status: "DRAFT",
       stripeProductId: stripeProduct.id,
       stripePriceId: stripePrice.id,
+      taxCode: process.env.STRIPE_TAX_CODE_DIGITAL ?? "txcd_10000000",
+      canonicalUrl: productCanonicalUrl(data.slug),
     },
   });
 

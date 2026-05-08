@@ -1,4 +1,5 @@
 import { db } from "@/lib/db";
+import type { OrderStatus, Prisma } from "@prisma/client";
 
 /**
  * Admin reporting queries for orders (US3 / SC-009 attribution dashboards).
@@ -21,9 +22,9 @@ interface RevenueOptions {
   currency?: string;
 }
 
-function whereClause(opts: RevenueOptions) {
+function whereClause(opts: RevenueOptions): Prisma.OrderWhereInput {
   return {
-    status: { in: ["PAID", "REFUNDED", "PARTIALLY_REFUNDED"] as const },
+    status: { in: ["PAID", "REFUNDED", "PARTIALLY_REFUNDED"] satisfies OrderStatus[] },
     ...(opts.currency ? { currency: opts.currency } : {}),
     ...(opts.since || opts.until
       ? {

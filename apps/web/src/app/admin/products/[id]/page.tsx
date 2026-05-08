@@ -77,7 +77,7 @@ export default async function AdminProductDetailPage({ params }: PageProps) {
                   ) : null}
                 </span>
                 <span className="text-muted-foreground">
-                  {(f.sizeBytes / 1024).toFixed(1)} KB · {f.contentType}
+                  {((f.sizeBytes ?? 0) / 1024).toFixed(1)} KB · {f.contentType}
                 </span>
               </li>
             ))}
