@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "if [ \"$VERCEL\" = \"1\" ]; then prisma migrate deploy && next build; else next build; fi",
-    "vercel-build": "prisma migrate deploy && next build",
+    "vercel-build": "pnpm --filter @copypastelearn/shared build && prisma migrate deploy && next build",
     "start": "next start",
     "lint": "next lint",
     "test": "vitest run",
