@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://copypastelearn.com/schemas/error.schema.json",
+  "title": "ApiError",
+  "type": "object",
+  "required": ["error"],
+  "additionalProperties": false,
+  "properties": {
+    "error": {
+      "type": "object",
+      "required": ["code", "message"],
+      "additionalProperties": false,
+      "properties": {
+        "code":    { "type": "string", "pattern": "^[a-z][a-z0-9_]+$" },
+        "message": { "type": "string" },
+        "details": { "type": "array", "items": {} }
+      }
+    }
+  }
+}

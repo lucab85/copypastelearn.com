@@ -50,3 +50,4 @@ tmp/
 # SEO audit reports (generated)
 apps/web/reports/
 
+.vercel

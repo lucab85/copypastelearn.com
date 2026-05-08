@@ -1,6 +1,21 @@
 <!--
   Sync Impact Report
   ==================
+  Version change: 1.0.0 → 1.0.1 (PATCH — clarify Principle V module enumeration to include commerce)
+  Modified principles:
+    - Principle V (Clean Integration Boundaries): added `commerce` to the enumerated modules.
+  Added sections: none
+  Removed sections: none
+  Templates requiring updates:
+    - .specify/templates/plan-template.md         ✅ compatible (no change)
+    - .specify/templates/spec-template.md          ✅ compatible (no change)
+    - .specify/templates/tasks-template.md         ✅ compatible (no change)
+    - .specify/templates/checklist-template.md     ✅ compatible (no change)
+    - .specify/templates/agent-file-template.md    ✅ compatible (no change)
+  Follow-up TODOs: none
+
+  Prior Sync Impact Report (1.0.0)
+  --------------------------------
   Version change: N/A → 1.0.0 (initial ratification)
   Modified principles: N/A (all new)
   Added sections:
@@ -11,13 +26,6 @@
     - Decision Rules & Definition of Done
     - Governance
   Removed sections: N/A
-  Templates requiring updates:
-    - .specify/templates/plan-template.md         ✅ compatible (generic Constitution Check gate)
-    - .specify/templates/spec-template.md          ✅ compatible (no constitution-specific refs)
-    - .specify/templates/tasks-template.md         ✅ compatible (generic task phases)
-    - .specify/templates/checklist-template.md     ✅ compatible (generic structure)
-    - .specify/templates/agent-file-template.md    ✅ compatible (generic structure)
-  Follow-up TODOs: none
 -->
 
 # CopyPasteLearn Constitution
@@ -129,7 +137,7 @@ Domain boundaries MUST be explicit and respected.
 - Use event streaming (SSE/WebSocket) for real-time lab state
   updates; no polling.
 - Code MUST be modular with separate domains: auth, billing,
-  courses, labs.
+  commerce, courses, labs.
 - Server actions and route handlers MUST be used for secure
   server-side operations.
 - Clerk is the source of truth for identity; `clerkUserId` is
@@ -186,8 +194,8 @@ A security failure blocks release.
   server-rendered wherever feasible.
 - **Logging**: Structured logs with correlation IDs across all
   services. Every important operation MUST be logged.
-- **Domain separation**: auth, billing, courses, labs MUST be
-  distinct modules with clear public interfaces.
+- **Domain separation**: auth, billing, commerce, courses, labs
+  MUST be distinct modules with clear public interfaces.
 
 ## Quality & Testing Standards
 
@@ -284,4 +292,4 @@ Follows semantic versioning:
 - **PATCH**: Clarifications, wording, typo fixes,
   non-semantic refinements.
 
-**Version**: 1.0.0 | **Ratified**: 2026-02-19 | **Last Amended**: 2026-02-19
+**Version**: 1.0.1 | **Ratified**: 2026-02-19 | **Last Amended**: 2026-05-08

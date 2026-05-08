@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://copypastelearn.com/schemas/agent-checkout-response.schema.json",
+  "title": "AgentCheckoutResponse",
+  "oneOf": [
+    {
+      "type": "object",
+      "required": ["checkout_type", "checkout_url", "merchant_of_record", "delivery_type"],
+      "additionalProperties": false,
+      "properties": {
+        "checkout_type":        { "const": "redirect" },
+        "checkout_url":         { "type": "string", "format": "uri" },
+        "checkout_session_id":  { "type": "string" },
+        "merchant_of_record":   { "type": "string" },
+        "delivery_type":        { "type": "string", "enum": ["digital_download"] },
+        "expires_at":           { "type": "string", "format": "date-time" }
+      }
+    },
+    {
+      "type": "object",
+      "required": ["checkout_type", "order_id", "merchant_of_record", "delivery_type", "amount"],
+      "additionalProperties": false,
+      "properties": {
+        "checkout_type":      { "const": "completed" },
+        "order_id":           { "type": "string" },
+        "merchant_of_record": { "type": "string" },
+        "delivery_type":      { "type": "string", "enum": ["digital_download"] },
+        "amount": {
+          "type": "object",
+          "required": ["amount", "currency"],
+          "additionalProperties": false,
+          "properties": {
+            "amount":   { "type": "string", "pattern": "^\\d+(?:\\.\\d{2})?$" },
+            "currency": { "type": "string", "pattern": "^[A-Z]{3}$" }
+          }
+        }
+      }
+    }
+  ]
+}

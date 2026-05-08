@@ -82,6 +82,22 @@ function validateNode(node, file, p = '$') {
     if (!node.datePublished) pushErr(file, `${p} ${types.join('|')} missing datePublished`);
     if (!node.image) pushErr(file, `${p} ${types.join('|')} missing image`);
   }
+  // T111 — Product / Bundle structured data (FR-010).
+  if (types.includes('Product')) {
+    if (!node.name) pushErr(file, `${p} Product missing name`);
+    if (!node.offers) pushErr(file, `${p} Product missing offers`);
+    else {
+      const offer = node.offers;
+      if (!offer.price) pushErr(file, `${p} Product offer missing price`);
+      if (!offer.priceCurrency)
+        pushErr(file, `${p} Product offer missing priceCurrency`);
+      if (!offer.url || !urlOk(offer.url))
+        pushErr(file, `${p} Product offer non-canonical url: ${offer.url}`);
+      if (!offer.availability)
+        pushErr(file, `${p} Product offer missing availability`);
+    }
+    if (!node.brand) pushErr(file, `${p} Product missing brand`);
+  }
   for (const v of Object.values(node)) validateNode(v, file, p);
 }
 

@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://copypastelearn.com/schemas/product-feed.schema.json",
+  "title": "ProductFeed",
+  "type": "object",
+  "required": ["feed_version", "generated_at", "merchant", "items"],
+  "additionalProperties": false,
+  "properties": {
+    "feed_version": { "type": "string" },
+    "generated_at": { "type": "string", "format": "date-time" },
+    "merchant": {
+      "type": "object",
+      "required": ["name", "store", "country"],
+      "additionalProperties": false,
+      "properties": {
+        "name":    { "type": "string" },
+        "store":   { "type": "string" },
+        "country": { "type": "string", "pattern": "^[A-Z]{2}$" }
+      }
+    },
+    "items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "title", "url", "price", "availability", "brand", "type", "seller"],
+        "additionalProperties": false,
+        "properties": {
+          "id":          { "type": "string", "minLength": 1 },
+          "title":       { "type": "string" },
+          "description": { "type": "string" },
+          "url":         { "type": "string", "format": "uri", "pattern": "^https://" },
+          "image_url":   { "type": "string", "format": "uri" },
+          "price": {
+            "type": "object",
+            "required": ["amount", "currency"],
+            "additionalProperties": false,
+            "properties": {
+              "amount":   { "type": "string", "pattern": "^\\d+(?:\\.\\d{2})?$" },
+              "currency": { "type": "string", "pattern": "^[A-Z]{3}$" }
+            }
+          },
+          "availability": { "type": "string", "enum": ["in_stock", "out_of_stock", "preorder"] },
+          "brand":        { "type": "string" },
+          "category":     { "type": "string" },
+          "format":       { "type": "string" },
+          "type":         { "type": "string", "enum": ["EBOOK", "TEMPLATE", "COURSE", "BUNDLE"] },
+          "seller":       { "type": "string" },
+          "updated_at":   { "type": "string", "format": "date-time" }
+        }
+      }
+    }
+  }
+}
