@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://copypastelearn.com/schemas/product.schema.json",
+  "title": "Product",
+  "type": "object",
+  "required": ["id", "slug", "title", "brand", "type", "price", "availability", "url"],
+  "additionalProperties": false,
+  "properties": {
+    "id":          { "type": "string", "minLength": 1 },
+    "slug":        { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
+    "title":       { "type": "string", "minLength": 1 },
+    "subtitle":    { "type": "string" },
+    "description": { "type": "string" },
+    "brand": {
+      "type": "string",
+      "enum": ["CopyPasteLearn", "AnsiblePilot", "TerraformPilot", "AnsibleByExample", "KubernetesRecipes"]
+    },
+    "type": {
+      "type": "string",
+      "enum": ["EBOOK", "TEMPLATE", "COURSE", "BUNDLE"]
+    },
+    "formats":    { "type": "array", "items": { "type": "string" } },
+    "categories": { "type": "array", "items": { "type": "string" } },
+    "price": {
+      "type": "object",
+      "required": ["amount", "currency"],
+      "additionalProperties": false,
+      "properties": {
+        "amount":   { "type": "string", "pattern": "^\\d+(?:\\.\\d{2})?$" },
+        "currency": { "type": "string", "pattern": "^[A-Z]{3}$" }
+      }
+    },
+    "availability": { "type": "string", "enum": ["in_stock", "out_of_stock", "preorder"] },
+    "delivery_type": { "type": "string", "enum": ["digital_download"] },
+    "image_url":   { "type": "string", "format": "uri" },
+    "url":         { "type": "string", "format": "uri" },
+    "refund_policy_url":          { "type": "string", "format": "uri" },
+    "digital_delivery_policy_url": { "type": "string", "format": "uri" },
+    "seller_of_record":           { "type": "string" },
+    "updated_at":                 { "type": "string", "format": "date-time" }
+  }
+}

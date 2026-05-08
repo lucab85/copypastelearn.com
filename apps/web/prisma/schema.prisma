@@ -22,10 +22,11 @@ model User {
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 
-  courseProgress  CourseProgress[]
-  lessonProgress  LessonProgress[]
-  labSessions     LabSession[]
-  subscription    Subscription?
+  courseProgress CourseProgress[]
+  lessonProgress LessonProgress[]
+  labSessions    LabSession[]
+  subscription   Subscription?
+  customer       Customer?
 
   @@index([clerkUserId])
 }
@@ -53,7 +54,7 @@ model Course {
   updatedAt         DateTime      @updatedAt
 
   lessons        Lesson[]
-  courseProgress  CourseProgress[]
+  courseProgress CourseProgress[]
 
   @@index([status])
   @@index([slug])
@@ -68,13 +69,14 @@ enum Difficulty {
 enum ContentStatus {
   DRAFT
   PUBLISHED
+  ARCHIVED
 }
 
 // ─── Lesson ─────────────────────────────────────────────
 
 model Lesson {
   id              String        @id @default(cuid())
-  courseId         String
+  courseId        String
   title           String
   slug            String
   description     String?
@@ -88,7 +90,7 @@ model Lesson {
   createdAt       DateTime      @default(now())
   updatedAt       DateTime      @updatedAt
 
-  course         Course          @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  course         Course           @relation(fields: [courseId], references: [id], onDelete: Cascade)
   labDefinition  LabDefinition?
   lessonProgress LessonProgress[]
 
@@ -169,7 +171,7 @@ model LabAttempt {
 model CourseProgress {
   id              String    @id @default(cuid())
   userId          String
-  courseId         String
+  courseId        String
   percentComplete Float     @default(0)
   startedAt       DateTime  @default(now())
   completedAt     DateTime?
@@ -221,4 +223,329 @@ enum SubscriptionStatus {
   CANCELED
   EXPIRED
   PAST_DUE
+}
+
+// ─── Commerce: Catalog ──────────────────────────────────
+
+model Product {
+  id              String        @id @default(cuid())
+  slug            String        @unique
+  title           String
+  subtitle        String?
+  description     String
+  brand           Brand
+  sourceDomains   String[]
+  productType     ProductType
+  formats         String[]
+  categories      String[]
+  tags            String[]
+  priceAmount     Int
+  currency        String
+  stripeProductId String?
+  stripePriceId   String?
+  taxCode         String
+  imageUrl        String?
+  canonicalUrl    String
+  metaTitle       String?
+  metaDescription String?
+  status          ContentStatus @default(DRAFT)
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+
+  files        ProductFile[]
+  orderItems   OrderItem[]
+  entitlements Entitlement[]
+  bundleItems  BundleItem[]
+
+  @@index([status])
+  @@index([brand])
+  @@index([slug])
+}
+
+enum Brand {
+  CopyPasteLearn
+  AnsiblePilot
+  TerraformPilot
+  AnsibleByExample
+  KubernetesRecipes
+}
+
+enum ProductType {
+  EBOOK
+  TEMPLATE
+  COURSE
+  BUNDLE
+}
+
+model ProductFile {
+  id          String   @id @default(cuid())
+  productId   String
+  version     String
+  label       String?
+  s3Bucket    String?
+  storageKey  String
+  sizeBytes   Int?
+  contentType String?
+  isCurrent   Boolean  @default(false)
+  createdAt   DateTime @default(now())
+
+  product      Product       @relation(fields: [productId], references: [id], onDelete: Cascade)
+  entitlements Entitlement[] @relation("PinnedFile")
+
+  @@unique([productId, version])
+  @@index([productId, isCurrent])
+}
+
+model Bundle {
+  id              String        @id @default(cuid())
+  slug            String        @unique
+  title           String
+  description     String
+  brand           Brand         @default(CopyPasteLearn)
+  priceAmount     Int
+  currency        String
+  stripeProductId String?
+  stripePriceId   String?
+  taxCode         String
+  imageUrl        String?
+  canonicalUrl    String
+  status          ContentStatus @default(DRAFT)
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+
+  items      BundleItem[]
+  orderItems OrderItem[]
+
+  @@index([status])
+  @@index([slug])
+}
+
+model BundleItem {
+  bundleId  String
+  productId String
+
+  bundle  Bundle  @relation(fields: [bundleId], references: [id], onDelete: Cascade)
+  product Product @relation(fields: [productId], references: [id])
+
+  @@id([bundleId, productId])
+}
+
+// ─── Commerce: Customer & Orders ────────────────────────
+
+model Customer {
+  id               String   @id @default(cuid())
+  userId           String?  @unique
+  email            String
+  country          String?
+  stripeCustomerId String?  @unique
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  user         User?         @relation(fields: [userId], references: [id])
+  orders       Order[]
+  entitlements Entitlement[]
+
+  @@index([email])
+}
+
+model Order {
+  id                      String        @id @default(cuid())
+  customerId              String
+  status                  OrderStatus   @default(PENDING)
+  subtotalAmount          Int
+  taxAmount               Int           @default(0)
+  totalAmount             Int
+  currency                String
+  paymentProvider         String        @default("stripe")
+  paymentMethod           PaymentMethod @default(STRIPE_CHECKOUT)
+  stripeCheckoutSessionId String?       @unique
+  stripePaymentIntentId   String?       @unique
+  sourceDomain            String?
+  utmSource               String?
+  utmMedium               String?
+  utmCampaign             String?
+  utmContent              String?
+  channel                 String?
+  createdAt               DateTime      @default(now())
+  updatedAt               DateTime      @updatedAt
+
+  customer     Customer      @relation(fields: [customerId], references: [id])
+  items        OrderItem[]
+  entitlements Entitlement[]
+  refunds      Refund[]
+
+  @@index([customerId])
+  @@index([status])
+  @@index([sourceDomain])
+}
+
+enum OrderStatus {
+  PENDING
+  PAID
+  FAILED
+  EXPIRED
+  REFUNDED
+  PARTIALLY_REFUNDED
+}
+
+enum PaymentMethod {
+  STRIPE_CHECKOUT
+  STRIPE_PAYMENT_INTENT
+  STRIPE_SHARED_PAYMENT_TOKEN
+}
+
+model OrderItem {
+  id         String  @id @default(cuid())
+  orderId    String
+  productId  String?
+  bundleId   String?
+  quantity   Int     @default(1)
+  unitAmount Int
+  currency   String
+
+  order   Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  product Product? @relation(fields: [productId], references: [id])
+  bundle  Bundle?  @relation(fields: [bundleId], references: [id])
+
+  @@index([orderId])
+}
+
+// ─── Commerce: Entitlements & Tokens ────────────────────
+
+model Entitlement {
+  id               String            @id @default(cuid())
+  customerId       String
+  orderId          String
+  productId        String
+  pinnedFileId     String?
+  status           EntitlementStatus @default(ACTIVE)
+  grantedAt        DateTime          @default(now())
+  firstAccessedAt  DateTime?
+  revokedAt        DateTime?
+  revocationReason String?
+
+  customer   Customer        @relation(fields: [customerId], references: [id])
+  order      Order           @relation(fields: [orderId], references: [id])
+  product    Product         @relation(fields: [productId], references: [id])
+  pinnedFile ProductFile?    @relation("PinnedFile", fields: [pinnedFileId], references: [id])
+  tokens     DownloadToken[]
+
+  @@unique([orderId, productId])
+  @@index([customerId])
+  @@index([status])
+}
+
+enum EntitlementStatus {
+  ACTIVE
+  REVOKED
+  REFUNDED
+}
+
+model DownloadToken {
+  id            String    @id @default(cuid())
+  entitlementId String
+  tokenHash     String    @unique
+  expiresAt     DateTime
+  downloadCount Int       @default(0)
+  maxDownloads  Int       @default(3)
+  revokedAt     DateTime?
+  createdAt     DateTime  @default(now())
+  lastUsedAt    DateTime?
+
+  entitlement Entitlement @relation(fields: [entitlementId], references: [id], onDelete: Cascade)
+
+  @@index([entitlementId])
+  @@index([expiresAt])
+}
+
+// ─── Commerce: Refunds ──────────────────────────────────
+
+model Refund {
+  id             String   @id @default(cuid())
+  orderId        String
+  amount         Int
+  currency       String
+  reason         String?
+  initiatedBy    String
+  stripeRefundId String?  @unique
+  status         String
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  order Order @relation(fields: [orderId], references: [id])
+
+  @@index([orderId])
+}
+
+// ─── Commerce: Idempotency, Audit, Analytics, Email ─────
+
+model WebhookEventLog {
+  id          String    @id @default(cuid())
+  provider    String
+  eventId     String
+  eventType   String
+  receivedAt  DateTime  @default(now())
+  processedAt DateTime?
+  payloadHash String?
+
+  @@unique([provider, eventId])
+  @@index([provider, eventType, receivedAt])
+}
+
+model AnalyticsEvent {
+  id           String   @id @default(cuid())
+  type         String
+  customerId   String?
+  orderId      String?
+  productId    String?
+  bundleId     String?
+  sourceDomain String?
+  utmSource    String?
+  utmMedium    String?
+  utmCampaign  String?
+  metadata     Json?
+  createdAt    DateTime @default(now())
+
+  @@index([type, createdAt])
+  @@index([sourceDomain, createdAt])
+  @@index([orderId])
+}
+
+model AdminAuditEvent {
+  id         String   @id @default(cuid())
+  actorId    String
+  action     String
+  targetType String
+  targetId   String
+  payload    Json?
+  createdAt  DateTime @default(now())
+
+  @@index([actorId, createdAt])
+  @@index([targetType, targetId])
+}
+
+model EmailJob {
+  id          String    @id @default(cuid())
+  to          String
+  template    String
+  payload     Json
+  attempts    Int       @default(0)
+  status      String    @default("queued")
+  lastError   String?
+  scheduledAt DateTime  @default(now())
+  sentAt      DateTime?
+
+  @@index([status, scheduledAt])
+}
+
+model PolicyDocument {
+  id          String   @id @default(cuid())
+  slug        String
+  version     String
+  bodyMd      String
+  isCurrent   Boolean  @default(false)
+  publishedAt DateTime @default(now())
+
+  @@unique([slug, version])
+  @@index([slug, isCurrent])
 }

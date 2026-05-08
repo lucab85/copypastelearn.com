@@ -40,6 +40,8 @@ export const config = {
     // App routes (dashboard, admin — always need auth)
     "/dashboard/:path*",
     "/admin/:path*",
+    // Library (commerce US2 — buyer access recovery, requires Clerk session)
+    "/library/:path*",
     // API routes
     "/api/:path*",
     // Metadata routes (icons, OG images)

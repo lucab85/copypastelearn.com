@@ -1,0 +1,66 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://copypastelearn.com/schemas/agent-capabilities.schema.json",
+  "title": "AgentCapabilities",
+  "type": "object",
+  "required": ["merchant", "checkout", "fulfillment", "currencies", "support", "endpoints"],
+  "additionalProperties": false,
+  "properties": {
+    "merchant": {
+      "type": "object",
+      "required": ["name", "store", "country", "merchant_of_record"],
+      "additionalProperties": false,
+      "properties": {
+        "name":               { "type": "string" },
+        "store":              { "type": "string" },
+        "country":            { "type": "string", "pattern": "^[A-Z]{2}$" },
+        "merchant_of_record": { "type": "boolean" },
+        "support_email":      { "type": "string", "format": "email" },
+        "website":            { "type": "string", "format": "uri" }
+      }
+    },
+    "checkout": {
+      "type": "object",
+      "required": ["stripe_checkout"],
+      "additionalProperties": false,
+      "properties": {
+        "stripe_checkout":             { "type": "boolean" },
+        "stripe_payment_intent":       { "type": "boolean" },
+        "stripe_shared_payment_token": { "type": "boolean" }
+      }
+    },
+    "fulfillment": {
+      "type": "object",
+      "required": ["digital_download"],
+      "additionalProperties": false,
+      "properties": {
+        "digital_download": { "type": "boolean" },
+        "instant_delivery": { "type": "boolean" }
+      }
+    },
+    "currencies": {
+      "type": "array",
+      "items": { "type": "string", "pattern": "^[A-Z]{3}$" },
+      "minItems": 1
+    },
+    "support": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "order_status":   { "type": "boolean" },
+        "refund_request": { "type": "boolean" }
+      }
+    },
+    "endpoints": {
+      "type": "object",
+      "required": ["products", "checkout", "order_status", "refund_request"],
+      "additionalProperties": false,
+      "properties": {
+        "products":       { "type": "string", "format": "uri" },
+        "checkout":       { "type": "string", "format": "uri" },
+        "order_status":   { "type": "string" },
+        "refund_request": { "type": "string", "format": "uri" }
+      }
+    }
+  }
+}

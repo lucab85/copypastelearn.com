@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://copypastelearn.com/schemas/ucp-discovery.schema.json",
+  "title": "UCPDiscovery",
+  "type": "object",
+  "required": ["merchant", "capabilities", "fulfillment", "payments"],
+  "additionalProperties": false,
+  "properties": {
+    "merchant": {
+      "type": "object",
+      "required": ["name", "store", "website", "country", "merchant_of_record"],
+      "additionalProperties": false,
+      "properties": {
+        "name":               { "type": "string" },
+        "store":              { "type": "string" },
+        "website":            { "type": "string", "format": "uri" },
+        "country":            { "type": "string", "pattern": "^[A-Z]{2}$" },
+        "support_email":      { "type": "string", "format": "email" },
+        "merchant_of_record": { "type": "boolean" }
+      }
+    },
+    "capabilities": {
+      "type": "object",
+      "required": ["product_discovery", "checkout", "order_status", "refund_request"],
+      "additionalProperties": false,
+      "properties": {
+        "product_discovery": { "type": "string", "format": "uri" },
+        "checkout":          { "type": "string", "format": "uri" },
+        "order_status":      { "type": "string" },
+        "refund_request":    { "type": "string", "format": "uri" }
+      }
+    },
+    "fulfillment": {
+      "type": "object",
+      "required": ["type"],
+      "additionalProperties": false,
+      "properties": {
+        "type":          { "type": "string", "enum": ["digital_download"] },
+        "delivery_time": { "type": "string" }
+      }
+    },
+    "payments": {
+      "type": "object",
+      "required": ["provider", "current_flow"],
+      "additionalProperties": false,
+      "properties": {
+        "provider":              { "type": "string" },
+        "current_flow":          { "type": "string", "enum": ["stripe_checkout", "stripe_payment_intent"] },
+        "future_supported_flow": { "type": "string", "enum": ["shared_payment_token", "none"] }
+      }
+    }
+  }
+}

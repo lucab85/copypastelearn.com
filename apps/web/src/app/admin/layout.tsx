@@ -1,7 +1,7 @@
 import { requireAdmin } from "@/lib/auth";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Settings, BookOpen, Terminal, LayoutDashboard } from "lucide-react";
+import { Settings, BookOpen, Terminal, LayoutDashboard, Package, Receipt, ScrollText } from "lucide-react";
 
 export const metadata = {
   title: {
@@ -32,6 +32,9 @@ export default async function AdminLayout({
         <nav className="space-y-1 px-2">
           <NavItem href="/admin" icon={LayoutDashboard} label="Overview" />
           <NavItem href="/admin/courses" icon={BookOpen} label="Courses" />
+          <NavItem href="/admin/products" icon={Package} label="Products" />
+          <NavItem href="/admin/orders" icon={Receipt} label="Orders" />
+          <NavItem href="/admin/policies" icon={ScrollText} label="Policies" />
           <NavItem href="/admin/labs" icon={Terminal} label="Lab Sessions" />
         </nav>
       </aside>

@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
 import Stripe from "stripe";
 import { db } from "@/lib/db";
+import { fulfillCheckoutCompleted } from "@/lib/fulfillment/fulfill";
+import { recordCommerceEvent } from "@/lib/commerce/analytics";
 
 // Lazy-init to avoid crashing at build time when env vars aren't set
 let _stripe: Stripe | null = null;
@@ -52,6 +54,15 @@ export async function POST(req: Request) {
     switch (event.type) {
       case "checkout.session.completed": {
         const session = event.data.object as Stripe.Checkout.Session;
+
+        // Commerce orders use `mode: "payment"`. Dispatch them through
+        // the commerce fulfillment pipeline (idempotent via WebhookEventLog).
+        if (session.mode === "payment") {
+          await fulfillCheckoutCompleted(event);
+          break;
+        }
+
+        // Subscription path (existing Pro tier flow).
         const clerkUserId = session.metadata?.clerkUserId;
 
         if (!clerkUserId || !session.subscription) break;
@@ -172,6 +183,33 @@ export async function POST(req: Request) {
           where: { clerkSubscriptionId: subscriptionId },
           data: { status: "PAST_DUE" },
         });
+        break;
+      }
+
+      case "checkout.session.expired": {
+        const session = event.data.object as Stripe.Checkout.Session;
+        if (session.mode === "payment") {
+          await recordCommerceEvent("checkout_abandoned", {
+            metadata: { sessionId: session.id },
+          });
+        }
+        break;
+      }
+
+      case "charge.refunded": {
+        const charge = event.data.object as Stripe.Charge;
+        const refundId = charge.refunds?.data?.[0]?.id;
+        if (!refundId) break;
+        const local = await db.refund.findUnique({
+          where: { stripeRefundId: refundId },
+        });
+        if (local && local.status !== "succeeded") {
+          await db.refund.update({
+            where: { id: local.id },
+            data: { status: "succeeded" },
+          });
+          await recordCommerceEvent("refund_completed", { orderId: local.orderId });
+        }
         break;
       }
 
