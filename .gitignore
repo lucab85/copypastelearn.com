@@ -11,6 +11,8 @@ out/
 .env
 .env.*
 !.env.example
+.vercel-env-tmp
+*.env.tmp
 
 # Database
 prisma/*.db
