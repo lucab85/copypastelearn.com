@@ -1,10 +1,9 @@
 import Link from "next/link";
-import Image from "next/image";
 import type { Product } from "@prisma/client";
 import { ArrowRight, Download } from "lucide-react";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import { formatMoneyAmount } from "@/lib/commerce/catalog";
+import { ProductCover } from "./ProductCover";
 
 interface ProductCardProps {
   product: Pick<
@@ -21,16 +20,8 @@ interface ProductCardProps {
   >;
 }
 
-const TYPE_LABEL: Record<string, string> = {
-  EBOOK: "Ebook",
-  TEMPLATE: "Template",
-  COURSE: "Course",
-  BUNDLE: "Bundle",
-};
-
 export function ProductCard({ product }: ProductCardProps) {
   const href = `/products/${product.slug}`;
-  const typeLabel = TYPE_LABEL[product.productType] ?? product.productType;
   const blurb = product.subtitle ?? product.description.slice(0, 160);
 
   return (
@@ -39,27 +30,15 @@ export function ProductCard({ product }: ProductCardProps) {
         <span className="sr-only">{product.title}</span>
       </Link>
 
-      <div className="relative aspect-[4/3] overflow-hidden bg-gradient-to-br from-muted to-muted/40">
-        {product.imageUrl ? (
-          <Image
-            src={product.imageUrl}
-            alt=""
-            fill
-            sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
-            className="object-cover transition-transform duration-500 group-hover:scale-105"
+      <div className="overflow-hidden">
+        <div className="transition-transform duration-500 group-hover:scale-[1.04]">
+          <ProductCover
+            title={product.title}
+            brand={product.brand}
+            productType={product.productType}
+            imageUrl={product.imageUrl}
+            aspect="card"
           />
-        ) : (
-          <div className="flex h-full items-center justify-center text-4xl font-bold text-muted-foreground/30">
-            {product.brand?.[0] ?? "✦"}
-          </div>
-        )}
-        <div className="absolute left-3 top-3 flex flex-wrap gap-1.5">
-          <Badge variant="secondary" className="backdrop-blur">
-            {typeLabel}
-          </Badge>
-          <Badge variant="outline" className="bg-background/70 backdrop-blur">
-            {product.brand}
-          </Badge>
         </div>
       </div>
 
