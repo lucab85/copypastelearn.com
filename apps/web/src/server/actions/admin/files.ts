@@ -2,10 +2,10 @@
 
 import { revalidatePath } from "next/cache";
 import { z } from "zod";
-import { PutObjectCommand, S3Client } from "@aws-sdk/client-s3";
 import { requireAdmin } from "@/lib/auth";
 import { db } from "@/lib/db";
 import { logAdminAction } from "@/lib/commerce/audit";
+import { uploadPrivateBlob } from "@/lib/delivery/storage";
 
 const UploadSchema = z.object({
   productId: z.string().min(1),
@@ -19,24 +19,6 @@ const UploadSchema = z.object({
     .max(120)
     .regex(/^[a-zA-Z0-9._-]+$/, "filename must be safe"),
 });
-
-let cachedS3: S3Client | undefined;
-function getS3(): S3Client {
-  if (cachedS3) return cachedS3;
-  const region = process.env.COMMERCE_S3_REGION;
-  const accessKeyId = process.env.COMMERCE_S3_ACCESS_KEY_ID;
-  const secretAccessKey = process.env.COMMERCE_S3_SECRET_ACCESS_KEY;
-  if (!region || !accessKeyId || !secretAccessKey) {
-    throw new Error("COMMERCE_S3_* env vars not configured");
-  }
-  cachedS3 = new S3Client({
-    region,
-    credentials: { accessKeyId, secretAccessKey },
-    endpoint: process.env.COMMERCE_S3_ENDPOINT,
-    forcePathStyle: !!process.env.COMMERCE_S3_ENDPOINT,
-  });
-  return cachedS3;
-}
 
 /**
  * Upload a new file version for a product. Sets `isCurrent=true` on
@@ -53,9 +35,6 @@ export async function uploadProductFile(input: unknown) {
   });
   if (!product) throw new Error("Product not found");
 
-  const bucket = process.env.COMMERCE_S3_BUCKET;
-  if (!bucket) throw new Error("COMMERCE_S3_BUCKET not configured");
-
   const buffer = Buffer.from(data.contentBase64, "base64");
   if (!buffer.length) throw new Error("Empty file");
   if (buffer.length > 200 * 1024 * 1024) {
@@ -64,16 +43,11 @@ export async function uploadProductFile(input: unknown) {
 
   const storageKey = `products/${product.id}/v${data.version}/${data.filename}`;
 
-  await getS3().send(
-    new PutObjectCommand({
-      Bucket: bucket,
-      Key: storageKey,
-      Body: buffer,
-      ContentType: data.contentType,
-      // Force private — readable only via presigned URLs.
-      ACL: "private",
-    }),
-  );
+  await uploadPrivateBlob({
+    pathname: storageKey,
+    body: buffer,
+    contentType: data.contentType,
+  });
 
   const file = await db.$transaction(async (tx) => {
     await tx.productFile.updateMany({

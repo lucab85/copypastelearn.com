@@ -7,12 +7,12 @@
  * Prereqs:
  *   - DATABASE_URL set (Postgres)
  *   - STRIPE_SECRET_KEY set (test-mode key recommended)
- *   - COMMERCE_S3_* set (or COMMERCE_S3_ENDPOINT for MinIO)
+ *   - BLOB_READ_WRITE_TOKEN set (Vercel Blob store)
  *   - RESEND_API_KEY optional (emails skipped if missing)
  */
 
 import { PrismaClient } from "@prisma/client";
-import { PutObjectCommand, S3Client } from "@aws-sdk/client-s3";
+import { put } from "@vercel/blob";
 import { PDFDocument, StandardFonts, rgb } from "pdf-lib";
 import Stripe from "stripe";
 
@@ -31,21 +31,8 @@ function getStripe(): Stripe {
   });
 }
 
-function getS3(): { s3: S3Client; bucket: string } {
-  const region = need("COMMERCE_S3_REGION");
-  const bucket = need("COMMERCE_S3_BUCKET");
-  return {
-    s3: new S3Client({
-      region,
-      credentials: {
-        accessKeyId: need("COMMERCE_S3_ACCESS_KEY_ID"),
-        secretAccessKey: need("COMMERCE_S3_SECRET_ACCESS_KEY"),
-      },
-      endpoint: process.env.COMMERCE_S3_ENDPOINT,
-      forcePathStyle: !!process.env.COMMERCE_S3_ENDPOINT,
-    }),
-    bucket,
-  };
+function ensureBlobToken(): void {
+  need("BLOB_READ_WRITE_TOKEN");
 }
 
 async function generateSamplePdf(title: string): Promise<Uint8Array> {
@@ -116,17 +103,14 @@ async function uploadProductFile(args: {
   filename: string;
   bytes: Uint8Array;
 }): Promise<{ storageKey: string }> {
-  const { s3, bucket } = getS3();
+  ensureBlobToken();
   const storageKey = `products/${args.productId}/v${args.version}/${args.filename}`;
-  await s3.send(
-    new PutObjectCommand({
-      Bucket: bucket,
-      Key: storageKey,
-      Body: args.bytes,
-      ContentType: "application/pdf",
-      ACL: "private",
-    }),
-  );
+  await put(storageKey, Buffer.from(args.bytes), {
+    access: "private",
+    contentType: "application/pdf",
+    addRandomSuffix: false,
+    allowOverwrite: true,
+  });
   return { storageKey };
 }
 

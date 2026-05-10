@@ -1,61 +1,59 @@
-import { GetObjectCommand, S3Client } from "@aws-sdk/client-s3";
-import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
+import { get, put, type PutBlobResult } from "@vercel/blob";
 
 /**
- * S3 (or compatible: R2, MinIO) client + presigned-URL minting for
- * protected product files.
+ * Vercel Blob–backed protected file storage for product downloads.
  *
  * Per FR-024 and SC-004, files MUST never be reachable through a
- * permanent or guessable public URL. Presigned URLs are short-lived
- * (60s default) and are produced only after a DownloadToken has been
- * verified by the API route.
+ * permanent or guessable public URL. Blobs are stored with
+ * `access: 'private'`; the `/api/download/[token]` route streams them
+ * through our function only after a DownloadToken has been verified.
+ *
+ * Auth comes from `BLOB_READ_WRITE_TOKEN`, automatically injected by
+ * Vercel when a Blob store is linked to the project.
  */
 
-let cachedClient: S3Client | undefined;
+export interface UploadOptions {
+  /** Logical pathname inside the Blob store (e.g. `products/abc/v1/file.pdf`). */
+  pathname: string;
+  body: Buffer | Uint8Array | ArrayBuffer | Blob | ReadableStream;
+  contentType?: string;
+  /** Defaults to false; we control filenames ourselves. */
+  addRandomSuffix?: boolean;
+}
 
-function getClient(): S3Client {
-  if (cachedClient) return cachedClient;
-  const region = process.env.COMMERCE_S3_REGION;
-  const accessKeyId = process.env.COMMERCE_S3_ACCESS_KEY_ID;
-  const secretAccessKey = process.env.COMMERCE_S3_SECRET_ACCESS_KEY;
-  const endpoint = process.env.COMMERCE_S3_ENDPOINT || undefined;
-
-  if (!region) {
-    throw new Error("COMMERCE_S3_REGION is not configured");
-  }
-  if (!accessKeyId || !secretAccessKey) {
-    throw new Error("COMMERCE_S3 credentials are not configured");
-  }
-
-  cachedClient = new S3Client({
-    region,
-    endpoint,
-    credentials: { accessKeyId, secretAccessKey },
-    forcePathStyle: Boolean(endpoint), // MinIO/R2 prefer path-style
+/** Upload a private blob and return the resulting metadata. */
+export async function uploadPrivateBlob(opts: UploadOptions): Promise<PutBlobResult> {
+  return put(opts.pathname, opts.body as Blob, {
+    access: "private",
+    addRandomSuffix: opts.addRandomSuffix ?? false,
+    contentType: opts.contentType,
+    allowOverwrite: true,
   });
-  return cachedClient;
 }
 
-export interface PresignOptions {
-  bucket: string;
-  key: string;
-  /** Time-to-live in seconds. Defaults to 60. Hard cap 600 for safety. */
-  ttlSeconds?: number;
-  /** Optional `Content-Disposition` header to control download filename. */
-  contentDisposition?: string;
+export interface FetchedBlob {
+  stream: ReadableStream<Uint8Array>;
+  contentType: string;
+  size: number | null;
+  etag: string;
 }
 
-export async function presignDownloadUrl(opts: PresignOptions): Promise<string> {
-  const ttl = Math.min(Math.max(opts.ttlSeconds ?? 60, 1), 600);
-  const command = new GetObjectCommand({
-    Bucket: opts.bucket,
-    Key: opts.key,
-    ResponseContentDisposition: opts.contentDisposition,
-  });
-  return getSignedUrl(getClient(), command, { expiresIn: ttl });
+/**
+ * Fetch a private blob's body as a stream so it can be proxied to
+ * the user. Returns `null` when not found.
+ */
+export async function fetchPrivateBlob(pathname: string): Promise<FetchedBlob | null> {
+  const result = await get(pathname, { access: "private" });
+  if (!result || result.statusCode !== 200 || !result.stream) return null;
+  return {
+    stream: result.stream,
+    contentType: result.blob.contentType ?? "application/octet-stream",
+    size: result.blob.size,
+    etag: result.blob.etag,
+  };
 }
 
-/** For tests — drop the cached client. */
+/** For tests — currently a no-op (no client cache to clear). */
 export function __resetStorageClientForTests(): void {
-  cachedClient = undefined;
+  // no-op
 }

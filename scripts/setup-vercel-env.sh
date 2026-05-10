@@ -103,20 +103,9 @@ add_secret NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY \
 add_secret RESEND_API_KEY \
   "Resend API key (re_...)"
 
-add_secret COMMERCE_S3_REGION \
-  "AWS region, e.g. eu-central-1"
-
-add_secret COMMERCE_S3_BUCKET \
-  "Private S3 bucket name (block-all-public-access ON)"
-
-add_secret COMMERCE_S3_ACCESS_KEY_ID \
-  "S3 access key id"
-
-add_secret COMMERCE_S3_SECRET_ACCESS_KEY \
-  "S3 secret access key"
-
-add_secret COMMERCE_S3_ENDPOINT \
-  "Optional: R2/MinIO endpoint URL — leave empty for AWS S3" optional
+# Vercel Blob token is auto-injected when a Blob store is linked to the
+# project — no manual entry needed. Verify with:
+#   vercel env ls production | grep BLOB_READ_WRITE_TOKEN
 
 add_secret UPSTASH_REDIS_REST_URL \
   "Upstash Redis REST URL (https://...upstash.io)"

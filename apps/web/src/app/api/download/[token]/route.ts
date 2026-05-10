@@ -3,7 +3,7 @@ import type { NextRequest } from "next/server";
 import { db } from "@/lib/db";
 import { rateLimit } from "@/lib/ratelimit";
 import { verifyAndConsumeToken } from "@/lib/delivery/tokens";
-import { presignDownloadUrl } from "@/lib/delivery/storage";
+import { fetchPrivateBlob } from "@/lib/delivery/storage";
 import { recordCommerceEvent } from "@/lib/commerce/analytics";
 import { serverLogger } from "@/lib/logger";
 
@@ -110,27 +110,20 @@ export async function GET(
       });
   if (!file) return err("file_unavailable", "No file available for product", 410);
 
-  const bucket = process.env.COMMERCE_S3_BUCKET;
-  if (!bucket) {
-    serverLogger.error({}, "download.s3_bucket_missing");
-    return err("internal", "Storage misconfigured", 500);
-  }
-
   const filename = sanitizeFilename(`${ent.product.slug}-v${file.version}.pdf`);
-  let url: string;
+  let blob: Awaited<ReturnType<typeof fetchPrivateBlob>>;
   try {
-    url = await presignDownloadUrl({
-      bucket,
-      key: file.storageKey,
-      ttlSeconds: 60,
-      contentDisposition: `attachment; filename="${filename}"`,
-    });
+    blob = await fetchPrivateBlob(file.storageKey);
   } catch (e) {
     serverLogger.error(
       { err: e instanceof Error ? e.message : String(e) },
-      "download.presign.failed",
+      "download.blob_fetch.failed",
     );
-    return err("internal", "Could not generate download URL", 500);
+    return err("internal", "Could not fetch file", 500);
+  }
+  if (!blob) {
+    serverLogger.error({ storageKey: file.storageKey }, "download.blob_not_found");
+    return err("file_unavailable", "File missing from storage", 410);
   }
 
   await recordCommerceEvent("file_downloaded", {
@@ -142,7 +135,13 @@ export async function GET(
     },
   });
 
-  return NextResponse.redirect(url, { status: 302 });
+  const headers = new Headers({
+    "Content-Type": blob.contentType,
+    "Content-Disposition": `attachment; filename="${filename}"`,
+    "Cache-Control": "private, no-store",
+  });
+  if (blob.size != null) headers.set("Content-Length", String(blob.size));
+  return new NextResponse(blob.stream, { status: 200, headers });
 }
 
 function sanitizeFilename(name: string): string {
