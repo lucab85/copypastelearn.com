@@ -9,6 +9,7 @@ import { AuthButtons } from "./auth-buttons";
 
 const navLinks = [
   { href: "/courses", label: "Courses" },
+  { href: "/shop", label: "Shop" },
   { href: "/blog", label: "Blog" },
   { href: "/pricing", label: "Pricing" },
 ];

@@ -8,6 +8,7 @@ const footerSections = [
     title: "Product",
     links: [
       { href: "/courses", label: "Courses" },
+      { href: "/shop", label: "Shop" },
       { href: "/pricing", label: "Pricing" },
       { href: "/ai-platform-engineering", label: "AI for Leaders" },
     ],
