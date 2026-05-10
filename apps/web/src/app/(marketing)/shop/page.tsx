@@ -37,8 +37,9 @@ const BRAND_OPTIONS = [
   { value: "", label: "All brands" },
   { value: "AnsiblePilot", label: "AnsiblePilot" },
   { value: "TerraformPilot", label: "TerraformPilot" },
-  { value: "KubernetesRecipes", label: "KubernetesRecipes" },
+  { value: "KubernetesRecipes", label: "Kubernetes Recipes" },
   { value: "AnsibleByExample", label: "Ansible by Example" },
+  { value: "NvidiaAI", label: "NVIDIA AI" },
   { value: "CopyPasteLearn", label: "CopyPasteLearn" },
 ] as const;
 

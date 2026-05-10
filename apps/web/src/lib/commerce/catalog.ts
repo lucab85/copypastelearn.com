@@ -23,6 +23,7 @@ export const BRAND_DISPLAY_NAMES: Record<Brand, string> = {
   TerraformPilot: "TerraformPilot",
   AnsibleByExample: "Ansible by Example",
   KubernetesRecipes: "Kubernetes Recipes",
+  NvidiaAI: "NVIDIA AI",
 };
 
 /**

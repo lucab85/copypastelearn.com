@@ -1,5 +1,12 @@
 import Image from "next/image";
 import type { Brand, ProductType } from "@prisma/client";
+import {
+  FileText,
+  LayoutGrid,
+  Code2,
+  Package,
+  type LucideIcon,
+} from "lucide-react";
 
 interface ProductCoverProps {
   title: string;
@@ -47,8 +54,14 @@ const BRAND_THEME: Record<
   KubernetesRecipes: {
     gradient: "from-sky-700 via-blue-600 to-indigo-600",
     accent: "text-sky-100",
-    mark: "K",
+    mark: "⎈",
     label: "Kubernetes Recipes",
+  },
+  NvidiaAI: {
+    gradient: "from-lime-500 via-green-600 to-emerald-700",
+    accent: "text-lime-100",
+    mark: "◢",
+    label: "NVIDIA AI",
   },
   CopyPasteLearn: {
     gradient: "from-emerald-700 via-teal-600 to-cyan-600",
@@ -71,6 +84,13 @@ const TYPE_LABEL: Record<ProductType, string> = {
   TEMPLATE: "Template",
   COURSE: "Course",
   BUNDLE: "Bundle",
+};
+
+const TYPE_ICON: Record<ProductType, { icon: LucideIcon; tag: string }> = {
+  EBOOK: { icon: FileText, tag: "PDF" },
+  TEMPLATE: { icon: LayoutGrid, tag: "YAML" },
+  COURSE: { icon: Code2, tag: "</>" },
+  BUNDLE: { icon: Package, tag: "BUNDLE" },
 };
 
 /**
@@ -108,6 +128,7 @@ export function ProductCover({
 
   const theme = BRAND_THEME[brand] ?? BRAND_THEME.CopyPasteLearn;
   const typeLabel = TYPE_LABEL[productType] ?? productType;
+  const { icon: TypeIcon, tag } = TYPE_ICON[productType] ?? TYPE_ICON.EBOOK;
 
   return (
     <div
@@ -134,13 +155,35 @@ export function ProductCover({
             "radial-gradient(60% 60% at 80% 0%, rgba(255,255,255,0.35), transparent 60%)",
         }}
       />
-      {/* Background mark */}
+      {/* Brand mark watermark — bottom-right */}
       <div
         aria-hidden
-        className={`pointer-events-none absolute -right-6 -bottom-12 select-none font-black leading-none ${theme.accent} opacity-30`}
+        className={`pointer-events-none absolute -right-6 -bottom-12 select-none font-black leading-none ${theme.accent} opacity-25`}
         style={{ fontSize: "min(70cqw, 22rem)", containerType: "inline-size" }}
       >
         {theme.mark}
+      </div>
+
+      {/* Centered type icon — the "PDF / template / code" symbol */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 z-[1] flex items-center justify-center"
+      >
+        <div className="relative">
+          {/* Glow halo */}
+          <div className="absolute inset-0 -m-6 rounded-full bg-white/15 blur-2xl" />
+          {/* Glass tile */}
+          <div className="relative flex flex-col items-center justify-center gap-2 rounded-2xl border border-white/30 bg-white/15 p-5 shadow-xl shadow-black/20 backdrop-blur-md sm:p-6 lg:p-7">
+            <TypeIcon
+              className="h-10 w-10 drop-shadow-md sm:h-12 sm:w-12 lg:h-14 lg:w-14"
+              strokeWidth={1.6}
+              aria-hidden
+            />
+            <span className="rounded-md bg-black/20 px-2 py-0.5 font-mono text-[10px] font-semibold tracking-wider text-white/90 sm:text-xs">
+              {tag}
+            </span>
+          </div>
+        </div>
       </div>
 
       {/* Foreground content */}
