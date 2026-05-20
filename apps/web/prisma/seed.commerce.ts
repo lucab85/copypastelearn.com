@@ -20,6 +20,7 @@ import { generateAnsibleAutomationPlaybookPdf } from "./seeds/ansible-automation
 import { generateAnsibleForKubernetesRecipesPdf } from "./seeds/ansible-for-kubernetes-recipes.pdf";
 import { generateAnsibleForVmwareOperationsRecipesPdf } from "./seeds/ansible-for-vmware-operations-recipes.pdf";
 import { generateBareMetalProvisioningRedfishPdf } from "./seeds/baremetal-provisioning-redfish.pdf";
+import { generateCloudNativeReferenceStackPdf } from "./seeds/cloud-native-reference-stack.pdf";
 import { generateKubernetesRecipesPdf } from "./seeds/kubernetes-recipes.pdf";
 import { generateRhelAiEngineeringRecipesPdf } from "./seeds/rhel-ai-engineering-recipes.pdf";
 import { generateRhelCisHardeningPlaybookPdf } from "./seeds/rhel9-cis-hardening-playbook.pdf";
@@ -603,6 +604,42 @@ async function main() {
     currency: "EUR",
     fileVersion: "1.0",
     pdfFactory: generateBareMetalProvisioningRedfishPdf,
+  });
+
+  await seedProduct({
+    slug: "cloud-native-reference-stack",
+    title: "Cloud-Native Reference Stack",
+    description: [
+      "Opinionated end-to-end reference architecture for a modern Kubernetes-based platform. 12 concerns, one tool each, ship to production with a 3-5 person platform team.",
+      "",
+      "What's inside:",
+      "\u2022 The 12-concern checklist platform teams use to scope themselves.",
+      "\u2022 Cluster baseline: K8s version, runtime, CNI (Cilium kube-proxy-free).",
+      "\u2022 Ingress and Gateway API with Cilium Gateway + cert-manager.",
+      "\u2022 Service mesh decision tree: Istio Ambient vs Linkerd vs Cilium.",
+      "\u2022 SPIFFE / SPIRE workload identity federated across clusters.",
+      "\u2022 Argo CD app-of-apps reference layout with ApplicationSet per tenant.",
+      "\u2022 Progressive delivery with Argo Rollouts via Gateway API weights.",
+      "\u2022 External Secrets + Vault for secret distribution.",
+      "\u2022 Kyverno baseline policies (PSS Restricted, require resources, verify-images).",
+      "\u2022 Supply chain: cosign signing + SBOM + Kyverno admission verification.",
+      "\u2022 Observability: Prometheus + Loki + Tempo + Grafana + OTel Collector.",
+      "\u2022 SLOs + error budgets with sloth + Pyrra; auto-freeze deploys on burn.",
+      "\u2022 Multi-tenancy: namespace + ResourceQuota + default-deny NetworkPolicy.",
+      "\u2022 FinOps: OpenCost chargeback, idle-pod detection, rightsizing via VPA.",
+      "\u2022 Backstage scaffolder templates for self-service tenant onboarding.",
+      "\u2022 CloudNativePG + Strimzi database operators, MinIO object storage.",
+      "\u2022 Velero cross-region DR pattern + quarterly restore drill.",
+      "\u2022 10 common errors, reference monorepo layout.",
+      "",
+      "Tested against Kubernetes 1.30 / 1.31 on EKS, GKE, AKS, OpenShift 4.17. Lifetime updates while the recipes are maintained, delivered via /library.",
+    ].join("\n"),
+    brand: "KubernetesRecipes",
+    productType: "EBOOK",
+    amountMinor: 3900,
+    currency: "EUR",
+    fileVersion: "1.0",
+    pdfFactory: generateCloudNativeReferenceStackPdf,
   });
 
   await seedBundle({
