@@ -172,7 +172,15 @@ async function seedProduct(input: {
   const existingCurrent = await prisma.productFile.findFirst({
     where: { productId: product.id, isCurrent: true },
   });
-  if (!existingThisVersion) {
+
+  // If a pdfFactory is provided, always regenerate and (re)upload the bytes so
+  // content updates land in the blob even when the version string hasn't been
+  // bumped, or when a prior seed run already created a row at this version
+  // pointing to stale content. The blob put() is overwrite-safe.
+  // If no factory is provided, only upload when the version row is missing.
+  const shouldUpload = input.pdfFactory ? true : !existingThisVersion;
+
+  if (shouldUpload) {
     const bytes = input.pdfFactory
       ? await input.pdfFactory()
       : await generateSamplePdf(input.title);
@@ -182,24 +190,44 @@ async function seedProduct(input: {
       filename: `${input.slug}.pdf`,
       bytes,
     });
-    if (existingCurrent) {
+    if (existingThisVersion) {
+      // Refresh row: same storageKey (overwritten), update size, ensure current.
+      if (existingCurrent && existingCurrent.id !== existingThisVersion.id) {
+        await prisma.productFile.update({
+          where: { id: existingCurrent.id },
+          data: { isCurrent: false },
+        });
+      }
       await prisma.productFile.update({
-        where: { id: existingCurrent.id },
-        data: { isCurrent: false },
+        where: { id: existingThisVersion.id },
+        data: {
+          storageKey,
+          sizeBytes: bytes.length,
+          contentType: "application/pdf",
+          isCurrent: true,
+        },
       });
+      console.log(`  ✓ refreshed ${storageKey} (${bytes.length} bytes)`);
+    } else {
+      if (existingCurrent) {
+        await prisma.productFile.update({
+          where: { id: existingCurrent.id },
+          data: { isCurrent: false },
+        });
+      }
+      await prisma.productFile.create({
+        data: {
+          productId: product.id,
+          version,
+          storageKey,
+          sizeBytes: bytes.length,
+          contentType: "application/pdf",
+          isCurrent: true,
+        },
+      });
+      console.log(`  ✓ uploaded ${storageKey} (${bytes.length} bytes)`);
     }
-    await prisma.productFile.create({
-      data: {
-        productId: product.id,
-        version,
-        storageKey,
-        sizeBytes: bytes.length,
-        contentType: "application/pdf",
-        isCurrent: true,
-      },
-    });
-    console.log(`  ✓ uploaded ${storageKey}`);
-  } else if (!existingThisVersion.isCurrent) {
+  } else if (existingThisVersion && !existingThisVersion.isCurrent) {
     if (existingCurrent && existingCurrent.id !== existingThisVersion.id) {
       await prisma.productFile.update({
         where: { id: existingCurrent.id },
