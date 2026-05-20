@@ -15,6 +15,7 @@ import { PrismaClient } from "@prisma/client";
 import { put } from "@vercel/blob";
 import { PDFDocument, StandardFonts, rgb } from "pdf-lib";
 import Stripe from "stripe";
+import { generateAnsibleAutomationPlaybookPdf } from "./seeds/ansible-automation-playbook.pdf";
 import { generateTerraformModulesLibraryPdf } from "./seeds/terraform-modules-library.pdf";
 
 const prisma = new PrismaClient();
@@ -318,11 +319,27 @@ async function main() {
   await seedProduct({
     slug: "ansible-automation-playbook",
     title: "Ansible Automation Playbook",
-    description: "Production-ready Ansible patterns, roles, and CI templates.",
+    description: [
+      "Production-ready Ansible patterns, roles, and CI templates — the reference architecture we use on real client engagements to manage thousands of Linux and Windows hosts. Stop rebuilding the same scaffolding on every project.",
+      "",
+      "What's inside:",
+      "• A scalable repository layout (inventories, group_vars, roles, collections, playbooks, vault, molecule, CI) ready for 10 or 10,000 hosts.",
+      "• 12 reusable roles: base hardening, users, SSH, sudoers, time, logging, monitoring agents, package mirrors, container runtimes, nginx, app_deploy, and database client tooling.",
+      "• Static and dynamic inventory templates (AWS EC2, GCP, Azure, Proxmox, Netbox) with sensible group_vars layering.",
+      "• Ansible Vault layout with a password client script that fetches the master key from 1Password / HashiCorp Vault / AWS Secrets Manager — nothing sensitive committed to git.",
+      "• Molecule scenarios (Podman, Docker, EC2 drivers) with idempotency and verifier steps for every role.",
+      "• AWX / Ansible Automation Platform project import and an Event-Driven Ansible rule book sample.",
+      "• GitHub Actions and GitLab CI templates: ansible-lint, yamllint, syntax-check, Molecule matrix, gated apply pipelines.",
+      "• pre-commit hooks and an opinionated ansible.cfg tuned for production fleets.",
+      "",
+      "Tested against Ansible Core 2.16 and 2.17. Lifetime updates while the playbook is maintained, delivered via /library.",
+    ].join("\n"),
     brand: "AnsiblePilot",
     productType: "EBOOK",
     amountMinor: 2900,
     currency: "EUR",
+    fileVersion: "1.1",
+    pdfFactory: generateAnsibleAutomationPlaybookPdf,
   });
 
   await seedProduct({
