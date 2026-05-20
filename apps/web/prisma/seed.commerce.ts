@@ -15,6 +15,7 @@ import { PrismaClient } from "@prisma/client";
 import { put } from "@vercel/blob";
 import { PDFDocument, StandardFonts, rgb } from "pdf-lib";
 import Stripe from "stripe";
+import { generateTerraformModulesLibraryPdf } from "./seeds/terraform-modules-library.pdf";
 
 const prisma = new PrismaClient();
 
@@ -122,6 +123,8 @@ async function seedProduct(input: {
   productType: "EBOOK" | "TEMPLATE" | "COURSE";
   amountMinor: number;
   currency: string;
+  fileVersion?: string;
+  pdfFactory?: () => Promise<Uint8Array>;
 }) {
   const { productId: stripeProductId, priceId: stripePriceId } =
     await ensureStripeProduct({
@@ -161,22 +164,34 @@ async function seedProduct(input: {
     },
   });
 
-  // Ensure at least one current file.
-  const hasFile = await prisma.productFile.findFirst({
+  // Ensure the requested file version is present and marked current.
+  const version = input.fileVersion ?? "1.0";
+  const existingThisVersion = await prisma.productFile.findFirst({
+    where: { productId: product.id, version },
+  });
+  const existingCurrent = await prisma.productFile.findFirst({
     where: { productId: product.id, isCurrent: true },
   });
-  if (!hasFile) {
-    const bytes = await generateSamplePdf(input.title);
+  if (!existingThisVersion) {
+    const bytes = input.pdfFactory
+      ? await input.pdfFactory()
+      : await generateSamplePdf(input.title);
     const { storageKey } = await uploadProductFile({
       productId: product.id,
-      version: "1.0",
+      version,
       filename: `${input.slug}.pdf`,
       bytes,
     });
+    if (existingCurrent) {
+      await prisma.productFile.update({
+        where: { id: existingCurrent.id },
+        data: { isCurrent: false },
+      });
+    }
     await prisma.productFile.create({
       data: {
         productId: product.id,
-        version: "1.0",
+        version,
         storageKey,
         sizeBytes: bytes.length,
         contentType: "application/pdf",
@@ -184,6 +199,17 @@ async function seedProduct(input: {
       },
     });
     console.log(`  ✓ uploaded ${storageKey}`);
+  } else if (!existingThisVersion.isCurrent) {
+    if (existingCurrent && existingCurrent.id !== existingThisVersion.id) {
+      await prisma.productFile.update({
+        where: { id: existingCurrent.id },
+        data: { isCurrent: false },
+      });
+    }
+    await prisma.productFile.update({
+      where: { id: existingThisVersion.id },
+      data: { isCurrent: true },
+    });
   }
 
   console.log(`  ✓ product ${input.slug} (${stripePriceId})`);
@@ -274,11 +300,25 @@ async function main() {
   await seedProduct({
     slug: "terraform-modules-library",
     title: "Terraform Modules Library",
-    description: "Battle-tested Terraform modules for AWS, GCP, and Azure.",
+    description: [
+      "Battle-tested Terraform modules for AWS, GCP, and Azure — the ones we run in production, packaged with documentation, examples, and a CI/CD baseline so you can ship infrastructure on day one.",
+      "",
+      "What's inside:",
+      "• 20 modules across networking, container platforms (EKS, GKE, AKS), managed Postgres, identity (IRSA, Workload Identity, Managed Identity), and observability.",
+      "• Per-module README with inputs, outputs, an architecture diagram, and a copy-paste example root configuration.",
+      "• Sensible, opinionated defaults: multi-AZ, encrypted at rest, private endpoints, least-privilege IAM, flow logs.",
+      "• Pre-commit hooks: terraform fmt, validate, tflint, tfsec, trivy.",
+      "• Reusable GitHub Actions and GitLab CI templates for plan/apply pipelines with manual approval gates.",
+      "• Semantic versioning per module. Pin with `version = \"1.1.0\"` and upgrade safely.",
+      "",
+      "Tested against Terraform 1.7 and 1.8. Lifetime updates while the modules are maintained, delivered via /library.",
+    ].join("\n"),
     brand: "TerraformPilot",
     productType: "TEMPLATE",
     amountMinor: 3900,
     currency: "EUR",
+    fileVersion: "1.1",
+    pdfFactory: generateTerraformModulesLibraryPdf,
   });
 
   await seedBundle({
