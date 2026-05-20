@@ -1,7 +1,7 @@
 ---
 title: "Thanos Long-Term Prometheus Storage"
 date: "2026-03-02"
-description: "Thanos extends Prometheus with unlimited retention, global querying across clusters, and downsampling. Learn how to deploy Thanos Sidecar and Store Gateway for multi-cluster observability."
+description: "Thanos extends Prometheus with unlimited retention, global querying across clusters, and downsampling. Learn how to deploy Thanos Sidecar and Store Gateway."
 category: "DevOps"
 tags: ["thanos", "Prometheus", "Monitoring", "observability", "kubernetes", "long-term-storage"]
 author: "Luca Berton"

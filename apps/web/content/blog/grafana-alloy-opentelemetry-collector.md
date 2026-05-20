@@ -1,7 +1,7 @@
 ---
 title: "Grafana Alloy OpenTelemetry Collector"
 date: "2026-02-13"
-description: "Grafana Alloy is a programmable OpenTelemetry collector that replaces Prometheus Agent, Grafana Agent, and OTel Collector. Learn how to collect metrics, logs, and traces with a single binary."
+description: "Grafana Alloy is a programmable OpenTelemetry collector that replaces Prometheus Agent, Grafana Agent, and OTel Collector. Learn how to collect metrics, logs."
 category: "DevOps"
 tags: ["grafana-alloy", "opentelemetry", "observability", "metrics", "logs", "traces"]
 author: "Luca Berton"

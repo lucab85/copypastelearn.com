@@ -1,7 +1,7 @@
 ---
 title: "Karpenter Kubernetes Autoscaler"
 date: "2026-04-04"
-description: "Karpenter provisions the right Kubernetes nodes in seconds, not minutes. Learn how it replaces Cluster Autoscaler with faster, smarter node provisioning on AWS, Azure, and GCP."
+description: "Karpenter provisions the right Kubernetes nodes in seconds, not minutes. Learn how it replaces Cluster Autoscaler with faster, smarter node provisioning."
 category: "DevOps"
 tags: ["karpenter", "kubernetes", "autoscaling", "AWS", "node-provisioning", "cost-optimization"]
 author: "Luca Berton"

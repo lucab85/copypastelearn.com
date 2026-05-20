@@ -5,7 +5,7 @@ date: "2026-02-23"
 category: "DevOps"
 tags: ["Ansible", "Inventory", "Automation", "DevOps", "Configuration"]
 excerpt: "Master Ansible inventory management. Static and dynamic inventories, groups, variables, patterns, and cloud provider integration."
-description: "Master Ansible inventory management with static and dynamic inventories, host groups, variables, patterns, and seamless cloud provider integration for automation."
+description: "Master Ansible inventory management with static and dynamic inventories, host groups, variables, patterns, and seamless cloud provider integration."
 author: "Luca Berton"
 ---
 

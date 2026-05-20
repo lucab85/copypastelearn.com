@@ -1,7 +1,7 @@
 ---
 title: "Terraform Atlantis Pull Request Automation"
 date: "2026-03-15"
-description: "Atlantis automates Terraform plan and apply through pull request comments. Learn how to set up Atlantis for team-based infrastructure changes with automated plans, locking, and audit trails."
+description: "Atlantis automates Terraform plan and apply through pull request comments. Learn how to set up Atlantis for team-based infrastructure changes with automated."
 category: "DevOps"
 tags: ["atlantis", "Terraform", "pull-requests", "Automation", "gitops", "infrastructure-as-code"]
 author: "Luca Berton"

@@ -1,10 +1,14 @@
 import type { Metadata } from "next";
+import { cache } from "react";
 import { notFound } from "next/navigation";
 import { getProductBySlug } from "@/server/queries/catalog";
 import { ProductDetail } from "@/components/commerce/ProductDetail";
 import { AssistantPanel } from "@/components/commerce/AssistantPanel";
-import { productCanonicalUrl } from "@/lib/commerce/catalog";
+import { buildCatalogMetaDescription, productCanonicalUrl } from "@/lib/commerce/catalog";
 import { db } from "@/lib/db";
+
+// Per-request memoization so generateMetadata + the page body share one DB call.
+const loadProduct = cache(getProductBySlug);
 
 interface PageParams {
   params: Promise<{ slug: string }>;
@@ -14,22 +18,31 @@ export async function generateMetadata({
   params,
 }: PageParams): Promise<Metadata> {
   const { slug } = await params;
-  const product = await getProductBySlug(slug);
+  const product = await loadProduct(slug);
   if (!product || product.status !== "PUBLISHED") {
     return { title: "Product not found" };
   }
+  const metaDescription = buildCatalogMetaDescription({
+    kind: "product",
+    title: product.title,
+    subtitle: product.subtitle,
+    description: product.description,
+    brand: product.brand,
+  });
   return {
     title: product.title,
-    description: product.subtitle ?? product.description.slice(0, 160),
+    description: metaDescription,
     alternates: { canonical: `/products/${product.slug}` },
     openGraph: {
       title: product.title,
-      description: product.subtitle ?? product.description.slice(0, 160),
+      description: metaDescription,
       url: productCanonicalUrl(product.slug),
       type: "website",
-      images: product.imageUrl
-        ? [{ url: product.imageUrl, width: 1200, height: 630 }]
-        : undefined,
+      images: [
+        product.imageUrl
+          ? { url: product.imageUrl, width: 1200, height: 630, alt: product.title }
+          : { url: "/opengraph-image", width: 1200, height: 630, alt: product.title },
+      ],
     },
     robots: { index: true, follow: true },
   };
@@ -39,7 +52,7 @@ export const revalidate = 60;
 
 export default async function ProductDetailPage({ params }: PageParams) {
   const { slug } = await params;
-  const product = await getProductBySlug(slug);
+  const product = await loadProduct(slug);
   if (!product || product.status !== "PUBLISHED") notFound();
 
   // T084 — render "Already owned" when this product is granted to the

@@ -1,7 +1,7 @@
 ---
 title: "Sealed Secrets Kubernetes Guide"
 date: "2026-03-20"
-description: "Sealed Secrets encrypts Kubernetes secrets so you can store them safely in Git. Learn how to install Sealed Secrets, encrypt secrets, and manage key rotation for GitOps workflows."
+description: "Sealed Secrets encrypts Kubernetes secrets so you can store them safely in Git. Learn how to install Sealed Secrets, encrypt secrets, and manage key rotation."
 category: "DevOps"
 tags: ["sealed-secrets", "kubernetes", "Secrets", "gitops", "Security", "Encryption"]
 author: "Luca Berton"

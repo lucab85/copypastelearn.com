@@ -1,7 +1,7 @@
 ---
 title: "Sops Encrypted Secrets in Git"
 date: "2026-02-12"
-description: "SOPS encrypts secret values in YAML, JSON, and dotenv files while keeping keys readable. Learn how to use SOPS with age, AWS KMS, or GCP KMS for GitOps-friendly secret management."
+description: "SOPS encrypts secret values in YAML, JSON, and dotenv files while keeping keys readable. Learn how to use SOPS with age, AWS KMS, or GCP KMS."
 category: "DevOps"
 tags: ["sops", "Secrets", "Encryption", "gitops", "Security", "DevOps"]
 author: "Luca Berton"

@@ -1,7 +1,7 @@
 ---
 title: "Buildpacks vs Dockerfiles Comparison"
 date: "2026-03-23"
-description: "Cloud Native Buildpacks automatically detect and build your app without a Dockerfile. Compare Buildpacks and Dockerfiles for build speed, security, and developer experience."
+description: "Cloud Native Buildpacks automatically detect and build your app without a Dockerfile. Compare Buildpacks and Dockerfiles for build speed, security."
 category: "DevOps"
 tags: ["buildpacks", "Docker", "Containers", "cicd", "cloud-native", "developer-experience"]
 author: "Luca Berton"

@@ -1,7 +1,7 @@
 ---
 title: "Crossplane Infrastructure as Code"
 date: "2026-04-14"
-description: "Crossplane lets you manage cloud infrastructure using Kubernetes custom resources. Learn how it works, how it compares to Terraform, and when to choose Crossplane for your platform."
+description: "Crossplane lets you manage cloud infrastructure using Kubernetes custom resources. Learn how it works, how it compares to Terraform, and when to choose."
 category: "DevOps"
 tags: ["crossplane", "kubernetes", "infrastructure-as-code", "platform-engineering", "cloud", "gitops"]
 author: "Luca Berton"

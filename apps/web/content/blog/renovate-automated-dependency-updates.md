@@ -1,7 +1,7 @@
 ---
 title: "Renovate Automated Dependency Updates"
 date: "2026-03-17"
-description: "Renovate automatically creates pull requests for dependency updates across npm, pip, Docker, Terraform, and Helm. Learn how to configure Renovate for safe, automated dependency management."
+description: "Renovate automatically creates pull requests for dependency updates across npm, pip, Docker, Terraform, and Helm. Learn how to configure Renovate for safe."
 category: "Development"
 tags: ["renovate", "dependencies", "Automation", "cicd", "Security", "developer-tools"]
 author: "Luca Berton"

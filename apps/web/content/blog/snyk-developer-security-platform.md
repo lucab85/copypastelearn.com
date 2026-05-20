@@ -1,7 +1,7 @@
 ---
 title: "Snyk Developer Security Platform"
 date: "2026-03-08"
-description: "Snyk finds and fixes vulnerabilities in code, dependencies, containers, and infrastructure as code. Learn how to integrate Snyk into your development workflow and CI/CD pipeline."
+description: "Snyk finds and fixes vulnerabilities in code, dependencies, containers, and infrastructure as code. Learn how to integrate Snyk into your development workflow."
 category: "DevOps"
 tags: ["snyk", "Security", "devsecops", "vulnerability-scanning", "dependencies", "cicd"]
 author: "Luca Berton"

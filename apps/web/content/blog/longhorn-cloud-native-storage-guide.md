@@ -1,7 +1,7 @@
 ---
 title: "Longhorn Cloud Native Storage Guide"
 date: "2026-01-30"
-description: "Longhorn is a lightweight distributed storage system for Kubernetes. Learn how Longhorn provides replicated block storage, snapshots, and backups without the complexity of Ceph."
+description: "Longhorn is a lightweight distributed storage system for Kubernetes. Learn how Longhorn provides replicated block storage, snapshots, and backups."
 category: "DevOps"
 tags: ["longhorn", "kubernetes", "storage", "persistent-volumes", "Backup", "cncf"]
 author: "Luca Berton"

@@ -42,10 +42,10 @@ function AboutPageJsonLd() {
       founder: {
         "@type": "Person",
         name: "Luca Berton",
-        url: "https://www.lucaberton.com",
+        url: "https://lucaberton.com",
         jobTitle: "IT Automation Expert, Docker Captain & Instructor",
         sameAs: [
-          "https://www.lucaberton.com",
+          "https://lucaberton.com",
           "https://twitter.com/yourlinuxsa",
           "https://www.ansiblepilot.com",
           "https://www.terraformpilot.com",
@@ -234,7 +234,7 @@ export default function AboutPage() {
               </p>
               <div className="mt-4 flex flex-wrap gap-3 text-sm">
                 <a
-                  href="https://www.lucaberton.com"
+                  href="https://lucaberton.com"
                   target="_blank"
                   rel="noopener"
                   className="text-muted-foreground transition-colors hover:text-primary"

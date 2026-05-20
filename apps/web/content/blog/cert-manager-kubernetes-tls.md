@@ -1,7 +1,7 @@
 ---
 title: "Cert Manager Kubernetes TLS Guide"
 date: "2026-03-11"
-description: "Cert-manager automates TLS certificate management in Kubernetes with Let's Encrypt. Learn how to install cert-manager, configure issuers, and secure your ingress with automatic certificate renewal."
+description: "Cert-manager automates TLS certificate management in Kubernetes with Let's Encrypt. Learn how to install cert-manager, configure issuers, and secure your."
 category: "DevOps"
 tags: ["cert-manager", "kubernetes", "tls", "lets-encrypt", "certificates", "Security"]
 author: "Luca Berton"

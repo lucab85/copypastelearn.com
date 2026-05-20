@@ -5,7 +5,7 @@ date: "2026-02-14"
 category: "DevOps"
 tags: ["Ansible", "Roles", "Automation", "DevOps", "Configuration Management"]
 excerpt: "Structure Ansible automation with roles. Directory layout, defaults, handlers, Ansible Galaxy, and role testing with Molecule."
-description: "Structure Ansible automation with roles for reusability. Directory layout, defaults, handlers, Galaxy integration, and testing with Molecule for production-ready code."
+description: "Structure Ansible automation with roles for reusability. Directory layout, defaults, handlers, Galaxy integration, and testing with Molecule."
 author: "Luca Berton"
 ---
 

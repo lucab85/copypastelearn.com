@@ -1,7 +1,7 @@
 ---
 title: "External Secrets Operator Guide"
 date: "2026-02-22"
-description: "External Secrets Operator syncs secrets from AWS Secrets Manager, HashiCorp Vault, and Azure Key Vault into Kubernetes Secrets. Learn how to stop committing secrets to Git."
+description: "External Secrets Operator syncs secrets from AWS Secrets Manager, HashiCorp Vault, and Azure Key Vault into Kubernetes Secrets. Learn how to stop committing."
 category: "DevOps"
 tags: ["external-secrets", "kubernetes", "secrets-management", "Vault", "AWS", "gitops"]
 author: "Luca Berton"

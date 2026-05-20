@@ -1,7 +1,7 @@
 ---
 title: "Kubecost Kubernetes Cost Monitoring"
 date: "2026-02-23"
-description: "Kubecost shows real-time cost allocation per namespace, deployment, and label in Kubernetes. Learn how to install Kubecost, identify waste, and set budgets for teams and projects."
+description: "Kubecost shows real-time cost allocation per namespace, deployment, and label in Kubernetes. Learn how to install Kubecost, identify waste, and set budgets."
 category: "DevOps"
 tags: ["kubecost", "kubernetes", "cost-optimization", "finops", "Monitoring", "cloud-costs"]
 author: "Luca Berton"

@@ -1,7 +1,7 @@
 ---
 title: "Skupper Multi-Cluster Kubernetes"
 date: "2026-03-06"
-description: "Skupper connects Kubernetes services across clusters without VPNs or special networking. Learn how to set up multi-cluster communication with Skupper for hybrid cloud and edge deployments."
+description: "Skupper connects Kubernetes services across clusters without VPNs or special networking. Learn how to set up multi-cluster communication with Skupper."
 category: "DevOps"
 tags: ["skupper", "kubernetes", "multi-cluster", "hybrid-cloud", "Networking", "service-mesh"]
 author: "Luca Berton"

@@ -66,7 +66,7 @@ function ProgramJsonLd() {
       "@type": "Person",
       name: "Luca Berton",
       jobTitle: "AI Infrastructure Architect",
-      url: "https://www.lucaberton.com",
+      url: "https://lucaberton.com",
     },
     educationalLevel: "Executive",
     timeRequired: "PT36H",

@@ -1,7 +1,7 @@
 ---
 title: "Backstage Developer Portal Guide"
 date: "2026-04-21"
-description: "Spotify Backstage is the most popular open-source developer portal. Learn how to set it up, create software templates, build a service catalog, and integrate with your existing tools."
+description: "Spotify Backstage is the most popular open-source developer portal. Learn how to set it up, create software templates, build a service catalog, and integrate."
 category: "DevOps"
 tags: ["backstage", "developer-portal", "platform-engineering", "spotify", "service-catalog", "internal-developer-platform"]
 author: "Luca Berton"

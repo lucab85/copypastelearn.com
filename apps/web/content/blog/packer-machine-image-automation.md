@@ -1,7 +1,7 @@
 ---
 title: "Packer Machine Image Automation"
 date: "2026-02-25"
-description: "Packer automates machine image creation for AWS AMIs, Azure images, Docker, and Vagrant. Learn how to build immutable infrastructure images with Packer and integrate them into your CI/CD pipeline."
+description: "Packer automates machine image creation for AWS AMIs, Azure images, Docker, and Vagrant. Learn how to build immutable infrastructure images with Packer."
 category: "DevOps"
 tags: ["packer", "machine-images", "ami", "immutable-infrastructure", "hashicorp", "Automation"]
 author: "Luca Berton"

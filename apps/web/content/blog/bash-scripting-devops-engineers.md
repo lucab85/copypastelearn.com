@@ -5,7 +5,7 @@ date: "2026-02-12"
 category: "DevOps"
 tags: ["Bash", "Scripting", "Linux", "Automation", "DevOps"]
 excerpt: "Essential Bash scripting for DevOps. Variables, conditionals, loops, functions, error handling, and real-world automation scripts."
-description: "Essential Bash scripting skills for DevOps engineers. Variables, conditionals, loops, functions, error handling, and practical automation scripts for daily operations."
+description: "Essential Bash scripting skills for DevOps engineers. Variables, conditionals, loops, functions, error handling, and practical automation scripts for daily."
 author: "Luca Berton"
 ---
 

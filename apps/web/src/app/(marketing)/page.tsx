@@ -53,7 +53,7 @@ function OrganizationJsonLd() {
     sameAs: [
       "https://github.com/lucab85",
       "https://twitter.com/copypastelearn",
-      "https://discord.gg/copypastelearn",
+      "https://discord.com/invite/copypastelearn",
     ],
   };
   return (

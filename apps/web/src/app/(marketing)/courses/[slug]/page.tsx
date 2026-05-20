@@ -1,6 +1,6 @@
-export const dynamic = "force-dynamic";
 export const revalidate = 3600;
 import type { Metadata } from "next";
+import { cache } from "react";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { getCourse } from "@/server/queries/courses";
@@ -11,6 +11,9 @@ import { Clock, BookOpen, Lock, CheckCircle2, Play, Target, Users } from "lucide
 import { PageEventTracker } from "@/components/analytics/page-event-tracker";
 import { TerminalPreview } from "@/components/course/terminal-preview";
 
+// Per-request memoization so generateMetadata + the page body share one DB call.
+const loadCourse = cache(getCourse);
+
 interface CourseDetailPageProps {
   params: Promise<{ slug: string }>;
 }
@@ -19,7 +22,7 @@ export async function generateMetadata({
   params,
 }: CourseDetailPageProps): Promise<Metadata> {
   const { slug } = await params;
-  const course = await getCourse(slug);
+  const course = await loadCourse(slug);
   if (!course) return {};
   const siteUrl =
     process.env.NEXT_PUBLIC_APP_URL ?? "https://www.copypastelearn.com";
@@ -76,7 +79,7 @@ export async function generateMetadata({
 
 export default async function CourseDetailPage({ params }: CourseDetailPageProps) {
   const { slug } = await params;
-  const course = await getCourse(slug);
+  const course = await loadCourse(slug);
 
   if (!course) {
     notFound();

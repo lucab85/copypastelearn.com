@@ -1,7 +1,7 @@
 ---
 title: "Kubevirt VMs on Kubernetes Guide"
 date: "2026-03-12"
-description: "KubeVirt runs virtual machines alongside containers on Kubernetes. Learn how to deploy VMs as pods, migrate legacy workloads, and manage hybrid container-VM environments."
+description: "KubeVirt runs virtual machines alongside containers on Kubernetes. Learn how to deploy VMs as pods, migrate legacy workloads, and manage hybrid container-VM."
 category: "DevOps"
 tags: ["kubevirt", "kubernetes", "virtual-machines", "Containers", "migration", "infrastructure"]
 author: "Luca Berton"

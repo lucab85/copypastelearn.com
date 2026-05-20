@@ -1,7 +1,7 @@
 ---
 title: "Backstage Software Catalog Setup"
 date: "2026-03-05"
-description: "Backstage's software catalog gives you a single inventory of all services, APIs, and infrastructure. Learn how to register components, define system models, and build a searchable developer portal."
+description: "Backstage's software catalog gives you a single inventory of all services, APIs, and infrastructure. Learn how to register components, define system models."
 category: "DevOps"
 tags: ["backstage", "software-catalog", "developer-portal", "platform-engineering", "microservices", "documentation"]
 author: "Luca Berton"

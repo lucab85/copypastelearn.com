@@ -1,7 +1,7 @@
 ---
 title: "Testkube Kubernetes Testing Guide"
 date: "2026-03-09"
-description: "Testkube runs tests natively on Kubernetes using any testing framework. Learn how to run integration tests, load tests, and API tests inside your cluster for accurate production-like results."
+description: "Testkube runs tests natively on Kubernetes using any testing framework. Learn how to run integration tests, load tests, and API tests inside your cluster."
 category: "DevOps"
 tags: ["testkube", "kubernetes", "testing", "integration-testing", "load-testing", "cicd"]
 author: "Luca Berton"

@@ -1,7 +1,7 @@
 ---
 title: "OPA Gatekeeper Kubernetes Policies"
 date: "2026-03-21"
-description: "OPA Gatekeeper enforces custom policies in Kubernetes at admission time. Learn how to write ConstraintTemplates, enforce security standards, and prevent misconfigurations before deployment."
+description: "OPA Gatekeeper enforces custom policies in Kubernetes at admission time. Learn how to write ConstraintTemplates, enforce security standards, and prevent."
 category: "DevOps"
 tags: ["opa", "gatekeeper", "kubernetes", "policy", "Security", "admission-control"]
 author: "Luca Berton"

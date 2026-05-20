@@ -1,7 +1,7 @@
 ---
 title: "Nix Package Manager for DevOps"
 date: "2026-04-12"
-description: "Nix creates reproducible development environments that work the same on every machine. Learn how to use Nix for DevOps: dev shells, Docker images, CI environments, and system configuration."
+description: "Nix creates reproducible development environments that work the same on every machine. Learn how to use Nix for DevOps: dev shells, Docker images, CI."
 category: "DevOps"
 tags: ["nix", "reproducible-builds", "developer-experience", "DevOps", "package-manager", "nixos"]
 author: "Luca Berton"

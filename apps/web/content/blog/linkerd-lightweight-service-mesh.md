@@ -1,7 +1,7 @@
 ---
 title: "Linkerd Lightweight Service Mesh"
 date: "2026-03-14"
-description: "Linkerd is the lightest Kubernetes service mesh with automatic mTLS, golden metrics, and zero-config retries. Learn how Linkerd compares to Istio and when its simplicity is the right choice."
+description: "Linkerd is the lightest Kubernetes service mesh with automatic mTLS, golden metrics, and zero-config retries. Learn how Linkerd compares to Istio and when its."
 category: "DevOps"
 tags: ["linkerd", "service-mesh", "kubernetes", "mtls", "observability", "Networking"]
 author: "Luca Berton"

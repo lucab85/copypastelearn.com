@@ -1,7 +1,7 @@
 ---
 title: "Traefik Kubernetes Ingress Guide"
 date: "2026-02-14"
-description: "Traefik is a cloud-native reverse proxy and ingress controller for Kubernetes. Learn how to configure routing, TLS termination, middlewares, and canary deployments with Traefik on Kubernetes."
+description: "Traefik is a cloud-native reverse proxy and ingress controller for Kubernetes. Learn how to configure routing, TLS termination, middlewares, and canary."
 category: "DevOps"
 tags: ["Traefik", "kubernetes", "Ingress", "reverse-proxy", "load-balancer", "Networking"]
 author: "Luca Berton"

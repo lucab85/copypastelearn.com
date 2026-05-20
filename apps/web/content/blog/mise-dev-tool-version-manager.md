@@ -1,7 +1,7 @@
 ---
 title: "Mise Dev Tool Version Manager"
 date: "2026-03-22"
-description: "Mise (formerly rtx) manages tool versions per project. Replace nvm, pyenv, rbenv, and tfenv with one tool. Learn how to set up mise for polyglot development environments."
+description: "Mise (formerly rtx) manages tool versions per project. Replace nvm, pyenv, rbenv, and tfenv with one tool. Learn how to set up mise for polyglot development."
 category: "Development"
 tags: ["mise", "version-manager", "developer-tools", "nvm", "pyenv", "development-environment"]
 author: "Luca Berton"

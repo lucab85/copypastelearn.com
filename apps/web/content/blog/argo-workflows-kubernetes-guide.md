@@ -1,7 +1,7 @@
 ---
 title: "Argo Workflows Kubernetes Guide"
 date: "2026-03-26"
-description: "Argo Workflows runs complex DAG-based workflows on Kubernetes. Learn how to build multi-step pipelines for data processing, ML training, CI/CD, and infrastructure automation."
+description: "Argo Workflows runs complex DAG-based workflows on Kubernetes. Learn how to build multi-step pipelines for data processing, ML training, CI/CD."
 category: "DevOps"
 tags: ["argo-workflows", "kubernetes", "workflows", "dag", "Automation", "data-pipelines"]
 author: "Luca Berton"

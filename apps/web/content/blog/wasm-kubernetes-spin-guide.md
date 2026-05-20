@@ -1,7 +1,7 @@
 ---
 title: "Wasm on Kubernetes with Spin"
 date: "2026-04-10"
-description: "WebAssembly (Wasm) runs serverless functions on Kubernetes with sub-millisecond cold starts. Learn how Fermyon Spin and SpinKube bring Wasm workloads to your existing clusters."
+description: "WebAssembly (Wasm) runs serverless functions on Kubernetes with sub-millisecond cold starts. Learn how Fermyon Spin and SpinKube bring Wasm workloads to your."
 category: "DevOps"
 tags: ["webassembly", "wasm", "kubernetes", "spin", "serverless", "fermyon"]
 author: "Luca Berton"

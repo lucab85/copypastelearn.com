@@ -1,7 +1,7 @@
 ---
 title: "Grafana Tempo Distributed Tracing"
 date: "2026-03-04"
-description: "Grafana Tempo stores distributed traces at scale with object storage. Learn how Tempo compares to Jaeger, how to deploy it on Kubernetes, and how to correlate traces with logs and metrics."
+description: "Grafana Tempo stores distributed traces at scale with object storage. Learn how Tempo compares to Jaeger, how to deploy it on Kubernetes, and how to correlate."
 category: "DevOps"
 tags: ["grafana-tempo", "distributed-tracing", "observability", "opentelemetry", "kubernetes", "Grafana"]
 author: "Luca Berton"

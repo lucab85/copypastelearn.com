@@ -1,7 +1,7 @@
 ---
 title: "Terraform CDK vs HCL Comparison"
 date: "2026-04-05"
-description: "Terraform CDK lets you write infrastructure in TypeScript, Python, or Go instead of HCL. Compare CDKTF and HCL for real-world use cases and learn when each approach makes sense."
+description: "Terraform CDK lets you write infrastructure in TypeScript, Python, or Go instead of HCL. Compare CDKTF and HCL for real-world use cases and learn when each."
 category: "DevOps"
 tags: ["Terraform", "cdktf", "hcl", "infrastructure-as-code", "typescript", "DevOps"]
 author: "Luca Berton"

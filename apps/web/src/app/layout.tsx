@@ -35,6 +35,10 @@ export const metadata: Metadata = {
   publisher: "CopyPasteLearn",
   alternates: {
     canonical: "/",
+    languages: {
+      "en-US": "/",
+      "x-default": "/",
+    },
     types: {
       "application/rss+xml": "/feed.xml",
     },
@@ -100,8 +104,9 @@ export default async function RootLayout({
 }) {
   const clerkEnabled = isClerkConfigured();
 
-  let ClerkProvider: React.ComponentType<{ children: React.ReactNode }> | null =
-    null;
+  let ClerkProvider:
+    | React.ComponentType<{ children: React.ReactNode; clerkJSVersion?: string }>
+    | null = null;
   if (clerkEnabled) {
     const clerk = await import("@clerk/nextjs");
     ClerkProvider = clerk.ClerkProvider;
@@ -176,7 +181,9 @@ export default async function RootLayout({
   );
 
   if (ClerkProvider) {
-    return <ClerkProvider>{body}</ClerkProvider>;
+    return (
+      <ClerkProvider clerkJSVersion="5.125.10">{body}</ClerkProvider>
+    );
   }
 
   return body;

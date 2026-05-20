@@ -1,7 +1,7 @@
 ---
 title: "Cosign Container Image Signing"
 date: "2026-02-20"
-description: "Cosign signs and verifies container images using keyless signing with Sigstore. Learn how to sign images in CI/CD, verify signatures before deployment, and enforce signed images in Kubernetes."
+description: "Cosign signs and verifies container images using keyless signing with Sigstore. Learn how to sign images in CI/CD, verify signatures before deployment."
 category: "DevOps"
 tags: ["cosign", "sigstore", "container-security", "supply-chain", "image-signing", "kubernetes"]
 author: "Luca Berton"

@@ -1,7 +1,7 @@
 ---
 title: "Quality vs Safety in Engineering"
 date: "2026-04-25"
-description: "Quality and safety are not the same thing in software engineering. Learn when to prioritize safety over quality, how to build guardrails without slowing delivery, and where the two align."
+description: "Quality and safety are not the same thing in software engineering. Learn when to prioritize safety over quality, how to build guardrails without slowing."
 category: "DevOps"
 tags: ["DevOps", "safety", "quality", "Security", "Reliability", "engineering-culture"]
 author: "Luca Berton"

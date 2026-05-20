@@ -1,6 +1,6 @@
 const networkSites = [
   {
-    href: "https://www.lucaberton.com/",
+    href: "https://lucaberton.com/",
     label: "Luca Berton",
     title: "AI & Cloud Advisor",
     icon: (

@@ -39,7 +39,7 @@ export default function ContactPage() {
               icon: MessageSquare,
               title: "Discord",
               description: "Join our community",
-              href: "https://discord.gg/copypastelearn",
+              href: "https://discord.com/invite/copypastelearn",
             },
             {
               icon: MapPin,

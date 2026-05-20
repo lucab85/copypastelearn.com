@@ -1,7 +1,7 @@
 ---
 title: "Telepresence Local Kubernetes Dev"
 date: "2026-02-19"
-description: "Telepresence connects your local machine to a remote Kubernetes cluster for fast development. Learn how to intercept traffic, debug services locally, and skip the build-push-deploy cycle."
+description: "Telepresence connects your local machine to a remote Kubernetes cluster for fast development. Learn how to intercept traffic, debug services locally, and skip."
 category: "DevOps"
 tags: ["telepresence", "kubernetes", "Development", "Debugging", "developer-experience", "microservices"]
 author: "Luca Berton"

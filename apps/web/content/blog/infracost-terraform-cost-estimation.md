@@ -1,7 +1,7 @@
 ---
 title: "Infracost Terraform Cost Estimation"
 date: "2026-02-05"
-description: "Infracost shows cloud cost estimates for Terraform changes before you apply. Learn how to add cost visibility to pull requests and catch expensive infrastructure changes early."
+description: "Infracost shows cloud cost estimates for Terraform changes before you apply. Learn how to add cost visibility to pull requests and catch expensive."
 category: "DevOps"
 tags: ["infracost", "Terraform", "cost-estimation", "finops", "cloud-costs", "cicd"]
 author: "Luca Berton"

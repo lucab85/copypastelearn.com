@@ -1,7 +1,7 @@
 ---
 title: "Harbor Container Registry Guide"
 date: "2026-03-01"
-description: "Harbor is an open-source container registry with vulnerability scanning, RBAC, image signing, and replication. Learn how to deploy Harbor on Kubernetes and replace Docker Hub for your organization."
+description: "Harbor is an open-source container registry with vulnerability scanning, RBAC, image signing, and replication. Learn how to deploy Harbor on Kubernetes."
 category: "DevOps"
 tags: ["harbor", "container-registry", "Docker", "kubernetes", "Security", "cncf"]
 author: "Luca Berton"

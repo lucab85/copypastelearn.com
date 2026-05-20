@@ -27,8 +27,10 @@ export async function generateMetadata({
   const data = getPostsByCategory(slug);
   if (!data) return { title: "Category not found" };
   const { entry, posts } = data;
-  const title = `${entry.name} — CopyPasteLearn`;
-  const description = `${posts.length} ${posts.length === 1 ? "article" : "articles"} in ${entry.name}: tutorials, walkthroughs, and best practices.`;
+  // Root layout applies a `%s — CopyPasteLearn` title template, so do not append the brand here.
+  const title = entry.name;
+  const noun = posts.length === 1 ? "article" : "articles";
+  const description = `Explore ${posts.length} ${noun} in the ${entry.name} category on CopyPasteLearn — practical walkthroughs, code samples, and production-ready guides for engineers.`;
   const url = `/blog/category/${entry.slug}`;
   return {
     title,

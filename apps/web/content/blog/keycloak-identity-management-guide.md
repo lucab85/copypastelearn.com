@@ -1,7 +1,7 @@
 ---
 title: "Keycloak Identity Management Guide"
 date: "2026-02-16"
-description: "Keycloak provides SSO, OIDC, and SAML authentication for applications and APIs. Learn how to deploy Keycloak on Kubernetes, configure realms, and integrate with web apps and microservices."
+description: "Keycloak provides SSO, OIDC, and SAML authentication for applications and APIs. Learn how to deploy Keycloak on Kubernetes, configure realms, and integrate."
 category: "DevOps"
 tags: ["keycloak", "authentication", "sso", "oidc", "identity", "kubernetes"]
 author: "Luca Berton"

@@ -1,7 +1,7 @@
 ---
 title: "KEDA Event-Driven Autoscaling"
 date: "2026-03-29"
-description: "KEDA scales Kubernetes workloads based on external events like queue depth, HTTP requests, or cron schedules. Learn how to set up KEDA scalers and scale to zero."
+description: "KEDA scales Kubernetes workloads based on external events like queue depth, HTTP requests, or cron schedules. Learn how to set up KEDA scalers and scale."
 category: "DevOps"
 tags: ["keda", "kubernetes", "autoscaling", "event-driven", "serverless", "scaling"]
 author: "Luca Berton"

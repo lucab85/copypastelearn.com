@@ -1,7 +1,7 @@
 ---
 title: "K3s Lightweight Kubernetes Setup"
 date: "2026-02-03"
-description: "K3s is a lightweight Kubernetes distribution that runs on edge devices, Raspberry Pis, and VMs with a single binary. Learn how to install K3s, add agents, and deploy workloads in minutes."
+description: "K3s is a lightweight Kubernetes distribution that runs on edge devices, Raspberry Pis, and VMs with a single binary. Learn how to install K3s, add agents."
 category: "DevOps"
 tags: ["k3s", "kubernetes", "lightweight", "edge-computing", "raspberry-pi", "homelab"]
 author: "Luca Berton"

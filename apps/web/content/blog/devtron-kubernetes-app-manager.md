@@ -1,7 +1,7 @@
 ---
 title: "Devtron Kubernetes Application Manager"
 date: "2026-02-11"
-description: "Devtron provides a complete CI/CD platform for Kubernetes with a web UI, Helm chart management, and GitOps. Learn how Devtron simplifies application deployment for teams new to Kubernetes."
+description: "Devtron provides a complete CI/CD platform for Kubernetes with a web UI, Helm chart management, and GitOps. Learn how Devtron simplifies application."
 category: "DevOps"
 tags: ["devtron", "kubernetes", "cicd", "deployment", "helm", "platform"]
 author: "Luca Berton"

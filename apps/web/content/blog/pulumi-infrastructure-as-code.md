@@ -1,7 +1,7 @@
 ---
 title: "Pulumi Infrastructure as Code Guide"
 date: "2026-04-02"
-description: "Pulumi lets you write infrastructure in TypeScript, Python, Go, or C# with full programming language features. Learn how Pulumi works, how it compares to Terraform, and when to use it."
+description: "Pulumi lets you write infrastructure in TypeScript, Python, Go, or C# with full programming language features. Learn how Pulumi works, how it compares."
 category: "DevOps"
 tags: ["pulumi", "infrastructure-as-code", "typescript", "DevOps", "cloud", "Automation"]
 author: "Luca Berton"

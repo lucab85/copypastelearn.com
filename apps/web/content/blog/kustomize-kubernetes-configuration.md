@@ -1,7 +1,7 @@
 ---
 title: "Kustomize Kubernetes Configuration"
 date: "2026-01-24"
-description: "Kustomize customizes Kubernetes manifests without templates using overlays and patches. Learn how to manage multiple environments, merge configurations, and reduce YAML duplication."
+description: "Kustomize customizes Kubernetes manifests without templates using overlays and patches. Learn how to manage multiple environments, merge configurations."
 category: "DevOps"
 tags: ["kustomize", "kubernetes", "Configuration", "yaml", "gitops", "deployment"]
 author: "Luca Berton"

@@ -1,7 +1,7 @@
 ---
 title: "Chainguard Enforce Supply Chain"
 date: "2026-02-07"
-description: "Chainguard Enforce validates container supply chain integrity in Kubernetes using SLSA provenance, SBOMs, and image signatures. Learn how to enforce supply chain policies across your clusters."
+description: "Chainguard Enforce validates container supply chain integrity in Kubernetes using SLSA provenance, SBOMs, and image signatures. Learn how to enforce supply."
 category: "DevOps"
 tags: ["chainguard", "supply-chain-security", "slsa", "sbom", "container-security", "kubernetes"]
 author: "Luca Berton"

@@ -1,7 +1,7 @@
 ---
 title: "Istio Service Mesh Beginner Guide"
 date: "2026-03-28"
-description: "Istio adds mTLS, traffic management, and observability to your Kubernetes services without code changes. Learn the core concepts, installation, and practical use cases for Istio service mesh."
+description: "Istio adds mTLS, traffic management, and observability to your Kubernetes services without code changes. Learn the core concepts, installation, and practical."
 category: "DevOps"
 tags: ["istio", "service-mesh", "kubernetes", "mtls", "traffic-management", "observability"]
 author: "Luca Berton"

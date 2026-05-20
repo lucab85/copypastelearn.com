@@ -7,6 +7,13 @@ export const metadata: Metadata = {
   description:
     "How CopyPasteLearn delivers digital products — instant delivery, access link expiry, and download caps.",
   alternates: { canonical: "/digital-delivery-policy" },
+  openGraph: {
+    title: "Digital Delivery Policy — CopyPasteLearn",
+    description:
+      "How CopyPasteLearn delivers digital products — instant delivery, access link expiry, and download caps.",
+    url: "/digital-delivery-policy",
+    type: "website",
+  },
   robots: { index: true, follow: true },
 };
 

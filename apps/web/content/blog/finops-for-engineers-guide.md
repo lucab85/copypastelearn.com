@@ -1,7 +1,7 @@
 ---
 title: "FinOps for Engineers Practical Guide"
 date: "2026-04-09"
-description: "FinOps is not just for finance teams. Learn how engineers can reduce cloud costs with resource tagging, right-sizing, committed use discounts, and automated cost governance."
+description: "FinOps is not just for finance teams. Learn how engineers can reduce cloud costs with resource tagging, right-sizing, committed use discounts, and automated."
 category: "DevOps"
 tags: ["finops", "cloud-costs", "AWS", "cost-optimization", "DevOps", "engineering"]
 author: "Luca Berton"

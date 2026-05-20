@@ -23,6 +23,13 @@ export const metadata: Metadata = {
   description:
     "Production-tested Ansible, Terraform, and Kubernetes ebooks, templates, and bundles. Instant download, lifetime updates, EU VAT included.",
   alternates: { canonical: "/shop" },
+  openGraph: {
+    title: "Shop — DevOps ebooks, templates & bundles — CopyPasteLearn",
+    description:
+      "Production-tested Ansible, Terraform, and Kubernetes ebooks, templates, and bundles. Instant download, lifetime updates, EU VAT included.",
+    url: "/shop",
+    type: "website",
+  },
 };
 
 interface ShopPageProps {

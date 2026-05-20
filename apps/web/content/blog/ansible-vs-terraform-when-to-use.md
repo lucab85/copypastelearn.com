@@ -1,7 +1,7 @@
 ---
 title: "Ansible vs Terraform When to Use"
 date: "2026-04-16"
-description: "Ansible and Terraform solve different infrastructure problems. Learn when to use each, when to use both together, and how they complement each other in real-world DevOps workflows."
+description: "Ansible and Terraform solve different infrastructure problems. Learn when to use each, when to use both together, and how they complement each other."
 category: "DevOps"
 tags: ["Ansible", "Terraform", "infrastructure-as-code", "configuration-management", "DevOps", "Automation"]
 author: "Luca Berton"

@@ -1,7 +1,7 @@
 ---
 title: "Coder Remote Development Platform"
 date: "2026-02-09"
-description: "Coder provisions cloud development environments on Kubernetes, AWS, or any infrastructure. Learn how Coder replaces local dev setups with consistent, powerful remote workspaces."
+description: "Coder provisions cloud development environments on Kubernetes, AWS, or any infrastructure. Learn how Coder replaces local dev setups with consistent, powerful."
 category: "DevOps"
 tags: ["coder", "remote-development", "developer-experience", "kubernetes", "ide", "platform-engineering"]
 author: "Luca Berton"

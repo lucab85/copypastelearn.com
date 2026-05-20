@@ -1,7 +1,7 @@
 ---
 title: "Platform Engineering vs DevOps"
 date: "2026-04-23"
-description: "Platform engineering and DevOps solve different problems. Learn how platform teams build internal developer platforms, where DevOps still applies, and when you need both."
+description: "Platform engineering and DevOps solve different problems. Learn how platform teams build internal developer platforms, where DevOps still applies."
 category: "DevOps"
 tags: ["platform-engineering", "DevOps", "internal-developer-platform", "developer-experience", "infrastructure"]
 author: "Luca Berton"

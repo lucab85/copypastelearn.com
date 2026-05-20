@@ -1,7 +1,7 @@
 ---
 title: "Tilt Kubernetes Dev Environment"
 date: "2026-01-28"
-description: "Tilt automates the build-push-deploy loop for Kubernetes development. Learn how Tilt watches code changes, rebuilds containers, and updates deployments in seconds with live reload."
+description: "Tilt automates the build-push-deploy loop for Kubernetes development. Learn how Tilt watches code changes, rebuilds containers, and updates deployments."
 category: "DevOps"
 tags: ["tilt", "kubernetes", "Development", "hot-reload", "developer-experience", "microservices"]
 author: "Luca Berton"

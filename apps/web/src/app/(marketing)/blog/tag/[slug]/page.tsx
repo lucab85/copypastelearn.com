@@ -27,8 +27,10 @@ export async function generateMetadata({
   const data = getPostsByTag(slug);
   if (!data) return { title: "Tag not found" };
   const { entry, posts } = data;
-  const title = `Posts tagged "${entry.name}" — CopyPasteLearn`;
-  const description = `${posts.length} ${posts.length === 1 ? "article" : "articles"} on ${entry.name}: tutorials, walkthroughs, and best practices.`;
+  // Root layout applies a `%s — CopyPasteLearn` title template, so do not append the brand here.
+  const title = `Posts tagged "${entry.name}"`;
+  const noun = posts.length === 1 ? "article" : "articles";
+  const description = `Browse ${posts.length} ${entry.name} ${noun} on CopyPasteLearn — hands-on tutorials, copy-paste examples, troubleshooting tips, and production-ready patterns for engineers.`;
   const url = `/blog/tag/${entry.slug}`;
   return {
     title,

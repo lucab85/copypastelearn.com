@@ -1,7 +1,7 @@
 ---
 title: "Tofu vs Terraform Comparison"
 date: "2026-04-20"
-description: "OpenTofu forked Terraform after the BSL license change. Compare features, compatibility, licensing, and ecosystem to decide which IaC tool fits your team in 2026."
+description: "OpenTofu forked Terraform after the BSL license change. Compare features, compatibility, licensing, and ecosystem to decide which IaC tool fits your team."
 category: "DevOps"
 tags: ["opentofu", "Terraform", "infrastructure-as-code", "IaC", "hashicorp", "open-source"]
 author: "Luca Berton"

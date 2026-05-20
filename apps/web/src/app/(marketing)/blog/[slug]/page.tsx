@@ -429,7 +429,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     author: {
       "@type": "Person",
       name: post.author,
-      url: "https://www.lucaberton.com/",
+      url: "https://lucaberton.com/",
       sameAs: [
         "https://github.com/lucab85",
         "https://www.linkedin.com/in/lucaberton/",

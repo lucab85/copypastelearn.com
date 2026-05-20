@@ -1,7 +1,7 @@
 ---
 title: "Golden Paths in Platform Engineering"
 date: "2026-04-22"
-description: "Golden paths give developers a paved road through infrastructure complexity. Learn how to design golden paths for your internal developer platform without creating golden cages."
+description: "Golden paths give developers a paved road through infrastructure complexity. Learn how to design golden paths for your internal developer platform."
 category: "DevOps"
 tags: ["platform-engineering", "golden-path", "developer-experience", "internal-developer-platform", "backstage"]
 author: "Luca Berton"

@@ -1,7 +1,7 @@
 ---
 title: "Checkov Infrastructure as Code Scan"
 date: "2026-02-17"
-description: "Checkov scans Terraform, CloudFormation, Kubernetes, and Dockerfile for security misconfigurations with 1000+ built-in policies. Learn how to integrate Checkov into CI/CD and write custom checks."
+description: "Checkov scans Terraform, CloudFormation, Kubernetes, and Dockerfile for security misconfigurations with 1000+ built-in policies. Learn how to integrate."
 category: "DevOps"
 tags: ["checkov", "iac-security", "Terraform", "devsecops", "compliance", "scanning"]
 author: "Luca Berton"

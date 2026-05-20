@@ -1,5 +1,6 @@
 export const dynamic = "force-dynamic";
 import { notFound } from "next/navigation";
+import { cache } from "react";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { auth } from "@clerk/nextjs/server";
@@ -15,6 +16,9 @@ import { CheckoutButton } from "@/components/checkout-button";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { PageEventTracker } from "@/components/analytics/page-event-tracker";
 
+// Per-request memoization so generateMetadata + the page body share one DB call.
+const loadLesson = cache(getLesson);
+
 interface LessonPageProps {
   params: Promise<{ slug: string; lessonSlug: string }>;
 }
@@ -24,7 +28,7 @@ export async function generateMetadata({
 }: LessonPageProps): Promise<Metadata> {
   const { slug, lessonSlug } = await params;
   try {
-    const lesson = await getLesson(slug, lessonSlug);
+    const lesson = await loadLesson(slug, lessonSlug);
     return {
       title: lesson.title.replace(/ — CopyPasteLearn$/i, "").replace(/ \| CopyPasteLearn$/i, ""),
       description: `Watch the ${lesson.title} lesson on CopyPasteLearn. Master IT automation with expert-led video instruction and hands-on interactive labs.`,
@@ -50,7 +54,7 @@ export default async function LessonPage({ params }: LessonPageProps) {
 
   let lesson;
   try {
-    lesson = await getLesson(slug, lessonSlug);
+    lesson = await loadLesson(slug, lessonSlug);
   } catch (error: unknown) {
     if (error && typeof error === "object" && "statusCode" in error) {
       const err = error as { statusCode: number; message?: string };

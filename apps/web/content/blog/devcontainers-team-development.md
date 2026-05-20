@@ -1,7 +1,7 @@
 ---
 title: "DevContainers for Team Development"
 date: "2026-04-07"
-description: "Dev Containers standardize development environments using Docker. Learn how to set up devcontainers for your team with VS Code, GitHub Codespaces, and custom features."
+description: "Dev Containers standardize development environments using Docker. Learn how to set up devcontainers for your team with VS Code, GitHub Codespaces, and custom."
 category: "Development"
 tags: ["devcontainers", "Docker", "vscode", "developer-experience", "codespaces", "development-environment"]
 author: "Luca Berton"

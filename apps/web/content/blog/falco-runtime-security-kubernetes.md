@@ -1,7 +1,7 @@
 ---
 title: "Falco Runtime Security Kubernetes"
 date: "2026-04-03"
-description: "Falco detects runtime threats in Kubernetes using eBPF. Learn how to set up Falco for container security monitoring, write custom rules, and integrate with your alerting pipeline."
+description: "Falco detects runtime threats in Kubernetes using eBPF. Learn how to set up Falco for container security monitoring, write custom rules, and integrate."
 category: "DevOps"
 tags: ["falco", "kubernetes", "Security", "runtime-security", "ebpf", "container-security"]
 author: "Luca Berton"

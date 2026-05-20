@@ -1,7 +1,7 @@
 ---
 title: "Grafana Mimir Scalable Metrics Store"
 date: "2026-01-26"
-description: "Grafana Mimir stores Prometheus metrics at massive scale using object storage. Learn how Mimir compares to Thanos and Cortex, and how to deploy it for multi-tenant long-term metrics."
+description: "Grafana Mimir stores Prometheus metrics at massive scale using object storage. Learn how Mimir compares to Thanos and Cortex, and how to deploy it."
 category: "DevOps"
 tags: ["grafana-mimir", "Prometheus", "metrics", "observability", "long-term-storage", "Monitoring"]
 author: "Luca Berton"

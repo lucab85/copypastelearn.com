@@ -1,7 +1,7 @@
 ---
 title: "OpenTelemetry Getting Started Guide"
 date: "2026-04-06"
-description: "OpenTelemetry is the standard for observability instrumentation. Learn how to add traces, metrics, and logs to your applications with OTel SDKs and the OpenTelemetry Collector."
+description: "OpenTelemetry is the standard for observability instrumentation. Learn how to add traces, metrics, and logs to your applications with OTel SDKs."
 category: "DevOps"
 tags: ["opentelemetry", "observability", "Tracing", "metrics", "logging", "Monitoring"]
 author: "Luca Berton"

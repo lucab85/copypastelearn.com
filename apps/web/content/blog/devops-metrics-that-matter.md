@@ -1,7 +1,7 @@
 ---
 title: "DevOps Metrics That Matter"
 date: "2026-04-15"
-description: "Most DevOps dashboards track the wrong things. Learn which metrics actually predict engineering performance: DORA metrics, SLOs, and the metrics that drive behavior change."
+description: "Most DevOps dashboards track the wrong things. Learn which metrics actually predict engineering performance: DORA metrics, SLOs, and the metrics that drive."
 category: "DevOps"
 tags: ["DevOps", "metrics", "dora", "slo", "engineering-performance", "observability"]
 author: "Luca Berton"

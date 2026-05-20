@@ -1,7 +1,7 @@
 ---
 title: "Argo Rollouts Progressive Delivery"
 date: "2026-03-07"
-description: "Argo Rollouts adds canary releases and blue-green deployments to Kubernetes with automated analysis and rollback. Learn how to set up progressive delivery with traffic shifting and metrics-based promotion."
+description: "Argo Rollouts adds canary releases and blue-green deployments to Kubernetes with automated analysis and rollback. Learn how to set up progressive delivery."
 category: "DevOps"
 tags: ["argo-rollouts", "kubernetes", "canary", "blue-green", "progressive-delivery", "deployment"]
 author: "Luca Berton"

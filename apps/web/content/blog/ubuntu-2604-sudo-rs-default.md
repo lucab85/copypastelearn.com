@@ -1,7 +1,7 @@
 ---
 title: "Ubuntu 26.04 Makes sudo-rs Default"
 date: "2026-04-27"
-description: "Ubuntu 26.04 LTS replaces the 44-year-old C sudo with sudo-rs, a Rust rewrite. Learn what changes, why it matters for security, and what else ships in Resolute Raccoon."
+description: "Ubuntu 26.04 LTS replaces the 44-year-old C sudo with sudo-rs, a Rust rewrite. Learn what changes, why it matters for security, and what else ships."
 category: "DevOps"
 tags: ["Ubuntu", "Linux", "Security", "rust", "sudo", "LTS"]
 author: "Luca Berton"

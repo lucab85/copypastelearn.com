@@ -1,7 +1,7 @@
 ---
 title: "Earthly Reproducible Build Tool"
 date: "2026-03-13"
-description: "Earthly combines Dockerfiles and Makefiles into reproducible, containerized builds. Learn how Earthly works, how to write Earthfiles, and when it replaces complex CI/CD configurations."
+description: "Earthly combines Dockerfiles and Makefiles into reproducible, containerized builds. Learn how Earthly works, how to write Earthfiles, and when it replaces."
 category: "DevOps"
 tags: ["earthly", "builds", "cicd", "Containers", "reproducible-builds", "Automation"]
 author: "Luca Berton"

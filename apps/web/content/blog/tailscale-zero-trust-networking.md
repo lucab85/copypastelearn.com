@@ -1,7 +1,7 @@
 ---
 title: "Tailscale Zero Trust Networking"
 date: "2026-02-26"
-description: "Tailscale creates a WireGuard mesh network for zero trust access to servers, Kubernetes clusters, and databases. Learn how Tailscale replaces VPNs with simpler, more secure networking."
+description: "Tailscale creates a WireGuard mesh network for zero trust access to servers, Kubernetes clusters, and databases. Learn how Tailscale replaces VPNs."
 category: "DevOps"
 tags: ["Tailscale", "wireguard", "zero-trust", "Networking", "VPN", "Security"]
 author: "Luca Berton"

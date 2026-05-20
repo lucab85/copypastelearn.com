@@ -1,7 +1,7 @@
 ---
 title: "Headlamp Kubernetes Dashboard Guide"
 date: "2026-02-28"
-description: "Headlamp is a modern Kubernetes dashboard that replaces the official Kubernetes Dashboard. Learn how to install Headlamp, manage clusters, and extend it with plugins for team workflows."
+description: "Headlamp is a modern Kubernetes dashboard that replaces the official Kubernetes Dashboard. Learn how to install Headlamp, manage clusters, and extend it."
 category: "DevOps"
 tags: ["headlamp", "kubernetes", "dashboard", "ui", "developer-experience", "cluster-management"]
 author: "Luca Berton"

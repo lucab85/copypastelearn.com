@@ -1,7 +1,7 @@
 ---
 title: "Internal Developer Platform Guide"
 date: "2026-04-18"
-description: "Build an internal developer platform that developers actually use. Learn the five layers of an IDP, common mistakes, build vs buy decisions, and how to measure platform success."
+description: "Build an internal developer platform that developers actually use. Learn the five layers of an IDP, common mistakes, build vs buy decisions."
 category: "DevOps"
 tags: ["internal-developer-platform", "platform-engineering", "idp", "developer-experience", "backstage", "infrastructure"]
 author: "Luca Berton"

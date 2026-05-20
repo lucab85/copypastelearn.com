@@ -7,6 +7,13 @@ export const metadata: Metadata = {
   description:
     "CopyPasteLearn refund policy for digital purchases — eligibility, time window, and how to request a refund.",
   alternates: { canonical: "/refund-policy" },
+  openGraph: {
+    title: "Refund Policy — CopyPasteLearn",
+    description:
+      "CopyPasteLearn refund policy for digital purchases — eligibility, time window, and how to request a refund.",
+    url: "/refund-policy",
+    type: "website",
+  },
   robots: { index: true, follow: true },
 };
 

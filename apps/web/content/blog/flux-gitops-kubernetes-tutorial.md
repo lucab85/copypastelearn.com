@@ -1,7 +1,7 @@
 ---
 title: "Flux GitOps Kubernetes Tutorial"
 date: "2026-04-01"
-description: "Flux is a GitOps tool that continuously reconciles your Kubernetes cluster with a Git repository. Learn how to set up Flux, manage Helm releases, and handle multi-environment deployments."
+description: "Flux is a GitOps tool that continuously reconciles your Kubernetes cluster with a Git repository. Learn how to set up Flux, manage Helm releases, and handle."
 category: "DevOps"
 tags: ["flux", "gitops", "kubernetes", "helm", "continuous-delivery", "cncf"]
 author: "Luca Berton"

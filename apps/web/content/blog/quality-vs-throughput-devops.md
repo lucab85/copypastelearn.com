@@ -1,7 +1,7 @@
 ---
 title: "Quality vs Throughput in DevOps"
 date: "2026-04-24"
-description: "High throughput and high quality are not mutually exclusive in DevOps. Learn how to increase deployment frequency without sacrificing reliability using automation, testing, and progressive delivery."
+description: "High throughput and high quality are not mutually exclusive in DevOps. Learn how to increase deployment frequency without sacrificing reliability."
 category: "DevOps"
 tags: ["DevOps", "throughput", "quality", "cicd", "deployment", "dora-metrics"]
 author: "Luca Berton"

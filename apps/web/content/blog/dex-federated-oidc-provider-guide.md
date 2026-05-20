@@ -1,7 +1,7 @@
 ---
 title: "Dex Federated OIDC Provider Guide"
 date: "2026-01-29"
-description: "Dex is a federated OpenID Connect provider that integrates with LDAP, SAML, GitHub, and Google. Learn how to deploy Dex for Kubernetes authentication and single sign-on across DevOps tools."
+description: "Dex is a federated OpenID Connect provider that integrates with LDAP, SAML, GitHub, and Google. Learn how to deploy Dex for Kubernetes authentication."
 category: "DevOps"
 tags: ["dex", "oidc", "authentication", "kubernetes", "sso", "identity"]
 author: "Luca Berton"
