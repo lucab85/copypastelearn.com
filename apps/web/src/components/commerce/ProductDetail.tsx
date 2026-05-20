@@ -35,7 +35,7 @@ const TYPE_LABEL: Record<string, string> = {
 
 const INCLUDED_FEATURES = [
   "Production-tested examples you can copy-paste today",
-  "PDF + EPUB formats, optimized for screen and print",
+  "PDF format, optimized for screen and print",
   "Free updates whenever the source CLI changes",
   "Search-friendly, code-block heavy, no fluff",
 ] as const;

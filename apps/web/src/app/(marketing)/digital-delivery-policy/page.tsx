@@ -49,7 +49,7 @@ export default function DigitalDeliveryPolicyPage() {
           <ul>
             <li>
               <strong>Ebooks, templates, and playbooks</strong> — delivered as
-              downloadable files (PDF, EPUB, or archives of source files).
+              downloadable files (PDF or archives of source files).
             </li>
             <li>
               <strong>Video courses</strong> — streamed on demand inside your{" "}
@@ -147,8 +147,7 @@ export default function DigitalDeliveryPolicyPage() {
           <h2>6. Compatibility and system requirements</h2>
           <ul>
             <li>
-              <strong>Ebooks:</strong> PDF (any modern PDF reader), EPUB (any
-              modern e-reader).
+              <strong>Ebooks:</strong> PDF (any modern PDF reader).
             </li>
             <li>
               <strong>Templates / playbooks:</strong> require the tool
