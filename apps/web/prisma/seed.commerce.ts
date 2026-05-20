@@ -18,6 +18,7 @@ import Stripe from "stripe";
 import { generateAiInfrastructureKubernetesPdf } from "./seeds/ai-infrastructure-kubernetes.pdf";
 import { generateAnsibleAutomationPlaybookPdf } from "./seeds/ansible-automation-playbook.pdf";
 import { generateAnsibleForKubernetesRecipesPdf } from "./seeds/ansible-for-kubernetes-recipes.pdf";
+import { generateAnsibleForVmwareOperationsRecipesPdf } from "./seeds/ansible-for-vmware-operations-recipes.pdf";
 import { generateKubernetesRecipesPdf } from "./seeds/kubernetes-recipes.pdf";
 import { generateRhelAiEngineeringRecipesPdf } from "./seeds/rhel-ai-engineering-recipes.pdf";
 import { generateRhelCisHardeningPlaybookPdf } from "./seeds/rhel9-cis-hardening-playbook.pdf";
@@ -532,6 +533,41 @@ async function main() {
     currency: "EUR",
     fileVersion: "1.0",
     pdfFactory: generateAnsibleForKubernetesRecipesPdf,
+  });
+
+  await seedProduct({
+    slug: "ansible-for-vmware-operations-recipes",
+    title: "Ansible for VMware Operations Recipes",
+    description: [
+      "Day-2 operations cookbook for vCenter / ESXi fleets driven by Ansible. Distinct from the author's Apress 2023 book; recipes use public community.vmware and vmware.vmware_rest collection patterns.",
+      "",
+      "What's inside:",
+      "\u2022 Inventory + auth: vault, dynamic inventory, REST token reuse.",
+      "\u2022 Pre-flight: collections, python deps, Execution Environment image.",
+      "\u2022 Folders, resource pools, clusters with DRS rules and reservations.",
+      "\u2022 VM lifecycle: clone-from-template, hot reconfigure, delete.",
+      "\u2022 Content libraries, OVF / OVA template publishing and deployment.",
+      "\u2022 Linux + Windows customization specs, cloud-init via guestinfo, Sysprep domain join.",
+      "\u2022 Snapshots: create, consolidate, prune, restore - quiesced for DB VMs.",
+      "\u2022 Backups via Velero-vSphere and tag-driven 3rd-party tools.",
+      "\u2022 Tagging + categories for governance, cost reports, RBAC.",
+      "\u2022 Networking: dvSwitch, dvPortgroup, NSX-T segments.",
+      "\u2022 Storage: datastore mounts, vSAN SPBM policies.",
+      "\u2022 Host lifecycle: enter / exit maintenance, rolling ESXi patching with serial: 1.",
+      "\u2022 vCenter + ESXi upgrade orchestration via vLCM.",
+      "\u2022 STIG-aligned hardening for ESXi + vCenter (lockdown mode, syslog, certs).",
+      "\u2022 Prometheus vsphere_exporter scrape + SRM DR orchestration.",
+      "\u2022 Execution Environment for vmware.vmware_rest + AAP job templates.",
+      "\u2022 10 common errors with one-line fixes.",
+      "",
+      "Tested against vSphere 7.0 U3 + 8.0 U3, NSX-T 4.1+, vSAN 8 ESA, ansible-core 2.18. Lifetime updates while the recipes are maintained, delivered via /library.",
+    ].join("\n"),
+    brand: "AnsiblePilot",
+    productType: "EBOOK",
+    amountMinor: 3900,
+    currency: "EUR",
+    fileVersion: "1.0",
+    pdfFactory: generateAnsibleForVmwareOperationsRecipesPdf,
   });
 
   await seedBundle({
