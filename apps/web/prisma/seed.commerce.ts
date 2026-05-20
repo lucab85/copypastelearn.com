@@ -331,6 +331,7 @@ async function main() {
       "• AWX / Ansible Automation Platform project import and an Event-Driven Ansible rule book sample.",
       "• GitHub Actions and GitLab CI templates: ansible-lint, yamllint, syntax-check, Molecule matrix, gated apply pipelines.",
       "• pre-commit hooks and an opinionated ansible.cfg tuned for production fleets.",
+      "• Reference of the 22-level variable precedence and a numeric performance playbook (which knob delivers 2x, which delivers 10x, which breaks idempotency).",
       "",
       "Tested against Ansible Core 2.16 and 2.17. Lifetime updates while the playbook is maintained, delivered via /library.",
     ].join("\n"),
@@ -338,7 +339,7 @@ async function main() {
     productType: "EBOOK",
     amountMinor: 2900,
     currency: "EUR",
-    fileVersion: "1.1",
+    fileVersion: "1.2",
     pdfFactory: generateAnsibleAutomationPlaybookPdf,
   });
 
