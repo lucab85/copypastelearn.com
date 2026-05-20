@@ -16,6 +16,7 @@ import { put } from "@vercel/blob";
 import { PDFDocument, StandardFonts, rgb } from "pdf-lib";
 import Stripe from "stripe";
 import { generateAnsibleAutomationPlaybookPdf } from "./seeds/ansible-automation-playbook.pdf";
+import { generateKubernetesRecipesPdf } from "./seeds/kubernetes-recipes.pdf";
 import { generateTerraformModulesLibraryPdf } from "./seeds/terraform-modules-library.pdf";
 
 const prisma = new PrismaClient();
@@ -370,13 +371,49 @@ async function main() {
     pdfFactory: generateTerraformModulesLibraryPdf,
   });
 
+  await seedProduct({
+    slug: "kubernetes-recipes",
+    title: "Kubernetes Recipes",
+    description: [
+      "Production-grade Kubernetes patterns for SRE teams running real clusters — the cookbook we hand to new engineers on day one. Skip the months of trial and error.",
+      "",
+      "What's inside:",
+      "\u2022 Cluster layout templates: namespaces, ResourceQuota, LimitRange, default-deny NetworkPolicy, scoped RBAC, GitOps repo structure.",
+      "\u2022 Workload decision matrix: Deployment vs StatefulSet vs DaemonSet vs Job vs CronJob with full examples.",
+      "\u2022 Hardened pod templates compliant with the restricted Pod Security Standard (runAsNonRoot, read-only rootfs, dropped capabilities, seccomp RuntimeDefault).",
+      "\u2022 Rollout playbooks: RollingUpdate tuning, Blue-Green via Service selector switch, Canary with Argo Rollouts and analysis templates.",
+      "\u2022 Autoscaling stack: HPA on CPU + custom metrics, VPA, Cluster Autoscaler, KEDA ScaledObject for queue-driven workloads.",
+      "\u2022 Configuration patterns: immutable ConfigMaps, External Secrets Operator, Vault Agent Injector, secret rotation.",
+      "\u2022 Ingress + Gateway API + cert-manager with Let's Encrypt (HTTP-01 and DNS-01 wildcard) recipes.",
+      "\u2022 Helm chart anatomy, Sprig idioms, hooks; Kustomize base + overlays + components; Argo CD Application and Flux Kustomization / HelmRelease templates.",
+      "\u2022 Observability: kube-prometheus-stack, ServiceMonitor, PrometheusRule, SLO-driven alerting, Alertmanager routing.",
+      "\u2022 OpenTelemetry Collector daemonset with OTLP -> Tempo / Jaeger pipeline.",
+      "\u2022 Debugging runbook: CrashLoopBackOff, OOMKilled, ImagePullBackOff, DNS, Pending pods, kubectl debug ephemeral containers.",
+      "\u2022 Cluster operations: etcd snapshot + verified restore, drain with PodDisruptionBudget, upgrade order.",
+      "\u2022 Supply chain hardening: Trivy CI gates, SBOM generation, cosign keyless signing, Kyverno verify-images policies.",
+      "",
+      "Tested against Kubernetes 1.29, 1.30, and 1.31 on EKS, GKE, AKS, DOKS, and kubeadm clusters. Lifetime updates while the book is maintained, delivered via /library.",
+    ].join("\n"),
+    brand: "KubernetesRecipes",
+    productType: "EBOOK",
+    amountMinor: 3900,
+    currency: "EUR",
+    fileVersion: "1.0",
+    pdfFactory: generateKubernetesRecipesPdf,
+  });
+
   await seedBundle({
     slug: "devops-copy-paste-bundle",
     title: "DevOps Copy-Paste Bundle",
-    description: "Both the Ansible playbook and Terraform library at a discount.",
-    amountMinor: 5900,
+    description:
+      "The Ansible playbook, Terraform library, and Kubernetes Recipes at a discount.",
+    amountMinor: 8900,
     currency: "EUR",
-    productSlugs: ["ansible-automation-playbook", "terraform-modules-library"],
+    productSlugs: [
+      "ansible-automation-playbook",
+      "terraform-modules-library",
+      "kubernetes-recipes",
+    ],
   });
 
   await seedPolicy(
