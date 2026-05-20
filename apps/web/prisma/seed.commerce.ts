@@ -19,6 +19,7 @@ import { generateAiInfrastructureKubernetesPdf } from "./seeds/ai-infrastructure
 import { generateAnsibleAutomationPlaybookPdf } from "./seeds/ansible-automation-playbook.pdf";
 import { generateAnsibleForKubernetesRecipesPdf } from "./seeds/ansible-for-kubernetes-recipes.pdf";
 import { generateAnsibleForVmwareOperationsRecipesPdf } from "./seeds/ansible-for-vmware-operations-recipes.pdf";
+import { generateBareMetalProvisioningRedfishPdf } from "./seeds/baremetal-provisioning-redfish.pdf";
 import { generateKubernetesRecipesPdf } from "./seeds/kubernetes-recipes.pdf";
 import { generateRhelAiEngineeringRecipesPdf } from "./seeds/rhel-ai-engineering-recipes.pdf";
 import { generateRhelCisHardeningPlaybookPdf } from "./seeds/rhel9-cis-hardening-playbook.pdf";
@@ -568,6 +569,40 @@ async function main() {
     currency: "EUR",
     fileVersion: "1.0",
     pdfFactory: generateAnsibleForVmwareOperationsRecipesPdf,
+  });
+
+  await seedProduct({
+    slug: "baremetal-provisioning-redfish",
+    title: "Bare-metal Provisioning with Redfish",
+    description: [
+      "Automation cookbook for provisioning bare-metal servers via the DMTF Redfish API - the recipes platform engineers need to drive iDRAC, iLO, Supermicro, and XCC fleets from CI / AAP / Metal3.",
+      "",
+      "What's inside:",
+      "\u2022 Redfish basics: schema, sessions, ETags, pretty curl invocations.",
+      "\u2022 BMC inventory queries (power, NICs, drives, firmware) as curl and Ansible.",
+      "\u2022 Authentication: local accounts, LDAP / AD, mTLS, lockout policies.",
+      "\u2022 Power and one-time boot (PXE / HDD / virtual media) recipes.",
+      "\u2022 Virtual-media attach for image-based installs - no PXE / DHCP required.",
+      "\u2022 BIOS get/set with ETag concurrency, apply-on-next-reset patterns.",
+      "\u2022 SimpleUpdate firmware flow for iDRAC, iLO, Supermicro.",
+      "\u2022 RAID / storage controller volume creation.",
+      "\u2022 PXE + iPXE + DHCP + TFTP baseline for fleet boot.",
+      "\u2022 Kickstart for RHEL / Rocky / AlmaLinux, autoinstall for Ubuntu 24.04.",
+      "\u2022 Image-based provisioning with osbuild and coreos-installer (Ignition).",
+      "\u2022 community.general.redfish_* Ansible modules + Redfish dynamic inventory.",
+      "\u2022 Metal3 + Ironic BareMetalHost on Kubernetes; Tinkerbell alternative.",
+      "\u2022 Secure Boot, TPM, LUKS2 + clevis + tang at scale.",
+      "\u2022 Day-2 telemetry: Redfish event subscriptions + rsyslog forwarding.",
+      "\u2022 10 common errors with one-line fixes and reference YAML.",
+      "",
+      "Tested against iDRAC 9 firmware 7.x, iLO 5 + 6, Supermicro X12 BMC, Lenovo XCC2, Redfish 1.20. Lifetime updates while the recipes are maintained, delivered via /library.",
+    ].join("\n"),
+    brand: "CopyPasteLearn",
+    productType: "EBOOK",
+    amountMinor: 3900,
+    currency: "EUR",
+    fileVersion: "1.0",
+    pdfFactory: generateBareMetalProvisioningRedfishPdf,
   });
 
   await seedBundle({
