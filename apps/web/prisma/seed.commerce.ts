@@ -15,6 +15,7 @@ import { PrismaClient } from "@prisma/client";
 import { put } from "@vercel/blob";
 import { PDFDocument, StandardFonts, rgb } from "pdf-lib";
 import Stripe from "stripe";
+import { generateAiInfrastructureKubernetesPdf } from "./seeds/ai-infrastructure-kubernetes.pdf";
 import { generateAnsibleAutomationPlaybookPdf } from "./seeds/ansible-automation-playbook.pdf";
 import { generateKubernetesRecipesPdf } from "./seeds/kubernetes-recipes.pdf";
 import { generateRhelAiEngineeringRecipesPdf } from "./seeds/rhel-ai-engineering-recipes.pdf";
@@ -464,6 +465,39 @@ async function main() {
     currency: "EUR",
     fileVersion: "1.0",
     pdfFactory: generateRhelAiEngineeringRecipesPdf,
+  });
+
+  await seedProduct({
+    slug: "ai-infrastructure-kubernetes",
+    title: "AI Infrastructure on Kubernetes",
+    description: [
+      "Production cookbook for platform engineers running GPU clusters, model training, and inference on Kubernetes.",
+      "",
+      "What's inside:",
+      "\u2022 NVIDIA GPU Operator install + ClusterPolicy tuned for production.",
+      "\u2022 GPU sharing recipes: MIG, time-slicing, MPS - when to use which.",
+      "\u2022 Karpenter / Cluster Autoscaler templates for cost-aware H100 / A100 / L40S / L4 pools.",
+      "\u2022 Volcano gang scheduling + Kueue fair-share queues + priority and preemption.",
+      "\u2022 Fluid + Alluxio model caching from S3 / GCS to local NVMe.",
+      "\u2022 NCCL / RDMA / IB / RoCE setup for multi-node training.",
+      "\u2022 vLLM Deployment + HPA on tokens/sec, KServe InferenceService, KAITO patterns.",
+      "\u2022 KubeRay RayJob, PyTorchJob + FSDP, Kubeflow Pipelines for end-to-end MLOps.",
+      "\u2022 Model registries: MLflow, Hugging Face, OCI artifacts with cosign signing.",
+      "\u2022 Autoscaling: HPA + KEDA scale-to-zero on queue depth.",
+      "\u2022 dcgm-exporter + vLLM /metrics + Prometheus SLO rules + Grafana dashboards.",
+      "\u2022 Cost control: per-tenant quotas, idle-GPU alerts, spot pools, chargeback.",
+      "\u2022 Multi-tenant isolation: PSS, NetworkPolicy, Kyverno generate rules.",
+      "\u2022 Supply chain: signed model images + Kyverno verify-images.",
+      "\u2022 Disaster recovery for models and checkpoints, 10 common errors.",
+      "",
+      "Tested against Kubernetes 1.29-1.31 on EKS, GKE, AKS, OpenShift, and on-prem. Lifetime updates while the recipes are maintained, delivered via /library.",
+    ].join("\n"),
+    brand: "NvidiaAI",
+    productType: "EBOOK",
+    amountMinor: 4900,
+    currency: "EUR",
+    fileVersion: "1.0",
+    pdfFactory: generateAiInfrastructureKubernetesPdf,
   });
 
   await seedBundle({
