@@ -17,6 +17,7 @@ import { PDFDocument, StandardFonts, rgb } from "pdf-lib";
 import Stripe from "stripe";
 import { generateAnsibleAutomationPlaybookPdf } from "./seeds/ansible-automation-playbook.pdf";
 import { generateKubernetesRecipesPdf } from "./seeds/kubernetes-recipes.pdf";
+import { generateRhelCisHardeningPlaybookPdf } from "./seeds/rhel9-cis-hardening-playbook.pdf";
 import { generateTerraformModulesLibraryPdf } from "./seeds/terraform-modules-library.pdf";
 
 const prisma = new PrismaClient();
@@ -400,6 +401,37 @@ async function main() {
     currency: "EUR",
     fileVersion: "1.0",
     pdfFactory: generateKubernetesRecipesPdf,
+  });
+
+  await seedProduct({
+    slug: "rhel9-cis-hardening-playbook",
+    title: "RHEL 9 CIS Hardening Playbook",
+    description: [
+      "Production-ready Ansible automation to bring RHEL 9 fleets into CIS Level 1 or Level 2 compliance — the field manual we use to ship 500 hardened hosts before the next audit window. Idempotent, reversible, fully tagged.",
+      "",
+      "What's inside:",
+      "\u2022 All six CIS RHEL 9 benchmark sections: filesystems, services, network, auditing, access (SSH/PAM/users), and file/group permissions.",
+      "\u2022 Copy-paste Ansible task blocks with correct `when:` guards, tags, and handler notifications - drop them into your role today.",
+      "\u2022 Per-rule and per-section toggles (`rhel9cis_rule_X_Y_Z`) so you deploy one control or the whole benchmark.",
+      "\u2022 SSH hardening template (sshd_config) with modern ciphers, MACs, KexAlgorithms tested against RHEL 9 OpenSSH defaults.",
+      "\u2022 PAM, pwquality.conf, and faillock.conf hardened to CIS Level 2 with `even_deny_root` + 24-cycle pwhistory.",
+      "\u2022 SELinux chapter: enforcing targeted policy, booleans, custom seport/sefcontext labels, SETroubleshoot + audit2allow workflow.",
+      "\u2022 Crypto policies and FIPS mode walkthrough (DEFAULT, FUTURE, DEFAULT:NO-SHA1, fips-mode-setup).",
+      "\u2022 AIDE baseline + nightly systemd timer + S3 off-host shipping.",
+      "\u2022 OpenSCAP pre and post-remediation scan workflow with ssg-rhel9-ds.xml, ARF + HTML report capture.",
+      "\u2022 Deviations register (YAML) doubling as audit evidence; every disabled rule tracked with reason, approver, review date.",
+      "\u2022 Molecule scenarios (Podman + EC2 drivers), GitHub Actions pipeline (lint -> molecule -> staging -> canary -> fleet).",
+      "\u2022 Drift detection via daily systemd-timer scans uploaded to S3 with 13-month retention.",
+      "\u2022 Common pitfalls quick reference: Docker breaks after IP forwarding off, SSH lockout from cipher whitelist, AIDE noise after first run, faillock locking root, and seven more.",
+      "",
+      "Mapped to the Ansible Lockdown RHEL9-CIS role and the CIS Red Hat Enterprise Linux 9 Benchmark v1.0.0. Tested against RHEL 9, AlmaLinux 9, and Rocky Linux 9. Lifetime updates while the benchmark is maintained, delivered via /library.",
+    ].join("\n"),
+    brand: "CopyPasteLearn",
+    productType: "EBOOK",
+    amountMinor: 4900,
+    currency: "EUR",
+    fileVersion: "1.0",
+    pdfFactory: generateRhelCisHardeningPlaybookPdf,
   });
 
   await seedBundle({
