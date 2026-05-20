@@ -17,6 +17,7 @@ import { PDFDocument, StandardFonts, rgb } from "pdf-lib";
 import Stripe from "stripe";
 import { generateAnsibleAutomationPlaybookPdf } from "./seeds/ansible-automation-playbook.pdf";
 import { generateKubernetesRecipesPdf } from "./seeds/kubernetes-recipes.pdf";
+import { generateRhelAiEngineeringRecipesPdf } from "./seeds/rhel-ai-engineering-recipes.pdf";
 import { generateRhelCisHardeningPlaybookPdf } from "./seeds/rhel9-cis-hardening-playbook.pdf";
 import { generateTerraformModulesLibraryPdf } from "./seeds/terraform-modules-library.pdf";
 
@@ -432,6 +433,37 @@ async function main() {
     currency: "EUR",
     fileVersion: "1.0",
     pdfFactory: generateRhelCisHardeningPlaybookPdf,
+  });
+
+  await seedProduct({
+    slug: "rhel-ai-engineering-recipes",
+    title: "RHEL AI Engineering Recipes",
+    description: [
+      "Production cookbook for Red Hat AI \u2014 the recipes platform and SRE engineers need to ship InstructLab fine-tunes, vLLM serving, RAG, and multi-agent stacks on RHEL 9 GPU nodes.",
+      "",
+      "What's inside:",
+      "\u2022 Subscription-manager + repo enablement for `ilab`, CUDA, and Intel Gaudi accelerators.",
+      "\u2022 GPU smoke tests and troubleshooting recipes (nvidia-smi, CDI device resolution, persistent mode, ECC).",
+      "\u2022 Cloud bootstrap recipes for AWS p5/g5, Azure ND H100 v5, GCP A3, and IBM Cloud GX3.",
+      "\u2022 Bare-metal kickstart for PXE-provisioned RHEL AI nodes.",
+      "\u2022 InstructLab taxonomy templates (knowledge + skills), SDG runbook, multi-GPU DeepSpeed ZeRO-3 training.",
+      "\u2022 vLLM serving with tensor parallel, chunked prefill, GPU memory tuning, and OpenAI-compatible inference.",
+      "\u2022 FastAPI wrapper, ChromaDB + LangChain RAG pipeline, CrewAI multi-agent template.",
+      "\u2022 Idempotent Ansible role to deploy RHEL AI across a fleet, vaulted activation keys included.",
+      "\u2022 Observability: nvidia-dcgm-exporter, vLLM /metrics scrape config, SLO Prometheus rules, Grafana alerts.",
+      "\u2022 Scale-out topologies: data-parallel vs tensor-parallel vs pipeline-parallel, multi-node DeepSpeed + Ray.",
+      "\u2022 Governance: SPDX lineage YAML, model cards, cosign keyless artifact signing, request-level audit logs.",
+      "\u2022 Blue-green and canary model rollouts via weighted upstreams.",
+      "\u2022 Hardware sizing reference (VRAM per parameter, tokens/sec per GPU class) and 10 common-error fixes.",
+      "",
+      "Tested against RHEL AI 1.5 on A100, H100, and L40S GPUs. Lifetime updates while the recipes are maintained, delivered via /library.",
+    ].join("\n"),
+    brand: "CopyPasteLearn",
+    productType: "EBOOK",
+    amountMinor: 4900,
+    currency: "EUR",
+    fileVersion: "1.0",
+    pdfFactory: generateRhelAiEngineeringRecipesPdf,
   });
 
   await seedBundle({
