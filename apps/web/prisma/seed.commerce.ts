@@ -17,6 +17,7 @@ import { PDFDocument, StandardFonts, rgb } from "pdf-lib";
 import Stripe from "stripe";
 import { generateAiInfrastructureKubernetesPdf } from "./seeds/ai-infrastructure-kubernetes.pdf";
 import { generateAnsibleAutomationPlaybookPdf } from "./seeds/ansible-automation-playbook.pdf";
+import { generateAnsibleForKubernetesRecipesPdf } from "./seeds/ansible-for-kubernetes-recipes.pdf";
 import { generateKubernetesRecipesPdf } from "./seeds/kubernetes-recipes.pdf";
 import { generateRhelAiEngineeringRecipesPdf } from "./seeds/rhel-ai-engineering-recipes.pdf";
 import { generateRhelCisHardeningPlaybookPdf } from "./seeds/rhel9-cis-hardening-playbook.pdf";
@@ -498,6 +499,39 @@ async function main() {
     currency: "EUR",
     fileVersion: "1.0",
     pdfFactory: generateAiInfrastructureKubernetesPdf,
+  });
+
+  await seedProduct({
+    slug: "ansible-for-kubernetes-recipes",
+    title: "Ansible for Kubernetes Recipes",
+    description: [
+      "Operations cookbook for installing, upgrading, and managing Kubernetes clusters with Ansible. Distinct from the author's Apress 2023 book; recipes are written from public Ansible / kubernetes.core patterns.",
+      "",
+      "What's inside:",
+      "\u2022 Inventory patterns for control-plane / workers / GPU nodes / edge.",
+      "\u2022 Pre-flight role: kernel modules, sysctl, swap, time sync.",
+      "\u2022 containerd + CRI-O install with SystemdCgroup enabled.",
+      "\u2022 kubeadm cluster from scratch, k3s HA, OpenShift agent-based installer wrapper.",
+      "\u2022 Joining workers, rotating bootstrap tokens.",
+      "\u2022 Day-2 lifecycle: drain, cordon, uncordon, rolling kubelet upgrade with serial: 1.",
+      "\u2022 kubernetes.core deep dive: k8s, k8s_info, k8s_exec, k8s_drain.",
+      "\u2022 Jinja2 manifest templating + Helm releases via kubernetes.core.helm.",
+      "\u2022 Secrets: SealedSecrets, ExternalSecrets, Vault.",
+      "\u2022 GitOps bootstrap: Argo CD app-of-apps and Flux.",
+      "\u2022 Addons: ingress-nginx, cert-manager, metrics-server, MetalLB, Calico, Cilium.",
+      "\u2022 Persistent storage (OpenEBS, Longhorn, Rook-Ceph) and DR with Velero.",
+      "\u2022 kube-prometheus-stack + Loki observability.",
+      "\u2022 Execution Environments + AAP job templates + molecule/kind CI tests.",
+      "\u2022 10 common errors with one-line fixes.",
+      "",
+      "Tested against ansible-core 2.18, kubernetes.core 5.x, Kubernetes 1.29-1.31, k3s 1.31+, OpenShift 4.17. Lifetime updates while the recipes are maintained, delivered via /library.",
+    ].join("\n"),
+    brand: "AnsiblePilot",
+    productType: "EBOOK",
+    amountMinor: 2900,
+    currency: "EUR",
+    fileVersion: "1.0",
+    pdfFactory: generateAnsibleForKubernetesRecipesPdf,
   });
 
   await seedBundle({
