@@ -18,6 +18,9 @@ import {
   formatMoneyAmount,
   productCanonicalUrl,
   BRAND_DISPLAY_NAMES,
+  absoluteImageUrl,
+  digitalShippingDetails,
+  digitalReturnPolicy,
 } from "@/lib/commerce/catalog";
 
 interface ProductDetailProps {
@@ -62,17 +65,25 @@ export function ProductDetail({ product, alreadyOwned = false }: ProductDetailPr
     "@type": "Product",
     name: product.title,
     description: product.subtitle ?? product.description ?? undefined,
-    image: product.imageUrl ?? undefined,
+    image: absoluteImageUrl(product.imageUrl),
+    sku: product.slug,
     brand: { "@type": "Brand", name: brandLabel },
     offers: {
       "@type": "Offer",
       url: canonical,
       priceCurrency: product.currency,
       price: priceFormatted,
+      priceValidUntil: "2026-12-31",
       availability:
         product.status === "PUBLISHED"
           ? "https://schema.org/InStock"
           : "https://schema.org/OutOfStock",
+      seller: {
+        "@type": "Organization",
+        name: "CopyPasteLearn",
+      },
+      shippingDetails: digitalShippingDetails(product.currency),
+      hasMerchantReturnPolicy: digitalReturnPolicy(),
     },
   };
 

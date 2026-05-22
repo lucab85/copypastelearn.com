@@ -17,6 +17,73 @@ export function bundleCanonicalUrl(slug: string): string {
   return `${appUrl()}/bundles/${slug}`;
 }
 
+/**
+ * Fallback absolute image URL for JSON-LD when a catalog item has no
+ * `imageUrl`. Google Merchant listings require a non-empty `image` field.
+ */
+export function catalogFallbackImageUrl(): string {
+  return `${appUrl()}/opengraph-image`;
+}
+
+/**
+ * Ensure an image URL is absolute (Google requires absolute URLs in
+ * structured data). Returns the fallback OG image when input is empty.
+ */
+export function absoluteImageUrl(url: string | null | undefined): string {
+  if (!url) return catalogFallbackImageUrl();
+  if (/^https?:\/\//i.test(url)) return url;
+  const base = appUrl();
+  return url.startsWith("/") ? `${base}${url}` : `${base}/${url}`;
+}
+
+/**
+ * JSON-LD `OfferShippingDetails` for digital goods: free, instant delivery.
+ * Required by Google Merchant listings (`shippingDetails` on Offer).
+ */
+export function digitalShippingDetails(currency: string) {
+  return {
+    "@type": "OfferShippingDetails" as const,
+    shippingRate: {
+      "@type": "MonetaryAmount" as const,
+      value: 0,
+      currency,
+    },
+    shippingDestination: {
+      "@type": "DefinedRegion" as const,
+      addressCountry: "EARTH",
+    },
+    deliveryTime: {
+      "@type": "ShippingDeliveryTime" as const,
+      handlingTime: {
+        "@type": "QuantitativeValue" as const,
+        minValue: 0,
+        maxValue: 0,
+        unitCode: "d",
+      },
+      transitTime: {
+        "@type": "QuantitativeValue" as const,
+        minValue: 0,
+        maxValue: 0,
+        unitCode: "d",
+      },
+    },
+  };
+}
+
+/**
+ * JSON-LD `MerchantReturnPolicy` for digital goods: non-returnable.
+ * Required by Google Merchant listings (`hasMerchantReturnPolicy` on Offer).
+ */
+export function digitalReturnPolicy() {
+  return {
+    "@type": "MerchantReturnPolicy" as const,
+    applicableCountry: "EARTH",
+    returnPolicyCategory:
+      "https://schema.org/MerchantReturnNotPermitted",
+    merchantReturnDays: 0,
+  };
+}
+
 export const BRAND_DISPLAY_NAMES: Record<Brand, string> = {
   CopyPasteLearn: "CopyPasteLearn",
   AnsiblePilot: "AnsiblePilot",

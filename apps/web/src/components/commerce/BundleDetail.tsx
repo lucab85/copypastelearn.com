@@ -8,6 +8,9 @@ import {
   formatMoneyAmount,
   bundleCanonicalUrl,
   BRAND_DISPLAY_NAMES,
+  absoluteImageUrl,
+  digitalShippingDetails,
+  digitalReturnPolicy,
 } from "@/lib/commerce/catalog";
 
 interface BundleDetailProps {
@@ -37,17 +40,25 @@ export function BundleDetail({ bundle, includedProducts }: BundleDetailProps) {
     "@type": "Product",
     name: bundle.title,
     description: bundle.description ?? undefined,
-    image: bundle.imageUrl ?? undefined,
+    image: absoluteImageUrl(bundle.imageUrl),
+    sku: bundle.slug,
     brand: { "@type": "Brand", name: BRAND_DISPLAY_NAMES[bundle.brand] },
     offers: {
       "@type": "Offer",
       url: canonical,
       priceCurrency: bundle.currency,
       price: priceFormatted,
+      priceValidUntil: "2026-12-31",
       availability:
         bundle.status === "PUBLISHED"
           ? "https://schema.org/InStock"
           : "https://schema.org/OutOfStock",
+      seller: {
+        "@type": "Organization",
+        name: "CopyPasteLearn",
+      },
+      shippingDetails: digitalShippingDetails(bundle.currency),
+      hasMerchantReturnPolicy: digitalReturnPolicy(),
     },
   };
 
