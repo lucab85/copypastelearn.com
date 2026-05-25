@@ -128,7 +128,7 @@ async function seedProduct(input: {
   slug: string;
   title: string;
   description: string;
-  brand: "AnsiblePilot" | "TerraformPilot" | "AnsibleByExample" | "KubernetesRecipes" | "CopyPasteLearn";
+  brand: "AnsiblePilot" | "TerraformPilot" | "AnsibleByExample" | "KubernetesRecipes" | "CopyPasteLearn" | "NvidiaAI";
   productType: "EBOOK" | "TEMPLATE" | "COURSE";
   amountMinor: number;
   currency: string;

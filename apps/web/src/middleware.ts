@@ -14,8 +14,14 @@ const isPublicRoute = createRouteMatcher([
 ]);
 
 export default clerkMiddleware(async (auth, req) => {
-  if (!isPublicRoute(req)) {
-    await auth.protect();
+  if (isPublicRoute(req)) return;
+
+  const { userId, redirectToSignIn } = await auth();
+  if (!userId) {
+    // Redirect unauthenticated visitors to /sign-in instead of returning a 404.
+    // This prevents SEO crawlers from flagging gated pages like /library as broken,
+    // and gives real users a proper auth flow with returnBackUrl preserved.
+    return redirectToSignIn({ returnBackUrl: req.url });
   }
 });
 
