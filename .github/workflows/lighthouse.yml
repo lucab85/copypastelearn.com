@@ -1,0 +1,70 @@
+name: Lighthouse
+
+on:
+  # Run against the Vercel deployment for this commit / PR.
+  deployment_status:
+  workflow_dispatch:
+    inputs:
+      url:
+        description: 'URL to audit (defaults to production)'
+        required: false
+        default: 'https://www.copypastelearn.com'
+
+concurrency:
+  group: lighthouse-${{ github.workflow }}-${{ github.event.deployment_status.deployment.environment || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  lighthouse:
+    name: Lighthouse CI (desktop)
+    # Only run on manual dispatch, or when Vercel reports a successful
+    # *production* deployment. Preview deployments are protected by Vercel
+    # SSO, so Lighthouse would otherwise audit the vercel.com/login redirect
+    # instead of the actual site.
+    if: >
+      github.event_name == 'workflow_dispatch' ||
+      (github.event_name == 'deployment_status' &&
+       github.event.deployment_status.state == 'success' &&
+       github.event.deployment_status.environment == 'Production')
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Resolve target URL
+        id: target
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            URL="${{ github.event.inputs.url }}"
+          else
+            # Always audit the canonical production hostname rather than the
+            # per-deployment vercel.app URL — the latter is sometimes still
+            # protected and 'www.copypastelearn.com' is what users actually hit.
+            URL="https://www.copypastelearn.com"
+          fi
+          echo "url=$URL" >> "$GITHUB_OUTPUT"
+          echo "Auditing: $URL"
+
+      - name: Run Lighthouse CI
+        env:
+          LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
+          TARGET_URL: ${{ steps.target.outputs.url }}
+        run: |
+          npx --yes @lhci/cli@0.14.x autorun \
+            --collect.url="$TARGET_URL/" \
+            --collect.url="$TARGET_URL/blog" \
+            --collect.url="$TARGET_URL/courses" \
+            --collect.url="$TARGET_URL/about"
+
+      - name: Upload Lighthouse reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lighthouse-reports
+          path: .lighthouseci
+          if-no-files-found: ignore
+          retention-days: 14

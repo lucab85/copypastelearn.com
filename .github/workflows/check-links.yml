@@ -1,0 +1,36 @@
+name: Check Broken Links
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'apps/web/content/blog/**'
+      - 'apps/web/src/app/**'
+      - 'apps/web/scripts/check-broken-links.cjs'
+  pull_request:
+    paths:
+      - 'apps/web/content/blog/**'
+      - 'apps/web/src/app/**'
+      - 'apps/web/scripts/check-broken-links.cjs'
+
+jobs:
+  check-links:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+
+      - name: Check for broken links
+        working-directory: apps/web
+        run: node scripts/check-broken-links.cjs --strict
