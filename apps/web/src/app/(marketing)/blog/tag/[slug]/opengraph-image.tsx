@@ -6,25 +6,6 @@ export const alt = "Tag — CopyPasteLearn Blog";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
-export async function generateImageMetadata({
-  params,
-}: {
-  params: Promise<{ slug: string }>;
-}) {
-  const { slug } = await params;
-  const data = getPostsByTag(slug);
-  return [
-    {
-      contentType: "image/png",
-      size,
-      alt: data
-        ? `Posts tagged "${data.entry.name}" — CopyPasteLearn Blog`
-        : alt,
-      id: slug,
-    },
-  ];
-}
-
 export async function generateStaticParams() {
   return getAllTags().map((t) => ({ slug: t.slug }));
 }
@@ -82,7 +63,7 @@ export default async function TagOGImage({
               letterSpacing: "0.1em",
             }}
           >
-            Tag · {count} {count === 1 ? "article" : "articles"}
+            {`Tag · ${count} ${count === 1 ? "article" : "articles"}`}
           </div>
           <div
             style={{
@@ -92,7 +73,7 @@ export default async function TagOGImage({
               lineHeight: 1.1,
             }}
           >
-            #{name}
+            {`#${name}`}
           </div>
         </div>
 
@@ -110,7 +91,7 @@ export default async function TagOGImage({
                 maxWidth: 1040,
               }}
             >
-              · {title}
+              {`· ${title}`}
             </div>
           ))}
         </div>
@@ -145,7 +126,7 @@ export default async function TagOGImage({
             <div style={{ fontSize: 20, fontWeight: 700 }}>CopyPasteLearn</div>
           </div>
           <div style={{ fontSize: 16, color: "#52525b" }}>
-            copypastelearn.com/blog/tag/{slug}
+            {`copypastelearn.com/blog/tag/${slug}`}
           </div>
         </div>
       </div>

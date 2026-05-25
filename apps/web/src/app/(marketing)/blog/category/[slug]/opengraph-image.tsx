@@ -6,23 +6,6 @@ export const alt = "Category — CopyPasteLearn Blog";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
-export async function generateImageMetadata({
-  params,
-}: {
-  params: Promise<{ slug: string }>;
-}) {
-  const { slug } = await params;
-  const data = getPostsByCategory(slug);
-  return [
-    {
-      contentType: "image/png",
-      size,
-      alt: data ? `${data.entry.name} — CopyPasteLearn Blog` : alt,
-      id: slug,
-    },
-  ];
-}
-
 export async function generateStaticParams() {
   return getAllCategories().map((c) => ({ slug: c.slug }));
 }
@@ -79,7 +62,7 @@ export default async function CategoryOGImage({
               letterSpacing: "0.1em",
             }}
           >
-            Category · {count} {count === 1 ? "article" : "articles"}
+            {`Category · ${count} ${count === 1 ? "article" : "articles"}`}
           </div>
           <div
             style={{
@@ -107,7 +90,7 @@ export default async function CategoryOGImage({
                 maxWidth: 1040,
               }}
             >
-              · {title}
+              {`· ${title}`}
             </div>
           ))}
         </div>
@@ -142,7 +125,7 @@ export default async function CategoryOGImage({
             <div style={{ fontSize: 20, fontWeight: 700 }}>CopyPasteLearn</div>
           </div>
           <div style={{ fontSize: 16, color: "#52525b" }}>
-            copypastelearn.com/blog/category/{slug}
+            {`copypastelearn.com/blog/category/${slug}`}
           </div>
         </div>
       </div>

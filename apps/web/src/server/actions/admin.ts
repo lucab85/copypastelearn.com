@@ -60,7 +60,7 @@ export async function publishCourse(id: string) {
 
   revalidatePath("/courses", "page");
   revalidatePath(`/courses/${course.slug}`, "page");
-  revalidateTag("courses");
+  revalidateTag("courses", "max");
   submitToIndexNow(["/courses", `/courses/${course.slug}`]);
 
   return { data: course };
@@ -76,7 +76,7 @@ export async function unpublishCourse(id: string) {
 
   revalidatePath("/courses", "page");
   revalidatePath(`/courses/${course.slug}`, "page");
-  revalidateTag("courses");
+  revalidateTag("courses", "max");
   submitToIndexNow(["/courses", `/courses/${course.slug}`]);
 
   return { data: course };
@@ -87,7 +87,7 @@ export async function deleteCourse(id: string) {
 
   await db.course.delete({ where: { id } });
   revalidatePath("/courses", "page");
-  revalidateTag("courses");
+  revalidateTag("courses", "max");
   submitToIndexNow(["/courses"]);
 
   return { success: true };
@@ -143,7 +143,7 @@ export async function publishLesson(id: string) {
 
   revalidatePath("/courses", "page");
   revalidatePath(`/courses/${lesson.course.slug}`, "page");
-  revalidateTag("courses");
+  revalidateTag("courses", "max");
   submitToIndexNow(["/courses", `/courses/${lesson.course.slug}`]);
 
   return { data: lesson };
@@ -160,7 +160,7 @@ export async function unpublishLesson(id: string) {
 
   revalidatePath("/courses", "page");
   revalidatePath(`/courses/${lesson.course.slug}`, "page");
-  revalidateTag("courses");
+  revalidateTag("courses", "max");
   submitToIndexNow(["/courses", `/courses/${lesson.course.slug}`]);
 
   return { data: lesson };
