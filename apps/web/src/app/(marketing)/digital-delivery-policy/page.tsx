@@ -53,7 +53,7 @@ export default function DigitalDeliveryPolicyPage() {
             </li>
             <li>
               <strong>Video courses</strong> — streamed on demand inside your{" "}
-              <Link href="/library">/library</Link> dashboard.
+              <Link href="/library" rel="nofollow">/library</Link> dashboard.
             </li>
             <li>
               <strong>Interactive labs</strong> — ephemeral, browser-accessible
@@ -80,7 +80,7 @@ export default function DigitalDeliveryPolicyPage() {
           </ol>
           <p>
             Your purchases also appear instantly in{" "}
-            <Link href="/library">/library</Link> once you sign in with the
+            <Link href="/library" rel="nofollow">/library</Link> once you sign in with the
             email used at checkout.
           </p>
 
@@ -100,7 +100,7 @@ export default function DigitalDeliveryPolicyPage() {
             </li>
             <li>
               <strong>Re-issuing:</strong> you can mint a fresh link at any
-              time from <Link href="/library">/library</Link>. The number of
+              time from <Link href="/library" rel="nofollow">/library</Link>. The number of
               fresh links you can mint is not artificially limited; we monitor
               only for sharing patterns that suggest the link is being
               redistributed.
@@ -108,7 +108,7 @@ export default function DigitalDeliveryPolicyPage() {
           </ul>
           <p>
             If a link expires before you finish downloading, simply visit{" "}
-            <Link href="/library">/library</Link> and request a new one.
+            <Link href="/library" rel="nofollow">/library</Link> and request a new one.
           </p>
 
           <h2>4. Streaming access (courses and labs)</h2>
@@ -134,7 +134,7 @@ export default function DigitalDeliveryPolicyPage() {
             Products marketed with &quot;lifetime updates&quot; entitle you to
             all future revisions of the same product for as long as we
             continue to maintain it. Updates appear in{" "}
-            <Link href="/library">/library</Link> and we email you when a new
+            <Link href="/library" rel="nofollow">/library</Link> and we email you when a new
             version is published.
           </p>
           <p>
@@ -178,7 +178,7 @@ export default function DigitalDeliveryPolicyPage() {
           <ol>
             <li>check your spam / promotions folder;</li>
             <li>
-              sign in to <Link href="/library">/library</Link> using the
+              sign in to <Link href="/library" rel="nofollow">/library</Link> using the
               email used at checkout (entitlements provision in real-time);
             </li>
             <li>

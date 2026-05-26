@@ -149,7 +149,7 @@ export default function RefundPolicyPage() {
           <ol>
             <li>
               your order ID (visible in your purchase confirmation email and
-              at <Link href="/library">/library</Link>);
+              at <Link href="/library" rel="nofollow">/library</Link>);
             </li>
             <li>the email address associated with the purchase;</li>
             <li>the product or subscription you want refunded;</li>
