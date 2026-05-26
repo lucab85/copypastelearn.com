@@ -169,6 +169,13 @@ const nextConfig = {
             key: "Strict-Transport-Security",
             value: "max-age=63072000; includeSubDomains; preload",
           },
+          // Required for Lighthouse best-practices (mitigates cross-window
+          // attacks). `same-origin-allow-popups` is needed so Clerk/Stripe
+          // OAuth and Checkout popups still close back to the opener.
+          {
+            key: "Cross-Origin-Opener-Policy",
+            value: "same-origin-allow-popups",
+          },
         ],
       },
       // Cache static marketing pages at edge (revalidate every 10 min)

@@ -54,7 +54,8 @@ jobs:
           LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
           TARGET_URL: ${{ steps.target.outputs.url }}
         run: |
-          npx --yes @lhci/cli@0.14.x autorun \
+          npx --yes @lhci/cli@latest autorun \
+            --collect.settings.preset=desktop \
             --collect.url="$TARGET_URL/" \
             --collect.url="$TARGET_URL/blog" \
             --collect.url="$TARGET_URL/courses" \
