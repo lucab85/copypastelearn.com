@@ -61,6 +61,38 @@ jobs:
             --collect.url="$TARGET_URL/courses" \
             --collect.url="$TARGET_URL/about"
 
+      - name: Dump failing best-practices audits
+        if: always()
+        run: |
+          shopt -s nullglob
+          files=(.lighthouseci/lhr-*.json)
+          if [ ${#files[@]} -eq 0 ]; then
+            echo "No lhr-*.json found in .lighthouseci"
+            ls -la .lighthouseci 2>/dev/null || echo "(no .lighthouseci dir)"
+            exit 0
+          fi
+          for f in "${files[@]}"; do
+            echo "=== $f ==="
+            node -e "
+              const r = require('./$f');
+              console.log('URL:', r.finalDisplayedUrl || r.finalUrl);
+              for (const cat of Object.values(r.categories)) {
+                console.log('  ['+cat.id+'] score=', cat.score);
+              }
+              const bp = r.categories['best-practices'];
+              console.log('  -- best-practices weighted audits --');
+              for (const a of bp.auditRefs) {
+                const x = r.audits[a.id];
+                if (a.weight > 0 && x && x.score !== null && x.score < 1) {
+                  console.log('    [w='+a.weight+']', a.id, 'score='+x.score, '—', x.title);
+                  if (x.details && x.details.items && x.details.items.length) {
+                    console.log('      items:', JSON.stringify(x.details.items).slice(0, 800));
+                  }
+                }
+              }
+            "
+          done
+
       - name: Upload Lighthouse reports
         if: always()
         uses: actions/upload-artifact@v4
