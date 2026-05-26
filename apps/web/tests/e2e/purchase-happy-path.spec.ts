@@ -13,6 +13,14 @@ import { test, expect } from "@playwright/test";
 
 const SLUG = process.env.E2E_PRODUCT_SLUG ?? "ansible-automation-playbook";
 
+// Opt-in: this spec needs Stripe test keys, a published product, and
+// webhook forwarding (e.g. `stripe listen`). Set E2E_STRIPE_ENABLED=1 in
+// the job's env once that infra is wired up.
+test.skip(
+  process.env.E2E_STRIPE_ENABLED !== "1",
+  "Set E2E_STRIPE_ENABLED=1 to run the Stripe purchase happy path (requires test keys + seeded product + webhook forwarding).",
+);
+
 test("buyer completes Stripe Checkout and reaches success page", async ({ page }) => {
   await page.goto(`/products/${SLUG}`);
   await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
