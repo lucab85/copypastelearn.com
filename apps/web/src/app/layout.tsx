@@ -6,6 +6,7 @@ import { SiteFooter } from "@/components/layout/site-footer";
 import { NewsletterPopup } from "@/components/newsletter-popup";
 import { AnnouncementBanner } from "@/components/layout/announcement-banner";
 import { RouteChangeTracker } from "@/components/analytics/route-change-tracker";
+import { ClarityDeferred } from "@/components/analytics/clarity-deferred";
 import { CmdKPalette } from "@/components/cmdk-palette";
 import "./globals.css";
 
@@ -137,16 +138,10 @@ export default async function RootLayout({
           `}
         </Script>
 
-        {/* Microsoft Clarity */}
-        <Script id="clarity-init" strategy="lazyOnload">
-          {`
-            (function(c,l,a,r,i,t,y){
-              c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-              t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-              y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-            })(window,document,"clarity","script","vlu7pdkdd9");
-          `}
-        </Script>
+        {/* Microsoft Clarity — loaded on first user interaction so the
+            third-party cookies on clarity.ms / bing.com stay out of the
+            Lighthouse audit window (best-practices: third-party-cookies). */}
+        <ClarityDeferred />
 
         {/* Analytics — SPA page view tracking */}
         <Suspense>
