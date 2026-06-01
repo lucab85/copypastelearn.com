@@ -64,11 +64,19 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: "yearly",
       priority: 0.3,
     },
+    {
+      url: `${siteUrl}/shop`,
+      lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 0.9,
+    },
   ];
 
   // Dynamic course + lesson pages
   let coursePages: MetadataRoute.Sitemap = [];
   let lessonPages: MetadataRoute.Sitemap = [];
+  let productPages: MetadataRoute.Sitemap = [];
+  let bundlePages: MetadataRoute.Sitemap = [];
   try {
     const prisma = new PrismaClient();
     const courses = await prisma.course.findMany({
@@ -83,6 +91,17 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         },
       },
     });
+
+    // Commerce: products and bundles
+    const products = await prisma.product.findMany({
+      where: { status: "PUBLISHED" },
+      select: { slug: true, updatedAt: true },
+    });
+    const bundles = await prisma.bundle.findMany({
+      where: { status: "PUBLISHED" },
+      select: { slug: true, updatedAt: true },
+    });
+
     await prisma.$disconnect();
 
     coursePages = courses.map((course) => ({
@@ -100,6 +119,20 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         priority: 0.6,
       }))
     );
+
+    productPages = products.map((product) => ({
+      url: `${siteUrl}/products/${product.slug}`,
+      lastModified: product.updatedAt,
+      changeFrequency: "weekly" as const,
+      priority: 0.8,
+    }));
+
+    bundlePages = bundles.map((bundle) => ({
+      url: `${siteUrl}/bundles/${bundle.slug}`,
+      lastModified: bundle.updatedAt,
+      changeFrequency: "weekly" as const,
+      priority: 0.9,
+    }));
   } catch {
     // If DB is unavailable, return static pages only
   }
@@ -131,6 +164,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...staticPages,
     ...coursePages,
     ...lessonPages,
+    ...productPages,
+    ...bundlePages,
     ...blogPages,
     ...tagPages,
     ...categoryPages,
