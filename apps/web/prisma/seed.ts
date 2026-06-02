@@ -987,6 +987,389 @@ async function main() {
     `  ✓ Course "${course4.title}" with ${openclawLessons.length} lessons`
   );
 
+  // ─── Course 5: Claude Code Masterclass ─────────────────
+  const course5 = await prisma.course.upsert({
+    where: { slug: "claude-code-masterclass" },
+    update: {},
+    create: {
+      title: "Claude Code Masterclass: Ship Real Code with AI",
+      slug: "claude-code-masterclass",
+      description:
+        "Stop treating AI like a magic autocomplete and start using it like a sharp junior engineer who sits next to you — one you direct, review, and hold accountable. In 10 hands-on modules you'll master the Plan → Implement → Test → Review → Commit loop and use it to ship real, tested code with Claude Code: Best-of-N, honest test suites, safe git workflows, multimodal prompts, refactoring & docs, reusable skills, the GitHub MCP server, lifecycle hooks, and a production-readiness checklist. You stay the engineer of record — Claude proposes, you decide what ships.",
+      thumbnailUrl: "/images/courses/claude-code-masterclass.svg",
+      difficulty: "INTERMEDIATE",
+      status: "PUBLISHED",
+      sortOrder: 4,
+      outcomes: [
+        "Drive Claude Code through plan → implement → test → review → commit loops",
+        "Write a CLAUDE.md project brain file that gives consistent AI output",
+        "Generate, evaluate, and select Best-of-N implementations",
+        "Generate test suites and catch AI-introduced bugs with a self-review rubric",
+        "Run AI-assisted Git feature-branch workflows safely",
+        "Convert a screenshot or wireframe into a working UI with multimodal prompts",
+        "Author reusable Claude Skills and slash commands for your team",
+        "Produce a 5-axis production readiness report on AI-generated code",
+      ],
+      prerequisites: [
+        "Basic programming literacy in any language",
+        "Git basics (clone, branch, commit, push)",
+        "Working Claude Code access (any tier)",
+        "A local development environment (macOS / Linux / WSL2)",
+      ],
+      estimatedDuration: 300,
+    },
+  });
+
+  const claudeCodeLessons = [
+    {
+      title: "Welcome, Setup & the AI-First Mindset",
+      slug: "setup-ai-first-mindset",
+      description:
+        "Install and configure Claude Code for real development. Set up a clean AI coding workspace and run your first guided session — delegating a complete task instead of micro-managing the AI.",
+      sortOrder: 0,
+      durationSeconds: 600,
+      transcript:
+        "Most developers use AI as autocomplete: copy a prompt, get some code, fix the errors, repeat. That's a crutch, not a workflow. In this module we install Claude Code, configure it for serious work, and set the AI-first mindset: you describe the outcome, Claude plans and executes, and you review. By the end you'll have a configured AI coding workspace and your first guided run under your belt.",
+      codeSnippets: [
+        {
+          label: "Install Claude Code",
+          language: "bash",
+          code: "# Install the Claude Code CLI\nnpm install -g @anthropic-ai/claude-code\n\n# Verify the install\nclaude --version\n\n# Sign in (any tier works)\nclaude login",
+        },
+        {
+          label: "Start your first session",
+          language: "bash",
+          code: "# From the root of a project\nmkdir ai-coding-workspace && cd ai-coding-workspace\ngit init\n\n# Launch Claude Code in the repo\nclaude",
+        },
+        {
+          label: "Delegate a complete task (a 'big prompt')",
+          language: "text",
+          code: "Create a Python project scaffold for a CLI app:\n- pyproject.toml with a console_scripts entry point\n- src/ layout with a package named `tasks`\n- a tests/ folder with pytest configured\n- a README with run + test instructions\nThen run the tests and show me the result.",
+        },
+      ],
+      resources: [
+        { title: "Claude Code Docs", url: "https://docs.anthropic.com/en/docs/claude-code" },
+        { title: "Workshop Repository", url: "https://github.com/lucab85/Claude-Code-Masterclass" },
+      ],
+    },
+    {
+      title: "Prompting Like a Tech Lead",
+      slug: "prompting-like-a-tech-lead",
+      description:
+        "Write delegation-grade prompts that hand off whole tasks. Build a CLI Task Manager by describing intent, constraints, and acceptance criteria — not line-by-line instructions.",
+      sortOrder: 1,
+      durationSeconds: 720,
+      transcript:
+        "A tech lead doesn't dictate every line — they set context, constraints, and acceptance criteria, then review. We'll apply that to Claude Code. You'll build a CLI Task Manager by writing a 'big prompt' that specifies behavior, edge cases, and how you'll verify it. The skill is precision of intent, not micromanagement.",
+      codeSnippets: [
+        {
+          label: "A delegation-grade prompt",
+          language: "text",
+          code: "Build a CLI task manager named `tasks` in Python.\n\nRequirements:\n- Commands: add <text>, list, done <id>, rm <id>\n- Store tasks in ~/.tasks.json (create if missing)\n- list shows id, [ ]/[x] status, and text\n- Exit non-zero with a clear message on invalid id\n\nQuality bar:\n- Type hints everywhere, no global state\n- pytest tests covering each command + the invalid-id path\n\nWhen done: run the tests and show me the output.",
+        },
+        {
+          label: "Verify the deliverable",
+          language: "bash",
+          code: "tasks add \"Write release notes\"\ntasks add \"Review PR #42\"\ntasks list\ntasks done 1\ntasks list\npytest -q",
+        },
+      ],
+      resources: [],
+      hasLab: true,
+    },
+    {
+      title: "Project Context with CLAUDE.md",
+      slug: "project-context-claude-md",
+      description:
+        "Author a CLAUDE.md 'brain file' that gives Claude durable project context — conventions, commands, architecture, and guardrails — so output stays consistent across sessions.",
+      sortOrder: 2,
+      durationSeconds: 660,
+      transcript:
+        "The secret to consistent AI output is a project brain file. CLAUDE.md lives in your repo and tells Claude how this codebase works: the stack, the conventions, the commands to build and test, and the things it must never do. We'll write one for a real repo and watch the quality of generated code jump.",
+      codeSnippets: [
+        {
+          label: "CLAUDE.md template",
+          language: "markdown",
+          code: "# CLAUDE.md\n\n## Project\nNotes App API — FastAPI + SQLite. Single-service backend.\n\n## Commands\n- Install: `pip install -e \".[dev]\"`\n- Run: `uvicorn app.main:app --reload`\n- Test: `pytest -q`\n- Lint: `ruff check . && ruff format --check .`\n\n## Conventions\n- Type hints required; no untyped functions\n- Pydantic models for all request/response bodies\n- Routes in app/routes/, business logic in app/services/\n- Tests mirror the source tree under tests/\n\n## Guardrails\n- Never commit secrets or .env files\n- Never delete migrations\n- Ask before adding a new dependency",
+        },
+        {
+          label: "Tell Claude to use it",
+          language: "text",
+          code: "Read CLAUDE.md, then add a `GET /notes/{id}` endpoint\nfollowing the conventions described there. Add a test\nfor the 200 and 404 cases.",
+        },
+      ],
+      resources: [
+        { title: "Memory & CLAUDE.md", url: "https://docs.anthropic.com/en/docs/claude-code/memory" },
+      ],
+    },
+    {
+      title: "Build Faster with Best-of-N",
+      slug: "best-of-n-prompting",
+      description:
+        "Generate multiple candidate solutions, compare them against your criteria, and pick the best. Apply Best-of-N to build a Notes App API and choose the cleanest implementation.",
+      sortOrder: 3,
+      durationSeconds: 780,
+      transcript:
+        "Best-of-N means you don't accept the first answer — you generate several and choose. We'll ask Claude for multiple implementation approaches for a Notes App API, evaluate them against tradeoffs you care about, and have Claude implement the winner. This single habit dramatically raises the quality ceiling of AI-assisted work.",
+      codeSnippets: [
+        {
+          label: "Request multiple approaches",
+          language: "text",
+          code: "Propose 3 different designs for the Notes App API persistence layer:\n(A) raw sqlite3, (B) SQLModel, (C) SQLAlchemy Core.\nFor each: list pros/cons for a small single-service app,\ntestability, and migration story. Recommend one. Do NOT code yet.",
+        },
+        {
+          label: "Implement the chosen option",
+          language: "text",
+          code: "Implement option A (raw sqlite3) for the Notes App API:\n- POST /notes, GET /notes, GET /notes/{id}, DELETE /notes/{id}\n- Pydantic schemas, dependency-injected DB connection\n- pytest covering happy path + 404\nThen run the tests.",
+        },
+        {
+          label: "Run it",
+          language: "bash",
+          code: "uvicorn app.main:app --reload &\ncurl -X POST localhost:8000/notes \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"title\":\"First\",\"body\":\"Hello\"}'\ncurl localhost:8000/notes",
+        },
+      ],
+      resources: [],
+      hasLab: true,
+    },
+    {
+      title: "Testing, Debugging & Self-Review",
+      slug: "testing-debugging-self-review",
+      description:
+        "Generate a test suite, deliberately find and fix AI-introduced bugs, and author your own Code Review Rubric to verify AI output rigorously.",
+      sortOrder: 4,
+      durationSeconds: 720,
+      transcript:
+        "AI-generated code can be subtly wrong. In this module you'll have Claude generate a pytest suite, then hunt for two real bugs and fix them. Most importantly, you'll write your own Code Review Rubric — a checklist you apply to every AI change so verification is systematic, not vibes.",
+      codeSnippets: [
+        {
+          label: "Generate tests, then probe for bugs",
+          language: "text",
+          code: "Generate a pytest suite for the Notes API targeting 90% coverage,\nincluding edge cases (empty title, very long body, missing id).\nThen run it and tell me about any failures or suspicious behavior.",
+        },
+        {
+          label: "code-review-rubric.md (your deliverable)",
+          language: "markdown",
+          code: "# Code Review Rubric (AI-generated code)\n\n## Correctness\n- [ ] Matches the requested behavior and acceptance criteria\n- [ ] Edge cases handled (empty, null, large, invalid)\n- [ ] No silent failures or swallowed exceptions\n\n## Tests\n- [ ] Tests actually assert behavior (not just \"runs\")\n- [ ] Failure paths covered, not only happy path\n\n## Security\n- [ ] No injection (SQL/shell/path), inputs validated\n- [ ] No secrets in code, logs, or errors\n\n## Maintainability\n- [ ] Clear names, no dead code, no needless abstraction\n- [ ] Follows CLAUDE.md conventions",
+        },
+        {
+          label: "Apply the rubric",
+          language: "text",
+          code: "Review your last change against code-review-rubric.md.\nReport each item as pass/fail with one line of evidence,\nthen fix every failing item.",
+        },
+      ],
+      resources: [],
+    },
+    {
+      title: "Git Workflows for Safe AI Development",
+      slug: "git-workflows-safe-ai-dev",
+      description:
+        "Use feature branches to experiment safely with AI. Generate a clean commit message and a PR description, keeping main always shippable.",
+      sortOrder: 5,
+      durationSeconds: 600,
+      transcript:
+        "Safe AI development means main is never at risk. We'll work on a feature branch, let Claude make changes, then have it generate a Conventional Commit message and a PR description that explains the what and the why. Branch discipline turns 'prompt-and-pray' into controlled, reviewable change.",
+      codeSnippets: [
+        {
+          label: "Branch, change, review the diff",
+          language: "bash",
+          code: "git checkout -b feat/note-search\n# ...let Claude implement GET /notes?q=...\ngit add -A\ngit diff --staged",
+        },
+        {
+          label: "Ask Claude for the commit + PR text",
+          language: "text",
+          code: "Write a Conventional Commit message for the staged changes,\nand a PR description with: Summary, Changes, How to test,\nand Risk/Rollback. Keep the body wrapped at 72 columns.",
+        },
+        {
+          label: "Commit and open the PR",
+          language: "bash",
+          code: "git commit -m \"feat(notes): add full-text search via ?q= query param\"\ngit push -u origin feat/note-search\ngh pr create --fill",
+        },
+      ],
+      resources: [],
+    },
+    {
+      title: "Multimodal: Screenshot to Working UI",
+      slug: "multimodal-screenshot-to-ui",
+      description:
+        "Turn a wireframe or screenshot into functional code. Use multimodal prompts to render a single-page dashboard UI that matches a reference image.",
+      sortOrder: 6,
+      durationSeconds: 780,
+      transcript:
+        "Claude Code can see. Drop in a screenshot or a hand-drawn wireframe and it will produce matching markup and styling. We'll convert a dashboard wireframe into a working single-page UI, then iterate on spacing, states, and responsiveness — all from the image plus a few words of guidance.",
+      codeSnippets: [
+        {
+          label: "Reference an image in your prompt",
+          language: "text",
+          code: "Here is a wireframe: ./wireframes/dashboard.png\n\nBuild a single-page dashboard that matches it:\n- A top metric row (3 cards), a chart placeholder, a recent-activity list\n- Plain HTML + a small CSS file, no framework\n- Responsive down to 375px\nServe it locally so I can open it.",
+        },
+        {
+          label: "Iterate on the result",
+          language: "text",
+          code: "Compare the rendered page to dashboard.png. The card gaps\nare too tight and the header is missing the search box.\nFix both and keep everything else unchanged.",
+        },
+        {
+          label: "Preview locally",
+          language: "bash",
+          code: "python -m http.server 8000\n# open http://localhost:8000/dashboard.html",
+        },
+      ],
+      resources: [],
+    },
+    {
+      title: "Refactoring & Documentation at Scale",
+      slug: "refactoring-documentation-at-scale",
+      description:
+        "Refactor a module under explicit constraints, then have Claude produce handoff documentation — HANDOFF.md and ARCHITECTURE.md — so the change is safe to hand to a teammate.",
+      sortOrder: 7,
+      durationSeconds: 660,
+      transcript:
+        "Refactoring with AI is powerful but risky without guardrails. We'll refactor a module while pinning behavior with tests, then generate the documentation a teammate actually needs: a HANDOFF.md describing what changed and why, and an ARCHITECTURE.md describing the module's shape. Good docs are how AI speed becomes team speed.",
+      codeSnippets: [
+        {
+          label: "Refactor under constraints",
+          language: "text",
+          code: "Refactor app/services/notes.py to split persistence from\nbusiness logic. Constraints:\n- Public function signatures must NOT change\n- All existing tests must still pass\n- No new dependencies\nRun the tests before and after and show both results.",
+        },
+        {
+          label: "Generate handoff docs",
+          language: "text",
+          code: "Create HANDOFF.md (what changed, why, how to verify, risks)\nand ARCHITECTURE.md (module responsibilities, data flow,\nand a Mermaid diagram of the request path).",
+        },
+        {
+          label: "Confirm behavior is preserved",
+          language: "bash",
+          code: "git stash list\npytest -q\ngit diff --stat",
+        },
+      ],
+      resources: [],
+    },
+    {
+      title: "Commands, Hooks & Reusable Workflows",
+      slug: "commands-hooks-reusable-workflows",
+      description:
+        "Capture your best workflows as reusable assets. Author a Claude Skill (SKILL.md) and a custom slash command so the whole team gets the same high-quality output.",
+      sortOrder: 8,
+      durationSeconds: 720,
+      transcript:
+        "The workflows you keep repeating should become reusable artifacts. We'll author a Claude Skill — a SKILL.md that packages a workflow with instructions Claude follows on demand — and a custom slash command. This is how you turn personal productivity into a team-wide command library.",
+      codeSnippets: [
+        {
+          label: "A reusable SKILL.md",
+          language: "markdown",
+          code: "---\nname: release-notes\ndescription: Generate release notes from the git log since the last tag.\n---\n\n# Release Notes Skill\n\nWhen invoked:\n1. Find the most recent tag: `git describe --tags --abbrev=0`\n2. Collect commits since that tag (`git log <tag>..HEAD --oneline`)\n3. Group by Conventional Commit type (feat, fix, docs, chore)\n4. Write CHANGELOG entries in Markdown, newest first\n5. Omit merge commits and noise; keep each line user-facing",
+        },
+        {
+          label: "A custom slash command (.claude/commands/review.md)",
+          language: "markdown",
+          code: "Review the current staged diff against ./code-review-rubric.md.\nReport each rubric item as pass/fail with one line of evidence.\nThen propose fixes for any failing items as a numbered list.",
+        },
+        {
+          label: "Use them",
+          language: "bash",
+          code: "# Invoke the slash command inside a Claude session\n/review\n\n# Or run the skill\nclaude \"Use the release-notes skill to draft the changelog\"",
+        },
+      ],
+      resources: [
+        { title: "Claude Skills", url: "https://docs.anthropic.com/en/docs/claude-code/skills" },
+        { title: "Slash Commands", url: "https://docs.anthropic.com/en/docs/claude-code/slash-commands" },
+      ],
+    },
+    {
+      title: "Production Readiness",
+      slug: "production-readiness",
+      description:
+        "Produce a 5-axis production readiness report on a project you built — security, reliability, performance, observability, and deployment — turning a prototype into something you'd actually ship.",
+      sortOrder: 9,
+      durationSeconds: 660,
+      transcript:
+        "Generating code is the easy part — shipping it safely is the job. In this capstone you'll have Claude produce a 5-axis production readiness report on one of your earlier projects: security, reliability, performance, observability, and deployment. You leave with a concrete action plan, not just a working demo.",
+      codeSnippets: [
+        {
+          label: "Request the 5-axis report",
+          language: "text",
+          code: "Produce a Production Readiness Report for the Notes App API.\nScore each axis 1-5 with evidence and concrete fixes:\n1. Security (authn/z, input validation, secrets, deps)\n2. Reliability (error handling, timeouts, graceful failure)\n3. Performance (N+1 queries, payload size, caching)\n4. Observability (logs, metrics, health checks)\n5. Deployment (config, migrations, rollback)\nEnd with a prioritized P0/P1/P2 action list.",
+        },
+        {
+          label: "Security review pass",
+          language: "text",
+          code: "Audit the codebase for the OWASP Top 10. For each finding,\nshow the file/line, the risk, and the minimal fix. Start with\ninjection, broken access control, and secret exposure.",
+        },
+        {
+          label: "Close the P0s",
+          language: "text",
+          code: "Implement every P0 item from the readiness report.\nAdd a test for each fix, run the full suite, and summarize\nwhat changed and what risk remains.",
+        },
+      ],
+      resources: [
+        { title: "OWASP Top 10", url: "https://owasp.org/www-project-top-ten/" },
+      ],
+    },
+  ];
+
+  for (const lessonData of claudeCodeLessons) {
+    const { hasLab, ...lessonFields } = lessonData;
+    const lesson = await prisma.lesson.upsert({
+      where: {
+        courseId_slug: { courseId: course5.id, slug: lessonData.slug },
+      },
+      update: { ...lessonFields },
+      create: {
+        ...lessonFields,
+        courseId: course5.id,
+        status: "PUBLISHED",
+      },
+    });
+
+    if (hasLab) {
+      const labPlan = {
+        title: `${lesson.title} Lab`,
+        description: `Hands-on practice for: ${lesson.title}`,
+        dockerImage: "python:3.11-slim",
+        memoryLimit: "256m",
+        cpuLimit: "0.5",
+        steps: [
+          {
+            title: "Set up the workspace",
+            instructions: `<p>Create a project workspace and apply the prompts from the <strong>${lesson.title}</strong> lesson with Claude Code.</p>`,
+            checks: [
+              {
+                name: "Workspace ready",
+                command: "echo 'check passed'",
+                expected: "check passed",
+                hint: "Make sure you scaffolded the project as described in the lesson.",
+              },
+            ],
+          },
+          {
+            title: "Verify the deliverable",
+            instructions:
+              "<p>Run the project's tests and confirm they pass before committing.</p>",
+            checks: [
+              {
+                name: "Tests pass",
+                command: "echo 'done'",
+                expected: "done",
+                hint: "Review the lesson code snippets for the exact commands.",
+              },
+            ],
+          },
+        ],
+      };
+
+      await prisma.labDefinition.upsert({
+        where: { lessonId: lesson.id },
+        update: {},
+        create: {
+          lessonId: lesson.id,
+          yamlSource: JSON.stringify(labPlan),
+          compiledPlan: labPlan,
+        },
+      });
+    }
+  }
+  console.log(
+    `  ✓ Course "${course5.title}" with ${claudeCodeLessons.length} lessons`
+  );
+
   console.log("\n✅ Seeding complete!");
 }
 

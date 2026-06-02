@@ -70,6 +70,18 @@ const courseTerminals: Record<string, TerminalLine[]> = {
     { prompt: true, text: 'openclaw skill add weather' },
     { text: "✓ Installed skill: weather (v1.2.0)", highlight: true },
   ],
+  "claude-code-masterclass": [
+    { prompt: true, text: 'claude "build a CLI task manager with tests"' },
+    { text: "● Planning the task…" },
+    { text: "● Creating src/tasks/ and tests/…" },
+    { text: "● Running pytest…" },
+    { text: "12 passed in 0.34s", highlight: true },
+    { prompt: true, text: "git checkout -b feat/task-manager && git add -A" },
+    { prompt: true, text: 'claude "write a Conventional Commit message"' },
+    { text: "feat(tasks): add add/list/done/rm with JSON store", highlight: true },
+    { prompt: true, text: "git commit -m \"feat(tasks): ...\" && gh pr create --fill" },
+    { text: "https://github.com/you/repo/pull/1", highlight: true },
+  ],
   "selinux-system-admins": [
     { prompt: true, text: "getenforce" },
     { text: "Enforcing", highlight: true },

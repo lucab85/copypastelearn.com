@@ -123,6 +123,17 @@ export default async function CourseCatalogPage() {
                 border: "border-orange-500/20",
               },
               {
+                title: "AI-Assisted Development",
+                description:
+                  "Go from prompting to production with Claude Code, then put an autonomous agent to work.",
+                courses: [
+                  { name: "Claude Code Masterclass", slug: "claude-code-masterclass" },
+                  { name: "OpenClaw AI Agent", slug: "openclaw-agent" },
+                ],
+                color: "from-amber-500/10 to-orange-500/10",
+                border: "border-amber-500/20",
+              },
+              {
                 title: "Linux Security",
                 description:
                   "Harden Linux systems with SELinux policies, contexts, and troubleshooting.",
