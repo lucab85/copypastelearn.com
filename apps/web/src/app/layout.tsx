@@ -8,6 +8,7 @@ import { AnnouncementBanner } from "@/components/layout/announcement-banner";
 import { RouteChangeTracker } from "@/components/analytics/route-change-tracker";
 import { ClarityDeferred } from "@/components/analytics/clarity-deferred";
 import { CmdKPalette } from "@/components/cmdk-palette";
+import { ClerkClientProvider } from "@/components/providers/clerk-client-provider";
 import "./globals.css";
 
 const siteUrl = process.env.NEXT_PUBLIC_APP_URL ?? "https://www.copypastelearn.com";
@@ -98,20 +99,12 @@ function isClerkConfigured(): boolean {
   }
 }
 
-export default async function RootLayout({
+export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   const clerkEnabled = isClerkConfigured();
-
-  let ClerkProvider:
-    | React.ComponentType<{ children: React.ReactNode; clerkJSVersion?: string }>
-    | null = null;
-  if (clerkEnabled) {
-    const clerk = await import("@clerk/nextjs");
-    ClerkProvider = clerk.ClerkProvider;
-  }
 
   const body = (
     <html lang="en" suppressHydrationWarning>
@@ -175,10 +168,8 @@ export default async function RootLayout({
     </html>
   );
 
-  if (ClerkProvider) {
-    return (
-      <ClerkProvider clerkJSVersion="5.125.10">{body}</ClerkProvider>
-    );
+  if (clerkEnabled) {
+    return <ClerkClientProvider>{body}</ClerkClientProvider>;
   }
 
   return body;
