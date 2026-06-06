@@ -65,11 +65,39 @@ export default async function CategoryPage({ params }: PageProps) {
     ],
   };
 
+  // Declare this as a CollectionPage (a listing), not an Article — so crawlers
+  // index it as a hub page rather than flagging it for missing article schema.
+  const collectionPage = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name: `${entry.name} Tutorials & Guides`,
+    url: `${SITE_URL}/blog/category/${entry.slug}`,
+    isPartOf: {
+      "@type": "Blog",
+      name: "CopyPasteLearn Blog",
+      url: `${SITE_URL}/blog`,
+    },
+    mainEntity: {
+      "@type": "ItemList",
+      numberOfItems: posts.length,
+      itemListElement: posts.map((p, i) => ({
+        "@type": "ListItem",
+        position: i + 1,
+        url: `${SITE_URL}/blog/${p.slug}`,
+        name: p.title,
+      })),
+    },
+  };
+
   return (
     <div>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbs) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionPage) }}
       />
       <div className="border-b bg-muted/30">
         <div className="container mx-auto px-4 py-10 lg:py-12">

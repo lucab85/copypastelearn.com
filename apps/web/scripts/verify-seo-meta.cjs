@@ -183,6 +183,49 @@ for (const { name, count } of catMap.values()) {
 }
 
 // ---------------------------------------------------------------------------
+// 8) Blog tag/category listing pages must declare CollectionPage structured
+//    data (so crawlers index them as hubs, not as articles missing schema).
+// ---------------------------------------------------------------------------
+check(
+  tagSrc.includes('"@type": "CollectionPage"'),
+  "tag page is missing CollectionPage JSON-LD"
+);
+check(
+  catSrc.includes('"@type": "CollectionPage"'),
+  "category page is missing CollectionPage JSON-LD"
+);
+
+// ---------------------------------------------------------------------------
+// 9) Homepage og:url must resolve identically to the canonical. Both should be
+//    the relative "/" so Next resolves them through metadataBase byte-for-byte.
+// ---------------------------------------------------------------------------
+{
+  const home = read("src/app/(marketing)/page.tsx");
+  const start = home.indexOf("export const metadata");
+  const block = home.slice(start, home.indexOf("};", start));
+  check(
+    /alternates:\s*{\s*canonical:\s*"\/"\s*}/.test(block),
+    "homepage canonical should be the relative \"/\""
+  );
+  check(
+    /openGraph:\s*{\s*url:\s*"\/"/.test(block),
+    "homepage og:url should be the relative \"/\" to match the canonical resolution"
+  );
+}
+
+// ---------------------------------------------------------------------------
+// 10) Course detail pages must clamp long DB-driven titles so the branded
+//     <title> stays within 60 chars.
+// ---------------------------------------------------------------------------
+{
+  const courseSrc = read("src/app/(marketing)/courses/[slug]/page.tsx");
+  check(
+    courseSrc.includes("brandedTitleLength > 60 ? { absolute: course.title }"),
+    "course detail page no longer clamps long titles (brandedTitleLength guard missing)"
+  );
+}
+
+// ---------------------------------------------------------------------------
 // Report
 // ---------------------------------------------------------------------------
 const { red, green, bold, reset } = COLORS;

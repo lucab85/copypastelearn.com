@@ -34,7 +34,9 @@ export const revalidate = 3600;
 
 export const metadata: Metadata = {
   alternates: { canonical: "/" },
-  openGraph: { url: "https://www.copypastelearn.com/", type: "website" },
+  // Use the same relative "/" as the canonical so Next resolves both through
+  // metadataBase identically (keeps og:url and canonical byte-for-byte equal).
+  openGraph: { url: "/", type: "website" },
 };
 
 /* ─── Structured Data ──────────────────────────────── */

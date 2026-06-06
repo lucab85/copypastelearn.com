@@ -26,8 +26,12 @@ export async function generateMetadata({
   if (!course) return {};
   const siteUrl =
     process.env.NEXT_PUBLIC_APP_URL ?? "https://www.copypastelearn.com";
+  // Keep the rendered <title> within 60 chars. The root layout appends
+  // " — CopyPasteLearn" (17 chars); when the course title is long, render it
+  // standalone (absolute) so the branded suffix doesn't push past 60.
+  const brandedTitleLength = course.title.length + " — CopyPasteLearn".length;
   return {
-    title: course.title,
+    title: brandedTitleLength > 60 ? { absolute: course.title } : course.title,
     description: course.description
       ? course.description.length > 160
         ? course.description.slice(0, 157) + "..."
