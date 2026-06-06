@@ -155,7 +155,7 @@ export function BlogList({ posts, categories, tags }: BlogListProps) {
             <X className="h-4 w-4" />
           </button>
         ) : (
-          <kbd className="pointer-events-none absolute right-3 top-1/2 hidden -translate-y-1/2 rounded border bg-muted px-1.5 py-0.5 font-mono text-[10px] text-muted-foreground sm:inline-block">
+          <kbd className="pointer-events-none absolute right-3 top-1/2 hidden -translate-y-1/2 rounded border bg-muted px-1.5 py-0.5 font-mono text-[10px] text-foreground sm:inline-block">
             /
           </kbd>
         )}

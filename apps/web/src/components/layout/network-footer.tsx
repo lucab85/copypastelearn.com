@@ -127,8 +127,8 @@ export function NetworkFooter() {
             title={site.title}
             className={`inline-flex items-center gap-1 whitespace-nowrap px-1 py-1.5 text-[11px] no-underline transition-colors duration-200 ${
               site.active
-                ? "pointer-events-none text-white/50"
-                : "text-white/35 hover:text-white/65"
+                ? "pointer-events-none text-white/70"
+                : "text-white/60 hover:text-white/90"
             }`}
             {...(!site.active && {
               target: "_blank",
