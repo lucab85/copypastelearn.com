@@ -522,12 +522,12 @@ export default function AIPlatformEngineeringPage() {
 
       {/* Mid-page CTA */}
       <section className="relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-blue-950/60 to-purple-950/60" />
+        <div className="absolute inset-0 bg-gradient-to-r from-blue-950 to-purple-950" />
         <div className="relative container mx-auto px-4 py-16 text-center">
-          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
+          <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
             Your Competitors Are Already Building AI Platforms
           </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-lg text-muted-foreground">
+          <p className="mx-auto mt-4 max-w-2xl text-lg text-blue-100/90">
             Every week you wait, the gap between AI experimentation and AI
             production widens. The next cohort has 20 seats. Don&apos;t be #21.
           </p>
