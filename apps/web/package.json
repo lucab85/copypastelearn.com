@@ -40,7 +40,8 @@
     "seo:rss": "node scripts/generate-rss.cjs",
     "seo:llms": "node scripts/generate-llms.cjs",
     "seo:indexnow": "node scripts/submit-indexnow.cjs",
-    "seo:optimize-images": "node scripts/optimize-images.cjs"
+    "seo:optimize-images": "node scripts/optimize-images.cjs",
+    "seo:verify-meta": "node scripts/verify-seo-meta.cjs"
   },
   "dependencies": {
     "@clerk/nextjs": "^6.38.0",

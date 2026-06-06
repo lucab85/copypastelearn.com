@@ -28,7 +28,8 @@ export async function generateMetadata({
   if (!data) return { title: "Category not found" };
   const { entry, posts } = data;
   // Root layout applies a `%s — CopyPasteLearn` title template, so do not append the brand here.
-  const title = entry.name;
+  // Enrich short category names ("DevOps", "MLOps") so the branded <title> clears the 30-char minimum.
+  const title = `${entry.name} Tutorials & Guides`;
   const noun = posts.length === 1 ? "article" : "articles";
   const description = `Explore ${posts.length} ${noun} in the ${entry.name} category on CopyPasteLearn — practical walkthroughs, code samples, and production-ready guides for engineers.`;
   const url = `/blog/category/${entry.slug}`;

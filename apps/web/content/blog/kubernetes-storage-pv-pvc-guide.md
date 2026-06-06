@@ -5,7 +5,7 @@ date: "2026-02-04"
 category: "DevOps"
 tags: ["kubernetes", "storage", "PersistentVolume", "DevOps", "Stateful"]
 excerpt: "Kubernetes persistent storage explained. PV, PVC, StorageClasses, dynamic provisioning, StatefulSets, and backup strategies."
-description: "Kubernetes persistent storage. PVs, PVCs, StorageClasses, dynamic provisioning, StatefulSets, and backup strategies."
+description: "Kubernetes persistent storage explained: PVs, PVCs, StorageClasses, dynamic provisioning, StatefulSets, and backup strategies."
 author: "Luca Berton"
 ---
 

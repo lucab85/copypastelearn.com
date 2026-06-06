@@ -30,9 +30,9 @@ export async function generateMetadata({
   // Root layout applies a `%s — CopyPasteLearn` title template, so do not append the brand here.
   const title = `Posts tagged "${entry.name}"`;
   const noun = posts.length === 1 ? "article" : "articles";
-  // Keep under 160 chars for SEO. Longest tag ("internal-developer-platform")
-  // with this template lands around 145 chars.
-  const description = `${posts.length} ${entry.name} ${noun} on CopyPasteLearn: hands-on tutorials, copy-paste examples, and production-ready patterns for engineers.`;
+  // Keep within 120–160 chars for SEO. With this template the shortest tag ("AI")
+  // lands ~126 chars and the longest ("internal-developer-platform") ~152.
+  const description = `${posts.length} ${entry.name} ${noun} on CopyPasteLearn: hands-on tutorials, copy-paste examples, and production-ready patterns for platform engineers.`;
   const url = `/blog/tag/${entry.slug}`;
   return {
     title,

@@ -30,9 +30,9 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "AI Platform Engineering — Executive Decision Lab",
+  title: "AI Platform Engineering for Executives",
   description:
-    "An 8-session Executive Decision Lab for CTOs, VPs, and senior architects in regulated enterprises. Turn AI pilots into a board-ready platform roadmap — vendor-neutral, anchored to NIST AI RMF, ISO/IEC 42001, and the EU AI Act.",
+    "An 8-session Executive Decision Lab for CTOs and senior architects — turn AI pilots into a board-ready, vendor-neutral AI platform roadmap.",
   alternates: { canonical: "/ai-platform-engineering" },
   openGraph: {
     url: "/ai-platform-engineering",

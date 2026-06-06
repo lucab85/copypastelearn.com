@@ -5,7 +5,7 @@ date: "2026-03-13"
 category: "MLOps"
 tags: ["MLOps", "MLflow", "Pipeline", "Machine Learning", "kubernetes"]
 excerpt: "Design an MLOps pipeline from data ingestion to model serving. MLflow tracking, model registry, CI/CD for ML, and Kubernetes deployment."
-description: "Design a production MLOps pipeline. MLflow tracking, model registry, CI/CD for ML, and Kubernetes deployment patterns."
+description: "Design a production MLOps pipeline: MLflow experiment tracking, model registry, CI/CD for ML, and Kubernetes deployment patterns."
 author: "Luca Berton"
 ---
 
