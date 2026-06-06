@@ -52,4 +52,10 @@ tmp/
 # SEO audit reports (generated)
 apps/web/reports/
 
+# Root-level audit reports + Vercel logs (local-only, not committed)
+/reports/
+
+# Source decks / working docs (local-only, not committed)
+/docs/
+
 .vercel
