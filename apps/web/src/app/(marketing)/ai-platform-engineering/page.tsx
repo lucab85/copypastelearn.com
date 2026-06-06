@@ -342,7 +342,7 @@ export default function AIPlatformEngineeringPage() {
             <div className="relative aspect-video overflow-hidden rounded-xl border shadow-lg shadow-primary/5">
               <iframe
                 className="absolute inset-0 h-full w-full"
-                src="https://www.youtube-nocookie.com/embed/HNrOQD5Y9oA"
+                src="https://www.youtube.com/embed/HNrOQD5Y9oA"
                 title="AI Platform Engineering — Program Overview"
                 loading="lazy"
                 referrerPolicy="strict-origin-when-cross-origin"

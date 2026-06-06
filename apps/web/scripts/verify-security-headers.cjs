@@ -87,11 +87,11 @@ if (cspMatch) {
     check(csp.includes(origin), `CSP no longer allows required origin: ${origin}`);
   }
 
-  // The AI-platform promo video is a youtube-nocookie iframe, so frame-src must
-  // permit it (omitting it makes YouTube show "content is blocked").
+  // The AI-platform promo video is a YouTube iframe, so frame-src must permit
+  // it (omitting it makes YouTube show "content is blocked").
   check(
-    (directives.get("frame-src") || []).includes("https://www.youtube-nocookie.com"),
-    "CSP frame-src must allow https://www.youtube-nocookie.com (promo video embed)"
+    (directives.get("frame-src") || []).includes("https://www.youtube.com"),
+    "CSP frame-src must allow https://www.youtube.com (promo video embed)"
   );
 }
 
