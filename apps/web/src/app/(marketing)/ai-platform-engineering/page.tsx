@@ -325,6 +325,35 @@ export default function AIPlatformEngineeringPage() {
         </div>
       </section>
 
+      {/* Promo Video */}
+      <section className="border-b bg-muted/20">
+        <div className="container mx-auto px-4 py-16 lg:py-20">
+          <div className="mx-auto max-w-3xl text-center">
+            <Badge variant="outline" className="mb-4">Watch</Badge>
+            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
+              See the Program Overview
+            </h2>
+            <p className="mt-4 text-lg text-muted-foreground">
+              Why regulated-enterprise AI stalls — and how this Executive Decision
+              Lab turns pilots into a board-ready roadmap.
+            </p>
+          </div>
+          <div className="mx-auto mt-10 max-w-3xl">
+            <div className="relative aspect-video overflow-hidden rounded-xl border shadow-lg shadow-primary/5">
+              <iframe
+                className="absolute inset-0 h-full w-full"
+                src="https://www.youtube-nocookie.com/embed/HNrOQD5Y9oA"
+                title="AI Platform Engineering — Program Overview"
+                loading="lazy"
+                referrerPolicy="strict-origin-when-cross-origin"
+                allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* The GenAI Problem */}
       <section className="container mx-auto px-4 py-16 lg:py-20">
         <div className="mx-auto max-w-3xl">
