@@ -18,7 +18,7 @@
 - [All Courses](https://www.copypastelearn.com/courses): Browse all available courses with filters and learning paths.
 - [Pricing](https://www.copypastelearn.com/pricing): Pro subscription plans — monthly (€29/mo) and annual (€290/yr).
 - [About](https://www.copypastelearn.com/about): About Luca Berton — Red Hat Summit and KubeCon EU 2026 speaker, Ansible Pilot author.
-- [AI Platform Engineering](https://www.copypastelearn.com/ai-platform-engineering): Live program for GenAI infrastructure, LLM gateways, and RAG pipelines.
+- [AI Platform Engineering](https://www.copypastelearn.com/ai-platform-engineering): 8-session Executive Decision Lab for CTOs, CIOs, and senior architects — vendor-neutral AI strategy, economics, governance, and a board-ready roadmap.
 - [Blog](https://www.copypastelearn.com/blog): 100+ technical articles on DevOps, automation, Linux, and AI tools.
 - [Contact](https://www.copypastelearn.com/contact): Get in touch with the CopyPasteLearn team.
 

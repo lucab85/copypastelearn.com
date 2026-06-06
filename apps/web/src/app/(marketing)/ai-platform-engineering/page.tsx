@@ -13,36 +13,32 @@ import { Badge } from "@/components/ui/badge";
 import {
   CheckCircle2,
   Shield,
-  Server,
   BarChart3,
   Layers,
   Target,
   Users,
-  Clock,
   BookOpen,
   MessageSquare,
   Phone,
   ArrowRight,
   AlertTriangle,
-  Zap,
   Brain,
-  Database,
-  Lock,
-  TrendingUp,
-  Cpu,
-  Globe,
+  Scale,
+  Coins,
+  Map,
+  FileCheck,
 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "AI Platform Engineering — Live Program",
+  title: "AI Platform Engineering — Executive Decision Lab",
   description:
-    "6-week live program for CTOs and engineering leaders. Build production-grade GenAI platforms with RAG, LLM orchestration, and AI agents.",
+    "An 8-session Executive Decision Lab for CTOs, VPs, and senior architects in regulated enterprises. Turn AI pilots into a board-ready platform roadmap — vendor-neutral, anchored to NIST AI RMF, ISO/IEC 42001, and the EU AI Act.",
   alternates: { canonical: "/ai-platform-engineering" },
   openGraph: {
     url: "/ai-platform-engineering",
     title: "AI Platform Engineering for Enterprise Leaders",
     description:
-      "Stop burning budget on AI projects that never reach production. Master GenAI infrastructure in 6 weeks.",
+      "Stop burning budget on AI pilots that never reach production. 8 sessions, 7 decision artifacts, one board-ready AI platform roadmap.",
     type: "website",
   },
 };
@@ -55,7 +51,7 @@ function ProgramJsonLd() {
     "@type": "Course",
     name: "AI Platform Engineering for Enterprise Leaders",
     description:
-      "6-week live program for CTOs, CIOs, and engineering leaders building GenAI platforms in regulated enterprises. Covers RAG, LLM orchestration, AI agents, vector databases, and EU AI Act governance.",
+      "An 8-session Executive Decision Lab for CTOs, CIOs, VPs, and senior architects building AI platforms in regulated enterprises. Produces seven decision artifacts and a board-ready AI platform roadmap with a 90-day action plan. Vendor-neutral; anchored to NIST AI RMF, ISO/IEC 42001, the EU AI Act, OWASP Top 10 for LLMs, and FinOps for AI.",
     url: `${siteUrl}/ai-platform-engineering`,
     provider: {
       "@type": "Organization",
@@ -69,15 +65,15 @@ function ProgramJsonLd() {
       url: "https://lucaberton.com",
     },
     educationalLevel: "Executive",
-    timeRequired: "PT36H",
-    numberOfCredits: 12,
+    timeRequired: "PT24H",
+    numberOfCredits: 8,
     hasCourseInstance: {
       "@type": "CourseInstance",
       courseMode: "Online",
       courseSchedule: {
         "@type": "Schedule",
         repeatFrequency: "P1W",
-        repeatCount: 6,
+        repeatCount: 8,
       },
     },
     offers: {
@@ -95,111 +91,144 @@ function ProgramJsonLd() {
   );
 }
 
-const weeklyTopics = [
+const sessions = [
   {
-    week: 1,
-    title: "Why AI Projects Fail — And How GenAI Made It Worse",
+    session: 1,
+    title: "Why Enterprise AI Fails",
     description:
-      "The 87% failure rate, POC-to-production gap, the AI Platform Maturity Model. Why GenAI amplified infrastructure complexity by 10x. Three enterprise failure case studies — and what they'd do differently.",
+      "The three enterprise failure patterns — cost blowout, compliance block, and org misalignment. Score your organization on a five-level AI Platform Maturity Model across eight dimensions, then set your baseline, 12-month target, and #1 priority gap.",
+    artifact: "AI Platform Scorecard",
     icon: AlertTriangle,
   },
   {
-    week: 2,
-    title: "GPU Strategy & LLM Hosting Decisions",
+    session: 2,
+    title: "The Right-Sized AI Strategy",
     description:
-      "GPU procurement vs cloud (A100/H100/H200 economics), Kubernetes for AI workloads, inference optimization (vLLM, TensorRT-LLM), FinOps for GenAI, and real TCO calculations for self-hosted vs API.",
-    icon: Cpu,
+      "Turn a list of 15 AI ideas into a funded short list. Score use cases on value, feasibility, risk, and time-to-value, then make a defensible fund / fund-with-gates / kill call — with success metrics that go beyond model accuracy.",
+    artifact: "Use-Case Prioritization Matrix",
+    icon: Target,
   },
   {
-    week: 3,
-    title: "RAG Architecture & Vector Databases",
+    session: 3,
+    title: "Budget & Economics: What AI Really Costs",
     description:
-      "Retrieval-Augmented Generation from scratch. Embedding models, chunking strategies, vector DB selection (Pinecone vs Weaviate vs pgvector vs Qdrant), hybrid search, reranking, and evaluation frameworks.",
-    icon: Database,
+      "Why AI cost structure inverts from POC to production. Build a CFO-readable TCO across the four cost drivers — Build, Run, Usage, People — with conservative/expected/high scenarios and FinOps guardrails that each have a trigger, an action, and an owner.",
+    artifact: "Budget Model + Cost Guardrails",
+    icon: Coins,
   },
   {
-    week: 4,
-    title: "LLM Orchestration & AI Agent Infrastructure",
+    session: 4,
+    title: "Build vs. Buy: Vendor Strategy Without Getting Sold ‘Magic’",
     description:
-      "Building internal AI platforms. LLM gateways, prompt management, guardrails, tool-use and function calling, multi-agent systems, LangChain vs LlamaIndex vs custom, and observability (LangSmith, Phoenix).",
-    icon: Brain,
+      "Decide build / buy / hybrid by platform layer on six weighted criteria. Spot the commercial traps — consumption pricing, proprietary APIs, the upsell staircase, compliance theater — and score the exit and portability cost before you sign.",
+    artifact: "Vendor Decision Framework",
+    icon: Scale,
   },
   {
-    week: 5,
-    title: "Security, Governance & EU AI Act Compliance",
+    session: 5,
+    title: "Operating Model: Who Owns What",
     description:
-      "AI threat models (prompt injection, data exfiltration, model poisoning), EU AI Act risk classification, model auditing, data lineage, PII handling in LLM pipelines, and governance frameworks that don't kill velocity.",
+      "Org misalignment is the #1 non-technical cause of AI failure. Decide what to centralize, federate, and jointly govern; build a RACI with exactly one accountable owner per decision; and close the gaps with a hire / upskill / partner / redesign team plan.",
+    artifact: "RACI Matrix + Team Plan",
+    icon: Users,
+  },
+  {
+    session: 6,
+    title: "Governance & Compliance: EU AI Act-Ready Without Killing Delivery",
+    description:
+      "Right-sized, risk-based governance built into the lifecycle — not bolted on at the end. Classify use cases by risk tier, assign controls and evidence by domain, stand up an AI-system registry, and design an approval flow your auditors trust.",
+    artifact: "Governance Blueprint",
     icon: Shield,
   },
   {
-    week: 6,
-    title: "Your AI Platform Roadmap — Build It Live",
+    session: 7,
+    title: "GenAI Decisions Leaders Must Get Right",
     description:
-      "Assemble your complete AI Platform Roadmap. Architecture diagrams, vendor decisions, team structure, budget projection, compliance checklist, and 90-day action plan. Peer review with cohort.",
-    icon: Target,
+      "The four GenAI decisions leaders must own: hosting, retrieval (RAG vs fine-tuning), data boundaries, and IP protection. Add the security lens (OWASP Top 10 for LLMs) and model cost as an operating behavior at 10x, 50x, and 100x usage.",
+    artifact: "GenAI Architecture Decision Tree",
+    icon: Brain,
+  },
+  {
+    session: 8,
+    title: "The Roadmap: From Today to 90 Days to 12 Months",
+    description:
+      "Assemble all seven artifacts into one board-ready roadmap and a 90-day action plan. Present it in board-pitch format and survive the five questions every board asks: value, cost, risk, ownership, and timeline.",
+    artifact: "Board-Ready Roadmap + 90-Day Action Plan",
+    icon: Map,
   },
 ];
 
-const genaiCapabilities = [
+const decisionLayers = [
   {
-    icon: Brain,
-    title: "LLM Strategy",
-    desc: "Open-source vs proprietary, fine-tuning vs RAG, cost-per-token analysis, model selection framework.",
+    icon: Target,
+    title: "Strategy",
+    desc: "Which AI use cases deserve investment — and which to kill? Prioritize on value, feasibility, risk, and time-to-value.",
   },
   {
-    icon: Database,
-    title: "RAG & Vector Search",
-    desc: "Production RAG pipelines, embedding strategies, vector DB selection, evaluation and quality metrics.",
+    icon: Coins,
+    title: "Economics",
+    desc: "What will AI really cost at production scale? The four cost drivers, scenario ranges, and FinOps guardrails with named owners.",
   },
   {
     icon: Layers,
-    title: "AI Agent Platforms",
-    desc: "Multi-agent architectures, tool orchestration, guardrails, memory systems, and human-in-the-loop patterns.",
+    title: "Platform",
+    desc: "What shared capabilities do we need to build once and reuse? The golden path that makes autonomy safe.",
   },
   {
-    icon: Cpu,
-    title: "Inference at Scale",
-    desc: "GPU orchestration, model serving (vLLM, TGI), batching, quantization, and latency optimization.",
+    icon: Scale,
+    title: "Vendors",
+    desc: "What do we build, buy, or avoid — by platform layer — without locking ourselves into a 12-month migration out?",
   },
   {
-    icon: Lock,
-    title: "AI Security & Governance",
-    desc: "Prompt injection defense, PII filtering, output moderation, EU AI Act compliance, and audit trails.",
+    icon: Users,
+    title: "Operating Model",
+    desc: "Who owns what in production? Centralize, federate, or jointly govern — with exactly one accountable owner per decision.",
   },
   {
-    icon: Globe,
-    title: "Internal AI Platforms",
-    desc: "Build-vs-buy decisions, API gateway design, usage metering, cost allocation, and developer experience.",
+    icon: Shield,
+    title: "Governance",
+    desc: "How do we manage risk and prove compliance without killing delivery? Risk tiers, controls, evidence, and an AI-system registry.",
+  },
+  {
+    icon: Brain,
+    title: "GenAI Architecture",
+    desc: "Which technical decisions must we get right early? Hosting, retrieval, data boundaries, and IP protection.",
+  },
+  {
+    icon: Map,
+    title: "Roadmap",
+    desc: "How do we turn all of this into funded execution? A board-ready roadmap and a 90-day plan that passes the Monday-morning test.",
   },
 ];
 
 const included = [
-  { icon: BookOpen, text: "12 live sessions (90 min each, recorded)" },
-  { icon: Brain, text: "GenAI Architecture Decision Framework" },
-  { icon: BarChart3, text: "AI Platform Assessment Tool" },
-  { icon: Database, text: "Vector DB Comparison Matrix (8 vendors)" },
-  { icon: Layers, text: "25+ Vendor Comparison Matrix" },
-  { icon: BarChart3, text: "LLM Cost Calculator (API vs self-hosted)" },
-  { icon: Shield, text: "EU AI Act Compliance Checklist" },
-  { icon: Target, text: "RAG Pipeline Design Worksheet" },
-  { icon: CheckCircle2, text: "90-Day Implementation Checklist" },
-  { icon: MessageSquare, text: "Private Slack community (lifetime)" },
-  { icon: Phone, text: "1:1 Strategy Call with Luca (30 min)" },
+  { icon: BookOpen, text: "8 live Executive Decision Lab sessions (recorded)" },
+  { icon: FileCheck, text: "One executive-ready artifact per session" },
+  { icon: BarChart3, text: "AI Platform Maturity Scorecard (8 dimensions)" },
+  { icon: Target, text: "Use-Case Prioritization Matrix + success metrics" },
+  { icon: Coins, text: "AI Budget Model + FinOps cost guardrails" },
+  { icon: Scale, text: "Vendor Decision Framework (6 weighted criteria)" },
+  { icon: Users, text: "RACI Matrix + Team Plan templates" },
+  { icon: Shield, text: "Governance Blueprint (EU AI Act-ready)" },
+  { icon: Brain, text: "GenAI Architecture Decision Tree + risk checklist" },
+  { icon: Map, text: "Board-Ready Roadmap + 90-Day Action Plan template" },
+  { icon: MessageSquare, text: "Private peer cohort under the Chatham House Rule" },
+  { icon: Phone, text: "1:1 strategy call with Luca (30 min)" },
 ];
 
 const forYou = [
-  "CTO, CIO, VP of Engineering, or Head of AI at 500+ employee companies",
-  "Leaders deploying GenAI (chatbots, copilots, RAG) to production",
-  "Regulated industries — finance, healthcare, government, energy",
-  "Teams drowning in AI vendor pitches and need a neutral framework",
-  "Organizations where AI prototypes work great but production deployments fail",
+  "CTO, CIO, VP of Engineering, or Head of AI in regulated enterprises",
+  "Senior architects and platform leaders accountable for AI decisions to a board",
+  "Leaders with AI pilots — but no approvable, funded plan",
+  "Teams drowning in AI vendor pitches who need a neutral decision framework",
+  "Organizations where AI prototypes work but production stalls on cost, compliance, or ownership",
 ];
 
 const notForYou = [
-  "Looking for a coding bootcamp (this is strategic, not hands-on coding)",
+  "Looking for a coding bootcamp (this is executive decisions, not implementation)",
   "Want a €15 Udemy course (this is a professional investment)",
-  "Company has fewer than 100 employees (too early for platform engineering)",
-  "Want vendor-specific training (we are vendor-neutral)",
+  "Very early-stage companies with no AI initiatives yet",
+  "Want vendor-specific training (this program is deliberately vendor-neutral)",
 ];
 
 const faqs = [
@@ -209,15 +238,23 @@ const faqs = [
   },
   {
     q: "How is this different from AI courses on Coursera or Udemy?",
-    a: "Those teach you how AI works. This teaches you how to build the platform that runs AI in production. It's infrastructure strategy, not data science. You'll leave with a board-ready roadmap, not a certificate.",
+    a: "Those teach you how AI works. This is an Executive Decision Lab that produces the decisions — and the board-ready roadmap — that get AI into production. It's leadership strategy, not data science: vendor-neutral, and anchored to NIST AI RMF, ISO/IEC 42001, and the EU AI Act. You leave with a plan, not a certificate.",
   },
   {
     q: "What if I miss a live session?",
-    a: "All sessions are recorded and available within 24 hours. You can also ask questions asynchronously in the private Slack community.",
+    a: "All sessions are recorded and available within 24 hours. You can also ask questions asynchronously in the private cohort community.",
   },
   {
     q: "Is this technical?",
-    a: "It's technical enough to make real decisions, but you won't write code. Think \"executive technical literacy\" — you'll understand RAG architectures, GPU economics, and LLM orchestration well enough to lead your team effectively.",
+    a: "It's executive-first — decisions, not implementation detail. You won't write code or configure GPUs. You'll make the hosting, retrieval, vendor, cost, governance, and ownership decisions well enough to lead your team and defend them to your board.",
+  },
+  {
+    q: "Is the program vendor-neutral?",
+    a: "Yes — completely. The entire program is criteria, not brands. You leave with reusable decision frameworks, not a recommendation to buy a specific vendor.",
+  },
+  {
+    q: "What is the Chatham House Rule, and why does it matter?",
+    a: "You can use every idea, pattern, and lesson freely — but you never attribute who said what or where they work. It's what lets senior leaders name real blockers honestly, which is where the value is.",
   },
   {
     q: "Can I expense this?",
@@ -225,7 +262,7 @@ const faqs = [
   },
   {
     q: "What's the time commitment?",
-    a: "3 hours per week for live sessions plus 1-2 hours for assignments. Assignments are practical — you're building your actual AI platform roadmap, not busywork.",
+    a: "Each session is a working session, plus a short assignment that builds one artifact of your actual roadmap — not busywork. Bring a real initiative and you'll leave with a plan you can defend on Monday.",
   },
   {
     q: "Do you offer refunds?",
@@ -233,11 +270,11 @@ const faqs = [
   },
   {
     q: "We already use ChatGPT/Copilot. Why do we need this?",
-    a: "Using AI tools and building an AI platform are completely different things. When your CEO asks \"why can't we build our own copilot?\" — this program gives you the answer, the architecture, and the roadmap to actually do it.",
+    a: "Using AI tools and operating an AI platform are completely different things. When your CEO asks \"why can't we build our own copilot?\" — this program gives you the decisions, the governance, and the board-ready roadmap to actually do it.",
   },
   {
     q: "I'm not a CIO/CTO. Can I still join?",
-    a: "Absolutely — if you're involved in AI infrastructure decisions (Platform Lead, ML Engineering Manager, Solutions Architect), you'll get massive value.",
+    a: "Absolutely — if you're involved in AI platform decisions (Platform Lead, ML Engineering Manager, Solutions Architect, senior architect), you'll get massive value.",
   },
 ];
 
@@ -250,6 +287,9 @@ export default function AIPlatformEngineeringPage() {
       <section className="relative border-b overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-blue-950/40 via-background to-purple-950/30" />
         <div className="relative container mx-auto px-4 py-20 lg:py-28 text-center">
+          <p className="mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-blue-300/80">
+            Enterprise AI Platform Blueprint · Regulated-Ready
+          </p>
           <Badge variant="secondary" className="mb-4 text-sm px-4 py-1.5">
             🔥 Only 20 seats per cohort — next cohort filling now
           </Badge>
@@ -261,10 +301,10 @@ export default function AIPlatformEngineeringPage() {
             </span>
           </h1>
           <p className="mx-auto mt-6 max-w-3xl text-xl text-muted-foreground leading-relaxed">
-            The 6-week live program that gives CTOs, CIOs, and engineering
-            leaders a battle-tested blueprint for building GenAI platforms —
-            RAG pipelines, LLM orchestration, AI agents — that actually work
-            in regulated enterprises.
+            The 8-session Executive Decision Lab where CTOs, CIOs, VPs, and
+            senior architects in regulated enterprises turn AI pilots into a
+            board-ready platform roadmap — vendor-neutral, and anchored to the
+            frameworks your risk team already trusts.
           </p>
           <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
             <Button size="lg" className="text-lg px-8 py-6 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700" asChild>
@@ -290,22 +330,22 @@ export default function AIPlatformEngineeringPage() {
         <div className="mx-auto max-w-3xl">
           <Badge variant="outline" className="mb-4">The Reality Check</Badge>
           <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
-            GenAI Changed Everything — Except the Failure Rate
+            Most Enterprise AI Efforts Stall — And It&apos;s Rarely the Model
           </h2>
           <p className="mt-4 text-lg text-muted-foreground leading-relaxed">
-            ChatGPT made AI feel easy. Your board saw the demos. Now they want an
-            internal copilot, a customer-facing chatbot, automated document
-            processing, and AI-powered search — all by Q3. But here&apos;s what
-            the demos didn&apos;t show:
+            Your board saw the demos and wants an internal copilot, a
+            customer-facing assistant, and automated document processing — all by
+            Q3. But the demo hid the hard parts, and they&apos;re leadership
+            decisions, not engineering:
           </p>
           <div className="mt-8 space-y-4">
             {[
-              "Your RAG prototype returns hallucinated answers with 100% confidence — and nobody knows how to measure quality",
-              "The LLM API costs that looked cheap in testing hit €40K/month at production scale",
-              "Your legal team discovers customer data is being sent to OpenAI's API — in a GDPR-regulated environment",
-              "Fine-tuning a model took 3 engineers, 2 months, and €80K in GPU costs — then performed worse than the base model",
-              "Every team built their own AI integration — you now have 7 different LLM wrappers, zero governance, and a security nightmare",
-              "Six months and €500K later, you're back to buying a vendor solution anyway",
+              "Cost blowout: $500K modeled, $2.1M spent 18 months later — and still nothing in production, because the POC budget priced the technology, not the operating system around it",
+              "Compliance block: a production-ready model sat blocked for ~9 months because governance was bolted on after the build, not designed into the platform",
+              "Org misalignment: four teams built four pipelines, four security reviews, four cost centers — and no one could answer \"who owns AI in production?\"",
+              "Runaway economics: inference that looked trivial in the POC went from $0 to $500K in three months once every workflow multiplied it at production volume",
+              "Pilot sprawl: every function wants its own AI win, so funding spreads across ten pilots and none of them reaches production",
+              "No defensible number: your CFO isn't anti-AI — they're anti-unclear economics, and no one walked in with a budget range, assumptions, and guardrails",
             ].map((pain) => (
               <div key={pain} className="flex gap-3">
                 <span className="mt-0.5 flex-shrink-0 text-destructive font-bold">✗</span>
@@ -315,14 +355,15 @@ export default function AIPlatformEngineeringPage() {
           </div>
           <div className="mt-10 rounded-xl border-2 border-primary/20 bg-gradient-to-r from-blue-950/30 to-purple-950/30 p-8">
             <p className="text-xl font-bold">
-              You don&apos;t have an AI problem. You have a platform problem.
+              The question is not &quot;can we build AI?&quot; It&apos;s &quot;can we operate AI?&quot;
             </p>
             <p className="mt-3 text-muted-foreground leading-relaxed">
-              87% of AI projects never make it to production — and GenAI made it
-              worse. The gap between &quot;it works in a notebook&quot; and &quot;it runs
-              in production with governance&quot; has never been wider. The companies
-              winning at AI aren&apos;t the ones with the best models. They&apos;re
-              the ones with the best platforms.
+              Enterprise AI failure is usually a maturity problem, not a model
+              problem — it spans strategy, cost, governance, ownership, and
+              architecture. A proof of concept proves possibility; it never
+              proves readiness. The organizations winning at AI aren&apos;t the
+              ones with the best models. They&apos;re the ones that can operate AI
+              in production — safely, economically, and with a named owner.
             </p>
           </div>
         </div>
@@ -332,17 +373,18 @@ export default function AIPlatformEngineeringPage() {
       <section className="border-y bg-muted/20">
         <div className="container mx-auto px-4 py-16 lg:py-20">
           <div className="mx-auto max-w-3xl text-center">
-            <Badge variant="outline" className="mb-4">What You&apos;ll Master</Badge>
+            <Badge variant="outline" className="mb-4">What You&apos;ll Decide</Badge>
             <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
-              The GenAI Infrastructure Playbook
+              Eight Decision Layers. Eight Questions Your Board Will Ask.
             </h2>
             <p className="mt-4 text-lg text-muted-foreground">
-              Every decision you need to make — from LLM selection to production
-              RAG to EU AI Act compliance — in one structured program.
+              One model holds the whole program — from an honest maturity baseline
+              to a funded, board-ready roadmap. Vendor-neutral throughout:
+              criteria, not brands.
             </p>
           </div>
           <div className="mx-auto mt-12 grid max-w-5xl gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {genaiCapabilities.map((item) => (
+            {decisionLayers.map((item) => (
               <Card key={item.title} className="bg-background/60 backdrop-blur">
                 <CardHeader className="pb-3">
                   <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10">
@@ -364,43 +406,54 @@ export default function AIPlatformEngineeringPage() {
         <div className="mx-auto max-w-3xl text-center">
           <Badge variant="outline" className="mb-4">Outcomes</Badge>
           <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
-            What You Walk Away With
+            Seven Artifacts. One Board-Ready Roadmap.
           </h2>
           <p className="mt-4 text-lg text-muted-foreground">
-            Not slides. Not theory. Artifacts you can use Monday morning.
+            Not slides. Not theory. One executive-ready artifact per session —
+            assembled into a plan you can defend on Monday morning.
           </p>
         </div>
         <div className="mx-auto mt-12 grid max-w-4xl gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {[
             {
-              icon: Target,
-              title: "AI Platform Roadmap",
-              desc: "Board-ready architecture document tailored to your organization, tech stack, and regulatory environment.",
-            },
-            {
               icon: BarChart3,
-              title: "Realistic Budget",
-              desc: "GPU costs, API spend, team sizing, vendor costs — a complete TCO model, not back-of-napkin guesses.",
+              title: "AI Platform Scorecard",
+              desc: "A five-level maturity model across eight dimensions — your honest baseline, 12-month target, and #1 priority gap.",
             },
             {
-              icon: Shield,
-              title: "Governance Framework",
-              desc: "EU AI Act risk classification, data governance policies, model audit trails — satisfies regulators AND engineers.",
+              icon: Target,
+              title: "Use-Case Prioritization Matrix",
+              desc: "Every use case scored on value, feasibility, risk, and time-to-value — with a defensible fund / gate / kill call.",
             },
             {
-              icon: Layers,
-              title: "Build-vs-Buy Matrix",
-              desc: "25+ vendor comparison across LLMs, vector DBs, orchestration, observability — backed by data, not sales decks.",
+              icon: Coins,
+              title: "Budget Model + Guardrails",
+              desc: "A CFO-readable TCO across Build, Run, Usage, and People — with scenario ranges and FinOps guardrails that have owners.",
+            },
+            {
+              icon: Scale,
+              title: "Vendor Decision Framework",
+              desc: "Build / buy / hybrid by platform layer on six weighted criteria — including the exit and portability cost everyone forgets.",
             },
             {
               icon: Users,
-              title: "Team & Hiring Plan",
-              desc: "Who to hire (ML engineer vs platform engineer vs AI architect), when, and what to outsource.",
+              title: "RACI Matrix + Team Plan",
+              desc: "Exactly one accountable owner per decision, a golden path for delivery, and a hire / upskill / partner / redesign plan.",
             },
             {
-              icon: Clock,
-              title: "90-Day Action Plan",
-              desc: "Week-by-week implementation plan. Concrete next steps that start Monday, not vague strategy.",
+              icon: Shield,
+              title: "Governance Blueprint",
+              desc: "Risk tiers, controls and evidence by domain, an AI-system registry, and an approval flow — EU AI Act-ready, not delivery-killing.",
+            },
+            {
+              icon: Brain,
+              title: "GenAI Architecture Decision Tree",
+              desc: "Hosting, retrieval, data boundaries, and IP protection decided for a real use case — each with a rationale, risk, and mitigation.",
+            },
+            {
+              icon: Map,
+              title: "Board-Ready Roadmap + 90-Day Plan",
+              desc: "Seven artifacts assembled into one funded, governed roadmap and a 90-day plan that passes the Monday-morning test.",
             },
           ].map((item) => (
             <Card key={item.title} className="bg-background">
@@ -429,31 +482,36 @@ export default function AIPlatformEngineeringPage() {
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="outline" className="mb-4">The Curriculum</Badge>
             <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
-              6 Weeks. 12 Live Sessions. One Roadmap.
+              8 Sessions. 7 Artifacts. One Board-Ready Roadmap.
             </h2>
             <p className="mt-4 text-muted-foreground text-lg">
-              Every session is practical. No fluff. No filler. You build your
-              AI Platform Roadmap as you go.
+              An Executive Decision Lab — not a lecture series. Nine frameworks
+              across eight working sessions, each run under the Chatham House Rule
+              and ending with one artifact you take straight into your roadmap.
             </p>
           </div>
           <div className="mx-auto mt-12 max-w-3xl space-y-6">
-            {weeklyTopics.map((week) => (
+            {sessions.map((session) => (
               <div
-                key={week.week}
+                key={session.session}
                 className="flex gap-6 rounded-xl border bg-background p-6 transition-colors hover:border-primary/40"
               >
                 <div className="flex-shrink-0">
                   <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br from-blue-600/20 to-purple-600/20 border border-primary/20">
-                    <week.icon className="h-7 w-7 text-primary" />
+                    <session.icon className="h-7 w-7 text-primary" />
                   </div>
                 </div>
                 <div>
                   <p className="text-sm font-semibold text-primary uppercase tracking-wider">
-                    Week {week.week}
+                    Session {session.session}
                   </p>
-                  <h3 className="mt-1 text-lg font-bold">{week.title}</h3>
+                  <h3 className="mt-1 text-lg font-bold">{session.title}</h3>
                   <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
-                    {week.description}
+                    {session.description}
+                  </p>
+                  <p className="mt-3 inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-3 py-1 text-xs font-medium text-primary">
+                    <FileCheck className="h-3.5 w-3.5" />
+                    Artifact: {session.artifact}
                   </p>
                 </div>
               </div>
@@ -603,9 +661,9 @@ export default function AIPlatformEngineeringPage() {
               </CardHeader>
               <CardContent className="space-y-3">
                 {[
-                  "12 live sessions + recordings",
-                  "All templates & tools",
-                  "Private Slack community",
+                  "8 live Decision Lab sessions + recordings",
+                  "All 7 artifact templates & tools",
+                  "Private cohort community (Chatham House Rule)",
                   "30-min 1:1 strategy call",
                   "Invoice / PO available",
                 ].map((f) => (
@@ -640,7 +698,7 @@ export default function AIPlatformEngineeringPage() {
                   "Everything in Individual",
                   "30-min 1:1 per team member",
                   "Team pricing discount (20%)",
-                  "Shared Slack channel",
+                  "Shared private cohort channel",
                   "Invoice / PO available",
                 ].map((f) => (
                   <div key={f} className="flex gap-2 text-sm">
@@ -719,8 +777,9 @@ export default function AIPlatformEngineeringPage() {
             </span>
           </h2>
           <p className="mx-auto mt-6 max-w-2xl text-lg text-muted-foreground">
-            20 seats. 6 weeks. One roadmap that gets your AI projects from
-            prototype to production. The next cohort won&apos;t wait.
+            8 sessions. 7 artifacts. One board-ready roadmap that gets your AI
+            initiatives from pilot to funded production. The next cohort
+            won&apos;t wait.
           </p>
           <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
             <MailtoButton size="lg" className="text-lg px-8 py-6 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700" user="luca" domain="lucaberton.it" subject="AI Platform Engineering - Reserve Seat">

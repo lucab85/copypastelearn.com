@@ -32,17 +32,17 @@ export default function AIPlatformOGImage() {
         />
         <div style={{ display: "flex", flexDirection: "column", gap: 8, marginBottom: 40 }}>
           <div style={{ fontSize: 18, color: "#f59e0b", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.1em" }}>
-            Live Program
+            Executive Decision Lab
           </div>
           <div style={{ fontSize: 44, fontWeight: 800, letterSpacing: "-0.025em" }}>
             AI Platform Engineering
           </div>
           <div style={{ fontSize: 24, color: "#a1a1aa", lineHeight: 1.4 }}>
-            6-week program for CTOs &amp; CIOs — stop burning budget on AI projects that never reach production.
+            8 sessions for CTOs, CIOs &amp; senior architects — turn AI pilots into a board-ready platform roadmap.
           </div>
         </div>
         <div style={{ display: "flex", gap: 24, marginTop: 20 }}>
-          {["Strategy", "Architecture", "GPU Ops", "MLOps", "Security", "Scale"].map((t) => (
+          {["Strategy", "Economics", "Vendors", "Operating Model", "Governance", "Roadmap"].map((t) => (
             <div key={t} style={{ padding: "8px 16px", borderRadius: 8, backgroundColor: "#18181b", border: "1px solid #27272a", fontSize: 16, fontWeight: 600 }}>
               {t}
             </div>
