@@ -155,9 +155,17 @@ const nextConfig = {
           { key: "X-Frame-Options", value: "DENY" },
           { key: "X-Content-Type-Options", value: "nosniff" },
           {
+            // NOTE: script-src still carries 'unsafe-inline' + 'unsafe-eval'.
+            // Removing them requires a per-request nonce (Next.js injects inline
+            // hydration scripts), which forces every route into dynamic
+            // rendering and undermines the static/edge caching this site relies
+            // on — so that migration is tracked separately. The directives below
+            // (object-src, base-uri, frame-ancestors, form-action,
+            // upgrade-insecure-requests) harden the policy with no rendering or
+            // third-party breakage risk.
             key: "Content-Security-Policy",
             value:
-              "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://*.clerk.accounts.dev https://*.clerk.com https://clerk.copypastelearn.com https://www.googletagmanager.com https://www.clarity.ms https://scripts.clarity.ms https://js.stripe.com https://va.vercel-scripts.com https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https: blob:; font-src 'self' data: https:; connect-src 'self' https://*.clerk.accounts.dev https://*.clerk.com https://clerk.copypastelearn.com https://*.google-analytics.com https://*.clarity.ms https://api.stripe.com https://*.mux.com https://*.supabase.co https://app.kit.com; frame-src 'self' https://*.clerk.accounts.dev https://js.stripe.com https://*.mux.com; media-src 'self' https://*.mux.com https://stream.mux.com; worker-src 'self' blob:",
+              "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://*.clerk.accounts.dev https://*.clerk.com https://clerk.copypastelearn.com https://www.googletagmanager.com https://www.clarity.ms https://scripts.clarity.ms https://js.stripe.com https://va.vercel-scripts.com https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https: blob:; font-src 'self' data: https:; connect-src 'self' https://*.clerk.accounts.dev https://*.clerk.com https://clerk.copypastelearn.com https://*.google-analytics.com https://*.clarity.ms https://api.stripe.com https://*.mux.com https://*.supabase.co https://app.kit.com; frame-src 'self' https://*.clerk.accounts.dev https://js.stripe.com https://*.mux.com; media-src 'self' https://*.mux.com https://stream.mux.com; worker-src 'self' blob:; object-src 'none'; base-uri 'self'; frame-ancestors 'none'; form-action 'self'; upgrade-insecure-requests",
           },
           { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
           {

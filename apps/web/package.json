@@ -41,7 +41,8 @@
     "seo:llms": "node scripts/generate-llms.cjs",
     "seo:indexnow": "node scripts/submit-indexnow.cjs",
     "seo:optimize-images": "node scripts/optimize-images.cjs",
-    "seo:verify-meta": "node scripts/verify-seo-meta.cjs"
+    "seo:verify-meta": "node scripts/verify-seo-meta.cjs",
+    "verify:security-headers": "node scripts/verify-security-headers.cjs"
   },
   "dependencies": {
     "@clerk/nextjs": "^6.38.0",
