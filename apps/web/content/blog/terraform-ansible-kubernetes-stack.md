@@ -107,6 +107,8 @@ terraform apply
 
 After Terraform creates the infrastructure, Ansible configures it:
 
+For a deeper dive into driving Kubernetes with Ansible playbooks, see [Ansible & Kubernetes — Automate K8s with Playbooks](https://www.ansiblebyexample.com/articles/ansible-kubernetes-k8s-automation-playbook-guide) on Ansible By Example.
+
 ```yaml
 # playbooks/setup-cluster.yml
 ---

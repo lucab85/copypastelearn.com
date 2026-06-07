@@ -11,6 +11,8 @@ tags: ["OpenClaw", "Ansible", "Automation"]
 
 Ansible automates infrastructure. OpenClaw adds AI intelligence. Together, they create an **AI-powered infrastructure automation** workflow.
 
+For a concrete end-to-end example, see [OpenClaw Agentic Automation with Ansible — CVE Remediation Demo](https://www.ansiblebyexample.com/articles/openclaw-agentic-automation-with-ansible-cve-remediation-demo) on Ansible By Example.
+
 ## Writing Playbooks
 
 ### Natural Language to YAML
