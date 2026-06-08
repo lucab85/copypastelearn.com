@@ -297,3 +297,7 @@ YAML fluency is essential for every DevOps tool. Our **Ansible Automation in 30 
 ## Ready to go deeper?
 
 This article is part of a hands-on learning path. Continue building your skills with [Ansible Quickstart](/courses/ansible-quickstart) on CopyPasteLearn.
+
+## Related
+
+For a production-focused walkthrough, see Luca Berton's guide on [Ansible Kubernetes day-2 operations](https://lucaberton.com/blog/ansible-kubernetes-operators-day2/).

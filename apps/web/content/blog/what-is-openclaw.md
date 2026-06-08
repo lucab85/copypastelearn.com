@@ -75,3 +75,7 @@ OpenClaw is open source and available on [GitHub](https://github.com/openclaw/op
 ## Ready to go deeper?
 
 This article is part of a hands-on learning path. Continue building your skills with [OpenClaw Agent](/courses/openclaw-agent) on CopyPasteLearn.
+
+## Further reading
+
+To go deeper, [the Ansible intelligent assistant and MCP server](https://lucaberton.com/blog/ansible-automation-intelligent-assistant-mcp-server-byok-rag-2026/) expands on these patterns in production.

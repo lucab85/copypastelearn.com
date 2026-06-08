@@ -97,3 +97,7 @@ You can use LangChain inside an OpenClaw skill. Or use OpenClaw as the communica
 
 **Ready to go deeper?** Check out our hands-on course: [OpenClaw Agent](/courses/openclaw-agent) — practical exercises you can follow along on your own machine.
 
+## Further reading
+
+To go deeper, [OpenClaw-driven CVE remediation with Ansible](https://lucaberton.com/blog/openclaw-agentic-automation-ansible-cve-remediation-red-hat-2026/) expands on these patterns in production.
+

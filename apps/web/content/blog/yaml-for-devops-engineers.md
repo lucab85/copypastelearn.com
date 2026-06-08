@@ -259,3 +259,7 @@ Our **Ansible Automation in 30 Minutes** course uses YAML throughout for playboo
 
 **Ready to go deeper?** Explore our [hands-on DevOps courses](/courses) — practical labs covering Docker, Ansible, Terraform, and more.
 
+## Related guide
+
+Related reading: [Ansible for Kubernetes by Example](https://lucaberton.com/blog/ansible-for-kubernetes-by-example/) covers this in real-world detail.
+

@@ -123,3 +123,7 @@ You should see your agent running with connected channels listed.
 
 **Ready to go deeper?** Check out our hands-on course: [OpenClaw Agent](/courses/openclaw-agent) — practical exercises you can follow along on your own machine.
 
+## Related guide
+
+Related reading: [OpenClaw-driven CVE remediation with Ansible](https://lucaberton.com/blog/openclaw-agentic-automation-ansible-cve-remediation-red-hat-2026/) covers this in real-world detail.
+

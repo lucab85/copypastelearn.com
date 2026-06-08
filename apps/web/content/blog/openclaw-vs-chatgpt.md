@@ -63,3 +63,7 @@ This means you get state-of-the-art AI capabilities with full control over conte
 
 **Ready to go deeper?** Check out our hands-on course: [OpenClaw Agent](/courses/openclaw-agent) — practical exercises you can follow along on your own machine.
 
+## Related
+
+For a production-focused walkthrough, see Luca Berton's guide on [the Ansible intelligent assistant and MCP server](https://lucaberton.com/blog/ansible-automation-intelligent-assistant-mcp-server-byok-rag-2026/).
+

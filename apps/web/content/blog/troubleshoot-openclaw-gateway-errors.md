@@ -173,3 +173,7 @@ openclaw config get gateway.controlui.allowedOrigins
 
 **Ready to go deeper?** Check out our hands-on course: [OpenClaw Agent](/courses/openclaw-agent) — practical exercises you can follow along on your own machine.
 
+## Related
+
+For a production-focused walkthrough, see Luca Berton's guide on [agentic Ansible automation with OpenClaw](https://lucaberton.com/blog/openclaw-agentic-automation-ansible-cve-remediation-red-hat-2026/).
+

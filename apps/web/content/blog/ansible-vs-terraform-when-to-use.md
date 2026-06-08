@@ -124,3 +124,7 @@ Use the right tool for each layer. Your infrastructure will be simpler and more 
 ---
 
 Ready to go deeper? Learn both tools hands-on: [Ansible Quickstart](/courses/ansible-quickstart) and [Terraform for Beginners](/courses/terraform-beginners) at CopyPasteLearn.
+
+## Related
+
+For a production-focused walkthrough, see Luca Berton's guide on [migrating from Terraform to Ansible](https://lucaberton.com/blog/migrating-terraform-to-ansible-cloud/).

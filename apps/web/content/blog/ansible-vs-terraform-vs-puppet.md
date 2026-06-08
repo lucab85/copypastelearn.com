@@ -207,3 +207,7 @@ Both include free preview lessons and lab environments.
 
 **Ready to go deeper?** Check out our hands-on course: [Ansible Quickstart](/courses/ansible-quickstart) — practical exercises you can follow along on your own machine.
 
+## Related guide
+
+Related reading: [Terraform vs Ansible: when to use which](https://lucaberton.com/blog/terraform-vs-ansible-when-to-use-which-2026/) covers this in real-world detail.
+

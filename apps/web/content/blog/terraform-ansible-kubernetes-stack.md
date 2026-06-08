@@ -290,3 +290,7 @@ Each course includes free preview lessons and hands-on labs.
 
 **Ready to go deeper?** Check out our hands-on course: [Terraform for Beginners](/courses/terraform-beginners) — practical exercises you can follow along on your own machine.
 
+## Further reading
+
+To go deeper, [choosing between Terraform and Ansible](https://lucaberton.com/blog/terraform-vs-ansible-when-to-use-which-2026/) expands on these patterns in production.
+

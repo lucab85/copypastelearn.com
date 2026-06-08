@@ -129,3 +129,7 @@ The agent reads `SKILL.md` when a task matches the skill's description.
 
 **Ready to go deeper?** Check out our hands-on course: [OpenClaw Agent](/courses/openclaw-agent) — practical exercises you can follow along on your own machine.
 
+## Further reading
+
+To go deeper, [agentic Ansible automation with OpenClaw](https://lucaberton.com/blog/openclaw-agentic-automation-ansible-cve-remediation-red-hat-2026/) expands on these patterns in production.
+
