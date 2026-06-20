@@ -42,6 +42,7 @@
     "seo:indexnow": "node scripts/submit-indexnow.cjs",
     "seo:optimize-images": "node scripts/optimize-images.cjs",
     "seo:verify-meta": "node scripts/verify-seo-meta.cjs",
+    "seo:verify-noindex": "node scripts/verify-noindex.cjs",
     "verify:security-headers": "node scripts/verify-security-headers.cjs",
     "verify:a11y-contrast": "node scripts/verify-a11y-contrast.cjs"
   },

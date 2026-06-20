@@ -35,3 +35,9 @@ jobs:
 
       - name: TypeScript
         run: pnpm -r exec tsc --noEmit
+
+      - name: SEO meta verification
+        run: pnpm --filter @copypastelearn/web run seo:verify-meta
+
+      - name: noindex verification
+        run: pnpm --filter @copypastelearn/web run seo:verify-noindex

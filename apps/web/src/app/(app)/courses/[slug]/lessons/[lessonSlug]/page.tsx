@@ -5,6 +5,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { auth } from "@clerk/nextjs/server";
 import { getLesson } from "@/server/queries/lessons";
+import { getLessonPublicMeta } from "@/server/queries/lessons";
 import { generateMuxTokens } from "@/lib/mux";
 import { LessonPlayerClient } from "./lesson-player-client";
 import { TranscriptPanel } from "@/components/lesson/transcript-panel";
@@ -27,26 +28,32 @@ export async function generateMetadata({
   params,
 }: LessonPageProps): Promise<Metadata> {
   const { slug, lessonSlug } = await params;
-  try {
-    const lesson = await loadLesson(slug, lessonSlug);
-    return {
-      title: lesson.title.replace(/ — CopyPasteLearn$/i, "").replace(/ \| CopyPasteLearn$/i, ""),
-      description: `Watch the ${lesson.title} lesson on CopyPasteLearn. Master IT automation with expert-led video instruction and hands-on interactive labs.`,
-      alternates: { canonical: `/courses/${slug}/lessons/${lessonSlug}` },
-      openGraph: { url: `/courses/${slug}/lessons/${lessonSlug}`, type: "website" },
-      robots: { index: true, follow: true },
-    };
-  } catch {
-    // Locked or missing — don't index paywall pages
+  // Resolve indexability from whether the lesson EXISTS, never from whether the
+  // current (often unauthenticated) request can access it. Paywalled lessons
+  // must stay indexable; only genuinely missing lessons get `noindex`.
+  const meta = await getLessonPublicMeta(slug, lessonSlug);
+
+  if (!meta) {
     return {
       title: `${lessonSlug.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase())}`,
       description:
         "This lesson is part of a CopyPasteLearn course. Subscribe to unlock expert video lessons and hands-on interactive labs in real environments.",
       alternates: { canonical: `/courses/${slug}/lessons/${lessonSlug}` },
       openGraph: { url: `/courses/${slug}/lessons/${lessonSlug}`, type: "website" },
-      robots: { index: false, follow: true },
+      robots: { index: false, follow: false },
     };
   }
+
+  const title = meta.title
+    .replace(/ — CopyPasteLearn$/i, "")
+    .replace(/ \| CopyPasteLearn$/i, "");
+  return {
+    title,
+    description: `Watch the ${title} lesson on CopyPasteLearn. Master IT automation with expert-led video instruction and hands-on interactive labs.`,
+    alternates: { canonical: `/courses/${slug}/lessons/${lessonSlug}` },
+    openGraph: { url: `/courses/${slug}/lessons/${lessonSlug}`, type: "website" },
+    robots: { index: true, follow: true },
+  };
 }
 
 export default async function LessonPage({ params }: LessonPageProps) {

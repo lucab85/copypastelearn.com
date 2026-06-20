@@ -5,6 +5,31 @@ import { getCurrentUser, NotFoundError, ForbiddenError } from "@/lib/auth";
 import type { LessonDetail } from "@copypastelearn/shared";
 
 /**
+ * Resolve a lesson's public metadata WITHOUT applying subscription gating or
+ * writing progress records. Used by `generateMetadata` so that paywalled
+ * lessons stay indexable: a lesson page is only `noindex` when the lesson does
+ * not exist, never merely because the current visitor (e.g. Googlebot) is
+ * unauthenticated.
+ *
+ * Returns `null` when the lesson (or its course) is missing/unpublished.
+ */
+export async function getLessonPublicMeta(
+  courseSlug: string,
+  lessonSlug: string
+): Promise<{ title: string } | null> {
+  const lesson = await db.lesson.findFirst({
+    where: {
+      slug: lessonSlug,
+      course: { slug: courseSlug, status: "PUBLISHED" },
+      status: "PUBLISHED",
+    },
+    select: { title: true },
+  });
+
+  return lesson ? { title: lesson.title } : null;
+}
+
+/**
  * Get a single lesson with full content.
  * Free lessons (sortOrder === 0) are accessible without authentication.
  * All others require an active subscription.
