@@ -20,6 +20,7 @@ import { generateAnsibleAutomationPlaybookPdf } from "./seeds/ansible-automation
 import { generateAnsibleForKubernetesRecipesPdf } from "./seeds/ansible-for-kubernetes-recipes.pdf";
 import { generateAnsibleForVmwareOperationsRecipesPdf } from "./seeds/ansible-for-vmware-operations-recipes.pdf";
 import { generateBareMetalProvisioningRedfishPdf } from "./seeds/baremetal-provisioning-redfish.pdf";
+import { generateClaudeCodeBootcampPdf } from "./seeds/claude-code-bootcamp.pdf";
 import { generateCloudNativeReferenceStackPdf } from "./seeds/cloud-native-reference-stack.pdf";
 import { generateKubernetesRecipesPdf } from "./seeds/kubernetes-recipes.pdf";
 import { generateRhelAiEngineeringRecipesPdf } from "./seeds/rhel-ai-engineering-recipes.pdf";
@@ -640,6 +641,35 @@ async function main() {
     currency: "EUR",
     fileVersion: "1.0",
     pdfFactory: generateCloudNativeReferenceStackPdf,
+  });
+
+  await seedProduct({
+    slug: "claude-code-bootcamp",
+    title: "Claude Code Bootcamp",
+    description: [
+      "The complete Claude Code Bootcamp by Luca Berton - the self-published companion to the workshop. Thirteen hands-on modules that teach you to ship real, tested software with Claude Code. You stay the engineer of record: Claude proposes, you review and merge.",
+      "",
+      "What's inside:",
+      "\u2022 The Plan -> Implement -> Test -> Review -> Commit loop applied to every change.",
+      "\u2022 GCOE prompting (Goal, Constraints, Output format, Examples) - write prompts a Tech Lead would sign off on.",
+      "\u2022 CLAUDE.md brain files: a lean behavior file Claude reads automatically on every prompt.",
+      "\u2022 Best-of-N: generate independent candidates, score on Correctness / Simplicity / Fit, ship the winner.",
+      "\u2022 Testing, debugging, and the stranger's-PR self-review prompt that kills sycophancy.",
+      "\u2022 Safe Git workflows: feature branches, atomic Conventional Commits, AI-written PR descriptions from the diff.",
+      "\u2022 Multimodal: turn a wireframe or screenshot into a working UI with a capped visual-diff loop.",
+      "\u2022 Constrained refactoring plus two-pass HANDOFF.md and ARCHITECTURE.md docs generated from the diff.",
+      "\u2022 Agentic engineering: reusable Skills, lifecycle Hooks, and the GitHub MCP server.",
+      "\u2022 A five-axis production-readiness review (Security, Observability, Deployment, Runbooks, Rollback) with a go/no-go verdict.",
+      "\u2022 Appendix A: a ten-skill, path-agnostic reusable Skills library. Appendix B: a 20-question knowledge quiz.",
+      "",
+      "Every exercise and reference solution also lives in the companion repository. Lifetime updates while the book is maintained, delivered via /library.",
+    ].join("\n"),
+    brand: "CopyPasteLearn",
+    productType: "EBOOK",
+    amountMinor: 2900,
+    currency: "EUR",
+    fileVersion: "1.0",
+    pdfFactory: generateClaudeCodeBootcampPdf,
   });
 
   await seedBundle({

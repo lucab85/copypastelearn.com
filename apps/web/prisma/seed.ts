@@ -1370,6 +1370,478 @@ async function main() {
     `  ✓ Course "${course5.title}" with ${claudeCodeLessons.length} lessons`
   );
 
+  // ─── Course 6: Claude Code Bootcamp ────────────────────
+  const course6 = await prisma.course.upsert({
+    where: { slug: "claude-code-bootcamp" },
+    update: {},
+    create: {
+      title: "Claude Code Bootcamp: Build Real-World Software with AI",
+      slug: "claude-code-bootcamp",
+      description:
+        "The complete Claude Code Bootcamp by Luca Berton — thirteen hands-on modules that teach you to ship real, tested software with Claude Code. You stay the engineer of record: Claude proposes, you review and merge. Master the Plan → Implement → Test → Review → Commit loop, then apply it across GCOE prompting, CLAUDE.md brain files, Best-of-N, testing & self-review, safe Git workflows, multimodal screenshot-to-UI, constrained refactoring & docs, reusable Skills, the GitHub MCP server, lifecycle Hooks, and a five-axis production-readiness review. Includes a ten-skill reusable library and a 20-question knowledge quiz.",
+      thumbnailUrl: "/images/courses/claude-code-bootcamp.svg",
+      difficulty: "INTERMEDIATE",
+      status: "PUBLISHED",
+      sortOrder: 5,
+      outcomes: [
+        "Run the Plan → Implement → Test → Review → Commit loop on every change",
+        "Write Tech-Lead-grade GCOE prompts (Goal · Constraints · Output · Examples)",
+        "Author a lean CLAUDE.md behavior file that changes Claude's output",
+        "Generate Best-of-N candidates and select the winner on a 3-criterion rubric",
+        "Generate honest test suites and catch AI bugs with a self-review rubric",
+        "Run safe Git feature-branch workflows with atomic Conventional Commits",
+        "Turn a wireframe into a working UI with multimodal prompts",
+        "Refactor under written constraints and document from the diff",
+        "Package reusable Claude Skills and wire Hooks and the GitHub MCP server",
+        "Produce a five-axis production-readiness report with a go/no-go verdict",
+      ],
+      prerequisites: [
+        "Basic programming literacy in any language",
+        "Git basics (clone, branch, commit, push)",
+        "Claude Code installed and signed in (Pro, Max, Team, Enterprise, or Console)",
+        "Python 3.11+ and Node.js 20+ on PATH",
+        "macOS / Linux / Windows-via-WSL2 (native PowerShell unsupported)",
+      ],
+      estimatedDuration: 480,
+    },
+  });
+
+  const bootcampLessons = [
+    {
+      title: "Setup & the AI-First Mindset",
+      slug: "setup-ai-first-mindset",
+      description:
+        "Install and verify Claude Code, pick the right model, and internalise the five-step AI coding loop. You stay the engineer of record — Claude proposes, you decide.",
+      sortOrder: 0,
+      durationSeconds: 600,
+      transcript:
+        "This bootcamp is hands-on: every module asks you to run Claude Code in your own terminal. We start by installing it, signing in (Pro, Max, Team, Enterprise, or Console — the free plan is not enough), and choosing a model: start on Sonnet, escalate to Opus for hard design, drop to Haiku for bulk work. Then we set the AI-first mindset. You stay the engineer of record. Claude proposes; you decide. Every module repeats the same five steps — Plan, Implement, Test, Review, Commit — and skipping Review is the #1 way AI-generated bugs reach production.",
+      codeSnippets: [
+        {
+          label: "Install Claude Code (native installer)",
+          language: "bash",
+          code: "# macOS, Linux, or Windows (WSL)\ncurl -fsSL https://claude.ai/install.sh | bash\n\n# Prefer npm? (requires Node.js 18+)\nnpm install -g @anthropic-ai/claude-code",
+        },
+        {
+          label: "Verify & sign in",
+          language: "bash",
+          code: "claude --version\nclaude doctor   # deeper check of install + configuration\nclaude          # start in any project folder; follow the browser prompt",
+        },
+        {
+          label: "Capture your environment",
+          language: "bash",
+          code: "mkdir -p module-01\n{ python3 --version; node --version; git --version; } > module-01/environment.txt",
+        },
+      ],
+      resources: [
+        { title: "Claude Code Docs", url: "https://docs.anthropic.com/en/docs/claude-code" },
+        { title: "Claude Code Bootcamp Repository", url: "https://github.com/lucab85/Claude-Code-Bootcamp" },
+      ],
+    },
+    {
+      title: "Prompting Like a Tech Lead (GCOE)",
+      slug: "prompting-like-a-tech-lead",
+      description:
+        "A great prompt is a spec. Use the GCOE structure — Goal, Constraints, Output format, Examples — to build a CLI Task Manager that passes review on the first pass.",
+      sortOrder: 1,
+      durationSeconds: 720,
+      transcript:
+        "A great prompt is a spec — write it the way a Tech Lead writes a ticket. A production prompt has four parts, and skipping one drops quality: Goal (one verb-led sentence), Constraints (language, deps, layout, what must NOT happen), Output format (files, exit codes, JSON shapes), and Examples (one happy path plus one edge case). A vague prompt produces plausible code that fails review; GCOE produces code you can merge. You'll build a CLI Task Manager with add, list, done, and delete, persisted to tasks.json, graded on correct exit codes.",
+      codeSnippets: [
+        {
+          label: "GCOE skeleton you can paste",
+          language: "text",
+          code: "GOAL: A user can <verb> <thing> from the command line.\n\nCONSTRAINTS:\n- Language: Python 3.11, standard library only (no third-party deps).\n- Persist state to ./tasks.json.\n- Exit codes: 0 success, 1 user error, 2 internal error.\n\nOUTPUT:\n- A single runnable script + a short README with usage.\n\nEXAMPLES:\n- `task add \"Buy milk\"` -> prints new id, exit 0.\n- `task done 999` (missing id) -> prints error to stderr, exit 1.",
+        },
+        {
+          label: "Vague vs. GCOE — run both",
+          language: "text",
+          code: "# Vague (fails review):\nMake a CLI to manage tasks.\n\n# GCOE (mergeable):\nGOAL: A user can add, list, complete, and delete tasks from the command line.\nCONSTRAINTS: Python 3.11, stdlib only; persist to ./tasks.json;\n  exit codes 0 success / 1 user error / 2 internal error.\nOUTPUT: one runnable script + a short usage README.\nEXAMPLES: `task add \"Buy milk\"` -> prints id, exit 0;\n  `task done 999` -> stderr error, exit 1.",
+        },
+      ],
+      resources: [],
+      hasLab: true,
+    },
+    {
+      title: "CLAUDE.md Brain Files",
+      slug: "project-context-claude-md",
+      description:
+        "Stop re-explaining your stack. Write a lean CLAUDE.md behavior file — Stack, Conventions, Commands, Do-not, Glossary — that Claude reads automatically on every prompt.",
+      sortOrder: 2,
+      durationSeconds: 660,
+      transcript:
+        "CLAUDE.md lives at the repo root and Claude reads it automatically on every prompt. It is a behavior file, not documentation — every line must change Claude's output. Five sections earn their place: Stack, Conventions, Commands, Do-not, and Glossary. Apply the trim test: delete a section, and if Claude behaves the same it was bloat. Aim under 80 lines. Common mistakes: writing an ABOUT.md instead of a behavior file, 200 lines of bloat, skipping Do-not, and not committing it (if it's not in git, it isn't real).",
+      codeSnippets: [
+        {
+          label: "A lean CLAUDE.md (≤ 80 lines)",
+          language: "markdown",
+          code: "# CLAUDE.md\n\n## Stack\n- Python 3.11, standard library only.\n\n## Conventions\n- snake_case files; one command per module under cli/.\n- Lint: ruff. Format: black.\n\n## Commands\n- Test:  pytest -q\n- Run:   python -m taskcli\n- Lint:  ruff check .\n\n## Do-not\n- Do NOT add third-party deps without asking.\n- Do NOT swallow exceptions; surface exit codes.",
+        },
+        {
+          label: "Draft one for your repo",
+          language: "text",
+          code: "Read this repo and draft a CLAUDE.md with Stack, Conventions, Commands,\nDo-not, Glossary. Keep it under 80 lines; every line must change your behavior.",
+        },
+      ],
+      resources: [
+        { title: "Memory & CLAUDE.md", url: "https://docs.anthropic.com/en/docs/claude-code/memory" },
+      ],
+    },
+    {
+      title: "Best-of-N",
+      slug: "best-of-n",
+      description:
+        "The first answer is rarely the best. Generate N independent candidates, score them on Correctness, Simplicity, and Fit, and ship the winner — building a Notes API along the way.",
+      sortOrder: 3,
+      durationSeconds: 780,
+      transcript:
+        "Best-of-N means you generate N independent candidates, score them on a rubric, and pick the winner — N = 3 is the sweet spot. Independent means each candidate gets its own fresh prompt context; that's not 'now improve it', which is iteration. Score on a three-criterion rubric, not vibes: Correctness (gates everything — fail here and you're out), Simplicity (could a junior maintain it?), and Fit (does it match CLAUDE.md and repo style?). Record a one-paragraph justification per candidate in scoring.md, and never delete losers before scoring.",
+      codeSnippets: [
+        {
+          label: "Reusable prompt — paste verbatim for A, B, C",
+          language: "text",
+          code: "GOAL: A REST Notes API: create, list, get, delete a note.\nCONSTRAINTS: Python 3.11 + FastAPI; persist to SQLite ./notes.db;\n  return JSON; 404 on missing id; no other third-party deps.\nOUTPUT: one runnable app + a curl test plan covering all 4 routes.\nEXAMPLES: POST /notes {\"text\":\"hi\"} -> 201 + id;\n  GET /notes/999 (missing) -> 404 {\"error\":\"not found\"}.",
+        },
+        {
+          label: "The 3-criterion scorecard",
+          language: "text",
+          code: "Correctness — passes every step of the manual test plan?  (GATE)\nSimplicity  — could a junior maintain it next quarter?\nFit         — does it follow CLAUDE.md + repo style?\n\n# /clear before EACH candidate, paste the SAME prompt,\n# save to candidate-a|b|c/, then score side-by-side.",
+        },
+      ],
+      resources: [],
+      hasLab: true,
+    },
+    {
+      title: "Testing, Debugging & Self-Review",
+      slug: "testing-debugging-self-review",
+      description:
+        "Untested AI code is a guess. Generate a real test suite, plant and catch AI-style bugs with the 'stranger's PR' self-review prompt, and author your personal code-review rubric.",
+      sortOrder: 4,
+      durationSeconds: 720,
+      transcript:
+        "Untested AI code is a guess. Use a test pyramid for AI code: many cheap unit tests, a few integration tests on the happy path, and always cover error paths. The key move is the self-review prompt — ask Claude to find bugs as if reviewing a stranger's PR; that framing kills sycophancy. Off-by-one and boundary bugs are Claude's blind spot, so always test boundaries. Test in-process with a temp SQLite DB per test — no network, no HTTP mocks, never mock the system under test. You'll ship a personal code-review-rubric.md targeting your own blind spots.",
+      codeSnippets: [
+        {
+          label: "The self-review prompt",
+          language: "text",
+          code: "Review this code as if it were a stranger's pull request.\nList every bug, edge case, and boundary error you can find.\nBe specific: file, line, symptom, and the fix. Do not be polite.",
+        },
+        {
+          label: "Generate a real test suite",
+          language: "text",
+          code: "Read the Notes API in folder module-04/winner. Write a pytest suite\ncovering: create, list, search, get-one, update, delete, 404, 422.\nUse httpx and a temp SQLite DB per test. No network. No mocks of HTTP —\nstart the app in-process by importing the real module (import notes_api).",
+        },
+      ],
+      resources: [],
+    },
+    {
+      title: "Git Workflows for Safe AI Dev",
+      slug: "git-workflows-safe-ai-dev",
+      description:
+        "Never let Claude push to main. Branch first, split work into atomic Conventional Commits, and have Claude write the commit messages and PR description from the actual diff.",
+      sortOrder: 5,
+      durationSeconds: 600,
+      transcript:
+        "Safe Git for AI code means you stay the gate. Branch first, always, using a type/scope-summary name like feat/notes-api-search. Make atomic commits — one logical change each — and let Claude split a dirty tree if you ask. Use Conventional Commits (feat, fix, chore, docs, test). A PR description has a fixed shape: What changed, Why, How to test, Risk, Rollback. Claude writes the commit messages and PR, but from the actual diff, never from your prompt. The anthropics/claude-code-action turns @claude into a teammate that proposes fixes in issues and PRs.",
+      codeSnippets: [
+        {
+          label: "Branch, then split into atomic commits",
+          language: "bash",
+          code: "git switch -c feat/notes-api-tests-and-fixes\ngit add -A\ngit diff --staged   # feed this to Claude",
+        },
+        {
+          label: "Ask Claude for the commit plan + PR",
+          language: "text",
+          code: "Group these staged changes into atomic commits using Conventional Commit\nsubjects. Show the plan (files per commit + message) before committing.\n\nThen: Write a PR description from the branch diff:\nWhat, Why, How to test, Risk, Rollback.",
+        },
+      ],
+      resources: [
+        { title: "Claude Code GitHub Action", url: "https://github.com/anthropics/claude-code-action" },
+      ],
+    },
+    {
+      title: "Multimodal: Screenshot to UI",
+      slug: "multimodal-screenshot-to-ui",
+      description:
+        "Claude can read a picture. Hand it a wireframe and get a working UI back using layout-first prompting and a capped visual-diff loop.",
+      sortOrder: 6,
+      durationSeconds: 780,
+      transcript:
+        "Claude can read a picture — hand it a wireframe and get a working UI back. Use layout-first prompting: the image carries structure, regions, and relative sizes, but you must state the framework, data source, and interactivity, which Claude can't infer. Run a visual-diff loop: render, screenshot, ask Claude what's missing, patch — but cap it at three rounds. Keep scope tight: ship the layout; theming and animation are stretch goals. For non-image sources like PDF or DOCX, convert to Markdown first with markitdown — it's cheap and LLM-native.",
+      codeSnippets: [
+        {
+          label: "Wireframe → running UI (state the framework)",
+          language: "text",
+          code: "Build this wireframe as a Flask + Jinja app (no other deps): one route, one\ntemplate. Match the layout — header, sidebar, main, footer. Run on localhost:5000.",
+        },
+        {
+          label: "markitdown — any file → Markdown",
+          language: "bash",
+          code: "pip install 'markitdown[all]'\nmarkitdown report.pdf > report.md\n# Then: \"Attached is the converted Markdown of report.pdf.\"",
+        },
+      ],
+      resources: [],
+    },
+    {
+      title: "Refactoring & Documentation at Scale",
+      slug: "refactoring-documentation-at-scale",
+      description:
+        "Refactor under written constraints and document from the diff. Pin what must NOT change, refactor for readability only, then generate HANDOFF.md and ARCHITECTURE.md.",
+      sortOrder: 7,
+      durationSeconds: 660,
+      transcript:
+        "Refactor under written constraints and document from the diff, never from the prompt. Tell Claude what may NOT change: public API, file count, runtime behavior. Use a two-pass workflow and keep the passes separate — pass one refactors for readability only; pass two generates docs from the diff. Produce a HANDOFF.md (what changed, why, risk, watch-outs) and an ARCHITECTURE.md (component shape, data flow, one diagram, known limits). Combine the two passes and the docs end up describing your prompt instead of the code. Write constraints.md before touching code.",
+      codeSnippets: [
+        {
+          label: "constraints.md (write it first)",
+          language: "markdown",
+          code: "# Refactor constraints\n\n## May change\n- Internal function structure, names, early returns.\n\n## Must NOT change\n- Public function signatures / CLI flags.\n- File count (no new modules).\n- Observable runtime behavior — tests must stay green.\n\n## Style\n- Replace nested conditionals with early returns.\n- No comments unless they explain *why*.",
+        },
+        {
+          label: "Constrained refactor prompt",
+          language: "text",
+          code: "Refactor for readability only, obeying constraints.md exactly. Do not change\npublic signatures, file count, or behavior. Tests must stay green. Show the diff.\n\n# Pass 2: generate HANDOFF.md and ARCHITECTURE.md from the diff.",
+        },
+      ],
+      resources: [],
+    },
+    {
+      title: "Skills & Workflows",
+      slug: "skills-and-workflows",
+      description:
+        "Stop re-typing workflows — package them. Meet the four pillars of agentic engineering (Skills, Hooks, MCP, Multi-agent) and author a reusable, project-agnostic SKILL.md.",
+      sortOrder: 8,
+      durationSeconds: 720,
+      transcript:
+        "Stop re-typing workflows — package them. This is agentic engineering, and it rests on four pillars. Skills are packaged workflows at .claude/skills/<name>/SKILL.md, invoked with a slash command — your carry-out from this course. Hooks are shell commands that fire before or after Claude actions (format, lint, deny dangerous commands). MCP connects issue trackers, docs, chat, and internal tools as first-class context. Multi-agent fan-out lets a lead agent split work across workers in separate worktrees. Skills are the unit you'll reuse most; write one project-agnostic skill with all six H2 sections.",
+      codeSnippets: [
+        {
+          label: "Draft a reusable SKILL.md",
+          language: "text",
+          code: "Draft a SKILL.md named \"score-candidates\" using the same H2 sections as\ncode-review/SKILL.md. Purpose: score 3 diffs on Correctness, Simplicity, Fit.\nFrontmatter: name, description. Body project-agnostic, <= 80 lines.",
+        },
+        {
+          label: "Hooks at a glance (.claude/hooks.json)",
+          language: "text",
+          code: "post-edit  -> npx prettier --write   (auto-format)\npre-bash   -> deny `rm -rf`           (guardrail)\npre-commit -> run tests               (no broken commits)",
+        },
+      ],
+      resources: [
+        { title: "Claude Skills", url: "https://docs.anthropic.com/en/docs/claude-code/skills" },
+      ],
+    },
+    {
+      title: "MCP: Connect GitHub",
+      slug: "mcp-connect-github",
+      description:
+        "Stop copy-pasting issues. Wire the GitHub MCP server with a least-privilege token and let Claude read and write GitHub as first-class context.",
+      sortOrder: 9,
+      durationSeconds: 660,
+      transcript:
+        "MCP — the Model Context Protocol — is a standard way to plug external tools into Claude. A server exposes tools (read issues, list PRs, search code) and Claude calls them directly. You add one with claude mcp add-json and scope its permissions via the token. Practise least privilege: grant read scope unless you truly need write, keep the token in .env or the environment, and never paste it into a prompt, a slide, or a commit. Three steps — create a PAT, register the server, then use it — let Claude open a GitHub issue straight from a bug report, showing you the draft before it creates anything.",
+      codeSnippets: [
+        {
+          label: "Store the token safely",
+          language: "bash",
+          code: "echo \"GITHUB_PAT=your_token_here\" > .env\necho -e \".env\\n.mcp.json\" >> .gitignore\nexport GITHUB_PAT=\"$(grep '^GITHUB_PAT=' .env | cut -d '=' -f2-)\"",
+        },
+        {
+          label: "Register the GitHub MCP server",
+          language: "bash",
+          code: "claude mcp add-json github '{\"type\":\"http\",\n  \"url\":\"https://api.githubcopilot.com/mcp\",\n  \"headers\":{\"Authorization\":\"Bearer '\"$GITHUB_PAT\"'\"}}'\n\nclaude mcp list          # confirm it's connected\nclaude mcp get github    # inspect the server",
+        },
+      ],
+      resources: [
+        { title: "Model Context Protocol", url: "https://modelcontextprotocol.io/" },
+      ],
+    },
+    {
+      title: "Hooks",
+      slug: "hooks",
+      description:
+        "Automate discipline with shell commands that fire on every Claude action. Wire a PostToolUse formatter that cleans up edits automatically — and a PreToolUse gate for dangerous commands.",
+      sortOrder: 10,
+      durationSeconds: 600,
+      transcript:
+        "A hook is a shell command Claude runs automatically on an event — no prompting. The two common events are PreToolUse (gate or deny) and PostToolUse (format, lint, test), configured in .claude/settings.json pointing at your script. Two big wins: auto-format on every edit, and deny dangerous commands like rm -rf before they run. Write the habit once into a script and it's enforced on every action. You'll wire a format.sh PostToolUse hook, make a deliberately sloppy edit, and watch the file land already formatted — you did nothing.",
+      codeSnippets: [
+        {
+          label: "The hook script (.claude/hooks/format.sh)",
+          language: "bash",
+          code: "#!/usr/bin/env bash\n# Auto-format the file Claude just edited.\nset -euo pipefail\nfile=\"$1\"\ncase \"$file\" in\n  *.py) black \"$file\" ;;\n  *.js|*.ts) npx --yes prettier --write \"$file\" ;;\nesac\necho \"formatted: $file\"",
+        },
+        {
+          label: "Wire it into .claude/settings.json",
+          language: "json",
+          code: "{\n  \"hooks\": {\n    \"PostToolUse\": [\n      {\n        \"matcher\": \"Edit|Write\",\n        \"hooks\": [\n          { \"type\": \"command\", \"command\": \".claude/hooks/format.sh\" }\n        ]\n      }\n    ]\n  }\n}",
+        },
+      ],
+      resources: [
+        { title: "Claude Code Hooks", url: "https://docs.anthropic.com/en/docs/claude-code/hooks" },
+      ],
+    },
+    {
+      title: "Production Readiness",
+      slug: "production-readiness",
+      description:
+        "\"It runs on my laptop\" is not \"ready to ship.\" Score every shipping candidate across five axes and end with an honest go/no-go verdict and one concrete next step.",
+      sortOrder: 11,
+      durationSeconds: 660,
+      transcript:
+        "Running on your laptop is not the same as ready to ship. Score every shipping candidate on five axes that always matter: Security, Observability, Deployment, Runbooks, and Rollback. For each axis give one status (green, amber, or red), one biggest risk, and one smallest next step. Go/no-go is a decision, not a vibe — end with a verdict and a rationale of 25 words or fewer. Beware overeager agents that take out-of-scope actions; defend with least-privilege tools, permission modes, shell approval, review-before-commit, and a clean disaster-recovery branch. Keep the report to one page.",
+      codeSnippets: [
+        {
+          label: "Five-axis assessment prompt",
+          language: "text",
+          code: "Assess this repo for production readiness across 5 axes: Security, Observability,\nDeployment, Runbooks, Rollback. For each: status (green/amber/red) + biggest risk\n+ smallest next step. End with a go/no-go verdict and a <= 25-word rationale.",
+        },
+        {
+          label: "Defences against overeager agents",
+          language: "text",
+          code: "1. Least-privilege tools — grant only what this task needs.\n2. Permission modes — `ask` for shell, `deny` for network, read-only zones.\n3. Shell approval — every command requires a tap until trust is earned.\n4. Review before commit — diff-first, never `--no-verify`.\n5. Disaster recovery — clean branch, atomic commits, easy reset.",
+        },
+      ],
+      resources: [
+        { title: "OWASP Top 10", url: "https://owasp.org/www-project-top-ten/" },
+      ],
+    },
+    {
+      title: "Q&A & Next Steps",
+      slug: "qa-and-next-steps",
+      description:
+        "The projects are done. Keep three frameworks — the loop, the 40/40/20 rubric, and the readiness checklist — avoid the five common mistakes, and write your Monday sentence.",
+      sortOrder: 12,
+      durationSeconds: 540,
+      transcript:
+        "The projects are done. Forget the syntax and keep three frameworks: the loop (Plan → Implement → Test → Review → Commit on every non-trivial change), the 40/40/20 rubric (grade any AI output: 40% correctness, 40% quality, 20% fit), and the readiness checklist (five axes before you tag a release). The five most common mistakes are all habits, not knowledge gaps: no plan, skipping review, letting Claude commit, treating skills as files instead of habits, and having no CLAUDE.md. The tools change monthly; the habits don't. If you remember nothing else, remember the loop.",
+      codeSnippets: [
+        {
+          label: "Precise prompt beats the 'fix it' loop",
+          language: "text",
+          code: "GET /notes/999 returns 500, expected 404. KeyError 'note' in get_note() line 42.\nFix only this; keep all other behavior. Show the diff.",
+        },
+        {
+          label: "The Monday sentence",
+          language: "text",
+          code: "On Monday, I will use Claude Code to ______ on my project ______,\nand I will stop the loop when ______.",
+        },
+      ],
+      resources: [
+        { title: "Claude Code Bootcamp Repository", url: "https://github.com/lucab85/Claude-Code-Bootcamp" },
+      ],
+    },
+    {
+      title: "Appendix A — Skills Library",
+      slug: "appendix-a-skills-library",
+      description:
+        "Ten reusable, path-agnostic Claude Skills you can drop into any repo and invoke today — from claude-md-template and code-review to production-readiness-review.",
+      sortOrder: 13,
+      durationSeconds: 420,
+      transcript:
+        "Throughout this bootcamp, skills are your carry-out — and this appendix is that carry-out: ten ready-made, path-agnostic skills you can use today. A skill is a SKILL.md file with YAML frontmatter (name, description) that Claude reads and offers in its picker, always in the same six-section shape: Purpose, When to use, Body, Inputs, Outputs, Worked example. Every skill here is path-agnostic — no repo names, no sample data — so you drop it in unchanged. Copy the skills/ folder into your repo root, open Claude Code, and invoke any skill by name. Licensed MIT — reuse freely.",
+      codeSnippets: [
+        {
+          label: "The 10 skills",
+          language: "text",
+          code: "claude-md-template          generate a CLAUDE.md\ncode-review                 structured review of a diff\ntest-generation             focused test suite\nbest-of-n                   N candidates, score, pick\nrefactor                    refactor under constraints\nrelease-notes               git log -> categorized notes\nsecurity-checklist          scan against a checklist\ngit-workflow                branch + PR with AI text\ndocumentation-generation    README / ARCHITECTURE / HANDOFF\nproduction-readiness-review 5-axis readiness report",
+        },
+        {
+          label: "Install",
+          language: "bash",
+          code: "# 1. Copy the skills/ folder into your repo root.\n# 2. Open Claude Code in that repo.\n# 3. Invoke any skill by name, e.g. /code-review",
+        },
+      ],
+      resources: [
+        { title: "Claude Skills", url: "https://docs.anthropic.com/en/docs/claude-code/skills" },
+      ],
+    },
+    {
+      title: "Appendix B — Knowledge Quiz",
+      slug: "appendix-b-knowledge-quiz",
+      description:
+        "A 20-question knowledge check — two items per module — that reinforces the loop, GCOE, CLAUDE.md, Best-of-N, self-review, Git workflows, and production readiness.",
+      sortOrder: 14,
+      durationSeconds: 480,
+      transcript:
+        "Close the bootcamp with a 20-question multiple-choice quiz — one topic per module, two items each — to confirm the habits stuck. Choose the single best answer unless a question says otherwise, then self-check against the answer key. The questions reinforce the spine of the course: the five-step loop in order, why skipping Review is the most common failure mode, what GCOE stands for, that CLAUDE.md is a behavior file where every line changes output, that Best-of-N candidates are independent and scored on Correctness/Simplicity/Fit, and that the self-review prompt works best framed as a stranger's PR.",
+      codeSnippets: [
+        {
+          label: "Sample questions",
+          language: "text",
+          code: "Q1. The five steps of the AI coding loop, in order, are:\n  A) Plan, Implement, Test, Review, Commit   <- correct\n\nQ3. GCOE stands for:\n  A) Goal · Constraints · Output format · Examples   <- correct\n\nQ8. The 3-criterion Best-of-N rubric is:\n  A) Correctness · Simplicity · Fit   <- correct",
+        },
+      ],
+      resources: [
+        { title: "Claude Code Bootcamp Repository", url: "https://github.com/lucab85/Claude-Code-Bootcamp" },
+      ],
+    },
+  ];
+
+  for (const lessonData of bootcampLessons) {
+    const { hasLab, ...lessonFields } = lessonData;
+    const lesson = await prisma.lesson.upsert({
+      where: {
+        courseId_slug: { courseId: course6.id, slug: lessonData.slug },
+      },
+      update: { ...lessonFields },
+      create: {
+        ...lessonFields,
+        courseId: course6.id,
+        status: "PUBLISHED",
+      },
+    });
+
+    if (hasLab) {
+      const labPlan = {
+        title: `${lesson.title} Lab`,
+        description: `Hands-on practice for: ${lesson.title}`,
+        dockerImage: "python:3.11-slim",
+        memoryLimit: "256m",
+        cpuLimit: "0.5",
+        steps: [
+          {
+            title: "Set up the workspace",
+            instructions: `<p>Create a project workspace and apply the prompts from the <strong>${lesson.title}</strong> lesson with Claude Code.</p>`,
+            checks: [
+              {
+                name: "Workspace ready",
+                command: "echo 'check passed'",
+                expected: "check passed",
+                hint: "Make sure you scaffolded the project as described in the lesson.",
+              },
+            ],
+          },
+          {
+            title: "Verify the deliverable",
+            instructions:
+              "<p>Run the project's tests and confirm they pass before committing.</p>",
+            checks: [
+              {
+                name: "Tests pass",
+                command: "echo 'done'",
+                expected: "done",
+                hint: "Review the lesson code snippets for the exact commands.",
+              },
+            ],
+          },
+        ],
+      };
+
+      await prisma.labDefinition.upsert({
+        where: { lessonId: lesson.id },
+        update: {},
+        create: {
+          lessonId: lesson.id,
+          yamlSource: JSON.stringify(labPlan),
+          compiledPlan: labPlan,
+        },
+      });
+    }
+  }
+  console.log(
+    `  ✓ Course "${course6.title}" with ${bootcampLessons.length} lessons`
+  );
+
   console.log("\n✅ Seeding complete!");
 }
 

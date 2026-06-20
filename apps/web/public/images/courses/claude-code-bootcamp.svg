@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#04130c"/>
+      <stop offset="100%" stop-color="#05241a"/>
+    </linearGradient>
+    <linearGradient id="glow" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#34d399" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#34d399" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="450" fill="url(#bg)"/>
+
+  <!-- Subtle grid -->
+  <g stroke="#1a5238" stroke-width="0.5" opacity="0.3">
+    <line x1="0" y1="75" x2="800" y2="75"/>
+    <line x1="0" y1="150" x2="800" y2="150"/>
+    <line x1="0" y1="225" x2="800" y2="225"/>
+    <line x1="0" y1="300" x2="800" y2="300"/>
+    <line x1="0" y1="375" x2="800" y2="375"/>
+    <line x1="200" y1="0" x2="200" y2="450"/>
+    <line x1="400" y1="0" x2="400" y2="450"/>
+    <line x1="600" y1="0" x2="600" y2="450"/>
+  </g>
+
+  <!-- Glow effect -->
+  <ellipse cx="400" cy="180" rx="230" ry="160" fill="url(#glow)"/>
+
+  <!-- Terminal window -->
+  <g transform="translate(250, 70)">
+    <rect x="0" y="0" width="300" height="180" rx="14" fill="#03100a" stroke="#34d399" stroke-width="1.5" opacity="0.95"/>
+    <!-- Title bar -->
+    <rect x="0" y="0" width="300" height="30" rx="14" fill="#0a1f16"/>
+    <rect x="0" y="16" width="300" height="14" fill="#0a1f16"/>
+    <circle cx="20" cy="15" r="5" fill="#ff5f57"/>
+    <circle cx="40" cy="15" r="5" fill="#febc2e"/>
+    <circle cx="60" cy="15" r="5" fill="#28c840"/>
+    <text x="280" y="19" text-anchor="end" fill="#3f9b6f" font-size="10" font-family="monospace">claude</text>
+    <!-- Prompt lines -->
+    <text x="18" y="58" fill="#34d399" font-size="13" font-family="monospace">&gt; /plan</text>
+    <text x="18" y="82" fill="#94a3b8" font-size="12" font-family="monospace">☑ Plan → Implement → Test</text>
+    <text x="18" y="104" fill="#94a3b8" font-size="12" font-family="monospace">☑ Review → Commit</text>
+    <text x="18" y="126" fill="#94a3b8" font-size="12" font-family="monospace">● Best-of-N · 3 candidates…</text>
+    <text x="18" y="150" fill="#6ee7b7" font-size="12" font-family="monospace">✓ winner shipped · 14 passed</text>
+    <text x="18" y="172" fill="#34d399" font-size="12" font-family="monospace">&gt; _</text>
+  </g>
+
+  <!-- Title -->
+  <text x="400" y="320" text-anchor="middle" fill="#ffffff" font-size="42" font-weight="800" font-family="system-ui, sans-serif" letter-spacing="1">CLAUDE CODE</text>
+  <text x="400" y="368" text-anchor="middle" fill="#34d399" font-size="46" font-weight="800" font-family="system-ui, sans-serif" letter-spacing="1">BOOTCAMP</text>
+  <text x="400" y="400" text-anchor="middle" fill="#7f9c8e" font-size="15" font-family="system-ui, sans-serif" letter-spacing="3">BUILD REAL-WORLD SOFTWARE WITH AI</text>
+</svg>
