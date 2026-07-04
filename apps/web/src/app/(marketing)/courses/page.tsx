@@ -1,4 +1,5 @@
 export const revalidate = 3600;
+export const dynamic = "force-dynamic";
 import type { Metadata } from "next";
 import { getPublicCourses } from "@/server/queries/public-courses";
 import { CourseFilter } from "@/components/course/course-filter";
