@@ -17,6 +17,10 @@ export default function robots(): MetadataRoute.Robots {
           "/labs/",
           "/sign-in/",
           "/sign-up/",
+          "/opengraph-image*",
+          "/*/opengraph-image*",
+          "/icon*",
+          "/apple-icon*",
         ],
       },
       {

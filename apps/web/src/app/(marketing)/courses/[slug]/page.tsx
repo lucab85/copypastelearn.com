@@ -14,6 +14,52 @@ import { TerminalPreview } from "@/components/course/terminal-preview";
 // Per-request memoization so generateMetadata + the page body share one DB call.
 const loadCourse = cache(getCourse);
 
+const COURSE_SEO_OVERRIDES: Record<
+  string,
+  { title?: string; description: string }
+> = {
+  "mlflow-kubernetes-mlops": {
+    title: "MLflow Kubernetes MLOps Course",
+    description:
+      "Deploy MLflow on Kubernetes with Helm-style workflows, model tracking, registry patterns, and production MLOps labs for platform engineers.",
+  },
+  "openclaw-agent": {
+    title: "OpenClaw Agent Course",
+    description:
+      "Build and operate OpenClaw agents with Docker, node pairing, skills, automation workflows, and production-ready troubleshooting labs.",
+  },
+  "ansible-quickstart": {
+    title: "Ansible Quickstart Course",
+    description:
+      "Learn Ansible online with beginner-friendly hands-on labs for inventories, playbooks, variables, roles, and real automation workflows.",
+  },
+  "nodejs-rest-apis": {
+    title: "Node.js REST APIs Course",
+    description:
+      "Build production-style Node.js REST APIs with Express, TypeScript, routing, controllers, validation, and hands-on backend labs.",
+  },
+  "docker-fundamentals": {
+    title: "Docker Fundamentals Course",
+    description:
+      "Learn Docker fundamentals with hands-on labs for containers, images, Dockerfiles, networking, volumes, and Compose workflows.",
+  },
+  "terraform-beginners": {
+    title: "Terraform for Beginners Course",
+    description:
+      "Learn Terraform from scratch with hands-on infrastructure as code labs covering providers, state, variables, modules, and workflows.",
+  },
+  "selinux-system-admins": {
+    title: "SELinux for System Admins Course",
+    description:
+      "Master SELinux administration with practical labs for modes, contexts, booleans, policy troubleshooting, and secure Linux operations.",
+  },
+};
+
+function truncateMetaDescription(value: string | null | undefined): string | undefined {
+  if (!value) return undefined;
+  return value.length > 160 ? value.slice(0, 157) + "..." : value;
+}
+
 interface CourseDetailPageProps {
   params: Promise<{ slug: string }>;
 }
@@ -26,26 +72,22 @@ export async function generateMetadata({
   if (!course) return {};
   const siteUrl =
     process.env.NEXT_PUBLIC_APP_URL ?? "https://www.copypastelearn.com";
+  const override = COURSE_SEO_OVERRIDES[slug];
+  const metaTitle = override?.title ?? course.title;
+  const metaDescription =
+    override?.description ?? truncateMetaDescription(course.description);
   // Keep the rendered <title> within 60 chars. The root layout appends
   // " — CopyPasteLearn" (17 chars); when the course title is long, render it
   // standalone (absolute) so the branded suffix doesn't push past 60.
-  const brandedTitleLength = course.title.length + " — CopyPasteLearn".length;
+  const brandedTitleLength = metaTitle.length + " — CopyPasteLearn".length;
   return {
-    title: brandedTitleLength > 60 ? { absolute: course.title } : course.title,
-    description: course.description
-      ? course.description.length > 160
-        ? course.description.slice(0, 157) + "..."
-        : course.description
-      : undefined,
+    title: brandedTitleLength > 60 ? { absolute: metaTitle } : metaTitle,
+    description: metaDescription,
     alternates: { canonical: `/courses/${slug}` },
     openGraph: {
       url: `/courses/${slug}`,
-      title: course.title,
-      description: course.description
-        ? course.description.length > 160
-          ? course.description.slice(0, 157) + "..."
-          : course.description
-        : undefined,
+      title: metaTitle,
+      description: metaDescription,
       type: "website",
       ...(course.thumbnailUrl && {
         images: [
@@ -64,12 +106,8 @@ export async function generateMetadata({
       card: "summary_large_image" as const,
       site: "@copypastelearn",
       creator: "@yourlinuxsa",
-      title: course.title,
-      description: course.description
-        ? course.description.length > 160
-          ? course.description.slice(0, 157) + "..."
-          : course.description
-        : undefined,
+      title: metaTitle,
+      description: metaDescription,
       ...(course.thumbnailUrl && {
         images: [
           course.thumbnailUrl.startsWith("http")

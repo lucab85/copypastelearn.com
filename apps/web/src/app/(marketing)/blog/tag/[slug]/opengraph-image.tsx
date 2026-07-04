@@ -7,7 +7,9 @@ export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
 export async function generateStaticParams() {
-  return getAllTags().map((t) => ({ slug: t.slug }));
+  return getAllTags()
+    .filter((t) => t.count >= 3)
+    .map((t) => ({ slug: t.slug }));
 }
 
 export default async function TagOGImage({

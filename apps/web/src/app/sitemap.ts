@@ -159,12 +159,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   // Blog tag + category index pages.
   // Lower priority than posts; refreshed weekly because new posts shift them.
-  const tagPages: MetadataRoute.Sitemap = getAllTags().map((t) => ({
-    url: `${siteUrl}/blog/tag/${t.slug}`,
-    lastModified: new Date(),
-    changeFrequency: "weekly" as const,
-    priority: 0.5,
-  }));
+  const tagPages: MetadataRoute.Sitemap = getAllTags()
+    .filter((t) => t.count >= 3)
+    .map((t) => ({
+      url: `${siteUrl}/blog/tag/${t.slug}`,
+      lastModified: new Date(),
+      changeFrequency: "weekly" as const,
+      priority: 0.5,
+    }));
   const categoryPages: MetadataRoute.Sitemap = getAllCategories().map((c) => ({
     url: `${siteUrl}/blog/category/${c.slug}`,
     lastModified: new Date(),

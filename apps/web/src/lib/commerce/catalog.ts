@@ -3,7 +3,7 @@ import type { Brand } from "@prisma/client";
 /** Stable, absolute canonical URLs for catalog items. */
 
 function appUrl(): string {
-  return (process.env.NEXT_PUBLIC_APP_URL ?? "https://copypastelearn.com").replace(
+  return (process.env.NEXT_PUBLIC_APP_URL ?? "https://www.copypastelearn.com").replace(
     /\/$/,
     "",
   );

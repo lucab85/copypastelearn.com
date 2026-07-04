@@ -17,7 +17,9 @@ interface PageProps {
 }
 
 export async function generateStaticParams() {
-  return getAllTags().map((t) => ({ slug: t.slug }));
+  return getAllTags()
+    .filter((t) => t.count >= 3)
+    .map((t) => ({ slug: t.slug }));
 }
 
 export async function generateMetadata({
@@ -34,12 +36,14 @@ export async function generateMetadata({
   // lands ~126 chars and the longest ("internal-developer-platform") ~152.
   const description = `${posts.length} ${entry.name} ${noun} on CopyPasteLearn: hands-on tutorials, copy-paste examples, and production-ready patterns for platform engineers.`;
   const url = `/blog/tag/${entry.slug}`;
+  const shouldIndex = entry.count >= 3;
   return {
     title,
     description,
     alternates: { canonical: url },
     openGraph: { title, description, url, type: "website" },
     twitter: { card: "summary", title, description },
+    robots: { index: shouldIndex, follow: true },
   };
 }
 
