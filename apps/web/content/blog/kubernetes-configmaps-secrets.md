@@ -245,7 +245,6 @@ Benefits:
 ## What's Next?
 
 Our **MLflow for Kubernetes MLOps** course covers Kubernetes configuration patterns for ML workloads. **Docker Fundamentals** builds the container foundation. First lessons are free.
--e 
 ---
 
 **Ready to go deeper?** Explore our [hands-on DevOps courses](/courses) — from Docker and Terraform to MLflow on Kubernetes.

@@ -160,7 +160,6 @@ Value stream mapping is how you find and eliminate the friction.
 ## What's Next?
 
 Automating your value stream requires solid CI/CD fundamentals. Our **Terraform for Beginners** course covers infrastructure automation, and **Docker Fundamentals** teaches container-based deployment — both essential for high-velocity delivery. First lessons are free.
--e 
 ---
 
 **Ready to go deeper?** Explore our [hands-on DevOps courses](/courses) — practical labs covering Docker, Ansible, Terraform, and more.

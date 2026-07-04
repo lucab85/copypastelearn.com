@@ -1049,7 +1049,6 @@ async function main() {
       ],
       resources: [
         { title: "Claude Code Docs", url: "https://docs.anthropic.com/en/docs/claude-code" },
-        { title: "Workshop Repository", url: "https://github.com/lucab85/Claude-Code-Masterclass" },
       ],
     },
     {

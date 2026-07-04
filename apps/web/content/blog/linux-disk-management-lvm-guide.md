@@ -229,7 +229,6 @@ sudo smartctl -a /dev/sda
 ## What's Next?
 
 Our **SELinux for System Admins** course covers Linux system administration fundamentals. **Docker Fundamentals** teaches container storage management. First lessons are free.
--e 
 ---
 
 **Ready to go deeper?** Explore our [hands-on DevOps courses](/courses) — practical labs covering Docker, Ansible, Terraform, and more.

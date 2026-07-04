@@ -242,7 +242,6 @@ crontab -e -u backupuser
 ## What's Next?
 
 Our **SELinux for System Admins** course covers securing cron jobs with SELinux policies. **Ansible Automation in 30 Minutes** teaches automating scheduled tasks across fleets. First lessons are free.
--e 
 ---
 
 **Ready to go deeper?** Explore our [hands-on DevOps courses](/courses) — practical labs covering Docker, Ansible, Terraform, and more.
