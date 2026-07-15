@@ -19,9 +19,9 @@ const COURSE_SEO_OVERRIDES: Record<
   { title?: string; description: string }
 > = {
   "mlflow-kubernetes-mlops": {
-    title: "MLflow Kubernetes MLOps Course",
+    title: "MLflow on Kubernetes (K8s) MLOps Course",
     description:
-      "Deploy MLflow on Kubernetes with Helm-style workflows, model tracking, registry patterns, and production MLOps labs for platform engineers.",
+      "Deploy MLflow on Kubernetes (k8s) with Helm-style workflows, model tracking, registry patterns, and production MLOps labs for platform engineers.",
   },
   "openclaw-agent": {
     title: "OpenClaw Agent Course",

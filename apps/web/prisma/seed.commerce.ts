@@ -542,7 +542,7 @@ async function main() {
     slug: "ansible-for-vmware-operations-recipes",
     title: "Ansible for VMware Operations Recipes",
     description: [
-      "Day-2 operations cookbook for vCenter / ESXi fleets driven by Ansible. Distinct from the author's Apress 2023 book; recipes use public community.vmware and vmware.vmware_rest collection patterns.",
+      "Ansible recipes for Day-2 VMware operations: a cookbook for vCenter / ESXi fleets, distinct from the author's Apress 2023 book. Recipes use public community.vmware and vmware.vmware_rest collection patterns.",
       "",
       "What's inside:",
       "\u2022 Inventory + auth: vault, dynamic inventory, REST token reuse.",

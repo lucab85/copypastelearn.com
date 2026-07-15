@@ -1399,7 +1399,7 @@ async function main() {
         "Git basics (clone, branch, commit, push)",
         "Claude Code installed and signed in (Pro, Max, Team, Enterprise, or Console)",
         "Python 3.11+ and Node.js 20+ on PATH",
-        "macOS / Linux / Windows-via-WSL2 (native PowerShell unsupported)",
+        "macOS / Linux / Windows (native PowerShell or WSL2)",
       ],
       estimatedDuration: 480,
     },
@@ -1419,7 +1419,7 @@ async function main() {
         {
           label: "Install Claude Code (native installer)",
           language: "bash",
-          code: "# macOS, Linux, or Windows (WSL)\ncurl -fsSL https://claude.ai/install.sh | bash\n\n# Prefer npm? (requires Node.js 18+)\nnpm install -g @anthropic-ai/claude-code",
+          code: "# macOS, Linux, or Windows (WSL)\ncurl -fsSL https://claude.ai/install.sh | bash\n\n# Native Windows (PowerShell)\nirm https://claude.ai/install.ps1 | iex\n\n# Prefer npm? (requires Node.js 18+)\nnpm install -g @anthropic-ai/claude-code",
         },
         {
           label: "Verify & sign in",
