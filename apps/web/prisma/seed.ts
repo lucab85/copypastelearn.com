@@ -1372,7 +1372,15 @@ async function main() {
   // ─── Course 6: Claude Code Bootcamp ────────────────────
   const course6 = await prisma.course.upsert({
     where: { slug: "claude-code-bootcamp" },
-    update: {},
+    update: {
+      prerequisites: [
+        "Basic programming literacy in any language",
+        "Git basics (clone, branch, commit, push)",
+        "Claude Code installed and signed in (Pro, Max, Team, Enterprise, or Console)",
+        "Python 3.11+ and Node.js 20+ on PATH",
+        "macOS / Linux / Windows (native PowerShell or WSL2)",
+      ],
+    },
     create: {
       title: "Claude Code Bootcamp: Build Real-World Software with AI",
       slug: "claude-code-bootcamp",
