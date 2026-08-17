@@ -1,5 +1,5 @@
 ---
-title: "Terraform Modules Guide"
+title: "Terraform Modules Reuse Guide"
 description: "Learn how to create and use Terraform modules to organize, share, and reuse infrastructure code across projects and teams."
 date: "2026-02-23"
 author: "Luca Berton"
@@ -163,4 +163,3 @@ Build reusable Terraform modules in our [Terraform for Beginners course](/course
 ---
 
 **Ready to go deeper?** Check out our hands-on course: [Terraform for Beginners](/courses/terraform-beginners) — practical exercises you can follow along on your own machine.
-

@@ -1,5 +1,5 @@
 ---
-title: "MLflow for Kubernetes"
+title: "MLflow for Kubernetes Guide"
 description: "Learn how to deploy and manage ML models at scale using MLflow, Kubernetes, KServe, and Docker. A comprehensive guide to production MLOps."
 date: "2026-02-27"
 author: "Luca Berton"
@@ -66,4 +66,3 @@ Ready to bridge the gap between experiments and production? Check out our [MLflo
 ---
 
 **Ready to go deeper?** Check out our hands-on course: [MLflow for Kubernetes](/courses/mlflow-kubernetes-mlops) — practical exercises you can follow along on your own machine.
-

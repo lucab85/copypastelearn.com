@@ -1,5 +1,5 @@
 ---
-title: "OpenClaw + Telegram Bot"
+title: "OpenClaw Telegram Bot Setup Guide"
 description: "Connect your OpenClaw agent to Telegram for a personal AI assistant accessible from your phone. Setup guide with BotFather and configuration."
 date: "2026-02-16"
 author: "Luca Berton"
@@ -100,4 +100,3 @@ telegram:
 ## Further reading
 
 To go deeper, [the Ansible intelligent assistant and MCP server](https://lucaberton.com/blog/ansible-automation-intelligent-assistant-mcp-server-byok-rag-2026/) expands on these patterns in production.
-

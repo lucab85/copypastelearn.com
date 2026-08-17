@@ -1,5 +1,5 @@
 ---
-title: "OpenClaw on Raspberry Pi"
+title: "OpenClaw Raspberry Pi Setup Guide"
 description: "Run an OpenClaw AI agent on a Raspberry Pi for a low-power, always-on personal assistant. Complete setup guide with performance tips."
 date: "2026-02-20"
 author: "Luca Berton"
@@ -122,4 +122,3 @@ Despite these, a Pi makes an excellent always-on AI agent host for most personal
 ## Related
 
 For a production-focused walkthrough, see Luca Berton's guide on [the Ansible intelligent assistant and MCP server](https://lucaberton.com/blog/ansible-automation-intelligent-assistant-mcp-server-byok-rag-2026/).
-

@@ -1,5 +1,5 @@
 ---
-title: "OpenClaw Sub-Agents"
+title: "OpenClaw Sub-Agents Guide"
 description: "Learn how to use OpenClaw sub-agents for parallel task execution — spawning, managing, and orchestrating multiple AI workers."
 date: "2026-02-14"
 author: "Luca Berton"
@@ -127,4 +127,3 @@ The cost math is straightforward but easy to lose track of once you're several s
 ## Related guide
 
 Related reading: [the Ansible intelligent assistant and MCP server](https://lucaberton.com/blog/ansible-automation-intelligent-assistant-mcp-server-byok-rag-2026/) covers this in real-world detail.
-

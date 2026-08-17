@@ -1,5 +1,5 @@
 ---
-title: "OpenClaw for DevOps"
+title: "OpenClaw DevOps Automation Guide"
 description: "Use OpenClaw as your DevOps assistant — monitoring servers, managing deployments, checking logs, and automating infrastructure tasks."
 date: "2026-02-08"
 author: "Luca Berton"
@@ -153,4 +153,3 @@ A few things worth getting right before giving OpenClaw real infrastructure acce
 ## Related guide
 
 Related reading: [agentic Ansible automation with OpenClaw](https://lucaberton.com/blog/openclaw-agentic-automation-ansible-cve-remediation-red-hat-2026/) covers this in real-world detail.
-

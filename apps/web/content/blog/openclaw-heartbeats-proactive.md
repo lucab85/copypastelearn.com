@@ -1,5 +1,5 @@
 ---
-title: "OpenClaw Heartbeats"
+title: "OpenClaw Heartbeats Monitoring Guide"
 description: "Learn how to configure OpenClaw heartbeats for proactive monitoring — email checks, calendar alerts, weather updates, and more."
 date: "2026-02-18"
 author: "Luca Berton"
@@ -108,4 +108,3 @@ The agent checks timestamps and skips recently-completed tasks.
 ## Related
 
 For a production-focused walkthrough, see Luca Berton's guide on [agentic Ansible automation with OpenClaw](https://lucaberton.com/blog/openclaw-agentic-automation-ansible-cve-remediation-red-hat-2026/).
-

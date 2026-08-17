@@ -1,5 +1,5 @@
 ---
-title: "What is OpenClaw?"
+title: "What Is OpenClaw? AI Agent Guide"
 description: "Discover OpenClaw — the open-source platform that lets you run AI agents on your own infrastructure. Learn what it does, how it works, and why it matters."
 date: "2026-02-26"
 author: "Luca Berton"

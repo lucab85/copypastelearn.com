@@ -1,5 +1,5 @@
 ---
-title: "OpenClaw vs ChatGPT"
+title: "OpenClaw vs ChatGPT Comparison"
 description: "Compare OpenClaw's self-hosted approach with ChatGPT and other cloud AI services. Learn the trade-offs between control, privacy, and convenience."
 date: "2026-02-25"
 author: "Luca Berton"
@@ -66,4 +66,3 @@ This means you get state-of-the-art AI capabilities with full control over conte
 ## Related
 
 For a production-focused walkthrough, see Luca Berton's guide on [the Ansible intelligent assistant and MCP server](https://lucaberton.com/blog/ansible-automation-intelligent-assistant-mcp-server-byok-rag-2026/).
-

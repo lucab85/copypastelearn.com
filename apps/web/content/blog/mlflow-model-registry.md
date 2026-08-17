@@ -1,5 +1,5 @@
 ---
-title: "MLflow Model Registry"
+title: "MLflow Model Registry Guide"
 description: "Use MLflow Model Registry to manage model versions, stage transitions, and governance. Essential for production MLOps workflows."
 date: "2026-02-21"
 author: "Luca Berton"
@@ -143,4 +143,3 @@ Learn how in our [MLflow for Kubernetes course](/courses).
 ---
 
 **Ready to go deeper?** Check out our hands-on course: [MLflow for Kubernetes](/courses/mlflow-kubernetes-mlops) — practical exercises you can follow along on your own machine.
-
