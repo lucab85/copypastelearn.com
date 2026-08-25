@@ -115,6 +115,8 @@ export default function RootLayout({
         <link rel="preconnect" href="https://clerk.copypastelearn.com" />
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
         <link rel="dns-prefetch" href="https://www.clarity.ms" />
+        <link rel="describedby" href="/llms.txt" />
+        <link rel="describedby" href="/llms-full.txt" />
       </head>
       <body className="flex min-h-screen flex-col bg-background font-sans antialiased">
         {/* Google Analytics (GA4) */}
