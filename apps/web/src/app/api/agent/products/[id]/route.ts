@@ -5,7 +5,7 @@ import { getProductById } from "@/server/queries/catalog";
 import { toAgentProductDto } from "@/lib/commerce/agent-dto";
 
 export const runtime = "nodejs";
-export const revalidate = 60;
+export const revalidate = 86_400;
 
 function clientIp(req: NextRequest): string {
   const fwd = req.headers.get("x-forwarded-for");
@@ -33,5 +33,9 @@ export async function GET(
       { status: 404 },
     );
   }
-  return NextResponse.json(toAgentProductDto(product));
+  return NextResponse.json(toAgentProductDto(product), {
+    headers: {
+      "cache-control": "public, s-maxage=86400, stale-while-revalidate=3600",
+    },
+  });
 }

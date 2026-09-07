@@ -4,7 +4,7 @@ import { buildProductFeed } from "@/lib/commerce/feed";
 import { rateLimit } from "@/lib/ratelimit";
 
 export const runtime = "nodejs";
-export const revalidate = 300;
+export const revalidate = 86_400;
 
 function clientIp(req: NextRequest): string {
   const fwd = req.headers.get("x-forwarded-for");
@@ -15,7 +15,7 @@ function clientIp(req: NextRequest): string {
  * GET /feeds/products.json — public product feed (T094 / FR-039 / FR-040).
  *
  * - Conforms to contracts/schemas/product-feed.schema.json (T091).
- * - Cache: `public, s-maxage=300, stale-while-revalidate=60`.
+ * - Cache: `public, s-maxage=86400, stale-while-revalidate=3600`.
  * - Rate-limited per IP via the `feed:ip` bucket (30/min).
  * - Never includes a protected file URL (T118 contract test enforces).
  */
@@ -33,7 +33,7 @@ export async function GET(req: NextRequest): Promise<NextResponse> {
     status: 200,
     headers: {
       "content-type": "application/json; charset=utf-8",
-      "cache-control": "public, s-maxage=300, stale-while-revalidate=60",
+      "cache-control": "public, s-maxage=86400, stale-while-revalidate=3600",
       "access-control-allow-origin": "*",
     },
   });

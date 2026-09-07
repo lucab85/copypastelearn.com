@@ -13,7 +13,7 @@ interface PageParams {
   params: Promise<{ slug: string }>;
 }
 
-export const revalidate = 60;
+export const revalidate = 86_400;
 
 export async function generateMetadata({
   params,
