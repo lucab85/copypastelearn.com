@@ -4,6 +4,8 @@ import { db } from "@/lib/db";
 
 /** Public catalog read queries (FR-001 / FR-007 / FR-036). */
 
+const PUBLIC_CATALOG_REVALIDATE_SECONDS = 86_400;
+
 export interface CatalogFilter {
   brand?: Brand;
   category?: string;
@@ -33,7 +35,10 @@ const listPublishedProductsCached = unstable_cache(
     });
   },
   ["catalog-products-v1"],
-  { revalidate: 300, tags: ["catalog", "products"] },
+  {
+    revalidate: PUBLIC_CATALOG_REVALIDATE_SECONDS,
+    tags: ["catalog", "products"],
+  },
 );
 
 export async function listPublishedProducts(
@@ -50,12 +55,34 @@ export async function listPublishedProducts(
   );
 }
 
+const getProductBySlugCached = unstable_cache(
+  async (slug: string): Promise<Product | null> => {
+    return db.product.findUnique({ where: { slug } });
+  },
+  ["catalog-product-by-slug-v1"],
+  {
+    revalidate: PUBLIC_CATALOG_REVALIDATE_SECONDS,
+    tags: ["catalog", "products"],
+  },
+);
+
 export async function getProductBySlug(slug: string): Promise<Product | null> {
-  return db.product.findUnique({ where: { slug } });
+  return getProductBySlugCached(slug);
 }
 
+const getProductByIdCached = unstable_cache(
+  async (id: string): Promise<Product | null> => {
+    return db.product.findUnique({ where: { id } });
+  },
+  ["catalog-product-by-id-v1"],
+  {
+    revalidate: PUBLIC_CATALOG_REVALIDATE_SECONDS,
+    tags: ["catalog", "products"],
+  },
+);
+
 export async function getProductById(id: string): Promise<Product | null> {
-  return db.product.findUnique({ where: { id } });
+  return getProductByIdCached(id);
 }
 
 export const listPublishedBundles = unstable_cache(
@@ -66,9 +93,23 @@ export const listPublishedBundles = unstable_cache(
     });
   },
   ["catalog-bundles-v1"],
-  { revalidate: 300, tags: ["catalog", "bundles"] },
+  {
+    revalidate: PUBLIC_CATALOG_REVALIDATE_SECONDS,
+    tags: ["catalog", "bundles"],
+  },
+);
+
+const getBundleBySlugCached = unstable_cache(
+  async (slug: string): Promise<Bundle | null> => {
+    return db.bundle.findUnique({ where: { slug } });
+  },
+  ["catalog-bundle-by-slug-v1"],
+  {
+    revalidate: PUBLIC_CATALOG_REVALIDATE_SECONDS,
+    tags: ["catalog", "bundles"],
+  },
 );
 
 export async function getBundleBySlug(slug: string): Promise<Bundle | null> {
-  return db.bundle.findUnique({ where: { slug } });
+  return getBundleBySlugCached(slug);
 }
