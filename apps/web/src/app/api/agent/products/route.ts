@@ -6,7 +6,7 @@ import { listPublishedProducts } from "@/server/queries/catalog";
 import { toAgentProductDto } from "@/lib/commerce/agent-dto";
 
 export const runtime = "nodejs";
-export const revalidate = 60;
+export const revalidate = 86_400;
 
 const QuerySchema = z.object({
   brand: z
@@ -65,7 +65,7 @@ export async function GET(req: NextRequest): Promise<NextResponse> {
       status: 200,
       headers: {
         "content-type": "application/json; charset=utf-8",
-        "cache-control": "public, s-maxage=60, stale-while-revalidate=30",
+        "cache-control": "public, s-maxage=86400, stale-while-revalidate=3600",
         "access-control-allow-origin": "*",
       },
     },

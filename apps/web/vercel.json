@@ -1,4 +1,6 @@
 {
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "ignoreCommand": "if [ \"$VERCEL_ENV\" = \"production\" ] || [ -z \"$VERCEL_GIT_PREVIOUS_SHA\" ]; then exit 1; fi; cd ../.. && turbo query affected --base=\"$VERCEL_GIT_PREVIOUS_SHA\" --packages=\"@copypastelearn/web\" --exit-code",
   "crons": [
     {
       "path": "/api/cron/data-retention",
