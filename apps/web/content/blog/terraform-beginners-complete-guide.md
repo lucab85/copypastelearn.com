@@ -1,6 +1,8 @@
 ---
 title: "Terraform for Beginners Guide"
 description: "Everything you need to know to start using Terraform for Infrastructure as Code. From installation to your first deployment on AWS."
+seoTitle: "Terraform for Beginners: Complete Guide 2026"
+seoDescription: "Start with Terraform for Infrastructure as Code. Learn HCL syntax, providers, state, modules, deploy to AWS/Azure/GCP. Beginner-friendly."
 date: "2026-02-27"
 author: "Luca Berton"
 category: "DevOps"
