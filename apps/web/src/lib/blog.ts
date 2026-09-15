@@ -26,6 +26,9 @@ export interface BlogPost {
   category: string;
   image?: string;
   content: string;
+  seoTitle?: string;
+  seoDescription?: string;
+  excerpt?: string;
 }
 
 export function getAllPosts(): BlogPost[] {
@@ -54,6 +57,9 @@ export function getAllPosts(): BlogPost[] {
         category: data.category ?? "General",
         image: data.image,
         content,
+        seoTitle: data.seoTitle,
+        seoDescription: data.seoDescription,
+        excerpt: data.excerpt,
       } satisfies BlogPost;
     })
     .filter(Boolean) as BlogPost[];
@@ -89,5 +95,8 @@ export function getPost(slug: string): BlogPost | null {
     category: data.category ?? "General",
     image: data.image,
     content,
+    seoTitle: data.seoTitle,
+    seoDescription: data.seoDescription,
+    excerpt: data.excerpt,
   };
 }

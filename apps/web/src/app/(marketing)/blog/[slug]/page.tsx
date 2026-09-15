@@ -30,13 +30,13 @@ export async function generateMetadata({
     process.env.NEXT_PUBLIC_APP_URL ?? "https://www.copypastelearn.com";
 
   return {
-    title: post.title,
-    description: post.description,
+    title: post.seoTitle ?? post.title,
+    description: post.seoDescription ?? post.excerpt ?? post.description,
     alternates: { canonical: `/blog/${slug}` },
     openGraph: {
       url: `/blog/${slug}`,
-      title: post.title,
-      description: post.description,
+      title: post.seoTitle ?? post.title,
+      description: post.seoDescription ?? post.excerpt ?? post.description,
       type: "article",
       publishedTime: post.date,
       authors: [post.author],
@@ -55,8 +55,8 @@ export async function generateMetadata({
     },
     twitter: {
       card: "summary_large_image",
-      title: post.title,
-      description: post.description,
+      title: post.seoTitle ?? post.title,
+      description: post.seoDescription ?? post.excerpt ?? post.description,
       ...(post.image && {
         images: [
           post.image.startsWith("http")

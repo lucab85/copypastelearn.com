@@ -1,6 +1,8 @@
 ---
 title: "Ansible Automation in Minutes"
 description: "A beginner-friendly introduction to Ansible — what it is, how it works, and how to write your first playbook to automate server configuration."
+seoTitle: "Ansible Automation: Write Your First Playbook Fast"
+seoDescription: "Learn Ansible automation from scratch. What is Ansible, how it works, and write your first playbook to automate servers. Beginner-friendly guide."
 date: "2026-02-25"
 author: "Luca Berton"
 category: "DevOps"

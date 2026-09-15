@@ -1,7 +1,10 @@
 ---
 title: "AI Platform Engineering Explained"
-description: "Learn what AI platform engineering is, why enterprises need it, and how to build production-grade GenAI infrastructure from scratch with proven DevOps."
 date: "2026-03-28"
+description: "Learn what AI platform engineering is, why enterprises need it, and how to build production-grade GenAI infrastructure from scratch with proven DevOps."
+excerpt: "Learn what AI platform engineering is, why enterprises need it, and how to build production-grade GenAI infrastructure."
+seoTitle: "AI Platform Engineering: Build GenAI Infrastructure"
+seoDescription: "AI platform engineering for enterprises: build production-grade GenAI infrastructure. MLOps, model serving, RAG pipelines, and platform design."
 author: "Luca Berton"
 category: "AI Tools"
 tags: ["AI", "platform engineering", "GenAI", "LLM", "RAG", "MLOps"]

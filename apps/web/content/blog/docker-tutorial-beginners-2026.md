@@ -6,6 +6,8 @@ category: "DevOps"
 tags: ["Docker", "Containers", "Beginner", "Tutorial", "DevOps"]
 excerpt: "Complete Docker tutorial for beginners. Learn containers, images, Dockerfiles, volumes, networking, and Docker Compose step by step."
 description: "Complete Docker tutorial for beginners. Learn containers, images, Dockerfiles, volumes, networking, and Docker Compose step by step."
+seoTitle: "Docker Tutorial for Beginners: Learn Containers Step-by-Step"
+seoDescription: "Complete Docker tutorial for beginners. Learn containers, images, Dockerfiles, volumes, networking, and Docker Compose with hands-on examples."
 author: "Luca Berton"
 ---
 
