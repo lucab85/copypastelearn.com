@@ -55,7 +55,7 @@ export default function ContactPage() {
               <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10">
                 <item.icon className="h-6 w-6 text-primary" />
               </div>
-              <h3 className="mb-2 font-semibold">{item.title}</h3>
+              <h2 className="mb-2 font-semibold">{item.title}</h2>
               {"emailUser" in item && item.emailUser ? (
                 <EmailLink
                   user={item.emailUser}

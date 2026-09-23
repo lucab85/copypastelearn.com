@@ -1,6 +1,8 @@
 ---
 title: "Linux Gaming with Proton in 2026"
 description: "Linux gaming has never been better. Proton, Steam Deck, and native ports make Linux a viable gaming platform. Here's the current state."
+seoTitle: "Linux Gaming with Proton in 2026: Is It Ready?"
+seoDescription: "Linux gaming in 2026 tested: Proton, Steam Deck, and native ports compared so you know if Linux can replace Windows for gaming."
 date: "2026-03-16"
 author: "Luca Berton"
 category: "DevOps"

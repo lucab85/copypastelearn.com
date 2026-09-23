@@ -3,7 +3,7 @@
 import { useState, useMemo, useEffect, useRef } from "react";
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import {
   Calendar,
   ArrowRight,
@@ -364,9 +364,9 @@ export function BlogList({ posts, categories, tags }: BlogListProps) {
                     <span className="text-muted-foreground/50">·</span>
                     <span className="font-medium">{post.category}</span>
                   </div>
-                  <CardTitle className="text-xl leading-snug transition-colors group-hover:text-primary">
+                  <h2 className="text-xl font-semibold leading-snug tracking-tight transition-colors group-hover:text-primary">
                     {post.title}
-                  </CardTitle>
+                  </h2>
                 </CardHeader>
                 <CardContent>
                   <p className="mb-4 text-sm leading-relaxed text-muted-foreground">

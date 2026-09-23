@@ -1,6 +1,8 @@
 ---
 title: "Immutable Linux: Fedora Atomic"
 description: "Fedora Atomic desktops (Silverblue, Kinoite) bring immutable OS images and container-based workflows. The future of Linux desktops explained."
+seoTitle: "Fedora Atomic (Silverblue/Kinoite): Immutable Linux Guide"
+seoDescription: "Fedora Atomic explained: how Silverblue and Kinoite's immutable images and container workflows make Linux desktops more reliable."
 date: "2026-03-15"
 author: "Luca Berton"
 category: "DevOps"
