@@ -14,7 +14,6 @@ import {
   CardDescription,
   CardFooter,
   CardHeader,
-  CardTitle,
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { CheckCircle2, Building2, Star, Quote } from "lucide-react";
@@ -254,7 +253,7 @@ export default async function PricingPage({
         {/* Pro Monthly */}
         <Card className="relative overflow-hidden">
           <CardHeader>
-            <CardTitle className="text-2xl">Pro Monthly</CardTitle>
+            <h2 className="text-2xl font-semibold leading-none tracking-tight">Pro Monthly</h2>
             <CardDescription>
               Flexible month-to-month access
             </CardDescription>
@@ -298,7 +297,7 @@ export default async function PricingPage({
             <Badge>Best Value</Badge>
           </div>
           <CardHeader>
-            <CardTitle className="text-2xl">Pro Annual</CardTitle>
+            <h2 className="text-2xl font-semibold leading-none tracking-tight">Pro Annual</h2>
             <CardDescription>
               Save 2 months — pay once per year
             </CardDescription>
@@ -353,7 +352,7 @@ export default async function PricingPage({
           <CardHeader>
             <div className="mb-2 flex items-center gap-2">
               <Building2 className="h-5 w-5 text-muted-foreground" />
-              <CardTitle className="text-2xl">Business</CardTitle>
+              <h2 className="text-2xl font-semibold leading-none tracking-tight">Business</h2>
             </div>
             <CardDescription>
               SSO integration &amp; team management for your company

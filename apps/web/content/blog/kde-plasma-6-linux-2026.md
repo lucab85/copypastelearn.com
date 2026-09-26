@@ -1,6 +1,8 @@
 ---
 title: "KDE Plasma 6 on Linux in 2026"
 description: "KDE Plasma 6 is the most customizable Linux desktop available. What's new, which distros ship it best, and why power users love it."
+seoTitle: "KDE Plasma 6 in 2026: 7 Features Worth the Upgrade"
+seoDescription: "KDE Plasma 6 in 2026: what's new, which distros ship it, and 7 features that make it the most customizable Linux desktop today."
 date: "2026-03-17"
 author: "Luca Berton"
 category: "DevOps"

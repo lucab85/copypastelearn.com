@@ -16,7 +16,7 @@ export function ResourceList({ resources }: ResourceListProps) {
   return (
     <div className="rounded-lg border">
       <div className="border-b px-4 py-3">
-        <h3 className="font-semibold">Resources</h3>
+        <h2 className="font-semibold">Resources</h2>
       </div>
       <ul className="divide-y">
         {resources.map((resource, index) => (

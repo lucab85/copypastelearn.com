@@ -1,6 +1,8 @@
 ---
 title: "Linux Mint 22: Best for Beginners"
 description: "Why Linux Mint 22 Zena is the top Linux distribution for newcomers in 2026. Easy setup, familiar desktop, and long-term support until 2029."
+seoTitle: "Linux Mint 22 Zena: Best Distro for Beginners in 2026"
+seoDescription: "Linux Mint 22 Zena reviewed for 2026: easy setup, a familiar desktop, and support until 2029 make it the top pick for Linux newcomers."
 date: "2026-03-10"
 author: "Luca Berton"
 category: "DevOps"

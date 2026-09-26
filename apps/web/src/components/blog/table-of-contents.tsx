@@ -40,9 +40,9 @@ export function TableOfContents({ items }: TableOfContentsProps) {
   return (
     <nav className="hidden xl:block" aria-label="Table of contents">
       <div className="sticky top-24">
-        <h4 className="mb-3 text-xs font-semibold uppercase tracking-wider text-zinc-500">
+        <h3 className="mb-3 text-xs font-semibold uppercase tracking-wider text-zinc-500">
           On this page
-        </h4>
+        </h3>
         <ul className="space-y-1.5 border-l border-zinc-800">
           {items.map((item) => (
             <li key={item.id}>
