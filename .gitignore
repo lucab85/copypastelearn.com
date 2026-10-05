@@ -59,3 +59,6 @@ apps/web/reports/
 /docs/
 
 .vercel
+
+# Local-only course recordings and notes (never commit: public repo)
+private/
