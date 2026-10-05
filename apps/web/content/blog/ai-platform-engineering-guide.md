@@ -8,7 +8,6 @@ seoDescription: "AI platform engineering for enterprises: build production-grade
 author: "Luca Berton"
 category: "AI Tools"
 tags: ["AI", "platform engineering", "GenAI", "LLM", "RAG", "MLOps"]
-excerpt: "Learn what AI platform engineering is, why enterprises need it, and how to build production-grade GenAI infrastructure."
 ---
 
 Every enterprise wants to ship AI features. Few have the infrastructure to do it safely. That gap — between prototype and production — is exactly what **AI platform engineering** fills.
