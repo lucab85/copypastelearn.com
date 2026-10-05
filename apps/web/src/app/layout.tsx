@@ -4,6 +4,7 @@ import Script from "next/script";
 import { SiteHeader } from "@/components/layout/site-header";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { NewsletterPopup } from "@/components/newsletter-popup";
+import { AgntConBanner } from "@/components/layout/agntcon-banner";
 import { AnnouncementBanner } from "@/components/layout/announcement-banner";
 import { RouteChangeTracker } from "@/components/analytics/route-change-tracker";
 import { ClarityDeferred } from "@/components/analytics/clarity-deferred";
@@ -162,6 +163,7 @@ export default function RootLayout({
           externalLink
         />
         <SiteHeader />
+        <AgntConBanner />
         <main id="main-content" className="flex-1">{children}</main>
         <SiteFooter />
             <NewsletterPopup />
