@@ -13,6 +13,19 @@ export function taxonomySlug(name: string): string {
     .replace(/^-+|-+$/g, "");
 }
 
+/**
+ * Tag pages listing fewer posts than this are thin hub pages (mostly just one to
+ * three post cards that duplicate the posts themselves). They stay crawlable
+ * (`follow`) so link equity flows to the posts, but are kept out of the index and
+ * the sitemap until the tag accumulates enough posts to be a useful hub.
+ */
+export const MIN_INDEXABLE_TAG_POSTS = 4;
+
+/** Whether a tag index page has enough posts to be indexed. */
+export function isIndexableTag(count: number): boolean {
+  return count >= MIN_INDEXABLE_TAG_POSTS;
+}
+
 export interface TaxonomyEntry {
   /** Canonical display name (first occurrence wins). */
   name: string;
