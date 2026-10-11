@@ -4,6 +4,14 @@ import { db } from "@/lib/db";
 import { getCurrentUser, NotFoundError, ForbiddenError } from "@/lib/auth";
 import type { LessonDetail } from "@copypastelearn/shared";
 
+/** Public, non-gated lesson facts (the same ones listed on the course page). */
+export interface LessonPublicMeta {
+  title: string;
+  description: string | null;
+  durationSeconds: number | null;
+  courseTitle: string;
+}
+
 /**
  * Resolve a lesson's public metadata WITHOUT applying subscription gating or
  * writing progress records. Used by `generateMetadata` so that paywalled
@@ -16,17 +24,29 @@ import type { LessonDetail } from "@copypastelearn/shared";
 export async function getLessonPublicMeta(
   courseSlug: string,
   lessonSlug: string
-): Promise<{ title: string } | null> {
+): Promise<LessonPublicMeta | null> {
   const lesson = await db.lesson.findFirst({
     where: {
       slug: lessonSlug,
       course: { slug: courseSlug, status: "PUBLISHED" },
       status: "PUBLISHED",
     },
-    select: { title: true },
+    select: {
+      title: true,
+      description: true,
+      durationSeconds: true,
+      course: { select: { title: true } },
+    },
   });
 
-  return lesson ? { title: lesson.title } : null;
+  return lesson
+    ? {
+        title: lesson.title,
+        description: lesson.description,
+        durationSeconds: lesson.durationSeconds,
+        courseTitle: lesson.course.title,
+      }
+    : null;
 }
 
 /**

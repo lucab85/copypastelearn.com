@@ -5,6 +5,7 @@ import { ChevronLeft, Tag as TagIcon } from "lucide-react";
 import {
   getAllTags,
   getPostsByTag,
+  isIndexableTag,
   taxonomySlug,
 } from "@/lib/blog-taxonomy";
 import { BlogPostCards } from "@/components/blog/blog-post-cards";
@@ -38,6 +39,10 @@ export async function generateMetadata({
     title,
     description,
     alternates: { canonical: url },
+    // Thin tags (1–3 posts) are noindex but still followed — see MIN_INDEXABLE_TAG_POSTS.
+    robots: isIndexableTag(posts.length)
+      ? { index: true, follow: true }
+      : { index: false, follow: true },
     openGraph: { title, description, url, type: "website" },
     twitter: { card: "summary", title, description },
   };

@@ -10,6 +10,7 @@ import { ArrowLeft, Calendar, Clock, User, BookOpen } from "lucide-react";
 import { ReadingProgressBar } from "@/components/blog/reading-progress-bar";
 import { ShareButtons } from "@/components/blog/share-buttons";
 import { TableOfContents } from "@/components/blog/table-of-contents";
+import { brandedTitle } from "@/lib/seo";
 
 interface BlogPostPageProps {
   params: Promise<{ slug: string }>;
@@ -30,7 +31,8 @@ export async function generateMetadata({
     process.env.NEXT_PUBLIC_APP_URL ?? "https://www.copypastelearn.com";
 
   return {
-    title: post.seoTitle ?? post.title,
+    // Drop the brand suffix (absolute title) when it would push past 60 chars.
+    title: brandedTitle(post.seoTitle ?? post.title),
     description: post.seoDescription ?? post.excerpt ?? post.description,
     alternates: { canonical: `/blog/${slug}` },
     openGraph: {

@@ -16,6 +16,7 @@ import { Button } from "@/components/ui/button";
 import { CheckoutButton } from "@/components/checkout-button";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { PageEventTracker } from "@/components/analytics/page-event-tracker";
+import { brandedTitle, pickDescription } from "@/lib/seo";
 
 // Per-request memoization so generateMetadata + the page body share one DB call.
 const loadLesson = cache(getLesson);
@@ -48,8 +49,15 @@ export async function generateMetadata({
     .replace(/ — CopyPasteLearn$/i, "")
     .replace(/ \| CopyPasteLearn$/i, "");
   return {
-    title,
-    description: `Watch the ${title} lesson on CopyPasteLearn. Master IT automation with expert-led video instruction and hands-on interactive labs.`,
+    // Long lesson titles drop the brand suffix rather than exceed 60 chars.
+    title: brandedTitle(title),
+    // Fall back to shorter copy when a long lesson title would push the
+    // description past 155 chars.
+    description: pickDescription([
+      `Watch the ${title} lesson on CopyPasteLearn. Master IT automation with expert-led video instruction and hands-on interactive labs.`,
+      `Watch the ${title} lesson on CopyPasteLearn, with expert-led video instruction and hands-on interactive labs.`,
+      `${title}: a CopyPasteLearn video lesson with hands-on labs.`,
+    ]),
     alternates: { canonical: `/courses/${slug}/lessons/${lessonSlug}` },
     openGraph: { url: `/courses/${slug}/lessons/${lessonSlug}`, type: "website" },
     robots: { index: true, follow: true },
@@ -69,11 +77,44 @@ export default async function LessonPage({ params }: LessonPageProps) {
       if (err.statusCode === 403) {
         const { userId } = await auth();
         const isSignedIn = !!userId;
+        // Render the lesson's public facts (as listed on the course page) so
+        // each locked lesson is a distinct page rather than an identical
+        // sign-in wall. No gated content (video, transcript, snippets) is shown.
+        const publicMeta = await getLessonPublicMeta(slug, lessonSlug);
+        const minutes = publicMeta?.durationSeconds
+          ? Math.max(1, Math.round(publicMeta.durationSeconds / 60))
+          : null;
         return (
           <div className="container mx-auto flex min-h-[60vh] flex-col items-center justify-center px-4 py-16 text-center">
-            <h1 className="mb-4 text-2xl font-bold">
-              {isSignedIn ? "Subscription required" : "Sign in to continue"}
-            </h1>
+            {publicMeta && (
+              <>
+                <h1 className="mb-2 text-2xl font-bold">{publicMeta.title}</h1>
+                <p className="mb-4 text-sm text-muted-foreground">
+                  Lesson in{" "}
+                  <Link
+                    href={`/courses/${slug}`}
+                    className="underline underline-offset-4 hover:text-foreground"
+                  >
+                    {publicMeta.courseTitle}
+                  </Link>
+                  {minutes ? ` · ${minutes} min` : null}
+                </p>
+                {publicMeta.description && (
+                  <p className="mb-8 max-w-xl text-muted-foreground">
+                    {publicMeta.description}
+                  </p>
+                )}
+              </>
+            )}
+            {publicMeta ? (
+              <h2 className="mb-4 text-xl font-semibold">
+                {isSignedIn ? "Subscription required" : "Sign in to continue"}
+              </h2>
+            ) : (
+              <h1 className="mb-4 text-2xl font-bold">
+                {isSignedIn ? "Subscription required" : "Sign in to continue"}
+              </h1>
+            )}
             <p className="mb-6 text-muted-foreground">
               {err.message ?? "This lesson requires authentication or an active subscription."}
             </p>

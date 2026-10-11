@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Calendar, ArrowRight } from "lucide-react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import type { BlogPost } from "@/lib/blog";
 
@@ -36,9 +36,11 @@ export function BlogPostCards({ posts }: { posts: BlogPost[] }) {
                 <span className="text-muted-foreground/50">·</span>
                 <span className="font-medium">{post.category}</span>
               </div>
-              <CardTitle className="text-xl leading-snug transition-colors group-hover:text-primary">
+              {/* h2 (not CardTitle's h3) so the listing follows the page h1 without
+                  skipping a heading level. Classes mirror the merged CardTitle styles. */}
+              <h2 className="font-semibold tracking-tight text-xl leading-snug transition-colors group-hover:text-primary">
                 {post.title}
-              </CardTitle>
+              </h2>
             </CardHeader>
             <CardContent>
               <p className="mb-4 text-sm leading-relaxed text-muted-foreground">
