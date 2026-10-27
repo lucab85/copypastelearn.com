@@ -7,11 +7,11 @@ import { trackEvent } from "@/lib/analytics";
 
 /**
  * Linux Foundation Halloween flash promo: 35% off training and certifications
- * sitewide on Oct 28–29, 2026 with a personal code. Images are hosted
- * centrally on lucaberton.com (/promo/lf-halloween-2026/). It shows only on
- * Oct 28–29 in the visitor's time zone (see FLAG below).
- * The link is the Awin tracking link from the LF announcement. Clicking copies
- * the code (best effort, never blocks navigation) and then follows it.
+ * sitewide on Oct 28–29, 2026 with a personal code. Images are hosted centrally
+ * on lucaberton.com (/promo/lf-halloween-2026/). It shows from Oct 28 in the
+ * visitor's time zone until Oct 29, 23:59 UTC (see FLAG below). The link is the
+ * Awin tracking link from the LF announcement. Clicking copies the code (best
+ * effort, never blocks navigation) and then follows it.
  * Remove after the promo (Oct 29, 2026).
  */
 const HREF =
@@ -21,15 +21,15 @@ const IMG = "https://lucaberton.com/promo/lf-halloween-2026";
 const ALT =
   "Linux Foundation Halloween flash sale, October 28–29: 35% off all training and certifications with code TREATS35LUCA";
 
-// The promo runs Oct 28–29, 2026 on each visitor's own clock. The inline
-// script before the banner flags <html> on those dates while the page is still
-// being parsed, so the banner is laid out visible from the start (no layout
+// The promo starts on Oct 28, 2026 on each visitor's own clock and ends on
+// Oct 29 at 23:59 UTC (the Awin terms). The inline script before the banner
+// flags <html> in that window while the page is still being parsed, so the banner is laid out visible from the start (no layout
 // shift); otherwise the CSS keeps it hidden.
 const inPromo = () => {
   const now = new Date();
-  return now >= new Date(2026, 9, 28) && now < new Date(2026, 9, 30);
+  return now >= new Date(2026, 9, 28) && now.getTime() < Date.UTC(2026, 9, 30);
 };
-const FLAG = `(function(){var n=new Date();if(n>=new Date(2026,9,28)&&n<new Date(2026,9,30))document.documentElement.setAttribute("data-lf-promo-on","")})()`;
+const FLAG = `(function(){var n=new Date();if(n>=new Date(2026,9,28)&&n<Date.UTC(2026,9,30))document.documentElement.setAttribute("data-lf-promo-on","")})()`;
 const CSS = "html:not([data-lf-promo-on]) [data-lf-promo]{display:none}";
 
 export function LfHalloweenBanner() {
