@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import type { MouseEvent } from "react";
 import { trackEvent } from "@/lib/analytics";
@@ -8,9 +8,8 @@ import { trackEvent } from "@/lib/analytics";
 /**
  * Linux Foundation Halloween flash promo: 35% off training and certifications
  * sitewide on Oct 28–29, 2026 with a personal code. Images are hosted
- * centrally on lucaberton.com (/promo/lf-halloween-2026/). The banner is
- * rendered hidden and shown only on Oct 28–29 in the visitor's time zone: by
- * the inline script on page load, by the effect after client-side navigation.
+ * centrally on lucaberton.com (/promo/lf-halloween-2026/). It shows only on
+ * Oct 28–29 in the visitor's time zone (see FLAG below).
  * The link is the Awin tracking link from the LF announcement. Clicking copies
  * the code (best effort, never blocks navigation) and then follows it.
  * Remove after the promo (Oct 29, 2026).
@@ -22,21 +21,25 @@ const IMG = "https://lucaberton.com/promo/lf-halloween-2026";
 const ALT =
   "Linux Foundation Halloween flash sale, October 28–29: 35% off all training and certifications with code TREATS35LUCA";
 
-// The promo runs Oct 28–29, 2026 on each visitor's own clock.
+// The promo runs Oct 28–29, 2026 on each visitor's own clock. The inline
+// script before the banner flags <html> on those dates while the page is still
+// being parsed, so the banner is laid out visible from the start (no layout
+// shift); otherwise the CSS keeps it hidden.
 const inPromo = () => {
   const now = new Date();
   return now >= new Date(2026, 9, 28) && now < new Date(2026, 9, 30);
 };
-// The same check, inlined after the server-rendered banner so it shows before first paint.
-const SHOW = `(function(){var n=new Date();if(n>=new Date(2026,9,28)&&n<new Date(2026,9,30))document.querySelectorAll("[data-lf-promo]").forEach(function(e){e.hidden=false})})()`;
+const FLAG = `(function(){var n=new Date();if(n>=new Date(2026,9,28)&&n<new Date(2026,9,30))document.documentElement.setAttribute("data-lf-promo-on","")})()`;
+const CSS = "html:not([data-lf-promo-on]) [data-lf-promo]{display:none}";
 
 export function LfHalloweenBanner() {
   const pathname = usePathname();
-  const ref = useRef<HTMLElement>(null);
   const [status, setStatus] = useState("");
 
+  // After client-side navigation from a page without the banner the inline
+  // script has not run.
   useEffect(() => {
-    if (ref.current && inPromo()) ref.current.hidden = false;
+    if (inPromo()) document.documentElement.setAttribute("data-lf-promo-on", "");
   }, []);
 
   function onClick(e: MouseEvent<HTMLAnchorElement>) {
@@ -59,10 +62,9 @@ export function LfHalloweenBanner() {
 
   return (
     <>
+      <style dangerouslySetInnerHTML={{ __html: CSS }} />
+      <script dangerouslySetInnerHTML={{ __html: FLAG }} />
       <aside
-        ref={ref}
-        hidden
-        suppressHydrationWarning
         data-lf-promo
         aria-label="Linux Foundation training: 35% off on October 28–29"
         className="mx-auto w-full max-w-3xl px-4 pt-4"
@@ -105,7 +107,6 @@ export function LfHalloweenBanner() {
           <span className="block text-xs">Affiliate link: Luca earns a commission on purchases made with this code.</span>
         </p>
       </aside>
-      <script dangerouslySetInnerHTML={{ __html: SHOW }} />
     </>
   );
 }
