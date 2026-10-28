@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "if [ \"$VERCEL\" = \"1\" ]; then prisma migrate deploy && next build; else next build; fi",
+    "build": "node scripts/sync-promo.mjs copypastelearn.com && if [ \"$VERCEL\" = \"1\" ]; then prisma migrate deploy && next build; else next build; fi",
     "vercel-build": "pnpm --filter @copypastelearn/shared build && prisma migrate deploy && next build",
     "start": "next start",
     "lint": "eslint .",
