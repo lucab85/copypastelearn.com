@@ -4,7 +4,7 @@ import Script from "next/script";
 import { SiteHeader } from "@/components/layout/site-header";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { NewsletterPopup } from "@/components/newsletter-popup";
-import { LfHalloweenBanner } from "@/components/layout/lf-halloween-banner";
+import { PromoBanner } from "@/components/layout/promo-banner";
 import { AnnouncementBanner } from "@/components/layout/announcement-banner";
 import { RouteChangeTracker } from "@/components/analytics/route-change-tracker";
 import { ClarityDeferred } from "@/components/analytics/clarity-deferred";
@@ -163,7 +163,7 @@ export default function RootLayout({
           externalLink
         />
         <SiteHeader />
-        <LfHalloweenBanner />
+        <PromoBanner />
         <main id="main-content" className="flex-1">{children}</main>
         <SiteFooter />
             <NewsletterPopup />
