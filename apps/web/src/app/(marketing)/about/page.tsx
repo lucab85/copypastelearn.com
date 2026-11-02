@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     site: "@copypastelearn",
-    creator: "@yourlinuxsa",
+    creator: "@TheLucaBerton",
     title: "About CopyPasteLearn",
     description:
       "Our mission: make IT automation education hands-on and accessible to everyone.",
@@ -262,12 +262,12 @@ export default function AboutPage() {
                 </a>
                 <span className="text-muted-foreground/30">·</span>
                 <a
-                  href="https://twitter.com/yourlinuxsa"
+                  href="https://x.com/TheLucaBerton"
                   target="_blank"
                   rel="noopener"
                   className="text-muted-foreground transition-colors hover:text-primary"
                 >
-                  @yourlinuxsa
+                  @TheLucaBerton
                 </a>
               </div>
             </div>

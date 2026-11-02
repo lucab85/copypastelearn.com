@@ -20,10 +20,6 @@ export default function robots(): MetadataRoute.Robots {
         ],
       },
       {
-        userAgent: "GPTBot",
-        disallow: ["/"],
-      },
-      {
         userAgent: "CCBot",
         disallow: ["/"],
       },

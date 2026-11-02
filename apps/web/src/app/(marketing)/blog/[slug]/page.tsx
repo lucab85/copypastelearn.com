@@ -586,7 +586,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                   <a href="https://lucaberton.com/" target="_blank" rel="noopener" className="text-blue-400 hover:text-blue-300">
                     Website
                   </a>
-                  <a href="https://twitter.com/yourlinuxsa" target="_blank" rel="noopener" className="text-blue-400 hover:text-blue-300">
+                  <a href="https://x.com/TheLucaBerton" target="_blank" rel="noopener" className="text-blue-400 hover:text-blue-300">
                     Twitter
                   </a>
                   <a href="https://www.linkedin.com/in/lucaberton/" target="_blank" rel="noopener" className="text-blue-400 hover:text-blue-300">
