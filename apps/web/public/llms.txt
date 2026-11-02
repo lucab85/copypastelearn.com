@@ -2,8 +2,12 @@
 
 > CopyPasteLearn is an online academy for IT automation, DevOps, and platform engineering. Hands-on courses with real labs covering Docker, Ansible, Terraform, Kubernetes, MLflow, SELinux, and OpenClaw. Founded by Luca Berton.
 
+This site's role: the course pages. Each course combines video lessons with hands-on labs, taught by [Luca Berton](https://lucaberton.com/). The blog supports the courses; Kubernetes how-tos live on Kubernetes Recipes and consulting on Open Empower (see Related sites).
+
 ## Courses
 
+- [Claude Code Bootcamp: Build Real-World Software with AI](https://www.copypastelearn.com/courses/claude-code-bootcamp): Thirteen hands-on modules that teach you to ship real, tested software with Claude Code.
+- [Claude Code Masterclass: Ship Real Code with AI](https://www.copypastelearn.com/courses/claude-code-masterclass): Use Claude Code like a junior engineer you direct, review and hold accountable.
 - [Docker Fundamentals](https://www.copypastelearn.com/courses/docker-fundamentals): Learn containers, images, volumes, networking, and Docker Compose from scratch.
 - [Node.js REST APIs](https://www.copypastelearn.com/courses/nodejs-rest-apis): Build production REST APIs with Express, TypeScript, and PostgreSQL.
 - [Ansible Automation in 30 Minutes](https://www.copypastelearn.com/courses/ansible-quickstart): Quick-start Ansible for configuration management and automation.
@@ -135,6 +139,13 @@
 - [Why LLMs Get Your Code Wrong](https://www.copypastelearn.com/blog/why-llms-get-code-wrong-context7): Training data staleness problem.
 - [AI Platform Engineering Explained](https://www.copypastelearn.com/blog/ai-platform-engineering-guide): GenAI infrastructure and LLM gateways.
 - [Git for DevOps Engineers](https://www.copypastelearn.com/blog/git-for-devops-engineers): Git workflows, rebasing, and CI/CD integration.
+
+## Related sites
+
+- [lucaberton.com](https://lucaberton.com/): Luca Berton's personal site: biography, books, talks and articles on AI platform engineering and AI coding tools.
+- [Open Empower](https://www.openempower.com/): Luca Berton's company (he is founder and CEO): AI governance, assessments and AI/Kubernetes platform engineering for regulated enterprises.
+- [Kubernetes Recipes](https://kubernetes.recipes/): Kubernetes and OpenShift how-tos, error fixes and GPU/AI-on-Kubernetes recipes.
+- [Udienza](https://www.udienza.com/): Video podcast of interviews with open source maintainers, founders and conference speakers, hosted by Luca Berton.
 
 ## Optional
 

@@ -11,6 +11,7 @@ import { ReadingProgressBar } from "@/components/blog/reading-progress-bar";
 import { ShareButtons } from "@/components/blog/share-buttons";
 import { TableOfContents } from "@/components/blog/table-of-contents";
 import { brandedTitle } from "@/lib/seo";
+import { COPYPASTELEARN, authorEntity } from "@/lib/entities";
 
 interface BlogPostPageProps {
   params: Promise<{ slug: string }>;
@@ -428,22 +429,9 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     description: post.description,
     datePublished: post.date,
     dateModified: post.date,
-    author: {
-      "@type": "Person",
-      name: post.author,
-      url: "https://lucaberton.com/",
-      sameAs: [
-        "https://github.com/lucab85",
-        "https://www.linkedin.com/in/lucaberton/",
-        "https://x.com/yourlinuxsa",
-      ],
-    },
-    publisher: {
-      "@type": "Organization",
-      name: "CopyPasteLearn",
-      url: siteUrl,
-      logo: { "@type": "ImageObject", url: `${siteUrl}/icon-512.png` },
-    },
+    // One identity across Luca's sites: see src/lib/entities.ts.
+    author: authorEntity(post.author),
+    publisher: COPYPASTELEARN,
     url: postUrl,
     image: post.image
       ? (post.image.startsWith("http") ? post.image : `${siteUrl}${post.image}`)
@@ -598,7 +586,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                   <a href="https://lucaberton.com/" target="_blank" rel="noopener" className="text-blue-400 hover:text-blue-300">
                     Website
                   </a>
-                  <a href="https://twitter.com/yourlinuxsa" target="_blank" rel="noopener" className="text-blue-400 hover:text-blue-300">
+                  <a href="https://x.com/TheLucaBerton" target="_blank" rel="noopener" className="text-blue-400 hover:text-blue-300">
                     Twitter
                   </a>
                   <a href="https://www.linkedin.com/in/lucaberton/" target="_blank" rel="noopener" className="text-blue-400 hover:text-blue-300">

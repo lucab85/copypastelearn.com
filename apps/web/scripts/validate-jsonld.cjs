@@ -37,6 +37,12 @@ let blocksScanned = 0;
 const SCRIPT_RE =
   /<script\b[^>]*type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi;
 
+// The Person and Organization shared by all of Luca's sites (src/lib/entities.ts)
+// live on their own hosts on purpose.
+const SHARED_IDS = new Set([
+  'https://lucaberton.com/#person',
+  'https://www.openempower.com/#organization',
+]);
 function urlOk(u) {
   if (typeof u !== 'string') return true;
   if (!u.startsWith('http')) return true;
@@ -51,7 +57,7 @@ function validateNode(node, file, p = '$') {
     node.forEach((n, i) => validateNode(n, file, `${p}[${i}]`));
     return;
   }
-  if (typeof node['@id'] === 'string' && !urlOk(node['@id']))
+  if (typeof node['@id'] === 'string' && !urlOk(node['@id']) && !SHARED_IDS.has(node['@id']))
     pushErr(file, `${p}.@id non-canonical URL: ${node['@id']}`);
   if (typeof node.mainEntityOfPage === 'string' && !urlOk(node.mainEntityOfPage))
     pushErr(file, `${p}.mainEntityOfPage non-canonical URL: ${node.mainEntityOfPage}`);

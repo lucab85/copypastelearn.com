@@ -10,6 +10,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { COPYPASTELEARN, LUCA_BERTON } from "@/lib/entities";
 import {
   CheckCircle2,
   Shield,
@@ -53,23 +54,15 @@ function ProgramJsonLd() {
     description:
       "An 8-session Executive Decision Lab for CTOs, CIOs, VPs, and senior architects building AI platforms in regulated enterprises. Produces seven decision artifacts and a board-ready AI platform roadmap with a 90-day action plan. Vendor-neutral; anchored to NIST AI RMF, ISO/IEC 42001, the EU AI Act, OWASP Top 10 for LLMs, and FinOps for AI.",
     url: `${siteUrl}/ai-platform-engineering`,
-    provider: {
-      "@type": "Organization",
-      name: "CopyPasteLearn",
-      url: siteUrl,
-    },
-    instructor: {
-      "@type": "Person",
-      name: "Luca Berton",
-      jobTitle: "AI Infrastructure Architect",
-      url: "https://lucaberton.com",
-    },
+    // One identity across Luca's sites: see src/lib/entities.ts.
+    provider: COPYPASTELEARN,
     educationalLevel: "Executive",
     timeRequired: "PT24H",
     numberOfCredits: 8,
     hasCourseInstance: {
       "@type": "CourseInstance",
       courseMode: "Online",
+      instructor: LUCA_BERTON,
       courseSchedule: {
         "@type": "Schedule",
         repeatFrequency: "P1W",
