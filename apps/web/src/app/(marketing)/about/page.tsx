@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { COPYPASTELEARN, LUCA_BERTON } from "@/lib/entities";
 import Link from "next/link";
 import { Terminal, Users, Rocket } from "lucide-react";
 import { EmailLink } from "@/components/ui/email-link";
@@ -36,24 +37,10 @@ function AboutPageJsonLd() {
     description:
       "Learn about CopyPasteLearn — hands-on IT automation education with video courses and interactive labs.",
     mainEntity: {
-      "@type": "Organization",
-      name: "CopyPasteLearn",
-      url: siteUrl,
+      // One identity across Luca's sites: see src/lib/entities.ts.
+      ...COPYPASTELEARN,
       founder: {
-        "@type": "Person",
-        name: "Luca Berton",
-        url: "https://lucaberton.com",
-        jobTitle: "IT Automation Expert, Docker Captain & Instructor",
-        sameAs: [
-          "https://lucaberton.com",
-          "https://twitter.com/yourlinuxsa",
-          "https://www.ansiblepilot.com",
-          "https://www.terraformpilot.com",
-          "https://kubernetes.recipes",
-          "https://www.openempower.com",
-          "https://www.ansiblebyexample.com",
-          "https://www.docker.com/captains/",
-        ],
+        ...LUCA_BERTON,
         hasCredential: [
           {
             "@type": "EducationalOccupationalCredential",
@@ -67,10 +54,6 @@ function AboutPageJsonLd() {
           },
         ],
       },
-      sameAs: [
-        "https://github.com/lucab85",
-        "https://twitter.com/copypastelearn",
-      ],
     },
   };
   return (

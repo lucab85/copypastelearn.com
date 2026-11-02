@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { Metadata } from "next";
+import { COPYPASTELEARN } from "@/lib/entities";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { CourseCard } from "@/components/course/course-card";
@@ -42,21 +43,12 @@ export const metadata: Metadata = {
 /* ─── Structured Data ──────────────────────────────── */
 
 function OrganizationJsonLd() {
-  const siteUrl =
-    process.env.NEXT_PUBLIC_APP_URL ?? "https://www.copypastelearn.com";
   const jsonLd = {
     "@context": "https://schema.org",
-    "@type": "Organization",
-    name: "CopyPasteLearn",
-    url: siteUrl,
-    logo: `${siteUrl}/logo.png`,
+    // Founder (Luca Berton) and parent (Open Empower): see src/lib/entities.ts.
+    ...COPYPASTELEARN,
     description:
       "Master IT automation with video courses and hands-on interactive labs.",
-    sameAs: [
-      "https://github.com/lucab85",
-      "https://twitter.com/copypastelearn",
-      "https://discord.com/invite/copypastelearn",
-    ],
   };
   return (
     <script

@@ -10,6 +10,7 @@ import { Separator } from "@/components/ui/separator";
 import { Clock, BookOpen, Lock, CheckCircle2, Play, Target, Users } from "lucide-react";
 import { PageEventTracker } from "@/components/analytics/page-event-tracker";
 import { TerminalPreview } from "@/components/course/terminal-preview";
+import { COPYPASTELEARN, LUCA_BERTON } from "@/lib/entities";
 
 // Per-request memoization so generateMetadata + the page body share one DB call.
 const loadCourse = cache(getCourse);
@@ -111,12 +112,8 @@ export default async function CourseDetailPage({ params }: CourseDetailPageProps
     name: course.title,
     description: course.description,
     url: `${siteUrl}/courses/${slug}`,
-    provider: {
-      "@type": "Organization",
-      name: "CopyPasteLearn",
-      url: siteUrl,
-      logo: `${siteUrl}/images/logo.png`,
-    },
+    // One identity across Luca's sites: see src/lib/entities.ts.
+    provider: COPYPASTELEARN,
     ...(course.thumbnailUrl && {
       image: course.thumbnailUrl.startsWith("http")
         ? course.thumbnailUrl
@@ -134,10 +131,7 @@ export default async function CourseDetailPage({ params }: CourseDetailPageProps
       courseWorkload: totalDuration > 0
         ? `PT${hours > 0 ? `${hours}H` : ""}${minutes}M`
         : undefined,
-      instructor: {
-        "@type": "Person",
-        name: "Luca Berton",
-      },
+      instructor: LUCA_BERTON,
     },
     inLanguage: "en",
     syllabusSections: course.lessons.map((lesson, index) => ({
