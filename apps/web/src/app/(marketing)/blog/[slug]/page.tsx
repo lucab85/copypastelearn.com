@@ -519,7 +519,10 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         </div>
       </header>
 
-      {/* Body: Article + ToC sidebar */}
+      {/* Body: Article + ToC sidebar. Dark like the header: the post's text
+          colours (zinc-300 paragraphs, white headings, zinc-900 cards) are
+          dark-theme colours; on the white page they were ~1.5:1. */}
+      <div className="bg-zinc-950">
       <div className="container mx-auto px-4 py-12">
         <div className="mx-auto max-w-6xl lg:grid lg:grid-cols-[1fr_220px] lg:gap-12 xl:grid-cols-[1fr_240px] xl:gap-16">
           <article className="mx-auto max-w-3xl lg:mx-0">
@@ -663,6 +666,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           {/* Table of Contents sidebar */}
           <TableOfContents items={tocItems} />
         </div>
+      </div>
       </div>
     </>
   );
