@@ -23,7 +23,10 @@ interface ProductCoverProps {
 const BRAND_THEME: Record<
   Brand,
   {
-    /** Tailwind gradient classes (from-, via-, to-). */
+    /**
+     * Tailwind gradient classes (from-, via-, to-). The white title sits on
+     * the via-to half, so keep those stops at >= 4.5:1 against white (WCAG AA).
+     */
     gradient: string;
     /** Accent color for shapes / glyphs (Tailwind text- color). */
     accent: string;
@@ -34,19 +37,19 @@ const BRAND_THEME: Record<
   }
 > = {
   AnsiblePilot: {
-    gradient: "from-rose-600 via-rose-500 to-orange-500",
+    gradient: "from-rose-700 via-rose-600 to-orange-700",
     accent: "text-rose-100",
     mark: "A",
     label: "AnsiblePilot",
   },
   AnsibleByExample: {
-    gradient: "from-red-700 via-red-500 to-amber-500",
+    gradient: "from-red-700 via-red-600 to-amber-700",
     accent: "text-red-100",
     mark: "Aₓ",
     label: "Ansible by Example",
   },
   TerraformPilot: {
-    gradient: "from-violet-700 via-purple-600 to-fuchsia-500",
+    gradient: "from-violet-700 via-purple-600 to-fuchsia-600",
     accent: "text-violet-100",
     mark: "T",
     label: "TerraformPilot",
@@ -58,13 +61,13 @@ const BRAND_THEME: Record<
     label: "Kubernetes Recipes",
   },
   NvidiaAI: {
-    gradient: "from-lime-500 via-green-600 to-emerald-700",
+    gradient: "from-lime-600 via-green-700 to-emerald-700",
     accent: "text-lime-100",
     mark: "◢",
     label: "NVIDIA AI",
   },
   CopyPasteLearn: {
-    gradient: "from-emerald-700 via-teal-600 to-cyan-600",
+    gradient: "from-emerald-700 via-teal-700 to-cyan-700",
     accent: "text-emerald-100",
     mark: "✦",
     label: "CopyPasteLearn",

@@ -172,7 +172,7 @@ export function BlogList({ posts, categories, tags }: BlogListProps) {
             className={`rounded-full px-3 py-1 text-sm font-medium transition-colors ${
               !activeCategory
                 ? "bg-primary text-primary-foreground"
-                : "bg-muted text-muted-foreground hover:text-foreground"
+                : "bg-muted text-zinc-600 hover:text-foreground"
             }`}
           >
             All
@@ -187,7 +187,7 @@ export function BlogList({ posts, categories, tags }: BlogListProps) {
               className={`rounded-full px-3 py-1 text-sm font-medium transition-colors ${
                 activeCategory === cat
                   ? "bg-primary text-primary-foreground"
-                  : "bg-muted text-muted-foreground hover:text-foreground"
+                  : "bg-muted text-zinc-600 hover:text-foreground"
               }`}
             >
               {cat}
@@ -209,7 +209,7 @@ export function BlogList({ posts, categories, tags }: BlogListProps) {
                   : "bg-muted/60 text-muted-foreground hover:text-foreground hover:bg-muted"
               }`}
             >
-              {name} <span className="text-muted-foreground/60">{count}</span>
+              {name} <span className="tabular-nums">{count}</span>
             </button>
           ))}
           {/* Active tag, if it's not already in the top-N */}
@@ -279,7 +279,7 @@ export function BlogList({ posts, categories, tags }: BlogListProps) {
                       }`}
                     >
                       {name}{" "}
-                      <span className="text-muted-foreground/60">{count}</span>
+                      <span className="tabular-nums">{count}</span>
                     </button>
                   ))}
                 </div>
