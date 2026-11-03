@@ -31,6 +31,15 @@ export async function generateMetadata({
   // " — CopyPasteLearn" (17 chars); when the course title is long, render it
   // standalone (absolute) so the branded suffix doesn't push past 60.
   const brandedTitleLength = course.title.length + " — CopyPasteLearn".length;
+  // Facebook, LinkedIn and X don't render SVG. For an SVG thumbnail, leave the
+  // share image to the generated opengraph-image card in this folder (Next.js
+  // uses it whenever metadata sets none). No size tags: thumbnails vary.
+  const shareImage =
+    course.thumbnailUrl && !/\.svg(\?|$)/i.test(course.thumbnailUrl)
+      ? course.thumbnailUrl.startsWith("http")
+        ? course.thumbnailUrl
+        : `${siteUrl}${course.thumbnailUrl}`
+      : null;
   return {
     title: brandedTitleLength > 60 ? { absolute: course.title } : course.title,
     description: course.description
@@ -48,18 +57,7 @@ export async function generateMetadata({
           : course.description
         : undefined,
       type: "website",
-      ...(course.thumbnailUrl && {
-        images: [
-          {
-            url: course.thumbnailUrl.startsWith("http")
-              ? course.thumbnailUrl
-              : `${siteUrl}${course.thumbnailUrl}`,
-            width: 1200,
-            height: 630,
-            alt: course.title,
-          },
-        ],
-      }),
+      ...(shareImage && { images: [{ url: shareImage, alt: course.title }] }),
     },
     twitter: {
       card: "summary_large_image" as const,
@@ -71,13 +69,7 @@ export async function generateMetadata({
           ? course.description.slice(0, 157) + "..."
           : course.description
         : undefined,
-      ...(course.thumbnailUrl && {
-        images: [
-          course.thumbnailUrl.startsWith("http")
-            ? course.thumbnailUrl
-            : `${siteUrl}${course.thumbnailUrl}`,
-        ],
-      }),
+      ...(shareImage && { images: [shareImage] }),
     },
   };
 }
