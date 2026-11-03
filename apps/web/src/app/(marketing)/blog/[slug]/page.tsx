@@ -271,7 +271,7 @@ function renderContent(content: string): { html: string; promoInsertions: number
       codeBlocks.push(
         `<div class="my-6 overflow-x-auto rounded-xl border border-zinc-800 bg-zinc-900">${
           lang
-            ? `<div class="flex items-center justify-between border-b border-zinc-800 px-4 py-2"><span class="text-xs font-mono text-zinc-500 uppercase">${lang}</span></div>`
+            ? `<div class="flex items-center justify-between border-b border-zinc-800 px-4 py-2"><span class="text-xs font-mono text-zinc-400 uppercase">${lang}</span></div>`
             : ""
         }<pre class="p-4"><code class="text-sm font-mono text-zinc-300 leading-relaxed">${escaped}</code></pre></div>`
       );
@@ -461,7 +461,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           <div className="mx-auto max-w-3xl">
             <Link
               href="/blog"
-              className="mb-6 inline-flex items-center gap-1.5 text-sm text-zinc-500 transition-colors hover:text-zinc-300"
+              className="mb-6 inline-flex items-center gap-1.5 text-sm text-zinc-400 transition-colors hover:text-zinc-300"
             >
               <ArrowLeft className="h-4 w-4" />
               Back to Blog
@@ -493,7 +493,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
               {post.description}
             </p>
 
-            <div className="mt-6 flex flex-wrap items-center gap-4 text-sm text-zinc-500">
+            <div className="mt-6 flex flex-wrap items-center gap-4 text-sm text-zinc-400">
               <span className="flex items-center gap-1.5">
                 <User className="h-4 w-4" />
                 {post.author}
@@ -570,7 +570,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
             {/* Share again at bottom */}
             <div className="mt-10 flex items-center justify-between border-t border-zinc-800 pt-8">
-              <span className="text-sm text-zinc-500">Share this article</span>
+              <span className="text-sm text-zinc-400">Share this article</span>
               <ShareButtons url={postUrl} title={post.title} description={post.description} />
             </div>
 
@@ -612,13 +612,13 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                       href={`/blog/${p.slug}`}
                       className="group rounded-xl border border-zinc-800 bg-zinc-900/50 p-5 transition-colors hover:border-zinc-700 hover:bg-zinc-900"
                     >
-                      <Badge variant="secondary" className="mb-3 bg-zinc-800 text-zinc-500 text-xs">
+                      <Badge variant="secondary" className="mb-3 bg-zinc-800 text-zinc-400 text-xs">
                         {p.category}
                       </Badge>
                       <h3 className="font-semibold text-zinc-200 group-hover:text-white transition-colors line-clamp-2">
                         {p.title}
                       </h3>
-                      <p className="mt-2 text-sm text-zinc-500 line-clamp-2">
+                      <p className="mt-2 text-sm text-zinc-400 line-clamp-2">
                         {p.description}
                       </p>
                     </Link>
@@ -635,7 +635,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                 <h2 className="mb-2 text-xl font-bold text-white">
                   Explore topics
                 </h2>
-                <p className="mb-5 text-sm text-zinc-500">
+                <p className="mb-5 text-sm text-zinc-400">
                   Browse more articles on the topics covered here.
                 </p>
                 <div className="flex flex-wrap gap-2">
@@ -655,7 +655,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                       className="rounded-md border border-zinc-700 bg-zinc-800/60 px-2.5 py-1 text-xs text-zinc-400 transition-colors hover:bg-zinc-700 hover:text-zinc-200"
                     >
                       {t.name}{" "}
-                      <span className="text-zinc-600">{t.count}</span>
+                      <span className="text-zinc-400">{t.count}</span>
                     </Link>
                   ))}
                 </div>
