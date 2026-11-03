@@ -57,6 +57,26 @@
   body {
     @apply bg-background text-foreground;
   }
+
+  /* Readability: balanced headings and no lone last word in running text.
+     Longhands only, so nowrap / truncate containers keep working. */
+  h1,
+  h2,
+  h3,
+  h4 {
+    text-wrap-style: balance;
+  }
+
+  p,
+  li {
+    text-wrap-style: pretty;
+  }
+
+  /* Placeholders at WCAG AA (preflight's gray-400 is 2.5:1 on white). */
+  input::placeholder,
+  textarea::placeholder {
+    color: hsl(var(--muted-foreground));
+  }
 }
 
 /* ─── Dashboard Animations ────────────────────────────── */

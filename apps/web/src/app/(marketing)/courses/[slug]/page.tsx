@@ -302,7 +302,7 @@ export default async function CourseDetailPage({ params }: CourseDetailPageProps
         )}
       </div>
 
-      <div className="grid gap-12 lg:grid-cols-3">
+      <div className="grid grid-cols-1 gap-12 lg:grid-cols-3">
         {/* Main Content */}
         <div className="lg:col-span-2">
           {/* Outcomes */}

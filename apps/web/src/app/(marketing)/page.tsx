@@ -216,7 +216,7 @@ export default async function HomePage() {
               </div>
               <div className="space-y-3 p-5 font-mono text-sm leading-relaxed">
                 <div>
-                  <span className="text-green-500">$</span>{" "}
+                  <span className="text-green-700">$</span>{" "}
                   <span className="text-foreground">
                     docker run -d -p 80:80 nginx
                   </span>
@@ -230,11 +230,11 @@ export default async function HomePage() {
                 <div className="text-muted-foreground">
                   Status: Downloaded newer image for nginx:latest
                 </div>
-                <div className="text-green-500">
+                <div className="text-green-700">
                   ✓ Container started on port 80
                 </div>
                 <div className="mt-2">
-                  <span className="text-green-500">$</span>{" "}
+                  <span className="text-green-700">$</span>{" "}
                   <span className="text-foreground">curl localhost</span>
                 </div>
                 <div className="text-muted-foreground">

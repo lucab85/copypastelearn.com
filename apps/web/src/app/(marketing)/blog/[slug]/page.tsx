@@ -293,8 +293,8 @@ function renderContent(content: string): { html: string; promoInsertions: number
       const headingHtml = `<h3 id="${id}" class="mt-10 mb-4 text-xl font-bold text-white scroll-mt-24">${inlineFormat(firstLine)}</h3>`;
       if (rest) {
         const restBlock = rest.split("\n").every((l) => l.startsWith("- "))
-          ? `<ul class="my-4 space-y-2 pl-6 text-muted-foreground">${rest.split("\n").map((l) => `<li class="list-disc">${inlineFormat(l.slice(2))}</li>`).join("")}</ul>`
-          : `<p class="my-4 leading-[1.8] text-muted-foreground">${inlineFormat(rest)}</p>`;
+          ? `<ul class="my-4 max-w-prose space-y-2 pl-6 text-muted-foreground">${rest.split("\n").map((l) => `<li class="list-disc">${inlineFormat(l.slice(2))}</li>`).join("")}</ul>`
+          : `<p class="my-4 max-w-prose leading-[1.8] text-muted-foreground">${inlineFormat(rest)}</p>`;
         return headingHtml + restBlock;
       }
       return headingHtml;
@@ -306,8 +306,8 @@ function renderContent(content: string): { html: string; promoInsertions: number
       const headingHtml = `<h2 id="${id}" class="mt-14 mb-5 text-2xl font-bold text-white scroll-mt-24">${inlineFormat(firstLine)}</h2>`;
       if (rest) {
         const restBlock = rest.split("\n").every((l) => l.startsWith("- "))
-          ? `<ul class="my-4 space-y-2 pl-6 text-muted-foreground">${rest.split("\n").map((l) => `<li class="list-disc">${inlineFormat(l.slice(2))}</li>`).join("")}</ul>`
-          : `<p class="my-4 leading-[1.8] text-muted-foreground">${inlineFormat(rest)}</p>`;
+          ? `<ul class="my-4 max-w-prose space-y-2 pl-6 text-muted-foreground">${rest.split("\n").map((l) => `<li class="list-disc">${inlineFormat(l.slice(2))}</li>`).join("")}</ul>`
+          : `<p class="my-4 max-w-prose leading-[1.8] text-muted-foreground">${inlineFormat(rest)}</p>`;
         return headingHtml + restBlock;
       }
       return headingHtml;
@@ -351,7 +351,7 @@ function renderContent(content: string): { html: string; promoInsertions: number
         .split("\n")
         .map((l) => `<li class="pl-2 text-zinc-300">${inlineFormat(l.slice(2))}</li>`)
         .join("");
-      return `<ul class="my-5 list-disc space-y-2 pl-6 marker:text-zinc-600">${items}</ul>`;
+      return `<ul class="my-5 max-w-prose list-disc space-y-2 pl-6 marker:text-zinc-600">${items}</ul>`;
     }
 
     // Ordered lists
@@ -360,7 +360,7 @@ function renderContent(content: string): { html: string; promoInsertions: number
         .split("\n")
         .map((l) => `<li class="pl-2 text-zinc-300">${inlineFormat(l.replace(/^\d+\.\s/, ""))}</li>`)
         .join("");
-      return `<ol class="my-5 list-decimal space-y-2 pl-6 marker:text-zinc-500">${items}</ol>`;
+      return `<ol class="my-5 max-w-prose list-decimal space-y-2 pl-6 marker:text-zinc-500">${items}</ol>`;
     }
 
     // Blockquotes
@@ -369,11 +369,11 @@ function renderContent(content: string): { html: string; promoInsertions: number
         .split("\n")
         .map((l) => l.slice(2))
         .join(" ");
-      return `<blockquote class="my-6 border-l-4 border-blue-500/50 bg-zinc-900/50 py-4 pl-6 pr-4 rounded-r-lg text-zinc-300 italic">${inlineFormat(text)}</blockquote>`;
+      return `<blockquote class="my-6 max-w-prose border-l-4 border-blue-500/50 bg-zinc-900/50 py-4 pl-6 pr-4 rounded-r-lg text-zinc-300 italic">${inlineFormat(text)}</blockquote>`;
     }
 
     // Paragraph
-    return `<p class="my-5 text-lg leading-[1.8] text-zinc-300">${inlineFormat(trimmed)}</p>`;
+    return `<p class="my-5 max-w-prose text-lg leading-[1.8] text-zinc-300">${inlineFormat(trimmed)}</p>`;
   }).filter(Boolean);
 
   // Determine promo insertion points (after ~33% and ~66% of content)

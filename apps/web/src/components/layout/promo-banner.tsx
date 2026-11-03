@@ -106,7 +106,7 @@ export function PromoBanner() {
             />
           </picture>
         </a>
-        <p className="mt-2 text-center text-sm text-muted-foreground">
+        <p className="mx-auto mt-2 max-w-prose text-center text-sm text-muted-foreground">
           {promo.caption}
           {code && (
             <>

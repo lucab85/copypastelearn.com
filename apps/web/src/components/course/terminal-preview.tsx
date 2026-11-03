@@ -110,7 +110,7 @@ export function TerminalPreview({ courseSlug }: { courseSlug: string }) {
           <span className="h-3 w-3 rounded-full bg-[#ff5f57]" />
           <span className="h-3 w-3 rounded-full bg-[#febc2e]" />
           <span className="h-3 w-3 rounded-full bg-[#28c840]" />
-          <span className="ml-3 text-xs text-white/40">sandbox — bash</span>
+          <span className="ml-3 text-xs text-white/50">sandbox — bash</span>
         </div>
         {/* Terminal content */}
         <div className="overflow-x-auto p-4 font-mono text-[13px] leading-6">
