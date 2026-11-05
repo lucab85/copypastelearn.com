@@ -1,7 +1,9 @@
 import { ImageResponse } from "next/og";
-import { getCourse } from "@/server/queries/courses";
+import { db } from "@/lib/db";
 
-export const runtime = "edge";
+// Node, not edge: the card reads the course from Postgres through Prisma, which
+// does not run on the edge runtime. On edge every course card answered 500
+// (Nov 2026), so the 9 course pages that use this card shared a broken image.
 export const alt = "Course";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
@@ -12,7 +14,17 @@ export default async function CourseOGImage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const course = await getCourse(slug);
+  // Only what the card shows. getCourse() also resolves the signed-in user and
+  // their subscription, which an image request has no business doing.
+  const course = await db.course.findUnique({
+    where: { slug, status: "PUBLISHED" },
+    select: {
+      title: true,
+      description: true,
+      difficulty: true,
+      lessons: { where: { status: "PUBLISHED" }, select: { durationSeconds: true } },
+    },
+  });
 
   if (!course) {
     return new ImageResponse(
