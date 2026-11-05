@@ -96,7 +96,9 @@ export default async function CourseOGImage({
           }}
         />
 
-        {/* Badge row */}
+        {/* Badge row. Satori renders a <div> only with one child node or display:flex,
+            so each badge's text is a single template string (a mixed "📚 {n} lessons"
+            made every course card answer 500, Nov 2026). */}
         <div style={{ display: "flex", gap: 12, marginBottom: 24 }}>
           <div
             style={{
@@ -123,7 +125,7 @@ export default async function CourseOGImage({
                 border: "1px solid #27272a",
               }}
             >
-              🕐 {durationText}
+              {`🕐 ${durationText}`}
             </div>
           )}
           <div
@@ -137,7 +139,7 @@ export default async function CourseOGImage({
               border: "1px solid #27272a",
             }}
           >
-            📚 {course.lessons.length} lessons
+            {`📚 ${course.lessons.length} lessons`}
           </div>
         </div>
 
@@ -163,9 +165,7 @@ export default async function CourseOGImage({
               color: "#a1a1aa",
               lineHeight: 1.4,
               maxWidth: "80%",
-              overflow: "hidden",
-              textOverflow: "ellipsis",
-              display: "-webkit-box",
+              display: "flex",
             }}
           >
             {course.description.length > 120
