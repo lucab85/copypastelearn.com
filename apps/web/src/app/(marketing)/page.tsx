@@ -156,7 +156,7 @@ export default async function HomePage() {
 
             <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl">
               Learn IT Skills with{" "}
-              <span className="bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
+              <span className="text-primary">
                 Real Hands-On Labs
               </span>
             </h1>

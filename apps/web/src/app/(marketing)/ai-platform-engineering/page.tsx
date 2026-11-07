@@ -289,7 +289,7 @@ export default function AIPlatformEngineeringPage() {
           <h1 className="text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl">
             Your Board Wants an AI Strategy.
             <br />
-            <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+            <span className="text-blue-400">
               Give Them a Platform.
             </span>
           </h1>
@@ -794,7 +794,7 @@ export default function AIPlatformEngineeringPage() {
           <h2 className="text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl">
             Stop Experimenting.
             <br />
-            <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+            <span className="text-blue-400">
               Start Building Your AI Platform.
             </span>
           </h2>

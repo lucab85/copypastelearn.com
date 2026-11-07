@@ -106,7 +106,7 @@ export default async function ShopPage({ searchParams }: ShopPageProps) {
             </Badge>
             <h1 className="text-balance text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl">
               Production-grade DevOps playbooks,
-              <span className="block bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
+              <span className="block text-primary">
                 shipped to your terminal in seconds.
               </span>
             </h1>
