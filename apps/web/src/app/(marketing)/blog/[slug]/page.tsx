@@ -213,7 +213,7 @@ function MidArticlePromo({ variant }: { variant: "courses" | "newsletter" | "pri
 
   if (variant === "newsletter") {
     return (
-      <div className="my-10 rounded-xl border border-zinc-800 bg-gradient-to-br from-purple-950/40 to-zinc-900 p-6 sm:p-8">
+      <div className="my-10 rounded-xl border border-zinc-800 bg-zinc-900 p-6 sm:p-8">
         <div className="text-xs font-semibold uppercase tracking-wider text-purple-400 mb-3">
           Stay Updated
         </div>
@@ -540,7 +540,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             })}
 
             {/* Bottom CTA */}
-            <div className="mt-16 rounded-xl border border-zinc-800 bg-gradient-to-br from-blue-950/30 via-zinc-900 to-purple-950/30 p-8 sm:p-10 text-center">
+            <div className="mt-16 rounded-xl border border-zinc-800 bg-zinc-900 p-8 sm:p-10 text-center">
               <h2 className="text-2xl font-bold text-white">
                 Ready to learn by doing?
               </h2>
