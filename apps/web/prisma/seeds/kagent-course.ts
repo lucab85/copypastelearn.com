@@ -14,7 +14,8 @@
  * Wired from prisma/seed.ts (`pnpm db:seed`). To seed only this course, run
  * prisma/seed.kagent.ts instead.
  *
- * The YAML snippets are the manifests of the course lab, copied as they are.
+ * The YAML snippets are the manifests of the course lab, copied as they are
+ * (screenshare-recorder: lessons/kagent/lab). Lesson sortOrder starts at 0: the first lesson is free to view.
  */
 
 import type { PrismaClient } from "@prisma/client";
@@ -26,7 +27,7 @@ export const kagentLessons = [
     title: "Install kagent 1.0 on a local Kubernetes cluster",
     slug: "install-kagent-on-kind",
     description: "Create a kind cluster on Kubernetes 1.37, install the kagent CLI and the kagent 1.0 release candidate, and check every component that the installer creates.",
-    sortOrder: 1,
+    sortOrder: 0,
     codeSnippets: [
       {
         label: "CLI config (kagent-config.yaml)",
@@ -36,7 +37,7 @@ export const kagentLessons = [
       {
         label: "Helm values (kagent-values.yaml)",
         language: "yaml",
-        code: "config:\n  server:\n    grpcReflection: true\n  sandboxes:\n    guestImage: ghcr.io/kagent-dev/kagent/sandbox-guest@sha256:d3c444e3f5472598ff520255b72cfcb9ecdf22815fd87747315aeaf0520801c3\n    cpu: \"1\"\n    memory: 1Gi\n    defaultTtl: 3600s\n    maxTtl: 86400s"
+        code: "config:\n  server:\n    grpcReflection: true"
       }
     ],
     resources: [
@@ -54,7 +55,7 @@ export const kagentLessons = [
     title: "Your first agent",
     slug: "your-first-agent",
     description: "Apply a Harness, an AgentTemplate and an Agent, wait for the Agent to become ready, then open a Session and talk to it.",
-    sortOrder: 2,
+    sortOrder: 1,
     codeSnippets: [
       {
         label: "Harness (harness.yaml)",
@@ -83,7 +84,7 @@ export const kagentLessons = [
     title: "Give your agent tools with MCP",
     slug: "give-your-agent-tools-with-mcp",
     description: "List the tools of the built-in MCP server, bind two of them to your AgentTemplate and watch the agent answer from live cluster data.",
-    sortOrder: 3,
+    sortOrder: 2,
     codeSnippets: [
       {
         label: "AgentTemplate with MCP tools (template.yaml)",
@@ -102,17 +103,17 @@ export const kagentLessons = [
     title: "Keep agents in a box with egress policies",
     slug: "egress-policies",
     description: "See what an agent may reach by default, grant one destination with an EgressPolicy, and check that kagent admitted it.",
-    sortOrder: 4,
+    sortOrder: 3,
     codeSnippets: [
-      {
-        label: "SandboxTemplate (sandbox-template.yaml)",
-        language: "yaml",
-        code: "apiVersion: api.kagent.dev/v1alpha3\nkind: SandboxTemplate\nmetadata:\n  name: scratch\n  namespace: kagent\nspec:\n  workload:\n    image: docker.io/library/buildpack-deps@sha256:9e486725325568707dbd794ca9b53cffb7ddee2b8ac1b94941ca4d3d8c6e9df9\n  env:\n    - name: LANG\n      value: C.UTF-8\n  substrate:\n    workerPoolRef:\n      name: kagent-default\n    snapshotPolicy:\n      location: s3://ate-snapshots/kagent/"
-      },
       {
         label: "EgressPolicy (egress-policy.yaml)",
         language: "yaml",
         code: "apiVersion: api.kagent.dev/v1alpha3\nkind: EgressPolicy\nmetadata:\n  name: npm-registry\n  namespace: kagent\nspec:\n  destinations:\n    - origin: https://registry.npmjs.org"
+      },
+      {
+        label: "Select the policy on the agent",
+        language: "bash",
+        code: "kubectl patch agent my-first-agent -n kagent --type merge \\\n  -p '{\"spec\":{\"egressPolicyRefs\":[{\"name\":\"npm-registry\"}]}}'"
       }
     ],
     resources: [
@@ -126,8 +127,24 @@ export const kagentLessons = [
     title: "Trace your agents with OpenTelemetry",
     slug: "trace-agents-with-opentelemetry",
     description: "Deploy the lightweight OTel stack, turn on tracing in kagent and read the spans of one agent request.",
-    sortOrder: 5,
-    codeSnippets: [],
+    sortOrder: 4,
+    codeSnippets: [
+      {
+        label: "Jaeger values (jaeger-values.yaml)",
+        language: "yaml",
+        code: "provisionDataStore:\n  cassandra: false\nallInOne:\n  enabled: true\nstorage:\n  type: memory\nagent:\n  enabled: false\ncollector:\n  enabled: false\nquery:\n  enabled: false"
+      },
+      {
+        label: "Send kagent traces to the collector (kagent-telemetry.yaml)",
+        language: "yaml",
+        code: "config:\n  telemetry:\n    traces:\n      endpoint: http://otel-collector.telemetry.svc.cluster.local:4317\n      protocol: grpc\n  runtimeDefaults:\n    telemetry:\n      traces:\n        endpoint: http://otel-collector.telemetry.svc.cluster.local:4317\n        protocol: grpc"
+      },
+      {
+        label: "Upgrade the kagent release",
+        language: "bash",
+        code: "helm upgrade kagent oci://ghcr.io/kagent-dev/kagent/helm/kagent \\\n  --version 1.0.0-rc3 \\\n  --namespace kagent --reuse-values \\\n  --values kagent-telemetry.yaml"
+      }
+    ],
     resources: [
       {
         title: "kagent docs: Lightweight OTel stack",
@@ -143,8 +160,14 @@ export const kagentLessons = [
     title: "Suspend, resume and debug",
     slug: "suspend-resume-and-debug",
     description: "Understand what happens to an agent between turns, read the Agent conditions to find why one is not ready, and plan upgrades.",
-    sortOrder: 6,
-    codeSnippets: [],
+    sortOrder: 5,
+    codeSnippets: [
+      {
+        label: "A template that points at a missing MCP server (template.yaml)",
+        language: "yaml",
+        code: "apiVersion: api.kagent.dev/v1alpha3\nkind: AgentTemplate\nmetadata:\n  name: my-first-template\n  namespace: kagent\nspec:\n  description: My first kagent agent\n  modelConfig:\n    name: default-model-config\n  systemPrompt: |-\n    You are a concise, helpful assistant with read access to a Kubernetes cluster.\n    Use your tools to answer questions about what is running in the cluster.\n    When a question cannot be answered from the tools that you have, say so.\n  tools:\n    - mcp:\n        server:\n          kind: RemoteMCPServer\n          name: kagent-tools\n        tools:\n          - k8s_get_resources\n          - k8s_get_pod_logs"
+      }
+    ],
     resources: [
       {
         title: "kagent docs: Debug",
@@ -183,7 +206,7 @@ export async function seedKagentCourse(prisma: PrismaClient) {
         "Docker or Podman installed",
         "An API key for a model provider (OpenAI or Anthropic)",
       ],
-      estimatedDuration: 45,
+      estimatedDuration: 35,
     },
   });
 
