@@ -299,7 +299,7 @@ export async function seedGooseCourse(prisma: PrismaClient) {
         "Install goose, teach it your project's rules with AGENTS.md, then run it the way a team does: recipes, CI, guardrails and a record of what it did.",
       difficulty: "INTERMEDIATE",
       status: "DRAFT",
-      sortOrder: 7,
+      sortOrder: 8,
       outcomes: [
         "Install a pinned goose and connect it to a model and to extensions",
         "Write an AGENTS.md that measurably changes what the agent does, and prove goose received it",
@@ -311,7 +311,7 @@ export async function seedGooseCourse(prisma: PrismaClient) {
       prerequisites: [
         "Comfortable in a terminal and with git",
         "Python 3 and git installed (the practice repository is a small Python project)",
-        "An API key for a model provider (the course uses OpenAI)",
+        "An API key for an OpenAI-compatible model provider (the lesson files use OpenAI; any compatible endpoint works)",
         "A GitHub repository, for the CI lesson (optional)",
       ],
       estimatedDuration: 35,

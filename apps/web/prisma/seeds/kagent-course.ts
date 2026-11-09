@@ -204,7 +204,7 @@ export async function seedKagentCourse(prisma: PrismaClient) {
       prerequisites: [
         "Comfortable with kubectl and YAML",
         "Docker or Podman installed",
-        "An API key for a model provider (OpenAI or Anthropic)",
+        "An API key for an OpenAI-compatible model provider (OpenAI, or your own endpoint)",
       ],
       estimatedDuration: 35,
     },
