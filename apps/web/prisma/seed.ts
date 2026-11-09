@@ -1,4 +1,5 @@
 import { PrismaClient } from "@prisma/client";
+import { seedKagentCourse } from "./seeds/kagent-course";
 
 const prisma = new PrismaClient();
 
@@ -1841,6 +1842,9 @@ async function main() {
   console.log(
     `  ✓ Course "${course6.title}" with ${bootcampLessons.length} lessons`
   );
+
+  // ─── Course 7: kagent 1.0 (DRAFT) ───────────────────
+  await seedKagentCourse(prisma);
 
   console.log("\n✅ Seeding complete!");
 }
