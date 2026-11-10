@@ -12,8 +12,7 @@
  *     no video, and a re-run never overwrites a Mux playback ID that was added
  *     later.
  *
- * NOT wired into prisma/seed.ts yet (the three courses are wired together later).
- * To seed only this course, run prisma/seed.mcp.ts.
+ * Wired into prisma/seed.ts with the other Academy courses. To seed only this course, run prisma/seed.mcp.ts.
  *
  * The code snippets are the files of the course lab, copied as they are, without the final newline
  * (screenshare-recorder: lessons/mcp/lab). Lesson sortOrder starts at 0: the first lesson is free to view.
@@ -101,7 +100,7 @@ export const mcpLessons = [
   {
     title: "Streamable HTTP and running it as a service",
     slug: "streamable-http-and-running-a-service",
-    description: "Serve the same server over Streamable HTTP, call it by hand with curl, from a Python client and from the Inspector, and read its log.",
+    description: "Serve the same server over Streamable HTTP, call it by hand with curl, from a Python client and from the Inspector (command line and web interface), and read its log.",
     sortOrder: 2,
     codeSnippets: [
       {
@@ -128,6 +127,11 @@ export const mcpLessons = [
         label: "A Python client (client.py)",
         language: "python",
         code: "import anyio\nfrom mcp import Client\n\n\nasync def main() -> None:\n    async with Client(\"http://127.0.0.1:8000/mcp\") as client:\n        print(\"protocol:\", client.protocol_version)\n        result = await client.call_tool(\"get_runbook\", {\"slug\": \"disk-full\"})\n        print(result.content[0].text)\n\n\nanyio.run(main)"
+      },
+      {
+        label: "The Inspector web interface",
+        language: "bash",
+        code: "alias mcp-web='npx -y @modelcontextprotocol/inspector@2.14.0 --web'\nmcp-web --transport http --server-url http://127.0.0.1:8000/mcp > inspector.log 2>&1 &"
       }
     ],
     resources: [
@@ -144,7 +148,7 @@ export const mcpLessons = [
   {
     title: "Authentication and authorization",
     slug: "authentication-and-authorization",
-    description: "Make the server an OAuth resource server: verify bearer tokens, answer 401 and 403 correctly, publish metadata and check scopes per tool.",
+    description: "Make the server an OAuth resource server: verify bearer tokens, answer 401 and 403 correctly, publish metadata and check scopes per tool. See a refused write call in the Inspector's web interface.",
     sortOrder: 3,
     codeSnippets: [
       {
@@ -166,6 +170,11 @@ export const mcpLessons = [
         label: "Call a tool with a token (call.sh)",
         language: "bash",
         code: "#!/usr/bin/env bash\n# usage: bash call.sh TOKEN   (calls get_runbook, prints the HTTP status and the start of the reply)\ncode=$(curl -s -o reply.json -w '%{http_code}' -X POST http://127.0.0.1:8000/mcp \\\n  -H \"Authorization: Bearer $1\" \\\n  -H 'Content-Type: application/json' \\\n  -H 'Accept: application/json, text/event-stream' \\\n  -H 'MCP-Protocol-Version: 2026-07-28' \\\n  -H 'Mcp-Method: tools/call' \\\n  -H 'Mcp-Name: get_runbook' \\\n  -d @call.json)\necho \"HTTP $code: $(head -c 100 reply.json)\""
+      },
+      {
+        label: "The Inspector web interface with the read token",
+        language: "bash",
+        code: "mcp-web --transport http --server-url http://127.0.0.1:8000/mcp \\\n  --header \"Authorization: Bearer $READ\" > inspector.log 2>&1 &"
       }
     ],
     resources: [
@@ -219,7 +228,7 @@ export const mcpLessons = [
   {
     title: "Container, kagent cluster and a tool binding",
     slug: "container-and-kagent-remote-mcp-server",
-    description: "Package the server as a container, deploy it to the kagent cluster, register it as a RemoteMCPServer and bind two of its tools to an AgentTemplate.",
+    description: "Package the server as a container, deploy it to the kagent cluster, register it as a RemoteMCPServer and bind two of its tools to an AgentTemplate. See the server, its tools and the agent in the kagent web interface.",
     sortOrder: 5,
     codeSnippets: [
       {

@@ -26,7 +26,7 @@ export const kagentLessons = [
   {
     title: "Install kagent 1.0 on a local Kubernetes cluster",
     slug: "install-kagent-on-kind",
-    description: "Create a kind cluster on Kubernetes 1.37, install the kagent CLI and the kagent 1.0 release candidate, and check every component that the installer creates.",
+    description: "Create a kind cluster on Kubernetes 1.37, install the kagent CLI and the kagent 1.0 release candidate, check every component that the installer creates, and look at the result in the kagent web interface.",
     sortOrder: 0,
     codeSnippets: [
       {
@@ -54,7 +54,7 @@ export const kagentLessons = [
   {
     title: "Your first agent",
     slug: "your-first-agent",
-    description: "Apply a Harness, an AgentTemplate and an Agent, wait for the Agent to become ready, then open a Session and talk to it.",
+    description: "Apply a Harness, a ModelConfig, an AgentTemplate and an Agent, wait for the Agent to become ready, then open a Session and talk to it in the terminal and in the web interface. The video points the agent at an OpenAI-compatible endpoint with course-model-config. If you installed kagent with an OpenAI key, the installer already created default-model-config: name that one in the template instead.",
     sortOrder: 1,
     codeSnippets: [
       {
@@ -63,9 +63,14 @@ export const kagentLessons = [
         code: "apiVersion: api.kagent.dev/v1alpha3\nkind: Harness\nmetadata:\n  name: my-first-harness\n  namespace: kagent\nspec:\n  kagent: {}\n  workload:\n    # kagent's native runtime image, pinned by digest\n    image: ghcr.io/kagent-dev/kagent/golang-adk@sha256:51859027b42b704c8f443876ef5155ace2f411752f297e5cb43e04d9b91545b7\n  substrate:\n    workerPoolRef:\n      name: kagent-default\n    snapshotPolicy:\n      # The bucket that the Agent Substrate chart creates in its bundled object store.\n      location: s3://ate-snapshots/kagent/"
       },
       {
+        label: "ModelConfig for an OpenAI-compatible endpoint (model-config.yaml)",
+        language: "yaml",
+        code: "apiVersion: api.kagent.dev/v1alpha3\nkind: ModelConfig\nmetadata:\n  name: course-model-config\n  namespace: kagent\nspec:\n  provider: OpenAI\n  model: sonnet\n  apiKeySecret: course-llm\n  apiKeySecretKey: API_KEY\n  openAI:\n    # Any OpenAI-compatible endpoint works here. kagent's egress gateway only accepts DNS names.\n    baseUrl: http://course-llm.kagent.svc.cluster.local:8099/v1"
+      },
+      {
         label: "AgentTemplate (template.yaml)",
         language: "yaml",
-        code: "apiVersion: api.kagent.dev/v1alpha3\nkind: AgentTemplate\nmetadata:\n  name: my-first-template\n  namespace: kagent\nspec:\n  description: My first kagent agent\n  modelConfig:\n    # Default config created by the kagent install\n    name: default-model-config\n  systemPrompt: You are a concise, helpful assistant."
+        code: "apiVersion: api.kagent.dev/v1alpha3\nkind: AgentTemplate\nmetadata:\n  name: my-first-template\n  namespace: kagent\nspec:\n  description: My first kagent agent\n  modelConfig:\n    # The model configuration from model-config.yaml\n    name: course-model-config\n  systemPrompt: You are a concise, helpful assistant."
       },
       {
         label: "Agent (agent.yaml)",
@@ -83,13 +88,13 @@ export const kagentLessons = [
   {
     title: "Give your agent tools with MCP",
     slug: "give-your-agent-tools-with-mcp",
-    description: "List the tools of the built-in MCP server, bind two of them to your AgentTemplate and watch the agent answer from live cluster data.",
+    description: "List the tools of the built-in MCP server, bind two of them to your AgentTemplate and watch the agent answer from live cluster data, in the terminal and in the web interface, where each tool call and its result is a card in the chat.",
     sortOrder: 2,
     codeSnippets: [
       {
         label: "AgentTemplate with MCP tools (template.yaml)",
         language: "yaml",
-        code: "apiVersion: api.kagent.dev/v1alpha3\nkind: AgentTemplate\nmetadata:\n  name: my-first-template\n  namespace: kagent\nspec:\n  description: My first kagent agent\n  modelConfig:\n    name: default-model-config\n  systemPrompt: |-\n    You are a concise, helpful assistant with read access to a Kubernetes cluster.\n    Use your tools to answer questions about what is running in the cluster.\n    When a question cannot be answered from the tools that you have, say so.\n  tools:\n    - mcp:\n        server:\n          kind: RemoteMCPServer\n          name: kagent-tool-server\n        tools:\n          - k8s_get_resources\n          - k8s_get_pod_logs"
+        code: "apiVersion: api.kagent.dev/v1alpha3\nkind: AgentTemplate\nmetadata:\n  name: my-first-template\n  namespace: kagent\nspec:\n  description: My first kagent agent\n  modelConfig:\n    name: course-model-config\n  systemPrompt: |-\n    You are a concise, helpful assistant with read access to a Kubernetes cluster.\n    Use your tools to answer questions about what is running in the cluster.\n    When a question cannot be answered from the tools that you have, say so.\n  tools:\n    - mcp:\n        server:\n          kind: RemoteMCPServer\n          name: kagent-tool-server\n        tools:\n          - k8s_get_resources\n          - k8s_get_pod_logs"
       }
     ],
     resources: [
@@ -159,13 +164,13 @@ export const kagentLessons = [
   {
     title: "Suspend, resume and debug",
     slug: "suspend-resume-and-debug",
-    description: "Understand what happens to an agent between turns, read the Agent conditions to find why one is not ready, and plan upgrades.",
+    description: "Understand what happens to an agent between turns, see the actors on the Substrate page of the web interface, read the Agent conditions to find why one is not ready, and plan upgrades.",
     sortOrder: 5,
     codeSnippets: [
       {
         label: "A template that points at a missing MCP server (template.yaml)",
         language: "yaml",
-        code: "apiVersion: api.kagent.dev/v1alpha3\nkind: AgentTemplate\nmetadata:\n  name: my-first-template\n  namespace: kagent\nspec:\n  description: My first kagent agent\n  modelConfig:\n    name: default-model-config\n  systemPrompt: |-\n    You are a concise, helpful assistant with read access to a Kubernetes cluster.\n    Use your tools to answer questions about what is running in the cluster.\n    When a question cannot be answered from the tools that you have, say so.\n  tools:\n    - mcp:\n        server:\n          kind: RemoteMCPServer\n          name: kagent-tools\n        tools:\n          - k8s_get_resources\n          - k8s_get_pod_logs"
+        code: "apiVersion: api.kagent.dev/v1alpha3\nkind: AgentTemplate\nmetadata:\n  name: my-first-template\n  namespace: kagent\nspec:\n  description: My first kagent agent\n  modelConfig:\n    name: course-model-config\n  systemPrompt: |-\n    You are a concise, helpful assistant with read access to a Kubernetes cluster.\n    Use your tools to answer questions about what is running in the cluster.\n    When a question cannot be answered from the tools that you have, say so.\n  tools:\n    - mcp:\n        server:\n          kind: RemoteMCPServer\n          name: kagent-tools\n        tools:\n          - k8s_get_resources\n          - k8s_get_pod_logs"
       }
     ],
     resources: [
@@ -204,7 +209,7 @@ export async function seedKagentCourse(prisma: PrismaClient) {
       prerequisites: [
         "Comfortable with kubectl and YAML",
         "Docker or Podman installed",
-        "An API key for a model provider (OpenAI or Anthropic)",
+        "An API key for an OpenAI-compatible model provider (OpenAI, or your own endpoint)",
       ],
       estimatedDuration: 35,
     },

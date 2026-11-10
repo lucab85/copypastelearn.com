@@ -1,5 +1,8 @@
 import { PrismaClient } from "@prisma/client";
 import { seedKagentCourse } from "./seeds/kagent-course";
+import { seedMcpCourse } from "./seeds/mcp-course";
+import { seedGooseCourse } from "./seeds/goose-course";
+import { seedDaprCourse } from "./seeds/dapr-agents-course";
 
 const prisma = new PrismaClient();
 
@@ -1843,8 +1846,11 @@ async function main() {
     `  ✓ Course "${course6.title}" with ${bootcampLessons.length} lessons`
   );
 
-  // ─── Course 7: kagent 1.0 (DRAFT) ───────────────────
+  // ─── Courses 7 to 10: the Agentic AI Academy (DRAFT) ──
   await seedKagentCourse(prisma);
+  await seedMcpCourse(prisma);
+  await seedGooseCourse(prisma);
+  await seedDaprCourse(prisma);
 
   console.log("\n✅ Seeding complete!");
 }

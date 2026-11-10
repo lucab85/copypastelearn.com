@@ -77,6 +77,13 @@ export default async function CourseCatalogPage() {
             Master IT automation with video courses and hands-on interactive
             labs. Pick a course and start learning today.
           </p>
+          <p className="mt-4 text-sm">
+            New: the{" "}
+            <Link href="/academy" className="font-medium text-primary hover:underline">
+              Agentic AI Academy
+            </Link>
+            , courses on running AI agents.
+          </p>
         </div>
       </div>
 

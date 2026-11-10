@@ -2,8 +2,7 @@
  * Seeds only the MCP course (DRAFT). Idempotent. Run with:
  *   pnpm --filter @copypastelearn/web exec tsx prisma/seed.mcp.ts
  *
- * Prereq: DATABASE_URL set (Postgres). Not wired into prisma/seed.ts yet: the courses
- * are wired together later.
+ * Prereq: DATABASE_URL set (Postgres). pnpm db:seed runs this course too, with every other course.
  */
 
 import { PrismaClient } from "@prisma/client";
