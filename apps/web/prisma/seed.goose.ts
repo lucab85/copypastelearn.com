@@ -2,8 +2,7 @@
  * Seeds only the goose and AGENTS.md course (DRAFT). Idempotent. Run with:
  *   pnpm --filter @copypastelearn/web exec tsx prisma/seed.goose.ts
  *
- * Prereq: DATABASE_URL set (Postgres). This course is NOT part of prisma/seed.ts yet:
- * the three Agentic AI Academy courses are wired into pnpm db:seed together, later.
+ * Prereq: DATABASE_URL set (Postgres). pnpm db:seed runs this course too, with every other course.
  */
 
 import { PrismaClient } from "@prisma/client";
