@@ -7,7 +7,7 @@ import { PageEventTracker } from "@/components/analytics/page-event-tracker";
 
 const TITLE = "Agentic AI Academy: Courses for AI Agents";
 const DESCRIPTION =
-  "Hands-on courses on running AI agents: kagent on Kubernetes, building and securing MCP servers, coding agents with goose and AGENTS.md, and durable agents with Dapr Agents.";
+  "Hands-on courses on running AI agents: kagent on Kubernetes, building and securing MCP servers, coding agents with goose and AGENTS.md, durable agents with Dapr Agents, and observability for agents with OpenTelemetry.";
 
 export const metadata: Metadata = {
   title: TITLE,
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
 };
 
 /**
- * The four courses of the Academy, in the order to take them. Only courses that are PUBLISHED in the database get a
+ * The five courses of the Academy, in the order to take them. Only courses that are PUBLISHED in the database get a
  * link: the others show "In production", so the page never points to a 404.
  */
 const ACADEMY = [
@@ -55,6 +55,13 @@ const ACADEMY = [
     summary:
       "Run agents as durable workflows that survive restarts, connect a team of agents with pub/sub, read what they did in a dashboard, and harden the setup.",
     topics: ["Durable workflows", "Pub/sub teams", "Dev Dashboard", "Secrets and resiliency"],
+  },
+  {
+    slug: "observe-and-debug-ai-agents-with-opentelemetry",
+    title: "Observe and Debug AI Agents with OpenTelemetry",
+    summary:
+      "Trace every model and tool call of an agent, read the traces in Jaeger, measure tokens and latency, protect prompts with a Collector, and debug a misbehaving agent.",
+    topics: ["GenAI traces", "Jaeger", "Metrics with Prometheus", "Collector: redact and sample"],
   },
 ];
 
@@ -104,7 +111,7 @@ export default async function AcademyPage() {
       </div>
 
       <div className="container mx-auto px-4 py-12">
-        <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+        <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
           {ACADEMY.map((c, index) => {
             const course = published.get(c.slug);
             return (
@@ -154,7 +161,7 @@ export default async function AcademyPage() {
             </h2>
             <p className="mt-2 text-sm text-muted-foreground">
               This Academy is independent. It is not affiliated with or endorsed by the kagent, Model Context
-              Protocol, goose or Dapr projects, or by Diagrid or their maintainers.
+              Protocol, goose, Dapr or OpenTelemetry projects, or by Diagrid or their maintainers.
             </p>
           </div>
         </div>
