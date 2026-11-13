@@ -142,21 +142,10 @@ export default async function HomePage() {
         aria-label="Hero"
         className="relative overflow-hidden border-b bg-gradient-to-br from-background via-background to-primary/5"
       >
-        <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,hsl(var(--border)/0.3)_1px,transparent_1px),linear-gradient(to_bottom,hsl(var(--border)/0.3)_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]" />
-        <div className="pointer-events-none absolute -right-40 -top-40 h-[500px] w-[500px] rounded-full bg-primary/5 blur-3xl" />
-        <div className="pointer-events-none absolute -bottom-20 -left-40 h-[400px] w-[400px] rounded-full bg-primary/5 blur-3xl" />
 
         <div className="container relative mx-auto grid items-center gap-12 px-4 pb-20 pt-20 lg:grid-cols-2 lg:gap-16 lg:pb-28 lg:pt-28">
           {/* Left column — copy */}
           <div className="flex flex-col items-start">
-            <Badge
-              variant="secondary"
-              className="mb-6 gap-1.5 px-3 py-1 text-sm"
-            >
-              <Play className="h-3 w-3" />
-              New: AI agent and local AI courses
-            </Badge>
-
             <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl">
               Learn AI Agents and Automation{" "}
               <span className="text-primary">
@@ -243,7 +232,6 @@ export default async function HomePage() {
                 <div className="text-muted-foreground">
                   &lt;h1&gt;Welcome to nginx!&lt;/h1&gt;
                 </div>
-                <div className="inline-block h-4 w-2 animate-pulse bg-foreground" />
               </div>
             </div>
             <div className="absolute -bottom-4 -left-4 rounded-lg border bg-card px-4 py-2.5 shadow-lg">
@@ -347,18 +335,12 @@ export default async function HomePage() {
         <div className="container mx-auto px-4">
           <div className="mb-10 flex items-end justify-between">
             <div>
-              <Badge
-                variant="outline"
-                className="mb-3 text-xs uppercase tracking-wider"
-              >
-                Tracks
-              </Badge>
               <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
                 Courses by Track
               </h2>
               <p className="mt-3 max-w-lg text-muted-foreground">
-                Three tracks, each course stands alone. Start with the free
-                lesson — no signup required.
+                Three tracks, and every course stands alone. The first lesson
+                of each course is free, with no signup.
               </p>
             </div>
             <Button
