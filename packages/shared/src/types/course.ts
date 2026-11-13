@@ -14,6 +14,8 @@ export interface CourseListItem {
   userProgress?: { percentComplete: number } | null;
   /** Catalog track; null or absent = "More courses". */
   track?: CourseTrack | null;
+  /** Total video time in minutes (Course.estimatedDuration). */
+  durationMinutes?: number | null;
   /** ISO date of the last content update (Course.contentUpdatedAt). */
   updatedAt?: string | null;
 }
@@ -41,6 +43,7 @@ export interface CourseDetail {
   thumbnailUrl: string | null;
   lessons: LessonSummary[];
   userProgress?: CourseProgressInfo | null;
+  track?: CourseTrack | null;
   /** Public Mux playback ID of the course promo. */
   trailerPlaybackId?: string | null;
   /** ISO date of the last content update. */
@@ -72,6 +75,7 @@ export interface LessonSummary {
   title: string;
   slug: string;
   sortOrder: number;
+  description?: string | null;
   moduleNumber?: number | null;
   moduleTitle?: string | null;
   durationSeconds: number | null;

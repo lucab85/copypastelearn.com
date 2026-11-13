@@ -58,6 +58,7 @@ export function CourseCard({ course }: CourseCardProps) {
             <span className="flex items-center gap-1 text-xs text-muted-foreground">
               <Clock className="h-3 w-3" />
               {course.lessonCount} {course.lessonCount === 1 ? "lesson" : "lessons"}
+              {course.durationMinutes ? `, ${course.durationMinutes} min` : ""}
             </span>
           </div>
           <CardTitle className="text-lg leading-snug group-hover:text-primary transition-colors">

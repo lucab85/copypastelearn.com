@@ -3,15 +3,19 @@ import type { Metadata } from "next";
 import { cache } from "react";
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import { getCourse } from "@/server/queries/courses";
+import { getPublicCourses } from "@/server/queries/public-courses";
+import { CourseCard } from "@/components/course/course-card";
+import { COURSE_TRACKS } from "@/lib/course-tracks";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-import { Clock, BookOpen, Lock, CheckCircle2, Play, Target, Users, ClipboardCheck, FlaskConical, Download } from "lucide-react";
+import { Clock, BookOpen, Lock, CheckCircle2, Play, Target, Users, ClipboardCheck, FlaskConical, Download, ChevronDown } from "lucide-react";
 import { VideoPlayer } from "@/components/lesson/video-player";
 import { PageEventTracker } from "@/components/analytics/page-event-tracker";
 import { TerminalPreview } from "@/components/course/terminal-preview";
-import { COPYPASTELEARN, LUCA_BERTON } from "@/lib/entities";
+import { COPYPASTELEARN, LUCA_BERTON, OPEN_EMPOWER } from "@/lib/entities";
 
 // Per-request memoization so generateMetadata + the page body share one DB call.
 const loadCourse = cache(getCourse);
@@ -100,6 +104,19 @@ export default async function CourseDetailPage({ params }: CourseDetailPageProps
       modules.push({ number, title: lesson.moduleTitle ?? null, lessons: [{ lesson, index }] });
     }
   });
+
+  const moduleMinutes = (module: (typeof modules)[number]) =>
+    Math.round(
+      module.lessons.reduce((sum, { lesson }) => sum + (lesson.durationSeconds ?? 0), 0) / 60
+    );
+
+  // Other published courses of the same track (Coursera/Udemy: "more like this").
+  const track = COURSE_TRACKS.find((t) => t.id === course.track);
+  const related = track
+    ? (await getPublicCourses())
+        .filter((c) => c.track === course.track && c.slug !== course.slug)
+        .slice(0, 3)
+    : [];
 
   const totalDuration = course.lessons.reduce(
     (acc, l) => acc + (l.durationSeconds ?? 0),
@@ -233,7 +250,7 @@ export default async function CourseDetailPage({ params }: CourseDetailPageProps
   };
 
   return (
-    <div className="container mx-auto px-4 py-12">
+    <div className="container mx-auto px-4 pb-28 pt-12 lg:pb-12">
       <PageEventTracker
         event="view_course"
         params={{ course_slug: course.slug, course_title: course.title }}
@@ -278,9 +295,11 @@ export default async function CourseDetailPage({ params }: CourseDetailPageProps
           {course.difficulty.toLowerCase()}
         </Badge>
         <h1 className="text-4xl font-bold tracking-tight">{course.title}</h1>
-        <p className="mt-3 max-w-2xl text-lg text-muted-foreground">
-          {course.description}
-        </p>
+        <div className="mt-3 max-w-2xl space-y-3 text-lg text-muted-foreground">
+          {course.description.split(/\n\s*\n/).map((paragraph, i) => (
+            <p key={i}>{paragraph}</p>
+          ))}
+        </div>
 
         <div className="mt-4 flex items-center gap-4 text-sm text-muted-foreground">
           <span className="flex items-center gap-1">
@@ -403,16 +422,34 @@ export default async function CourseDetailPage({ params }: CourseDetailPageProps
 
           {/* Lesson List */}
           <section>
-            <h2 className="mb-4 text-xl font-semibold">Lessons</h2>
+            <h2 className="mb-1 text-xl font-semibold">Course content</h2>
+            <p className="mb-4 text-sm text-muted-foreground">
+              {modules.length > 1 ? `${modules.length} modules, ` : ""}
+              {course.lessons.length}{" "}
+              {course.lessons.length === 1 ? "lesson" : "lessons"}
+              {totalDuration > 0 ? `, ${hours > 0 ? `${hours}h ` : ""}${minutes}m of video` : ""}
+            </p>
             <div className="space-y-6">
               {modules.map((module) => (
-                <div key={module.number ?? "all"}>
-                  {module.number !== null && (
-                    <h3 className="mb-2 text-sm font-semibold uppercase tracking-wider text-muted-foreground">
+                <details key={module.number ?? "all"} open className="group/module">
+                  <summary
+                    className={
+                      module.number === null
+                        ? "hidden"
+                        : "mb-2 flex cursor-pointer list-none items-center justify-between gap-3 rounded-lg bg-muted/50 px-4 py-3 [&::-webkit-details-marker]:hidden"
+                    }
+                  >
+                    <h3 className="font-semibold">
                       Module {module.number}
                       {module.title ? `: ${module.title}` : ""}
                     </h3>
-                  )}
+                    <span className="flex items-center gap-2 text-sm text-muted-foreground">
+                      {module.lessons.length}{" "}
+                      {module.lessons.length === 1 ? "lesson" : "lessons"}
+                      {moduleMinutes(module) > 0 ? `, ${moduleMinutes(module)} min` : ""}
+                      <ChevronDown className="h-4 w-4 transition-transform group-open/module:rotate-180" />
+                    </span>
+                  </summary>
                   <div className="space-y-2">
                     {module.lessons.map(({ lesson, index }) => (
                     <div
@@ -423,16 +460,16 @@ export default async function CourseDetailPage({ params }: CourseDetailPageProps
                         {index + 1}
                       </div>
                       <div className="flex-1 min-w-0">
-                        <div className="flex items-center gap-2">
+                        <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
                           {lesson.isAccessible ? (
                             <Link
                               href={`/courses/${slug}/lessons/${lesson.slug}`}
-                              className="font-medium hover:underline truncate"
+                              className="font-medium hover:underline"
                             >
                               {lesson.title}
                             </Link>
                           ) : (
-                            <span className="font-medium text-muted-foreground truncate">
+                            <span className="font-medium text-muted-foreground">
                               {lesson.title}
                             </span>
                           )}
@@ -452,6 +489,11 @@ export default async function CourseDetailPage({ params }: CourseDetailPageProps
                             {Math.ceil(lesson.durationSeconds / 60)} min
                           </p>
                         )}
+                        {lesson.description && (
+                          <p className="mt-1 line-clamp-2 text-sm text-muted-foreground">
+                            {lesson.description}
+                          </p>
+                        )}
                       </div>
                       <div className="shrink-0">
                         {lesson.userProgress?.completed ? (
@@ -465,8 +507,48 @@ export default async function CourseDetailPage({ params }: CourseDetailPageProps
                     </div>
                     ))}
                   </div>
-                </div>
+                </details>
               ))}
+
+              {(course.hasLabGuide || course.hasAssessment) && (
+                <div>
+                  <h3 className="mb-2 rounded-lg bg-muted/50 px-4 py-3 font-semibold">
+                    Practice
+                  </h3>
+                  <div className="space-y-2">
+                    {course.hasLabGuide && (
+                      <Link
+                        href={`/courses/${slug}/lab`}
+                        className="flex items-center gap-4 rounded-lg border p-4 transition-colors hover:bg-accent/50"
+                      >
+                        <FlaskConical className="h-5 w-5 shrink-0 text-muted-foreground" />
+                        <span className="flex-1">
+                          <span className="font-medium">Hands-on lab</span>
+                          <span className="block text-sm text-muted-foreground">
+                            One scenario that uses the whole course, step by step
+                          </span>
+                        </span>
+                        <Lock className="h-5 w-5 shrink-0 text-muted-foreground" />
+                      </Link>
+                    )}
+                    {course.hasAssessment && (
+                      <Link
+                        href={`/courses/${slug}/assessment`}
+                        className="flex items-center gap-4 rounded-lg border p-4 transition-colors hover:bg-accent/50"
+                      >
+                        <ClipboardCheck className="h-5 w-5 shrink-0 text-muted-foreground" />
+                        <span className="flex-1">
+                          <span className="font-medium">Final assessment</span>
+                          <span className="block text-sm text-muted-foreground">
+                            Multiple-choice questions, each answer explained
+                          </span>
+                        </span>
+                        <Lock className="h-5 w-5 shrink-0 text-muted-foreground" />
+                      </Link>
+                    )}
+                  </div>
+                </div>
+              )}
             </div>
           </section>
         </div>
@@ -474,7 +556,7 @@ export default async function CourseDetailPage({ params }: CourseDetailPageProps
         {/* Sidebar */}
         <div className="lg:col-span-1">
           <div className="sticky top-8 space-y-6 rounded-lg border p-6">
-            <h3 className="mb-4 text-lg font-semibold">Get started</h3>
+            <h2 className="mb-4 text-lg font-semibold">Get started</h2>
             {course.lessons.length > 0 && (
               <Button asChild className="w-full">
                 <Link
@@ -493,6 +575,7 @@ export default async function CourseDetailPage({ params }: CourseDetailPageProps
             <Separator />
 
             {/* Course highlights */}
+            <h3 className="text-sm font-semibold">This course includes</h3>
             <div className="space-y-3 text-sm">
               <div className="flex items-center gap-2">
                 <BookOpen className="h-4 w-4 text-muted-foreground" />
@@ -581,6 +664,61 @@ export default async function CourseDetailPage({ params }: CourseDetailPageProps
           </div>
         </div>
       </div>
+
+      {/* Instructor */}
+      <section className="mt-16 max-w-2xl border-t pt-10">
+        <h2 className="text-xl font-semibold">Your instructor</h2>
+        <Image
+          src="/images/luca-berton.jpg"
+          alt="Luca Berton"
+          width={480}
+          height={672}
+          sizes="96px"
+          className="mt-4 h-28 w-24 rounded-lg object-cover object-top"
+        />
+        <p className="mt-3 font-medium">
+          <a href={LUCA_BERTON.url} className="hover:underline" rel="author">
+            {LUCA_BERTON.name}
+          </a>
+        </p>
+        <p className="mt-1 text-muted-foreground">
+          {LUCA_BERTON.jobTitle}, {OPEN_EMPOWER.name}.{" "}
+          <Link href="/about" className="text-foreground underline underline-offset-4">
+            About the author
+          </Link>
+        </p>
+      </section>
+
+      {/* More in this track */}
+      {track && related.length > 0 && (
+        <section className="mt-16 border-t pt-10">
+          <div className="mb-6 flex flex-wrap items-baseline justify-between gap-3">
+            <h2 className="text-xl font-semibold">More in {track.title}</h2>
+            <Link
+              href={`/courses#${track.anchor}`}
+              className="text-sm font-medium text-primary hover:underline"
+            >
+              All courses in this track
+            </Link>
+          </div>
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {related.map((c) => (
+              <CourseCard key={c.id} course={c} />
+            ))}
+          </div>
+        </section>
+      )}
+
+      {/* Phone: the start button stays in reach (the sidebar is far below) */}
+      {course.lessons.length > 0 && (
+        <div className="fixed inset-x-0 bottom-0 z-40 border-t bg-background p-3 lg:hidden">
+          <Button asChild className="w-full">
+            <Link href={`/courses/${slug}/lessons/${course.lessons[0].slug}`}>
+              {course.userProgress ? "Continue Learning" : "Start Free Lesson"}
+            </Link>
+          </Button>
+        </div>
+      )}
     </div>
   );
 }

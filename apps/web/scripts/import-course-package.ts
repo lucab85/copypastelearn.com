@@ -252,7 +252,13 @@ async function main() {
       outcomes: page.outcomes,
       prerequisites: page.prerequisites,
     };
+    const coverFile = path.join(__dirname, "..", "public", "images", "courses", `${courseSlug}.svg`);
+    const cover =
+      !existing?.thumbnailUrl && fs.existsSync(coverFile)
+        ? { thumbnailUrl: `/images/courses/${courseSlug}.svg` }
+        : {};
     const always = {
+      ...cover,
       estimatedDuration: Math.round(totalSeconds / 60) || null,
       contentUpdatedAt: new Date(),
       ...(labGuide ? { labGuide } : {}),
