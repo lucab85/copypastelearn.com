@@ -1,6 +1,12 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: "standalone",
+  // `next dev` only: extra hosts that may load dev resources, e.g. a preview
+  // opened from a phone through a private hostname. Comma-separated.
+  allowedDevOrigins: (process.env.ALLOWED_DEV_ORIGINS ?? "")
+    .split(",")
+    .map((h) => h.trim())
+    .filter(Boolean),
   transpilePackages: ["@copypastelearn/shared"],
   outputFileTracingIncludes: {
     "/blog/*": ["./content/blog/**/*"],

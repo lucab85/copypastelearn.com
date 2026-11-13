@@ -12,6 +12,19 @@ export interface CourseListItem {
   lessonCount: number;
   thumbnailUrl: string | null;
   userProgress?: { percentComplete: number } | null;
+  /** Catalog track; null or absent = "More courses". */
+  track?: CourseTrack | null;
+}
+
+export type CourseTrack = "AI_AGENTS" | "AI_HOMELAB" | "FOUNDATIONS";
+
+/** A DRAFT course announced in the catalog as "coming soon". */
+export interface UpcomingCourse {
+  id: string;
+  title: string;
+  description: string;
+  difficulty: Difficulty;
+  track: CourseTrack | null;
 }
 
 export interface CourseDetail {

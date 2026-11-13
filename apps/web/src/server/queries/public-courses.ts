@@ -2,7 +2,11 @@
 
 import { unstable_cache } from "next/cache";
 import { db } from "@/lib/db";
-import type { CourseListItem, CourseDetail } from "@copypastelearn/shared";
+import type {
+  CourseListItem,
+  CourseDetail,
+  UpcomingCourse,
+} from "@copypastelearn/shared";
 
 /**
  * Public (no-auth) course catalog query, cached for ISR.
@@ -27,9 +31,33 @@ export const getPublicCourses = unstable_cache(
       lessonCount: course._count.lessons,
       thumbnailUrl: course.thumbnailUrl?.trim() || null,
       userProgress: null,
+      track: course.track,
     }));
   },
-  ["public-courses-v3"],
+  ["public-courses-v4"],
+  { revalidate: 3600, tags: ["courses"] }
+);
+
+/**
+ * DRAFT courses that were announced: listed in the catalog as "coming soon"
+ * with title and description only. They have no course page until PUBLISHED.
+ */
+export const getUpcomingCourses = unstable_cache(
+  async (): Promise<UpcomingCourse[]> => {
+    const courses = await db.course.findMany({
+      where: { status: "DRAFT", announced: true },
+      orderBy: { sortOrder: "asc" },
+      select: {
+        id: true,
+        title: true,
+        description: true,
+        difficulty: true,
+        track: true,
+      },
+    });
+    return courses;
+  },
+  ["upcoming-courses-v1"],
   { revalidate: 3600, tags: ["courses"] }
 );
 

@@ -10,6 +10,13 @@ import { Button } from "@/components/ui/button";
  * During SSG/prerender, Clerk context doesn't exist, so we defer
  * rendering until client-side hydration when ClerkProvider is active.
  */
+/**
+ * Same test as isClerkConfigured() in app/layout.tsx: without a real key the
+ * layout renders no ClerkProvider, so the Clerk components below would throw.
+ */
+const pk = process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY;
+const clerkConfigured = !!pk && pk.length >= 20 && !pk.includes("...");
+
 export function AuthButtons({ mobile, onNavigate }: { mobile?: boolean; onNavigate?: () => void }) {
   const [mounted, setMounted] = useState(false);
 
@@ -17,8 +24,9 @@ export function AuthButtons({ mobile, onNavigate }: { mobile?: boolean; onNaviga
     setMounted(true);
   }, []);
 
-  if (!mounted) {
-    // During SSR/prerender, show sign-in CTA (safe, no Clerk dependency)
+  if (!mounted || !clerkConfigured) {
+    // During SSR/prerender, or with no Clerk key (local preview), show the
+    // sign-in CTA (safe, no Clerk dependency)
     if (mobile) {
       return (
         <>
