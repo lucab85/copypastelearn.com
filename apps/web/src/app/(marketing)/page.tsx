@@ -8,8 +8,6 @@ import {
   getUpcomingCourses,
 } from "@/server/queries/public-courses";
 import { TrackCatalog } from "@/components/course/track-catalog";
-import { listPublishedProducts } from "@/server/queries/catalog";
-import { ProductCard } from "@/components/commerce/ProductCard";
 import { getAllPosts } from "@/lib/blog";
 import {
   BookOpen,
@@ -133,7 +131,6 @@ export default async function HomePage() {
     getUpcomingCourses(),
   ]);
   const recentPosts = getAllPosts().slice(0, 6);
-  const featuredProducts = await listPublishedProducts({ limit: 6 });
 
   return (
     <div className="flex flex-col">
@@ -397,42 +394,6 @@ export default async function HomePage() {
           </div>
         </div>
       </section>
-
-      {/* ═══════════════ SHOP / DOWNLOADABLES ═══════════════ */}
-      {featuredProducts.length > 0 && (
-        <section
-          aria-label="Shop downloadable ebooks and templates"
-          className="border-b py-16 lg:py-20"
-        >
-          <div className="container mx-auto px-4">
-            <div className="mb-10 flex flex-col items-center text-center">
-              <Badge variant="secondary" className="mb-3">
-                Shop
-              </Badge>
-              <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
-                Production-ready DevOps content, instant download
-              </h2>
-              <p className="mt-3 max-w-2xl text-muted-foreground">
-                Ebooks, templates, and bundles for Ansible, Terraform, and
-                Kubernetes — sold by Open Empower B.V. with EU VAT included.
-              </p>
-            </div>
-            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-              {featuredProducts.map((p) => (
-                <ProductCard key={p.id} product={p} />
-              ))}
-            </div>
-            <div className="mt-10 flex justify-center">
-              <Button size="lg" asChild>
-                <Link href="/shop">
-                  Browse all products
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </Link>
-              </Button>
-            </div>
-          </div>
-        </section>
-      )}
 
       {/* ═══════════════ BROWSE TOPICS ════════════════════════ */}
       <section

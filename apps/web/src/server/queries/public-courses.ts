@@ -32,9 +32,10 @@ export const getPublicCourses = unstable_cache(
       thumbnailUrl: course.thumbnailUrl?.trim() || null,
       userProgress: null,
       track: course.track,
+      updatedAt: course.contentUpdatedAt?.toISOString() ?? null,
     }));
   },
-  ["public-courses-v4"],
+  ["public-courses-v5"],
   { revalidate: 3600, tags: ["courses"] }
 );
 
@@ -71,6 +72,17 @@ export const getPublicCourse = unstable_cache(
     const course = await db.course.findUnique({
       where: { slug, status: "PUBLISHED" },
       include: {
+        assessment: { select: { id: true } },
+        companionProducts: {
+          where: { status: "PUBLISHED" },
+          select: {
+            slug: true,
+            title: true,
+            subtitle: true,
+            priceAmount: true,
+            currency: true,
+          },
+        },
         lessons: {
           where: { status: "PUBLISHED" },
           orderBy: { sortOrder: "asc" },
@@ -93,6 +105,11 @@ export const getPublicCourse = unstable_cache(
       difficulty: course.difficulty,
       estimatedDuration: course.estimatedDuration,
       thumbnailUrl: course.thumbnailUrl?.trim() || null,
+      trailerPlaybackId: course.trailerPlaybackId,
+      contentUpdatedAt: course.contentUpdatedAt?.toISOString() ?? null,
+      hasAssessment: !!course.assessment,
+      hasLabGuide: !!course.labGuide,
+      companionProducts: course.companionProducts,
       lessons: course.lessons.map((lesson) => {
         const isFree = lesson.sortOrder === 0;
         return {
@@ -100,6 +117,8 @@ export const getPublicCourse = unstable_cache(
           title: lesson.title,
           slug: lesson.slug,
           sortOrder: lesson.sortOrder,
+          moduleNumber: lesson.moduleNumber,
+          moduleTitle: lesson.moduleTitle,
           durationSeconds: lesson.durationSeconds,
           hasLab: !!lesson.labDefinition,
           isFree,
@@ -110,6 +129,6 @@ export const getPublicCourse = unstable_cache(
       userProgress: null,
     };
   },
-  ["public-course-v3"],
+  ["public-course-v4"],
   { revalidate: 3600, tags: ["courses"] }
 );

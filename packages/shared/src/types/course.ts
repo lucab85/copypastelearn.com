@@ -14,6 +14,8 @@ export interface CourseListItem {
   userProgress?: { percentComplete: number } | null;
   /** Catalog track; null or absent = "More courses". */
   track?: CourseTrack | null;
+  /** ISO date of the last content update (Course.contentUpdatedAt). */
+  updatedAt?: string | null;
 }
 
 export type CourseTrack = "AI_AGENTS" | "AI_HOMELAB" | "FOUNDATIONS";
@@ -39,6 +41,22 @@ export interface CourseDetail {
   thumbnailUrl: string | null;
   lessons: LessonSummary[];
   userProgress?: CourseProgressInfo | null;
+  /** Public Mux playback ID of the course promo. */
+  trailerPlaybackId?: string | null;
+  /** ISO date of the last content update. */
+  contentUpdatedAt?: string | null;
+  hasAssessment?: boolean;
+  hasLabGuide?: boolean;
+  /** Published shop products that go with the course. */
+  companionProducts?: CompanionProduct[];
+}
+
+export interface CompanionProduct {
+  slug: string;
+  title: string;
+  subtitle: string | null;
+  priceAmount: number;
+  currency: string;
 }
 
 export interface CourseProgressInfo {
@@ -54,6 +72,8 @@ export interface LessonSummary {
   title: string;
   slug: string;
   sortOrder: number;
+  moduleNumber?: number | null;
+  moduleTitle?: string | null;
   durationSeconds: number | null;
   hasLab: boolean;
   isFree: boolean;

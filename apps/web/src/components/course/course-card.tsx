@@ -68,6 +68,16 @@ export function CourseCard({ course }: CourseCardProps) {
           <p className="line-clamp-2 text-sm leading-relaxed text-muted-foreground">
             {course.description}
           </p>
+          {course.updatedAt && (
+            <p className="mt-3 text-xs text-muted-foreground/80">
+              Updated{" "}
+              {new Date(course.updatedAt).toLocaleDateString("en-US", {
+                month: "short",
+                year: "numeric",
+                timeZone: "UTC",
+              })}
+            </p>
+          )}
         </CardContent>
         {course.userProgress ? (
           <CardFooter>

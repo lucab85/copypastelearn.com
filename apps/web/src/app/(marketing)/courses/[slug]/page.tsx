@@ -7,7 +7,8 @@ import { getCourse } from "@/server/queries/courses";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-import { Clock, BookOpen, Lock, CheckCircle2, Play, Target, Users } from "lucide-react";
+import { Clock, BookOpen, Lock, CheckCircle2, Play, Target, Users, ClipboardCheck, FlaskConical, Download } from "lucide-react";
+import { VideoPlayer } from "@/components/lesson/video-player";
 import { PageEventTracker } from "@/components/analytics/page-event-tracker";
 import { TerminalPreview } from "@/components/course/terminal-preview";
 import { COPYPASTELEARN, LUCA_BERTON } from "@/lib/entities";
@@ -81,6 +82,24 @@ export default async function CourseDetailPage({ params }: CourseDetailPageProps
   if (!course) {
     notFound();
   }
+
+  // Lessons grouped by module, in course order. A course with no module
+  // numbers is one unnamed group.
+  const modules: {
+    number: number | null;
+    title: string | null;
+    lessons: { lesson: (typeof course.lessons)[number]; index: number }[];
+  }[] = [];
+  course.lessons.forEach((lesson, index) => {
+    const number = lesson.moduleNumber ?? null;
+    const last = modules[modules.length - 1];
+    if (last && last.number === number) {
+      last.lessons.push({ lesson, index });
+      last.title ??= lesson.moduleTitle ?? null;
+    } else {
+      modules.push({ number, title: lesson.moduleTitle ?? null, lessons: [{ lesson, index }] });
+    }
+  });
 
   const totalDuration = course.lessons.reduce(
     (acc, l) => acc + (l.durationSeconds ?? 0),
@@ -276,6 +295,16 @@ export default async function CourseDetailPage({ params }: CourseDetailPageProps
               {minutes}m
             </span>
           )}
+          {course.contentUpdatedAt && (
+            <span>
+              Updated{" "}
+              {new Date(course.contentUpdatedAt).toLocaleDateString("en-US", {
+                month: "long",
+                year: "numeric",
+                timeZone: "UTC",
+              })}
+            </span>
+          )}
         </div>
 
         {course.userProgress && (
@@ -297,6 +326,18 @@ export default async function CourseDetailPage({ params }: CourseDetailPageProps
       <div className="grid grid-cols-1 gap-12 lg:grid-cols-3">
         {/* Main Content */}
         <div className="lg:col-span-2">
+          {/* Course promo */}
+          {course.trailerPlaybackId && (
+            <section aria-label="Course trailer" className="mb-8 overflow-hidden rounded-lg border">
+              <VideoPlayer
+                playbackId={course.trailerPlaybackId}
+                title={`${course.title}: trailer`}
+                courseSlug={course.slug}
+                lessonSlug="trailer"
+              />
+            </section>
+          )}
+
           {/* Outcomes */}
           {course.outcomes.length > 0 && (
             <section className="mb-8">
@@ -363,54 +404,66 @@ export default async function CourseDetailPage({ params }: CourseDetailPageProps
           {/* Lesson List */}
           <section>
             <h2 className="mb-4 text-xl font-semibold">Lessons</h2>
-            <div className="space-y-2">
-              {course.lessons.map((lesson, index) => (
-                <div
-                  key={lesson.id}
-                  className="flex items-center gap-4 rounded-lg border p-4 transition-colors hover:bg-accent/50"
-                >
-                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-muted text-sm font-medium">
-                    {index + 1}
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <div className="flex items-center gap-2">
-                      {lesson.isAccessible ? (
-                        <Link
-                          href={`/courses/${slug}/lessons/${lesson.slug}`}
-                          className="font-medium hover:underline truncate"
-                        >
-                          {lesson.title}
-                        </Link>
-                      ) : (
-                        <span className="font-medium text-muted-foreground truncate">
-                          {lesson.title}
-                        </span>
-                      )}
-                      {lesson.isFree && (
-                        <Badge variant="secondary" className="text-xs">
-                          Free
-                        </Badge>
-                      )}
-                      {lesson.hasLab && (
-                        <Badge variant="outline" className="text-xs">
-                          Lab
-                        </Badge>
-                      )}
+            <div className="space-y-6">
+              {modules.map((module) => (
+                <div key={module.number ?? "all"}>
+                  {module.number !== null && (
+                    <h3 className="mb-2 text-sm font-semibold uppercase tracking-wider text-muted-foreground">
+                      Module {module.number}
+                      {module.title ? `: ${module.title}` : ""}
+                    </h3>
+                  )}
+                  <div className="space-y-2">
+                    {module.lessons.map(({ lesson, index }) => (
+                    <div
+                      key={lesson.id}
+                      className="flex items-center gap-4 rounded-lg border p-4 transition-colors hover:bg-accent/50"
+                    >
+                      <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-muted text-sm font-medium">
+                        {index + 1}
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-center gap-2">
+                          {lesson.isAccessible ? (
+                            <Link
+                              href={`/courses/${slug}/lessons/${lesson.slug}`}
+                              className="font-medium hover:underline truncate"
+                            >
+                              {lesson.title}
+                            </Link>
+                          ) : (
+                            <span className="font-medium text-muted-foreground truncate">
+                              {lesson.title}
+                            </span>
+                          )}
+                          {lesson.isFree && (
+                            <Badge variant="secondary" className="text-xs">
+                              Free
+                            </Badge>
+                          )}
+                          {lesson.hasLab && (
+                            <Badge variant="outline" className="text-xs">
+                              Lab
+                            </Badge>
+                          )}
+                        </div>
+                        {lesson.durationSeconds && (
+                          <p className="text-xs text-muted-foreground">
+                            {Math.ceil(lesson.durationSeconds / 60)} min
+                          </p>
+                        )}
+                      </div>
+                      <div className="shrink-0">
+                        {lesson.userProgress?.completed ? (
+                          <CheckCircle2 className="h-5 w-5 text-primary" />
+                        ) : !lesson.isAccessible ? (
+                          <Lock className="h-5 w-5 text-muted-foreground" />
+                        ) : (
+                          <Play className="h-5 w-5 text-muted-foreground" />
+                        )}
+                      </div>
                     </div>
-                    {lesson.durationSeconds && (
-                      <p className="text-xs text-muted-foreground">
-                        {Math.ceil(lesson.durationSeconds / 60)} min
-                      </p>
-                    )}
-                  </div>
-                  <div className="shrink-0">
-                    {lesson.userProgress?.completed ? (
-                      <CheckCircle2 className="h-5 w-5 text-primary" />
-                    ) : !lesson.isAccessible ? (
-                      <Lock className="h-5 w-5 text-muted-foreground" />
-                    ) : (
-                      <Play className="h-5 w-5 text-muted-foreground" />
-                    )}
+                    ))}
                   </div>
                 </div>
               ))}
@@ -455,11 +508,62 @@ export default async function CourseDetailPage({ params }: CourseDetailPageProps
                   <span>{hours > 0 ? `${hours}h ` : ""}{minutes}m total</span>
                 </div>
               )}
-              <div className="flex items-center gap-2">
-                <Play className="h-4 w-4 text-muted-foreground" />
-                <span>Real Linux sandbox labs</span>
-              </div>
+              {course.lessons.some((l) => l.hasLab) && (
+                <div className="flex items-center gap-2">
+                  <Play className="h-4 w-4 text-muted-foreground" />
+                  <span>Real Linux sandbox labs</span>
+                </div>
+              )}
+              {course.hasLabGuide && (
+                <Link
+                  href={`/courses/${slug}/lab`}
+                  className="flex items-center gap-2 hover:text-primary"
+                >
+                  <FlaskConical className="h-4 w-4 text-muted-foreground" />
+                  <span className="underline-offset-4 hover:underline">Hands-on lab</span>
+                </Link>
+              )}
+              {course.hasAssessment && (
+                <Link
+                  href={`/courses/${slug}/assessment`}
+                  className="flex items-center gap-2 hover:text-primary"
+                >
+                  <ClipboardCheck className="h-4 w-4 text-muted-foreground" />
+                  <span className="underline-offset-4 hover:underline">Final assessment</span>
+                </Link>
+              )}
             </div>
+
+            {course.companionProducts && course.companionProducts.length > 0 && (
+              <>
+                <Separator />
+                <div>
+                  <h3 className="mb-3 text-sm font-semibold">Goes with this course</h3>
+                  <ul className="space-y-3">
+                    {course.companionProducts.map((p) => (
+                      <li key={p.slug}>
+                        <Link
+                          href={`/products/${p.slug}`}
+                          className="group flex items-start gap-2 text-sm"
+                        >
+                          <Download className="mt-0.5 h-4 w-4 shrink-0 text-muted-foreground" />
+                          <span>
+                            <span className="font-medium group-hover:underline">{p.title}</span>
+                            <span className="block text-xs text-muted-foreground">
+                              {new Intl.NumberFormat("en-IE", {
+                                style: "currency",
+                                currency: p.currency.toUpperCase(),
+                              }).format(p.priceAmount / 100)}
+                              , one-time
+                            </span>
+                          </span>
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </>
+            )}
 
             <Separator />
 
