@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" role="img" aria-label="Observe and Debug AI Agents with OpenTelemetry">
+  <rect width="800" height="450" fill="#0b1120"/>
+  <text x="56" y="84" fill="#fbbf24" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="17" font-weight="600" letter-spacing="2">AI AGENTS</text>
+  <text x="56" y="150" fill="#f8fafc" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="50" font-weight="700">Observe and Debug AI</text>
+  <text x="56" y="209" fill="#f8fafc" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="50" font-weight="700">Agents with</text>
+  <text x="56" y="268" fill="#f8fafc" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="50" font-weight="700">OpenTelemetry</text>
+  <rect x="56" y="388" width="72" height="4" fill="#fbbf24"/>
+</svg>

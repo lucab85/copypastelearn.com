@@ -52,6 +52,17 @@ export async function getCourse(slug: string): Promise<CourseDetail | null> {
   const course = await db.course.findUnique({
     where: { slug, status: "PUBLISHED" },
     include: {
+      assessment: { select: { id: true } },
+      companionProducts: {
+        where: { status: "PUBLISHED" },
+        select: {
+          slug: true,
+          title: true,
+          subtitle: true,
+          priceAmount: true,
+          currency: true,
+        },
+      },
       lessons: {
         where: { status: "PUBLISHED" },
         orderBy: { sortOrder: "asc" },
@@ -107,6 +118,12 @@ export async function getCourse(slug: string): Promise<CourseDetail | null> {
     difficulty: course.difficulty,
     estimatedDuration: course.estimatedDuration,
     thumbnailUrl: course.thumbnailUrl,
+    track: course.track,
+    trailerPlaybackId: course.trailerPlaybackId,
+    contentUpdatedAt: course.contentUpdatedAt?.toISOString() ?? null,
+    hasAssessment: !!course.assessment,
+    hasLabGuide: !!course.labGuide,
+    companionProducts: course.companionProducts,
     lessons: course.lessons.map((lesson: any) => {
       const isFree = lesson.sortOrder === 0;
       return {
@@ -114,6 +131,9 @@ export async function getCourse(slug: string): Promise<CourseDetail | null> {
         title: lesson.title,
         slug: lesson.slug,
         sortOrder: lesson.sortOrder,
+        description: lesson.description,
+        moduleNumber: lesson.moduleNumber,
+        moduleTitle: lesson.moduleTitle,
         durationSeconds: lesson.durationSeconds,
         hasLab: !!lesson.labDefinition,
         isFree,

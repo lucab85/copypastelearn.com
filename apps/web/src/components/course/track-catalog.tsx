@@ -151,11 +151,11 @@ export function TrackCatalog({
                           <p className="text-sm font-semibold leading-snug">
                             {course.title}
                           </p>
-                          <Badge variant="outline" className="shrink-0 text-[10px]">
+                          <Badge variant="outline" className="shrink-0 text-xs">
                             {course.difficulty.toLowerCase()}
                           </Badge>
                         </div>
-                        <p className="mt-1.5 line-clamp-3 text-xs leading-relaxed text-muted-foreground">
+                        <p className="mt-1.5 line-clamp-3 text-sm leading-relaxed text-muted-foreground">
                           {course.description}
                         </p>
                       </li>
