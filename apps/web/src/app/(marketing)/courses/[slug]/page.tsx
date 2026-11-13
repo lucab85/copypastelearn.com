@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { cache } from "react";
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import { getCourse } from "@/server/queries/courses";
 import { getPublicCourses } from "@/server/queries/public-courses";
 import { CourseCard } from "@/components/course/course-card";
@@ -667,6 +668,14 @@ export default async function CourseDetailPage({ params }: CourseDetailPageProps
       {/* Instructor */}
       <section className="mt-16 max-w-2xl border-t pt-10">
         <h2 className="text-xl font-semibold">Your instructor</h2>
+        <Image
+          src="/images/luca-berton.jpg"
+          alt="Luca Berton"
+          width={480}
+          height={672}
+          sizes="96px"
+          className="mt-4 h-28 w-24 rounded-lg object-cover object-top"
+        />
         <p className="mt-3 font-medium">
           <a href={LUCA_BERTON.url} className="hover:underline" rel="author">
             {LUCA_BERTON.name}

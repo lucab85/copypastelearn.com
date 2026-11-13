@@ -9,6 +9,8 @@ import {
 } from "@/server/queries/public-courses";
 import { TrackCatalog } from "@/components/course/track-catalog";
 import { HeroTerminal } from "@/components/home/hero-terminal";
+import { LessonClip } from "@/components/home/lesson-clip";
+import Image from "next/image";
 import { HERO_DEMOS } from "@/lib/hero-demos";
 import { COURSE_TRACKS } from "@/lib/course-tracks";
 import { getAllPosts } from "@/lib/blog";
@@ -184,6 +186,26 @@ export default async function HomePage() {
             </p>
           </div>
 
+          <LessonClip
+            src="/videos/lesson-preview.mp4"
+            poster="/videos/lesson-preview.jpg"
+            caption="14 seconds of a real lesson: Install Ollama and run your first model."
+          />
+        </div>
+      </section>
+
+      {/* ═══════════════ TRY IT ═══════════════════════════════ */}
+      <section aria-label="Try a command" className="border-t border-white/10 bg-[#0b1120] pb-16 text-white lg:pb-24">
+        <div className="container mx-auto grid items-center gap-8 px-4 pt-12 lg:grid-cols-[1fr_1.4fr] lg:gap-14 lg:pt-16">
+          <div>
+            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
+              Try it before you watch
+            </h2>
+            <p className="mt-4 max-w-md text-lg leading-relaxed text-slate-300">
+              Pick a course, copy the command, see what it prints. These are
+              recordings of the real labs, not mock-ups.
+            </p>
+          </div>
           <HeroTerminal demos={heroDemos} />
         </div>
       </section>
@@ -237,11 +259,19 @@ export default async function HomePage() {
 
       {/* ═══════════════ INSTRUCTOR ═══════════════════════════ */}
       <section aria-label="Instructor" className="border-b py-12 lg:py-16">
-        <div className="container mx-auto grid gap-6 px-4 lg:grid-cols-[1fr_2fr] lg:gap-14">
-          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
-            Taught by someone who runs this for a living
-          </h2>
+        <div className="container mx-auto grid items-center gap-8 px-4 sm:grid-cols-[auto_1fr] lg:gap-14">
+          <Image
+            src="/images/luca-berton.jpg"
+            alt="Luca Berton"
+            width={480}
+            height={672}
+            sizes="(min-width: 640px) 240px, 160px"
+            className="h-auto w-40 rounded-xl sm:w-60"
+          />
           <div className="max-w-2xl text-lg leading-relaxed text-muted-foreground">
+            <h2 className="mb-5 text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
+              Taught by someone who runs this for a living
+            </h2>
             <p>
               <span className="font-semibold text-foreground">Luca Berton</span>{" "}
               is the author of Ansible Pilot and Ansible By Example, a Docker
