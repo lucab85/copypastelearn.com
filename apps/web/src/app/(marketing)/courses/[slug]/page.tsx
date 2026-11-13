@@ -459,16 +459,16 @@ export default async function CourseDetailPage({ params }: CourseDetailPageProps
                         {index + 1}
                       </div>
                       <div className="flex-1 min-w-0">
-                        <div className="flex items-center gap-2">
+                        <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
                           {lesson.isAccessible ? (
                             <Link
                               href={`/courses/${slug}/lessons/${lesson.slug}`}
-                              className="font-medium hover:underline truncate"
+                              className="font-medium hover:underline"
                             >
                               {lesson.title}
                             </Link>
                           ) : (
-                            <span className="font-medium text-muted-foreground truncate">
+                            <span className="font-medium text-muted-foreground">
                               {lesson.title}
                             </span>
                           )}
