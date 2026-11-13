@@ -9,6 +9,8 @@
  *    later edit; a full course seed with the same slug can fill in the rest.
  */
 
+import fs from "node:fs";
+import path from "node:path";
 import type { PrismaClient, CourseTrack, Difficulty } from "@prisma/client";
 
 const TRACK_BY_SLUG: Record<string, CourseTrack> = {
@@ -154,5 +156,21 @@ export async function seedCatalogTracks(prisma: PrismaClient) {
       },
     });
   }
+  // Covers: a course with no thumbnail takes public/images/courses/<slug>.svg
+  // when that file exists (scripts/generate-course-covers.mjs).
+  const noCover = await prisma.course.findMany({
+    where: { thumbnailUrl: null },
+    select: { id: true, slug: true },
+  });
+  for (const course of noCover) {
+    const file = path.join(process.cwd(), "public", "images", "courses", `${course.slug}.svg`);
+    if (fs.existsSync(file)) {
+      await prisma.course.update({
+        where: { id: course.id },
+        data: { thumbnailUrl: `/images/courses/${course.slug}.svg` },
+      });
+    }
+  }
+
   console.log("  ✓ Catalog tracks set, upcoming course stubs created (DRAFT)");
 }

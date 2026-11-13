@@ -22,11 +22,12 @@ model User {
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 
-  courseProgress CourseProgress[]
-  lessonProgress LessonProgress[]
-  labSessions    LabSession[]
-  subscription   Subscription?
-  customer       Customer?
+  courseProgress     CourseProgress[]
+  lessonProgress     LessonProgress[]
+  labSessions        LabSession[]
+  assessmentAttempts AssessmentAttempt[]
+  subscription       Subscription?
+  customer           Customer?
 
   @@index([clerkUserId])
 }
@@ -55,15 +56,57 @@ model Course {
   /// A DRAFT course with announced = true is listed as "coming soon"
   /// (title and description only, no course page).
   announced         Boolean       @default(false)
+  /// Public Mux playback ID of the 45-60 s course promo (not signed).
+  trailerPlaybackId String?
+  /// Date of the last content update, shown as "Updated <month year>".
+  /// Set by hand or by the course import; never derived from updatedAt.
+  contentUpdatedAt  DateTime?
+  /// Hands-On Lab document (Markdown), for subscribers.
+  labGuide          String?
   createdAt         DateTime      @default(now())
   updatedAt         DateTime      @updatedAt
 
-  lessons        Lesson[]
-  courseProgress CourseProgress[]
+  lessons           Lesson[]
+  courseProgress    CourseProgress[]
+  assessment        Assessment?
+  /// Shop products (ebooks, templates) shown on the course page.
+  companionProducts Product[]        @relation("CourseCompanions")
 
   @@index([status])
   @@index([slug])
   @@index([track])
+}
+
+/// Final assessment of a course: multiple-choice questions, one correct
+/// answer each. `questions` is AssessmentQuestion[] (src/lib/assessment.ts);
+/// the correct answers never leave the server before an attempt is graded.
+model Assessment {
+  id          String   @id @default(cuid())
+  courseId    String   @unique
+  title       String
+  passPercent Int      @default(70)
+  questions   Json
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  course   Course              @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  attempts AssessmentAttempt[]
+}
+
+model AssessmentAttempt {
+  id           String   @id @default(cuid())
+  assessmentId String
+  userId       String
+  score        Int
+  total        Int
+  passed       Boolean
+  answers      Json
+  createdAt    DateTime @default(now())
+
+  assessment Assessment @relation(fields: [assessmentId], references: [id], onDelete: Cascade)
+  user       User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, assessmentId])
 }
 
 enum CourseTrack {
@@ -97,6 +140,9 @@ model Lesson {
   codeSnippets    Json?
   resources       Json?
   sortOrder       Int           @default(0)
+  /// Module of the course (L<module>V<video>). NULL = course without modules.
+  moduleNumber    Int?
+  moduleTitle     String?
   durationSeconds Int?
   status          ContentStatus @default(DRAFT)
   createdAt       DateTime      @default(now())
@@ -268,6 +314,7 @@ model Product {
   orderItems   OrderItem[]
   entitlements Entitlement[]
   bundleItems  BundleItem[]
+  companionOf  Course[]      @relation("CourseCompanions")
 
   @@index([status])
   @@index([brand])

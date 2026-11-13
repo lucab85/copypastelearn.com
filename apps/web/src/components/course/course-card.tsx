@@ -58,6 +58,7 @@ export function CourseCard({ course }: CourseCardProps) {
             <span className="flex items-center gap-1 text-xs text-muted-foreground">
               <Clock className="h-3 w-3" />
               {course.lessonCount} {course.lessonCount === 1 ? "lesson" : "lessons"}
+              {course.durationMinutes ? `, ${course.durationMinutes} min` : ""}
             </span>
           </div>
           <CardTitle className="text-lg leading-snug group-hover:text-primary transition-colors">
@@ -68,6 +69,16 @@ export function CourseCard({ course }: CourseCardProps) {
           <p className="line-clamp-2 text-sm leading-relaxed text-muted-foreground">
             {course.description}
           </p>
+          {course.updatedAt && (
+            <p className="mt-3 text-xs text-muted-foreground/80">
+              Updated{" "}
+              {new Date(course.updatedAt).toLocaleDateString("en-US", {
+                month: "short",
+                year: "numeric",
+                timeZone: "UTC",
+              })}
+            </p>
+          )}
         </CardContent>
         {course.userProgress ? (
           <CardFooter>

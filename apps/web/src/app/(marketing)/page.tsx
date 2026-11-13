@@ -8,8 +8,11 @@ import {
   getUpcomingCourses,
 } from "@/server/queries/public-courses";
 import { TrackCatalog } from "@/components/course/track-catalog";
-import { listPublishedProducts } from "@/server/queries/catalog";
-import { ProductCard } from "@/components/commerce/ProductCard";
+import { HeroTerminal } from "@/components/home/hero-terminal";
+import { LessonClip } from "@/components/home/lesson-clip";
+import Image from "next/image";
+import { HERO_DEMOS } from "@/lib/hero-demos";
+import { COURSE_TRACKS } from "@/lib/course-tracks";
 import { getAllPosts } from "@/lib/blog";
 import {
   BookOpen,
@@ -19,16 +22,10 @@ import {
   Play,
   CheckCircle2,
   Users,
-  GraduationCap,
-  Layers,
-  Monitor,
-  Shield,
   Zap,
   Clock,
-  Globe,
   Star,
   Quote,
-  Target,
   Cpu,
   HardDrive,
   Wifi,
@@ -87,15 +84,6 @@ function WebSiteJsonLd() {
 
 /* ─── Topic categories ─────────────────────────────── */
 
-const topics = [
-  { label: "Docker & Containers", icon: Layers, href: "/courses" },
-  { label: "Ansible & Automation", icon: Terminal, href: "/courses" },
-  { label: "Node.js & APIs", icon: Globe, href: "/courses" },
-  { label: "AI Agents", icon: Zap, href: "/courses" },
-  { label: "DevOps & CI/CD", icon: Monitor, href: "/courses" },
-  { label: "Security", icon: Shield, href: "/courses" },
-];
-
 /* ─── Testimonials ─────────────────────────────────── */
 
 const testimonials = [
@@ -133,7 +121,25 @@ export default async function HomePage() {
     getUpcomingCourses(),
   ]);
   const recentPosts = getAllPosts().slice(0, 6);
-  const featuredProducts = await listPublishedProducts({ limit: 6 });
+
+  // Hero demos link to their course only when it is published.
+  const heroDemos = HERO_DEMOS.map(({ slug, ...demo }) => ({
+    ...demo,
+    href: courses.some((c) => c.slug === slug) ? `/courses/${slug}` : null,
+  }));
+
+  // One tile per track that has something to show, with a cover of the track.
+  const trackTiles = COURSE_TRACKS.filter((t) => t.id !== "OTHER")
+    .map((track) => {
+      const inTrack = courses.filter((c) => c.track === track.id);
+      return {
+        track,
+        published: inTrack.length,
+        upcoming: upcoming.filter((c) => c.track === track.id).length,
+        cover: inTrack.find((c) => c.thumbnailUrl)?.thumbnailUrl ?? null,
+      };
+    })
+    .filter((t) => t.published + t.upcoming > 0);
 
   return (
     <div className="flex flex-col">
@@ -141,207 +147,146 @@ export default async function HomePage() {
       <WebSiteJsonLd />
 
       {/* ════════════════════════ HERO ════════════════════════ */}
-      <section
-        aria-label="Hero"
-        className="relative overflow-hidden border-b bg-gradient-to-br from-background via-background to-primary/5"
-      >
-        <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,hsl(var(--border)/0.3)_1px,transparent_1px),linear-gradient(to_bottom,hsl(var(--border)/0.3)_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]" />
-        <div className="pointer-events-none absolute -right-40 -top-40 h-[500px] w-[500px] rounded-full bg-primary/5 blur-3xl" />
-        <div className="pointer-events-none absolute -bottom-20 -left-40 h-[400px] w-[400px] rounded-full bg-primary/5 blur-3xl" />
-
-        <div className="container relative mx-auto grid items-center gap-12 px-4 pb-20 pt-20 lg:grid-cols-2 lg:gap-16 lg:pb-28 lg:pt-28">
-          {/* Left column — copy */}
-          <div className="flex flex-col items-start">
-            <Badge
-              variant="secondary"
-              className="mb-6 gap-1.5 px-3 py-1 text-sm"
-            >
-              <Play className="h-3 w-3" />
-              New: AI agent and local AI courses
-            </Badge>
-
-            <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl">
-              Learn AI Agents and Automation{" "}
-              <span className="text-primary">
-                by Doing
-              </span>
+      <section aria-label="Hero" className="bg-[#0b1120] text-white">
+        <div className="container mx-auto grid items-center gap-10 px-4 pb-16 pt-14 lg:grid-cols-[1fr_1.05fr] lg:gap-14 lg:pb-24 lg:pt-24">
+          <div>
+            <h1 className="text-5xl font-extrabold tracking-tight sm:text-6xl lg:text-7xl">
+              Copy. Paste.{" "}
+              <span className="text-emerald-400">Learn.</span>
             </h1>
-
-            {/* ── IMPROVEMENT 1: Target personas + outcome ── */}
-            <p className="mt-4 text-lg font-medium text-foreground/80">
-              Copy the example. Understand the logic. Build it yourself.
+            <p className="mt-5 max-w-xl text-xl font-medium text-slate-100">
+              AI agents and local AI, one command at a time.
             </p>
-            <p className="mt-2 max-w-xl text-lg leading-relaxed text-muted-foreground">
-              Short video lessons you follow command by command: AI agents, local AI on your own machine, and the automation foundations they build on.
+            <p className="mt-3 max-w-xl text-lg leading-relaxed text-slate-300">
+              Short video lessons where every command is on screen. You run
+              it, you see what it does, you understand why.
             </p>
-
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:gap-4">
-              <Button size="lg" className="gap-2 px-8 text-base" asChild>
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+              <Button
+                size="lg"
+                className="gap-2 bg-white px-8 text-base text-slate-950 hover:bg-slate-200"
+                asChild
+              >
                 <Link href="/courses">
-                  Start a Free Lesson
+                  Start a free lesson
                   <ArrowRight className="h-4 w-4" />
                 </Link>
               </Button>
               <Button
                 size="lg"
                 variant="outline"
-                className="gap-2 px-8 text-base"
+                className="border-white/25 bg-transparent px-8 text-base text-white hover:bg-white/10 hover:text-white"
                 asChild
               >
-                <Link href="/pricing">See Plans</Link>
+                <Link href="/pricing">See plans</Link>
               </Button>
             </div>
-
-            {/* Trust badges */}
-            <div className="mt-10 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-muted-foreground">
-              <span className="flex items-center gap-1.5">
-                <CheckCircle2 className="h-4 w-4 text-green-500" />
-                First lesson free
-              </span>
-              <span className="flex items-center gap-1.5">
-                <CheckCircle2 className="h-4 w-4 text-green-500" />
-                No credit card
-              </span>
-              <span className="flex items-center gap-1.5">
-                <CheckCircle2 className="h-4 w-4 text-green-500" />
-                Cancel anytime
-              </span>
-            </div>
+            <p className="mt-5 text-sm text-slate-400">
+              The first lesson of every course is free. No signup, no card.
+            </p>
           </div>
 
-          {/* Right column — terminal preview */}
-          <div className="relative mx-auto w-full max-w-lg lg:mx-0">
-            <div className="overflow-hidden rounded-xl border bg-card shadow-2xl shadow-primary/5">
-              <div className="flex items-center gap-2 border-b bg-muted/50 px-4 py-3">
-                <div className="h-3 w-3 rounded-full bg-red-400" />
-                <div className="h-3 w-3 rounded-full bg-yellow-400" />
-                <div className="h-3 w-3 rounded-full bg-green-400" />
-                <span className="ml-2 text-xs text-muted-foreground">
-                  lab — sandbox terminal
-                </span>
-              </div>
-              <div className="space-y-3 p-5 font-mono text-sm leading-relaxed">
-                <div>
-                  <span className="text-green-700">$</span>{" "}
-                  <span className="text-foreground">
-                    docker run -d -p 80:80 nginx
-                  </span>
-                </div>
-                <div className="text-muted-foreground">
-                  Unable to find image &apos;nginx:latest&apos; locally
-                </div>
-                <div className="text-muted-foreground">
-                  latest: Pulling from library/nginx
-                </div>
-                <div className="text-muted-foreground">
-                  Status: Downloaded newer image for nginx:latest
-                </div>
-                <div className="text-green-700">
-                  ✓ Container started on port 80
-                </div>
-                <div className="mt-2">
-                  <span className="text-green-700">$</span>{" "}
-                  <span className="text-foreground">curl localhost</span>
-                </div>
-                <div className="text-muted-foreground">
-                  &lt;h1&gt;Welcome to nginx!&lt;/h1&gt;
-                </div>
-                <div className="inline-block h-4 w-2 animate-pulse bg-foreground" />
-              </div>
-            </div>
-            <div className="absolute -bottom-4 -left-4 rounded-lg border bg-card px-4 py-2.5 shadow-lg">
-              <div className="flex items-center gap-2 text-sm font-medium">
-                <div className="flex h-8 w-8 items-center justify-center rounded-full bg-green-500/10">
-                  <CheckCircle2 className="h-4 w-4 text-green-500" />
-                </div>
-                Lab validated!
-              </div>
-            </div>
-          </div>
+          <LessonClip
+            src="/videos/lesson-preview.mp4"
+            poster="/videos/lesson-preview.jpg"
+            caption="14 seconds of a real lesson: Install Ollama and run your first model."
+          />
         </div>
       </section>
 
-      {/* ═══════════════ WHO IT'S FOR ═════════════════════════ */}
-      <section aria-label="Who it's for" className="border-b bg-muted/20 py-12">
-        <div className="container mx-auto px-4">
-          <h2 className="mb-8 text-center text-3xl font-bold tracking-tight sm:text-4xl">Built for practitioners</h2>
-          <div className="grid gap-6 sm:grid-cols-3">
-            {[
-              {
-                icon: Monitor,
-                persona: "DevOps / SREs",
-                goal: "Automate infrastructure with Ansible, Docker, and Terraform",
-                outcome: "Ship automation scripts in your first session",
-              },
-              {
-                icon: Globe,
-                persona: "Backend Engineers",
-                goal: "Move into cloud & infrastructure with hands-on practice",
-                outcome: "Deploy containerized services to production",
-              },
-              {
-                icon: Zap,
-                persona: "Tech Leads & Architects",
-                goal: "Evaluate tools like MLflow, OpenClaw, and IaC frameworks",
-                outcome: "Make informed decisions with real-world experience",
-              },
-            ].map((item) => (
-              <div
-                key={item.persona}
-                className="flex items-start gap-4 rounded-xl border bg-card p-5"
+      {/* ═══════════════ TRY IT ═══════════════════════════════ */}
+      <section aria-label="Try a command" className="border-t border-white/10 bg-[#0b1120] pb-16 text-white lg:pb-24">
+        <div className="container mx-auto grid items-center gap-8 px-4 pt-12 lg:grid-cols-[1fr_1.4fr] lg:gap-14 lg:pt-16">
+          <div>
+            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
+              Try it before you watch
+            </h2>
+            <p className="mt-4 max-w-md text-lg leading-relaxed text-slate-300">
+              Pick a course, copy the command, see what it prints. These are
+              recordings of the real labs, not mock-ups.
+            </p>
+          </div>
+          <HeroTerminal demos={heroDemos} />
+        </div>
+      </section>
+
+      {/* ═══════════════ TRACKS ═══════════════════════════════ */}
+      {trackTiles.length > 0 && (
+        <section aria-label="Tracks" className="border-b bg-muted/30 py-12 lg:py-16">
+          <div className="container mx-auto px-4">
+            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
+              Pick where you start
+            </h2>
+            <div className="mt-8 grid gap-5 lg:grid-cols-3">
+              {trackTiles.map(({ track, published, upcoming: soon, cover }) => (
+                <Link
+                  key={track.id}
+                  href={`/courses#${track.anchor}`}
+                  className="group flex flex-col overflow-hidden rounded-xl border bg-background transition-colors hover:border-foreground/40"
+                >
+                  {cover && (
+                    /* eslint-disable-next-line @next/next/no-img-element */
+                    <img
+                      src={cover}
+                      alt=""
+                      loading="lazy"
+                      className="aspect-video w-full object-cover"
+                    />
+                  )}
+                  <div className="flex flex-1 flex-col p-6">
+                    <h3 className="text-2xl font-bold tracking-tight">
+                      {track.title}
+                    </h3>
+                    <p className="mt-2 flex-1 text-muted-foreground">
+                      {track.description}
+                    </p>
+                    <p className="mt-5 flex items-center justify-between text-sm font-medium">
+                      <span>
+                        {published > 0 &&
+                          `${published} ${published === 1 ? "course" : "courses"}`}
+                        {published > 0 && soon > 0 && ", "}
+                        {soon > 0 && `${soon} coming soon`}
+                      </span>
+                      <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                    </p>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* ═══════════════ INSTRUCTOR ═══════════════════════════ */}
+      <section aria-label="Instructor" className="border-b py-12 lg:py-16">
+        <div className="container mx-auto grid items-center gap-8 px-4 sm:grid-cols-[auto_1fr] lg:gap-14">
+          <Image
+            src="/images/luca-berton.jpg"
+            alt="Luca Berton"
+            width={480}
+            height={672}
+            sizes="(min-width: 640px) 240px, 160px"
+            className="h-auto w-40 rounded-xl sm:w-60"
+          />
+          <div className="max-w-2xl text-lg leading-relaxed text-muted-foreground">
+            <h2 className="mb-5 text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
+              Taught by someone who runs this for a living
+            </h2>
+            <p>
+              <span className="font-semibold text-foreground">Luca Berton</span>{" "}
+              is the author of Ansible Pilot and Ansible By Example, a Docker
+              Captain, and a speaker at Red Hat Summit 2026. Every lesson
+              comes from a system he built and runs himself.
+            </p>
+            <p className="mt-4">
+              <Link
+                href="/about"
+                className="font-medium text-foreground underline underline-offset-4"
               >
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10">
-                  <item.icon className="h-5 w-5 text-primary" />
-                </div>
-                <div>
-                  <h3 className="font-semibold">{item.persona}</h3>
-                  <p className="mt-1 text-sm text-muted-foreground">
-                    {item.goal}
-                  </p>
-                  <p className="mt-2 flex items-center gap-1.5 text-xs font-medium text-green-700 dark:text-green-400">
-                    <Target className="h-3 w-3" />
-                    {item.outcome}
-                  </p>
-                </div>
-              </div>
-            ))}
+                About Luca and CopyPasteLearn
+              </Link>
+            </p>
           </div>
-        </div>
-      </section>
-
-      {/* ════════════════════ STATS BAR ═══════════════════════ */}
-      <section aria-label="Platform stats" className="border-b bg-muted/30">
-        <div className="container mx-auto grid grid-cols-2 gap-6 px-4 py-10 sm:grid-cols-4">
-          {[
-            {
-              value: `${courses.length}+`,
-              label: "Courses",
-              icon: BookOpen,
-            },
-            {
-              value: `${courses.reduce((sum, c) => sum + c.lessonCount, 0)}+`,
-              label: "Video Lessons",
-              icon: Play,
-            },
-            { value: "Hands-on", label: "Browser Labs", icon: Terminal },
-            {
-              value: "100%",
-              label: "Practical Skills",
-              icon: GraduationCap,
-            },
-          ].map((stat) => (
-            <div key={stat.label} className="flex items-center gap-3">
-              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10">
-                <stat.icon className="h-5 w-5 text-primary" />
-              </div>
-              <div>
-                <div className="text-xl font-bold">{stat.value}</div>
-                <div className="text-xs text-muted-foreground">
-                  {stat.label}
-                </div>
-              </div>
-            </div>
-          ))}
         </div>
       </section>
 
@@ -350,18 +295,12 @@ export default async function HomePage() {
         <div className="container mx-auto px-4">
           <div className="mb-10 flex items-end justify-between">
             <div>
-              <Badge
-                variant="outline"
-                className="mb-3 text-xs uppercase tracking-wider"
-              >
-                Tracks
-              </Badge>
               <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
                 Courses by Track
               </h2>
               <p className="mt-3 max-w-lg text-muted-foreground">
-                Three tracks, each course stands alone. Start with the free
-                lesson — no signup required.
+                Three tracks, and every course stands alone. The first lesson
+                of each course is free, with no signup.
               </p>
             </div>
             <Button
@@ -394,77 +333,6 @@ export default async function HomePage() {
                 <ArrowRight className="h-4 w-4" />
               </Link>
             </Button>
-          </div>
-        </div>
-      </section>
-
-      {/* ═══════════════ SHOP / DOWNLOADABLES ═══════════════ */}
-      {featuredProducts.length > 0 && (
-        <section
-          aria-label="Shop downloadable ebooks and templates"
-          className="border-b py-16 lg:py-20"
-        >
-          <div className="container mx-auto px-4">
-            <div className="mb-10 flex flex-col items-center text-center">
-              <Badge variant="secondary" className="mb-3">
-                Shop
-              </Badge>
-              <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
-                Production-ready DevOps content, instant download
-              </h2>
-              <p className="mt-3 max-w-2xl text-muted-foreground">
-                Ebooks, templates, and bundles for Ansible, Terraform, and
-                Kubernetes — sold by Open Empower B.V. with EU VAT included.
-              </p>
-            </div>
-            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-              {featuredProducts.map((p) => (
-                <ProductCard key={p.id} product={p} />
-              ))}
-            </div>
-            <div className="mt-10 flex justify-center">
-              <Button size="lg" asChild>
-                <Link href="/shop">
-                  Browse all products
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </Link>
-              </Button>
-            </div>
-          </div>
-        </section>
-      )}
-
-      {/* ═══════════════ BROWSE TOPICS ════════════════════════ */}
-      <section
-        aria-label="Browse topics"
-        className="border-y bg-muted/20 py-16 lg:py-24"
-      >
-        <div className="container mx-auto px-4">
-          <div className="mx-auto mb-10 max-w-2xl text-center">
-            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
-              Explore Topics
-            </h2>
-            <p className="mt-3 text-muted-foreground">
-              From containers to AI agents — find the skills that match your
-              career goals.
-            </p>
-          </div>
-
-          <div className="mx-auto grid max-w-4xl grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">
-            {topics.map((topic) => (
-              <Link
-                key={topic.label}
-                href={topic.href}
-                className="group flex flex-col items-center gap-3 rounded-xl border bg-card p-5 text-center transition-all hover:border-primary/30 hover:shadow-md hover:shadow-primary/5"
-              >
-                <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10 transition-colors group-hover:bg-primary/15">
-                  <topic.icon className="h-6 w-6 text-primary" />
-                </div>
-                <span className="text-sm font-medium leading-tight">
-                  {topic.label}
-                </span>
-              </Link>
-            ))}
           </div>
         </div>
       </section>

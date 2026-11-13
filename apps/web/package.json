@@ -16,6 +16,7 @@
     "db:generate": "prisma generate",
     "db:migrate": "prisma migrate dev",
     "db:seed": "tsx prisma/seed.ts",
+    "course:import": "tsx scripts/import-course-package.ts",
     "db:studio": "prisma studio",
     "seo:audit": "node scripts/seo-audit.cjs",
     "seo:fix-frontmatter": "node scripts/fix-frontmatter.cjs",

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" role="img" aria-label="Spend Fewer Cloud Tokens: Offload Work to a Local Model">
+  <rect width="800" height="450" fill="#0b1120"/>
+  <text x="56" y="84" fill="#34d399" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="17" font-weight="600" letter-spacing="2">AI HOMELAB ON A MAC MINI</text>
+  <text x="56" y="150" fill="#f8fafc" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="50" font-weight="700">Spend Fewer Cloud</text>
+  <text x="56" y="209" fill="#f8fafc" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="50" font-weight="700">Tokens: Offload Work to</text>
+  <text x="56" y="268" fill="#f8fafc" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="50" font-weight="700">a Local Model</text>
+  <rect x="56" y="388" width="72" height="4" fill="#34d399"/>
+</svg>
