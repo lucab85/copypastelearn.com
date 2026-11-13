@@ -50,6 +50,11 @@ model Course {
   thumbnailUrl      String?
   status            ContentStatus @default(DRAFT)
   sortOrder         Int           @default(0)
+  /// Catalog track. NULL = shown under "More courses".
+  track             CourseTrack?
+  /// A DRAFT course with announced = true is listed as "coming soon"
+  /// (title and description only, no course page).
+  announced         Boolean       @default(false)
   createdAt         DateTime      @default(now())
   updatedAt         DateTime      @updatedAt
 
@@ -58,6 +63,13 @@ model Course {
 
   @@index([status])
   @@index([slug])
+  @@index([track])
+}
+
+enum CourseTrack {
+  AI_AGENTS
+  AI_HOMELAB
+  FOUNDATIONS
 }
 
 enum Difficulty {

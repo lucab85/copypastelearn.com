@@ -1,8 +1,12 @@
 export const revalidate = 3600;
 import type { Metadata } from "next";
-import { getPublicCourses } from "@/server/queries/public-courses";
-import { CourseFilter } from "@/components/course/course-filter";
-import { BookOpen, ArrowRight } from "lucide-react";
+import {
+  getPublicCourses,
+  getUpcomingCourses,
+} from "@/server/queries/public-courses";
+import { TrackCatalog } from "@/components/course/track-catalog";
+import { COURSE_TRACKS } from "@/lib/course-tracks";
+import { BookOpen } from "lucide-react";
 import Link from "next/link";
 import { PageEventTracker } from "@/components/analytics/page-event-tracker";
 
@@ -29,7 +33,15 @@ export const metadata: Metadata = {
 };
 
 export default async function CourseCatalogPage() {
-  const courses = await getPublicCourses();
+  const [courses, upcoming] = await Promise.all([
+    getPublicCourses(),
+    getUpcomingCourses(),
+  ]);
+  const hasCourses = (id: string) =>
+    [...courses, ...upcoming].some((c) =>
+      id === "OTHER" ? !c.track : c.track === id
+    );
+  const tracks = COURSE_TRACKS.filter((t) => hasCourses(t.id));
 
   const siteUrl =
     process.env.NEXT_PUBLIC_APP_URL ?? "https://www.copypastelearn.com";
@@ -74,117 +86,28 @@ export default async function CourseCatalogPage() {
             Course Catalog
           </h1>
           <p className="mt-3 max-w-2xl text-lg text-muted-foreground">
-            Master IT automation with video courses and hands-on interactive
-            labs. Pick a course and start learning today.
+            Video courses you can follow command by command. Pick a track,
+            start from any course: the first lesson is free.
           </p>
-          <p className="mt-4 text-sm">
-            New: the{" "}
-            <Link href="/academy" className="font-medium text-primary hover:underline">
-              Agentic AI Academy
-            </Link>
-            , courses on running AI agents.
-          </p>
-        </div>
-      </div>
-
-      {/* Learning Paths */}
-      <div className="border-b bg-muted/10">
-        <div className="container mx-auto px-4 py-10">
-          <h2 className="mb-2 text-xl font-semibold">Learning Paths</h2>
-          <p className="mb-6 text-sm text-muted-foreground">Follow a structured sequence to build real skills step by step.</p>
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {[
-              {
-                title: "DevOps Starter",
-                description:
-                  "Container basics → configuration management → infrastructure provisioning. The essential DevOps toolkit.",
-                courses: [
-                  { name: "Docker Fundamentals", slug: "docker-fundamentals" },
-                  { name: "Ansible Quickstart", slug: "ansible-quickstart" },
-                  { name: "Terraform for Beginners", slug: "terraform-beginners" },
-                ],
-                color: "from-blue-500/10 to-cyan-500/10",
-                border: "border-blue-500/20",
-              },
-              {
-                title: "Backend to Infrastructure",
-                description:
-                  "Build APIs, containerize them, then deploy and manage at scale.",
-                courses: [
-                  { name: "Node.js REST APIs", slug: "nodejs-rest-apis" },
-                  { name: "Docker Fundamentals", slug: "docker-fundamentals" },
-                  { name: "Terraform for Beginners", slug: "terraform-beginners" },
-                ],
-                color: "from-green-500/10 to-emerald-500/10",
-                border: "border-green-500/20",
-              },
-              {
-                title: "AI & MLOps",
-                description:
-                  "From AI agents to ML model lifecycle management on Kubernetes.",
-                courses: [
-                  { name: "OpenClaw AI Agent", slug: "openclaw-agent" },
-                  { name: "MLflow for Kubernetes", slug: "mlflow-kubernetes-mlops" },
-                ],
-                color: "from-orange-500/10 to-yellow-500/10",
-                border: "border-orange-500/20",
-              },
-              {
-                title: "AI-Assisted Development",
-                description:
-                  "Go from prompting to production with Claude Code, then put an autonomous agent to work.",
-                courses: [
-                  { name: "Claude Code Masterclass", slug: "claude-code-masterclass" },
-                  { name: "OpenClaw AI Agent", slug: "openclaw-agent" },
-                ],
-                color: "from-amber-500/10 to-orange-500/10",
-                border: "border-amber-500/20",
-              },
-              {
-                title: "Linux Security",
-                description:
-                  "Harden Linux systems with SELinux policies, contexts, and troubleshooting.",
-                courses: [
-                  { name: "SELinux for Sysadmins", slug: "selinux-system-admins" },
-                  { name: "Ansible Quickstart", slug: "ansible-quickstart" },
-                ],
-                color: "from-red-500/10 to-pink-500/10",
-                border: "border-red-500/20",
-              },
-            ].map((path) => (
-              <div
-                key={path.title}
-                className={`rounded-xl border ${path.border} bg-gradient-to-br ${path.color} p-5`}
-              >
-                <h3 className="font-semibold">{path.title}</h3>
-                <p className="mt-1.5 text-sm text-muted-foreground">
-                  {path.description}
-                </p>
-                <ol className="mt-3 space-y-1.5">
-                  {path.courses.map((c, i) => (
-                    <li key={c.slug} className="flex items-center gap-2">
-                      <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-background/80 text-[10px] font-bold">{i + 1}</span>
-                      <Link href={`/courses/${c.slug}`} className="text-xs font-medium hover:underline">
-                        {c.name}
-                      </Link>
-                    </li>
-                  ))}
-                </ol>
+          {tracks.length > 1 && (
+            <nav aria-label="Tracks" className="mt-6 flex flex-wrap gap-2">
+              {tracks.map((t) => (
                 <Link
-                  href={`/courses/${path.courses[0].slug}`}
-                  className="mt-4 inline-flex items-center gap-1 text-xs font-medium text-primary hover:underline"
+                  key={t.id}
+                  href={`#${t.anchor}`}
+                  className="rounded-full border bg-background px-4 py-1.5 text-sm font-medium transition-colors hover:border-primary hover:text-primary"
                 >
-                  Start path <ArrowRight className="h-3 w-3" />
+                  {t.title}
                 </Link>
-              </div>
-            ))}
-          </div>
+              ))}
+            </nav>
+          )}
         </div>
       </div>
 
       {/* Course grid with filters */}
       <div className="container mx-auto px-4 py-12">
-        {courses.length === 0 ? (
+        {courses.length === 0 && upcoming.length === 0 ? (
           <div className="flex flex-col items-center justify-center rounded-xl border border-dashed py-20">
             <BookOpen className="mb-4 h-10 w-10 text-muted-foreground/50" />
             <p className="text-lg font-medium text-muted-foreground">
@@ -195,7 +118,7 @@ export default async function CourseCatalogPage() {
             </p>
           </div>
         ) : (
-          <CourseFilter courses={courses} />
+          <TrackCatalog courses={courses} upcoming={upcoming} showFilters />
         )}
       </div>
     </div>

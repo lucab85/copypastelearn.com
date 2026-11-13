@@ -2,6 +2,7 @@ import { PrismaClient } from "@prisma/client";
 import { seedKagentCourse } from "./seeds/kagent-course";
 import { seedMcpCourse } from "./seeds/mcp-course";
 import { seedGooseCourse } from "./seeds/goose-course";
+import { seedCatalogTracks } from "./seeds/catalog-tracks";
 
 const prisma = new PrismaClient();
 
@@ -1849,6 +1850,7 @@ async function main() {
   await seedKagentCourse(prisma);
   await seedMcpCourse(prisma);
   await seedGooseCourse(prisma);
+  await seedCatalogTracks(prisma);
 
   console.log("\n✅ Seeding complete!");
 }

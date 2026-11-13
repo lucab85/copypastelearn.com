@@ -3,8 +3,11 @@ import type { Metadata } from "next";
 import { COPYPASTELEARN } from "@/lib/entities";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { CourseCard } from "@/components/course/course-card";
-import { getPublicCourses } from "@/server/queries/public-courses";
+import {
+  getPublicCourses,
+  getUpcomingCourses,
+} from "@/server/queries/public-courses";
+import { TrackCatalog } from "@/components/course/track-catalog";
 import { listPublishedProducts } from "@/server/queries/catalog";
 import { ProductCard } from "@/components/commerce/ProductCard";
 import { getAllPosts } from "@/lib/blog";
@@ -125,7 +128,10 @@ const testimonials = [
 /* ─── Page Component ───────────────────────────────── */
 
 export default async function HomePage() {
-  const courses = await getPublicCourses();
+  const [courses, upcoming] = await Promise.all([
+    getPublicCourses(),
+    getUpcomingCourses(),
+  ]);
   const recentPosts = getAllPosts().slice(0, 6);
   const featuredProducts = await listPublishedProducts({ limit: 6 });
 
@@ -151,22 +157,22 @@ export default async function HomePage() {
               className="mb-6 gap-1.5 px-3 py-1 text-sm"
             >
               <Play className="h-3 w-3" />
-              New: OpenClaw AI Agent Course
+              New: AI agent and local AI courses
             </Badge>
 
             <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl">
-              Learn IT Skills with{" "}
+              Learn AI Agents and Automation{" "}
               <span className="text-primary">
-                Real Hands-On Labs
+                by Doing
               </span>
             </h1>
 
             {/* ── IMPROVEMENT 1: Target personas + outcome ── */}
             <p className="mt-4 text-lg font-medium text-foreground/80">
-              Built for DevOps engineers, SREs, and backend developers moving into cloud &amp; infrastructure.
+              Copy the example. Understand the logic. Build it yourself.
             </p>
             <p className="mt-2 max-w-xl text-lg leading-relaxed text-muted-foreground">
-              Practice in real Linux sandboxes — no setup, no VMs. Ship your first automation in 60 minutes.
+              Short video lessons you follow command by command: AI agents, local AI on your own machine, and the automation foundations they build on.
             </p>
 
             <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:gap-4">
@@ -303,42 +309,6 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* ═══════════════ SHOP / DOWNLOADABLES ═══════════════ */}
-      {featuredProducts.length > 0 && (
-        <section
-          aria-label="Shop downloadable ebooks and templates"
-          className="border-b py-16 lg:py-20"
-        >
-          <div className="container mx-auto px-4">
-            <div className="mb-10 flex flex-col items-center text-center">
-              <Badge variant="secondary" className="mb-3">
-                Shop
-              </Badge>
-              <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
-                Production-ready DevOps content, instant download
-              </h2>
-              <p className="mt-3 max-w-2xl text-muted-foreground">
-                Ebooks, templates, and bundles for Ansible, Terraform, and
-                Kubernetes — sold by Open Empower B.V. with EU VAT included.
-              </p>
-            </div>
-            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-              {featuredProducts.map((p) => (
-                <ProductCard key={p.id} product={p} />
-              ))}
-            </div>
-            <div className="mt-10 flex justify-center">
-              <Button size="lg" asChild>
-                <Link href="/shop">
-                  Browse all products
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </Link>
-              </Button>
-            </div>
-          </div>
-        </section>
-      )}
-
       {/* ════════════════════ STATS BAR ═══════════════════════ */}
       <section aria-label="Platform stats" className="border-b bg-muted/30">
         <div className="container mx-auto grid grid-cols-2 gap-6 px-4 py-10 sm:grid-cols-4">
@@ -384,13 +354,13 @@ export default async function HomePage() {
                 variant="outline"
                 className="mb-3 text-xs uppercase tracking-wider"
               >
-                Popular
+                Tracks
               </Badge>
               <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
-                Featured Courses
+                Courses by Track
               </h2>
               <p className="mt-3 max-w-lg text-muted-foreground">
-                Hands-on courses designed by practitioners. Start with the free
+                Three tracks, each course stands alone. Start with the free
                 lesson — no signup required.
               </p>
             </div>
@@ -406,12 +376,8 @@ export default async function HomePage() {
             </Button>
           </div>
 
-          {courses.length > 0 ? (
-            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-              {courses.map((course) => (
-                <CourseCard key={course.id} course={course} />
-              ))}
-            </div>
+          {courses.length > 0 || upcoming.length > 0 ? (
+            <TrackCatalog courses={courses} upcoming={upcoming} />
           ) : (
             <div className="flex flex-col items-center justify-center rounded-xl border border-dashed py-20">
               <BookOpen className="mb-4 h-10 w-10 text-muted-foreground/50" />
@@ -431,6 +397,42 @@ export default async function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* ═══════════════ SHOP / DOWNLOADABLES ═══════════════ */}
+      {featuredProducts.length > 0 && (
+        <section
+          aria-label="Shop downloadable ebooks and templates"
+          className="border-b py-16 lg:py-20"
+        >
+          <div className="container mx-auto px-4">
+            <div className="mb-10 flex flex-col items-center text-center">
+              <Badge variant="secondary" className="mb-3">
+                Shop
+              </Badge>
+              <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
+                Production-ready DevOps content, instant download
+              </h2>
+              <p className="mt-3 max-w-2xl text-muted-foreground">
+                Ebooks, templates, and bundles for Ansible, Terraform, and
+                Kubernetes — sold by Open Empower B.V. with EU VAT included.
+              </p>
+            </div>
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {featuredProducts.map((p) => (
+                <ProductCard key={p.id} product={p} />
+              ))}
+            </div>
+            <div className="mt-10 flex justify-center">
+              <Button size="lg" asChild>
+                <Link href="/shop">
+                  Browse all products
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </Link>
+              </Button>
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* ═══════════════ BROWSE TOPICS ════════════════════════ */}
       <section
