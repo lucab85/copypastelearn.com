@@ -52,7 +52,7 @@ const UPCOMING: Stub[] = [
     difficulty: "INTERMEDIATE",
   },
   {
-    slug: "mac-mini-reproducible-homelab-server",
+    slug: "reproducible-homelab-server",
     title: "Turn a Mac mini into a Reproducible Homelab Server",
     description:
       "Remote access, Homebrew with a Brewfile, power settings, and Infrastructure as Code with make, so the whole setup can be rebuilt from a repository.",
@@ -92,7 +92,7 @@ const UPCOMING: Stub[] = [
     difficulty: "INTERMEDIATE",
   },
   {
-    slug: "self-host-a-social-media-scheduler",
+    slug: "self-host-postiz",
     title: "Self-Host a Social Media Scheduler",
     description:
       "Postiz with Docker Compose: generated secrets, localhost-only ports, pinned images and upgrades.",
@@ -100,7 +100,7 @@ const UPCOMING: Stub[] = [
     difficulty: "INTERMEDIATE",
   },
   {
-    slug: "back-up-and-restore-a-homelab",
+    slug: "backup-and-restore",
     title: "Back Up and Restore a Homelab",
     description:
       "Database dumps, volume archives and checksums, a restore you have tested, and a rebuild from zero.",
@@ -108,7 +108,7 @@ const UPCOMING: Stub[] = [
     difficulty: "INTERMEDIATE",
   },
   {
-    slug: "personal-ai-agent-with-hermes-agent",
+    slug: "hermes-agent",
     title: "A Personal AI Agent on Your Mac with Hermes Agent",
     description:
       "An always-on open-source agent on a local model: tools and approvals, skills and memory, an MCP server, scheduled tasks, and safety settings.",
@@ -116,7 +116,7 @@ const UPCOMING: Stub[] = [
     difficulty: "INTERMEDIATE",
   },
   {
-    slug: "spend-fewer-cloud-tokens-local-model",
+    slug: "local-ai-offload",
     title: "Spend Fewer Cloud Tokens: Offload Work to a Local Model",
     description:
       "A rule for what runs locally and what goes to the cloud, measured on your own Mac, with four working offloads and a before/after usage table.",
@@ -124,7 +124,7 @@ const UPCOMING: Stub[] = [
     difficulty: "INTERMEDIATE",
   },
   {
-    slug: "monitor-your-homelab-with-opentelemetry",
+    slug: "monitor-homelab-opentelemetry",
     title: "Know What Your Homelab Is Doing with OpenTelemetry",
     description:
       "Metrics, dashboards and alerts on your phone for a Mac that runs services and long jobs, with nothing sent to third parties.",
