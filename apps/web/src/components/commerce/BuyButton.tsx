@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Button, type ButtonProps } from "@/components/ui/button";
 import { Loader2 } from "lucide-react";
 import { trackEvent } from "@/lib/analytics";
+import { adsBeginCheckout } from "@/lib/ads";
 
 interface BuyButtonProps extends Omit<ButtonProps, "onClick"> {
   productId?: string;
@@ -34,6 +35,8 @@ export function BuyButton({
     setError(null);
     try {
       trackEvent("begin_checkout");
+      // The price is resolved server-side, so no value is sent here.
+      adsBeginCheckout();
       const res = await fetch("/api/checkout/stripe", {
         method: "POST",
         headers: { "content-type": "application/json" },

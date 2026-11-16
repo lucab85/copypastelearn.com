@@ -1,8 +1,13 @@
 "use server";
 
 import Stripe from "stripe";
+import { cookies } from "next/headers";
 import { requireAuth } from "@/lib/auth";
 import { db } from "@/lib/db";
+import {
+  attributionToStripeMetadata,
+  parseAttributionFromCookieStore,
+} from "@/lib/commerce/attribution";
 
 function getStripe() {
   const key = process.env.STRIPE_SECRET_KEY;
@@ -94,14 +99,23 @@ export async function createCheckoutSession(
     }
   }
 
+  // First-party campaign attribution (UTM + ad click ids), for reporting
+  // in the Stripe dashboard. Only metadata; the webhook does not read it.
+  const attribution = attributionToStripeMetadata(
+    parseAttributionFromCookieStore(await cookies()),
+  );
+
   // Create checkout session
   const session = await stripe.checkout.sessions.create({
     customer: customerId,
     mode: "subscription",
     line_items: [{ price: priceId, quantity: 1 }],
-    success_url: `${appUrl}/dashboard?checkout=success`,
+    // session_id lets the dashboard report the real amount as the
+    // purchase conversion (see getCheckoutConversion below).
+    success_url: `${appUrl}/dashboard?checkout=success&session_id={CHECKOUT_SESSION_ID}`,
     cancel_url: `${appUrl}/pricing?checkout=canceled`,
     metadata: {
+      ...attribution,
       clerkUserId: user.clerkUserId,
       userId: user.id,
     },
@@ -121,6 +135,42 @@ export async function createCheckoutSession(
   }
 
   return { url: session.url };
+}
+
+// ─── Checkout conversion (purchase event value) ─────────
+
+export interface CheckoutConversion {
+  transactionId: string;
+  /** Amount charged, in major units (e.g. 29 for €29.00). */
+  value: number;
+  /** ISO 4217 code, upper case. */
+  currency: string;
+}
+
+/**
+ * Amount and currency of the signed-in user's completed Checkout Session,
+ * for the client-side purchase event. Returns null if the session is not
+ * theirs, not complete, or cannot be read; the caller then falls back to
+ * the default value.
+ */
+export async function getCheckoutConversion(
+  sessionId: string
+): Promise<CheckoutConversion | null> {
+  if (!/^cs_[A-Za-z0-9_]+$/.test(sessionId)) return null;
+  try {
+    const user = await requireAuth();
+    const session = await getStripe().checkout.sessions.retrieve(sessionId);
+    if (session.metadata?.userId !== user.id) return null;
+    if (session.status !== "complete") return null;
+    if (session.amount_total == null || !session.currency) return null;
+    return {
+      transactionId: session.id,
+      value: session.amount_total / 100,
+      currency: session.currency.toUpperCase(),
+    };
+  } catch {
+    return null;
+  }
 }
 
 // ─── Create Customer Portal Session ─────────────────────

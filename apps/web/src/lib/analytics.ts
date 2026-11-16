@@ -6,7 +6,17 @@
  *   trackEvent("begin_checkout", { currency: "EUR", value: 29 });
  */
 
+import { SUBSCRIPTION_PRICE_EUR } from "@copypastelearn/shared";
+import { adsBeginCheckout, adsLead, adsPurchase, adsSignUp } from "@/lib/ads";
+
 export const GA_ID = "G-YN94VH0TPN";
+
+/**
+ * Fallback purchase value when the real order amount is not known
+ * (the monthly subscription price).
+ */
+export const DEFAULT_PURCHASE_VALUE = SUBSCRIPTION_PRICE_EUR;
+export const DEFAULT_CURRENCY = "EUR";
 
 // ─── Low-level gtag wrapper ────────────────────────────
 
@@ -40,6 +50,12 @@ export function trackCtaClick(ctaText: string, location: string, destination?: s
 }
 
 // --- Auth ---
+/** Account created. Also fires the ad platforms' sign-up conversions. */
+export function trackSignUp(method = "clerk") {
+  trackEvent("sign_up", { method });
+  adsSignUp();
+}
+
 export function trackSignUpStart() {
   trackEvent("sign_up_start");
 }
@@ -48,13 +64,58 @@ export function trackSignInStart() {
   trackEvent("sign_in_start");
 }
 
-// --- Ecommerce ---
-export function trackBeginCheckout(currency = "EUR", value = 29) {
-  trackEvent("begin_checkout", { currency, value });
+// --- Newsletter ---
+/** Newsletter sign-up. Also fires the ad platforms' lead conversions. */
+export function trackNewsletterSignup(method: string, formId?: string) {
+  trackEvent("newsletter_subscribe", { method, form_id: formId });
+  adsLead();
 }
 
-export function trackPurchase(transactionId?: string, currency = "EUR", value = 29) {
+// --- Ecommerce ---
+export function trackBeginCheckout(currency = DEFAULT_CURRENCY, value = DEFAULT_PURCHASE_VALUE) {
+  trackEvent("begin_checkout", { currency, value });
+  adsBeginCheckout({ currency, value });
+}
+
+/**
+ * Purchase completed. Pass the real order amount (major units, e.g. 29.0)
+ * and ISO currency; the defaults are only a fallback when the order
+ * cannot be looked up. Also fires the ad platforms' purchase conversions.
+ */
+export function trackPurchase(
+  transactionId?: string,
+  currency = DEFAULT_CURRENCY,
+  value = DEFAULT_PURCHASE_VALUE,
+) {
   trackEvent("purchase", { transaction_id: transactionId, currency, value });
+  adsPurchase({ transactionId, currency, value });
+}
+
+const TRACKED_PURCHASES_KEY = "cpl_tracked_purchases";
+
+/**
+ * Like trackPurchase, but fires at most once per transaction id in this
+ * browser (the success page can be reloaded or revisited).
+ */
+export function trackPurchaseOnce(transactionId: string, currency: string, value: number) {
+  if (typeof window === "undefined") return;
+  let seen: string[] = [];
+  try {
+    seen = JSON.parse(localStorage.getItem(TRACKED_PURCHASES_KEY) ?? "[]");
+    if (!Array.isArray(seen)) seen = [];
+  } catch {
+    seen = [];
+  }
+  if (seen.includes(transactionId)) return;
+  trackPurchase(transactionId, currency, value);
+  try {
+    localStorage.setItem(
+      TRACKED_PURCHASES_KEY,
+      JSON.stringify([...seen, transactionId].slice(-20)),
+    );
+  } catch {
+    // Storage full or blocked: the event was still sent once.
+  }
 }
 
 // --- Course & Lesson ---
