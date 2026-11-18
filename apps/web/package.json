@@ -18,6 +18,7 @@
     "db:seed": "tsx prisma/seed.ts",
     "course:import": "tsx scripts/import-course-package.ts",
     "db:studio": "prisma studio",
+    "ads:validate": "node scripts/validate-ads-tags.mjs",
     "seo:audit": "node scripts/seo-audit.cjs",
     "seo:fix-frontmatter": "node scripts/fix-frontmatter.cjs",
     "seo:frontmatter": "node scripts/audit-frontmatter.cjs",
