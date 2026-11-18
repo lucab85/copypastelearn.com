@@ -38,8 +38,14 @@ export function RouteChangeTracker() {
     if (searchParams?.get("checkout") === "success") {
       const sessionId = searchParams.get("session_id");
       if (!sessionId) {
-        // Older success URL without the session id: default value.
+        // Clerk Billing checkout (no Stripe session id on the redirect): count
+        // the purchase once, with the default value, then drop the marker
+        // from the URL so a reload or a shared link does not count it again.
+        // The real amount needs a Clerk Billing webhook (not built yet).
         trackPurchase();
+        const rest = new URLSearchParams(searchParams.toString());
+        rest.delete("checkout");
+        window.history.replaceState(null, "", pathname + (rest.toString() ? `?${rest.toString()}` : ""));
         return;
       }
       // Real amount and currency from the Stripe session; default only
