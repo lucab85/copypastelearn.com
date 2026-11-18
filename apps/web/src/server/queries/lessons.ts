@@ -1,5 +1,6 @@
 "use server";
 
+import { labsAvailable } from "@/lib/labs-availability";
 import { db } from "@/lib/db";
 import { hasCourseSubscription } from "@/lib/billing";
 import { getCurrentUser, NotFoundError, ForbiddenError } from "@/lib/auth";
@@ -166,7 +167,7 @@ export async function getLesson(
     transcript: lesson.transcript,
     codeSnippets: lesson.codeSnippets as LessonDetail["codeSnippets"],
     resources: lesson.resources as LessonDetail["resources"],
-    labDefinitionId: lesson.labDefinition?.id ?? null,
+    labDefinitionId: labsAvailable ? lesson.labDefinition?.id ?? null : null,
     userProgress: progress
       ? {
           videoPositionSeconds: progress.videoPositionSeconds,
