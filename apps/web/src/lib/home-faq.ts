@@ -34,6 +34,13 @@ export const HOME_FAQ: FaqItem[] = [
     source: "/courses, course-tracks.ts",
   },
   {
+    question: "Where can I ask a question?",
+    answer:
+      "Join the community on Discord or write to us by email. Both are on the contact page.",
+    link: { href: "/contact", label: "Contact and community" },
+    source: "/contact",
+  },
+  {
     question: "What does a subscription include?",
     answer:
       "A subscription unlocks every lesson and the available final assessments. It includes all current and future courses.",
