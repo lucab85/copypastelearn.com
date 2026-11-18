@@ -48,8 +48,7 @@ export function SiteFooter() {
               </span>
             </Link>
             <p className="max-w-xs text-sm text-muted-foreground">
-              Master IT automation with video courses and hands-on interactive
-              labs. Learn by doing in real environments.
+              Master IT automation with video courses and practical examples.
             </p>
           </div>
 

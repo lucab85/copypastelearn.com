@@ -27,14 +27,13 @@ export const metadata: Metadata = {
     template: "%s — CopyPasteLearn",
   },
   description:
-    "Master IT automation with expert-led video courses and hands-on interactive labs. Build real skills by doing in live environments.",
+    "Master IT automation with expert-led video courses and practical examples. Follow the lessons at your own pace.",
   keywords: [
     "IT automation",
     "learn DevOps",
     "Docker tutorial",
     "Ansible course",
     "Node.js API course",
-    "hands-on labs",
     "interactive coding",
     "infrastructure as code",
     "copypastelearn",
@@ -70,7 +69,7 @@ export const metadata: Metadata = {
     siteName: "CopyPasteLearn",
     title: "CopyPasteLearn — Learn IT Automation by Doing",
     description:
-      "Master IT automation with expert-led video courses and hands-on interactive labs. Build real skills by doing in live environments.",
+      "Master IT automation with expert-led video courses and practical examples. Follow the lessons at your own pace.",
     images: [
       {
         url: "/images/og-default.png",
@@ -86,7 +85,7 @@ export const metadata: Metadata = {
     creator: "@TheLucaBerton",
     title: "CopyPasteLearn — Learn IT Automation by Doing",
     description:
-      "Master IT automation with expert-led video courses and hands-on interactive labs. Build real skills by doing in live environments.",
+      "Master IT automation with expert-led video courses and practical examples. Follow the lessons at your own pace.",
     images: ["/images/og-default.png"],
   },
 };

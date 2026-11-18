@@ -7,7 +7,7 @@ import { PageEventTracker } from "@/components/analytics/page-event-tracker";
 
 const TITLE = "Agentic AI Academy: Courses for AI Agents";
 const DESCRIPTION =
-  "Hands-on courses on running AI agents: kagent on Kubernetes, building and securing MCP servers, and coding agents with goose and AGENTS.md.";
+  "Hands-on courses on running AI agents: kagent on Kubernetes, building and securing MCP servers, coding agents with goose, durable workflows with Dapr, and OpenTelemetry for agents.";
 
 export const metadata: Metadata = {
   title: TITLE,
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
 };
 
 /**
- * The three courses of the Academy, in the order to take them. Only courses that are PUBLISHED in the database get a
+ * The courses of the Academy, in the order to take them. Only courses that are PUBLISHED in the database get a
  * link: the others show "In production", so the page never points to a 404.
  */
 const ACADEMY = [
@@ -48,6 +48,20 @@ const ACADEMY = [
     summary:
       "Install goose, teach it your project's rules with AGENTS.md, then run it the way a team does: recipes, CI, guardrails and a record of what it did.",
     topics: ["AGENTS.md", "Recipes", "GitHub Actions", "Guardrails with hooks"],
+  },
+  {
+    slug: "build-durable-ai-agents-with-dapr-agents",
+    title: "Build Durable AI Agents with Dapr Agents",
+    summary:
+      "Build an agent that survives restarts, combines model calls with workflow steps, and communicates with other agents.",
+    topics: ["Durable workflows", "HTTP services", "Pub/sub", "Activity history"],
+  },
+  {
+    slug: "observe-and-debug-ai-agents-with-opentelemetry",
+    title: "Observe and Debug AI Agents with OpenTelemetry",
+    summary:
+      "Trace agent runs and model calls, route telemetry through a collector, and diagnose failures in Jaeger.",
+    topics: ["Model-call traces", "Jaeger", "Agent metrics", "OpenTelemetry Collector"],
   },
 ];
 
@@ -88,7 +102,7 @@ export default async function AcademyPage() {
           <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">Agentic AI Academy</h1>
           <p className="mt-3 max-w-2xl text-lg text-muted-foreground">
             Learn the tools that run AI agents in production. Each course is a short series of
-            lessons: you watch the commands run, then repeat them with the lab files.
+            lessons: watch the commands run and repeat them in your own environment.
           </p>
           <p className="mt-4 inline-flex items-center gap-2 rounded-full border px-3 py-1 text-sm">
             <Gift className="h-4 w-4" aria-hidden="true" /> The first lesson of every course is free.

@@ -13,14 +13,14 @@ import { PageEventTracker } from "@/components/analytics/page-event-tracker";
 export const metadata: Metadata = {
   title: "Courses — IT Automation & DevOps Training",
   description:
-    "Browse hands-on courses on Docker, Ansible, Node.js, Terraform, MLflow, and more. Each course includes expert video lessons and interactive labs.",
+    "Browse hands-on courses on Docker, Ansible, Node.js, Terraform, MLflow, and more. Each course includes expert video lessons and practical examples.",
   alternates: { canonical: "/courses" },
   openGraph: {
     url: "/courses",
     type: "website",
     title: "Courses — IT Automation & DevOps Training",
     description:
-      "Browse hands-on courses on Docker, Ansible, Node.js and more. Each course includes video lessons and interactive labs.",
+      "Browse hands-on courses on Docker, Ansible, Node.js and more. Each course includes video lessons and practical examples.",
   },
   twitter: {
     card: "summary_large_image",
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     creator: "@TheLucaBerton",
     title: "Courses — IT Automation & DevOps Training",
     description:
-      "Browse hands-on courses on Docker, Ansible, Node.js and more. Each course includes video lessons and interactive labs.",
+      "Browse hands-on courses on Docker, Ansible, Node.js and more. Each course includes video lessons and practical examples.",
   },
 };
 

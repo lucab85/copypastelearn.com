@@ -5,7 +5,7 @@ export default function manifest(): MetadataRoute.Manifest {
     name: "CopyPasteLearn — Learn IT Automation by Doing",
     short_name: "CopyPasteLearn",
     description:
-      "Master IT automation with video courses and hands-on interactive labs.",
+      "Master IT automation with video courses and practical examples.",
     start_url: "/",
     display: "standalone",
     background_color: "#09090b",

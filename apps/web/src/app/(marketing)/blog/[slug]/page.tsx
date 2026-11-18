@@ -194,10 +194,10 @@ function MidArticlePromo({ variant }: { variant: "courses" | "newsletter" | "pri
           </div>
         </div>
         <h3 className="text-lg font-bold text-white mb-2">
-          Master this topic with hands-on labs
+          Learn this topic with guided video lessons
         </h3>
         <p className="text-sm text-zinc-400 mb-4">
-          Go beyond reading — build real projects in sandboxed environments with expert video guidance.
+          Go beyond reading — follow expert video guidance and try the examples in your own environment.
         </p>
         <TrackedLink
           href="/courses"
@@ -242,10 +242,10 @@ function MidArticlePromo({ variant }: { variant: "courses" | "newsletter" | "pri
         Pro Subscription
       </div>
       <h3 className="text-lg font-bold text-white mb-2">
-        Unlock all courses &amp; labs
+        Unlock all courses
       </h3>
       <p className="text-sm text-zinc-400 mb-4">
-        Full access to every course, interactive lab, code snippet, and future content. Cancel anytime.
+        Full access to all courses, their lessons, and available assessments. Cancel anytime.
       </p>
       <TrackedLink
         href="/pricing"
@@ -546,7 +546,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
               </h2>
               <p className="mx-auto mt-3 max-w-lg text-zinc-400">
                 Stop reading tutorials — start building. Expert video courses with
-                hands-on labs in real sandboxed environments.
+                practical examples you can follow at your own pace.
               </p>
               <div className="mt-6 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
                 <TrackedLink

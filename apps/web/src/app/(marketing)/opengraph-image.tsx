@@ -38,7 +38,7 @@ export default function MarketingOGImage() {
             Learn IT Automation by Doing
           </div>
           <div style={{ fontSize: 22, color: "#a1a1aa", lineHeight: 1.4 }}>
-            Master Docker, Ansible, Terraform, Kubernetes, and more with expert-led video courses and hands-on interactive labs.
+            Master Docker, Ansible, Terraform, Kubernetes, and more with expert-led video courses and practical examples.
           </div>
         </div>
         <div

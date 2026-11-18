@@ -7,7 +7,7 @@ import { PageEventTracker } from "@/components/analytics/page-event-tracker";
 export const metadata = {
   title: "Create Your Free Account",
   description:
-    "Create a free CopyPasteLearn account and start learning IT automation with expert video courses and interactive hands-on labs today.",
+    "Create a free CopyPasteLearn account and start learning IT automation with expert video courses and practical examples.",
   alternates: { canonical: "/sign-up" },
   openGraph: { url: "/sign-up", type: "website", images: [{ url: "/opengraph-image", width: 1200, height: 630 }] },
   robots: { index: false, follow: true },
@@ -23,7 +23,7 @@ export default async function SignUpPage() {
       <h1 className="sr-only">Create your CopyPasteLearn account</h1>
       <p className="mb-6 max-w-md text-center text-sm text-muted-foreground">
         Create your free account to access video courses, launch interactive
-        hands-on labs, and track your learning progress.
+        course materials, and track your learning progress.
       </p>
       <SignUp
         appearance={{

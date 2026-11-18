@@ -22,13 +22,9 @@ import {
   Play,
   CheckCircle2,
   Users,
-  Zap,
   Clock,
   Star,
   Quote,
-  Cpu,
-  HardDrive,
-  Wifi,
 } from "lucide-react";
 
 export const revalidate = 3600;
@@ -48,7 +44,7 @@ function OrganizationJsonLd() {
     // Founder (Luca Berton) and parent (Open Empower): see src/lib/entities.ts.
     ...COPYPASTELEARN,
     description:
-      "Master IT automation with video courses and hands-on interactive labs.",
+      "Master IT automation with video courses and practical examples.",
   };
   return (
     <script
@@ -67,7 +63,7 @@ function WebSiteJsonLd() {
     name: "CopyPasteLearn",
     url: siteUrl,
     description:
-      "Master IT automation with video courses and hands-on interactive labs. Learn by doing in real environments.",
+      "Master IT automation with video courses and practical examples. Practice the examples in your own environment.",
     potentialAction: {
       "@type": "SearchAction",
       target: `${siteUrl}/courses?q={search_term_string}`,
@@ -203,7 +199,7 @@ export default async function HomePage() {
             </h2>
             <p className="mt-4 max-w-md text-lg leading-relaxed text-slate-300">
               Pick a course, copy the command, see what it prints. These are
-              recordings of the real labs, not mock-ups.
+              command outputs recorded during the lessons.
             </p>
           </div>
           <HeroTerminal demos={heroDemos} />
@@ -351,8 +347,7 @@ export default async function HomePage() {
               Built for IT Professionals
             </h2>
             <p className="mt-4 text-lg text-muted-foreground">
-              We combine expert instruction, real sandboxed environments, and a
-              learn-by-doing philosophy that gets you job-ready faster.
+              Follow expert instruction and work through real examples at your own pace.
             </p>
           </div>
 
@@ -365,28 +360,16 @@ export default async function HomePage() {
                   "Structured courses with video, transcripts, and code snippets. Resume exactly where you left off.",
               },
               {
-                icon: Terminal,
-                title: "Interactive Browser Labs",
-                description:
-                  "Spin up real Linux sandboxes in your browser. Follow guided steps with instant validation.",
-              },
-              {
                 icon: Award,
                 title: "Progress Tracking",
                 description:
-                  "Your dashboard tracks completed lessons, lab exercises, and course progress — gamified milestones included.",
+                  "Pick up where you left off and track completed lessons across your courses.",
               },
               {
                 icon: Clock,
                 title: "Bite-Sized Lessons",
                 description:
                   "Every lesson is 5–15 minutes. Learn during lunch, on the commute, or whenever you have a spare moment.",
-              },
-              {
-                icon: Zap,
-                title: "Zero Setup Required",
-                description:
-                  "No VMs, no installations, no config files. Just open the lab and start typing commands.",
               },
               {
                 icon: Users,
@@ -406,70 +389,6 @@ export default async function HomePage() {
                 <p className="text-sm leading-relaxed text-muted-foreground">
                   {feature.description}
                 </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ═══════════════ LAB SPECS ════════════════════════════ */}
-      <section
-        aria-label="Lab specifications"
-        className="border-y bg-muted/20 py-16 lg:py-24"
-      >
-        <div className="container mx-auto px-4">
-          <div className="mx-auto mb-10 max-w-2xl text-center">
-            <Badge
-              variant="outline"
-              className="mb-3 text-xs uppercase tracking-wider"
-            >
-              Lab Environment
-            </Badge>
-            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
-              What&apos;s Included in Labs
-            </h2>
-            <p className="mt-3 text-muted-foreground">
-              Real infrastructure, not simulations. Every lab runs in an
-              isolated sandbox environment.
-            </p>
-          </div>
-
-          <div className="mx-auto grid max-w-4xl gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {[
-              {
-                icon: Cpu,
-                label: "Dedicated CPU",
-                detail: "Full Linux environment",
-              },
-              {
-                icon: HardDrive,
-                label: "Persistent Storage",
-                detail: "Save work across sessions",
-              },
-              {
-                icon: Terminal,
-                label: "Browser Terminal",
-                detail: "Full bash shell access",
-              },
-              {
-                icon: Wifi,
-                label: "Network Access",
-                detail: "Install packages, pull images",
-              },
-            ].map((spec) => (
-              <div
-                key={spec.label}
-                className="flex items-center gap-3 rounded-xl border bg-card p-4"
-              >
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10">
-                  <spec.icon className="h-5 w-5 text-primary" />
-                </div>
-                <div>
-                  <div className="text-sm font-semibold">{spec.label}</div>
-                  <div className="text-xs text-muted-foreground">
-                    {spec.detail}
-                  </div>
-                </div>
               </div>
             ))}
           </div>
@@ -507,14 +426,14 @@ export default async function HomePage() {
                 step: "2",
                 title: "Practice",
                 description:
-                  "Launch a real sandbox lab in your browser and follow the guided steps.",
+                  "Run the example commands in your own environment.",
                 icon: Terminal,
               },
               {
                 step: "3",
                 title: "Master",
                 description:
-                  "Complete validation checks, earn progress, and build real-world skills.",
+                  "Review the material and take a final assessment where available.",
                 icon: Award,
               },
             ].map((item) => (
@@ -697,7 +616,7 @@ export default async function HomePage() {
             </span>
             <span className="flex items-center gap-1.5">
               <CheckCircle2 className="h-4 w-4 text-green-500" />
-              Real sandbox environments
+              Learn at your own pace
             </span>
           </div>
         </div>

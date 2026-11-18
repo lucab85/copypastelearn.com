@@ -48,7 +48,7 @@ export default function CoursesOGImage() {
             Learn IT Automation by Doing
           </div>
           <div style={{ fontSize: 20, color: "#71717a" }}>
-            Video lessons + hands-on interactive labs
+            Video lessons and practical examples
           </div>
         </div>
 

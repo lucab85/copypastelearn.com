@@ -22,7 +22,7 @@ interface PaywallProps {
 
 export function Paywall({
   title = "Subscribe to unlock",
-  description = "Get unlimited access to all lessons, interactive labs, and exclusive content.",
+  description = "Get unlimited access to all lessons and course materials.",
   className,
 }: PaywallProps) {
   useEffect(() => {
@@ -46,7 +46,7 @@ export function Paywall({
           </li>
           <li className="flex items-center justify-center gap-2">
             <Sparkles className="h-4 w-4 text-primary" />
-            Interactive hands-on labs
+            Final assessments on selected courses
           </li>
           <li className="flex items-center justify-center gap-2">
             <Sparkles className="h-4 w-4 text-primary" />

@@ -1,5 +1,6 @@
 "use server";
 
+import { labsAvailable } from "@/lib/labs-availability";
 import { db } from "@/lib/db";
 import { hasCourseSubscription } from "@/lib/billing";
 import { getCurrentUser } from "@/lib/auth";
@@ -88,6 +89,8 @@ export interface CourseLabGuideView {
 export async function getCourseLabGuide(
   slug: string
 ): Promise<CourseLabGuideView | null> {
+  if (!labsAvailable) return null;
+
   const course = await db.course.findUnique({
     where: { slug, status: "PUBLISHED" },
     select: { title: true, labGuide: true },

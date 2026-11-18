@@ -78,7 +78,7 @@ export default function TermsPage() {
             </li>
             <li>
               <strong>Subscriptions</strong> — recurring access to course
-              libraries and labs at a monthly or annual price.
+              libraries at a monthly or annual price. Interactive labs are currently paused.
             </li>
           </ul>
           <p>

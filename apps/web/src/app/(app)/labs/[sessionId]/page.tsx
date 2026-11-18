@@ -1,6 +1,7 @@
 export const dynamic = "force-dynamic";
 import { notFound, redirect } from "next/navigation";
 import { requireAuth } from "@/lib/auth";
+import { labsAvailable } from "@/lib/labs-availability";
 import { db } from "@/lib/db";
 import { sseUrl, terminalWsUrl } from "@/lib/lab-client";
 import { LabPageClient } from "./lab-page-client";
@@ -10,6 +11,8 @@ interface LabSessionPageProps {
 }
 
 export default async function LabSessionPage({ params }: LabSessionPageProps) {
+  if (!labsAvailable) redirect("/dashboard");
+
   const { sessionId } = await params;
   const user = await requireAuth();
 

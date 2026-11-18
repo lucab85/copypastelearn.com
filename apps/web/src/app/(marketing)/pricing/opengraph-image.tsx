@@ -48,7 +48,7 @@ export default function PricingOGImage() {
         </div>
 
         <div style={{ display: "flex", gap: 24, flexWrap: "wrap", justifyContent: "center" }}>
-          {["All Courses", "Interactive Labs", "Code Snippets", "Certificates"].map((f) => (
+          {["All Courses", "Video Lessons", "Code Snippets", "Assessments"].map((f) => (
             <div
               key={f}
               style={{
