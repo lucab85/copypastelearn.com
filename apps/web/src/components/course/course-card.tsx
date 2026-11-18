@@ -1,117 +1,93 @@
 import Link from "next/link";
-import Image from "next/image";
-import { Badge } from "@/components/ui/badge";
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { BookOpen, Clock } from "lucide-react";
 import type { CourseListItem } from "@copypastelearn/shared";
-
-const difficultyColors: Record<string, "default" | "secondary" | "destructive"> = {
-  BEGINNER: "secondary",
-  INTERMEDIATE: "default",
-  ADVANCED: "destructive",
-};
+import { CourseThumb } from "@/components/course/course-thumb";
+import { courseMeta, formatMonth } from "@/lib/home-catalog";
+import { cn } from "@/lib/utils";
 
 interface CourseCardProps {
   course: CourseListItem;
+  /** No description and no footer: for rows of four cards. */
+  compact?: boolean;
+  /** `sizes` of the cover, when the card is not in the usual 1/2/3 grid. */
+  sizes?: string;
+  className?: string;
 }
 
-export function CourseCard({ course }: CourseCardProps) {
+/** Shared by every card-shaped link: border, radius, lift, focus ring. */
+export const cardLinkClass =
+  "group flex h-full flex-col rounded-2xl border bg-card text-card-foreground outline-none transition-[border-color,box-shadow,transform] duration-200 hover:border-foreground/30 hover:shadow-md focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 motion-safe:hover:-translate-y-0.5";
+
+export function CourseCard({
+  course,
+  compact = false,
+  sizes = "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw",
+  className,
+}: CourseCardProps) {
+  const progress = course.userProgress
+    ? Math.round(course.userProgress.percentComplete)
+    : null;
+
   return (
-    <Link href={`/courses/${course.slug}`}>
-      <Card className="group h-full transition-all hover:border-primary/20 hover:shadow-lg hover:shadow-primary/5">
-        {course.thumbnailUrl ? (
-          <div className="relative aspect-video w-full overflow-hidden rounded-t-lg">
-            {course.thumbnailUrl.endsWith('.svg') ? (
-              /* eslint-disable-next-line @next/next/no-img-element */
-              <img
-                src={course.thumbnailUrl}
-                alt={course.title}
-                className="h-full w-full object-cover transition-transform group-hover:scale-105"
-              />
-            ) : (
-              <Image
-                src={course.thumbnailUrl}
-                alt={course.title}
-                fill
-                className="object-cover transition-transform group-hover:scale-105"
-                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                priority={false}
-              />
-            )}
-          </div>
-        ) : (
-          <div className="flex aspect-video w-full items-center justify-center rounded-t-lg bg-gradient-to-br from-primary/10 to-primary/5">
-            <BookOpen className="h-10 w-10 text-primary/40" />
-          </div>
-        )}
-        <CardHeader className="pb-3">
-          <div className="flex items-center gap-2">
-            <Badge variant={difficultyColors[course.difficulty] ?? "default"} className="text-xs">
-              {course.difficulty.toLowerCase()}
-            </Badge>
-            <span className="flex items-center gap-1 text-xs text-muted-foreground">
-              <Clock className="h-3 w-3" />
-              {course.lessonCount} {course.lessonCount === 1 ? "lesson" : "lessons"}
-              {course.durationMinutes ? `, ${course.durationMinutes} min` : ""}
-            </span>
-          </div>
-          <CardTitle className="text-lg leading-snug group-hover:text-primary transition-colors">
-            {course.title}
-          </CardTitle>
-        </CardHeader>
-        <CardContent className="pb-4">
-          <p className="line-clamp-2 text-sm leading-relaxed text-muted-foreground">
+    <Link
+      href={`/courses/${course.slug}`}
+      className={cn(cardLinkClass, compact ? "p-2.5" : "p-3", className)}
+    >
+      <CourseThumb src={course.thumbnailUrl} sizes={sizes} />
+      <div className={cn("flex flex-1 flex-col", compact ? "px-1.5 pb-1.5 pt-3" : "px-2 pb-2 pt-4")}>
+        <h3
+          className={cn(
+            "line-clamp-3 font-semibold leading-snug tracking-tight",
+            compact ? "text-[15px]" : "text-lg"
+          )}
+        >
+          {course.title}
+        </h3>
+        {!compact && (
+          <p className="mt-2 line-clamp-2 text-sm leading-relaxed text-muted-foreground">
             {course.description}
           </p>
-          {course.updatedAt && (
-            <p className="mt-3 text-xs text-muted-foreground/80">
-              Updated{" "}
-              {new Date(course.updatedAt).toLocaleDateString("en-US", {
-                month: "short",
-                year: "numeric",
-                timeZone: "UTC",
-              })}
-            </p>
-          )}
-        </CardContent>
-        {course.userProgress ? (
-          <CardFooter>
-            <div className="w-full">
-              <div className="mb-1 flex justify-between text-xs text-muted-foreground">
-                <span>Progress</span>
-                <span>{Math.round(course.userProgress.percentComplete)}%</span>
-              </div>
-              <div
-                className="h-2 w-full overflow-hidden rounded-full bg-secondary"
-                role="progressbar"
-                aria-valuenow={Math.round(course.userProgress.percentComplete)}
-                aria-valuemin={0}
-                aria-valuemax={100}
-                aria-label={`Course progress: ${Math.round(course.userProgress.percentComplete)}%`}
-              >
-                <div
-                  className="h-full rounded-full bg-primary transition-all"
-                  style={{
-                    width: `${course.userProgress.percentComplete}%`,
-                  }}
-                />
-              </div>
-            </div>
-          </CardFooter>
-        ) : (
-          <CardFooter>
-            <span className="text-xs font-medium text-primary group-hover:underline">
-              Preview free lesson →
-            </span>
-          </CardFooter>
         )}
-      </Card>
+        <p
+          className={cn(
+            "mt-auto text-muted-foreground",
+            compact ? "pt-2 text-xs" : "pt-4 text-sm"
+          )}
+        >
+          {courseMeta(course)}
+          {!compact && course.updatedAt && (
+            <span className="whitespace-nowrap">
+              {" · "}Updated {formatMonth(course.updatedAt)}
+            </span>
+          )}
+        </p>
+        {progress !== null ? (
+          <div className="mt-3">
+            <div className="mb-1 flex justify-between text-xs text-muted-foreground">
+              <span>Progress</span>
+              <span>{progress}%</span>
+            </div>
+            <div
+              className="h-2 w-full overflow-hidden rounded-full bg-secondary"
+              role="progressbar"
+              aria-valuenow={progress}
+              aria-valuemin={0}
+              aria-valuemax={100}
+              aria-label={`Course progress: ${progress}%`}
+            >
+              <div
+                className="h-full rounded-full bg-primary transition-all"
+                style={{ width: `${course.userProgress?.percentComplete ?? 0}%` }}
+              />
+            </div>
+          </div>
+        ) : (
+          !compact && (
+            <p className="mt-3 text-sm font-medium text-foreground underline-offset-4 group-hover:underline">
+              Preview free lesson <span aria-hidden="true">→</span>
+            </p>
+          )
+        )}
+      </div>
     </Link>
   );
 }

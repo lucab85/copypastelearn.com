@@ -32,7 +32,7 @@ export const COURSE_TRACKS: TrackInfo[] = [
     title: "Foundations",
     tagline: "The basics every other course builds on",
     description:
-      "Ansible, Docker, Terraform and Linux security, with hands-on labs in the browser.",
+      "Ansible, Docker, Terraform and Linux security.",
   },
   {
     id: "OTHER",
