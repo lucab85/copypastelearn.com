@@ -8,6 +8,7 @@ import type {
   CourseDetail,
   UpcomingCourse,
 } from "@copypastelearn/shared";
+import { freeLessonId } from "@/lib/free-lesson";
 
 /**
  * Public (no-auth) course catalog query, cached for ISR.
@@ -115,7 +116,7 @@ export const getPublicCourse = unstable_cache(
       hasLabGuide: labsAvailable && !!course.labGuide,
       companionProducts: course.companionProducts,
       lessons: course.lessons.map((lesson) => {
-        const isFree = lesson.sortOrder === 0;
+        const isFree = lesson.id === freeLessonId(course.lessons);
         return {
           id: lesson.id,
           title: lesson.title,

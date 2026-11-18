@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Mail, MessageSquare, MapPin } from "lucide-react";
+import { Mail, MapPin } from "lucide-react";
 import { EmailLink } from "@/components/ui/email-link";
 
 export const metadata: Metadata = {
@@ -25,27 +25,19 @@ export default function ContactPage() {
       </div>
 
       <div className="container mx-auto px-4 py-12">
-        <div className="mx-auto grid max-w-4xl gap-8 sm:grid-cols-3">
+        <div className="mx-auto grid max-w-2xl gap-8 sm:grid-cols-2">
           {[
             {
               icon: Mail,
               title: "Email",
               description: "hello@copypastelearn.com",
-              href: null,
               emailUser: "hello",
               emailDomain: "copypastelearn.com",
-            },
-            {
-              icon: MessageSquare,
-              title: "Discord",
-              description: "Join our community",
-              href: "https://discord.com/invite/copypastelearn",
             },
             {
               icon: MapPin,
               title: "Location",
               description: "Remote-first, worldwide",
-              href: null,
             },
           ].map((item) => (
             <div
@@ -62,19 +54,6 @@ export default function ContactPage() {
                   domain={item.emailDomain!}
                   className="text-sm text-muted-foreground underline underline-offset-4 hover:text-primary"
                 />
-              ) : item.href ? (
-                <a
-                  href={item.href}
-                  className="text-sm text-muted-foreground underline underline-offset-4 hover:text-primary"
-                  target={item.href.startsWith("http") ? "_blank" : undefined}
-                  rel={
-                    item.href.startsWith("http")
-                      ? "noopener noreferrer"
-                      : undefined
-                  }
-                >
-                  {item.description}
-                </a>
               ) : (
                 <p className="text-sm text-muted-foreground">
                   {item.description}
