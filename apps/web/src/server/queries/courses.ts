@@ -1,5 +1,6 @@
 "use server";
 
+import { labsAvailable } from "@/lib/labs-availability";
 import { db } from "@/lib/db";
 import { hasCourseSubscription } from "@/lib/billing";
 import { getCurrentUser } from "@/lib/auth";
@@ -115,7 +116,7 @@ export async function getCourse(slug: string): Promise<CourseDetail | null> {
     trailerPlaybackId: course.trailerPlaybackId,
     contentUpdatedAt: course.contentUpdatedAt?.toISOString() ?? null,
     hasAssessment: !!course.assessment,
-    hasLabGuide: !!course.labGuide,
+    hasLabGuide: labsAvailable && !!course.labGuide,
     companionProducts: course.companionProducts,
     lessons: course.lessons.map((lesson: any) => {
       const isFree = lesson.sortOrder === 0;
@@ -128,7 +129,7 @@ export async function getCourse(slug: string): Promise<CourseDetail | null> {
         moduleNumber: lesson.moduleNumber,
         moduleTitle: lesson.moduleTitle,
         durationSeconds: lesson.durationSeconds,
-        hasLab: !!lesson.labDefinition,
+        hasLab: labsAvailable && !!lesson.labDefinition,
         isFree,
         isAccessible: isFree || isSubscribed,
         userProgress:
