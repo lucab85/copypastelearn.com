@@ -44,7 +44,6 @@ export const COPYPASTELEARN = {
   logo: "https://www.copypastelearn.com/icons/icon-512.png",
   sameAs: [
     "https://twitter.com/copypastelearn",
-    "https://discord.com/invite/copypastelearn",
   ],
   founder: LUCA_BERTON,
   parentOrganization: OPEN_EMPOWER,

@@ -107,9 +107,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         slug: true,
         updatedAt: true,
         lessons: {
-          where: { status: "PUBLISHED", sortOrder: 0 },
+          // The free lesson: the first published one (see lib/free-lesson.ts).
+          where: { status: "PUBLISHED" },
           select: { slug: true, updatedAt: true },
           orderBy: { sortOrder: "asc" },
+          take: 1,
         },
       },
     });

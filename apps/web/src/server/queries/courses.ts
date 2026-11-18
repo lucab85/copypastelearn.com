@@ -5,6 +5,7 @@ import { db } from "@/lib/db";
 import { hasCourseSubscription } from "@/lib/billing";
 import { getCurrentUser } from "@/lib/auth";
 import type { CourseListItem, CourseDetail } from "@copypastelearn/shared";
+import { freeLessonId } from "@/lib/free-lesson";
 
 /**
  * Get all published courses with lesson count and optional user progress.
@@ -119,7 +120,7 @@ export async function getCourse(slug: string): Promise<CourseDetail | null> {
     hasLabGuide: labsAvailable && !!course.labGuide,
     companionProducts: course.companionProducts,
     lessons: course.lessons.map((lesson: any) => {
-      const isFree = lesson.sortOrder === 0;
+      const isFree = lesson.id === freeLessonId(course.lessons);
       return {
         id: lesson.id,
         title: lesson.title,

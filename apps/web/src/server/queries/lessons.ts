@@ -5,6 +5,7 @@ import { db } from "@/lib/db";
 import { hasCourseSubscription } from "@/lib/billing";
 import { getCurrentUser, NotFoundError, ForbiddenError } from "@/lib/auth";
 import type { LessonDetail } from "@copypastelearn/shared";
+import { freeLessonId } from "@/lib/free-lesson";
 
 /** Public, non-gated lesson facts (the same ones listed on the course page). */
 export interface LessonPublicMeta {
@@ -53,7 +54,7 @@ export async function getLessonPublicMeta(
 
 /**
  * Get a single lesson with full content.
- * Free lessons (sortOrder === 0) are accessible without authentication.
+ * The free lesson (the first published lesson of the course) is accessible without authentication.
  * All others require an active subscription.
  */
 export async function getLesson(
@@ -99,7 +100,7 @@ export async function getLesson(
   }
 
   // Subscription gating: first lesson is free, others require auth + subscription
-  const isFree = lesson.sortOrder === 0;
+  const isFree = freeLessonId(lesson.course.lessons) === lesson.id;
   if (!isFree) {
     if (!user) {
       throw new ForbiddenError(
