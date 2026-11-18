@@ -18,7 +18,7 @@ export function CourseColumns({ columns }: { columns: HomeColumn[] }) {
         </h2>
         <div
           className={cn(
-            "mt-6 grid gap-5 md:grid-cols-2",
+            "mt-6 grid gap-5 lg:grid-cols-2",
             columns.length >= 3 && "xl:grid-cols-3"
           )}
         >
@@ -27,8 +27,9 @@ export function CourseColumns({ columns }: { columns: HomeColumn[] }) {
               key={column.id}
               className={cn(
                 "min-w-0 rounded-2xl border p-3 sm:p-4",
-                // Two columns between md and xl: the third list takes the full row.
-                index === 2 && "md:max-xl:col-span-2"
+                // Two columns between lg and xl: the third list takes the
+                // full row, its three courses side by side.
+                index === 2 && "lg:max-xl:col-span-2"
               )}
             >
               <div className="flex items-center justify-between gap-3 pl-2">
@@ -48,7 +49,7 @@ export function CourseColumns({ columns }: { columns: HomeColumn[] }) {
               <ul
                 className={cn(
                   "mt-2 grid gap-1",
-                  index === 2 && "md:max-xl:grid-cols-2 md:max-xl:gap-x-4"
+                  index === 2 && "lg:max-xl:grid-cols-3 lg:max-xl:gap-x-2"
                 )}
               >
                 {column.courses.map((course) => (

@@ -3,15 +3,20 @@ import type { CourseListItem, UpcomingCourse } from "@copypastelearn/shared";
 import {
   buildHomeColumns,
   byRecentUpdate,
+  byRecentPublish,
   courseMeta,
+  featuredCourse,
   formatDuration,
+  isNewCourse,
   latestUpdatedCourse,
+  NEW_COURSE_DAYS,
   trackCount,
   trackGroups,
 } from "@/lib/home-catalog";
 import { COURSE_TRACKS } from "@/lib/course-tracks";
 import { footerSections } from "@/lib/footer-links";
 import { HOME_FAQ } from "@/lib/home-faq";
+import { TESTIMONIALS } from "@/lib/testimonials";
 import { getAllCategories } from "@/lib/blog-taxonomy";
 
 function course(
@@ -71,6 +76,77 @@ describe("recent updates", () => {
     expect(latestUpdatedCourse(courses)?.slug).toBe("new-a");
     expect(latestUpdatedCourse(courses, ["new-a"])?.slug).toBe("new-b");
     expect(latestUpdatedCourse([course("undated")])).toBeNull();
+  });
+});
+
+describe("new course rule", () => {
+  const now = new Date("2026-12-18T12:00:00.000Z");
+  const day = 24 * 60 * 60 * 1000;
+  const daysAgo = (n: number) => new Date(now.getTime() - n * day).toISOString();
+
+  it(`is new for ${NEW_COURSE_DAYS} days after the publish date, not after`, () => {
+    expect(isNewCourse(daysAgo(0), now)).toBe(true);
+    expect(isNewCourse(daysAgo(29), now)).toBe(true);
+    expect(isNewCourse(daysAgo(30), now)).toBe(true);
+    expect(isNewCourse(new Date(now.getTime() - 30 * day - 1).toISOString(), now)).toBe(false);
+    expect(isNewCourse(daysAgo(31), now)).toBe(false);
+    expect(isNewCourse(daysAgo(400), now)).toBe(false);
+  });
+
+  it("is never new without a publish date", () => {
+    expect(isNewCourse(null, now)).toBe(false);
+    expect(isNewCourse(undefined, now)).toBe(false);
+    expect(isNewCourse("not a date", now)).toBe(false);
+  });
+
+  it("orders by publish date, newest first; in a batch the last of the catalog comes first", () => {
+    const courses = [
+      course("draft-like"),
+      course("old", { publishedAt: daysAgo(200) }),
+      course("batch-1", { publishedAt: daysAgo(10) }),
+      course("batch-2", { publishedAt: daysAgo(10) }),
+    ];
+    expect(byRecentPublish(courses).map((c) => c.slug)).toEqual([
+      "batch-2",
+      "batch-1",
+      "old",
+    ]);
+  });
+
+  it("features the newest course with the New label while it is new", () => {
+    const courses = [
+      course("old", { publishedAt: daysAgo(200), updatedAt: daysAgo(1) }),
+      course("fresh", { publishedAt: daysAgo(5) }),
+    ];
+    const featured = featuredCourse(courses, now);
+    expect(featured?.course.slug).toBe("fresh");
+    expect(featured?.isNew).toBe(true);
+    expect(featured?.date).toBe(courses[1].publishedAt);
+  });
+
+  it("skips a course already pictured on another card when there is another new one", () => {
+    const courses = [
+      course("a", { publishedAt: daysAgo(5) }),
+      course("b", { publishedAt: daysAgo(5) }),
+    ];
+    expect(featuredCourse(courses, now, ["b"])?.course.slug).toBe("a");
+    expect(featuredCourse([courses[1]], now, ["b"])?.course.slug).toBe("b");
+  });
+
+  it("falls back to the most recently updated course, without the label, after 30 days", () => {
+    const courses = [
+      course("published-long-ago", { publishedAt: daysAgo(31) }),
+      course("updated", { publishedAt: daysAgo(300), updatedAt: daysAgo(2) }),
+    ];
+    const featured = featuredCourse(courses, now);
+    expect(featured?.course.slug).toBe("updated");
+    expect(featured?.isNew).toBe(false);
+    expect(featured?.date).toBe(courses[1].updatedAt);
+  });
+
+  it("shows no card when nothing is new and nothing has a content date", () => {
+    expect(featuredCourse([course("x", { publishedAt: daysAgo(90) })], now)).toBeNull();
+    expect(featuredCourse([], now)).toBeNull();
   });
 });
 
@@ -152,12 +228,37 @@ describe("static links and copy", () => {
     expect(hrefs).toEqual(expect.arrayContaining(["/privacy", "/terms"]));
   });
 
-  it("has FAQ answers long enough for FAQPage data and makes no lab promise", () => {
+  it("has FAQ answers long enough for FAQPage data, each with its source", () => {
     expect(HOME_FAQ.length).toBeGreaterThanOrEqual(2);
     for (const item of HOME_FAQ) {
       expect(item.question.endsWith("?")).toBe(true);
       expect(item.answer.length).toBeGreaterThanOrEqual(50);
-      expect(item.answer.toLowerCase()).not.toMatch(/\blabs?\b|sandbox/);
+      expect(item.source.length).toBeGreaterThan(0);
     }
+  });
+
+  it("keeps the FAQ to what the site supports: no lab promise, no price, no Discord", () => {
+    for (const item of HOME_FAQ) {
+      const text = `${item.question} ${item.answer}`.toLowerCase();
+      expect(text).not.toMatch(/\blabs?\b|sandbox/);
+      expect(text).not.toMatch(/[€$£]|\beur\b|\busd\b|per month|\/month|\/mo\b/);
+      expect(text).not.toContain("discord");
+    }
+  });
+
+  it("keeps the three learner quotes as they were, with nothing added", () => {
+    expect(TESTIMONIALS.map((t) => t.name)).toEqual([
+      "Marco R.",
+      "Sarah K.",
+      "James L.",
+    ]);
+    for (const t of TESTIMONIALS) {
+      expect(Object.keys(t).sort()).toEqual(
+        ["company", "name", "outcome", "role", "text"].sort()
+      );
+    }
+    expect(TESTIMONIALS[2].text).toBe(
+      "I went from zero to deploying containerized services in production after the Docker Fundamentals course. The copy-paste workflow is genius."
+    );
   });
 });

@@ -63,6 +63,10 @@ model Course {
   contentUpdatedAt  DateTime?
   /// Hands-On Lab document (Markdown), for subscribers.
   labGuide          String?
+  /// When the course was first set to PUBLISHED. NULL while it has never been
+  /// published. Set once (publishCourse) and never overwritten: unpublishing
+  /// and publishing again keeps the first date.
+  publishedAt       DateTime?
   createdAt         DateTime      @default(now())
   updatedAt         DateTime      @updatedAt
 

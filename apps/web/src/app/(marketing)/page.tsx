@@ -17,14 +17,16 @@ import { TrackSpotlight } from "@/components/home/track-spotlight";
 import { IntentBuckets, type Bucket } from "@/components/home/intent-buckets";
 import { GoalChooser, type Goal } from "@/components/home/goal-chooser";
 import { HomeFaq } from "@/components/home/home-faq";
+import { Testimonials } from "@/components/home/testimonials";
 import { HERO_DEMOS } from "@/lib/hero-demos";
 import { ACADEMY_COURSES } from "@/lib/academy";
 import { HOME_FAQ } from "@/lib/home-faq";
+import { TESTIMONIALS } from "@/lib/testimonials";
 import {
   buildHomeColumns,
   courseMeta,
+  featuredCourse,
   formatMonth,
-  latestUpdatedCourse,
   trackCount,
   trackGroups,
 } from "@/lib/home-catalog";
@@ -103,8 +105,11 @@ export default async function HomePage() {
   const bySlug = new Map(courses.map((c) => [c.slug, c]));
   const academy = ACADEMY_COURSES.flatMap((c) => bySlug.get(c.slug) ?? []);
   const academyCount = `${academy.length} ${academy.length === 1 ? "course" : "courses"}`;
-  const latest = latestUpdatedCourse(
+  // Third promo card: the newest course while it is new (30 days from its
+  // publish date), otherwise the most recently updated one.
+  const featured = featuredCourse(
     courses,
+    new Date(),
     academy.slice(0, 1).map((c) => c.slug)
   );
 
@@ -121,15 +126,17 @@ export default async function HomePage() {
       accent: "amber",
     });
   }
-  if (latest?.updatedAt) {
+  if (featured) {
     promos.push({
       id: "latest",
-      kicker: `Updated ${formatMonth(latest.updatedAt)}`,
-      title: latest.title,
-      text: courseMeta(latest),
-      href: `/courses/${latest.slug}`,
+      kicker: featured.isNew
+        ? `New · ${formatMonth(featured.date)}`
+        : `Updated ${formatMonth(featured.date)}`,
+      title: featured.course.title,
+      text: courseMeta(featured.course),
+      href: `/courses/${featured.course.slug}`,
       cta: "See the course",
-      image: latest.thumbnailUrl,
+      image: featured.course.thumbnailUrl,
       accent: "emerald",
     });
   }
@@ -283,6 +290,9 @@ export default async function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* Learner quotes: a row of cards, name on top, quote below */}
+      <Testimonials items={TESTIMONIALS} />
 
       {/* ═══════════════ LATEST FROM THE BLOG ════════════════ */}
       <section aria-label="Latest articles" className="border-t py-20 lg:py-24">

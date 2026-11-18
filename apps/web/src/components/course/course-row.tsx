@@ -19,7 +19,7 @@ export function CourseRow({ course }: { course: CourseListItem }) {
         <h4 className="line-clamp-2 text-[15px] font-semibold leading-snug tracking-tight underline-offset-4 group-hover:underline">
           {course.title}
         </h4>
-        <p className="mt-1 truncate text-xs text-muted-foreground">
+        <p className="mt-1 text-xs leading-snug text-muted-foreground">
           {courseMeta(course)}
         </p>
       </div>
