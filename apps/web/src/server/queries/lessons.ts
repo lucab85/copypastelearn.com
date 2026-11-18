@@ -1,6 +1,7 @@
 "use server";
 
 import { db } from "@/lib/db";
+import { hasCourseSubscription } from "@/lib/billing";
 import { getCurrentUser, NotFoundError, ForbiddenError } from "@/lib/auth";
 import type { LessonDetail } from "@copypastelearn/shared";
 
@@ -105,12 +106,7 @@ export async function getLesson(
       );
     }
 
-    const subscription = await db.subscription.findUnique({
-      where: { userId: user.id },
-      select: { status: true },
-    });
-
-    if (subscription?.status !== "ACTIVE") {
+    if (!(await hasCourseSubscription(user.id))) {
       throw new ForbiddenError(
         "An active subscription is required to access this lesson"
       );

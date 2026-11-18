@@ -1,54 +1,16 @@
-"use server";
-
+import { auth } from "@clerk/nextjs/server";
 import { db } from "@/lib/db";
-import { getCurrentUser } from "@/lib/auth";
-import type { SubscriptionInfo } from "@copypastelearn/shared";
 
-/**
- * Get the current user's subscription status.
- * Checks local DB first.
- */
-export async function getSubscriptionStatus(): Promise<SubscriptionInfo | null> {
-  const user = await getCurrentUser();
-  if (!user) return null;
-
+export async function hasLegacySubscription(userId: string): Promise<boolean> {
   const subscription = await db.subscription.findUnique({
-    where: { userId: user.id },
-    select: {
-      status: true,
-      currentPeriodEnd: true,
-      canceledAt: true,
-      planId: true,
-    },
+    where: { userId },
+    select: { status: true },
   });
-
-  if (!subscription) {
-    return {
-      status: "NONE",
-      isSubscribed: false,
-      currentPeriodEnd: null,
-      cancelAtPeriodEnd: false,
-      planId: null,
-    };
-  }
-
-  // If canceledAt is set but status is still ACTIVE, it means cancel-at-period-end
-  const cancelAtPeriodEnd =
-    !!subscription.canceledAt && subscription.status === "ACTIVE";
-
-  return {
-    status: subscription.status,
-    isSubscribed: subscription.status === "ACTIVE",
-    currentPeriodEnd: subscription.currentPeriodEnd?.toISOString() ?? null,
-    cancelAtPeriodEnd,
-    planId: subscription.planId ?? null,
-  };
+  return subscription?.status === "ACTIVE";
 }
 
-/**
- * Simple boolean check for subscription access.
- */
-export async function isSubscribed(): Promise<boolean> {
-  const info = await getSubscriptionStatus();
-  return info?.isSubscribed ?? false;
+/** Clerk owns new subscriptions. Existing Stripe subscribers retain their access. */
+export async function hasCourseSubscription(userId: string): Promise<boolean> {
+  const { has } = await auth();
+  return has({ plan: "pro" }) || await hasLegacySubscription(userId);
 }

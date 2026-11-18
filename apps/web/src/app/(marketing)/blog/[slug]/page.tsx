@@ -253,7 +253,7 @@ function MidArticlePromo({ variant }: { variant: "courses" | "newsletter" | "pri
         ctaLocation="blog_mid_article"
         className="inline-flex items-center rounded-lg bg-emerald-600 px-5 py-2.5 text-sm font-semibold text-white hover:bg-emerald-500 transition-colors"
       >
-        View Plans — From €29/mo →
+        View Plans →
       </TrackedLink>
     </div>
   );

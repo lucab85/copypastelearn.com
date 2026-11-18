@@ -2,6 +2,7 @@
 
 import { requireAuth } from "@/lib/auth";
 import { db } from "@/lib/db";
+import { hasCourseSubscription } from "@/lib/billing";
 import {
   createSession,
   destroySession,
@@ -14,12 +15,7 @@ export async function createLabSession(labDefinitionId: string) {
   const user = await requireAuth();
 
   // Subscription gating: labs require an active subscription
-  const subscription = await db.subscription.findUnique({
-    where: { userId: user.id },
-    select: { status: true },
-  });
-
-  if (subscription?.status !== "ACTIVE") {
+  if (!(await hasCourseSubscription(user.id))) {
     return {
       error:
         "An active subscription is required to start labs. Subscribe to unlock all labs and lessons.",
