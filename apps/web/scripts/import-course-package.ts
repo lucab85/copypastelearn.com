@@ -160,10 +160,15 @@ async function mux<T>(method: string, url: string, body?: unknown): Promise<T> {
   return ((await res.json()) as { data: T }).data;
 }
 
-async function uploadToMux(file: string, policy: "signed" | "public", passthrough: string): Promise<string> {
+async function uploadToMux(
+  file: string,
+  policy: "signed" | "public",
+  passthrough: string,
+  title: string,
+): Promise<string> {
   const upload = await mux<{ id: string; url: string }>("POST", "/video/v1/uploads", {
     cors_origin: "*",
-    new_asset_settings: { playback_policy: [policy], passthrough },
+    new_asset_settings: { playback_policy: [policy], passthrough, meta: { title } },
   });
   const put = await fetch(upload.url, {
     method: "PUT",
@@ -324,13 +329,24 @@ async function main() {
           console.log(`  - ${l.slug}: video already set, skipped`);
           continue;
         }
-        const playbackId = await uploadToMux(path.join(dir, l.file), "signed", `${courseSlug}/${l.slug}`);
+        const lessonNumber = String(l.sortOrder + 1).padStart(2, "0");
+        const playbackId = await uploadToMux(
+          path.join(dir, l.file),
+          "signed",
+          `${courseSlug}/${l.slug}`,
+          `${course.title} — ${lessonNumber}. ${l.title}`,
+        );
         await prisma.lesson.update({ where: { id: row.id }, data: { videoPlaybackId: playbackId } });
         console.log(`  ✓ ${l.slug}: uploaded`);
       }
       const promo = path.join(dir, "videos", "promo.mp4");
       if (fs.existsSync(promo) && !course.trailerPlaybackId) {
-        const playbackId = await uploadToMux(promo, "public", `${courseSlug}/promo`);
+        const playbackId = await uploadToMux(
+          promo,
+          "public",
+          `${courseSlug}/promo`,
+          `${course.title} — Trailer`,
+        );
         await prisma.course.update({ where: { id: course.id }, data: { trailerPlaybackId: playbackId } });
         console.log("  ✓ promo uploaded");
       }
