@@ -1,7 +1,9 @@
 "use server";
 
 import Stripe from "stripe";
+import { auth, clerkClient } from "@clerk/nextjs/server";
 import { requireAuth } from "@/lib/auth";
+import { purchaseFromSubscriptionItems } from "@/lib/billing-conversion";
 import { db } from "@/lib/db";
 
 function getStripe() {
@@ -48,6 +50,20 @@ export async function getCheckoutConversion(
   } catch {
     return null;
   }
+}
+
+/**
+ * Amount and currency of the subscription the signed-in user has just bought
+ * through Clerk Billing, for the client-side purchase event. Returns null
+ * when there is no paid subscription item from the last 30 minutes (free
+ * plan, old subscription, signed out), so nothing is reported.
+ */
+export async function getSubscriptionConversion(): Promise<CheckoutConversion | null> {
+  const { userId } = await auth();
+  if (!userId) return null;
+  const client = await clerkClient();
+  const subscription = await client.billing.getUserBillingSubscription(userId);
+  return purchaseFromSubscriptionItems(subscription.subscriptionItems, Date.now());
 }
 
 // ─── Create Customer Portal Session ─────────────────────
