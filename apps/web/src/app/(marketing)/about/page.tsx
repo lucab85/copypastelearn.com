@@ -7,7 +7,7 @@ import { EmailLink } from "@/components/ui/email-link";
 export const metadata: Metadata = {
   title: "About Us — Meet the Instructor",
   description:
-    "CopyPasteLearn makes IT automation hands-on and accessible. Watch expert video lessons, then practise in real sandbox environments — no setup required.",
+    "CopyPasteLearn makes IT automation hands-on and accessible. Watch expert video lessons and practise with real examples.",
   alternates: { canonical: "/about" },
   openGraph: {
     url: "/about",
@@ -35,7 +35,7 @@ function AboutPageJsonLd() {
     name: "About CopyPasteLearn",
     url: `${siteUrl}/about`,
     description:
-      "Learn about CopyPasteLearn — hands-on IT automation education with video courses and interactive labs.",
+      "Learn about CopyPasteLearn — hands-on IT automation education with video courses and practical examples.",
     mainEntity: {
       // One identity across Luca's sites: see src/lib/entities.ts.
       ...COPYPASTELEARN,
@@ -87,9 +87,7 @@ export default function AboutPage() {
               CopyPasteLearn was founded with a simple idea: learning IT
               automation shouldn&apos;t require hours of setup before you write
               your first line of code. We provide expert-led video courses
-              paired with real, ephemeral sandbox environments so you can
-              practice immediately — no local installs, no configuration
-              headaches.
+              with practical examples you can follow in your own environment.
             </p>
           </section>
 
@@ -99,7 +97,7 @@ export default function AboutPage() {
                 icon: Terminal,
                 title: "Hands-On First",
                 description:
-                  "Every course includes interactive labs where you practice in real environments.",
+                  "Follow the commands from the video and practise at your own pace.",
               },
               {
                 icon: Users,
@@ -111,7 +109,7 @@ export default function AboutPage() {
                 icon: Rocket,
                 title: "Always Evolving",
                 description:
-                  "New courses and labs added regularly to cover the latest tools and practices.",
+                  "New courses added regularly to cover the latest tools and practices.",
               },
             ].map((item) => (
               <div

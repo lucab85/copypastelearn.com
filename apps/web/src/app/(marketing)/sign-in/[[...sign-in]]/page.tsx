@@ -7,7 +7,7 @@ import { PageEventTracker } from "@/components/analytics/page-event-tracker";
 export const metadata = {
   title: "Sign In to Your Account",
   description:
-    "Sign in to CopyPasteLearn to access your courses, interactive hands-on labs, and track your learning progress across all devices.",
+    "Sign in to CopyPasteLearn to access your courses and track your learning progress across all devices.",
   alternates: { canonical: "/sign-in" },
   openGraph: { url: "/sign-in", type: "website", images: [{ url: "/opengraph-image", width: 1200, height: 630 }] },
   robots: { index: false, follow: true },
@@ -22,7 +22,7 @@ export default async function SignInPage() {
       <PageEventTracker event="sign_in_start" />
       <h1 className="sr-only">Sign in to CopyPasteLearn</h1>
       <p className="mb-6 max-w-md text-center text-sm text-muted-foreground">
-        Welcome back! Sign in to continue your courses, launch interactive labs,
+        Welcome back! Sign in to continue your courses
         and pick up right where you left off.
       </p>
       <SignIn
@@ -38,7 +38,7 @@ export default async function SignInPage() {
         <a href="/sign-up" className="underline underline-offset-4 hover:text-primary">
           Create one for free
         </a>{" "}
-        and start learning IT automation with hands-on labs today.
+        and start learning IT automation with practical video courses.
       </p>
     </div>
   );

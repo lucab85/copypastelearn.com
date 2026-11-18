@@ -11,6 +11,7 @@ import { LessonPlayerClient } from "./lesson-player-client";
 import { TranscriptPanel } from "@/components/lesson/transcript-panel";
 import { CodeSnippet } from "@/components/lesson/code-snippet";
 import { ResourceList } from "@/components/lesson/resource-list";
+import { labsAvailable } from "@/lib/labs-availability";
 import { LabLauncher } from "./lab-launcher";
 import { Button } from "@/components/ui/button";
 import { ChevronLeft, ChevronRight } from "lucide-react";
@@ -37,7 +38,7 @@ export async function generateMetadata({
     return {
       title: `${lessonSlug.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase())}`,
       description:
-        "This lesson is part of a CopyPasteLearn course. Subscribe to unlock expert video lessons and hands-on interactive labs in real environments.",
+        "This lesson is part of a CopyPasteLearn course. Subscribe to unlock expert video lessons and course materials.",
       alternates: { canonical: `/courses/${slug}/lessons/${lessonSlug}` },
       openGraph: { url: `/courses/${slug}/lessons/${lessonSlug}`, type: "website" },
       robots: { index: false, follow: false },
@@ -53,9 +54,9 @@ export async function generateMetadata({
     // Fall back to shorter copy when a long lesson title would push the
     // description past 155 chars.
     description: pickDescription([
-      `Watch the ${title} lesson on CopyPasteLearn. Master IT automation with expert-led video instruction and hands-on interactive labs.`,
-      `Watch the ${title} lesson on CopyPasteLearn, with expert-led video instruction and hands-on interactive labs.`,
-      `${title}: a CopyPasteLearn video lesson with hands-on labs.`,
+      `Watch the ${title} lesson on CopyPasteLearn. Master IT automation with expert-led video instruction and practical examples.`,
+      `Watch the ${title} lesson on CopyPasteLearn, with expert-led video instruction and practical examples.`,
+      `${title}: a CopyPasteLearn video lesson.`,
     ]),
     alternates: { canonical: `/courses/${slug}/lessons/${lessonSlug}` },
     openGraph: { url: `/courses/${slug}/lessons/${lessonSlug}`, type: "website" },
@@ -229,7 +230,7 @@ export default async function LessonPage({ params }: LessonPageProps) {
           )}
 
           {/* Lab launch */}
-          {lesson.labDefinitionId && (
+          {labsAvailable && lesson.labDefinitionId && (
             <LabLauncher
               labDefinitionId={lesson.labDefinitionId}
               courseSlug={slug}

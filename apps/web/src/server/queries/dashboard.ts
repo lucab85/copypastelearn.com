@@ -1,5 +1,6 @@
 "use server";
 
+import { labsAvailable } from "@/lib/labs-availability";
 import { db } from "@/lib/db";
 import { requireAuth } from "@/lib/auth";
 import type { DashboardData } from "@copypastelearn/shared";
@@ -89,26 +90,28 @@ export async function getDashboard(): Promise<DashboardResult> {
   });
 
   // Active lab session
-  const activeLabSession = await db.labSession.findFirst({
-    where: {
-      userId: user.id,
-      status: { in: ["PROVISIONING", "READY", "RUNNING", "VALIDATING"] },
-    },
-    include: {
-      labDefinition: {
-        select: {
-          lesson: {
+  const activeLabSession = labsAvailable
+    ? await db.labSession.findFirst({
+        where: {
+          userId: user.id,
+          status: { in: ["PROVISIONING", "READY", "RUNNING", "VALIDATING"] },
+        },
+        include: {
+          labDefinition: {
             select: {
-              title: true,
-              slug: true,
-              course: { select: { slug: true } },
+              lesson: {
+                select: {
+                  title: true,
+                  slug: true,
+                  course: { select: { slug: true } },
+                },
+              },
             },
           },
         },
-      },
-    },
-    orderBy: { startedAt: "desc" },
-  });
+        orderBy: { startedAt: "desc" },
+      })
+    : null;
 
   return {
     userName: user.displayName,

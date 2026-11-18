@@ -206,7 +206,7 @@ export default async function DashboardPage() {
           </div>
           <h2 className="text-2xl font-bold">Welcome to CopyPasteLearn!</h2>
           <p className="mt-3 max-w-md text-muted-foreground">
-            Start your hands-on learning journey with real terminal labs and practical courses.
+            Start your hands-on learning journey with practical video courses.
           </p>
           <Button asChild size="lg" className="mt-8">
             <Link href="/courses">

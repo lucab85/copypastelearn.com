@@ -81,7 +81,7 @@ export default async function OGImage() {
             gap: 12,
           }}
         >
-          {["Docker", "Ansible", "Node.js", "Hands-On Labs"].map((tag) => (
+          {["Docker", "Ansible", "Node.js", "Practical Examples"].map((tag) => (
             <div
               key={tag}
               style={{

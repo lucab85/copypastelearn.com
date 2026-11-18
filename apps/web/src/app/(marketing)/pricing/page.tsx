@@ -6,13 +6,14 @@ import Link from "next/link";
 import { PageEventTracker } from "@/components/analytics/page-event-tracker";
 import { CheckCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { labsAvailable } from "@/lib/labs-availability";
 import { getCurrentUser } from "@/lib/auth";
 import { hasLegacySubscription } from "@/lib/billing";
 
 export const metadata: Metadata = {
   title: "Pricing Plans & Subscriptions",
   description:
-    "Simple, transparent pricing for CopyPasteLearn. One plan, everything included — all courses, hands-on labs, and certificates of completion.",
+    "Simple, transparent pricing for CopyPasteLearn. One plan, everything included — all courses and available final assessments.",
   alternates: { canonical: "/pricing" },
   openGraph: {
     url: "/pricing",
@@ -43,9 +44,14 @@ export default async function PricingPage() {
       <header className="mb-10 text-center">
         <h1 className="text-4xl font-bold tracking-tight">Pricing</h1>
         <p className="mt-3 text-muted-foreground">
-          The first lesson of every course is free. Subscribe for all lessons and labs.
+          The first lesson of every course is free. Subscribe to unlock every lesson and available final assessments.
         </p>
       </header>
+      {!labsAvailable && (
+        <p className="mb-6 text-center text-sm text-muted-foreground">
+          Interactive labs are temporarily unavailable.
+        </p>
+      )}
       {hasLegacyPlan ? (
         <div className="mx-auto max-w-lg space-y-4 rounded-lg border p-6 text-center">
           <p>Your existing CopyPasteLearn subscription is active.</p>
@@ -88,7 +94,7 @@ export default async function PricingPage() {
             },
             {
               q: "Do I get access to new courses?",
-              a: "Yes. Your subscription includes all current and future courses and labs.",
+              a: "Yes. Your subscription includes all current and future courses.",
             },
           ].map((faq) => (
             <div key={faq.q} className="rounded-lg border p-5">

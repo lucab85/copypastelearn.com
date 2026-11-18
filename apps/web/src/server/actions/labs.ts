@@ -1,6 +1,7 @@
 "use server";
 
 import { requireAuth } from "@/lib/auth";
+import { labsAvailable } from "@/lib/labs-availability";
 import { db } from "@/lib/db";
 import { hasCourseSubscription } from "@/lib/billing";
 import {
@@ -12,6 +13,8 @@ import {
 import { LAB_MAX_CONCURRENT_SESSIONS_PER_USER } from "@copypastelearn/shared";
 
 export async function createLabSession(labDefinitionId: string) {
+  if (!labsAvailable) return { error: "Course labs are temporarily unavailable." };
+
   const user = await requireAuth();
 
   // Subscription gating: labs require an active subscription
@@ -126,6 +129,8 @@ export async function validateLabStep(
   sessionId: string,
   stepIndex?: number
 ) {
+  if (!labsAvailable) return { error: "Course labs are temporarily unavailable." };
+
   const user = await requireAuth();
 
   // Verify ownership

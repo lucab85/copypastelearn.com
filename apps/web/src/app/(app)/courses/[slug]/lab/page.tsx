@@ -1,7 +1,8 @@
 export const dynamic = "force-dynamic";
 import type { Metadata } from "next";
 import Link from "next/link";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
+import { labsAvailable } from "@/lib/labs-availability";
 import { ChevronLeft } from "lucide-react";
 import { getCourseLabGuide } from "@/server/queries/course-extras";
 import { MemberGate } from "@/components/course/member-gate";
@@ -18,6 +19,8 @@ export const metadata: Metadata = {
 
 export default async function LabGuidePage({ params }: Props) {
   const { slug } = await params;
+  if (!labsAvailable) redirect(`/courses/${slug}`);
+
   const view = await getCourseLabGuide(slug);
   if (!view) notFound();
 

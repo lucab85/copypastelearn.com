@@ -2,6 +2,7 @@ export const revalidate = 3600;
 import type { Metadata } from "next";
 import { cache } from "react";
 import { notFound } from "next/navigation";
+import { labsAvailable } from "@/lib/labs-availability";
 import Link from "next/link";
 import Image from "next/image";
 import { getCourse } from "@/server/queries/courses";
@@ -218,7 +219,7 @@ export default async function CourseDetailPage({ params }: CourseDetailPageProps
         name: "Do I get hands-on practice?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Yes — courses include interactive labs where you practice in real environments directly in your browser.",
+          text: "Follow the examples in the lessons to practice in your own environment.",
         },
       },
     ],
@@ -478,7 +479,7 @@ export default async function CourseDetailPage({ params }: CourseDetailPageProps
                               Free
                             </Badge>
                           )}
-                          {lesson.hasLab && (
+                          {labsAvailable && lesson.hasLab && (
                             <Badge variant="outline" className="text-xs">
                               Lab
                             </Badge>
@@ -510,13 +511,13 @@ export default async function CourseDetailPage({ params }: CourseDetailPageProps
                 </details>
               ))}
 
-              {(course.hasLabGuide || course.hasAssessment) && (
+              {((labsAvailable && course.hasLabGuide) || course.hasAssessment) && (
                 <div>
                   <h3 className="mb-2 rounded-lg bg-muted/50 px-4 py-3 font-semibold">
                     Practice
                   </h3>
                   <div className="space-y-2">
-                    {course.hasLabGuide && (
+                    {labsAvailable && course.hasLabGuide && (
                       <Link
                         href={`/courses/${slug}/lab`}
                         className="flex items-center gap-4 rounded-lg border p-4 transition-colors hover:bg-accent/50"
@@ -591,13 +592,13 @@ export default async function CourseDetailPage({ params }: CourseDetailPageProps
                   <span>{hours > 0 ? `${hours}h ` : ""}{minutes}m total</span>
                 </div>
               )}
-              {course.lessons.some((l) => l.hasLab) && (
+              {labsAvailable && course.lessons.some((l) => l.hasLab) && (
                 <div className="flex items-center gap-2">
                   <Play className="h-4 w-4 text-muted-foreground" />
                   <span>Real Linux sandbox labs</span>
                 </div>
               )}
-              {course.hasLabGuide && (
+              {labsAvailable && course.hasLabGuide && (
                 <Link
                   href={`/courses/${slug}/lab`}
                   className="flex items-center gap-2 hover:text-primary"

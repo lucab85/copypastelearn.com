@@ -38,7 +38,7 @@ export default function LessonOGImage() {
             Learn IT Automation
           </div>
           <div style={{ fontSize: 22, color: "#a1a1aa", lineHeight: 1.4 }}>
-            Expert-led video instruction with hands-on interactive labs in real environments.
+            Expert-led video instruction with practical examples.
           </div>
         </div>
         <div style={{ display: "flex", gap: 16, marginTop: 40 }}>

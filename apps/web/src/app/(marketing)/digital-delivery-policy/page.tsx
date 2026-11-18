@@ -57,11 +57,11 @@ export default function DigitalDeliveryPolicyPage() {
             </li>
             <li>
               <strong>Interactive labs</strong> — ephemeral, browser-accessible
-              sandbox environments.
+              sandbox environments. Interactive labs are currently paused.
             </li>
             <li>
               <strong>Subscriptions</strong> — recurring access to a curated
-              catalog of courses and labs.
+              catalog of courses.
             </li>
           </ul>
 
