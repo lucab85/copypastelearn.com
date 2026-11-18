@@ -26,7 +26,7 @@ export default function PrivacyPage() {
             Privacy Policy
           </h1>
           <p className="mt-3 text-sm text-muted-foreground">
-            Last updated: May 2026 · Version 2026-05
+            Last updated: November 2026 · Version 2026-11
           </p>
         </div>
       </div>
@@ -287,12 +287,41 @@ export default function PrivacyPage() {
             <EmailLink user="security" domain="copypastelearn.com" />.
           </p>
 
-          <h2>12. Cookies and similar technologies</h2>
+          <h2 id="cookies">12. Cookies and similar technologies</h2>
           <p>
-            We use a small number of strictly-necessary first-party cookies for
-            authentication and session integrity. We do not use third-party
-            advertising or cross-site tracking cookies. Our analytics provider
-            (Plausible) is cookieless and does not fingerprint visitors.
+            <strong>Always on.</strong> First-party cookies for sign-in
+            (Clerk), checkout (Stripe), and to remember your cookie choice
+            (<code>cpl_consent</code>, 180 days). If you arrive through
+            a link with campaign parameters (<code>utm_*</code>), we keep them
+            in a first-party cookie (<code>cpl_attr</code>, 30 days) so that
+            an order can be linked to the campaign. These campaign names are
+            sent to Stripe with your order, not to advertising platforms.
+          </p>
+          <p>
+            <strong>Analytics (only with your consent).</strong> Google
+            Analytics 4 (Google) and Microsoft Clarity (Microsoft). The Google
+            Analytics script is on every page, but until you accept analytics
+            cookies it runs in Google Consent Mode with storage denied: it sets
+            no cookies and sends only cookieless measurement pings. Microsoft
+            Clarity loads only after you accept analytics cookies.
+          </p>
+          <p>
+            <strong>Marketing (only with your consent).</strong> Google Ads,
+            the Meta Pixel, the LinkedIn Insight Tag, and the Reddit Pixel.
+            They load only after you accept marketing cookies, and measure
+            which ads lead to account sign-ups, newsletter sign-ups, and
+            purchases. With marketing consent we also keep the ad click
+            identifier from the link you followed (<code>gclid</code>,{" "}
+            <code>fbclid</code>, <code>li_fat_id</code>, <code>rdt_cid</code>)
+            in the <code>cpl_attr</code> cookie and send it to Stripe with
+            your order.
+          </p>
+          <p>
+            <strong>Changing your choice.</strong> Use the &quot;Cookie
+            settings&quot; link in the footer of every page. When you withdraw
+            consent, we delete the cookies these tools set on our domain and
+            reload the page so they stop running. Cookies that a provider set
+            on its own domain can be deleted in your browser settings.
           </p>
 
           <h2>13. Changes to this policy</h2>

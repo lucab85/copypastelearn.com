@@ -4,7 +4,11 @@ import { z } from "zod";
 import { rateLimit } from "@/lib/ratelimit";
 import { resolveCartLines, PriceResolutionError } from "@/lib/commerce/pricing";
 import { stripeCheckoutProvider } from "@/lib/payments/stripe-checkout";
-import { parseAttributionFromRequest } from "@/lib/commerce/attribution";
+import {
+  attributionToStripeMetadata,
+  clickIds,
+  parseAttributionFromRequest,
+} from "@/lib/commerce/attribution";
 import { recordCommerceEvent } from "@/lib/commerce/analytics";
 import { serverLogger } from "@/lib/logger";
 
@@ -81,14 +85,9 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
       successUrl:
         body.successUrl ?? `${base}/checkout/success?session_id={CHECKOUT_SESSION_ID}`,
       cancelUrl: body.cancelUrl ?? `${base}/checkout/cancel`,
-      metadata: {
-        ...(attribution.sourceDomain ? { source_domain: attribution.sourceDomain } : {}),
-        ...(attribution.utmSource ? { utm_source: attribution.utmSource } : {}),
-        ...(attribution.utmMedium ? { utm_medium: attribution.utmMedium } : {}),
-        ...(attribution.utmCampaign ? { utm_campaign: attribution.utmCampaign } : {}),
-        ...(attribution.utmContent ? { utm_content: attribution.utmContent } : {}),
-        ...(attribution.channel ? { channel: attribution.channel } : {}),
-      },
+      // UTM keys are copied onto the Order by fulfill.ts; ad click ids
+      // (gclid, fbclid, li_fat_id, rdt_cid) stay in Stripe metadata.
+      metadata: attributionToStripeMetadata(attribution),
     });
 
     if (result.kind !== "redirect") {
@@ -100,7 +99,7 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
       utmSource: attribution.utmSource,
       utmMedium: attribution.utmMedium,
       utmCampaign: attribution.utmCampaign,
-      metadata: { sessionId: result.checkoutSessionId },
+      metadata: { sessionId: result.checkoutSessionId, ...clickIds(attribution) },
     });
 
     return NextResponse.json({

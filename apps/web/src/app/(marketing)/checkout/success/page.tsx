@@ -3,6 +3,7 @@ import Link from "next/link";
 import { db } from "@/lib/db";
 import { Button } from "@/components/ui/button";
 import { CheckCircle2 } from "lucide-react";
+import { PurchaseTracker } from "@/components/analytics/purchase-tracker";
 
 export const metadata: Metadata = {
   title: "Order received",
@@ -32,6 +33,12 @@ export default async function CheckoutSuccessPage({ searchParams }: PageProps) {
 
       {order ? (
         <>
+          {/* Purchase event with the real order total (GA4 + ad conversions). */}
+          <PurchaseTracker
+            transactionId={order.id}
+            value={order.totalAmount / 100}
+            currency={order.currency.toUpperCase()}
+          />
           <p className="mt-4 text-muted-foreground">
             Order <code className="font-mono">{order.id}</code> is confirmed.
             We&apos;ve sent the access link to{" "}

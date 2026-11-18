@@ -8,6 +8,12 @@ import { PromoBanner } from "@/components/layout/promo-banner";
 import { AnnouncementBanner } from "@/components/layout/announcement-banner";
 import { RouteChangeTracker } from "@/components/analytics/route-change-tracker";
 import { ClarityDeferred } from "@/components/analytics/clarity-deferred";
+import { AttributionCapture } from "@/components/analytics/attribution-capture";
+import { CookieBanner } from "@/components/consent/cookie-banner";
+import { MarketingTags } from "@/components/consent/marketing-tags";
+import { SignUpTracker } from "@/components/consent/sign-up-tracker";
+import { GA_ID } from "@/lib/analytics";
+import { consentBootstrapScript } from "@/lib/consent";
 import { CmdKPalette } from "@/components/cmdk-palette";
 import { ClerkClientProvider } from "@/components/providers/clerk-client-provider";
 import "./globals.css";
@@ -120,29 +126,34 @@ export default function RootLayout({
         <link rel="describedby" href="/llms-full.txt" />
       </head>
       <body className="flex min-h-screen flex-col bg-background font-sans antialiased">
-        {/* Google Analytics (GA4) */}
+        {/* Google Consent Mode v2: defaults to denied (and re-applies a
+            stored choice) BEFORE the GA4 config, then queues the config. */}
+        <Script id="consent-default" strategy="beforeInteractive">
+          {consentBootstrapScript(GA_ID)}
+        </Script>
+        {/* Google Analytics (GA4). Without analytics consent it runs in
+            Consent Mode "denied" (no cookies). */}
         <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-YN94VH0TPN"
+          src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
           strategy="lazyOnload"
         />
-        <Script id="ga4-init" strategy="lazyOnload">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-YN94VH0TPN');
-          `}
-        </Script>
 
-        {/* Microsoft Clarity — loaded on first user interaction so the
-            third-party cookies on clarity.ms / bing.com stay out of the
-            Lighthouse audit window (best-practices: third-party-cookies). */}
+        {/* Microsoft Clarity — only with analytics consent, and loaded on
+            first user interaction so the third-party cookies on clarity.ms /
+            bing.com stay out of the Lighthouse audit window
+            (best-practices: third-party-cookies). */}
         <ClarityDeferred />
 
-        {/* Analytics — SPA page view tracking */}
+        {/* Ad tags (Google Ads, Meta, LinkedIn, Reddit) — only with
+            marketing consent and only for ids set in the environment. */}
+        <MarketingTags />
+
+        {/* Analytics — SPA page view tracking, campaign attribution */}
         <Suspense>
           <RouteChangeTracker />
+          <AttributionCapture />
         </Suspense>
+        {clerkEnabled && <SignUpTracker />}
         {/* Skip to content — accessibility */}
         <a
           href="#main-content"
@@ -168,6 +179,7 @@ export default function RootLayout({
         <SiteFooter />
             <NewsletterPopup />
             <CmdKPalette />
+        <CookieBanner />
       </body>
     </html>
   );

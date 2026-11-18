@@ -3,6 +3,8 @@ import type { NextRequest } from "next/server";
 import {
   parseAttributionFromRequest,
   buildAttributionCookie,
+  attributionToStripeMetadata,
+  clickIds,
 } from "@/lib/commerce/attribution";
 
 vi.mock("@/lib/db", () => ({ db: {} }));
@@ -81,10 +83,40 @@ describe("attribution (FR-018, US3)", () => {
     expect(() => parseAttributionFromRequest(req)).not.toThrow();
   });
 
-  it("buildAttributionCookie sets 24h SameSite=Lax", () => {
+  it("reads ad click ids from the query and the cookie", () => {
+    const req = buildReq({
+      url: "https://copypastelearn.com/products/x?gclid=G1&rdt_cid=R1",
+      cookie: JSON.stringify({ fbclid: "F-old", gclid: "G-old", liFatId: "L1" }),
+    });
+    const attr = parseAttributionFromRequest(req);
+    expect(attr.gclid).toBe("G1");
+    expect(attr.rdtCid).toBe("R1");
+    expect(attr.fbclid).toBe("F-old");
+    expect(attr.liFatId).toBe("L1");
+    expect(clickIds(attr)).toEqual({ gclid: "G1", fbclid: "F-old", liFatId: "L1", rdtCid: "R1" });
+  });
+
+  it("attributionToStripeMetadata keeps the existing keys and adds click ids", () => {
+    const meta = attributionToStripeMetadata({
+      sourceDomain: "ansiblepilot.com",
+      utmSource: "google",
+      utmCampaign: "launch",
+      channel: "storefront",
+      gclid: "x".repeat(600),
+    });
+    expect(meta).toEqual({
+      source_domain: "ansiblepilot.com",
+      utm_source: "google",
+      utm_campaign: "launch",
+      channel: "storefront",
+      gclid: "x".repeat(500),
+    });
+  });
+
+  it("buildAttributionCookie sets 30 days SameSite=Lax", () => {
     const cookie = buildAttributionCookie({ utmSource: "newsletter" });
     expect(cookie.name).toBe("cpl_attr");
-    expect(cookie.options.maxAge).toBe(60 * 60 * 24);
+    expect(cookie.options.maxAge).toBe(60 * 60 * 24 * 30);
     expect(cookie.options.sameSite).toBe("lax");
     expect(cookie.options.path).toBe("/");
     expect(cookie.options.httpOnly).toBe(false);

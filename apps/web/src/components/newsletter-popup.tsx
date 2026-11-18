@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback } from "react";
 import { X } from "lucide-react";
+import { trackNewsletterSignup } from "@/lib/analytics";
 
 const KIT_FORM_UID = "ce74a48bfa";
 const DISMISS_KEY = "cpl-newsletter-dismissed";
@@ -47,12 +48,7 @@ export function NewsletterPopup() {
       if (res.ok) {
         setStatus("success");
         localStorage.setItem(DISMISS_KEY, Date.now().toString());
-        if (typeof window !== "undefined" && typeof window.gtag === "function") {
-          window.gtag("event", "newsletter_subscribe", {
-            method: "popup",
-            form_id: KIT_FORM_UID,
-          });
-        }
+        trackNewsletterSignup("popup", KIT_FORM_UID);
       } else {
         setStatus("error");
       }

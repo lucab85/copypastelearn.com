@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Terminal } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
 import { NetworkFooter } from "@/components/layout/network-footer";
+import { CookieSettingsButton } from "@/components/consent/cookie-settings-button";
 
 const footerSections = [
   {
@@ -67,6 +68,11 @@ export function SiteFooter() {
                     </Link>
                   </li>
                 ))}
+                {section.title === "Legal" && (
+                  <li>
+                    <CookieSettingsButton className="text-sm text-muted-foreground transition-colors hover:text-foreground" />
+                  </li>
+                )}
               </ul>
             </div>
           ))}

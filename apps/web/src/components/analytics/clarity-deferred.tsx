@@ -1,11 +1,17 @@
 "use client";
 
 import { useEffect } from "react";
+import { hasAnalyticsConsent, onConsentChange } from "@/lib/consent";
 
 const CLARITY_ID = "vlu7pdkdd9";
 
 /**
- * Load Microsoft Clarity only after the first real user interaction.
+ * Load Microsoft Clarity only with analytics consent, and only after the
+ * first real user interaction.
+ *
+ * Consent: nothing is armed until the visitor has accepted analytics
+ * cookies (stored choice on mount, or the consent-change event). Clicking
+ * "Accept" in the banner is itself an interaction, so Clarity starts then.
  *
  * Lighthouse audits a fresh page load with no user gesture, so deferring
  * the loader past `scroll` / `pointerdown` / `keydown` / `touchstart`
@@ -44,8 +50,16 @@ export function ClarityDeferred() {
       first?.parentNode?.insertBefore(t, first);
     };
 
-    for (const e of events) window.addEventListener(e, start, opts);
+    if (hasAnalyticsConsent()) {
+      for (const e of events) window.addEventListener(e, start, opts);
+    }
+    const unsubscribe = onConsentChange((state) => {
+      // The click on "Accept" already was the interaction.
+      if (state.analytics) start();
+    });
+
     return () => {
+      unsubscribe();
       for (const e of events) window.removeEventListener(e, start, opts);
     };
   }, []);
