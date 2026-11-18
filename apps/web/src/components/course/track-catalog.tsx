@@ -1,10 +1,10 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Search, Filter } from "lucide-react";
 import type { CourseListItem, UpcomingCourse } from "@copypastelearn/shared";
 import { CourseCard } from "@/components/course/course-card";
-import { Badge } from "@/components/ui/badge";
+import { ComingSoonCard } from "@/components/course/coming-soon-card";
 import { COURSE_TRACKS } from "@/lib/course-tracks";
 
 interface TrackCatalogProps {
@@ -23,6 +23,18 @@ export function TrackCatalog({
 }: TrackCatalogProps) {
   const [search, setSearch] = useState("");
   const [difficulty, setDifficulty] = useState<string>("ALL");
+
+  // `/courses?level=beginner` opens the catalog with that filter on (the home
+  // page links to it). Read after mount: the page itself is static.
+  useEffect(() => {
+    if (!showFilters) return;
+    const level = new URLSearchParams(window.location.search)
+      .get("level")
+      ?.toUpperCase();
+    if (level && level !== "ALL" && difficulties.some((d) => d === level)) {
+      setDifficulty(level);
+    }
+  }, [showFilters]);
 
   const groups = useMemo(() => {
     const q = search.trim().toLowerCase();
@@ -65,6 +77,7 @@ export function TrackCatalog({
                 <button
                   key={d}
                   onClick={() => setDifficulty(d)}
+                  aria-pressed={difficulty === d}
                   className={`rounded-full px-3 py-1.5 text-xs font-medium transition-colors ${
                     difficulty === d
                       ? "bg-primary text-primary-foreground"
@@ -143,21 +156,8 @@ export function TrackCatalog({
                   </h3>
                   <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
                     {soon.map((course) => (
-                      <li
-                        key={course.id}
-                        className="rounded-lg border border-dashed bg-muted/20 p-4"
-                      >
-                        <div className="flex items-start justify-between gap-3">
-                          <p className="text-sm font-semibold leading-snug">
-                            {course.title}
-                          </p>
-                          <Badge variant="outline" className="shrink-0 text-xs">
-                            {course.difficulty.toLowerCase()}
-                          </Badge>
-                        </div>
-                        <p className="mt-1.5 line-clamp-3 text-sm leading-relaxed text-muted-foreground">
-                          {course.description}
-                        </p>
+                      <li key={course.id}>
+                        <ComingSoonCard course={course} className="h-full" />
                       </li>
                     ))}
                   </ul>

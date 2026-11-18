@@ -3,42 +3,15 @@ import { Terminal } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
 import { NetworkFooter } from "@/components/layout/network-footer";
 import { CookieSettingsButton } from "@/components/consent/cookie-settings-button";
-
-const footerSections = [
-  {
-    title: "Product",
-    links: [
-      { href: "/courses", label: "Courses" },
-      { href: "/academy", label: "Agentic AI Academy" },
-      { href: "/shop", label: "Shop" },
-      { href: "/pricing", label: "Pricing" },
-      { href: "/ai-platform-engineering", label: "AI for Leaders" },
-    ],
-  },
-  {
-    title: "Company",
-    links: [
-      { href: "/about", label: "About" },
-      { href: "/blog", label: "Blog" },
-      { href: "/contact", label: "Contact" },
-    ],
-  },
-  {
-    title: "Legal",
-    links: [
-      { href: "/privacy", label: "Privacy" },
-      { href: "/terms", label: "Terms" },
-    ],
-  },
-];
+import { footerSections } from "@/lib/footer-links";
 
 export function SiteFooter() {
   return (
     <footer className="border-t bg-muted/30">
       <div className="container mx-auto px-4 py-12">
-        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid grid-cols-2 gap-x-6 gap-y-10 sm:gap-x-8 lg:grid-cols-[1.25fr_repeat(4,minmax(0,1fr))]">
           {/* Brand column */}
-          <div className="space-y-4">
+          <div className="col-span-2 space-y-4 lg:col-span-1">
             <Link href="/" className="flex items-center gap-2.5">
               <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary">
                 <Terminal className="h-4 w-4 text-primary-foreground" />
