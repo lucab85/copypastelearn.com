@@ -1,6 +1,7 @@
 "use server";
 
 import { unstable_cache } from "next/cache";
+import { labsAvailable } from "@/lib/labs-availability";
 import { db } from "@/lib/db";
 import type {
   CourseListItem,
@@ -110,7 +111,7 @@ export const getPublicCourse = unstable_cache(
       trailerPlaybackId: course.trailerPlaybackId,
       contentUpdatedAt: course.contentUpdatedAt?.toISOString() ?? null,
       hasAssessment: !!course.assessment,
-      hasLabGuide: !!course.labGuide,
+      hasLabGuide: labsAvailable && !!course.labGuide,
       companionProducts: course.companionProducts,
       lessons: course.lessons.map((lesson) => {
         const isFree = lesson.sortOrder === 0;
@@ -123,7 +124,7 @@ export const getPublicCourse = unstable_cache(
           moduleNumber: lesson.moduleNumber,
           moduleTitle: lesson.moduleTitle,
           durationSeconds: lesson.durationSeconds,
-          hasLab: !!lesson.labDefinition,
+          hasLab: labsAvailable && !!lesson.labDefinition,
           isFree,
           isAccessible: isFree,
           userProgress: null,
