@@ -184,9 +184,37 @@ export default function PrivacyPage() {
             <li>
               <strong>Resend</strong> — transactional email delivery (USA, SCCs).
             </li>
+          </ul>
+          <p>
+            <strong>Analytics and advertising providers.</strong> The
+            following providers receive data only as described in{" "}
+            <a href="#cookies">section 12</a>, and their cookies and tags load
+            only after you give consent in the cookie banner:
+          </p>
+          <ul>
             <li>
-              <strong>Plausible Analytics</strong> — privacy-friendly,
-              cookieless website analytics (EU).
+              <strong>Google Ireland Limited</strong> — website analytics
+              (Google Analytics 4) and advertising measurement (Google Ads)
+              (Ireland; Google LLC, USA).
+            </li>
+            <li>
+              <strong>Microsoft Ireland Operations Limited</strong> — session
+              analytics with Microsoft Clarity (Ireland; Microsoft Corporation,
+              USA).
+            </li>
+            <li>
+              <strong>Meta Platforms Ireland Limited</strong> — advertising
+              measurement with the Meta Pixel, when enabled (Ireland; Meta
+              Platforms, Inc., USA).
+            </li>
+            <li>
+              <strong>LinkedIn Ireland Unlimited Company</strong> — advertising
+              measurement with the LinkedIn Insight Tag, when enabled (Ireland;
+              LinkedIn Corporation, USA).
+            </li>
+            <li>
+              <strong>Reddit, Inc.</strong> — advertising measurement with the
+              Reddit Pixel, when enabled (USA).
             </li>
           </ul>
           <p>
