@@ -58,7 +58,8 @@ export default async function PricingPage() {
           <Button asChild><Link href="/settings">Manage subscription</Link></Button>
         </div>
       ) : (
-        <PricingTable for="user" newSubscriptionRedirectUrl="/dashboard" />
+        {/* checkout=success makes RouteChangeTracker report the purchase to GA4 and the ad tags. */}
+        <PricingTable for="user" newSubscriptionRedirectUrl="/dashboard?checkout=success" />
       )}
       <section className="mx-auto mt-16 max-w-xl rounded-lg border p-6">
         <h2 className="text-2xl font-semibold">Business</h2>
