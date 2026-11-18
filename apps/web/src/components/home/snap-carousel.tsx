@@ -15,8 +15,8 @@ import { cn } from "@/lib/utils";
  * laid out by `listClassName` (a grid) from the `lg` breakpoint, where the
  * dots disappear. No library: the browser does the scrolling, this component
  * only tracks which slide is in view and moves to a slide when a dot is used.
- * Every slide must hold a link or a button: focusing it scrolls the slide into
- * view, which is how the row is reached from the keyboard.
+ * From the keyboard the row is reached through the dots (buttons) and through
+ * any link or button inside a slide: focusing it scrolls the slide into view.
  */
 export function SnapCarousel({
   label,
@@ -24,6 +24,7 @@ export function SnapCarousel({
   listClassName,
   itemClassName,
   dotsClassName,
+  focusableList = false,
 }: {
   /** Accessible name of the carousel, e.g. "Featured". */
   label: string;
@@ -32,10 +33,27 @@ export function SnapCarousel({
   /** One class per slide, or the same class for all. */
   itemClassName?: string | string[];
   dotsClassName?: string;
+  /**
+   * For slides with no link or button inside (quotes): while the row really
+   * scrolls, the row itself takes keyboard focus so arrow keys can scroll it.
+   */
+  focusableList?: boolean;
 }) {
   const slides = Children.toArray(children);
   const listRef = useRef<HTMLUListElement>(null);
   const [active, setActive] = useState(0);
+  const [overflows, setOverflows] = useState(false);
+
+  // Only a row that really scrolls (small screens) is a keyboard stop.
+  useEffect(() => {
+    const list = listRef.current;
+    if (!list || !focusableList) return;
+    const measure = () => setOverflows(list.scrollWidth > list.clientWidth + 1);
+    measure();
+    const observer = new ResizeObserver(measure);
+    observer.observe(list);
+    return () => observer.disconnect();
+  }, [focusableList]);
 
   const onScroll = useCallback(() => {
     const list = listRef.current;
@@ -84,8 +102,10 @@ export function SnapCarousel({
     <div role="group" aria-roledescription="carousel" aria-label={label}>
       <ul
         ref={listRef}
+        tabIndex={focusableList && overflows ? 0 : undefined}
+        aria-label={focusableList && overflows ? label : undefined}
         className={cn(
-          "no-scrollbar -mx-4 flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-px-4 px-4",
+          "no-scrollbar -mx-4 flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-px-4 px-4 outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring",
           listClassName
         )}
       >
@@ -108,7 +128,7 @@ export function SnapCarousel({
               key={index}
               type="button"
               onClick={() => goTo(index)}
-              aria-label={`Show card ${index + 1} of ${slides.length}`}
+              aria-label={`${label}: show card ${index + 1} of ${slides.length}`}
               aria-current={index === active ? "true" : undefined}
               className="group flex h-6 w-6 items-center justify-center rounded-full outline-none focus-visible:ring-2 focus-visible:ring-ring"
             >

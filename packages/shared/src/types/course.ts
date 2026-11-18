@@ -18,6 +18,8 @@ export interface CourseListItem {
   durationMinutes?: number | null;
   /** ISO date of the last content update (Course.contentUpdatedAt). */
   updatedAt?: string | null;
+  /** ISO date the course was first published (Course.publishedAt). */
+  publishedAt?: string | null;
 }
 
 export type CourseTrack = "AI_AGENTS" | "AI_HOMELAB" | "FOUNDATIONS";

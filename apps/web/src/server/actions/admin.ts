@@ -52,6 +52,12 @@ export async function publishCourse(id: string) {
     return { error: "Course must have at least one published lesson" };
   }
 
+  // The publish date is set the first time only: a course that is taken
+  // offline and published again keeps its original date.
+  await db.course.updateMany({
+    where: { id, publishedAt: null },
+    data: { publishedAt: new Date() },
+  });
   const course = await db.course.update({
     where: { id },
     data: { status: "PUBLISHED" },

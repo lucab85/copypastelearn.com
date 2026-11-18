@@ -35,9 +35,10 @@ export const getPublicCourses = unstable_cache(
       track: course.track,
       durationMinutes: course.estimatedDuration,
       updatedAt: course.contentUpdatedAt?.toISOString() ?? null,
+      publishedAt: course.publishedAt?.toISOString() ?? null,
     }));
   },
-  ["public-courses-v6"],
+  ["public-courses-v7"],
   { revalidate: 3600, tags: ["courses"] }
 );
 

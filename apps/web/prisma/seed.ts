@@ -1852,6 +1852,11 @@ async function main() {
   await seedGooseCourse(prisma);
   await seedCatalogTracks(prisma);
 
+  // Courses the seed creates as PUBLISHED get a publish date (their creation
+  // date), like the 20261118150000_course_published_at backfill. A date that
+  // is already set is never touched.
+  await prisma.$executeRaw`UPDATE "Course" SET "publishedAt" = "createdAt" WHERE "status" = 'PUBLISHED' AND "publishedAt" IS NULL`;
+
   console.log("\n✅ Seeding complete!");
 }
 

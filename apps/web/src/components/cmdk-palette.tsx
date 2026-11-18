@@ -2,57 +2,24 @@
 
 import { useEffect, useMemo, useRef, useState, useCallback } from "react";
 import { useRouter } from "next/navigation";
-import { Search, FileText, Hash, FolderOpen } from "lucide-react";
+import { Search, FileText, Hash, FolderOpen, GraduationCap } from "lucide-react";
 import {
   Dialog,
   DialogContent,
   DialogTitle,
 } from "@/components/ui/dialog";
+import {
+  searchAll,
+  type SearchIndex,
+  type SearchResult,
+} from "@/lib/search-index";
 
-interface IndexItem {
-  slug: string;
-  title: string;
-  description: string;
-  category: string;
-  tags: string[];
-}
-
-interface Result {
-  type: "post" | "tag" | "category";
-  href: string;
-  title: string;
-  subtitle?: string;
-  score: number;
-}
-
-const MAX_RESULTS = 12;
-
-function score(haystack: string, q: string): number {
-  if (!q) return 0;
-  const h = haystack.toLowerCase();
-  const needle = q.toLowerCase();
-  // Exact / prefix > word-boundary > substring; rough heuristic.
-  if (h === needle) return 1000;
-  if (h.startsWith(needle)) return 500;
-  const wb = new RegExp(`\\b${needle.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}`).test(h);
-  if (wb) return 200;
-  if (h.includes(needle)) return 100;
-  return 0;
-}
-
-function taxonomySlug(name: string): string {
-  return name
-    .toLowerCase()
-    .normalize("NFKD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/^-+|-+$/g, "");
-}
+const EMPTY_INDEX: SearchIndex = { courses: [], items: [] };
 
 export function CmdKPalette() {
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState("");
-  const [items, setItems] = useState<IndexItem[]>([]);
+  const [index, setIndex] = useState<SearchIndex>(EMPTY_INDEX);
   const [loaded, setLoaded] = useState(false);
   const [active, setActive] = useState(0);
   const router = useRouter();
@@ -87,11 +54,13 @@ export function CmdKPalette() {
   useEffect(() => {
     if (!open || loaded) return;
     let cancelled = false;
-    fetch("/api/blog/search-index")
+    // Published courses and blog posts, from a route outside /api so that it
+    // also answers for visitors who are not signed in.
+    fetch("/search-index.json")
       .then((r) => r.json())
       .then((data) => {
         if (cancelled) return;
-        setItems(data.items || []);
+        setIndex({ courses: data.courses || [], items: data.items || [] });
         setLoaded(true);
       })
       .catch(() => setLoaded(true));
@@ -111,71 +80,10 @@ export function CmdKPalette() {
     }
   }, [open]);
 
-  const results: Result[] = useMemo(() => {
-    const q = query.trim();
-    if (!q) {
-      // Empty query: show recent posts as a starting point.
-      return items.slice(0, MAX_RESULTS).map((p) => ({
-        type: "post" as const,
-        href: `/blog/${p.slug}`,
-        title: p.title,
-        subtitle: p.category,
-        score: 0,
-      }));
-    }
-    const out: Result[] = [];
-    const seenTags = new Set<string>();
-    const seenCats = new Set<string>();
-    for (const p of items) {
-      const titleScore = score(p.title, q) * 3;
-      const descScore = score(p.description, q);
-      const tagScore = p.tags.reduce((acc, t) => acc + score(t, q) * 2, 0);
-      const total = titleScore + descScore + tagScore;
-      if (total > 0) {
-        out.push({
-          type: "post",
-          href: `/blog/${p.slug}`,
-          title: p.title,
-          subtitle: p.description,
-          score: total,
-        });
-      }
-      // Surface matching tags / categories as separate result rows.
-      if (!seenCats.has(p.category) && score(p.category, q) > 0) {
-        seenCats.add(p.category);
-        out.push({
-          type: "category",
-          href: `/blog/category/${taxonomySlug(p.category)}`,
-          title: p.category,
-          subtitle: "Category",
-          score: 250,
-        });
-      }
-      for (const t of p.tags) {
-        if (!seenTags.has(t) && score(t, q) > 0) {
-          seenTags.add(t);
-          out.push({
-            type: "tag",
-            href: `/blog/tag/${taxonomySlug(t)}`,
-            title: t,
-            subtitle: "Tag",
-            score: 220,
-          });
-        }
-      }
-    }
-    out.sort((a, b) => b.score - a.score);
-    // Dedupe by href.
-    const seen = new Set<string>();
-    const dedup: Result[] = [];
-    for (const r of out) {
-      if (seen.has(r.href)) continue;
-      seen.add(r.href);
-      dedup.push(r);
-      if (dedup.length >= MAX_RESULTS) break;
-    }
-    return dedup;
-  }, [items, query]);
+  const results: SearchResult[] = useMemo(
+    () => searchAll(index, query),
+    [index, query]
+  );
 
   // Clamp active index when results shrink.
   useEffect(() => {
@@ -219,7 +127,7 @@ export function CmdKPalette() {
               setActive(0);
             }}
             onKeyDown={onKeyDown}
-            placeholder="Search posts, tags, categories…"
+            placeholder="Search courses and articles…"
             aria-label="Search"
             className="w-full bg-transparent py-4 pl-11 pr-4 text-sm outline-none placeholder:text-muted-foreground"
           />
@@ -234,31 +142,49 @@ export function CmdKPalette() {
             <p className="px-4 py-6 text-center text-xs text-muted-foreground">
               {query
                 ? `No matches for "${query}".`
-                : "Type to search posts, tags, or categories."}
+                : "Type to search courses, posts, tags, or categories."}
             </p>
           )}
           {results.map((r, i) => {
             const Icon =
-              r.type === "post" ? FileText : r.type === "tag" ? Hash : FolderOpen;
+              r.type === "course"
+                ? GraduationCap
+                : r.type === "post"
+                  ? FileText
+                  : r.type === "tag"
+                    ? Hash
+                    : FolderOpen;
+            // A small heading where the courses start and where they end.
+            const group = r.type === "course" ? "Courses" : "Articles";
+            const previous = results[i - 1];
+            const startsGroup =
+              !previous ||
+              (previous.type === "course") !== (r.type === "course");
             return (
-              <button
-                key={r.href}
-                onMouseEnter={() => setActive(i)}
-                onClick={() => navigate(r.href)}
-                className={`flex w-full items-start gap-3 px-4 py-2.5 text-left text-sm transition-colors ${
-                  i === active ? "bg-muted" : "hover:bg-muted/60"
-                }`}
-              >
-                <Icon className="mt-0.5 h-4 w-4 shrink-0 text-muted-foreground" />
-                <div className="min-w-0 flex-1">
-                  <div className="truncate font-medium">{r.title}</div>
-                  {r.subtitle && (
-                    <div className="truncate text-xs text-muted-foreground">
-                      {r.subtitle}
-                    </div>
-                  )}
-                </div>
-              </button>
+              <div key={r.href}>
+                {startsGroup && (
+                  <p className="px-4 pb-1 pt-2 text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">
+                    {group}
+                  </p>
+                )}
+                <button
+                  onMouseEnter={() => setActive(i)}
+                  onClick={() => navigate(r.href)}
+                  className={`flex w-full items-start gap-3 px-4 py-2.5 text-left text-sm transition-colors ${
+                    i === active ? "bg-muted" : "hover:bg-muted/60"
+                  }`}
+                >
+                  <Icon className="mt-0.5 h-4 w-4 shrink-0 text-muted-foreground" />
+                  <div className="min-w-0 flex-1">
+                    <div className="truncate font-medium">{r.title}</div>
+                    {r.subtitle && (
+                      <div className="truncate text-xs text-foreground/70">
+                        {r.subtitle}
+                      </div>
+                    )}
+                  </div>
+                </button>
+              </div>
             );
           })}
         </div>

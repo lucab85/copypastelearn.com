@@ -60,14 +60,19 @@ export function PromoBento({ promos }: { promos: Promo[] }) {
               "lg:p-10 lg:max-xl:grid lg:max-xl:grid-cols-2 lg:max-xl:items-center lg:max-xl:gap-10"
             )}
           >
-            <div>
-              <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl xl:text-6xl">
-                Copy. Paste. <span className="text-emerald-400">Learn.</span>
-              </h1>
-              <p className="mt-4 max-w-xl text-lg leading-relaxed text-slate-200">
-                Short video lessons where every command is on screen. You run
-                it, you see what it does, you understand why.
-              </p>
+            {/* From xl the card is as tall as the two cards beside it. The
+                text block takes any spare height, so the button stays with
+                the clip and there is no empty band above the clip. */}
+            <div className="xl:flex xl:flex-1 xl:flex-col xl:justify-between">
+              <div>
+                <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl xl:text-6xl">
+                  Copy. Paste. <span className="text-emerald-400">Learn.</span>
+                </h1>
+                <p className="mt-4 max-w-xl text-lg leading-relaxed text-slate-200">
+                  Short video lessons where every command is on screen. You
+                  run it, you see what it does, you understand why.
+                </p>
+              </div>
               <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-3">
                 <Button size="lg" className={cn(ctaClass, "px-6 text-base")} asChild>
                   <Link href="/courses">
@@ -80,7 +85,7 @@ export function PromoBento({ promos }: { promos: Promo[] }) {
                 </p>
               </div>
             </div>
-            <div className="mt-8 lg:max-xl:mt-0 xl:mt-auto xl:pt-10">
+            <div className="mt-8 lg:max-xl:mt-0">
               <LessonClip
                 src="/videos/lesson-preview.mp4"
                 poster="/videos/lesson-preview.jpg"
@@ -117,7 +122,7 @@ export function PromoBento({ promos }: { promos: Promo[] }) {
                       height={450}
                       loading="lazy"
                       decoding="async"
-                      className="aspect-video w-full max-w-sm rounded-lg border border-white/15 object-cover lg:max-w-[14.5rem]"
+                      className="aspect-video w-full max-w-sm rounded-lg border border-white/15 object-cover lg:max-w-[14.5rem] xl:max-w-[12.5rem]"
                     />
                   </div>
                 )}

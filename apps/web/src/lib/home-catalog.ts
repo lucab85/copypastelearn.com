@@ -76,6 +76,68 @@ export function latestUpdatedCourse(
   return dated.find((c) => !excludeSlugs.includes(c.slug)) ?? dated[0] ?? null;
 }
 
+/** A course counts as new for this many days after it was first published. */
+export const NEW_COURSE_DAYS = 30;
+
+/** True when `publishedAt` is at most NEW_COURSE_DAYS before `now`. */
+export function isNewCourse(
+  publishedAt: string | null | undefined,
+  now: Date
+): boolean {
+  if (!publishedAt) return false;
+  const published = Date.parse(publishedAt);
+  if (Number.isNaN(published)) return false;
+  return now.getTime() - published <= NEW_COURSE_DAYS * 24 * 60 * 60 * 1000;
+}
+
+/**
+ * Courses with a publish date, newest first. Courses published at the same
+ * moment (a batch) are ordered by catalog position, last one first: the
+ * course added to the catalog last is the latest of the batch.
+ */
+export function byRecentPublish(courses: CourseListItem[]): CourseListItem[] {
+  return courses
+    .filter((c) => !!c.publishedAt && !Number.isNaN(Date.parse(c.publishedAt)))
+    .map((course, index) => ({ course, index }))
+    .sort(
+      (a, b) =>
+        Date.parse(b.course.publishedAt as string) -
+          Date.parse(a.course.publishedAt as string) || b.index - a.index
+    )
+    .map(({ course }) => course);
+}
+
+export interface FeaturedCourse {
+  course: CourseListItem;
+  /** Published within the last NEW_COURSE_DAYS days: the card may say "New". */
+  isNew: boolean;
+  /** ISO date the card shows: the publish date when new, else the content date. */
+  date: string;
+}
+
+/**
+ * The course for the third promo card. The most recently published course,
+ * labelled new, when it was published within the last NEW_COURSE_DAYS days;
+ * otherwise the most recently updated course, with no label. Courses already
+ * pictured on another card (`excludeSlugs`) are skipped when there is another.
+ */
+export function featuredCourse(
+  courses: CourseListItem[],
+  now: Date,
+  excludeSlugs: string[] = []
+): FeaturedCourse | null {
+  const published = byRecentPublish(courses);
+  const newest =
+    published.find((c) => !excludeSlugs.includes(c.slug)) ?? published[0];
+  if (newest?.publishedAt && isNewCourse(newest.publishedAt, now)) {
+    return { course: newest, isNew: true, date: newest.publishedAt };
+  }
+  const updated = latestUpdatedCourse(courses, excludeSlugs);
+  return updated?.updatedAt
+    ? { course: updated, isNew: false, date: updated.updatedAt }
+    : null;
+}
+
 export interface HomeColumn {
   id: string;
   title: string;

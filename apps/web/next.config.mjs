@@ -11,6 +11,7 @@ const nextConfig = {
   outputFileTracingIncludes: {
     "/blog/*": ["./content/blog/**/*"],
     "/feed.xml": ["./content/blog/**/*"],
+    "/search-index.json": ["./content/blog/**/*"],
     "/sitemap.xml": ["./content/blog/**/*"],
   },
   images: {
