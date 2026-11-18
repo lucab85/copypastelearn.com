@@ -1,6 +1,7 @@
 "use server";
 
 import { db } from "@/lib/db";
+import { hasCourseSubscription } from "@/lib/billing";
 import { getCurrentUser } from "@/lib/auth";
 import {
   toPublicQuestions,
@@ -29,12 +30,8 @@ export async function getMemberAccess(): Promise<{
   }
   const user = await getCurrentUser();
   if (!user) return { access: "signed-out", userId: null };
-  const subscription = await db.subscription.findUnique({
-    where: { userId: user.id },
-    select: { status: true },
-  });
   return {
-    access: subscription?.status === "ACTIVE" ? "ok" : "no-subscription",
+    access: (await hasCourseSubscription(user.id)) ? "ok" : "no-subscription",
     userId: user.id,
   };
 }

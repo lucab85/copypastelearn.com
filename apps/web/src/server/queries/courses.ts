@@ -1,6 +1,7 @@
 "use server";
 
 import { db } from "@/lib/db";
+import { hasCourseSubscription } from "@/lib/billing";
 import { getCurrentUser } from "@/lib/auth";
 import type { CourseListItem, CourseDetail } from "@copypastelearn/shared";
 
@@ -98,15 +99,7 @@ export async function getCourse(slug: string): Promise<CourseDetail | null> {
 
   if (!course) return null;
 
-  // Determine subscription status for access gating
-  let isSubscribed = false;
-  if (user) {
-    const subscription = await db.subscription.findUnique({
-      where: { userId: user.id },
-      select: { status: true },
-    });
-    isSubscribed = subscription?.status === "ACTIVE";
-  }
+  const isSubscribed = user ? await hasCourseSubscription(user.id) : false;
 
   return {
     id: course.id,

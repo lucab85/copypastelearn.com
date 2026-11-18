@@ -1,16 +1,14 @@
 import { NextResponse } from "next/server";
 import { withErrorHandling, requireAuth } from "../_lib/auth";
 import { db } from "@/lib/db";
+import { hasCourseSubscription } from "@/lib/billing";
 
 export async function GET() {
   return withErrorHandling(async () => {
     const user = await requireAuth();
 
-    const [subscription, completedCount] = await Promise.all([
-      db.subscription.findUnique({
-        where: { userId: user.id },
-        select: { status: true },
-      }),
+    const [isSubscribed, completedCount] = await Promise.all([
+      hasCourseSubscription(user.id),
       db.lessonProgress.count({
         where: { userId: user.id, completed: true },
       }),
@@ -22,7 +20,7 @@ export async function GET() {
         id: user.id,
         email: user.email,
         displayName: user.displayName,
-        isSubscribed: subscription?.status === "ACTIVE",
+        isSubscribed,
         totalLessonsCompleted: completedCount,
       },
     });

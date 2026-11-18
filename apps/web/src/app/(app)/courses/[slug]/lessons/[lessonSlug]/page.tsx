@@ -13,7 +13,6 @@ import { CodeSnippet } from "@/components/lesson/code-snippet";
 import { ResourceList } from "@/components/lesson/resource-list";
 import { LabLauncher } from "./lab-launcher";
 import { Button } from "@/components/ui/button";
-import { CheckoutButton } from "@/components/checkout-button";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { PageEventTracker } from "@/components/analytics/page-event-tracker";
 import { brandedTitle, pickDescription } from "@/lib/seo";
@@ -123,7 +122,7 @@ export default async function LessonPage({ params }: LessonPageProps) {
                 <Button variant="outline">Back to course</Button>
               </Link>
               {isSignedIn ? (
-                <CheckoutButton>Subscribe Now</CheckoutButton>
+                <Button asChild><Link href="/pricing">View plans</Link></Button>
               ) : (
                 <Link href="/sign-in">
                   <Button>Sign in</Button>
