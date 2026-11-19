@@ -167,10 +167,9 @@ export default function RootLayout({
           </div>
         )}
         <AnnouncementBanner
-          message="🎤 Luca Berton is speaking at Red Hat Summit & KubeCon EU 2026!"
-          linkText="Learn more"
-          linkHref="https://lucaberton.com/blog/red-hat-summit-2026/"
-          externalLink
+          message="New: the Agentic AI Academy, 5 courses on running AI agents in production."
+          linkText="Start free"
+          linkHref="/academy"
         />
         <SiteHeader />
         <PromoBanner />

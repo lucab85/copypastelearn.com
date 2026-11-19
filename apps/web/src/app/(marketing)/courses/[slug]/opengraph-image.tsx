@@ -4,6 +4,9 @@ import { db } from "@/lib/db";
 // Node, not edge: the card reads the course from Postgres through Prisma, which
 // does not run on the edge runtime. On edge every course card answered 500
 // (Nov 2026), so the 9 course pages that use this card shared a broken image.
+// Cached like the course page. Without it every crawler fetch rendered the card
+// again (15-27 s cold on Nov 19, 2026), long enough for link previews to give up.
+export const revalidate = 3600;
 export const alt = "Course";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
