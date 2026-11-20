@@ -4,11 +4,16 @@ import { PricingTable } from "@clerk/nextjs";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { PageEventTracker } from "@/components/analytics/page-event-tracker";
-import { CheckCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { labsAvailable } from "@/lib/labs-availability";
 import { getCurrentUser } from "@/lib/auth";
+import { auth } from "@clerk/nextjs/server";
 import { hasLegacySubscription } from "@/lib/billing";
+import { PricingCards } from "@/components/pricing/pricing-cards";
+import { getProPlan } from "@/server/queries/pro-plan";
+import { getPublicCourses } from "@/server/queries/public-courses";
+import { ACADEMY_COURSES } from "@/lib/academy";
+import { LAUNCH_OFFER, launchOfferActive } from "@/lib/launch-offer";
 
 export const metadata: Metadata = {
   title: "Pricing Plans & Subscriptions",
@@ -24,19 +29,16 @@ export const metadata: Metadata = {
   },
 };
 
-const businessBenefits = [
-  "Everything in Pro, plus:",
-  "SSO / SAML integration",
-  "Centralized team management dashboard",
-  "Usage analytics & reporting per seat",
-  "Priority support with SLA",
-  "Custom invoicing & procurement-friendly billing",
-  "Volume discounts for 10+ seats",
-];
-
 export default async function PricingPage() {
   const user = await getCurrentUser();
   const hasLegacyPlan = user ? await hasLegacySubscription(user.id) : false;
+  const isPro = user ? (await auth()).has({ plan: "pro" }) : false;
+  const [plan, courses] = await Promise.all([getProPlan(), getPublicCourses()]);
+  const lessonCount = courses.reduce((sum, c) => sum + c.lessonCount, 0);
+  const academyCount = ACADEMY_COURSES.filter((a) => courses.some((c) => c.slug === a.slug)).length;
+  const offer = launchOfferActive()
+    ? { code: LAUNCH_OFFER.code, annualPercent: LAUNCH_OFFER.annualPercent, monthlyPercent: LAUNCH_OFFER.monthlyPercent }
+    : null;
 
   return (
     <div className="container mx-auto max-w-5xl px-4 py-16">
@@ -57,22 +59,24 @@ export default async function PricingPage() {
           <p>Your existing CopyPasteLearn subscription is active.</p>
           <Button asChild><Link href="/settings">Manage subscription</Link></Button>
         </div>
+      ) : plan ? (
+        <PricingCards
+          plan={plan}
+          courseCount={courses.length}
+          lessonCount={lessonCount}
+          academyCount={academyCount}
+          offer={offer}
+          isPro={isPro}
+        />
       ) : (
+        // Clerk Billing could not be read on the server: Clerk's own table.
         <PricingTable for="user" newSubscriptionRedirectUrl="/dashboard?checkout=success" />
       )}
-      <section className="mx-auto mt-16 max-w-xl rounded-lg border p-6">
-        <h2 className="text-2xl font-semibold">Business</h2>
-        <p className="mt-2 text-sm text-muted-foreground">Custom pricing for teams.</p>
-        <ul className="my-5 space-y-3">
-          {businessBenefits.map((benefit) => (
-            <li key={benefit} className="flex items-start gap-3 text-sm">
-              <CheckCircle2 className="h-5 w-5 shrink-0 text-primary" aria-hidden="true" />
-              {benefit}
-            </li>
-          ))}
-        </ul>
-        <Button variant="outline" asChild><Link href="/contact">Contact sales</Link></Button>
-      </section>
+      <p className="mx-auto mt-8 max-w-2xl text-center text-sm text-muted-foreground">
+        Cancel anytime from your account settings. The first payment can be refunded within 14 days, under the
+        conditions of the <Link href="/refund-policy" className="underline underline-offset-2">refund policy</Link>.
+        Payments are handled by Clerk Billing.
+      </p>
       {/* FAQ */}
       <div className="mx-auto mt-20 max-w-2xl">
         <h2 className="mb-8 text-center text-2xl font-bold tracking-tight">

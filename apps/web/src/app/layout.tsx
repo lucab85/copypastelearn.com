@@ -6,6 +6,7 @@ import { SiteFooter } from "@/components/layout/site-footer";
 import { NewsletterPopup } from "@/components/newsletter-popup";
 import { PromoBanner } from "@/components/layout/promo-banner";
 import { AnnouncementBanner } from "@/components/layout/announcement-banner";
+import { LAUNCH_OFFER } from "@/lib/launch-offer";
 import { RouteChangeTracker } from "@/components/analytics/route-change-tracker";
 import { ClarityDeferred } from "@/components/analytics/clarity-deferred";
 import { AttributionCapture } from "@/components/analytics/attribution-capture";
@@ -167,10 +168,10 @@ export default function RootLayout({
           </div>
         )}
         <AnnouncementBanner
-          message="🎤 Luca Berton is speaking at Red Hat Summit & KubeCon EU 2026!"
-          linkText="Learn more"
-          linkHref="https://lucaberton.com/blog/red-hat-summit-2026/"
-          externalLink
+          message="New: the Agentic AI Academy, 5 courses on running AI agents in production."
+          linkText="Start free"
+          linkHref="/academy"
+          offer={LAUNCH_OFFER}
         />
         <SiteHeader />
         <PromoBanner />
