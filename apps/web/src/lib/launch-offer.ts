@@ -1,18 +1,18 @@
 /**
- * Black Friday 2026: the Clerk Billing promo code LAUNCH on the Pro plan
+ * Launch offer, 20 Nov to Cyber Monday 2026: the Clerk Billing promo code LAUNCH on the Pro plan
  * (30% off the first year of an annual plan, 50% off the first month of a
  * monthly plan). The discount itself lives in Clerk; the site only names the
  * code while it can be redeemed.
  *
- * The window matches the network banner (lucaberton.com promos.json,
+ * The window ends with the network banner (lucaberton.com promos.json,
  * academy-bf-2026): from local midnight on `start` until the `end` instant.
  * Keep the code's redemption period in Clerk the same.
  */
 export const LAUNCH_OFFER = {
   code: "LAUNCH",
-  start: "2026-11-27",
+  start: "2026-11-20",
   end: "2026-12-01T08:00:00Z",
-  message: "Black Friday: 30% off a year of Pro, or 50% off your first month, with code LAUNCH.",
+  message: "Launch offer: 30% off a year of Pro, or 50% off your first month, with code LAUNCH. Until 30 November.",
   linkText: "See plans",
   linkHref: "/pricing",
 };
