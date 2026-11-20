@@ -3,6 +3,8 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Settings, BookOpen, Terminal, LayoutDashboard, Package, Receipt, ScrollText } from "lucide-react";
 
+export const dynamic = "force-dynamic";
+
 export const metadata = {
   title: {
     template: "%s | Admin",

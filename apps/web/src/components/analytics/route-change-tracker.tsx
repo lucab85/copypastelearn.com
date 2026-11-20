@@ -6,11 +6,10 @@ import {
   DEFAULT_CURRENCY,
   DEFAULT_PURCHASE_VALUE,
   trackPageView,
-  trackPurchase,
   trackPurchaseOnce,
 } from "@/lib/analytics";
 import { adsPageView } from "@/lib/ads";
-import { getCheckoutConversion } from "@/server/actions/billing";
+import { getCheckoutConversion, getSubscriptionConversion } from "@/server/actions/billing";
 
 /**
  * Tracks SPA route changes as GA4 page_view events.
@@ -38,11 +37,24 @@ export function RouteChangeTracker() {
     if (searchParams?.get("checkout") === "success") {
       const sessionId = searchParams.get("session_id");
       if (!sessionId) {
-        // Clerk Billing checkout (no Stripe session id on the redirect): count
-        // the purchase once, with the default value, then drop the marker
-        // from the URL so a reload or a shared link does not count it again.
-        // The real amount needs a Clerk Billing webhook (not built yet).
-        trackPurchase();
+        // Clerk Billing checkout (the pricing table redirects here with
+        // checkout=success and no Stripe session id). Report the real amount
+        // of the subscription just bought, once per subscription item; if
+        // there is none (free plan, old subscription, signed out) report
+        // nothing. Then drop the marker from the URL so a reload or a shared
+        // link starts clean.
+        getSubscriptionConversion()
+          .then((c) => {
+            if (c) trackPurchaseOnce(c.transactionId, c.currency, c.value);
+          })
+          .catch(() => {
+            // Clerk could not be read: better an approximate purchase than none.
+            trackPurchaseOnce(
+              `clerk-${new Date().toISOString().slice(0, 10)}`,
+              DEFAULT_CURRENCY,
+              DEFAULT_PURCHASE_VALUE,
+            );
+          });
         const rest = new URLSearchParams(searchParams.toString());
         rest.delete("checkout");
         window.history.replaceState(null, "", pathname + (rest.toString() ? `?${rest.toString()}` : ""));
