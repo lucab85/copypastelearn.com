@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/button";
 import { labsAvailable } from "@/lib/labs-availability";
 import { getCurrentUser } from "@/lib/auth";
 import { hasLegacySubscription } from "@/lib/billing";
+import { LAUNCH_OFFER, launchOfferActive } from "@/lib/launch-offer";
 
 export const metadata: Metadata = {
   title: "Pricing Plans & Subscriptions",
@@ -50,6 +51,13 @@ export default async function PricingPage() {
       {!labsAvailable && (
         <p className="mb-6 text-center text-sm text-muted-foreground">
           Interactive labs are temporarily unavailable.
+        </p>
+      )}
+      {!hasLegacyPlan && launchOfferActive() && (
+        <p className="mx-auto mb-8 max-w-xl rounded-lg border border-primary/40 bg-primary/5 px-4 py-3 text-center text-sm">
+          <strong>Black Friday:</strong> 30% off a year of Pro, or 50% off your first month. At checkout, choose
+          &ldquo;Add promo code&rdquo; and enter <code className="rounded bg-muted px-1.5 py-0.5 font-semibold">{LAUNCH_OFFER.code}</code>.
+          Until 30 November.
         </p>
       )}
       {hasLegacyPlan ? (
