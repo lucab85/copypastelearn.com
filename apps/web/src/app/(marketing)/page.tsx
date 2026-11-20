@@ -34,6 +34,7 @@ import { getAllPosts } from "@/lib/blog";
 import { getAllCategories } from "@/lib/blog-taxonomy";
 
 export const revalidate = 3600;
+export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/" },

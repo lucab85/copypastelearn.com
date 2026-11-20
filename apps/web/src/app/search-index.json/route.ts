@@ -14,7 +14,7 @@ import { getPublicCourses } from "@/server/queries/public-courses";
  * anyone who was not signed in. Everything here is already public on /courses
  * and /blog. Cached for an hour, like the catalog queries.
  */
-export const revalidate = 3600;
+export const dynamic = "force-dynamic";
 
 export async function GET() {
   const items = getAllPosts().map((p) => ({
