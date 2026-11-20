@@ -10,6 +10,9 @@
  */
 export const LAUNCH_OFFER = {
   code: "LAUNCH",
+  /** The discounts set in Clerk on the code, shown on /pricing. */
+  annualPercent: 30,
+  monthlyPercent: 50,
   start: "2026-11-20",
   end: "2026-12-01T08:00:00Z",
   message: "Launch offer: 30% off a year of Pro, or 50% off your first month, with code LAUNCH. Until 30 November.",
