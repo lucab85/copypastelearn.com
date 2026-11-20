@@ -41,6 +41,10 @@ All scripts assume `cwd = apps/web`. Run via `pnpm` (each has an npm-script alia
 - `submit-indexnow.mjs` / `submit-indexnow.ts` — pre-existing, equivalent to `submit-indexnow.cjs`.
 - `fetch-mux-playback-ids.sh`, `fix-playback-ids.ts`, `validate-quickstart.sh` — project-specific, untouched.
 
+## Ad tag validation
+
+`pnpm ads:validate` opens the live site in a headless browser and checks the Google Ads tag the way a visitor meets it: nothing before consent or after "Reject all", the `AW-` tag after "Accept all", the three conversion labels in the deployed JavaScript, and one test conversion per label. Every Google Ads and GA4 hit is aborted in the browser, so a run records nothing. Options: `--url=`, `--headed`, `--no-conversions`, and `--id=` / `--purchase=` / `--signup=` / `--lead=` to check other values. Uses Playwright's Chromium, or the local Chrome when it is not installed.
+
 ## Scripts intentionally NOT ported
 
 These ansiblepilot scripts are tightly coupled to that site's architecture (Vite SSG, video catalog, OS-tutorial generators, Vercel-specific edge routes) and have no equivalent in the Next.js / Mux / Prisma stack here:
