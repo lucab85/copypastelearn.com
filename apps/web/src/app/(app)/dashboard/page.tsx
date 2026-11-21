@@ -16,6 +16,9 @@ import {
   Trophy,
 } from "lucide-react";
 import { PageEventTracker } from "@/components/analytics/page-event-tracker";
+import { auth } from "@clerk/nextjs/server";
+import { getSubscriptionConversion } from "@/server/actions/billing";
+import { CheckoutSuccessBanner } from "@/components/dashboard/checkout-success-banner";
 
 export const metadata = {
   title: "Dashboard",
@@ -29,8 +32,28 @@ function getGreeting(): string {
   return "Good evening";
 }
 
-export default async function DashboardPage() {
+/**
+ * Clerk's checkout returns here with ?checkout=success. Confirm it only for an
+ * account that has Pro, or (the session can lag behind the payment) a paid
+ * subscription from the last minutes.
+ */
+async function justSubscribed(checkout: string | string[] | undefined): Promise<boolean> {
+  if (checkout !== "success") return false;
+  try {
+    if ((await auth()).has({ plan: "pro" })) return true;
+    return (await getSubscriptionConversion()) !== null;
+  } catch {
+    return false;
+  }
+}
+
+interface DashboardPageProps {
+  searchParams: Promise<{ checkout?: string | string[] }>;
+}
+
+export default async function DashboardPage({ searchParams }: DashboardPageProps) {
   const data = await getDashboard();
+  const showCheckoutSuccess = await justSubscribed((await searchParams).checkout);
 
   const mostRecent = data.recentLessons[0];
   const hasActivity =
@@ -45,6 +68,7 @@ export default async function DashboardPage() {
   return (
     <div className="container mx-auto px-4 py-8 space-y-8">
       <PageEventTracker event="view_dashboard" />
+      {showCheckoutSuccess && <CheckoutSuccessBanner />}
       {/* ── Greeting Banner ──────────────────────────────── */}
       <section className="animate-fade-up relative overflow-hidden rounded-2xl bg-gradient-to-br from-primary/10 via-primary/5 to-transparent border p-8">
         <div className="absolute right-0 top-0 -mr-8 -mt-8 h-48 w-48 rounded-full bg-primary/5 blur-3xl" />

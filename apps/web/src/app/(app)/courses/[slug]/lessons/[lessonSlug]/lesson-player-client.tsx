@@ -1,6 +1,7 @@
 "use client";
 
-import { useCallback } from "react";
+import { useCallback, useEffect, useRef, useState, type ReactNode } from "react";
+import { cn } from "@/lib/utils";
 import { VideoPlayer } from "@/components/lesson/video-player";
 import { saveVideoPosition, markLessonComplete } from "@/server/actions/progress";
 import { trackLessonComplete } from "@/lib/analytics";
@@ -20,6 +21,8 @@ interface LessonPlayerClientProps {
   isCompleted: boolean;
   courseSlug?: string;
   lessonSlug?: string;
+  /** Shown under the video and brought into view when it ends. */
+  children?: ReactNode;
 }
 
 export function LessonPlayerClient({
@@ -31,7 +34,17 @@ export function LessonPlayerClient({
   isCompleted,
   courseSlug,
   lessonSlug,
+  children,
 }: LessonPlayerClientProps) {
+  const [ended, setEnded] = useState(false);
+  const afterVideo = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!ended) return;
+    const calm = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    afterVideo.current?.scrollIntoView({ behavior: calm ? "auto" : "smooth", block: "center" });
+  }, [ended]);
+
   const handleTimeUpdate = useCallback(
     async (currentTime: number) => {
       try {
@@ -44,6 +57,7 @@ export function LessonPlayerClient({
   );
 
   const handleEnded = useCallback(async () => {
+    setEnded(true);
     if (!isCompleted) {
       try {
         await markLessonComplete(lessonId);
@@ -57,15 +71,25 @@ export function LessonPlayerClient({
   }, [lessonId, isCompleted, courseSlug, lessonSlug]);
 
   return (
-    <VideoPlayer
-      playbackId={playbackId}
-      tokens={tokens}
-      title={title}
-      startTime={startTime}
-      onTimeUpdate={handleTimeUpdate}
-      onEnded={handleEnded}
-      courseSlug={courseSlug}
-      lessonSlug={lessonSlug}
-    />
+    <>
+      <VideoPlayer
+        playbackId={playbackId}
+        tokens={tokens}
+        title={title}
+        startTime={startTime}
+        onTimeUpdate={handleTimeUpdate}
+        onEnded={handleEnded}
+        courseSlug={courseSlug}
+        lessonSlug={lessonSlug}
+      />
+      {children && (
+        <div
+          ref={afterVideo}
+          className={cn("mt-6 rounded-xl transition-shadow", ended && "ring-2 ring-primary ring-offset-2 ring-offset-background")}
+        >
+          {children}
+        </div>
+      )}
+    </>
   );
 }

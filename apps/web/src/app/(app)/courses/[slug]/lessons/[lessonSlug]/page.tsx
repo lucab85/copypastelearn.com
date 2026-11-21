@@ -6,6 +6,12 @@ import Link from "next/link";
 import { auth } from "@clerk/nextjs/server";
 import { getLesson } from "@/server/queries/lessons";
 import { getLessonPublicMeta } from "@/server/queries/lessons";
+import { getViewerAccess } from "@/server/queries/viewer-access";
+import { getProPlan } from "@/server/queries/pro-plan";
+import { proPitch } from "@/lib/pro-pitch";
+import { launchOfferActive } from "@/lib/launch-offer";
+import { LockedLesson } from "@/components/course/locked-lesson";
+import { FreeLessonNextStep } from "@/components/lesson/free-lesson-next-step";
 import { generateMuxTokens } from "@/lib/mux";
 import { LessonPlayerClient } from "./lesson-player-client";
 import { TranscriptPanel } from "@/components/lesson/transcript-panel";
@@ -80,7 +86,10 @@ export default async function LessonPage({ params }: LessonPageProps) {
         // Render the lesson's public facts (as listed on the course page) so
         // each locked lesson is a distinct page rather than an identical
         // sign-in wall. No gated content (video, transcript, snippets) is shown.
-        const publicMeta = await getLessonPublicMeta(slug, lessonSlug);
+        const [publicMeta, plan] = await Promise.all([
+          getLessonPublicMeta(slug, lessonSlug),
+          getProPlan(),
+        ]);
         const minutes = publicMeta?.durationSeconds
           ? Math.max(1, Math.round(publicMeta.durationSeconds / 60))
           : null;
@@ -106,30 +115,13 @@ export default async function LessonPage({ params }: LessonPageProps) {
                 )}
               </>
             )}
-            {publicMeta ? (
-              <h2 className="mb-4 text-xl font-semibold">
-                {isSignedIn ? "Subscription required" : "Sign in to continue"}
-              </h2>
-            ) : (
-              <h1 className="mb-4 text-2xl font-bold">
-                {isSignedIn ? "Subscription required" : "Sign in to continue"}
-              </h1>
-            )}
-            <p className="mb-6 text-muted-foreground">
-              {err.message ?? "This lesson requires authentication or an active subscription."}
-            </p>
-            <div className="flex gap-3">
-              <Link href={`/courses/${slug}`}>
-                <Button variant="outline">Back to course</Button>
-              </Link>
-              {isSignedIn ? (
-                <Button asChild><Link href="/pricing">View plans</Link></Button>
-              ) : (
-                <Link href="/sign-in">
-                  <Button>Sign in</Button>
-                </Link>
-              )}
-            </div>
+            <LockedLesson
+              courseSlug={slug}
+              lessonSlug={lessonSlug}
+              lessonTitle={publicMeta?.title ?? null}
+              signedIn={isSignedIn}
+              pitch={plan ? proPitch(plan, launchOfferActive()) : null}
+            />
           </div>
         );
       }
@@ -137,6 +129,20 @@ export default async function LessonPage({ params }: LessonPageProps) {
     }
     throw error;
   }
+
+  // A viewer without Pro can only be here on the free lesson: say what comes
+  // next and what it costs, under the video.
+  const access = await getViewerAccess();
+  const plan = access.hasPro ? null : await getProPlan();
+  const nextStep = access.hasPro ? null : (
+    <FreeLessonNextStep
+      courseSlug={slug}
+      lessonSlug={lessonSlug}
+      nextLesson={lesson.nextLesson}
+      signedIn={access.signedIn}
+      pitch={plan ? proPitch(plan, launchOfferActive()) : null}
+    />
+  );
 
   return (
     <div className="container mx-auto px-4 py-8">
@@ -193,8 +199,11 @@ export default async function LessonPage({ params }: LessonPageProps) {
           isCompleted={lesson.userProgress?.completed ?? false}
           courseSlug={slug}
           lessonSlug={lessonSlug}
-        />
+        >
+          {nextStep}
+        </LessonPlayerClient>
       )}
+      {!lesson.videoPlaybackId && nextStep}
 
       <div className="mt-8 grid gap-6 lg:grid-cols-3">
         {/* Main Content */}
