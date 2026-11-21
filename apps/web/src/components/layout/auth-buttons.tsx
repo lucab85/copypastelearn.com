@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
+import { Show, UserButton } from "@clerk/nextjs";
 import { Button } from "@/components/ui/button";
 
 /**
@@ -54,43 +54,43 @@ export function AuthButtons({ mobile, onNavigate }: { mobile?: boolean; onNaviga
   if (mobile) {
     return (
       <>
-        <SignedOut>
+        <Show when="signed-out">
           <Button variant="outline" size="sm" asChild>
             <Link href="/sign-in" onClick={onNavigate}>Sign In</Link>
           </Button>
           <Button size="sm" asChild>
             <Link href="/sign-up" onClick={onNavigate}>Get Started</Link>
           </Button>
-        </SignedOut>
-        <SignedIn>
+        </Show>
+        <Show when="signed-in">
           <Button variant="outline" size="sm" asChild>
             <Link href="/dashboard" onClick={onNavigate}>Dashboard</Link>
           </Button>
           <div className="flex items-center gap-2 px-3 py-2">
-            <UserButton afterSignOutUrl="/" />
+            <UserButton />
             <span className="text-sm text-muted-foreground">Account</span>
           </div>
-        </SignedIn>
+        </Show>
       </>
     );
   }
 
   return (
     <>
-      <SignedOut>
+      <Show when="signed-out">
         <Button variant="ghost" size="sm" asChild>
           <Link href="/sign-in">Sign In</Link>
         </Button>
         <Button size="sm" asChild>
           <Link href="/sign-up">Get Started</Link>
         </Button>
-      </SignedOut>
-      <SignedIn>
+      </Show>
+      <Show when="signed-in">
         <Button variant="ghost" size="sm" asChild>
           <Link href="/dashboard">Dashboard</Link>
         </Button>
-        <UserButton afterSignOutUrl="/" />
-      </SignedIn>
+        <UserButton />
+      </Show>
     </>
   );
 }

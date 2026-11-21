@@ -11,6 +11,7 @@ const fetchProPlan = unstable_cache(
     const { data } = await client.billing.getPlanList({ payerType: "user" });
     const pro = data.find((p) => p.slug === PRO_PLAN_SLUG);
     if (!pro) throw new Error(`no "${PRO_PLAN_SLUG}" plan in Clerk Billing`);
+    if (!pro.fee) throw new Error(`the "${PRO_PLAN_SLUG}" plan has no monthly fee in Clerk Billing`);
     return {
       id: pro.id,
       name: pro.name,
