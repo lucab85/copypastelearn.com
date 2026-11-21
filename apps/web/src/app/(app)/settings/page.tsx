@@ -4,6 +4,8 @@ import { UserProfile } from "@clerk/nextjs";
 import { requireAuth } from "@/lib/auth";
 import { hasLegacySubscription } from "@/lib/billing";
 import { Button } from "@/components/ui/button";
+import { NextStepEmailsSetting } from "@/components/dashboard/next-step-emails";
+import { nextStepEmailState } from "@/lib/onboarding-emails/state";
 
 export const metadata = {
   title: "Account Settings",
@@ -13,6 +15,7 @@ export const metadata = {
 export default async function SettingsPage() {
   const user = await requireAuth();
   const hasLegacyPlan = await hasLegacySubscription(user.id);
+  const emailState = user.email ? await nextStepEmailState(user.id) : "unavailable";
 
   return (
     <div className="container mx-auto max-w-4xl space-y-6 px-4 py-12">
@@ -25,6 +28,7 @@ export default async function SettingsPage() {
           </Button>
         </section>
       )}
+      <NextStepEmailsSetting state={emailState} email={user.email} />
       <UserProfile routing="hash" />
     </div>
   );
