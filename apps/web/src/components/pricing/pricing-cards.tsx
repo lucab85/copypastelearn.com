@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import { SignedIn, SignedOut, SignUpButton, useAuth } from "@clerk/nextjs";
+import { Show, SignUpButton, useAuth } from "@clerk/nextjs";
 import { CheckoutButton } from "@clerk/nextjs/experimental";
 import { Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -144,7 +144,7 @@ export function PricingCards({ plan, courseCount, lessonCount, academyCount, off
               </Button>
             ) : (
               <>
-                <SignedIn>
+                <Show when="signed-in">
                   <div onClickCapture={() => trackBeginCheckout()}>
                     <CheckoutButton planId={plan.id} planPeriod={period} newSubscriptionRedirectUrl="/dashboard?checkout=success">
                       <Button ref={checkoutRef} className="w-full">
@@ -152,17 +152,17 @@ export function PricingCards({ plan, courseCount, lessonCount, academyCount, off
                       </Button>
                     </CheckoutButton>
                   </div>
-                </SignedIn>
-                <SignedOut>
+                </Show>
+                <Show when="signed-out">
                   <SignUpButton mode="modal" forceRedirectUrl={back} signInForceRedirectUrl={back}>
                     <Button className="w-full">Subscribe {period === "annual" ? "for a year" : "monthly"}</Button>
                   </SignUpButton>
-                </SignedOut>
+                </Show>
               </>
             )}
             {offer && !isPro && (
               <p className="mt-2 text-center text-xs text-muted-foreground">
-                At checkout, choose &ldquo;Add promo code&rdquo; and enter {offer.code}.
+                At checkout, enter {offer.code} in the promo code field and choose Apply.
               </p>
             )}
           </div>

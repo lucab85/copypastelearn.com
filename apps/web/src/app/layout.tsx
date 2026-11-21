@@ -113,7 +113,68 @@ export default function RootLayout({
 }) {
   const clerkEnabled = isClerkConfigured();
 
-  const body = (
+  const content = (
+    <>
+      {/* Google Consent Mode v2: defaults to denied (and re-applies a
+          stored choice) BEFORE the GA4 config, then queues the config. */}
+      <Script id="consent-default" strategy="beforeInteractive">
+        {consentBootstrapScript(GA_ID)}
+      </Script>
+      {/* Google Analytics (GA4). Without analytics consent it runs in
+          Consent Mode "denied" (no cookies). */}
+      <Script
+        src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
+        strategy="lazyOnload"
+      />
+
+      {/* Microsoft Clarity — only with analytics consent, and loaded on
+          first user interaction so the third-party cookies on clarity.ms /
+          bing.com stay out of the Lighthouse audit window
+          (best-practices: third-party-cookies). */}
+      <ClarityDeferred />
+
+      {/* Ad tags (Google Ads, Meta, LinkedIn, Reddit) — only with
+          marketing consent and only for ids set in the environment. */}
+      <MarketingTags />
+
+      {/* Analytics — SPA page view tracking, campaign attribution */}
+      <Suspense>
+        <RouteChangeTracker />
+        <AttributionCapture />
+      </Suspense>
+      {clerkEnabled && <SignUpTracker />}
+      {/* Skip to content — accessibility */}
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-md focus:bg-primary focus:px-4 focus:py-2 focus:text-sm focus:font-medium focus:text-primary-foreground"
+      >
+        Skip to main content
+      </a>
+      {!clerkEnabled && (
+        <div className="bg-yellow-100 px-4 py-1.5 text-center text-xs text-yellow-800">
+          Auth is disabled — set Clerk keys in <code>.env.local</code> to
+          enable.
+        </div>
+      )}
+      <AnnouncementBanner
+        message="New: the Agentic AI Academy, 5 courses on running AI agents in production."
+        linkText="Start free"
+        linkHref="/academy"
+        offer={LAUNCH_OFFER}
+      />
+      <SiteHeader />
+      <PromoBanner />
+      <main id="main-content" className="flex-1">{children}</main>
+      <SiteFooter />
+          <NewsletterPopup />
+          <CmdKPalette />
+      <CookieBanner />
+    </>
+  );
+
+  // ClerkProvider goes inside <body>: Clerk Core 3 no longer supports it
+  // around <html>.
+  return (
     <html lang="en" suppressHydrationWarning>
       <head>
         {/* Preconnect to third-party origins for faster resource loading */}
@@ -126,67 +187,8 @@ export default function RootLayout({
         <link rel="describedby" href="/llms-full.txt" />
       </head>
       <body className="flex min-h-screen flex-col bg-background font-sans antialiased">
-        {/* Google Consent Mode v2: defaults to denied (and re-applies a
-            stored choice) BEFORE the GA4 config, then queues the config. */}
-        <Script id="consent-default" strategy="beforeInteractive">
-          {consentBootstrapScript(GA_ID)}
-        </Script>
-        {/* Google Analytics (GA4). Without analytics consent it runs in
-            Consent Mode "denied" (no cookies). */}
-        <Script
-          src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
-          strategy="lazyOnload"
-        />
-
-        {/* Microsoft Clarity — only with analytics consent, and loaded on
-            first user interaction so the third-party cookies on clarity.ms /
-            bing.com stay out of the Lighthouse audit window
-            (best-practices: third-party-cookies). */}
-        <ClarityDeferred />
-
-        {/* Ad tags (Google Ads, Meta, LinkedIn, Reddit) — only with
-            marketing consent and only for ids set in the environment. */}
-        <MarketingTags />
-
-        {/* Analytics — SPA page view tracking, campaign attribution */}
-        <Suspense>
-          <RouteChangeTracker />
-          <AttributionCapture />
-        </Suspense>
-        {clerkEnabled && <SignUpTracker />}
-        {/* Skip to content — accessibility */}
-        <a
-          href="#main-content"
-          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-md focus:bg-primary focus:px-4 focus:py-2 focus:text-sm focus:font-medium focus:text-primary-foreground"
-        >
-          Skip to main content
-        </a>
-        {!clerkEnabled && (
-          <div className="bg-yellow-100 px-4 py-1.5 text-center text-xs text-yellow-800">
-            Auth is disabled — set Clerk keys in <code>.env.local</code> to
-            enable.
-          </div>
-        )}
-        <AnnouncementBanner
-          message="New: the Agentic AI Academy, 5 courses on running AI agents in production."
-          linkText="Start free"
-          linkHref="/academy"
-          offer={LAUNCH_OFFER}
-        />
-        <SiteHeader />
-        <PromoBanner />
-        <main id="main-content" className="flex-1">{children}</main>
-        <SiteFooter />
-            <NewsletterPopup />
-            <CmdKPalette />
-        <CookieBanner />
+        {clerkEnabled ? <ClerkClientProvider>{content}</ClerkClientProvider> : content}
       </body>
     </html>
   );
-
-  if (clerkEnabled) {
-    return <ClerkClientProvider>{body}</ClerkClientProvider>;
-  }
-
-  return body;
 }
