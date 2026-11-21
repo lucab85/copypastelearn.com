@@ -149,6 +149,13 @@ export default function PrivacyPage() {
               Send marketing emails only if you have opted in; every marketing
               message includes an unsubscribe link.
             </li>
+            <li>
+              Send the &ldquo;next steps&rdquo; emails if you ask for them in
+              your dashboard or settings: four short emails over two weeks,
+              based on your course progress, one of them about the Pro plan.
+              We keep the date you asked. You can stop them with the link in
+              each email or in your settings.
+            </li>
           </ul>
 
           <h2>5. Sub-processors</h2>
@@ -182,7 +189,7 @@ export default function PrivacyPage() {
               caching (USA/EU, SCCs).
             </li>
             <li>
-              <strong>Resend</strong> — transactional email delivery (USA, SCCs).
+              <strong>Resend</strong> — email delivery (USA, SCCs).
             </li>
           </ul>
           <p>

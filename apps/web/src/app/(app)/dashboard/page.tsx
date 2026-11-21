@@ -19,6 +19,7 @@ import { PageEventTracker } from "@/components/analytics/page-event-tracker";
 import { auth } from "@clerk/nextjs/server";
 import { getSubscriptionConversion } from "@/server/actions/billing";
 import { CheckoutSuccessBanner } from "@/components/dashboard/checkout-success-banner";
+import { NextStepEmailsSlot } from "@/components/dashboard/next-step-emails-slot";
 
 export const metadata = {
   title: "Dashboard",
@@ -166,6 +167,9 @@ export default async function DashboardPage({ searchParams }: DashboardPageProps
           />
         </div>
       )}
+
+      {/* ── Opt-in: next steps by email ──────────────────── */}
+      <NextStepEmailsSlot />
 
       {/* ── Main Content: Courses + Recent Activity ──────── */}
       {hasActivity && (

@@ -16,6 +16,10 @@ const isPublicRoute = createRouteMatcher([
   "/api/assistant(.*)",
   "/api/agent(.*)",
   "/api/analytics(.*)",
+  // Next-step emails: the cron checks CRON_SECRET, the unsubscribe link is
+  // signed. Both are called without a Clerk session (Vercel Cron, a mail app).
+  "/api/cron/onboarding-emails(.*)",
+  "/api/email(.*)",
   "/opengraph-image(.*)",
   "/icon(.*)",
   "/apple-icon(.*)",

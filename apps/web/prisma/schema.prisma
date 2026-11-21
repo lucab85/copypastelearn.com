@@ -28,6 +28,7 @@ model User {
   assessmentAttempts AssessmentAttempt[]
   subscription       Subscription?
   customer           Customer?
+  onboardingSequence OnboardingSequence?
 
   @@index([clerkUserId])
 }
@@ -612,4 +613,25 @@ model PolicyDocument {
 
   @@unique([slug, version])
   @@index([slug, isCurrent])
+}
+
+/// The opt-in "next steps" emails (lib/onboarding-emails). One row per learner
+/// who asked for them: the row is the consent record. No row, no email.
+model OnboardingSequence {
+  id             String    @id @default(cuid())
+  userId         String    @unique
+  /// When the learner asked for the emails, and where ("dashboard", "settings").
+  optedInAt      DateTime  @default(now())
+  source         String
+  /// Index of the next email to send (0-3); 4 = all sent.
+  step           Int       @default(0)
+  /// When that email is due. NULL = nothing more to send.
+  nextSendAt     DateTime?
+  unsubscribedAt DateTime?
+  /// Failed sends of the current step; the sequence stops after 5.
+  failures       Int       @default(0)
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([nextSendAt])
 }
