@@ -51,8 +51,9 @@ export const config = {
     // Course detail & lessons (calls getCurrentUser → auth())
     // Note: /courses listing is excluded (ISR cached, no auth needed)
     "/courses/:slug/:path*",
-    // App routes (dashboard, admin — always need auth)
+    // App routes (dashboard, settings, admin — always need auth)
     "/dashboard/:path*",
+    "/settings/:path*",
     "/admin/:path*",
     // Library (commerce US2 — buyer access recovery, requires Clerk session)
     "/library/:path*",
