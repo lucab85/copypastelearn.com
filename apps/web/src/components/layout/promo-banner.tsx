@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import type { MouseEvent } from "react";
 import { trackEvent } from "@/lib/analytics";
+import { LAUNCH_OFFER, launchOfferActive } from "@/lib/launch-offer";
 import promoJson from "@/generated/promo.json";
 
 /**
@@ -17,6 +18,9 @@ import promoJson from "@/generated/promo.json";
  * flags <html> while the page is parsed (no layout shift), the effect does the
  * same after client-side navigation, and the CSS hides it otherwise. Clicking
  * copies the code (best effort, never blocks navigation) and follows the link.
+ *
+ * While the site runs its own offer (lib/launch-offer.ts) the banner stays
+ * hidden, so a visitor is shown one code to use at checkout, not two.
  */
 interface Promo {
   id: string;
@@ -43,12 +47,19 @@ const inWindow = (p: Promo) => {
   return now >= new Date(y, m - 1, d).getTime() && now < Date.parse(p.end);
 };
 
+// promo.script behind the own-offer test, on the visitor clock like the rest.
+const gatedScript = (p: Promo) => {
+  const [y, m, d] = LAUNCH_OFFER.start.split("-").map(Number);
+  const end = Date.parse(LAUNCH_OFFER.end);
+  return `(function(){var n=Date.now();if(n>=new Date(${y},${m - 1},${d}).getTime()&&n<${end})return;${p.script}})()`;
+};
+
 export function PromoBanner() {
   const pathname = usePathname();
   const [status, setStatus] = useState("");
 
   useEffect(() => {
-    if (promo && inWindow(promo)) document.documentElement.setAttribute("data-promo-on", "");
+    if (promo && inWindow(promo) && !launchOfferActive()) document.documentElement.setAttribute("data-promo-on", "");
   }, []);
 
   if (!promo) return null;
@@ -75,7 +86,7 @@ export function PromoBanner() {
   return (
     <>
       <style dangerouslySetInnerHTML={{ __html: promo.css }} />
-      <script dangerouslySetInnerHTML={{ __html: promo.script }} />
+      <script dangerouslySetInnerHTML={{ __html: gatedScript(promo) }} />
       <aside data-promo aria-label={promo.caption} className="mx-auto w-full max-w-3xl px-4 pt-4">
         <a
           href={promo.href}
