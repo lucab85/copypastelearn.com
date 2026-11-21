@@ -15,6 +15,8 @@ export const LAUNCH_OFFER = {
   monthlyPercent: 50,
   start: "2026-11-20",
   end: "2026-12-01T08:00:00Z",
+  /** The last day, as written in the copy. */
+  until: "30 November",
   message: "Launch offer: 30% off a year of Pro, or 50% off your first month, with code LAUNCH. Until 30 November.",
   linkText: "See plans",
   linkHref: "/pricing",

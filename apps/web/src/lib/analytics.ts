@@ -186,6 +186,6 @@ export function trackLabDestroy(sessionId: string) {
 }
 
 // --- Paywall ---
-export function trackPaywallView(location: string) {
-  trackEvent("paywall_view", { location });
+export function trackPaywallView(location: string, params?: GtagParams) {
+  trackEvent("paywall_view", { location, ...params });
 }

@@ -17,6 +17,11 @@ import { VideoPlayer } from "@/components/lesson/video-player";
 import { PageEventTracker } from "@/components/analytics/page-event-tracker";
 import { TerminalPreview } from "@/components/course/terminal-preview";
 import { COPYPASTELEARN, LUCA_BERTON, OPEN_EMPOWER } from "@/lib/entities";
+import { getProPlan } from "@/server/queries/pro-plan";
+import { proPitch } from "@/lib/pro-pitch";
+import { launchOfferActive } from "@/lib/launch-offer";
+import { ProPitchLines } from "@/components/course/pro-pitch";
+import { TrackedLink } from "@/components/analytics/tracked-link";
 
 // Per-request memoization so generateMetadata + the page body share one DB call.
 const loadCourse = cache(getCourse);
@@ -123,6 +128,11 @@ export default async function CourseDetailPage({ params }: CourseDetailPageProps
     (acc, l) => acc + (l.durationSeconds ?? 0),
     0
   );
+
+  // The price of the locked lessons, for a visitor who cannot open them yet.
+  const hasLockedLessons = course.lessons.some((l) => !l.isAccessible);
+  const plan = hasLockedLessons ? await getProPlan() : null;
+  const pitch = plan ? proPitch(plan, launchOfferActive()) : null;
   const hours = Math.floor(totalDuration / 3600);
   const minutes = Math.floor((totalDuration % 3600) / 60);
 
@@ -649,19 +659,27 @@ export default async function CourseDetailPage({ params }: CourseDetailPageProps
               </>
             )}
 
-            <Separator />
+            {hasLockedLessons && (
+              <>
+                <Separator />
 
-            <div className="text-center">
-              <p className="text-xs text-muted-foreground">
-                Want all courses?
-              </p>
-              <Link
-                href="/pricing"
-                className="text-sm font-medium text-primary hover:underline"
-              >
-                See Pro plan →
-              </Link>
-            </div>
+                <div>
+                  <h3 className="text-sm font-semibold">Every lesson, with Pro</h3>
+                  <p className="mt-1 text-xs text-muted-foreground">
+                    All {course.lessons.length} lessons of this course and every other course.
+                  </p>
+                  {pitch && <ProPitchLines pitch={pitch} className="mt-3" />}
+                  <TrackedLink
+                    href="/pricing"
+                    ctaText="See plans"
+                    ctaLocation="course_sidebar"
+                    className="mt-3 inline-block text-sm font-medium text-primary hover:underline"
+                  >
+                    See plans →
+                  </TrackedLink>
+                </div>
+              </>
+            )}
           </div>
         </div>
       </div>

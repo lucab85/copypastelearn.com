@@ -1,12 +1,15 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
+import { usePathname } from "next/navigation";
 import { X } from "lucide-react";
 import { trackNewsletterSignup } from "@/lib/analytics";
+import { newsletterPopupAllowed, newsletterPopupDelay } from "@/lib/newsletter-popup";
 
 const KIT_FORM_UID = "ce74a48bfa";
 const DISMISS_KEY = "cpl-newsletter-dismissed";
-const POPUP_DELAY_MS = 30_000; // 30 seconds
+const POPUP_DELAY_MS = 30_000; // 30 seconds on the site
+const MIN_ON_PAGE_MS = 5_000; // and never right after a navigation
 const DISMISS_DAYS = 30;
 
 export function NewsletterPopup() {
@@ -14,15 +17,21 @@ export function NewsletterPopup() {
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
 
+  const pathname = usePathname();
+  const allowed = newsletterPopupAllowed(pathname);
+  const arrivedAt = useRef(Date.now());
+
   useEffect(() => {
+    if (!allowed) return;
     const dismissed = localStorage.getItem(DISMISS_KEY);
     if (dismissed) {
       const dismissedAt = parseInt(dismissed, 10);
       if (Date.now() - dismissedAt < DISMISS_DAYS * 86_400_000) return;
     }
-    const timer = setTimeout(() => setShow(true), POPUP_DELAY_MS);
+    const wait = newsletterPopupDelay(Date.now() - arrivedAt.current, POPUP_DELAY_MS, MIN_ON_PAGE_MS);
+    const timer = setTimeout(() => setShow(true), wait);
     return () => clearTimeout(timer);
-  }, []);
+  }, [allowed, pathname]);
 
   const dismiss = useCallback(() => {
     setShow(false);
@@ -57,7 +66,7 @@ export function NewsletterPopup() {
     }
   };
 
-  if (!show) return null;
+  if (!show || !allowed) return null;
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4">
