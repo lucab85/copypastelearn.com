@@ -32,3 +32,10 @@ jobs:
       - name: Check for broken links
         working-directory: apps/web
         run: node scripts/check-broken-links.cjs --strict
+
+      - name: Check internal links added to existing posts
+        working-directory: apps/web
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha || github.event.before }}
+          STRICT_INTERNAL_LINKS: ${{ startsWith(github.head_ref || github.ref_name, 'internal-links/') || contains(github.event.head_commit.message, '[internal-links]') }}
+        run: node scripts/check-new-internal-links.cjs --content content/blog --url '/blog/{stem}'
