@@ -22,6 +22,7 @@ const OUT = path.join(path.dirname(fileURLToPath(import.meta.url)), "..", "publi
 const TRACKS = {
   AI_AGENTS: { label: "AI AGENTS", accent: "#fbbf24" },
   AI_HOMELAB: { label: "AI HOMELAB ON A MAC MINI", accent: "#34d399" },
+  FOUNDATIONS: { label: "FOUNDATIONS", accent: "#38bdf8" },
 };
 
 /** `command` is a line the course really runs; leave it out rather than invent one. */
@@ -41,6 +42,11 @@ const COVERS = [
   { slug: "hermes-agent", track: "AI_HOMELAB", title: "A Personal AI Agent on Your Mac with Hermes Agent", command: "hermes config set model.provider custom" },
   { slug: "local-ai-offload", track: "AI_HOMELAB", title: "Spend Fewer Cloud Tokens: Offload Work to a Local Model" },
   { slug: "monitor-homelab-opentelemetry", track: "AI_HOMELAB", title: "Know What Your Homelab Is Doing with OpenTelemetry", command: "curl -s localhost:9100/metrics | grep -c '^node_'" },
+  { slug: "multi-tenant-kubernetes-capsule-vcluster", track: "AI_HOMELAB", title: "Multi-Tenant Kubernetes with Capsule and vCluster", command: "kubectl get tenants" },
+  { slug: "talos-linux-on-your-mac", track: "AI_HOMELAB", title: "Talos Linux on Your Mac", command: "talosctl cluster create docker" },
+  { slug: "kamaji-hosted-control-planes", track: "AI_HOMELAB", title: "Kubernetes Control Planes as a Service with Kamaji", command: "kubectl get tcp -n tenants" },
+  { slug: "openfeature-feature-flags-java", track: "FOUNDATIONS", title: "Feature Flags Without Lock-In: OpenFeature in Java", command: "./run Details v2_enable" },
+  { slug: "legacy-apis-mcp-tools-graphql", track: "AI_AGENTS", title: "Legacy APIs as MCP Tools Through GraphQL", command: "query GetOwnerDetails($id: ID!)" },
 ];
 
 const esc = (s) => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
