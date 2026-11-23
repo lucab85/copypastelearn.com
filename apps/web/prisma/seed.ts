@@ -2,6 +2,11 @@ import { PrismaClient } from "@prisma/client";
 import { seedKagentCourse } from "./seeds/kagent-course";
 import { seedMcpCourse } from "./seeds/mcp-course";
 import { seedGooseCourse } from "./seeds/goose-course";
+import { seedTenancyCourse } from "./seeds/tenancy-course";
+import { seedTalosCourse } from "./seeds/talos-course";
+import { seedKamajiCourse } from "./seeds/kamaji-course";
+import { seedOpenFeatureCourse } from "./seeds/openfeature-course";
+import { seedGraphqlMcpCourse } from "./seeds/graphql-mcp-course";
 import { seedCatalogTracks } from "./seeds/catalog-tracks";
 
 const prisma = new PrismaClient();
@@ -1850,6 +1855,11 @@ async function main() {
   await seedKagentCourse(prisma);
   await seedMcpCourse(prisma);
   await seedGooseCourse(prisma);
+  await seedTenancyCourse(prisma);
+  await seedTalosCourse(prisma);
+  await seedKamajiCourse(prisma);
+  await seedOpenFeatureCourse(prisma);
+  await seedGraphqlMcpCourse(prisma);
   await seedCatalogTracks(prisma);
 
   // Courses the seed creates as PUBLISHED get a publish date (their creation
