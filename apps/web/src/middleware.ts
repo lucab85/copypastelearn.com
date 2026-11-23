@@ -8,6 +8,9 @@ const isPublicRoute = createRouteMatcher([
   "/api/webhooks(.*)",
   "/api/mobile(.*)",
   "/api/indexnow(.*)",
+  // Vercel Cron sends no Clerk session. Each cron route checks the
+  // CRON_SECRET bearer token itself and answers 401 without it.
+  "/api/cron(.*)",
   // Guest commerce endpoints — these do their own rate-limiting and
   // validation and intentionally work without a Clerk session. They must
   // NOT be redirected to /sign-in, or fetch() callers receive the sign-in
