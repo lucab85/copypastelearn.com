@@ -42,14 +42,9 @@ export function ActiveLabCard({
         className
       )}
     >
-      {/* Subtle background shimmer */}
-      <div className="absolute inset-0 bg-gradient-to-r from-blue-500/5 via-transparent to-blue-500/5" />
-
       <CardContent className="relative flex items-center justify-between gap-4 p-5">
         <div className="flex items-center gap-4 min-w-0">
-          {/* Pulsing icon */}
           <div className="relative flex h-12 w-12 shrink-0 items-center justify-center">
-            <div className="absolute inset-0 rounded-full bg-blue-500/20 animate-pulse-glow" />
             <div className="relative flex h-12 w-12 items-center justify-center rounded-full bg-blue-100 dark:bg-blue-900/60">
               <Terminal className="h-5 w-5 text-blue-600 dark:text-blue-400" />
             </div>
@@ -60,11 +55,11 @@ export function ActiveLabCard({
               <Badge
                 variant="outline"
                 className={cn(
-                  "text-[10px] font-medium uppercase tracking-wider",
+                  "text-xs font-medium",
                   statusColors[status] ?? "bg-muted text-muted-foreground"
                 )}
               >
-                {status}
+                {status.charAt(0) + status.slice(1).toLowerCase()}
               </Badge>
               <span
                 className={cn(

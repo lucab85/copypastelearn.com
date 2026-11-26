@@ -33,9 +33,9 @@ export function RecentActivity({ lessons, className }: RecentActivityProps) {
 
   return (
     <div className={cn("rounded-xl border bg-card p-5", className)}>
-      <h3 className="mb-4 flex items-center gap-2 text-sm font-semibold uppercase tracking-wider text-muted-foreground">
+      <h3 className="mb-4 flex items-center gap-2 text-sm font-semibold text-muted-foreground">
         <Clock className="h-4 w-4" />
-        Recent Activity
+        Recent activity
       </h3>
 
       <div className="relative space-y-0">

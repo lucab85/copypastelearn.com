@@ -189,8 +189,8 @@ function MidArticlePromo({ variant }: { variant: "courses" | "newsletter" | "pri
       <div className="my-10 rounded-xl border border-zinc-800 bg-gradient-to-br from-blue-950/40 to-zinc-900 p-6 sm:p-8">
         <div className="flex items-start gap-3 mb-3">
           <BookOpen className="mt-0.5 h-5 w-5 text-blue-400 shrink-0" />
-          <div className="text-xs font-semibold uppercase tracking-wider text-blue-400">
-            Related Course
+          <div className="text-xs font-semibold text-blue-400">
+            Related course
           </div>
         </div>
         <h3 className="text-lg font-bold text-white mb-2">
@@ -214,8 +214,8 @@ function MidArticlePromo({ variant }: { variant: "courses" | "newsletter" | "pri
   if (variant === "newsletter") {
     return (
       <div className="my-10 rounded-xl border border-zinc-800 bg-zinc-900 p-6 sm:p-8">
-        <div className="text-xs font-semibold uppercase tracking-wider text-purple-400 mb-3">
-          Stay Updated
+        <div className="text-xs font-semibold text-purple-400 mb-3">
+          Stay updated
         </div>
         <h3 className="text-lg font-bold text-white mb-2">
           Get weekly IT automation tips
@@ -238,8 +238,8 @@ function MidArticlePromo({ variant }: { variant: "courses" | "newsletter" | "pri
   // pricing
   return (
     <div className="my-10 rounded-xl border border-zinc-800 bg-gradient-to-br from-emerald-950/40 to-zinc-900 p-6 sm:p-8">
-      <div className="text-xs font-semibold uppercase tracking-wider text-emerald-400 mb-3">
-        Pro Subscription
+      <div className="text-xs font-semibold text-emerald-400 mb-3">
+        Pro subscription
       </div>
       <h3 className="text-lg font-bold text-white mb-2">
         Unlock all courses
@@ -369,7 +369,7 @@ function renderContent(content: string): { html: string; promoInsertions: number
         .split("\n")
         .map((l) => l.slice(2))
         .join(" ");
-      return `<blockquote class="my-6 max-w-prose border-l-4 border-blue-500/50 bg-zinc-900/50 py-4 pl-6 pr-4 rounded-r-lg text-zinc-300 italic">${inlineFormat(text)}</blockquote>`;
+      return `<blockquote class="my-6 max-w-prose rounded-lg border border-zinc-800 bg-zinc-900/50 px-6 py-4 text-zinc-300 italic">${inlineFormat(text)}</blockquote>`;
     }
 
     // Paragraph

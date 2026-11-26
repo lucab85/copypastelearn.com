@@ -62,7 +62,7 @@ export function SiteHeader() {
             <ChevronDown className="h-4 w-4" aria-hidden="true" />
           </DropdownMenuTrigger>
           <DropdownMenuContent align="start" className="w-80 rounded-xl p-2">
-            <DropdownMenuLabel className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+            <DropdownMenuLabel className="text-xs font-semibold text-muted-foreground">
               Tracks
             </DropdownMenuLabel>
             {exploreTracks.map((item) => (
@@ -102,7 +102,7 @@ export function SiteHeader() {
         >
           <Search className="h-4 w-4 shrink-0" aria-hidden="true" />
           <span className="truncate">Search courses and articles</span>
-          <kbd className="ml-auto hidden rounded border bg-muted px-1.5 py-0.5 font-mono text-[10px] text-foreground xl:inline">
+          <kbd className="ml-auto hidden rounded border bg-muted px-1.5 py-0.5 font-mono text-xs text-foreground xl:inline">
             ⌘K
           </kbd>
         </button>
@@ -171,7 +171,7 @@ export function SiteHeader() {
                 {link.label}
               </Link>
             ))}
-            <p className="mt-3 px-3 text-xs font-semibold uppercase tracking-wider text-muted-foreground md:hidden">
+            <p className="mt-3 px-3 text-xs font-semibold text-muted-foreground md:hidden">
               Explore
             </p>
             {[...exploreTracks, exploreMore[0]].map((link) => (

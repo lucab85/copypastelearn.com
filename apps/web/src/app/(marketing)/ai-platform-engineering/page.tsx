@@ -280,7 +280,7 @@ export default function AIPlatformEngineeringPage() {
       <section className="relative border-b overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-blue-950/40 via-background to-purple-950/30" />
         <div className="relative container mx-auto px-4 py-20 lg:py-28 text-center">
-          <p className="mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-blue-300/80">
+          <p className="mb-4 text-sm font-semibold text-blue-300/80">
             Enterprise AI Platform Blueprint · Regulated-Ready
           </p>
           <Badge variant="secondary" className="mb-4 text-sm px-4 py-1.5">
@@ -524,7 +524,7 @@ export default function AIPlatformEngineeringPage() {
                   </div>
                 </div>
                 <div>
-                  <p className="text-sm font-semibold text-primary uppercase tracking-wider">
+                  <p className="text-sm font-semibold text-primary">
                     Session {session.session}
                   </p>
                   <h3 className="mt-1 text-lg font-bold">{session.title}</h3>
@@ -628,7 +628,7 @@ export default function AIPlatformEngineeringPage() {
                   </p>
                 ))}
               </div>
-              <blockquote className="mt-8 rounded-lg border-l-4 border-primary bg-muted/30 p-6 italic text-muted-foreground">
+              <blockquote className="mt-8 rounded-lg border bg-muted/30 p-6 italic text-muted-foreground">
                 &quot;Every enterprise I&apos;ve worked with has a brilliant AI team.
                 What they don&apos;t have is the platform to put those models into
                 production. That&apos;s what kills AI projects — not bad

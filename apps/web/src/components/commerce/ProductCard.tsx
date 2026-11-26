@@ -54,7 +54,7 @@ export function ProductCard({ product }: ProductCardProps) {
 
       <CardFooter className="flex items-end justify-between border-t bg-muted/20 pt-4">
         <div>
-          <div className="text-[11px] font-medium uppercase tracking-wider text-muted-foreground">
+          <div className="text-xs font-medium text-muted-foreground">
             One-time
           </div>
           <div className="text-xl font-bold tracking-tight">
@@ -63,7 +63,7 @@ export function ProductCard({ product }: ProductCardProps) {
               {product.currency}
             </span>
           </div>
-          <div className="mt-0.5 inline-flex items-center gap-1 text-[11px] text-muted-foreground">
+          <div className="mt-0.5 inline-flex items-center gap-1 text-xs text-muted-foreground">
             <Download className="h-3 w-3" aria-hidden /> Instant download
           </div>
         </div>

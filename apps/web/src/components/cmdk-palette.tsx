@@ -163,7 +163,7 @@ export function CmdKPalette() {
             return (
               <div key={r.href}>
                 {startsGroup && (
-                  <p className="px-4 pb-1 pt-2 text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">
+                  <p className="px-4 pb-1 pt-2 text-xs font-semibold text-muted-foreground">
                     {group}
                   </p>
                 )}
@@ -188,7 +188,7 @@ export function CmdKPalette() {
             );
           })}
         </div>
-        <div className="flex items-center justify-between border-t bg-muted/30 px-4 py-2 text-[10px] text-muted-foreground">
+        <div className="flex items-center justify-between border-t bg-muted/30 px-4 py-2 text-xs text-muted-foreground">
           <span>
             <kbd className="rounded border bg-background px-1.5 py-0.5 font-mono">
               ↑

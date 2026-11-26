@@ -39,7 +39,7 @@ export function ContinuePrompt({
             <Play className="h-6 w-6 ml-0.5" />
           </div>
           <div className="min-w-0">
-            <p className="text-xs font-medium uppercase tracking-wider text-primary/70">
+            <p className="text-xs font-medium text-primary/70">
               Continue where you left off
             </p>
             <p className="mt-1 truncate text-lg font-bold">{lessonTitle}</p>

@@ -120,7 +120,7 @@ export function TerminalPreview({ courseSlug }: { courseSlug: string }) {
               {line.text}
             </div>
           ))}
-          <div className="mt-1 inline-block h-4 w-2 animate-pulse bg-gray-400" />
+          <div aria-hidden="true" className="mt-1 inline-block h-4 w-2 bg-gray-400" />
         </div>
       </div>
       <p className="mt-2 text-xs text-muted-foreground">

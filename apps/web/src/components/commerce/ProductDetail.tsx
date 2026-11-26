@@ -177,7 +177,7 @@ export function ProductDetail({ product, alreadyOwned = false }: ProductDetailPr
           <div className="rounded-2xl border bg-gradient-to-br from-primary/5 via-card to-card p-6 shadow-lg shadow-primary/5">
             <div className="flex flex-wrap items-end justify-between gap-4">
               <div>
-                <div className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
+                <div className="text-xs font-medium text-muted-foreground">
                   One-time purchase
                 </div>
                 <div className="mt-1 text-4xl font-bold tracking-tight">

@@ -182,7 +182,7 @@ export function ProductCover({
               strokeWidth={1.6}
               aria-hidden
             />
-            <span className="rounded-md bg-black/20 px-2 py-0.5 font-mono text-[10px] font-semibold tracking-wider text-white/90 sm:text-xs">
+            <span className="rounded-md bg-black/20 px-2 py-0.5 font-mono text-xs font-semibold tracking-wider text-white/90">
               {tag}
             </span>
           </div>
@@ -191,7 +191,7 @@ export function ProductCover({
 
       {/* Foreground content */}
       <div className="relative z-10 flex h-full w-full flex-col justify-between p-5 lg:p-7">
-        <div className="flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-white/85">
+        <div className="flex items-center gap-2 text-xs font-semibold text-white/85">
           <span className="rounded-full bg-white/15 px-2.5 py-1 backdrop-blur">
             {typeLabel}
           </span>
