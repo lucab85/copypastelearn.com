@@ -9,7 +9,7 @@ export function NewCourses({ courses }: { courses: CourseListItem[] }) {
   return (
     <section aria-labelledby="home-new" className="pt-10 lg:pt-14">
       <div className="container mx-auto px-4">
-        <div className="rounded-2xl border border-emerald-700/30 bg-emerald-50/60 p-3 dark:bg-emerald-950/20 sm:p-5">
+        <div className="rounded-2xl border p-3 sm:p-5">
           <div className="flex flex-wrap items-end justify-between gap-3 pl-2">
             <div>
               <h2
@@ -36,7 +36,7 @@ export function NewCourses({ courses }: { courses: CourseListItem[] }) {
           <ul className="mt-3 grid gap-1 sm:grid-cols-2 xl:grid-cols-3">
             {courses.map((course) => (
               <li key={course.id} className="min-w-0">
-                <CourseRow course={course} isNew />
+                <CourseRow course={course} heading="h3" />
               </li>
             ))}
           </ul>
