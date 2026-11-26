@@ -110,7 +110,7 @@ export default async function AcademyPage() {
             <h2 className="flex items-center gap-2 text-lg font-semibold">
               <Mic className="h-5 w-5" aria-hidden="true" /> A synthetic voice
             </h2>
-            <p className="mt-2 text-sm text-muted-foreground">
+            <p className="mt-2 max-w-prose text-sm text-muted-foreground">
               Every lesson is narrated with a synthetic voice made from the author&apos;s own voice. The
               commands, files and results you see are real: they were run against the exact versions named
               in each course.
@@ -120,7 +120,7 @@ export default async function AcademyPage() {
             <h2 className="flex items-center gap-2 text-lg font-semibold">
               <ShieldCheck className="h-5 w-5" aria-hidden="true" /> Independent training
             </h2>
-            <p className="mt-2 text-sm text-muted-foreground">
+            <p className="mt-2 max-w-prose text-sm text-muted-foreground">
               This Academy is independent. It is not affiliated with or endorsed by the kagent, Model Context
               Protocol or goose projects, or by their maintainers.
             </p>

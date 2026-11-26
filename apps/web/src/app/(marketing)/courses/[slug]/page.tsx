@@ -502,7 +502,7 @@ export default async function CourseDetailPage({ params }: CourseDetailPageProps
                           </p>
                         )}
                         {lesson.description && (
-                          <p className="mt-1 line-clamp-2 text-sm text-muted-foreground">
+                          <p className="mt-1 line-clamp-2 max-w-prose text-sm text-muted-foreground">
                             {lesson.description}
                           </p>
                         )}

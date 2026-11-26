@@ -68,7 +68,7 @@ export function PricingCards({ plan, courseCount, lessonCount, academyCount, off
                 aria-pressed={period === p}
                 onClick={() => setPeriod(p)}
                 className={`rounded-full px-4 py-1.5 font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
-                  period === p ? "bg-background text-foreground shadow-sm" : "text-muted-foreground hover:text-foreground"
+                  period === p ? "bg-background text-foreground shadow-sm" : "text-zinc-600 hover:text-foreground dark:text-zinc-300"
                 }`}
               >
                 {p === "month" ? "Monthly" : "Annual"}
