@@ -40,7 +40,7 @@ export function TableOfContents({ items }: TableOfContentsProps) {
   return (
     <nav className="hidden xl:block" aria-label="Table of contents">
       <div className="sticky top-24">
-        <h3 className="mb-3 text-xs font-semibold uppercase tracking-wider text-zinc-400">
+        <h3 className="mb-3 text-xs font-semibold text-zinc-400">
           On this page
         </h3>
         <ul className="space-y-1.5 border-l border-zinc-800">

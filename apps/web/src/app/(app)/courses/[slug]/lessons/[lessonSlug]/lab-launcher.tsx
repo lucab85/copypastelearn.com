@@ -25,9 +25,9 @@ export function LabLauncher({
         <CardTitle className="flex items-center gap-2 text-base">
           <Terminal className="h-4 w-4" />
           Interactive Lab
-          <Badge variant="outline" className="ml-auto text-[10px] font-medium uppercase tracking-wider border-amber-300 text-amber-600 dark:border-amber-700 dark:text-amber-400">
+          <Badge variant="outline" className="ml-auto text-xs font-medium border-amber-300 text-amber-600 dark:border-amber-700 dark:text-amber-400">
             <Construction className="mr-1 h-3 w-3" />
-            Coming Soon
+            Coming soon
           </Badge>
         </CardTitle>
         <CardDescription>

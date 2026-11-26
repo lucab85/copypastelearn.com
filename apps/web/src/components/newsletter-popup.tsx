@@ -95,7 +95,7 @@ export function NewsletterPopup() {
           </div>
         ) : (
           <>
-            <div className="mb-1 text-sm font-semibold uppercase tracking-wider text-blue-500">
+            <div className="mb-1 text-sm font-semibold text-blue-500">
               Newsletter
             </div>
             <h3 className="mb-2 text-xl font-bold text-white">

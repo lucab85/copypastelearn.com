@@ -158,7 +158,7 @@ export function TrackCatalog({
 
               {soon.length > 0 && (
                 <div className={published.length > 0 ? "mt-8" : ""}>
-                  <h3 className="mb-3 text-sm font-semibold uppercase tracking-wider text-muted-foreground">
+                  <h3 className="mb-3 text-sm font-semibold text-muted-foreground">
                     Coming soon
                   </h3>
                   <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">

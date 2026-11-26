@@ -5,7 +5,7 @@ export function NewBadge({ className }: { className?: string }) {
   return (
     <span
       className={cn(
-        "inline-block rounded-full bg-emerald-700 px-2 py-0.5 text-[11px] font-semibold uppercase leading-none tracking-wide text-white",
+        "inline-block rounded-full bg-emerald-700 px-2 py-0.5 text-xs font-semibold leading-none text-white",
         className
       )}
     >

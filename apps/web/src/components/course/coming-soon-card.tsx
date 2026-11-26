@@ -24,7 +24,7 @@ export function ComingSoonCard({
     <div className={cn("rounded-lg border border-dashed bg-muted/20 p-4", className)}>
       {standalone ? (
         <>
-          <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+          <p className="text-xs font-semibold text-muted-foreground">
             Coming soon
           </p>
           <p className="mt-2 line-clamp-3 text-[15px] font-semibold leading-snug">

@@ -124,7 +124,7 @@ export function ArticleCTA(props: ArticleCTAProps) {
       className={`my-6 flex flex-col gap-3 rounded-xl border border-zinc-200 bg-white p-5 shadow-sm ring-1 ${theme.ring} dark:border-zinc-800 dark:bg-zinc-950 sm:flex-row sm:items-center sm:justify-between`}
     >
       <div>
-        <p className="text-xs font-semibold uppercase tracking-wide text-zinc-500">
+        <p className="text-xs font-semibold text-zinc-500">
           {theme.label} · CopyPasteLearn
         </p>
         <h3 className="mt-1 text-lg font-semibold leading-tight">

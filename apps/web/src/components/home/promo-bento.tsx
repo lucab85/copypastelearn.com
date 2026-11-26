@@ -98,7 +98,7 @@ export function PromoBento({ promos }: { promos: Promo[] }) {
             <article key={promo.id} className={cardClass}>
               <p
                 className={cn(
-                  "text-xs font-semibold uppercase tracking-widest",
+                  "text-xs font-semibold",
                   ACCENT[promo.accent]
                 )}
               >

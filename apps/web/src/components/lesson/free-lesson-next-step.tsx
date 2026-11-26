@@ -24,7 +24,7 @@ export function FreeLessonNextStep({ courseSlug, lessonSlug, nextLesson, signedI
       {nextLesson && (
         <RememberLesson path={lessonPath(courseSlug, nextLesson.slug)} title={nextLesson.title} />
       )}
-      <p className="text-xs font-semibold uppercase tracking-wider text-primary">This is the free lesson</p>
+      <p className="text-xs font-semibold text-primary">This is the free lesson</p>
       <h2 id="next-step" className="mt-1 text-xl font-semibold">
         {nextLesson ? `Next: ${nextLesson.title}` : "Every other course is in Pro"}
       </h2>

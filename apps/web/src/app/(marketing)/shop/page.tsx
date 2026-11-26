@@ -93,12 +93,6 @@ export default async function ShopPage({ searchParams }: ShopPageProps) {
     <>
       {/* HERO */}
       <section className="relative overflow-hidden border-b bg-gradient-to-b from-primary/5 via-background to-background">
-        <div
-          aria-hidden
-          className="pointer-events-none absolute inset-0 -z-10 [mask-image:radial-gradient(ellipse_at_center,black,transparent_70%)]"
-        >
-          <div className="absolute left-1/2 top-0 h-[480px] w-[880px] -translate-x-1/2 rounded-full bg-primary/10 blur-3xl" />
-        </div>
         <div className="container mx-auto px-4 py-16 lg:py-24">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-5 inline-flex items-center gap-1.5">
@@ -174,7 +168,7 @@ export default async function ShopPage({ searchParams }: ShopPageProps) {
                   </div>
                 </div>
                 <div className="rounded-xl border bg-card/60 p-6 backdrop-blur">
-                  <div className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
+                  <div className="text-xs font-medium text-muted-foreground">
                     Bundle price
                   </div>
                   <div className="mt-2 text-4xl font-bold tracking-tight">
