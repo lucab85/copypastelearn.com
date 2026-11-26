@@ -309,7 +309,7 @@ export default async function CourseDetailPage({ params }: CourseDetailPageProps
         <h1 className="text-4xl font-bold tracking-tight">{course.title}</h1>
         {/* One sentence under the title. The full description stays in the
             page metadata and the Course JSON-LD. */}
-        <p className="mt-3 max-w-2xl text-lg text-muted-foreground">
+        <p className="mt-3 max-w-prose text-lg text-muted-foreground">
           {firstSentence(course.description)}
         </p>
 
