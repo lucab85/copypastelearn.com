@@ -13,6 +13,7 @@ import { HeroTerminal } from "@/components/home/hero-terminal";
 import { PromoBento, type Promo } from "@/components/home/promo-bento";
 import { ExplorePills } from "@/components/home/explore-pills";
 import { CourseColumns } from "@/components/home/course-columns";
+import { NewCourses } from "@/components/home/new-courses";
 import { TrackSpotlight } from "@/components/home/track-spotlight";
 import { IntentBuckets, type Bucket } from "@/components/home/intent-buckets";
 import { GoalChooser, type Goal } from "@/components/home/goal-chooser";
@@ -24,6 +25,7 @@ import { HOME_FAQ } from "@/lib/home-faq";
 import { TESTIMONIALS } from "@/lib/testimonials";
 import {
   buildHomeColumns,
+  newCourses,
   courseMeta,
   featuredCourse,
   formatMonth,
@@ -93,6 +95,10 @@ export default async function HomePage() {
     getUpcomingCourses(),
   ]);
   const recentPosts = getAllPosts().slice(0, 6);
+  // One new course is already the third promo card; from two on they get
+  // their own section, so none of a batch is missed.
+  const recent = newCourses(courses, new Date());
+  const fresh = recent.length >= 2 ? recent : [];
 
   // Hero demos link to their course only when it is published.
   const heroDemos = HERO_DEMOS.map(({ slug, ...demo }) => ({
@@ -222,8 +228,17 @@ export default async function HomePage() {
       {/* Pill links: tracks and article categories */}
       <ExplorePills groups={pillGroups} />
 
-      {/* Three short lists of courses */}
-      <CourseColumns columns={buildHomeColumns(courses)} />
+      {/* Every course published in the last 30 days */}
+      <NewCourses courses={fresh} />
+
+      {/* Three short lists of courses (the new ones are already above) */}
+      <CourseColumns
+        columns={buildHomeColumns(
+          courses,
+          3,
+          fresh.map((c) => c.id)
+        )}
+      />
 
       {/* Dark band: tracks as chips, four cards of the chosen track */}
       <TrackSpotlight
