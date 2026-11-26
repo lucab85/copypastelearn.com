@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { CourseListItem } from "@copypastelearn/shared";
 import { CourseThumb } from "@/components/course/course-thumb";
+import { NewBadge } from "@/components/course/new-badge";
 import { courseMeta, formatMonth } from "@/lib/home-catalog";
 import { cn } from "@/lib/utils";
 
@@ -10,6 +11,8 @@ interface CourseCardProps {
   compact?: boolean;
   /** `sizes` of the cover, when the card is not in the usual 1/2/3 grid. */
   sizes?: string;
+  /** Published in the last 30 days: the card says "New" before the title. */
+  isNew?: boolean;
   className?: string;
 }
 
@@ -21,6 +24,7 @@ export function CourseCard({
   course,
   compact = false,
   sizes = "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw",
+  isNew = false,
   className,
 }: CourseCardProps) {
   const progress = course.userProgress
@@ -40,6 +44,7 @@ export function CourseCard({
             compact ? "text-[15px]" : "text-lg"
           )}
         >
+          {isNew && <NewBadge className="mr-2 align-[3px]" />}
           {course.title}
         </h3>
         {!compact && (

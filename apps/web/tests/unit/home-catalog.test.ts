@@ -10,6 +10,7 @@ import {
   isNewCourse,
   latestUpdatedCourse,
   NEW_COURSE_DAYS,
+  newCourses,
   trackCount,
   trackGroups,
 } from "@/lib/home-catalog";
@@ -185,6 +186,39 @@ describe("home columns", () => {
     expect(columns.map((c) => c.id)).toEqual(["track-ai-agents"]);
     expect(columns[0].href).toBe("/courses#ai-agents");
     expect(buildHomeColumns([])).toEqual([]);
+  });
+});
+
+describe("new courses", () => {
+  const now = new Date("2026-11-26T12:00:00.000Z");
+  const at = (days: number) =>
+    new Date(now.getTime() - days * 24 * 60 * 60 * 1000).toISOString();
+
+  it("lists every course of the last 30 days, newest first, and nothing older", () => {
+    const courses = [
+      course("old", { publishedAt: at(90) }),
+      course("n1", { publishedAt: at(3) }),
+      course("undated"),
+      course("n2", { publishedAt: at(1) }),
+      course("n3", { publishedAt: at(1) }),
+    ];
+    expect(newCourses(courses, now).map((c) => c.slug)).toEqual(["n3", "n2", "n1"]);
+    expect(newCourses(courses, now, 2).map((c) => c.slug)).toEqual(["n3", "n2"]);
+    expect(newCourses([course("old", { publishedAt: at(31) })], now)).toEqual([]);
+  });
+
+  it("keeps the courses shown above out of the columns when there are others", () => {
+    const courses = [
+      ...["n1", "n2", "n3"].map((s) =>
+        course(s, { updatedAt: "2026-11-25T00:00:00.000Z" })
+      ),
+      ...["d1", "d2", "d3"].map((s) =>
+        course(s, { updatedAt: "2026-11-18T00:00:00.000Z" })
+      ),
+    ];
+    const [updated] = buildHomeColumns(courses, 3, ["n1", "n2", "n3"]);
+    expect(updated.title).toBe("Recently updated");
+    expect(updated.courses.map((c) => c.slug)).toEqual(["d1", "d2", "d3"]);
   });
 });
 

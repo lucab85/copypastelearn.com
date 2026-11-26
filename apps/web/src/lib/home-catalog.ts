@@ -107,6 +107,20 @@ export function byRecentPublish(courses: CourseListItem[]): CourseListItem[] {
     .map(({ course }) => course);
 }
 
+/**
+ * Courses first published within the last NEW_COURSE_DAYS days, newest first.
+ * The home page lists them in their own section and the cards carry "New".
+ */
+export function newCourses(
+  courses: CourseListItem[],
+  now: Date,
+  limit = 6
+): CourseListItem[] {
+  return byRecentPublish(courses)
+    .filter((c) => isNewCourse(c.publishedAt, now))
+    .slice(0, limit);
+}
+
 export interface FeaturedCourse {
   course: CourseListItem;
   /** Published within the last NEW_COURSE_DAYS days: the card may say "New". */
@@ -153,12 +167,15 @@ export const SHORT_COURSE_MINUTES = 30;
  * Up to three titled lists of `size` courses for the home page. A list needs
  * at least two courses to be shown. A later list skips courses an earlier
  * list already shows whenever it has enough others, so a small catalog is
- * not shown as the same three cards three times. When the dated, beginner
+ * not shown as the same three cards three times, and a course already listed
+ * above the columns (`shownIds`) is left to the lists that have others. When the dated, beginner
  * and short lists do not fill three columns, tracks fill the rest.
  */
 export function buildHomeColumns(
   courses: CourseListItem[],
-  size = 3
+  size = 3,
+  /** Ids already shown above the columns (the "New courses" section). */
+  shownIds: string[] = []
 ): HomeColumn[] {
   const candidates: Omit<HomeColumn, "courses">[] = [];
   const pools = new Map<string, CourseListItem[]>();
@@ -214,7 +231,7 @@ export function buildHomeColumns(
     );
   }
 
-  const used = new Set<string>();
+  const used = new Set<string>(shownIds);
   const columns: HomeColumn[] = [];
   for (const column of candidates) {
     if (columns.length === 3) break;

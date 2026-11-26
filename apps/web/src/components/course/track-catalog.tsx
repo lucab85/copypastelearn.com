@@ -12,6 +12,8 @@ interface TrackCatalogProps {
   upcoming?: UpcomingCourse[];
   /** Search box and difficulty filter (catalog page). Off on the home page. */
   showFilters?: boolean;
+  /** Ids of the courses published in the last 30 days: their cards say "New". */
+  newCourseIds?: string[];
 }
 
 const difficulties = ["ALL", "BEGINNER", "INTERMEDIATE", "ADVANCED"] as const;
@@ -20,6 +22,7 @@ export function TrackCatalog({
   courses,
   upcoming = [],
   showFilters = false,
+  newCourseIds = [],
 }: TrackCatalogProps) {
   const [search, setSearch] = useState("");
   const [difficulty, setDifficulty] = useState<string>("ALL");
@@ -144,7 +147,11 @@ export function TrackCatalog({
               {published.length > 0 && (
                 <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
                   {published.map((course) => (
-                    <CourseCard key={course.id} course={course} />
+                    <CourseCard
+                      key={course.id}
+                      course={course}
+                      isNew={newCourseIds.includes(course.id)}
+                    />
                   ))}
                 </div>
               )}

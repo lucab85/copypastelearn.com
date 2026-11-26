@@ -4,6 +4,7 @@ import {
   getPublicCourses,
   getUpcomingCourses,
 } from "@/server/queries/public-courses";
+import { newCourses } from "@/lib/home-catalog";
 import { TrackCatalog } from "@/components/course/track-catalog";
 import { COURSE_TRACKS } from "@/lib/course-tracks";
 import { BookOpen } from "lucide-react";
@@ -118,7 +119,14 @@ export default async function CourseCatalogPage() {
             </p>
           </div>
         ) : (
-          <TrackCatalog courses={courses} upcoming={upcoming} showFilters />
+          <TrackCatalog
+            courses={courses}
+            upcoming={upcoming}
+            showFilters
+            newCourseIds={newCourses(courses, new Date(), courses.length).map(
+              (c) => c.id
+            )}
+          />
         )}
       </div>
     </div>
