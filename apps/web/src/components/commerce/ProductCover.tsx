@@ -49,8 +49,10 @@ const BRAND_THEME: Record<
     label: "Ansible by Example",
   },
   TerraformPilot: {
-    gradient: "from-violet-700 via-purple-600 to-fuchsia-600",
-    accent: "text-violet-100",
+    // Terraform purple only on the mark: a violet gradient reads as a
+    // generic AI palette (Impeccable "ai-color-palette").
+    gradient: "from-zinc-900 via-zinc-800 to-zinc-900",
+    accent: "text-violet-300",
     mark: "T",
     label: "TerraformPilot",
   },
