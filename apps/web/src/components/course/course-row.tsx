@@ -1,17 +1,16 @@
 import Link from "next/link";
 import type { CourseListItem } from "@copypastelearn/shared";
 import { CourseThumb } from "@/components/course/course-thumb";
-import { NewBadge } from "@/components/course/new-badge";
 import { courseMeta } from "@/lib/home-catalog";
 
 /** A small horizontal course card: cover on the left, title and one quiet line. */
 export function CourseRow({
   course,
-  isNew = false,
+  heading: Heading = "h4",
 }: {
   course: CourseListItem;
-  /** Published in the last 30 days: the row says "New" before the title. */
-  isNew?: boolean;
+  /** Level of the title: one below the heading the row is listed under. */
+  heading?: "h3" | "h4";
 }) {
   return (
     <Link
@@ -24,10 +23,9 @@ export function CourseRow({
         className="w-28 shrink-0 border transition-colors group-hover:border-foreground/40"
       />
       <div className="min-w-0">
-        <h4 className="line-clamp-2 text-[15px] font-semibold leading-snug tracking-tight underline-offset-4 group-hover:underline">
-          {isNew && <NewBadge className="mr-1.5 align-[2px]" />}
+        <Heading className="line-clamp-2 text-[15px] font-semibold leading-snug tracking-tight underline-offset-4 group-hover:underline">
           {course.title}
-        </h4>
+        </Heading>
         <p className="mt-1 text-xs leading-snug text-muted-foreground">
           {courseMeta(course)}
         </p>
