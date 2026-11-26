@@ -1,4 +1,5 @@
 export const revalidate = 3600;
+import { firstSentence } from "@/lib/first-sentence";
 import type { Metadata } from "next";
 import { cache } from "react";
 import { notFound } from "next/navigation";
@@ -306,11 +307,11 @@ export default async function CourseDetailPage({ params }: CourseDetailPageProps
           {course.difficulty.toLowerCase()}
         </Badge>
         <h1 className="text-4xl font-bold tracking-tight">{course.title}</h1>
-        <div className="mt-3 max-w-2xl space-y-3 text-lg text-muted-foreground">
-          {course.description.split(/\n\s*\n/).map((paragraph, i) => (
-            <p key={i}>{paragraph}</p>
-          ))}
-        </div>
+        {/* One sentence under the title. The full description stays in the
+            page metadata and the Course JSON-LD. */}
+        <p className="mt-3 max-w-2xl text-lg text-muted-foreground">
+          {firstSentence(course.description)}
+        </p>
 
         <div className="mt-4 flex items-center gap-4 text-sm text-muted-foreground">
           <span className="flex items-center gap-1">
